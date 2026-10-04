@@ -4,12 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.graphics.Bitmap
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.graphics.asAndroidBitmap
-import androidx.compose.ui.test.captureToImage
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onFirst
-import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -32,13 +29,17 @@ import java.io.File
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
 class StoreScreenshots {
-    @get:Rule val rule = createComposeRule()
+    @get:Rule val rule = createAndroidComposeRule<androidx.activity.ComponentActivity>()
 
     private val out = File(System.getProperty("storeShotsDir") ?: "build/store-screenshots").apply { mkdirs() }
 
     private fun shot(name: String) {
         rule.waitForIdle()
-        val bmp = rule.onRoot().captureToImage().asAndroidBitmap()
+        // Draw the window's view tree straight into a bitmap (the test framework's own capture
+        // waits for a hardware frame that never comes off-device).
+        val root = rule.activity.window.decorView
+        val bmp = Bitmap.createBitmap(root.width, root.height, Bitmap.Config.ARGB_8888)
+        root.draw(android.graphics.Canvas(bmp))
         File(out, "$name.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 
