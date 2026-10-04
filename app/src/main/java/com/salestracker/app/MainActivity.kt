@@ -285,7 +285,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
         bottomBar = {
             if (!vm.menuOnLeft) {
                 Column {
-                    MenuToggle(hidden = vm.menuHidden, side = false) { vm.setMenuHidden(!vm.menuHidden) }
+                    MenuToggle(hidden = vm.menuHidden, side = false) { vm.changeMenuHidden(!vm.menuHidden) }
                     AnimatedVisibility(visible = !vm.menuHidden, enter = expandVertically(), exit = shrinkVertically()) {
                         NavigationBar {
                             Tab.entries.forEachIndexed { i, t ->
@@ -325,7 +325,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                         }
                     }
                 }
-                MenuToggle(hidden = vm.menuHidden, side = true) { vm.setMenuHidden(!vm.menuHidden) }
+                MenuToggle(hidden = vm.menuHidden, side = true) { vm.changeMenuHidden(!vm.menuHidden) }
             }
             Box(Modifier.weight(1f).fillMaxHeight()) {
                 when (tab) {

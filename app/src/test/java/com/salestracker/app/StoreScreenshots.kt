@@ -94,9 +94,9 @@ class StoreScreenshots {
         // Menu options: down the side, then tucked away with its arrow (checked here, not store shots).
         vm.chooseMenuOnLeft(true)
         tap(app.getString(R.string.tab_calendar)); shot("10-menu-side")
-        vm.setMenuHidden(true); rule.waitForIdle(); rule.mainClock.advanceTimeBy(1000); shot("11-menu-side-hidden")
+        vm.changeMenuHidden(true); rule.waitForIdle(); rule.mainClock.advanceTimeBy(1000); shot("11-menu-side-hidden")
         vm.chooseMenuOnLeft(false); rule.waitForIdle(); rule.mainClock.advanceTimeBy(1000); shot("12-menu-bottom-hidden")
-        vm.setMenuHidden(false)
+        vm.changeMenuHidden(false)
         // Same stats screen in dark mode.
         dark = true
         tap(app.getString(R.string.tab_stats)); shot("5-stats-dark")

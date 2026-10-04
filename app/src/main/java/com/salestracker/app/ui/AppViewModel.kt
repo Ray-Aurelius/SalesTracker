@@ -191,7 +191,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     /** The menu tucked away with its arrow, for more room on screen. Remembered between visits. */
     var menuHidden by mutableStateOf(settings.getBoolean("menuHidden", false))
         private set
-    fun setMenuHidden(hidden: Boolean) {
+    fun changeMenuHidden(hidden: Boolean) {
         menuHidden = hidden
         settings.edit().putBoolean("menuHidden", hidden).apply()
     }
