@@ -9,12 +9,25 @@ Everything is stored privately on the phone — no account or internet needed.
 |---|---|
 | **Stats** | Close rate, upsell rate, upsell acceptance, **commission earned**, revenue, upsell revenue, average sale, average time per sale. Filter by Today / This week / This month / All time. Full sales list — tap to edit, trash icon to delete. Tap the commission card to set your default rate. |
 | **Goals** | **Personal** and **Company** money goals for this week / month / quarter / year, with progress bars and pace ("On pace" or "$X/day needed"). Tracks revenue, commission or upsell revenue automatically from logged sales, or a number you update yourself. |
-| **Clients** | Save first name, last name, phone, email and notes. Search, tap the phone or email icon to call/email, see each client's sales and close rate. |
+| **Clients** | Save first name, last name, **job / work order #**, phone, email and notes (search by any of them). Search, tap the phone or email icon to call/email, see each client's sales and close rate. |
 | **Calendar** | Month view with dots on days that have appointments. **Highlight important days** in red, orange, yellow, green, blue, purple or pink. Add appointments with title, date, time, client, notes and a **reminder** (at start time up to 1 day before) that rings like an alarm, with Snooze. Shows that day's sales too. |
 | **Timer** | Stopwatch for timing a sale. Pick the client, Start/Pause/Reset, then **Finish & log this sale** to save it with the time filled in. Keeps running if you switch tabs or leave the app. |
 | **Calc** | Calculator with + − × ÷ and % (e.g. `1200 × 15%` = 180), live result preview. |
 
-**Settings** (gear icon, top right) holds everything below.
+**Settings** (gear icon, top right): Security & privacy, Appearance, Text, Language. The eye icon next to it is **privacy mode** (hides every dollar amount).
+
+## Privacy & security
+
+- **No internet permission.** The manifest strips it, and the CI privacy audit fails the build if it ever appears. Nothing can be sent anywhere. Every release lists its permissions.
+- **Minimal permissions:** notifications, exact alarms, run at startup (re-arm reminders), biometric. Nothing else.
+- **Release build** (not debuggable) signed with the permanent key.
+- **Encrypted at rest:** the data file is AES-256-GCM with a non-exportable Android Keystore key; older plain files are migrated and overwritten.
+- **No Google cloud backup or device transfer** of app data (`allowBackup=false`, data extraction rules exclude everything). Users move data only with their own encrypted backup file.
+- **Private lock-screen reminders**, privacy mode, re-lock timing, screenshot blocking, erase-all (destroys the key), delete a client with all their records, backup reminders, password strength meter.
+- **User agreement** must be accepted on first launch (versioned in `SecurityOptions.kt` → `AGREEMENT_VERSION`). *Have an attorney review the English text before distribution.*
+
+**Text:** six font styles (Standard, Easy reading — Atkinson Hyperlegible, Modern — Lexend, Rounded — Nunito, Classic serif, Compact) and text size 85–150%. Bundled fonts are under the SIL Open Font License; license files are in `app/src/main/assets/licenses/`.
+
 
 **Security:** turn on **Lock with fingerprint or PIN** to require your fingerprint, face or phone PIN when opening the app (it re-locks after 30 seconds away and hides the app preview in recent apps).
 

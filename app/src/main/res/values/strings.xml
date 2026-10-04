@@ -177,7 +177,7 @@
     <string name="client_none">No client</string>
 
     <!-- Clients -->
-    <string name="search_clients">Search name, phone or email</string>
+    <string name="search_clients">Search name, phone, email or job #</string>
     <string name="no_clients_yet">No clients yet. Tap \"Add client\" to save your first one.</string>
     <string name="no_clients_match">No clients match \"%1$s\".</string>
     <string name="no_sales_yet">No sales yet</string>
@@ -433,4 +433,9 @@
     <string name="font_classic_desc">A traditional serif, like a printed book</string>
     <string name="font_compact">Compact</string>
     <string name="font_compact_desc">Narrower letters fit more on the screen</string>
+
+    <!-- Client job / work order number -->
+    <string name="client_ref">Job / work order #</string>
+    <string name="client_ref_hint">e.g. WO-1042</string>
+    <string name="client_ref_display">Job # %1$s</string>
 </resources>

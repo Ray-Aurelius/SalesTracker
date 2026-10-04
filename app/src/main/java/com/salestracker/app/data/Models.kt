@@ -10,6 +10,8 @@ data class Client(
     val phone: String,
     val email: String,
     val notes: String = "",
+    /** The client's job number, work order or account ID, so they can be found by it. Optional. */
+    val reference: String = "",
 ) {
     val fullName: String
         get() = listOf(firstName, lastName).filter { it.isNotBlank() }.joinToString(" ")
@@ -21,6 +23,7 @@ data class Client(
         .put("phone", phone)
         .put("email", email)
         .put("notes", notes)
+        .put("reference", reference)
 
     companion object {
         fun fromJson(o: JSONObject) = Client(
@@ -30,6 +33,7 @@ data class Client(
             phone = o.optString("phone"),
             email = o.optString("email"),
             notes = o.optString("notes"),
+            reference = o.optString("reference"),
         )
     }
 }

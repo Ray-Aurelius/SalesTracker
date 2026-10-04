@@ -7,7 +7,7 @@ import org.junit.Test
 
 class BackupTest {
     private val sample = AppData(
-        clients = listOf(Client(1, "Ana", "García", "555-0100", "ana@example.com", "VIP — Café ☕")),
+        clients = listOf(Client(1, "Ana", "García", "555-0100", "ana@example.com", "VIP — Café ☕", reference = "WO-1042")),
         sales = listOf(Sale(2, 1, 1_700_000_000_000, true, true, true, 1200.0, 300.0, 900, "notes", 10.0)),
         appointments = listOf(Appointment(3, "Follow-up", 20_000, 600, 1, "", 15)),
         goals = listOf(Goal(4, "Q4", GoalScope.COMPANY, GoalMetric.REVENUE, GoalPeriod.QUARTER, 100_000.0)),

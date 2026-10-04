@@ -69,7 +69,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
 
     val q = query.trim().lowercase()
     val clients = data.clients
-        .filter { q.isEmpty() || "${it.fullName} ${it.phone} ${it.email}".lowercase().contains(q) }
+        .filter { q.isEmpty() || "${it.fullName} ${it.phone} ${it.email} ${it.reference}".lowercase().contains(q) }
         .sortedBy { it.fullName.lowercase() }
     val salesByClient = data.sales.groupBy { it.clientId }
 
@@ -143,6 +143,13 @@ private fun ClientCard(
         Row(Modifier.padding(start = 16.dp, top = 12.dp, bottom = 12.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
                 Text(client.fullName, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                if (client.reference.isNotBlank()) {
+                    Text(
+                        stringResource(R.string.client_ref_display, client.reference),
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.secondary,
+                    )
+                }
                 if (client.phone.isNotBlank()) Text(client.phone, style = MaterialTheme.typography.bodyMedium)
                 if (client.email.isNotBlank()) Text(client.email, style = MaterialTheme.typography.bodyMedium)
                 Text(summary, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
@@ -170,6 +177,7 @@ private fun ClientDialog(
     var phone by remember { mutableStateOf(initial?.phone ?: "") }
     var email by remember { mutableStateOf(initial?.email ?: "") }
     var notes by remember { mutableStateOf(initial?.notes ?: "") }
+    var reference by remember { mutableStateOf(initial?.reference ?: "") }
     var confirmDelete by remember { mutableStateOf(false) }
 
     val emailValid = email.isBlank() || android.util.Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()
@@ -185,6 +193,9 @@ private fun ClientDialog(
                     keyboardOptions = nameCaps, modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(last, { last = it }, label = { Text(stringResource(R.string.last_name)) }, singleLine = true,
                     keyboardOptions = nameCaps, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(reference, { reference = it }, label = { Text(stringResource(R.string.client_ref)) },
+                    placeholder = { Text(stringResource(R.string.client_ref_hint)) }, singleLine = true,
+                    keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters), modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(phone, { phone = it }, label = { Text(stringResource(R.string.phone)) }, singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone), modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(email, { email = it }, label = { Text(stringResource(R.string.email)) }, singleLine = true,
@@ -209,6 +220,7 @@ private fun ClientDialog(
                         phone = phone.trim(),
                         email = email.trim(),
                         notes = notes.trim(),
+                        reference = reference.trim(),
                     )
                 )
                 onDismiss()
