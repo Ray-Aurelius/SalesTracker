@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Three rising bars with an upward trend line. Artwork kept inside the 66dp safe zone. -->
+<!-- Bullseye: a target hit dead center — staying on target and hitting goals.
+     Drawn on the 108dp adaptive-icon grid and scaled so everything sits inside the 66dp safe circle,
+     so circle, squircle and rounded-square launchers all frame it cleanly. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <path android:fillColor="#FFFFFF" android:pathData="M34,62h10v14h-10z" />
-    <path android:fillColor="#FFFFFF" android:pathData="M49,52h10v24h-10z" />
-    <path android:fillColor="#FFFFFF" android:pathData="M64,40h10v36h-10z" />
-    <path
-        android:strokeColor="#F2B36B"
-        android:strokeWidth="4"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:pathData="M33,54L47,42L57,46L73,32" />
-    <path android:fillColor="#F2B36B" android:pathData="M66,30L76,29L75,39z" />
+    <group android:pivotX="54" android:pivotY="54" android:scaleX="0.86" android:scaleY="0.86">
+        <!-- Rings: white, coral, white, coral center -->
+        <path android:fillColor="#FFFFFF" android:pathData="M23,58a27,27 0,1 0,54 0a27,27 0,1 0,-54 0z" />
+        <path android:fillColor="#E4572E" android:pathData="M31,58a19,19 0,1 0,38 0a19,19 0,1 0,-38 0z" />
+        <path android:fillColor="#FFFFFF" android:pathData="M39,58a11,11 0,1 0,22 0a11,11 0,1 0,-22 0z" />
+        <path android:fillColor="#E4572E" android:pathData="M46,58a4,4 0,1 0,8 0a4,4 0,1 0,-8 0z" />
+        <!-- Arrow in the center, with fletching -->
+        <path android:strokeColor="#22252B" android:strokeWidth="4.5" android:strokeLineCap="round"
+            android:pathData="M51,57L80,28" />
+        <path android:strokeColor="#22252B" android:strokeWidth="4" android:strokeLineCap="round"
+            android:strokeLineJoin="round" android:pathData="M74,26L80,28L82,34" />
+        <path android:strokeColor="#22252B" android:strokeWidth="4" android:strokeLineCap="round"
+            android:strokeLineJoin="round" android:pathData="M70,30L76,32L78,38" />
+    </group>
 </vector>
