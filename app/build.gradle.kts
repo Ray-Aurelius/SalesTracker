@@ -15,7 +15,7 @@ android {
         // Each GitHub build gets a higher number, so phones accept it as an update.
         val build = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
         versionCode = build
-        versionName = "1.2.$build"
+        versionName = "1.0.$build"
     }
 
     // A permanent signing key lets every new build install over the last one, keeping your data.
