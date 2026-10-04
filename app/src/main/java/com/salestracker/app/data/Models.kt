@@ -159,6 +159,8 @@ data class AppData(
     val sales: List<Sale> = emptyList(),
     val appointments: List<Appointment> = emptyList(),
     val goals: List<Goal> = emptyList(),
+    /** Daily to-dos: client follow-ups and smaller tasks. */
+    val tasks: List<Task> = emptyList(),
     /** Commission % pre-filled on new sales. */
     val defaultCommissionPercent: Double = 0.0,
     /** Pre-sets "commission on upsell only" for new sales (some reps are only paid on add-ons). */
@@ -172,6 +174,7 @@ data class AppData(
         .put("sales", JSONArray(sales.map { it.toJson() }))
         .put("appointments", JSONArray(appointments.map { it.toJson() }))
         .put("goals", JSONArray(goals.map { it.toJson() }))
+        .put("tasks", JSONArray(tasks.map { it.toJson() }))
         .put("defaultCommissionPercent", defaultCommissionPercent)
         .put("defaultCommissionUpsellOnly", defaultCommissionUpsellOnly)
         .put("dayHighlights", JSONObject().apply { dayHighlights.forEach { (day, c) -> put(day.toString(), c.name) } })
@@ -182,6 +185,7 @@ data class AppData(
             sales = o.optJSONArray("sales").objects().map(Sale::fromJson),
             appointments = o.optJSONArray("appointments").objects().map(Appointment::fromJson),
             goals = o.optJSONArray("goals").objects().map(Goal::fromJson),
+            tasks = o.optJSONArray("tasks").objects().map(Task::fromJson),
             defaultCommissionPercent = o.optDouble("defaultCommissionPercent", 0.0).takeIf { !it.isNaN() } ?: 0.0,
             defaultCommissionUpsellOnly = o.optBoolean("defaultCommissionUpsellOnly", false),
             dayHighlights = o.optJSONObject("dayHighlights")?.let { h ->

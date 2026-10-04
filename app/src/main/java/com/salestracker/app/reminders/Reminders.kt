@@ -18,6 +18,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.salestracker.app.MainActivity
 import com.salestracker.app.R
 import com.salestracker.app.data.AppData
+import com.salestracker.app.data.Task
 import com.salestracker.app.data.Appointment
 import com.salestracker.app.data.Repository
 import com.salestracker.app.data.formatMinuteOfDay
@@ -63,6 +64,58 @@ object ReminderScheduler {
     /** Re-arms every upcoming reminder. Needed after a reboot or time change, since Android clears alarms then. */
     fun rescheduleAll(context: Context, data: AppData) {
         data.appointments.forEach { schedule(context, it) }
+        data.tasks.forEach { scheduleTask(context, it) }
+    }
+
+    /** Sets (or clears) a task's alarm: its next reminder time, if any. Task and appointment ids never collide. */
+    fun scheduleTask(context: Context, task: Task) {
+        val at = task.nextReminderMillis()
+        if (at == null) cancel(context, task.id) else setAlarm(context, task.id, at)
+    }
+
+    fun showTaskReminder(context: Context, task: Task, data: AppData) {
+        val nmc = NotificationManagerCompat.from(context)
+        if (!nmc.areNotificationsEnabled()) return
+        ensureChannel(context)
+        val client = task.clientId?.let { id -> data.clients.firstOrNull { it.id == id }?.fullName }
+        val line = listOfNotNull(
+            context.getString(if (task.important) R.string.task_important else R.string.task_other),
+            client,
+        ).joinToString(" · ")
+        val body = if (task.notes.isBlank()) line else "$line\n${task.notes}"
+        val nid = notificationId(task.id)
+        val open = PendingIntent.getActivity(
+            context, nid, openAppIntent(context, null).putExtra(MainActivity.EXTRA_OPEN_TASKS, true),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
+        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_stat_reminder)
+            .setColor(0xFFE4572E.toInt())
+            .setContentTitle(task.title)
+            .setContentText(line)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            // On the lock screen only "Task reminder" shows; the task itself needs the phone unlocked.
+            .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
+            .setPublicVersion(
+                NotificationCompat.Builder(context, CHANNEL_ID)
+                    .setSmallIcon(R.drawable.ic_stat_reminder)
+                    .setContentTitle(context.getString(R.string.notif_task_private_title))
+                    .build()
+            )
+            .setContentIntent(open)
+            .setAutoCancel(true)
+            .addAction(0, context.getString(R.string.notif_snooze, SNOOZE_MINUTES), actionIntent(context, ReminderReceiver.ACTION_SNOOZE, task.id))
+            .addAction(0, context.getString(R.string.notif_dismiss), actionIntent(context, ReminderReceiver.ACTION_DISMISS, task.id))
+            .build()
+        // Important tasks keep ringing like an alarm until answered; smaller ones ring once.
+        if (task.important) notification.flags = notification.flags or Notification.FLAG_INSISTENT
+        try {
+            nmc.notify(nid, notification)
+        } catch (e: SecurityException) {
+            // Notification permission was revoked; nothing else to do.
+        }
     }
 
     fun snooze(context: Context, appointmentId: Long) {
@@ -204,8 +257,16 @@ class ReminderReceiver : BroadcastReceiver() {
         when (intent.action) {
             ACTION_REMIND -> {
                 val data = Repository.readSnapshot(context)
-                val appt = data.appointments.firstOrNull { it.id == id } ?: return // deleted since
-                ReminderScheduler.showReminder(context, appt, data)
+                data.appointments.firstOrNull { it.id == id }?.let {
+                    ReminderScheduler.showReminder(context, it, data)
+                    return
+                }
+                val task = data.tasks.firstOrNull { it.id == id } ?: return // deleted since
+                ReminderScheduler.showTaskReminder(context, task, data)
+                // A repeating task: set the alarm for its next day.
+                if (task.repeat != com.salestracker.app.data.TaskRepeat.NONE) {
+                    ReminderScheduler.scheduleTask(context, task.copy(doneDays = task.doneDays + java.time.LocalDate.now().toEpochDay()))
+                }
             }
             ACTION_SNOOZE -> ReminderScheduler.snooze(context, id)
             ACTION_DISMISS -> NotificationManagerCompat.from(context).cancel(ReminderScheduler.notificationId(id))

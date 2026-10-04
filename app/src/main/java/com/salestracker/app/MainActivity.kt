@@ -102,6 +102,7 @@ import com.salestracker.app.ui.AppViewModel
 import com.salestracker.app.ui.screens.AppearanceDialog
 import com.salestracker.app.ui.screens.CalculatorScreen
 import com.salestracker.app.ui.screens.ChartsScreen
+import com.salestracker.app.ui.screens.ScheduleScreen
 import com.salestracker.app.ui.screens.CalendarScreen
 import com.salestracker.app.ui.screens.ClientsScreen
 import com.salestracker.app.ui.screens.DashboardScreen
@@ -188,10 +189,15 @@ class MainActivity : AppCompatActivity() {
             vm.pendingOpenDay = day
             intent?.removeExtra(EXTRA_OPEN_DAY)
         }
+        if (intent?.getBooleanExtra(EXTRA_OPEN_TASKS, false) == true) {
+            vm.pendingOpenTasks = true
+            intent.removeExtra(EXTRA_OPEN_TASKS)
+        }
     }
 
     companion object {
         const val EXTRA_OPEN_DAY = "openEpochDay"
+        const val EXTRA_OPEN_TASKS = "openTasks"
     }
 }
 
@@ -252,6 +258,9 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
 
     LaunchedEffect(vm.pendingOpenDay) {
         if (vm.pendingOpenDay != null) tab = Tab.CALENDAR
+    }
+    LaunchedEffect(vm.pendingOpenTasks) {
+        if (vm.pendingOpenTasks) tab = Tab.CALENDAR
     }
 
     Scaffold(
@@ -323,7 +332,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                     Tab.DASHBOARD -> DashboardScreen(vm, data)
                     Tab.GOALS -> GoalsScreen(vm, data)
                     Tab.CLIENTS -> ClientsScreen(vm, data)
-                    Tab.CALENDAR -> CalendarScreen(vm, data)
+                    Tab.CALENDAR -> ScheduleScreen(vm, data)
                     Tab.TIMER -> StopwatchScreen(vm, data)
                     Tab.CALCULATOR -> CalculatorScreen(vm)
                     Tab.CHARTS -> ChartsScreen(data)

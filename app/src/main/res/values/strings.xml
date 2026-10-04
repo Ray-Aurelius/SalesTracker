@@ -658,4 +658,36 @@
         <item quantity="one">%d sale closed</item>
         <item quantity="other">%d sales closed</item>
     </plurals>
+
+    <!-- Tasks (in the Schedule tab) -->
+    <string name="schedule_calendar">Calendar</string>
+    <string name="schedule_tasks">Tasks</string>
+    <string name="schedule_tasks_count">Tasks · %1$d</string>
+    <string name="tasks_today">Today</string>
+    <string name="tasks_tomorrow">Tomorrow</string>
+    <string name="tasks_yesterday">Yesterday</string>
+    <string name="cd_prev_day">Previous day</string>
+    <string name="cd_next_day">Next day</string>
+    <string name="tasks_progress">%1$d of %2$d done</string>
+    <string name="tasks_empty">Nothing planned. Tap Add task to plan your day.</string>
+    <string name="tasks_overdue">Overdue</string>
+    <string name="task_important">Important</string>
+    <string name="task_other">Task</string>
+    <string name="tasks_other">Other tasks</string>
+    <string name="tasks_done_section">Done (%1$d)</string>
+    <string name="task_due_on">Due %1$s</string>
+    <string name="add_task">Add task</string>
+    <string name="new_task">New task</string>
+    <string name="edit_task">Edit task</string>
+    <string name="task_title">Task</string>
+    <string name="task_title_hint">e.g. Call Jordan about the quote</string>
+    <string name="task_important_desc">For client follow-ups and must-dos. Listed first, and its reminder keeps ringing until you answer it.</string>
+    <string name="task_repeat">Repeat</string>
+    <string name="repeat_none">Once</string>
+    <string name="repeat_daily">Every day</string>
+    <string name="repeat_weekdays">Weekdays</string>
+    <string name="task_remind">Remind me</string>
+    <string name="delete_task">Delete task</string>
+    <string name="delete_task_q">Delete this task?</string>
+    <string name="notif_task_private_title">Task reminder</string>
 </resources>

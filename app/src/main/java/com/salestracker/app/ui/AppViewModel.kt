@@ -19,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import com.salestracker.app.data.AppData
+import com.salestracker.app.data.Task
 import com.salestracker.app.data.Appointment
 import com.salestracker.app.data.Client
 import com.salestracker.app.data.Goal
@@ -100,6 +101,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
                 sales = d.sales + s.sales,
                 appointments = d.appointments + s.appointments,
                 goals = d.goals + s.goals,
+                tasks = d.tasks + s.tasks,
                 dayHighlights = d.dayHighlights + s.highlightDays.filterKeys { it !in d.dayHighlights },
             )
         }
@@ -120,6 +122,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
                 sales = d.sales.filterNot { it.id in ids }.map { if (it.clientId in ids) it.copy(clientId = null) else it },
                 appointments = d.appointments.filterNot { it.id in ids }.map { if (it.clientId in ids) it.copy(clientId = null) else it },
                 goals = d.goals.filterNot { it.id in ids },
+                tasks = d.tasks.filterNot { it.id in ids }.map { if (it.clientId in ids) it.copy(clientId = null) else it },
                 dayHighlights = d.dayHighlights - sampleDays,
             )
         }
@@ -306,6 +309,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
      */
     fun eraseEverything() {
         repo.data.value.appointments.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
+        repo.data.value.tasks.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
         repo.eraseEverything()
         settings.edit().clear().commit()
         prefs.edit().clear().commit()
@@ -352,12 +356,28 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         val old = repo.data.value
         repo.update { newData }
         old.appointments.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
+        old.tasks.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
         ReminderScheduler.rescheduleAll(getApplication(), newData)
     }
 
     // ---- Opening a day from a reminder notification ----
     /** Set when a reminder is tapped; the calendar jumps to this day and clears it. */
     var pendingOpenDay by mutableStateOf<Long?>(null)
+    /** Set when a task reminder is tapped; the Schedule tab opens on Tasks and clears it. */
+    var pendingOpenTasks by mutableStateOf(false)
+
+    // ---- Tasks ----
+    fun saveTask(t: Task) {
+        repo.update { it.copy(tasks = it.tasks.upsert(t) { x -> x.id }) }
+        ReminderScheduler.scheduleTask(getApplication(), t)
+    }
+
+    fun setTaskDone(t: Task, day: Long, done: Boolean) = saveTask(t.withDone(day, done))
+
+    fun deleteTask(id: Long) {
+        repo.update { d -> d.copy(tasks = d.tasks.filterNot { it.id == id }) }
+        ReminderScheduler.cancel(getApplication(), id)
+    }
 
     // ---- Clients ----
     fun saveClient(client: Client) = repo.update { it.copy(clients = it.clients.upsert(client) { c -> c.id }) }
@@ -391,14 +411,17 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     /** Deletes a client and, if asked, every sale and appointment linked to them (e.g. a client's request to be forgotten). */
     fun deleteClientAndRecords(id: Long) {
         val appts = repo.data.value.appointments.filter { it.clientId == id }
+        val tasks = repo.data.value.tasks.filter { it.clientId == id }
         repo.update { d ->
             d.copy(
                 clients = d.clients.filterNot { it.id == id },
                 sales = d.sales.filterNot { it.clientId == id },
                 appointments = d.appointments.filterNot { it.clientId == id },
+                tasks = d.tasks.filterNot { it.clientId == id },
             )
         }
         appts.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
+        tasks.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
     }
 
     fun deleteClient(id: Long) = repo.update { d ->
@@ -407,6 +430,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
             // Keep the sales history; just detach it from the deleted client.
             sales = d.sales.map { if (it.clientId == id) it.copy(clientId = null) else it },
             appointments = d.appointments.map { if (it.clientId == id) it.copy(clientId = null) else it },
+            tasks = d.tasks.map { if (it.clientId == id) it.copy(clientId = null) else it },
         )
     }
 

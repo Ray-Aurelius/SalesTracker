@@ -14,9 +14,10 @@ object SampleData {
         val sales: List<Sale>,
         val appointments: List<Appointment>,
         val goals: List<Goal>,
+        val tasks: List<Task>,
         val highlightDays: Map<Long, HighlightColor>,
     ) {
-        val ids: Set<Long> get() = (clients.map { it.id } + sales.map { it.id } + appointments.map { it.id } + goals.map { it.id }).toSet()
+        val ids: Set<Long> get() = (clients.map { it.id } + sales.map { it.id } + appointments.map { it.id } + goals.map { it.id } + tasks.map { it.id }).toSet()
     }
 
     fun create(newId: () -> Long, commissionPercent: Double, today: LocalDate = LocalDate.now()): Sample {
@@ -67,6 +68,15 @@ object SampleData {
             Goal(newId(), "Monthly commission", GoalScope.PERSONAL, GoalMetric.COMMISSION, GoalPeriod.MONTH, 3000.0),
             Goal(newId(), "Quarterly team revenue", GoalScope.COMPANY, GoalMetric.REVENUE, GoalPeriod.QUARTER, 60000.0),
         )
-        return Sample(clients, sales, appointments, goals, mapOf(today.plusDays(2).toEpochDay() to HighlightColor.RED))
+        // A day's to-dos: client follow-ups up top, smaller jobs below, one daily habit. No reminders on fake data.
+        val todayDay = today.toEpochDay()
+        val tasks = listOf(
+            Task(newId(), "Follow up with ${clients[1].firstName} on the revised quote", todayDay, important = true, clientId = clients[1].id),
+            Task(newId(), "Send proposal to ${clients[2].firstName} ${clients[2].lastName}", todayDay, important = true, clientId = clients[2].id),
+            Task(newId(), "Make 10 prospecting calls", todayDay - 7, repeat = TaskRepeat.WEEKDAYS),
+            Task(newId(), "Thank-you card for ${clients[0].firstName}", todayDay, clientId = clients[0].id, doneDays = setOf(todayDay)),
+            Task(newId(), "Update pipeline notes", todayDay),
+        )
+        return Sample(clients, sales, appointments, goals, tasks, mapOf(today.plusDays(2).toEpochDay() to HighlightColor.RED))
     }
 }
