@@ -9,6 +9,9 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.hasScrollAction
+import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.swipeUp
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -79,9 +82,10 @@ class StoreScreenshots {
         tap(app.getString(R.string.tab_clients)); shot("3-clients")
         tap(app.getString(R.string.tab_calendar)); shot("4-calendar")
         tap(app.getString(R.string.tab_charts)); shot("7-charts")
-        rule.onAllNodesWithText(app.getString(R.string.charts_trends)).onFirst().performScrollTo()
+        // Bring the commission and revenue bar charts into view (the second "Close rate" is the trend chart below them).
+        rule.onAllNodesWithText(app.getString(R.string.close_rate))[1].performScrollTo()
         shot("8-charts-trends")
-        rule.onAllNodesWithText(app.getString(R.string.charts_best_days)).onFirst().performScrollTo()
+        repeat(4) { rule.onNode(hasScrollAction()).performTouchInput { swipeUp() } }
         shot("9-charts-days")
         // Same stats screen in dark mode.
         dark = true
