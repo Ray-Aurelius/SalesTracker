@@ -1,5 +1,6 @@
 package com.salestracker.app.ui.screens
 
+import androidx.compose.material.icons.filled.Work
 import androidx.compose.material.icons.filled.Accessibility
 import androidx.compose.material.icons.filled.TextFields
 import androidx.appcompat.app.AppCompatDelegate
@@ -36,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.salestracker.app.R
 import com.salestracker.app.ui.AppViewModel
 
-private enum class Step { MENU, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE }
+private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE }
 
 /** Appearance and language, plus the way into the Security & privacy center. */
 @Composable
@@ -52,6 +53,9 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
                     SettingRow(Icons.Filled.Shield, stringResource(R.string.security_title), stringResource(R.string.security_desc)) {
                         onDismiss()
                         onOpenSecurity()
+                    }
+                    SettingRow(Icons.Filled.Work, stringResource(R.string.trade_title), stringResource(vm.trade.label)) {
+                        step = Step.TRADE
                     }
                     SettingRow(Icons.Filled.Palette, stringResource(R.string.appearance_title), stringResource(R.string.settings_appearance_desc)) {
                         step = Step.APPEARANCE
@@ -96,6 +100,8 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
             onScale = vm::chooseTextScale,
             onDismiss = { step = Step.MENU },
         )
+
+        Step.TRADE -> TradeDialog(vm.trade, onPick = vm::chooseTrade, onDismiss = { step = Step.MENU })
 
         Step.ACCESSIBILITY -> AccessibilityDialog(vm, onOpenText = { step = Step.TEXT }, onDismiss = { step = Step.MENU })
 

@@ -2,6 +2,7 @@
 
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.data.LocalTerms
 import com.salestracker.app.R
 import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.Arrangement
@@ -64,7 +65,7 @@ fun ClientPicker(
             Icon(Icons.Filled.Person, contentDescription = null)
             Spacer(Modifier.width(8.dp))
             Text(
-                selected?.fullName ?: stringResource(if (clients.isEmpty()) R.string.client_none_saved else R.string.client_choose),
+                selected?.fullName ?: stringResource(if (clients.isEmpty()) R.string.client_none_saved else LocalTerms.current.chooseClient),
                 modifier = Modifier.weight(1f),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -72,7 +73,7 @@ fun ClientPicker(
             Icon(Icons.Filled.ArrowDropDown, contentDescription = null)
         }
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-            DropdownMenuItem(text = { Text(stringResource(R.string.client_none)) }, onClick = { onSelect(null); expanded = false })
+            DropdownMenuItem(text = { Text(stringResource(LocalTerms.current.noClient)) }, onClick = { onSelect(null); expanded = false })
             clients.sortedBy { it.fullName.lowercase() }.forEach { c ->
                 DropdownMenuItem(text = { Text(c.fullName) }, onClick = { onSelect(c.id); expanded = false })
             }
@@ -131,29 +132,29 @@ fun SaleDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(stringResource(if (initial == null) R.string.log_sale else R.string.edit_sale)) },
+        title = { Text(stringResource(if (initial == null) LocalTerms.current.logSale else LocalTerms.current.editSale)) },
         text = {
             Column(
                 Modifier.verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 ClientPicker(clients, clientId, { clientId = it })
-                SwitchRow(stringResource(R.string.sale_closed), closed, { closed = it; if (!it) upsellAccepted = false })
+                SwitchRow(stringResource(LocalTerms.current.saleClosed), closed, { closed = it; if (!it) upsellAccepted = false })
                 OutlinedTextField(
                     value = amount,
                     onValueChange = { amount = it },
-                    label = { Text(stringResource(if (closed) R.string.sale_amount else R.string.potential_amount)) },
+                    label = { Text(stringResource(if (closed) LocalTerms.current.saleAmount else R.string.potential_amount)) },
                     prefix = { Text("$") },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.fillMaxWidth(),
                 )
-                SwitchRow(stringResource(R.string.upsell_offered), upsellOffered, {
+                SwitchRow(stringResource(LocalTerms.current.upsellOffered), upsellOffered, {
                     upsellOffered = it
                     if (!it) upsellAccepted = false
                 })
                 SwitchRow(
-                    stringResource(R.string.upsell_accepted),
+                    stringResource(LocalTerms.current.upsellAccepted),
                     upsellAccepted,
                     { upsellAccepted = it },
                     enabled = upsellOffered && closed,
@@ -162,7 +163,7 @@ fun SaleDialog(
                     OutlinedTextField(
                         value = upsellAmount,
                         onValueChange = { upsellAmount = it },
-                        label = { Text(stringResource(R.string.upsell_amount)) },
+                        label = { Text(stringResource(LocalTerms.current.upsellAmount)) },
                         prefix = { Text("$") },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),

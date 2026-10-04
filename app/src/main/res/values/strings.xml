@@ -467,4 +467,113 @@
     <string name="calc_minus">Minus</string>
     <string name="calc_times">Times</string>
     <string name="calc_divide">Divided by</string>
+
+    <!-- Sales trades: wording presets -->
+    <string name="trade_title">Your sales trade</string>
+    <string name="trade_desc">Changes the app\'s wording to match your work</string>
+    <string name="trade_general">General sales</string>
+    <string name="trade_general_ex">Clients · Sales · Upsells · Appointments</string>
+    <string name="trade_realestate">Real estate</string>
+    <string name="trade_realestate_ex">Clients · Deals · Extra services · Showings</string>
+    <string name="trade_insurance">Insurance</string>
+    <string name="trade_insurance_ex">Clients · Policies · Riders · Meetings</string>
+    <string name="trade_auto">Automotive</string>
+    <string name="trade_auto_ex">Customers · Deals · Warranties &amp; add-ons · Appointments</string>
+    <string name="trade_home">Home services &amp; solar</string>
+    <string name="trade_home_ex">Homeowners · Jobs · Upgrades · Site visits</string>
+    <string name="trade_retail">Retail</string>
+    <string name="trade_retail_ex">Customers · Sales · Add-ons · Appointments</string>
+    <string name="trade_b2b">B2B &amp; software</string>
+    <string name="trade_b2b_ex">Accounts · Deals · Expansions · Meetings</string>
+    <string name="trade_commission_note">Suggested starting commission: %1$s%%. You can change it any time on the Stats tab.</string>
+
+    <string name="t_re_log">Log deal</string>
+    <string name="t_re_edit">Edit deal</string>
+    <string name="t_re_closed">Deal closed</string>
+    <string name="t_re_amount">Sale price</string>
+    <string name="t_re_up_offered">Extra service offered</string>
+    <string name="t_re_up_accepted">Extra service accepted</string>
+    <string name="t_re_up_amount">Extra service amount</string>
+    <string name="t_re_appt">Showing</string>
+    <string name="t_re_appt_new">New showing</string>
+    <string name="t_re_appt_edit">Edit showing</string>
+
+    <string name="t_in_log">Log policy</string>
+    <string name="t_in_edit">Edit policy</string>
+    <string name="t_in_closed">Policy sold</string>
+    <string name="t_in_amount">Premium</string>
+    <string name="t_in_up_offered">Rider offered</string>
+    <string name="t_in_up_accepted">Rider accepted</string>
+    <string name="t_in_up_amount">Rider premium</string>
+
+    <string name="t_meeting">Meeting</string>
+    <string name="t_meeting_new">New meeting</string>
+    <string name="t_meeting_edit">Edit meeting</string>
+
+    <string name="t_customers">Customers</string>
+    <string name="t_customer_add">Add customer</string>
+    <string name="t_customer_new">New customer</string>
+    <string name="t_customer_edit">Edit customer</string>
+    <string name="t_customer_choose">Choose customer (optional)</string>
+    <string name="t_customer_none">No customer</string>
+
+    <string name="t_au_log">Log deal</string>
+    <string name="t_au_edit">Edit deal</string>
+    <string name="t_au_closed">Vehicle sold</string>
+    <string name="t_au_amount">Sale price</string>
+    <string name="t_au_up_offered">Warranty or add-on offered</string>
+    <string name="t_au_up_accepted">Warranty or add-on accepted</string>
+    <string name="t_au_up_amount">Warranty or add-on amount</string>
+
+    <string name="t_hs_clients">Homeowners</string>
+    <string name="t_hs_add">Add homeowner</string>
+    <string name="t_hs_new">New homeowner</string>
+    <string name="t_hs_edit">Edit homeowner</string>
+    <string name="t_hs_choose">Choose homeowner (optional)</string>
+    <string name="t_hs_none">No homeowner</string>
+    <string name="t_hs_log">Log job</string>
+    <string name="t_hs_edit_sale">Edit job</string>
+    <string name="t_hs_closed">Job sold</string>
+    <string name="t_hs_amount">Contract amount</string>
+    <string name="t_hs_up_offered">Upgrade offered</string>
+    <string name="t_hs_up_accepted">Upgrade accepted</string>
+    <string name="t_hs_up_amount">Upgrade amount</string>
+    <string name="t_hs_appt">Site visit</string>
+    <string name="t_hs_appt_new">New site visit</string>
+    <string name="t_hs_appt_edit">Edit site visit</string>
+
+    <string name="t_rt_up_offered">Add-on offered</string>
+    <string name="t_rt_up_accepted">Add-on accepted</string>
+    <string name="t_rt_up_amount">Add-on amount</string>
+
+    <string name="t_bb_clients">Accounts</string>
+    <string name="t_bb_add">Add account</string>
+    <string name="t_bb_new">New account</string>
+    <string name="t_bb_edit">Edit account</string>
+    <string name="t_bb_choose">Choose account (optional)</string>
+    <string name="t_bb_none">No account</string>
+    <string name="t_bb_log">Log deal</string>
+    <string name="t_bb_edit_sale">Edit deal</string>
+    <string name="t_bb_closed">Deal won</string>
+    <string name="t_bb_amount">Deal value</string>
+    <string name="t_bb_up_offered">Expansion offered</string>
+    <string name="t_bb_up_accepted">Expansion accepted</string>
+    <string name="t_bb_up_amount">Expansion value</string>
+
+    <!-- Pipeline and follow-ups -->
+    <string name="stage_lead">Lead</string>
+    <string name="stage_contacted">Contacted</string>
+    <string name="stage_proposal">Proposal</string>
+    <string name="stage_negotiating">Negotiating</string>
+    <string name="stage_won">Won</string>
+    <string name="stage_lost">Lost</string>
+    <string name="stage_label">Stage</string>
+    <string name="pipeline_all">All</string>
+    <string name="chip_count">%1$s (%2$d)</string>
+    <string name="follow_ups_due">Follow-ups due</string>
+    <string name="follow_up">Follow-up</string>
+    <string name="schedule_follow_up">Schedule a follow-up</string>
+    <string name="follow_up_on">Follow up %1$s</string>
+    <string name="follow_up_title">Follow up: %1$s</string>
+    <string name="remove_follow_up">Remove follow-up</string>
 </resources>

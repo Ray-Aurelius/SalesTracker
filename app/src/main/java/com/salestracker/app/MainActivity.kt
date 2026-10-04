@@ -2,6 +2,8 @@
 
 package com.salestracker.app
 
+import androidx.compose.runtime.CompositionLocalProvider
+import com.salestracker.app.data.LocalTerms
 import com.salestracker.app.ui.screens.ScaledText
 import com.salestracker.app.ui.screens.AgreementScreen
 import com.salestracker.app.ui.screens.SecurityScreen
@@ -102,7 +104,7 @@ class MainActivity : AppCompatActivity() {
                 if (vm.blockScreenshots) window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
                 else window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
             }
-            ScaledText(vm.textScale) {
+            ScaledText(vm.textScale) { CompositionLocalProvider(LocalTerms provides vm.trade.terms) {
                 SalesTrackerTheme(
                     palette = vm.palette, dark = dark,
                     custom = vm.customColors.takeIf { vm.useCustomColors },
@@ -126,7 +128,7 @@ class MainActivity : AppCompatActivity() {
                         else -> SalesApp(vm, dark)
                     }
                 }
-            }
+            } }
         }
     }
 
@@ -207,7 +209,11 @@ private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
         )
         return
     }
-    val labels = Tab.entries.map { stringResource(it.label) }
+    val terms = LocalTerms.current
+    // The Clients tab follows the chosen trade's wording (Customers, Homeowners, Accounts…).
+    fun Tab.labelRes() = if (this == Tab.CLIENTS) terms.clients else label
+    fun Tab.titleRes() = if (this == Tab.CLIENTS) terms.clients else title
+    val labels = Tab.entries.map { stringResource(it.labelRes()) }
     val labelSize = rememberTabLabelSize(labels)
 
     LaunchedEffect(vm.pendingOpenDay) {
@@ -217,7 +223,7 @@ private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(tab.title), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+                title = { Text(stringResource(tab.titleRes()), maxLines = 1, overflow = TextOverflow.Ellipsis) },
                 actions = {
                     // Privacy mode: one tap hides every dollar amount (e.g. before showing the screen to a customer).
                     IconButton(onClick = vm::togglePrivacyMode) {

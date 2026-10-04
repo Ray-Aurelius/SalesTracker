@@ -2,6 +2,7 @@
 
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.data.LocalTerms
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
@@ -214,7 +215,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
         ExtendedFloatingActionButton(
             onClick = { adding = true },
             icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-            text = { Text(stringResource(R.string.appointment_fab)) },
+            text = { Text(stringResource(LocalTerms.current.appointment)) },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         )
     }
@@ -446,7 +447,7 @@ private fun AppointmentDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(stringResource(if (initial == null) R.string.new_appointment else R.string.edit_appointment)) },
+        title = { Text(stringResource(if (initial == null) LocalTerms.current.newAppointment else LocalTerms.current.editAppointment)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(

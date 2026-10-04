@@ -1,5 +1,8 @@
 package com.salestracker.app.ui
 
+import com.salestracker.app.R
+import com.salestracker.app.data.followUpFor
+import com.salestracker.app.data.Trade
 import com.salestracker.app.ui.theme.AppFont
 import com.salestracker.app.data.AGREEMENT_VERSION
 import com.salestracker.app.data.PrivacyMode
@@ -67,6 +70,16 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun chooseTextScale(s: Float) {
         textScale = s
         settings.edit().putFloat("textScale", s).apply()
+    }
+
+    // ---- Sales trade (wording) ----
+    var trade by mutableStateOf(Trade.entries.firstOrNull { it.name == settings.getString("trade", null) } ?: Trade.GENERAL)
+        private set
+    /** Switches wording; also fills in the trade's suggested commission if none has been set yet. */
+    fun chooseTrade(t: Trade) {
+        trade = t
+        settings.edit().putString("trade", t.name).apply()
+        if (repo.data.value.defaultCommissionPercent == 0.0 && t.suggestedCommission > 0) setDefaultCommission(t.suggestedCommission)
     }
 
     // ---- Accessibility ----
@@ -227,6 +240,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         darkMode = DarkMode.SYSTEM
         font = AppFont.STANDARD
         textScale = 1.0f
+        trade = Trade.GENERAL
         boldText = false
         largeTouchTargets = false
         highlightSymbols = false
@@ -271,6 +285,32 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
     // ---- Clients ----
     fun saveClient(client: Client) = repo.update { it.copy(clients = it.clients.upsert(client) { c -> c.id }) }
+
+    /**
+     * Saves a client and their follow-up together. [followUp] = (day, minute of day) puts a follow-up on the
+     * calendar with a 15-minute reminder (or moves the existing one); null removes it.
+     */
+    fun saveClientWithFollowUp(client: Client, followUp: Pair<Long, Int>?) {
+        val existing = repo.data.value.followUpFor(client)
+        var saved = client
+        if (followUp != null) {
+            val appt = Appointment(
+                id = existing?.id ?: newId(),
+                title = getApplication<Application>().getString(R.string.follow_up_title, client.fullName),
+                epochDay = followUp.first,
+                minuteOfDay = followUp.second,
+                clientId = client.id,
+                notes = existing?.notes ?: "",
+                reminderMinutes = existing?.reminderMinutes ?: 15,
+            )
+            saveAppointment(appt)
+            saved = client.copy(followUpId = appt.id)
+        } else {
+            existing?.let { deleteAppointment(it.id) }
+            saved = client.copy(followUpId = null)
+        }
+        saveClient(saved)
+    }
 
     /** Deletes a client and, if asked, every sale and appointment linked to them (e.g. a client's request to be forgotten). */
     fun deleteClientAndRecords(id: Long) {

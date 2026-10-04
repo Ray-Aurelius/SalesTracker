@@ -2,6 +2,7 @@
 
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.data.LocalTerms
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import java.time.ZoneId
@@ -168,7 +169,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             items(sales, key = { it.id }) { sale ->
                 SaleCard(
                     sale = sale,
-                    clientName = sale.clientId?.let { clientsById[it]?.fullName } ?: stringResource(R.string.client_none),
+                    clientName = sale.clientId?.let { clientsById[it]?.fullName } ?: stringResource(LocalTerms.current.noClient),
                     onClick = { editing = sale },
                     onDelete = { deleting = sale },
                 )
@@ -177,7 +178,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
         ExtendedFloatingActionButton(
             onClick = { adding = true },
             icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-            text = { Text(stringResource(R.string.log_sale)) },
+            text = { Text(stringResource(LocalTerms.current.logSale)) },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         )
     }

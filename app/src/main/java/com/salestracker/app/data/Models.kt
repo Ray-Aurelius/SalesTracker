@@ -12,6 +12,10 @@ data class Client(
     val notes: String = "",
     /** The client's job number, work order or account ID, so they can be found by it. Optional. */
     val reference: String = "",
+    /** Pipeline stage (Lead → … → Won / Lost). */
+    val stage: ClientStage = ClientStage.LEAD,
+    /** The calendar appointment holding this client's next follow-up, if one is scheduled. */
+    val followUpId: Long? = null,
 ) {
     val fullName: String
         get() = listOf(firstName, lastName).filter { it.isNotBlank() }.joinToString(" ")
@@ -24,6 +28,8 @@ data class Client(
         .put("email", email)
         .put("notes", notes)
         .put("reference", reference)
+        .put("stage", stage.name)
+        .put("followUpId", followUpId ?: JSONObject.NULL)
 
     companion object {
         fun fromJson(o: JSONObject) = Client(
@@ -34,6 +40,8 @@ data class Client(
             email = o.optString("email"),
             notes = o.optString("notes"),
             reference = o.optString("reference"),
+            stage = ClientStage.entries.firstOrNull { it.name == o.optString("stage") } ?: ClientStage.LEAD,
+            followUpId = if (!o.has("followUpId") || o.isNull("followUpId")) null else o.optLong("followUpId"),
         )
     }
 }

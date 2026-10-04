@@ -1,7 +1,30 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 
 package com.salestracker.app.ui.screens
 
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.background
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.NotificationsActive
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.FilterChip
+import android.app.TimePickerDialog
+import android.app.DatePickerDialog
+import java.time.LocalDate
+import com.salestracker.app.data.formatMinuteOfDay
+import com.salestracker.app.data.localizedFormatter
+import com.salestracker.app.data.isDue
+import com.salestracker.app.data.followUpFor
+import com.salestracker.app.data.Appointment
+import com.salestracker.app.data.ClientStage
+import com.salestracker.app.data.LocalTerms
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.Checkbox
 import com.salestracker.app.R
@@ -65,11 +88,16 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
     var query by rememberSaveable { mutableStateOf("") }
     var adding by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Client?>(null) }
+    var stageFilter by rememberSaveable { mutableStateOf<ClientStage?>(null) }
+    var dueOnly by rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
 
     val q = query.trim().lowercase()
+    val dueIds = data.clients.filter { c -> data.followUpFor(c)?.isDue() == true }.map { it.id }.toSet()
     val clients = data.clients
         .filter { q.isEmpty() || "${it.fullName} ${it.phone} ${it.email} ${it.reference}".lowercase().contains(q) }
+        .filter { stageFilter == null || it.stage == stageFilter }
+        .filter { !dueOnly || it.id in dueIds }
         .sortedBy { it.fullName.lowercase() }
     val salesByClient = data.sales.groupBy { it.clientId }
 
@@ -88,6 +116,31 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
+            // The pipeline at a glance: how many clients are at each stage. Tap one to show only those.
+            item {
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(
+                        selected = stageFilter == null && !dueOnly,
+                        onClick = { stageFilter = null; dueOnly = false },
+                        label = { Text(stringResource(R.string.chip_count, stringResource(R.string.pipeline_all), data.clients.size)) },
+                    )
+                    if (dueIds.isNotEmpty()) {
+                        FilterChip(
+                            selected = dueOnly,
+                            onClick = { dueOnly = !dueOnly; stageFilter = null },
+                            label = { Text(stringResource(R.string.chip_count, stringResource(R.string.follow_ups_due), dueIds.size)) },
+                            leadingIcon = { Icon(Icons.Filled.NotificationsActive, contentDescription = null, modifier = Modifier.size(18.dp)) },
+                        )
+                    }
+                    ClientStage.entries.forEach { s ->
+                        FilterChip(
+                            selected = stageFilter == s,
+                            onClick = { stageFilter = if (stageFilter == s) null else s; dueOnly = false },
+                            label = { Text(stringResource(R.string.chip_count, stringResource(s.label), data.clients.count { it.stage == s })) },
+                        )
+                    }
+                }
+            }
             if (clients.isEmpty()) {
                 item {
                     Text(
@@ -99,8 +152,10 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
             }
             items(clients, key = { it.id }) { client ->
                 val stats = SalesStats.of(salesByClient[client.id].orEmpty())
+                val followUp = data.followUpFor(client)
                 ClientCard(
                     client = client,
+                    followUp = followUp,
                     summary = if (stats.opportunities == 0) stringResource(R.string.no_sales_yet)
                     else pluralStringResource(
                         R.plurals.client_summary, stats.opportunities,
@@ -115,7 +170,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
         ExtendedFloatingActionButton(
             onClick = { adding = true },
             icon = { Icon(Icons.Filled.PersonAdd, contentDescription = null) },
-            text = { Text(stringResource(R.string.add_client)) },
+            text = { Text(stringResource(LocalTerms.current.addClient)) },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         )
     }
@@ -123,9 +178,10 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
     if (adding || editing != null) {
         ClientDialog(
             initial = editing,
+            existingFollowUp = editing?.let { data.followUpFor(it) },
             newId = vm::newId,
             onDismiss = { adding = false; editing = null },
-            onSave = vm::saveClient,
+            onSave = vm::saveClientWithFollowUp,
             onDelete = { id, withRecords -> if (withRecords) vm.deleteClientAndRecords(id) else vm.deleteClient(id) },
         )
     }
@@ -134,6 +190,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
 @Composable
 private fun ClientCard(
     client: Client,
+    followUp: Appointment?,
     summary: String,
     onClick: () -> Unit,
     onCall: () -> Unit,
@@ -142,7 +199,27 @@ private fun ClientCard(
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
         Row(Modifier.padding(start = 16.dp, top = 12.dp, bottom = 12.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                Text(client.fullName, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(client.fullName, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f, fill = false))
+                    Spacer(Modifier.width(8.dp))
+                    StageBadge(client.stage)
+                }
+                if (followUp != null) {
+                    val due = followUp.isDue()
+                    val whenText = LocalDate.ofEpochDay(followUp.epochDay).format(localizedFormatter("EEEMMMd")) + ", " + formatMinuteOfDay(followUp.minuteOfDay)
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            Icons.Filled.NotificationsActive, contentDescription = null, modifier = Modifier.size(14.dp),
+                            tint = if (due) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.secondary,
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text(
+                            stringResource(R.string.follow_up_on, whenText),
+                            style = MaterialTheme.typography.labelLarge,
+                            color = if (due) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.secondary,
+                        )
+                    }
+                }
                 if (client.reference.isNotBlank()) {
                     Text(
                         stringResource(R.string.client_ref_display, client.reference),
@@ -167,9 +244,10 @@ private fun ClientCard(
 @Composable
 private fun ClientDialog(
     initial: Client?,
+    existingFollowUp: Appointment?,
     newId: () -> Long,
     onDismiss: () -> Unit,
-    onSave: (Client) -> Unit,
+    onSave: (Client, Pair<Long, Int>?) -> Unit,
     onDelete: (id: Long, withRecords: Boolean) -> Unit,
 ) {
     var first by remember { mutableStateOf(initial?.firstName ?: "") }
@@ -178,7 +256,19 @@ private fun ClientDialog(
     var email by remember { mutableStateOf(initial?.email ?: "") }
     var notes by remember { mutableStateOf(initial?.notes ?: "") }
     var reference by remember { mutableStateOf(initial?.reference ?: "") }
+    var stage by remember { mutableStateOf(initial?.stage ?: ClientStage.LEAD) }
+    // Follow-up as (day, minute of day); null = none.
+    var followUp by remember { mutableStateOf(existingFollowUp?.let { it.epochDay to it.minuteOfDay }) }
     var confirmDelete by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    fun pickFollowUp() {
+        val start = followUp?.let { LocalDate.ofEpochDay(it.first) } ?: LocalDate.now().plusDays(1)
+        DatePickerDialog(context, { _, y, m, d ->
+            val day = LocalDate.of(y, m + 1, d).toEpochDay()
+            val minute = followUp?.second ?: (10 * 60)
+            TimePickerDialog(context, { _, h, min -> followUp = day to (h * 60 + min) }, minute / 60, minute % 60, false).show()
+        }, start.year, start.monthValue - 1, start.dayOfMonth).show()
+    }
 
     val emailValid = email.isBlank() || android.util.Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()
     val canSave = (first.isNotBlank() || last.isNotBlank()) && emailValid
@@ -186,7 +276,7 @@ private fun ClientDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(stringResource(if (initial == null) R.string.new_client else R.string.edit_client)) },
+        title = { Text(stringResource(if (initial == null) LocalTerms.current.newClient else LocalTerms.current.editClient)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(first, { first = it }, label = { Text(stringResource(R.string.first_name)) }, singleLine = true,
@@ -203,6 +293,29 @@ private fun ClientDialog(
                     supportingText = { if (!emailValid) Text(stringResource(R.string.check_email)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(notes, { notes = it }, label = { Text(stringResource(R.string.notes)) }, minLines = 2, modifier = Modifier.fillMaxWidth())
+                Text(stringResource(R.string.stage_label), style = MaterialTheme.typography.labelLarge)
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    ClientStage.entries.forEach { s ->
+                        FilterChip(selected = stage == s, onClick = { stage = s }, label = { Text(stringResource(s.label)) })
+                    }
+                }
+                Text(stringResource(R.string.follow_up), style = MaterialTheme.typography.labelLarge)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    OutlinedButton(onClick = ::pickFollowUp, modifier = Modifier.weight(1f)) {
+                        Icon(Icons.Filled.NotificationsActive, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            followUp?.let { (d, m) ->
+                                LocalDate.ofEpochDay(d).format(localizedFormatter("EEEMMMd")) + ", " + formatMinuteOfDay(m)
+                            } ?: stringResource(R.string.schedule_follow_up)
+                        )
+                    }
+                    if (followUp != null) {
+                        IconButton(onClick = { followUp = null }) {
+                            Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.remove_follow_up))
+                        }
+                    }
+                }
                 if (initial != null) {
                     TextButton(onClick = { confirmDelete = true }) {
                         Text(stringResource(R.string.delete_client), color = MaterialTheme.colorScheme.error)
@@ -221,7 +334,10 @@ private fun ClientDialog(
                         email = email.trim(),
                         notes = notes.trim(),
                         reference = reference.trim(),
-                    )
+                        stage = stage,
+                        followUpId = initial?.followUpId,
+                    ),
+                    followUp,
                 )
                 onDismiss()
             }) { Text(stringResource(R.string.save)) }
@@ -269,4 +385,21 @@ private fun launch(context: Context, intent: Intent, error: String) {
     } catch (e: ActivityNotFoundException) {
         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }
+}
+
+/** Small colored label showing a client's pipeline stage. Won is primary, Lost is muted, open stages use the accent. */
+@Composable
+private fun StageBadge(stage: ClientStage) {
+    val c = MaterialTheme.colorScheme
+    val (bg, fg) = when (stage) {
+        ClientStage.WON -> c.primaryContainer to c.onPrimaryContainer
+        ClientStage.LOST -> c.surfaceVariant to c.onSurfaceVariant
+        else -> c.secondaryContainer to c.onSecondaryContainer
+    }
+    Text(
+        stringResource(stage.label),
+        style = MaterialTheme.typography.labelMedium,
+        color = fg,
+        modifier = Modifier.clip(RoundedCornerShape(6.dp)).background(bg).padding(horizontal = 8.dp, vertical = 2.dp),
+    )
 }
