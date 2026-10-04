@@ -576,4 +576,51 @@
     <string name="follow_up_on">Follow up %1$s</string>
     <string name="follow_up_title">Follow up: %1$s</string>
     <string name="remove_follow_up">Remove follow-up</string>
+
+    <!-- Welcome tour and sample data -->
+    <string name="welcome_step">Step %1$d of %2$d</string>
+    <string name="welcome_title">Welcome to Ultimate Sales Productivity</string>
+    <string name="welcome_f1_t">Know your numbers</string>
+    <string name="welcome_f1">Log sales in seconds and see your close rate, upsells, commission and time per sale.</string>
+    <string name="welcome_f2_t">Stay on target</string>
+    <string name="welcome_f2">Set personal and company goals, track your pipeline and never miss a follow-up.</string>
+    <string name="welcome_f3_t">Private by design</string>
+    <string name="welcome_f3">No accounts, no ads, no tracking and no internet access. Your data stays on this phone, encrypted.</string>
+    <string name="welcome_trade_body">Pick the one closest to your work. It changes the app\'s wording, like Clients, Deals or Showings.</string>
+    <string name="welcome_trade_later">You can change this any time in Settings.</string>
+    <string name="welcome_ready_title">How do you want to start?</string>
+    <string name="welcome_ready_body">You can explore with made-up sample data first and remove it in one tap when you\'re ready.</string>
+    <string name="welcome_fresh_t">Start fresh</string>
+    <string name="welcome_fresh">An empty app, ready for your first client.</string>
+    <string name="welcome_sample_t">Explore with sample data</string>
+    <string name="welcome_sample">Made-up clients, sales, goals and appointments to try everything out.</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="sample_banner">You\'re looking at sample data.</string>
+    <string name="sample_remove">Remove it</string>
+
+    <!-- Manager report -->
+    <string name="report_button">Report (PDF)</string>
+    <string name="report_options_title">Create a report</string>
+    <string name="report_include_names">Include client names</string>
+    <string name="report_include_commission">Include my commission</string>
+    <string name="report_password">Protect with a password</string>
+    <string name="report_password_note">The PDF will ask for this password when it\'s opened. It\'s encrypted with AES-256.</string>
+    <string name="report_privacy_note">The report is created on this phone only. Names and commission are left out unless you turn them on.</string>
+    <string name="report_create">Create PDF</string>
+    <string name="report_working">Creating your report…</string>
+    <string name="report_saved">Report saved</string>
+    <string name="report_failed">Couldn\'t create the report</string>
+    <string name="report_title">Sales report</string>
+    <string name="report_period">%1$s: %2$s to %3$s</string>
+    <string name="report_generated">Created %1$s</string>
+    <string name="report_summary">Summary</string>
+    <string name="report_pipeline">Pipeline</string>
+    <string name="report_sales">Sales</string>
+    <string name="report_no_sales">No sales in this period.</string>
+    <string name="col_date">Date</string>
+    <string name="col_amount">Amount</string>
+    <string name="col_status">Status</string>
+    <string name="report_footer">Created with Ultimate Sales Productivity, privately on the user\'s phone.</string>
 </resources>

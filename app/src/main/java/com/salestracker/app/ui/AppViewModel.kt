@@ -1,5 +1,6 @@
 package com.salestracker.app.ui
 
+import com.salestracker.app.data.SampleData
 import com.salestracker.app.R
 import com.salestracker.app.data.followUpFor
 import com.salestracker.app.data.Trade
@@ -70,6 +71,61 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun chooseTextScale(s: Float) {
         textScale = s
         settings.edit().putFloat("textScale", s).apply()
+    }
+
+    // ---- Welcome tour and sample data ----
+    var onboarded by mutableStateOf(settings.getBoolean("onboarded", false))
+        private set
+    fun finishOnboarding() {
+        onboarded = true
+        settings.edit().putBoolean("onboarded", true).apply()
+    }
+
+    init {
+        // People updating from an earlier version already have data: no welcome tour for them.
+        val d = repo.data.value
+        if (!onboarded && (d.clients.isNotEmpty() || d.sales.isNotEmpty() || d.goals.isNotEmpty())) finishOnboarding()
+    }
+
+    private var sampleIds by mutableStateOf(settings.getStringSet("sampleIds", emptySet())!!.mapNotNull { it.toLongOrNull() }.toSet())
+    private var sampleDays = settings.getStringSet("sampleDays", emptySet())!!.mapNotNull { it.toLongOrNull() }.toSet()
+    val hasSampleData: Boolean get() = sampleIds.isNotEmpty()
+
+    /** Adds made-up example data to explore with. Removed in one tap by [removeSampleData]. */
+    fun loadSampleData() {
+        val s = SampleData.create(::newId, repo.data.value.defaultCommissionPercent.takeIf { it > 0 } ?: 10.0)
+        repo.update { d ->
+            d.copy(
+                clients = d.clients + s.clients,
+                sales = d.sales + s.sales,
+                appointments = d.appointments + s.appointments,
+                goals = d.goals + s.goals,
+                dayHighlights = d.dayHighlights + s.highlightDays.filterKeys { it !in d.dayHighlights },
+            )
+        }
+        sampleIds = s.ids
+        sampleDays = s.highlightDays.keys
+        settings.edit()
+            .putStringSet("sampleIds", sampleIds.map { it.toString() }.toSet())
+            .putStringSet("sampleDays", sampleDays.map { it.toString() }.toSet())
+            .apply()
+    }
+
+    /** Removes only the sample items; anything the user added (even linked to a sample client) stays. */
+    fun removeSampleData() {
+        val ids = sampleIds
+        repo.update { d ->
+            d.copy(
+                clients = d.clients.filterNot { it.id in ids },
+                sales = d.sales.filterNot { it.id in ids }.map { if (it.clientId in ids) it.copy(clientId = null) else it },
+                appointments = d.appointments.filterNot { it.id in ids }.map { if (it.clientId in ids) it.copy(clientId = null) else it },
+                goals = d.goals.filterNot { it.id in ids },
+                dayHighlights = d.dayHighlights - sampleDays,
+            )
+        }
+        sampleIds = emptySet()
+        sampleDays = emptySet()
+        settings.edit().remove("sampleIds").remove("sampleDays").apply()
     }
 
     // ---- Sales trade (wording) ----
@@ -241,6 +297,9 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         font = AppFont.STANDARD
         textScale = 1.0f
         trade = Trade.GENERAL
+        onboarded = false
+        sampleIds = emptySet()
+        sampleDays = emptySet()
         boldText = false
         largeTouchTargets = false
         highlightSymbols = false

@@ -2,6 +2,9 @@
 
 package com.salestracker.app.ui.screens
 
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.filled.PictureAsPdf
+import androidx.compose.material3.AssistChip
 import com.salestracker.app.data.LocalTerms
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -71,6 +74,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
     var editing by remember { mutableStateOf<Sale?>(null) }
     var deleting by remember { mutableStateOf<Sale?>(null) }
     var editingRate by remember { mutableStateOf(false) }
+    var reporting by remember { mutableStateOf(false) }
 
     val start = period.startMillis()
     val sales = data.sales.filter { it.timestamp >= start }.sortedByDescending { it.timestamp }
@@ -82,6 +86,24 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
+            if (vm.hasSampleData) {
+                item {
+                    Card(
+                        Modifier.fillMaxWidth(),
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer),
+                    ) {
+                        Row(Modifier.padding(start = 16.dp, end = 8.dp, top = 8.dp, bottom = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                stringResource(R.string.sample_banner),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onTertiaryContainer,
+                                modifier = Modifier.weight(1f),
+                            )
+                            TextButton(onClick = vm::removeSampleData) { Text(stringResource(R.string.sample_remove)) }
+                        }
+                    }
+                }
+            }
             if (vm.backupOverdue(data)) {
                 item { BackupNudge(vm) }
             }
@@ -93,6 +115,12 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                     Period.entries.forEach { p ->
                         FilterChip(selected = period == p, onClick = { period = p }, label = { Text(stringResource(p.label)) })
                     }
+                    // Manager report: a PDF summary, created on the phone only when tapped.
+                    AssistChip(
+                        onClick = { reporting = true },
+                        label = { Text(stringResource(R.string.report_button)) },
+                        leadingIcon = { Icon(Icons.Filled.PictureAsPdf, contentDescription = null, modifier = Modifier.size(18.dp)) },
+                    )
                 }
             }
             item {
@@ -193,6 +221,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             defaultCommissionPercent = data.defaultCommissionPercent,
         )
     }
+    if (reporting) ReportDialog(vm, data, onDismiss = { reporting = false })
     if (editingRate) {
         CommissionRateDialog(
             current = data.defaultCommissionPercent,

@@ -2,6 +2,7 @@
 
 package com.salestracker.app
 
+import com.salestracker.app.ui.screens.WelcomeScreen
 import androidx.compose.runtime.CompositionLocalProvider
 import com.salestracker.app.data.LocalTerms
 import com.salestracker.app.ui.screens.ScaledText
@@ -125,6 +126,8 @@ class MainActivity : AppCompatActivity() {
                                 finish()
                             },
                         )
+                        // 3. First run: a short welcome tour (trade, sample data).
+                        !vm.onboarded -> WelcomeScreen(vm)
                         else -> SalesApp(vm, dark)
                     }
                 }
