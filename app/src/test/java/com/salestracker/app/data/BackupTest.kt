@@ -12,6 +12,7 @@ class BackupTest {
         appointments = listOf(Appointment(3, "Follow-up", 20_000, 600, 1, "", 15)),
         goals = listOf(Goal(4, "Q4", GoalScope.COMPANY, GoalMetric.REVENUE, GoalPeriod.QUARTER, 100_000.0)),
         defaultCommissionPercent = 7.5,
+        dayHighlights = mapOf(20_000L to HighlightColor.RED, 20_005L to HighlightColor.BLUE),
     )
     private val password = "correct horse".toCharArray()
 

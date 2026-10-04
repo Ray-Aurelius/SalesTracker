@@ -141,6 +141,8 @@ data class AppData(
     val goals: List<Goal> = emptyList(),
     /** Commission % pre-filled on new sales. */
     val defaultCommissionPercent: Double = 0.0,
+    /** Important days marked on the calendar: LocalDate.toEpochDay() → highlight color. */
+    val dayHighlights: Map<Long, HighlightColor> = emptyMap(),
 ) {
     fun toJson(): JSONObject = JSONObject()
         .put("version", 2)
@@ -149,6 +151,7 @@ data class AppData(
         .put("appointments", JSONArray(appointments.map { it.toJson() }))
         .put("goals", JSONArray(goals.map { it.toJson() }))
         .put("defaultCommissionPercent", defaultCommissionPercent)
+        .put("dayHighlights", JSONObject().apply { dayHighlights.forEach { (day, c) -> put(day.toString(), c.name) } })
 
     companion object {
         fun fromJson(o: JSONObject) = AppData(
@@ -157,6 +160,13 @@ data class AppData(
             appointments = o.optJSONArray("appointments").objects().map(Appointment::fromJson),
             goals = o.optJSONArray("goals").objects().map(Goal::fromJson),
             defaultCommissionPercent = o.optDouble("defaultCommissionPercent", 0.0).takeIf { !it.isNaN() } ?: 0.0,
+            dayHighlights = o.optJSONObject("dayHighlights")?.let { h ->
+                h.keys().asSequence().mapNotNull { k ->
+                    val color = HighlightColor.entries.firstOrNull { it.name == h.optString(k) }
+                    val day = k.toLongOrNull()
+                    if (color != null && day != null) day to color else null
+                }.toMap()
+            } ?: emptyMap(),
         )
 
         private fun JSONArray?.objects(): List<JSONObject> =

@@ -10,6 +10,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
+import androidx.core.graphics.ColorUtils
 
 /** Light / dark preference chosen in the Appearance dialog. */
 enum class DarkMode(@StringRes val label: Int) { SYSTEM(R.string.mode_auto), LIGHT(R.string.mode_light), DARK(R.string.mode_dark) }
@@ -170,7 +171,73 @@ fun isDarkTheme(mode: DarkMode): Boolean = when (mode) {
 fun SalesTrackerTheme(
     palette: AppPalette = AppPalette.TEAL,
     dark: Boolean = isSystemInDarkTheme(),
+    custom: CustomColors? = null,
     content: @Composable () -> Unit,
 ) {
-    MaterialTheme(colorScheme = palette.scheme(dark), content = content)
+    MaterialTheme(colorScheme = custom?.let { customScheme(it, dark) } ?: palette.scheme(dark), content = content)
 }
+
+/** The three colors a user picks on the color wheel. Stored as ARGB ints. */
+data class CustomColors(val main: Int, val accent: Int, val background: Int) {
+    companion object {
+        val DEFAULT = CustomColors(0xFF1B5E5A.toInt(), 0xFFB4651A.toInt(), 0xFFF7FAF9.toInt())
+    }
+}
+
+/**
+ * Builds a full, readable color scheme from any three picked colors. Each picked color keeps its hue,
+ * but its lightness is nudged until text on it (and it on the background) meets the WCAG 4.5:1
+ * contrast guideline, so no combination can make the app hard to read.
+ */
+fun customScheme(c: CustomColors, dark: Boolean): ColorScheme {
+    fun hsl(color: Int) = FloatArray(3).also { ColorUtils.colorToHSL(color, it) }
+    fun make(h: Float, s: Float, l: Float) = ColorUtils.HSLToColor(floatArrayOf(h, s.coerceIn(0f, 1f), l.coerceIn(0f, 1f)))
+    fun L(color: Int) = color.toLong() and 0xFFFFFFFFL
+
+    val bg = hsl(c.background)
+    // Backgrounds stay near white or near black (tinted with the picked hue) — easy on the eyes.
+    val background = make(bg[0], minOf(bg[1], 0.30f), if (dark) 0.08f else 0.97f)
+    val onSurface = make(bg[0], minOf(bg[1], 0.15f), if (dark) 0.90f else 0.10f)
+    val surfaceVariant = make(bg[0], minOf(bg[1], 0.20f), if (dark) 0.26f else 0.89f)
+    val onSurfaceVariant = make(bg[0], minOf(bg[1], 0.15f), if (dark) 0.78f else 0.30f)
+    val outline = make(bg[0], minOf(bg[1], 0.12f), if (dark) 0.58f else 0.48f)
+
+    /** Moves lightness away from the background until [color] reads clearly against it. */
+    fun readableAgainst(color: Int, against: Int): Int {
+        val p = hsl(color)
+        var l = p[2]
+        var out = make(p[0], p[1], l)
+        var guard = 0
+        while (ColorUtils.calculateContrast(out, against) < 4.5 && guard++ < 60) {
+            l += if (dark) 0.02f else -0.02f
+            out = make(p[0], p[1], l)
+        }
+        return out
+    }
+
+    fun role(seed: Int): List<Long> {
+        val p = hsl(seed)
+        val color = readableAgainst(seed, background)
+        val on = if (ColorUtils.calculateContrast(Color.White.toArgbInt(), color) >= ColorUtils.calculateContrast(Color.Black.toArgbInt(), color))
+            Color.White.toArgbInt() else Color.Black.toArgbInt()
+        val container = make(p[0], p[1] * 0.7f, if (dark) 0.28f else 0.88f)
+        val onContainer = make(p[0], p[1], if (dark) 0.90f else 0.14f)
+        return listOf(L(color), L(on), L(container), L(onContainer))
+    }
+
+    val m = role(c.main)
+    val a = role(c.accent)
+    val tertiary = readableAgainst(make((hsl(c.main)[0] + 40f) % 360f, hsl(c.main)[1], hsl(c.main)[2]), background)
+    return Tones(
+        m[0], m[1], m[2], m[3],
+        a[0], a[1], a[2], a[3],
+        L(tertiary),
+        L(background), L(onSurface),
+        L(surfaceVariant), L(onSurfaceVariant), L(outline),
+        tint = 0.06f,
+    ).toScheme(dark)
+}
+
+private fun Color.toArgbInt(): Int = android.graphics.Color.argb(
+    (alpha * 255).toInt(), (red * 255).toInt(), (green * 255).toInt(), (blue * 255).toInt(),
+)

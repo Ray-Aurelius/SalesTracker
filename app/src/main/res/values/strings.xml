@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sales Tracker</string>
+    <string name="app_name">Ultimate Sales Productivity</string>
 
     <!-- Tabs (short label) and screen titles -->
     <string name="tab_stats">Stats</string>
@@ -35,10 +35,10 @@
     <string name="never_backed_up">Not backed up yet</string>
 
     <!-- Lock screen -->
-    <string name="locked_title">Sales Tracker is locked</string>
+    <string name="locked_title">Ultimate Sales Productivity is locked</string>
     <string name="locked_body">Your sales, clients and goals are protected.</string>
     <string name="unlock">Unlock</string>
-    <string name="unlock_prompt_title">Unlock Sales Tracker</string>
+    <string name="unlock_prompt_title">Unlock Ultimate Sales Productivity</string>
     <string name="unlock_prompt_subtitle">Use your fingerprint, face or phone PIN</string>
 
     <!-- Backup and restore -->
@@ -58,11 +58,37 @@
     <string name="open_backup">Open</string>
     <string name="restore_working">Unlocking the backup…</string>
     <string name="restore_wrong_password">Wrong password. Check it and try again.</string>
-    <string name="restore_not_backup">This file isn\'t a Sales Tracker backup.</string>
+    <string name="restore_not_backup">This file isn\'t an Ultimate Sales Productivity backup.</string>
     <string name="restore_confirm_title">Replace your data?</string>
     <string name="restore_confirm_body">Backup from %1$s\nClients: %2$d · Sales: %3$d · Appointments: %4$d · Goals: %5$d\n\nEverything currently in the app will be replaced with this backup.</string>
     <string name="restore_replace">Replace</string>
     <string name="restore_done">Backup restored</string>
+
+    <!-- Custom colors -->
+    <string name="custom_colors">Custom colors</string>
+    <string name="custom_colors_desc">Pick your own colors on a color wheel</string>
+    <string name="edit">Edit</string>
+    <string name="custom_target_main">Main</string>
+    <string name="custom_target_accent">Accent</string>
+    <string name="custom_target_background">Background</string>
+    <string name="brightness">Brightness</string>
+    <string name="custom_readable_note">Shades are fine-tuned automatically so text always stays readable.</string>
+    <string name="preview">Preview</string>
+    <string name="preview_button">Button</string>
+    <string name="preview_text">Sample text on your background</string>
+    <string name="apply">Apply</string>
+    <string name="cd_color_wheel">Color wheel</string>
+
+    <!-- Day highlights -->
+    <string name="highlight_day">Highlight this day</string>
+    <string name="highlight_none">None</string>
+    <string name="color_red">Red</string>
+    <string name="color_orange">Orange</string>
+    <string name="color_yellow">Yellow</string>
+    <string name="color_green">Green</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_purple">Purple</string>
+    <string name="color_pink">Pink</string>
 
     <!-- Common -->
     <string name="save">Save</string>

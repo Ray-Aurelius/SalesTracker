@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Lets Android 13+ list these languages under Settings → Apps → Sales Tracker → Language. -->
+<!-- Lets Android 13+ list these languages under Settings → Apps → Ultimate Sales Productivity → Language. -->
 <locale-config xmlns:android="http://schemas.android.com/apk/res/android">
     <locale android:name="en" />
     <locale android:name="es" />

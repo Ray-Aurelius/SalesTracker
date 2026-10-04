@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             LaunchedEffect(vm.appLock) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) setRecentsScreenshotEnabled(!vm.appLock)
             }
-            SalesTrackerTheme(palette = vm.palette, dark = dark) {
+            SalesTrackerTheme(palette = vm.palette, dark = dark, custom = vm.customColors.takeIf { vm.useCustomColors }) {
                 if (vm.appLock && !vm.unlocked) {
                     LockScreen(onUnlock = { AppAuth.authenticate(this@MainActivity) { vm.unlocked = true } })
                 } else {

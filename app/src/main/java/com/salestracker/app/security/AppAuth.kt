@@ -12,7 +12,7 @@ import com.salestracker.app.R
 
 /**
  * Uses the phone's own lock: fingerprint or face if set up, otherwise the phone's PIN, pattern or password.
- * Sales Tracker never sees or stores any of these; Android just tells it "yes, that's the owner".
+ * The app never sees or stores any of these; Android just tells it "yes, that's the owner".
  */
 object AppAuth {
     private const val ALLOWED = BIOMETRIC_WEAK or DEVICE_CREDENTIAL

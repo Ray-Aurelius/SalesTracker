@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SalesTracker"
+rootProject.name = "UltimateSalesProductivity"
 include(":app")

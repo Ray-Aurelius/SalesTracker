@@ -2,6 +2,14 @@
 
 package com.salestracker.app.ui.screens
 
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Block
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.Color
+import com.salestracker.app.data.HighlightColor
 import com.salestracker.app.data.localizedFormatter
 import com.salestracker.app.data.appLocale
 import com.salestracker.app.R
@@ -135,6 +143,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                     selected = selected,
                     today = today,
                     hasEvents = { it.toEpochDay() in apptDays },
+                    highlightOf = { data.dayHighlights[it.toEpochDay()] },
                     onPrev = { month = month.minusMonths(1) },
                     onNext = { month = month.plusMonths(1) },
                     onSelect = { selected = it },
@@ -154,6 +163,10 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                             color = MaterialTheme.colorScheme.primary,
                         )
                     }
+                    HighlightPicker(
+                        current = data.dayHighlights[selected.toEpochDay()],
+                        onPick = { vm.setDayHighlight(selected.toEpochDay(), it) },
+                    )
                 }
             }
             if (dayAppts.isEmpty()) {
@@ -221,6 +234,7 @@ private fun MonthGrid(
     selected: LocalDate,
     today: LocalDate,
     hasEvents: (LocalDate) -> Boolean,
+    highlightOf: (LocalDate) -> HighlightColor?,
     onPrev: () -> Unit,
     onNext: () -> Unit,
     onSelect: (LocalDate) -> Unit,
@@ -266,7 +280,7 @@ private fun MonthGrid(
                     Box(Modifier.weight(1f).aspectRatio(1f).padding(2.dp), contentAlignment = Alignment.Center) {
                         if (dayNum in 1..days) {
                             val date = month.atDay(dayNum)
-                            DayCell(date, date == selected, date == today, hasEvents(date)) { onSelect(date) }
+                            DayCell(date, date == selected, date == today, hasEvents(date), highlightOf(date)) { onSelect(date) }
                         }
                     }
                 }
@@ -276,26 +290,84 @@ private fun MonthGrid(
 }
 
 @Composable
-private fun DayCell(date: LocalDate, isSelected: Boolean, isToday: Boolean, hasEvents: Boolean, onClick: () -> Unit) {
+private fun DayCell(
+    date: LocalDate,
+    isSelected: Boolean,
+    isToday: Boolean,
+    hasEvents: Boolean,
+    highlight: HighlightColor?,
+    onClick: () -> Unit,
+) {
     val colors = MaterialTheme.colorScheme
+    val hl = highlight?.let { Color(it.argb) }
+    // Highlighted days are filled with their color; the selected day gets a strong ring on top.
+    val fill = hl ?: if (isSelected) colors.primary else null
+    val textColor = when {
+        hl != null -> readableOn(hl)
+        isSelected -> colors.onPrimary
+        else -> colors.onSurface
+    }
     var mod = Modifier.fillMaxSize().clip(CircleShape)
+    if (fill != null) mod = mod.background(fill)
     mod = when {
-        isSelected -> mod.background(colors.primary)
-        isToday -> mod.border(1.5.dp, colors.primary, CircleShape)
+        isSelected && hl != null -> mod.border(3.dp, colors.onSurface, CircleShape)
+        isToday && !isSelected -> mod.border(1.5.dp, if (hl != null) readableOn(hl) else colors.primary, CircleShape)
         else -> mod
     }
     Box(mod.clickable(onClick = onClick), contentAlignment = Alignment.Center) {
         Text(
             date.dayOfMonth.toString(),
-            color = if (isSelected) colors.onPrimary else colors.onSurface,
-            fontWeight = if (isToday) FontWeight.Bold else FontWeight.Normal,
+            color = textColor,
+            fontWeight = if (isToday || hl != null) FontWeight.Bold else FontWeight.Normal,
         )
         if (hasEvents) {
             Box(
                 Modifier.align(Alignment.BottomCenter).padding(bottom = 5.dp).size(5.dp)
                     .clip(CircleShape)
-                    .background(if (isSelected) colors.onPrimary else colors.secondary)
+                    .background(if (fill != null) textColor else colors.secondary)
             )
+        }
+    }
+}
+
+/** Black or white, whichever reads better on [bg]. */
+private fun readableOn(bg: Color): Color = if (bg.luminance() > 0.45f) Color.Black else Color.White
+
+/** A row of color dots to mark the selected day as important. Tap the same color again to clear it. */
+@Composable
+private fun HighlightPicker(current: HighlightColor?, onPick: (HighlightColor?) -> Unit) {
+    val colors = MaterialTheme.colorScheme
+    Column(Modifier.padding(top = 10.dp)) {
+        Text(stringResource(R.string.highlight_day), style = MaterialTheme.typography.labelLarge)
+        Row(
+            Modifier.horizontalScroll(rememberScrollState()).padding(top = 6.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            // "None" choice: an outlined circle with a slash.
+            val noneLabel = stringResource(R.string.highlight_none)
+            Box(
+                Modifier.size(34.dp).clip(CircleShape)
+                    .border(if (current == null) 3.dp else 1.5.dp, if (current == null) colors.primary else colors.outline, CircleShape)
+                    .clickable { onPick(null) }
+                    .semantics { contentDescription = noneLabel },
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(Icons.Filled.Block, contentDescription = null, tint = colors.onSurfaceVariant, modifier = Modifier.size(18.dp))
+            }
+            HighlightColor.entries.forEach { h ->
+                val c = Color(h.argb)
+                val label = stringResource(h.label)
+                Box(
+                    Modifier.size(34.dp).clip(CircleShape).background(c)
+                        .border(if (current == h) 3.dp else 0.dp, if (current == h) colors.onSurface else c, CircleShape)
+                        .clickable { onPick(if (current == h) null else h) }
+                        .semantics { contentDescription = label },
+                    contentAlignment = Alignment.Center,
+                ) {
+                    if (current == h) Icon(Icons.Filled.Check, contentDescription = null, tint = readableOn(c), modifier = Modifier.size(18.dp))
+                }
+            }
         }
     }
 }

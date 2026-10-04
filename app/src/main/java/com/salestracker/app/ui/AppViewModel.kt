@@ -1,5 +1,7 @@
 package com.salestracker.app.ui
 
+import com.salestracker.app.ui.theme.CustomColors
+import com.salestracker.app.data.HighlightColor
 import android.app.Application
 import android.content.Context
 import androidx.compose.runtime.getValue
@@ -44,7 +46,29 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
     fun choosePalette(p: AppPalette) {
         palette = p
-        settings.edit().putString("palette", p.name).apply()
+        useCustomColors = false
+        settings.edit().putString("palette", p.name).putBoolean("useCustom", false).apply()
+    }
+
+    /** Colors picked on the color wheel, and whether they're in use instead of a ready-made palette. */
+    var customColors by mutableStateOf(
+        CustomColors(
+            settings.getInt("customMain", CustomColors.DEFAULT.main),
+            settings.getInt("customAccent", CustomColors.DEFAULT.accent),
+            settings.getInt("customBackground", CustomColors.DEFAULT.background),
+        )
+    )
+        private set
+    var useCustomColors by mutableStateOf(settings.getBoolean("useCustom", false))
+        private set
+
+    fun applyCustomColors(c: CustomColors) {
+        customColors = c
+        useCustomColors = true
+        settings.edit()
+            .putInt("customMain", c.main).putInt("customAccent", c.accent).putInt("customBackground", c.background)
+            .putBoolean("useCustom", true)
+            .apply()
     }
 
     fun chooseDarkMode(m: DarkMode) {
@@ -127,6 +151,11 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun deleteAppointment(id: Long) {
         repo.update { d -> d.copy(appointments = d.appointments.filterNot { it.id == id }) }
         ReminderScheduler.cancel(getApplication(), id)
+    }
+
+    // ---- Calendar highlights ----
+    fun setDayHighlight(epochDay: Long, color: HighlightColor?) = repo.update { d ->
+        d.copy(dayHighlights = if (color == null) d.dayHighlights - epochDay else d.dayHighlights + (epochDay to color))
     }
 
     // ---- Goals & commission ----

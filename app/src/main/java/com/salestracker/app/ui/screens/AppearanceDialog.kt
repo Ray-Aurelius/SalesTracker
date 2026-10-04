@@ -2,6 +2,9 @@
 
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.ui.theme.customScheme
+import com.salestracker.app.ui.theme.CustomColors
+import androidx.compose.ui.graphics.Color
 import com.salestracker.app.R
 import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -47,6 +50,9 @@ fun AppearanceDialog(
     onPalette: (AppPalette) -> Unit,
     onDarkMode: (DarkMode) -> Unit,
     onDismiss: () -> Unit,
+    customSelected: Boolean = false,
+    customColors: CustomColors = CustomColors.DEFAULT,
+    onCustom: () -> Unit = {},
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -62,8 +68,19 @@ fun AppearanceDialog(
                 Spacer(Modifier.size(4.dp))
                 Text(stringResource(R.string.appearance_palette), style = MaterialTheme.typography.labelLarge)
                 AppPalette.entries.forEach { p ->
-                    PaletteRow(p, selected = p == palette, isDark = isDark) { onPalette(p) }
+                    PaletteRow(
+                        p.swatch(isDark), stringResource(p.label), stringResource(p.description),
+                        selected = !customSelected && p == palette,
+                    ) { onPalette(p) }
                 }
+                // Your own colors, picked on the color wheel. Tapping opens the editor.
+                val custom = customScheme(customColors, isDark)
+                PaletteRow(
+                    listOf(custom.primary, custom.secondary, custom.primaryContainer),
+                    stringResource(R.string.custom_colors), stringResource(R.string.custom_colors_desc),
+                    selected = customSelected,
+                    onClick = onCustom,
+                )
             }
         },
         confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.done)) } },
@@ -71,7 +88,7 @@ fun AppearanceDialog(
 }
 
 @Composable
-private fun PaletteRow(p: AppPalette, selected: Boolean, isDark: Boolean, onClick: () -> Unit) {
+private fun PaletteRow(swatch: List<Color>, title: String, description: String, selected: Boolean, onClick: () -> Unit) {
     val colors = MaterialTheme.colorScheme
     val shape = RoundedCornerShape(12.dp)
     Row(
@@ -85,7 +102,7 @@ private fun PaletteRow(p: AppPalette, selected: Boolean, isDark: Boolean, onClic
     ) {
         // Overlapping color dots preview the palette.
         Box(Modifier.width(52.dp)) {
-            p.swatch(isDark).forEachIndexed { i, c ->
+            swatch.forEachIndexed { i, c ->
                 Box(
                     Modifier.padding(start = (i * 14).dp).size(22.dp).clip(CircleShape)
                         .background(c).border(1.dp, colors.surface, CircleShape)
@@ -94,8 +111,8 @@ private fun PaletteRow(p: AppPalette, selected: Boolean, isDark: Boolean, onClic
         }
         Spacer(Modifier.width(10.dp))
         Column(Modifier.weight(1f)) {
-            Text(stringResource(p.label), style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.SemiBold)
-            Text(stringResource(p.description), style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
+            Text(title, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.SemiBold)
+            Text(description, style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
         }
         if (selected) Icon(Icons.Filled.CheckCircle, contentDescription = stringResource(R.string.selected), tint = colors.primary)
     }

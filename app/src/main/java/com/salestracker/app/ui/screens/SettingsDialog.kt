@@ -65,7 +65,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 
-private enum class Step { MENU, APPEARANCE, LANGUAGE, BACKUP_PASSWORD, RESTORE_PASSWORD, RESTORE_CONFIRM, WORKING }
+private enum class Step { MENU, APPEARANCE, CUSTOM_COLORS, LANGUAGE, BACKUP_PASSWORD, RESTORE_PASSWORD, RESTORE_CONFIRM, WORKING }
 
 /** One place for appearance, language, app lock and encrypted backups. */
 @Composable
@@ -216,6 +216,16 @@ fun SettingsDialog(vm: AppViewModel, data: AppData, isDark: Boolean, onDismiss: 
             onPalette = vm::choosePalette,
             onDarkMode = vm::chooseDarkMode,
             onDismiss = { step = Step.MENU },
+            customSelected = vm.useCustomColors,
+            customColors = vm.customColors,
+            onCustom = { step = Step.CUSTOM_COLORS },
+        )
+
+        Step.CUSTOM_COLORS -> CustomColorsDialog(
+            initial = vm.customColors,
+            isDark = isDark,
+            onApply = vm::applyCustomColors,
+            onDismiss = { step = Step.APPEARANCE },
         )
 
         Step.LANGUAGE -> LanguageDialog(onDismiss = { step = Step.MENU })
@@ -225,7 +235,7 @@ fun SettingsDialog(vm: AppViewModel, data: AppData, isDark: Boolean, onDismiss: 
             onConfirm = { pw ->
                 backupPassword = pw
                 vm.openedOwnScreen = true
-                saveLauncher.launch("SalesTracker-backup-${LocalDate.now()}.stbackup")
+                saveLauncher.launch("UltimateSalesProductivity-backup-${LocalDate.now()}.stbackup")
             },
         )
 

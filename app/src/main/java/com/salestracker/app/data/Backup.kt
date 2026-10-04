@@ -33,7 +33,7 @@ object Backup {
     private const val HEADER_BYTES = 4 + 1 + 4 + SALT_BYTES + IV_BYTES
     const val MIN_PASSWORD_LENGTH = 8
 
-    class NotABackupException : Exception("Not a Sales Tracker backup")
+    class NotABackupException : Exception("Not an Ultimate Sales Productivity backup")
     class WrongPasswordException : Exception("Wrong password or damaged file")
 
     /** What a backup holds, plus when it was made. */
