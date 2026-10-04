@@ -16,7 +16,7 @@
     <string name="cd_language">Idioma</string>
     <string name="cd_settings">Configurações</string>
     <string name="settings_title">Configurações</string>
-    <string name="settings_appearance_desc">Cores e modo claro ou escuro</string>
+    <string name="settings_appearance_desc">Cores, modo claro ou escuro e posição do menu</string>
     <string name="settings_security">Segurança</string>
     <string name="app_lock">Bloquear com digital ou PIN</string>
     <string name="app_lock_desc">Pede sua digital, rosto ou PIN do celular ao abrir o app</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">Auto</string>
     <string name="mode_light">Claro</string>
     <string name="mode_dark">Escuro</string>
+    <string name="menu_position">Posição do menu</string>
+    <string name="menu_bottom">Embaixo</string>
+    <string name="menu_left">Na lateral</string>
+    <string name="cd_hide_menu">Ocultar menu</string>
+    <string name="cd_show_menu">Mostrar menu</string>
     <string name="appearance_palette">Paleta de cores</string>
     <string name="selected">Selecionado</string>
     <string name="palette_bullseye">Alvo</string>

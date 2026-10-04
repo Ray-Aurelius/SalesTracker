@@ -84,6 +84,8 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
             customSelected = vm.useCustomColors,
             customColors = vm.customColors,
             onCustom = { step = Step.CUSTOM_COLORS },
+            menuOnLeft = vm.menuOnLeft,
+            onMenuOnLeft = vm::chooseMenuOnLeft,
         )
 
         Step.CUSTOM_COLORS -> CustomColorsDialog(

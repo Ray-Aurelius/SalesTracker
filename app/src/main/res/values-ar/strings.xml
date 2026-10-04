@@ -7,7 +7,7 @@
     <string name="tab_clients">العملاء</string>
     <string name="title_clients">العملاء</string>
     <string name="tab_calendar">الجدول</string>
-    <string name="title_calendar">التقويم</string>
+    <string name="title_calendar">الجدول</string>
     <string name="tab_timer">المؤقت</string>
     <string name="title_timer">مؤقت البيع</string>
     <string name="tab_calc">الحاسبة</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">اللغة</string>
     <string name="cd_settings">الإعدادات</string>
     <string name="settings_title">الإعدادات</string>
-    <string name="settings_appearance_desc">الألوان والوضع الفاتح أو الداكن</string>
+    <string name="settings_appearance_desc">الألوان والوضع الفاتح أو الداكن وموضع القائمة</string>
     <string name="settings_security">الأمان</string>
     <string name="app_lock">القفل بالبصمة أو الرمز</string>
     <string name="app_lock_desc">طلب البصمة أو الوجه أو رمز الهاتف عند فتح التطبيق</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">تلقائي</string>
     <string name="mode_light">فاتح</string>
     <string name="mode_dark">داكن</string>
+    <string name="menu_position">موضع القائمة</string>
+    <string name="menu_bottom">في الأسفل</string>
+    <string name="menu_left">على الجانب</string>
+    <string name="cd_hide_menu">إخفاء القائمة</string>
+    <string name="cd_show_menu">إظهار القائمة</string>
     <string name="appearance_palette">لوحة الألوان</string>
     <string name="selected">محدد</string>
     <string name="palette_bullseye">عين الهدف</string>

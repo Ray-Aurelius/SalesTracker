@@ -16,7 +16,7 @@
     <string name="cd_language">Langue</string>
     <string name="cd_settings">Paramètres</string>
     <string name="settings_title">Paramètres</string>
-    <string name="settings_appearance_desc">Couleurs et mode clair ou sombre</string>
+    <string name="settings_appearance_desc">Couleurs, mode clair ou sombre et position du menu</string>
     <string name="settings_security">Sécurité</string>
     <string name="app_lock">Verrouiller par empreinte ou code</string>
     <string name="app_lock_desc">Demande votre empreinte, votre visage ou le code du téléphone à l\'ouverture</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">Auto</string>
     <string name="mode_light">Clair</string>
     <string name="mode_dark">Sombre</string>
+    <string name="menu_position">Position du menu</string>
+    <string name="menu_bottom">En bas</string>
+    <string name="menu_left">Sur le côté</string>
+    <string name="cd_hide_menu">Masquer le menu</string>
+    <string name="cd_show_menu">Afficher le menu</string>
     <string name="appearance_palette">Palette de couleurs</string>
     <string name="selected">Sélectionné</string>
     <string name="palette_bullseye">Cible</string>

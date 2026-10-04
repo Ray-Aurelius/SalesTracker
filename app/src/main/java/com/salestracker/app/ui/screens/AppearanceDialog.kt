@@ -53,6 +53,8 @@ fun AppearanceDialog(
     customSelected: Boolean = false,
     customColors: CustomColors = CustomColors.DEFAULT,
     onCustom: () -> Unit = {},
+    menuOnLeft: Boolean = false,
+    onMenuOnLeft: (Boolean) -> Unit = {},
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -64,6 +66,12 @@ fun AppearanceDialog(
                     DarkMode.entries.forEach { m ->
                         FilterChip(selected = darkMode == m, onClick = { onDarkMode(m) }, label = { Text(stringResource(m.label)) })
                     }
+                }
+                Spacer(Modifier.size(4.dp))
+                Text(stringResource(R.string.menu_position), style = MaterialTheme.typography.labelLarge)
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(selected = !menuOnLeft, onClick = { onMenuOnLeft(false) }, label = { Text(stringResource(R.string.menu_bottom)) })
+                    FilterChip(selected = menuOnLeft, onClick = { onMenuOnLeft(true) }, label = { Text(stringResource(R.string.menu_left)) })
                 }
                 Spacer(Modifier.size(4.dp))
                 Text(stringResource(R.string.appearance_palette), style = MaterialTheme.typography.labelLarge)

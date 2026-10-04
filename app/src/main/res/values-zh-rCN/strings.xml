@@ -7,7 +7,7 @@
     <string name="tab_clients">客户</string>
     <string name="title_clients">客户</string>
     <string name="tab_calendar">日程</string>
-    <string name="title_calendar">日历</string>
+    <string name="title_calendar">日程</string>
     <string name="tab_timer">计时</string>
     <string name="title_timer">销售计时</string>
     <string name="tab_calc">计算</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">语言</string>
     <string name="cd_settings">设置</string>
     <string name="settings_title">设置</string>
-    <string name="settings_appearance_desc">颜色以及浅色或深色模式</string>
+    <string name="settings_appearance_desc">颜色、浅色或深色模式及菜单位置</string>
     <string name="settings_security">安全</string>
     <string name="app_lock">使用指纹或 PIN 锁定</string>
     <string name="app_lock_desc">打开应用时要求指纹、面容或手机 PIN</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">自动</string>
     <string name="mode_light">浅色</string>
     <string name="mode_dark">深色</string>
+    <string name="menu_position">菜单位置</string>
+    <string name="menu_bottom">底部</string>
+    <string name="menu_left">侧边</string>
+    <string name="cd_hide_menu">隐藏菜单</string>
+    <string name="cd_show_menu">显示菜单</string>
     <string name="appearance_palette">配色方案</string>
     <string name="selected">已选择</string>
     <string name="palette_bullseye">靶心</string>

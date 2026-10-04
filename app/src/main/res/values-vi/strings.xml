@@ -7,7 +7,7 @@
     <string name="tab_clients">Khách hàng</string>
     <string name="title_clients">Khách hàng</string>
     <string name="tab_calendar">Lịch hẹn</string>
-    <string name="title_calendar">Lịch</string>
+    <string name="title_calendar">Lịch hẹn</string>
     <string name="tab_timer">Hẹn giờ</string>
     <string name="title_timer">Đồng hồ bán hàng</string>
     <string name="tab_calc">Máy tính</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">Ngôn ngữ</string>
     <string name="cd_settings">Cài đặt</string>
     <string name="settings_title">Cài đặt</string>
-    <string name="settings_appearance_desc">Màu sắc và chế độ sáng hoặc tối</string>
+    <string name="settings_appearance_desc">Màu sắc, chế độ sáng hoặc tối và vị trí menu</string>
     <string name="settings_security">Bảo mật</string>
     <string name="app_lock">Khóa bằng vân tay hoặc mã PIN</string>
     <string name="app_lock_desc">Yêu cầu vân tay, khuôn mặt hoặc mã PIN điện thoại khi mở ứng dụng</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">Tự động</string>
     <string name="mode_light">Sáng</string>
     <string name="mode_dark">Tối</string>
+    <string name="menu_position">Vị trí menu</string>
+    <string name="menu_bottom">Dưới cùng</string>
+    <string name="menu_left">Bên cạnh</string>
+    <string name="cd_hide_menu">Ẩn menu</string>
+    <string name="cd_show_menu">Hiện menu</string>
     <string name="appearance_palette">Bảng màu</string>
     <string name="selected">Đã chọn</string>
     <string name="palette_bullseye">Hồng tâm</string>

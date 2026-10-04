@@ -7,7 +7,7 @@
     <string name="tab_clients">고객</string>
     <string name="title_clients">고객</string>
     <string name="tab_calendar">일정</string>
-    <string name="title_calendar">캘린더</string>
+    <string name="title_calendar">일정</string>
     <string name="tab_timer">타이머</string>
     <string name="title_timer">판매 타이머</string>
     <string name="tab_calc">계산기</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">언어</string>
     <string name="cd_settings">설정</string>
     <string name="settings_title">설정</string>
-    <string name="settings_appearance_desc">색상과 라이트 또는 다크 모드</string>
+    <string name="settings_appearance_desc">색상, 라이트/다크 모드, 메뉴 위치</string>
     <string name="settings_security">보안</string>
     <string name="app_lock">지문 또는 PIN으로 잠금</string>
     <string name="app_lock_desc">앱을 열 때 지문, 얼굴 또는 휴대폰 PIN을 요청합니다</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">자동</string>
     <string name="mode_light">라이트</string>
     <string name="mode_dark">다크</string>
+    <string name="menu_position">메뉴 위치</string>
+    <string name="menu_bottom">아래</string>
+    <string name="menu_left">옆</string>
+    <string name="cd_hide_menu">메뉴 숨기기</string>
+    <string name="cd_show_menu">메뉴 표시</string>
     <string name="appearance_palette">색상 팔레트</string>
     <string name="selected">선택됨</string>
     <string name="palette_bullseye">불스아이</string>

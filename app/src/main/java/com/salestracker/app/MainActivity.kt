@@ -2,6 +2,33 @@
 
 package com.salestracker.app
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.NavigationRailItem
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import com.salestracker.app.ui.screens.WelcomeScreen
 import androidx.compose.runtime.CompositionLocalProvider
 import com.salestracker.app.data.LocalTerms
@@ -68,6 +95,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.sp
 import com.salestracker.app.ui.AppViewModel
@@ -246,32 +274,92 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
             )
         },
         bottomBar = {
-            NavigationBar {
-                Tab.entries.forEachIndexed { i, t ->
-                    NavigationBarItem(
-                        selected = tab == t,
-                        onClick = { tab = t },
-                        icon = { Icon(t.icon, contentDescription = null) },
-                        label = { Text(labels[i], fontSize = labelSize, maxLines = 1, softWrap = false) },
-                    )
+            if (!vm.menuOnLeft) {
+                Column {
+                    MenuToggle(hidden = vm.menuHidden, side = false) { vm.setMenuHidden(!vm.menuHidden) }
+                    AnimatedVisibility(visible = !vm.menuHidden, enter = expandVertically(), exit = shrinkVertically()) {
+                        NavigationBar {
+                            Tab.entries.forEachIndexed { i, t ->
+                                NavigationBarItem(
+                                    selected = tab == t,
+                                    onClick = { tab = t },
+                                    icon = { Icon(t.icon, contentDescription = null) },
+                                    label = { Text(labels[i], fontSize = labelSize, maxLines = 1, softWrap = false) },
+                                )
+                            }
+                        }
+                    }
                 }
             }
         },
     ) { padding ->
-        Box(Modifier.fillMaxSize().padding(padding)) {
-            when (tab) {
-                Tab.DASHBOARD -> DashboardScreen(vm, data)
-                Tab.GOALS -> GoalsScreen(vm, data)
-                Tab.CLIENTS -> ClientsScreen(vm, data)
-                Tab.CALENDAR -> CalendarScreen(vm, data)
-                Tab.TIMER -> StopwatchScreen(vm, data)
-                Tab.CALCULATOR -> CalculatorScreen(vm)
-                Tab.CHARTS -> ChartsScreen(data)
+        Row(Modifier.fillMaxSize().padding(padding)) {
+            if (vm.menuOnLeft) {
+                // Menu down the side (left, or right in right-to-left languages), scrollable on short screens.
+                AnimatedVisibility(visible = !vm.menuHidden, enter = expandHorizontally(), exit = shrinkHorizontally()) {
+                    NavigationRail(
+                        containerColor = MaterialTheme.colorScheme.surfaceContainer,
+                        windowInsets = WindowInsets(0, 0, 0, 0),
+                    ) {
+                        Column(
+                            Modifier.verticalScroll(rememberScrollState()).padding(vertical = 4.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp),
+                        ) {
+                            Tab.entries.forEachIndexed { i, t ->
+                                NavigationRailItem(
+                                    selected = tab == t,
+                                    onClick = { tab = t },
+                                    icon = { Icon(t.icon, contentDescription = null) },
+                                    label = { Text(labels[i], maxLines = 1, softWrap = false) },
+                                )
+                            }
+                        }
+                    }
+                }
+                MenuToggle(hidden = vm.menuHidden, side = true) { vm.setMenuHidden(!vm.menuHidden) }
+            }
+            Box(Modifier.weight(1f).fillMaxHeight()) {
+                when (tab) {
+                    Tab.DASHBOARD -> DashboardScreen(vm, data)
+                    Tab.GOALS -> GoalsScreen(vm, data)
+                    Tab.CLIENTS -> ClientsScreen(vm, data)
+                    Tab.CALENDAR -> CalendarScreen(vm, data)
+                    Tab.TIMER -> StopwatchScreen(vm, data)
+                    Tab.CALCULATOR -> CalculatorScreen(vm)
+                    Tab.CHARTS -> ChartsScreen(data)
+                }
             }
         }
     }
 
     if (showSettings) {
         SettingsDialog(vm = vm, isDark = isDark, onOpenSecurity = { showSecurity = true }, onDismiss = { showSettings = false })
+    }
+}
+
+/**
+ * The arrow that hides or shows the tab menu. A full-width strip above the bottom bar,
+ * or a full-height strip beside the side menu, so it is easy to hit.
+ */
+@Composable
+private fun MenuToggle(hidden: Boolean, side: Boolean, onToggle: () -> Unit) {
+    val label = stringResource(if (hidden) R.string.cd_show_menu else R.string.cd_hide_menu)
+    val icon = when {
+        side && hidden -> Icons.AutoMirrored.Filled.KeyboardArrowRight
+        side -> Icons.AutoMirrored.Filled.KeyboardArrowLeft
+        hidden -> Icons.Filled.KeyboardArrowUp
+        else -> Icons.Filled.KeyboardArrowDown
+    }
+    val base = Modifier
+        .background(MaterialTheme.colorScheme.surfaceContainer)
+        .clickable(onClickLabel = label, role = Role.Button, onClick = onToggle)
+        .semantics { contentDescription = label }
+    Box(
+        if (side) base.fillMaxHeight().width(28.dp)
+        // With the bar hidden, the strip itself keeps clear of the phone's gesture area.
+        else base.fillMaxWidth().then(if (hidden) Modifier.navigationBarsPadding() else Modifier).height(30.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }

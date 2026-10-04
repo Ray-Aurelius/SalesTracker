@@ -7,7 +7,7 @@
     <string name="tab_clients">顧客</string>
     <string name="title_clients">顧客</string>
     <string name="tab_calendar">予定</string>
-    <string name="title_calendar">カレンダー</string>
+    <string name="title_calendar">予定</string>
     <string name="tab_timer">タイマー</string>
     <string name="title_timer">商談タイマー</string>
     <string name="tab_calc">電卓</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">言語</string>
     <string name="cd_settings">設定</string>
     <string name="settings_title">設定</string>
-    <string name="settings_appearance_desc">色とライト・ダークモード</string>
+    <string name="settings_appearance_desc">色、ライト/ダークモード、メニューの位置</string>
     <string name="settings_security">セキュリティ</string>
     <string name="app_lock">指紋または PIN でロック</string>
     <string name="app_lock_desc">アプリを開くときに指紋・顔・端末の PIN を求めます</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">自動</string>
     <string name="mode_light">ライト</string>
     <string name="mode_dark">ダーク</string>
+    <string name="menu_position">メニューの位置</string>
+    <string name="menu_bottom">下</string>
+    <string name="menu_left">横</string>
+    <string name="cd_hide_menu">メニューを隠す</string>
+    <string name="cd_show_menu">メニューを表示</string>
     <string name="appearance_palette">カラーパレット</string>
     <string name="selected">選択中</string>
     <string name="palette_bullseye">ブルズアイ</string>

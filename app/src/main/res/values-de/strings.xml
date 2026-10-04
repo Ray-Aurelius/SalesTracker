@@ -7,7 +7,7 @@
     <string name="tab_clients">Kunden</string>
     <string name="title_clients">Kunden</string>
     <string name="tab_calendar">Termine</string>
-    <string name="title_calendar">Kalender</string>
+    <string name="title_calendar">Termine</string>
     <string name="tab_timer">Timer</string>
     <string name="title_timer">Verkaufstimer</string>
     <string name="tab_calc">Rechner</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">Sprache</string>
     <string name="cd_settings">Einstellungen</string>
     <string name="settings_title">Einstellungen</string>
-    <string name="settings_appearance_desc">Farben und heller oder dunkler Modus</string>
+    <string name="settings_appearance_desc">Farben, heller oder dunkler Modus und Menüposition</string>
     <string name="settings_security">Sicherheit</string>
     <string name="app_lock">Mit Fingerabdruck oder PIN sperren</string>
     <string name="app_lock_desc">Beim Öffnen nach Fingerabdruck, Gesicht oder Telefon-PIN fragen</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">Auto</string>
     <string name="mode_light">Hell</string>
     <string name="mode_dark">Dunkel</string>
+    <string name="menu_position">Menüposition</string>
+    <string name="menu_bottom">Unten</string>
+    <string name="menu_left">Seitlich</string>
+    <string name="cd_hide_menu">Menü ausblenden</string>
+    <string name="cd_show_menu">Menü einblenden</string>
     <string name="appearance_palette">Farbpalette</string>
     <string name="selected">Ausgewählt</string>
     <string name="palette_bullseye">Volltreffer</string>

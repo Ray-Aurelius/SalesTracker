@@ -7,7 +7,7 @@
     <string name="tab_clients">গ্রাহক</string>
     <string name="title_clients">গ্রাহক</string>
     <string name="tab_calendar">সময়সূচি</string>
-    <string name="title_calendar">ক্যালেন্ডার</string>
+    <string name="title_calendar">সময়সূচি</string>
     <string name="tab_timer">টাইমার</string>
     <string name="title_timer">বিক্রয় টাইমার</string>
     <string name="tab_calc">ক্যালক</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">ভাষা</string>
     <string name="cd_settings">সেটিংস</string>
     <string name="settings_title">সেটিংস</string>
-    <string name="settings_appearance_desc">রং এবং হালকা বা গাঢ় মোড</string>
+    <string name="settings_appearance_desc">রং, লাইট বা ডার্ক মোড এবং মেনুর অবস্থান</string>
     <string name="settings_security">নিরাপত্তা</string>
     <string name="app_lock">আঙুলের ছাপ বা PIN দিয়ে লক</string>
     <string name="app_lock_desc">অ্যাপ খোলার সময় আঙুলের ছাপ, মুখ বা ফোনের PIN চাওয়া হবে</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">অটো</string>
     <string name="mode_light">হালকা</string>
     <string name="mode_dark">গাঢ়</string>
+    <string name="menu_position">মেনুর অবস্থান</string>
+    <string name="menu_bottom">নিচে</string>
+    <string name="menu_left">পাশে</string>
+    <string name="cd_hide_menu">মেনু লুকান</string>
+    <string name="cd_show_menu">মেনু দেখান</string>
     <string name="appearance_palette">রঙের প্যালেট</string>
     <string name="selected">নির্বাচিত</string>
     <string name="palette_bullseye">বুলস-আই</string>

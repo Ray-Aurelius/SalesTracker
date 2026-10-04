@@ -7,7 +7,7 @@
     <string name="tab_clients">Clientes</string>
     <string name="title_clients">Clientes</string>
     <string name="tab_calendar">Agenda</string>
-    <string name="title_calendar">Calendario</string>
+    <string name="title_calendar">Agenda</string>
     <string name="tab_timer">Tiempo</string>
     <string name="title_timer">Cronómetro de venta</string>
     <string name="tab_calc">Calc</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">Idioma</string>
     <string name="cd_settings">Ajustes</string>
     <string name="settings_title">Ajustes</string>
-    <string name="settings_appearance_desc">Colores y modo claro u oscuro</string>
+    <string name="settings_appearance_desc">Colores, modo claro u oscuro y posición del menú</string>
     <string name="settings_security">Seguridad</string>
     <string name="app_lock">Bloquear con huella o PIN</string>
     <string name="app_lock_desc">Pide tu huella, rostro o PIN del teléfono al abrir la app</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">Auto</string>
     <string name="mode_light">Claro</string>
     <string name="mode_dark">Oscuro</string>
+    <string name="menu_position">Posición del menú</string>
+    <string name="menu_bottom">Abajo</string>
+    <string name="menu_left">Lateral</string>
+    <string name="cd_hide_menu">Ocultar menú</string>
+    <string name="cd_show_menu">Mostrar menú</string>
     <string name="appearance_palette">Paleta de colores</string>
     <string name="selected">Seleccionado</string>
     <string name="palette_bullseye">Diana</string>

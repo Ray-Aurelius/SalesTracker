@@ -7,7 +7,7 @@
     <string name="tab_clients">Clienti</string>
     <string name="title_clients">Clienti</string>
     <string name="tab_calendar">Agenda</string>
-    <string name="title_calendar">Calendario</string>
+    <string name="title_calendar">Agenda</string>
     <string name="tab_timer">Timer</string>
     <string name="title_timer">Timer di vendita</string>
     <string name="tab_calc">Calc</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">Lingua</string>
     <string name="cd_settings">Impostazioni</string>
     <string name="settings_title">Impostazioni</string>
-    <string name="settings_appearance_desc">Colori e modalità chiara o scura</string>
+    <string name="settings_appearance_desc">Colori, modalità chiara o scura e posizione del menu</string>
     <string name="settings_security">Sicurezza</string>
     <string name="app_lock">Blocca con impronta o PIN</string>
     <string name="app_lock_desc">Chiede impronta, volto o PIN del telefono all\'apertura dell\'app</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">Auto</string>
     <string name="mode_light">Chiaro</string>
     <string name="mode_dark">Scuro</string>
+    <string name="menu_position">Posizione del menu</string>
+    <string name="menu_bottom">In basso</string>
+    <string name="menu_left">Di lato</string>
+    <string name="cd_hide_menu">Nascondi menu</string>
+    <string name="cd_show_menu">Mostra menu</string>
     <string name="appearance_palette">Tavolozza colori</string>
     <string name="selected">Selezionato</string>
     <string name="palette_bullseye">Bersaglio</string>

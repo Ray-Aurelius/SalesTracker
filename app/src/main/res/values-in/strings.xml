@@ -7,7 +7,7 @@
     <string name="tab_clients">Klien</string>
     <string name="title_clients">Klien</string>
     <string name="tab_calendar">Jadwal</string>
-    <string name="title_calendar">Kalender</string>
+    <string name="title_calendar">Jadwal</string>
     <string name="tab_timer">Timer</string>
     <string name="title_timer">Timer penjualan</string>
     <string name="tab_calc">Kalku</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">Bahasa</string>
     <string name="cd_settings">Pengaturan</string>
     <string name="settings_title">Pengaturan</string>
-    <string name="settings_appearance_desc">Warna dan mode terang atau gelap</string>
+    <string name="settings_appearance_desc">Warna, mode terang atau gelap, dan posisi menu</string>
     <string name="settings_security">Keamanan</string>
     <string name="app_lock">Kunci dengan sidik jari atau PIN</string>
     <string name="app_lock_desc">Meminta sidik jari, wajah, atau PIN ponsel saat aplikasi dibuka</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">Otomatis</string>
     <string name="mode_light">Terang</string>
     <string name="mode_dark">Gelap</string>
+    <string name="menu_position">Posisi menu</string>
+    <string name="menu_bottom">Bawah</string>
+    <string name="menu_left">Samping</string>
+    <string name="cd_hide_menu">Sembunyikan menu</string>
+    <string name="cd_show_menu">Tampilkan menu</string>
     <string name="appearance_palette">Palet warna</string>
     <string name="selected">Dipilih</string>
     <string name="palette_bullseye">Bullseye</string>

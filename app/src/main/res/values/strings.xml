@@ -10,7 +10,7 @@
     <string name="tab_clients">Clients</string>
     <string name="title_clients">Clients</string>
     <string name="tab_calendar">Schedule</string>
-    <string name="title_calendar">Calendar</string>
+    <string name="title_calendar">Schedule</string>
     <string name="tab_timer">Timer</string>
     <string name="title_timer">Sale timer</string>
     <string name="tab_calc">Calc</string>
@@ -21,7 +21,7 @@
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
-    <string name="settings_appearance_desc">Colors and light or dark mode</string>
+    <string name="settings_appearance_desc">Colors, light or dark mode, and menu position</string>
     <string name="settings_security">Security</string>
     <string name="app_lock">Lock with fingerprint or PIN</string>
     <string name="app_lock_desc">Ask for your fingerprint, face or phone PIN when opening the app</string>
@@ -109,6 +109,11 @@
     <string name="mode_auto">Auto</string>
     <string name="mode_light">Light</string>
     <string name="mode_dark">Dark</string>
+    <string name="menu_position">Menu position</string>
+    <string name="menu_bottom">Bottom</string>
+    <string name="menu_left">Left side</string>
+    <string name="cd_hide_menu">Hide menu</string>
+    <string name="cd_show_menu">Show menu</string>
     <string name="appearance_palette">Color palette</string>
     <string name="selected">Selected</string>
     <string name="palette_bullseye">Bullseye</string>

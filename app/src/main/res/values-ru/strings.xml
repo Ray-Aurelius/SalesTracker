@@ -7,7 +7,7 @@
     <string name="tab_clients">Клиенты</string>
     <string name="title_clients">Клиенты</string>
     <string name="tab_calendar">Расписание</string>
-    <string name="title_calendar">Календарь</string>
+    <string name="title_calendar">Расписание</string>
     <string name="tab_timer">Таймер</string>
     <string name="title_timer">Таймер продажи</string>
     <string name="tab_calc">Кальк.</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">Язык</string>
     <string name="cd_settings">Настройки</string>
     <string name="settings_title">Настройки</string>
-    <string name="settings_appearance_desc">Цвета и светлый или тёмный режим</string>
+    <string name="settings_appearance_desc">Цвета, светлая или тёмная тема и положение меню</string>
     <string name="settings_security">Безопасность</string>
     <string name="app_lock">Блокировка отпечатком или PIN</string>
     <string name="app_lock_desc">Запрашивать отпечаток, лицо или PIN телефона при открытии</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">Авто</string>
     <string name="mode_light">Светлый</string>
     <string name="mode_dark">Тёмный</string>
+    <string name="menu_position">Положение меню</string>
+    <string name="menu_bottom">Снизу</string>
+    <string name="menu_left">Сбоку</string>
+    <string name="cd_hide_menu">Скрыть меню</string>
+    <string name="cd_show_menu">Показать меню</string>
     <string name="appearance_palette">Цветовая палитра</string>
     <string name="selected">Выбрано</string>
     <string name="palette_bullseye">Мишень</string>

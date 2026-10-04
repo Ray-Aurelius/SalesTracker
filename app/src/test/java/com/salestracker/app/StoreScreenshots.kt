@@ -87,6 +87,12 @@ class StoreScreenshots {
         shot("8-charts-trends")
         repeat(4) { rule.onAllNodes(hasScrollAction())[0].performTouchInput { swipeUp() } }
         shot("9-charts-days")
+        // Menu options: down the side, then tucked away with its arrow (checked here, not store shots).
+        vm.chooseMenuOnLeft(true)
+        tap(app.getString(R.string.tab_calendar)); shot("10-menu-side")
+        vm.setMenuHidden(true); rule.waitForIdle(); rule.mainClock.advanceTimeBy(1000); shot("11-menu-side-hidden")
+        vm.chooseMenuOnLeft(false); rule.waitForIdle(); rule.mainClock.advanceTimeBy(1000); shot("12-menu-bottom-hidden")
+        vm.setMenuHidden(false)
         // Same stats screen in dark mode.
         dark = true
         tap(app.getString(R.string.tab_stats)); shot("5-stats-dark")

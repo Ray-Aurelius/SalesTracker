@@ -7,7 +7,7 @@
     <string name="tab_clients">Müşteriler</string>
     <string name="title_clients">Müşteriler</string>
     <string name="tab_calendar">Program</string>
-    <string name="title_calendar">Takvim</string>
+    <string name="title_calendar">Program</string>
     <string name="tab_timer">Süre</string>
     <string name="title_timer">Satış zamanlayıcı</string>
     <string name="tab_calc">Hesap</string>
@@ -16,7 +16,7 @@
     <string name="cd_language">Dil</string>
     <string name="cd_settings">Ayarlar</string>
     <string name="settings_title">Ayarlar</string>
-    <string name="settings_appearance_desc">Renkler ve açık ya da koyu mod</string>
+    <string name="settings_appearance_desc">Renkler, açık veya koyu mod ve menü konumu</string>
     <string name="settings_security">Güvenlik</string>
     <string name="app_lock">Parmak izi veya PIN ile kilitle</string>
     <string name="app_lock_desc">Uygulama açılırken parmak izi, yüz veya telefon PIN\'i ister</string>
@@ -90,6 +90,11 @@
     <string name="mode_auto">Otomatik</string>
     <string name="mode_light">Açık</string>
     <string name="mode_dark">Koyu</string>
+    <string name="menu_position">Menü konumu</string>
+    <string name="menu_bottom">Altta</string>
+    <string name="menu_left">Yanda</string>
+    <string name="cd_hide_menu">Menüyü gizle</string>
+    <string name="cd_show_menu">Menüyü göster</string>
     <string name="appearance_palette">Renk paleti</string>
     <string name="selected">Seçili</string>
     <string name="palette_bullseye">On İkiden</string>
