@@ -1,0 +1,47 @@
+name: Build app
+
+# Runs every time code is pushed to main, or on demand from the Actions tab.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed to publish the APK on the Releases page
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build the APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Rename APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk SalesTracker.apk
+
+      - name: Keep a copy on the run page
+        uses: actions/upload-artifact@v4
+        with:
+          name: SalesTracker-apk
+          path: SalesTracker.apk
+
+      - name: Publish to Releases (download link for your phone)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="build-${{ github.run_number }}"
+          gh release create "$TAG" SalesTracker.apk \
+            --title "Sales Tracker build ${{ github.run_number }}" \
+            --notes "Open this page on your Android phone, tap SalesTracker.apk to download, then open it to install. Built from commit ${{ github.sha }}." \
+            --latest
