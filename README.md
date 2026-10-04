@@ -1,4 +1,4 @@
-# Sales Tracker (Android)
+# Ultimate Sales Productivity (Android)
 
 A native Android app (Kotlin + Jetpack Compose) for tracking your sales productivity.
 Everything is stored privately on the phone — no account or internet needed.
@@ -10,13 +10,19 @@ Everything is stored privately on the phone — no account or internet needed.
 | **Stats** | Close rate, upsell rate, upsell acceptance, **commission earned**, revenue, upsell revenue, average sale, average time per sale. Filter by Today / This week / This month / All time. Full sales list — tap to edit, trash icon to delete. Tap the commission card to set your default rate. |
 | **Goals** | **Personal** and **Company** money goals for this week / month / quarter / year, with progress bars and pace ("On pace" or "$X/day needed"). Tracks revenue, commission or upsell revenue automatically from logged sales, or a number you update yourself. |
 | **Clients** | Save first name, last name, phone, email and notes. Search, tap the phone or email icon to call/email, see each client's sales and close rate. |
-| **Calendar** | Month view with dots on days that have appointments. Add appointments with title, date, time, client, notes and a **reminder** (at start time up to 1 day before) that rings like an alarm, with Snooze. Shows that day's sales too. |
+| **Calendar** | Month view with dots on days that have appointments. **Highlight important days** in red, orange, yellow, green, blue, purple or pink. Add appointments with title, date, time, client, notes and a **reminder** (at start time up to 1 day before) that rings like an alarm, with Snooze. Shows that day's sales too. |
 | **Timer** | Stopwatch for timing a sale. Pick the client, Start/Pause/Reset, then **Finish & log this sale** to save it with the time filled in. Keeps running if you switch tabs or leave the app. |
 | **Calc** | Calculator with + − × ÷ and % (e.g. `1200 × 15%` = 180), live result preview. |
 
-**Languages:** tap the globe icon at the top right to switch between English, Español, Français, Deutsch, Português, Русский, 中文, 日本語, हिन्दी, বাংলা and العربية (or follow the phone's language). Money always stays in your phone's own currency.
+**Settings** (gear icon, top right) holds everything below.
 
-**Colors:** tap the palette icon at the top right to choose Classic Teal, Grayscale, Soft Sunset (orange), Soft Rose (red) or Calm Sage (green), and Auto / Light / Dark mode.
+**Security:** turn on **Lock with fingerprint or PIN** to require your fingerprint, face or phone PIN when opening the app (it re-locks after 30 seconds away and hides the app preview in recent apps).
+
+**Encrypted backup:** **Back up to an encrypted file** saves all data in a password-protected file (AES-256-GCM, key derived from your password with PBKDF2-SHA256). Store it anywhere — Google Drive, Downloads, email. **Restore from a backup** brings it back on any phone. The password is never stored; if it's forgotten, the backup can't be opened.
+
+**Languages:** choose from to switch between English, Español, Français, Deutsch, Português, Русский, 中文, 日本語, हिन्दी, বাংলা and العربية (or follow the phone's language). Money always stays in your phone's own currency.
+
+**Colors:** under Appearance choose Classic Teal, Grayscale, Soft Sunset (orange), Soft Rose (red), Calm Sage (green), or **Custom colors** picked on a color wheel (main, accent and background; shades are adjusted automatically to keep text readable), plus Auto / Light / Dark mode.
 
 ### How the percentages are calculated
 - **Close rate** = closed sales ÷ all sales logged (closed + not closed)
@@ -43,7 +49,7 @@ Requires Android 8.0 or newer.
 Every push to `main` builds the app automatically (see `.github/workflows/build-apk.yml`).
 
 1. On your phone, open the repository on github.com and tap **Releases** (right side, or scroll down on mobile).
-2. Open the newest release and tap **SalesTracker.apk** to download it.
+2. Open the newest release and tap **UltimateSalesProductivity.apk** to download it.
 3. Open the downloaded file. Android will ask you to allow installs from your browser — allow it, then tap **Install**.
 
 To update, install the newer APK over the old one — your saved data stays. This works because every build is signed
