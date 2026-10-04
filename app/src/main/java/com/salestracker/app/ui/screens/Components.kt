@@ -111,6 +111,7 @@ fun SaleDialog(
     onSave: (Sale) -> Unit,
     defaultClientId: Long? = null,
     defaultDurationSeconds: Long = 0,
+    defaultCommissionPercent: Double = 0.0,
 ) {
     var clientId by remember { mutableStateOf(initial?.clientId ?: defaultClientId) }
     var closed by remember { mutableStateOf(initial?.closed ?: true) }
@@ -122,6 +123,9 @@ fun SaleDialog(
     var minutes by remember { mutableStateOf((startSeconds / 60).toString()) }
     var seconds by remember { mutableStateOf((startSeconds % 60).toString()) }
     var notes by remember { mutableStateOf(initial?.notes ?: "") }
+    var commission by remember {
+        mutableStateOf(formatRateInput(initial?.commissionPercent ?: defaultCommissionPercent))
+    }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -163,6 +167,21 @@ fun SaleDialog(
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
+                OutlinedTextField(
+                    value = commission,
+                    onValueChange = { v -> commission = v.filter { it.isDigit() || it == '.' } },
+                    label = { Text("Commission rate") },
+                    suffix = { Text("%") },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    modifier = Modifier.fillMaxWidth(),
+                    supportingText = {
+                        val revenue = if (!closed) 0.0 else
+                            (parseMoney(amount) ?: 0.0) + if (upsellAccepted) parseMoney(upsellAmount) ?: 0.0 else 0.0
+                        val earned = revenue * (commission.toDoubleOrNull() ?: 0.0) / 100.0
+                        Text(if (closed) "You earn ${formatMoney(earned)} on this sale" else "No commission unless the sale closes")
+                    },
+                )
                 Text("Time spent", style = MaterialTheme.typography.labelLarge)
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedTextField(
@@ -206,6 +225,7 @@ fun SaleDialog(
                         upsellAmount = if (upsellAccepted) parseMoney(upsellAmount) ?: 0.0 else 0.0,
                         durationSeconds = duration,
                         notes = notes.trim(),
+                        commissionPercent = (commission.toDoubleOrNull() ?: 0.0).coerceIn(0.0, 100.0),
                     )
                 )
                 onDismiss()
@@ -245,3 +265,7 @@ fun SaleCard(sale: Sale, clientName: String, onClick: () -> Unit, onDelete: () -
         }
     }
 }
+
+/** "10" for 10.0, "7.5" for 7.5 — so rate fields don't show a pointless ".0". */
+fun formatRateInput(percent: Double): String =
+    if (percent == Math.floor(percent)) percent.toLong().toString() else percent.toString()

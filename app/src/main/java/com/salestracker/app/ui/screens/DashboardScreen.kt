@@ -17,7 +17,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.TextButton
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FilterChip
@@ -51,10 +56,11 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
     var adding by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Sale?>(null) }
     var deleting by remember { mutableStateOf<Sale?>(null) }
+    var editingRate by remember { mutableStateOf(false) }
 
     val start = period.startMillis()
     val sales = data.sales.filter { it.timestamp >= start }.sortedByDescending { it.timestamp }
-    val stats = SalesStats.of(sales)
+    val stats = SalesStats.of(sales, data.defaultCommissionPercent)
     val clientsById = data.clients.associateBy { it.id }
 
     Box(Modifier.fillMaxSize()) {
@@ -95,6 +101,26 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                     detail = "${stats.upsellsAccepted} accepted of ${stats.upsellsOffered} offered",
                     color = MaterialTheme.colorScheme.tertiary,
                 )
+            }
+            item {
+                Card(onClick = { editingRate = true }, modifier = Modifier.fillMaxWidth()) {
+                    Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Column(Modifier.weight(1f)) {
+                            Text("Commission earned", style = MaterialTheme.typography.titleMedium)
+                            Text(
+                                "Default rate ${formatRateInput(data.defaultCommissionPercent)}% · tap to change",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                        Text(
+                            formatMoney(stats.commission),
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary,
+                        )
+                    }
+                }
             }
             item {
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -147,6 +173,14 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             newId = vm::newId,
             onDismiss = { adding = false; editing = null },
             onSave = vm::saveSale,
+            defaultCommissionPercent = data.defaultCommissionPercent,
+        )
+    }
+    if (editingRate) {
+        CommissionRateDialog(
+            current = data.defaultCommissionPercent,
+            onSave = vm::setDefaultCommission,
+            onDismiss = { editingRate = false },
         )
     }
     deleting?.let { s ->
@@ -185,4 +219,39 @@ private fun StatCard(label: String, value: String, modifier: Modifier = Modifier
             Text(value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
         }
     }
+}
+
+@Composable
+private fun CommissionRateDialog(current: Double, onSave: (Double) -> Unit, onDismiss: () -> Unit) {
+    var text by remember { mutableStateOf(formatRateInput(current)) }
+    val value = text.toDoubleOrNull()
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Commission rate") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(
+                    "Filled in on every new sale. You can still change it on individual sales. " +
+                        "Sales you've already logged keep the rate they were saved with.",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                OutlinedTextField(
+                    value = text,
+                    onValueChange = { v -> text = v.filter { it.isDigit() || it == '.' } },
+                    label = { Text("Default rate") },
+                    suffix = { Text("%") },
+                    singleLine = true,
+                    isError = value == null || value > 100,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(enabled = value != null && value <= 100, onClick = { onSave(value ?: 0.0); onDismiss() }) {
+                Text("Save")
+            }
+        },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } },
+    )
 }

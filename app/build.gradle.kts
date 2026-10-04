@@ -12,11 +12,30 @@ android {
         applicationId = "com.salestracker.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        // Each GitHub build gets a higher number, so phones accept it as an update.
+        val build = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
+        versionCode = build
+        versionName = "1.1.$build"
+    }
+
+    // A permanent signing key lets every new build install over the last one, keeping your data.
+    // GitHub writes it from the SIGNING_KEYSTORE secret; it is never stored in the repository.
+    val stableKey = file("stable.keystore")
+    signingConfigs {
+        create("stable") {
+            if (stableKey.exists()) {
+                storeFile = stableKey
+                storePassword = "salestracker"
+                keyAlias = "salestracker"
+                keyPassword = "salestracker"
+            }
+        }
     }
 
     buildTypes {
+        debug {
+            if (stableKey.exists()) signingConfig = signingConfigs.getByName("stable")
+        }
         release {
             isMinifyEnabled = true
             proguardFiles(

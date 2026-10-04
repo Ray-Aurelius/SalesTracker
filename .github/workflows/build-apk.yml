@@ -22,6 +22,17 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
+      - name: Use the app's permanent signing key
+        env:
+          KEY: ${{ secrets.SIGNING_KEYSTORE }}
+        run: |
+          if [ -n "$KEY" ]; then
+            echo "$KEY" | base64 -d > app/stable.keystore
+            echo "Signing with the permanent key."
+          else
+            echo "::warning::SIGNING_KEYSTORE secret is not set - this build can't update an installed copy in place."
+          fi
+
       - name: Build the APK
         run: |
           chmod +x gradlew

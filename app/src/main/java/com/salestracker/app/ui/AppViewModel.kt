@@ -10,8 +10,12 @@ import androidx.lifecycle.AndroidViewModel
 import com.salestracker.app.data.AppData
 import com.salestracker.app.data.Appointment
 import com.salestracker.app.data.Client
+import com.salestracker.app.data.Goal
 import com.salestracker.app.data.Repository
 import com.salestracker.app.data.Sale
+import com.salestracker.app.reminders.ReminderScheduler
+import com.salestracker.app.ui.theme.AppPalette
+import com.salestracker.app.ui.theme.DarkMode
 import kotlinx.coroutines.flow.StateFlow
 
 class AppViewModel(app: Application) : AndroidViewModel(app) {
@@ -19,6 +23,38 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     val data: StateFlow<AppData> = repo.data
 
     fun newId(): Long = repo.newId()
+
+    init {
+        // Make sure every upcoming reminder is armed (covers alarms lost while the app was closed).
+        ReminderScheduler.ensureChannel(app)
+        ReminderScheduler.rescheduleAll(app, repo.data.value)
+    }
+
+    // ---- Appearance ----
+    private val settings = app.getSharedPreferences("settings", Context.MODE_PRIVATE)
+
+    var palette by mutableStateOf(
+        AppPalette.entries.firstOrNull { it.name == settings.getString("palette", null) } ?: AppPalette.TEAL
+    )
+        private set
+    var darkMode by mutableStateOf(
+        DarkMode.entries.firstOrNull { it.name == settings.getString("darkMode", null) } ?: DarkMode.SYSTEM
+    )
+        private set
+
+    fun choosePalette(p: AppPalette) {
+        palette = p
+        settings.edit().putString("palette", p.name).apply()
+    }
+
+    fun chooseDarkMode(m: DarkMode) {
+        darkMode = m
+        settings.edit().putString("darkMode", m.name).apply()
+    }
+
+    // ---- Opening a day from a reminder notification ----
+    /** Set when a reminder is tapped; the calendar jumps to this day and clears it. */
+    var pendingOpenDay by mutableStateOf<Long?>(null)
 
     // ---- Clients ----
     fun saveClient(client: Client) = repo.update { it.copy(clients = it.clients.upsert(client) { c -> c.id }) }
@@ -37,11 +73,21 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun deleteSale(id: Long) = repo.update { d -> d.copy(sales = d.sales.filterNot { it.id == id }) }
 
     // ---- Appointments ----
-    fun saveAppointment(a: Appointment) =
+    fun saveAppointment(a: Appointment) {
         repo.update { it.copy(appointments = it.appointments.upsert(a) { x -> x.id }) }
+        ReminderScheduler.schedule(getApplication(), a)
+    }
 
-    fun deleteAppointment(id: Long) =
+    fun deleteAppointment(id: Long) {
         repo.update { d -> d.copy(appointments = d.appointments.filterNot { it.id == id }) }
+        ReminderScheduler.cancel(getApplication(), id)
+    }
+
+    // ---- Goals & commission ----
+    fun saveGoal(g: Goal) = repo.update { it.copy(goals = it.goals.upsert(g) { x -> x.id }) }
+    fun deleteGoal(id: Long) = repo.update { d -> d.copy(goals = d.goals.filterNot { it.id == id }) }
+    fun setDefaultCommission(percent: Double) =
+        repo.update { it.copy(defaultCommissionPercent = percent.coerceIn(0.0, 100.0)) }
 
     // ---- Calculator (kept here so it survives switching tabs) ----
     var calculatorExpression by mutableStateOf("")

@@ -40,6 +40,21 @@ class Repository(context: Context) {
         }
     }
 
+    companion object {
+        /**
+         * Read-only snapshot of the saved data, for background work such as reminders
+         * where the app's screens aren't running. Never modifies the file.
+         */
+        fun readSnapshot(context: Context): AppData {
+            val f = File(context.filesDir, "sales_data.json")
+            return try {
+                if (f.exists()) AppData.fromJson(JSONObject(f.readText())) else AppData()
+            } catch (e: Exception) {
+                AppData()
+            }
+        }
+    }
+
     fun newId(): Long = synchronized(lock) {
         val now = System.currentTimeMillis()
         lastId = if (now > lastId) now else lastId + 1

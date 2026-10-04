@@ -2,8 +2,14 @@
 
 package com.salestracker.app.ui.screens
 
+import android.Manifest
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
+import android.os.Build
+import android.provider.Settings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -28,12 +34,17 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.NotificationsActive
+import androidx.compose.material.icons.filled.NotificationsOff
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
@@ -44,6 +55,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -58,12 +70,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.app.NotificationManagerCompat
 import com.salestracker.app.data.AppData
 import com.salestracker.app.data.Appointment
 import com.salestracker.app.data.Client
 import com.salestracker.app.data.SalesStats
 import com.salestracker.app.data.formatMinuteOfDay
 import com.salestracker.app.data.formatMoney
+import com.salestracker.app.reminders.REMINDER_CHOICES
+import com.salestracker.app.reminders.reminderLabel
 import com.salestracker.app.ui.AppViewModel
 import java.time.Instant
 import java.time.LocalDate
@@ -85,6 +100,16 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
     var selected by rememberSaveable { mutableStateOf(today) }
     var adding by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Appointment?>(null) }
+
+    // Tapping a reminder notification lands here on the appointment's day.
+    LaunchedEffect(vm.pendingOpenDay) {
+        vm.pendingOpenDay?.let { day ->
+            val d = LocalDate.ofEpochDay(day)
+            selected = d
+            month = YearMonth.from(d)
+            vm.pendingOpenDay = null
+        }
+    }
 
     val zone = ZoneId.systemDefault()
     val apptDays = data.appointments.map { it.epochDay }.toSet()
@@ -140,6 +165,20 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                             if (who != null) Text(who, style = MaterialTheme.typography.bodySmall)
                             if (a.notes.isNotBlank()) {
                                 Text(a.notes, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            }
+                            if (a.reminderMinutes != null) {
+                                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 2.dp)) {
+                                    Icon(
+                                        Icons.Filled.NotificationsActive, contentDescription = null,
+                                        tint = MaterialTheme.colorScheme.secondary, modifier = Modifier.size(14.dp),
+                                    )
+                                    Spacer(Modifier.width(4.dp))
+                                    Text(
+                                        reminderLabel(a.reminderMinutes),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.secondary,
+                                    )
+                                }
                             }
                         }
                     }
@@ -270,7 +309,31 @@ private fun AppointmentDialog(
     }
     var clientId by remember { mutableStateOf(initial?.clientId) }
     var notes by remember { mutableStateOf(initial?.notes ?: "") }
+    // New appointments default to a 15-minute heads-up; existing ones keep their setting.
+    var reminder by remember { mutableStateOf(if (initial == null) 15 else initial.reminderMinutes) }
     var confirmDelete by remember { mutableStateOf(false) }
+
+    // Reminders need permission to show notifications (asked for on Android 13+).
+    var notificationsOn by remember { mutableStateOf(NotificationManagerCompat.from(context).areNotificationsEnabled()) }
+    val openNotificationSettings = {
+        context.startActivity(
+            Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        )
+    }
+    val permissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        notificationsOn = NotificationManagerCompat.from(context).areNotificationsEnabled()
+        // If Android won't show the prompt again (denied before), send them to settings instead.
+        if (!granted) openNotificationSettings()
+    }
+    val askForNotifications = {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            openNotificationSettings()
+        }
+    }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -307,6 +370,19 @@ private fun AppointmentDialog(
                     Text(formatMinuteOfDay(minute), modifier = Modifier.weight(1f))
                 }
                 ClientPicker(clients, clientId, { clientId = it })
+                ReminderPicker(reminder) { reminder = it }
+                if (reminder != null && !notificationsOn) {
+                    Card(onClick = askForNotifications, modifier = Modifier.fillMaxWidth()) {
+                        Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Filled.NotificationsOff, contentDescription = null, tint = MaterialTheme.colorScheme.error)
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                "Notifications are off, so this reminder can't ring. Tap to turn them on.",
+                                style = MaterialTheme.typography.bodySmall,
+                            )
+                        }
+                    }
+                }
                 OutlinedTextField(notes, { notes = it }, label = { Text("Notes") }, minLines = 2, modifier = Modifier.fillMaxWidth())
                 if (initial != null) {
                     TextButton(onClick = { confirmDelete = true }) {
@@ -325,8 +401,11 @@ private fun AppointmentDialog(
                         minuteOfDay = minute,
                         clientId = clientId,
                         notes = notes.trim(),
+                        reminderMinutes = reminder,
                     )
                 )
+                // First time someone sets a reminder, ask for notification permission.
+                if (reminder != null && !notificationsOn) askForNotifications()
                 onDismiss()
             }) { Text("Save") }
         },
@@ -339,5 +418,29 @@ private fun AppointmentDialog(
             onConfirm = { onDelete(initial.id); onDismiss() },
             onDismiss = { confirmDelete = false },
         )
+    }
+}
+
+@Composable
+private fun ReminderPicker(selected: Int?, onSelect: (Int?) -> Unit) {
+    var expanded by remember { mutableStateOf(false) }
+    Box {
+        OutlinedButton(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth()) {
+            Icon(
+                if (selected == null) Icons.Filled.NotificationsOff else Icons.Filled.NotificationsActive,
+                contentDescription = null,
+            )
+            Spacer(Modifier.width(8.dp))
+            Text(
+                if (selected == null) "No reminder" else "Remind me: ${reminderLabel(selected).lowercase()}",
+                modifier = Modifier.weight(1f),
+            )
+            Icon(Icons.Filled.ArrowDropDown, contentDescription = null)
+        }
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+            REMINDER_CHOICES.forEach { m ->
+                DropdownMenuItem(text = { Text(reminderLabel(m)) }, onClick = { onSelect(m); expanded = false })
+            }
+        }
     }
 }
