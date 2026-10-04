@@ -213,7 +213,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun setAppLockEnabled(on: Boolean) {
         appLock = on
         unlocked = true
-        settings.edit().putBoolean("appLock", on).apply()
+        settings.edit().putBoolean("appLock", on).commit()
+        com.salestracker.app.widget.GoalWidget.refresh(getApplication())
     }
 
     /** Called when the app comes back to the screen: re-lock if it was away longer than the grace period. */

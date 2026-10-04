@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ic_launcher_background">#E4572E</color>
+    <!-- Widget colors (light mode); matches the Bullseye palette -->
+    <color name="widget_bg">#F2FFF8F6</color>
+    <color name="widget_text">#FF231917</color>
+    <color name="widget_accent">#FFB93E1C</color>
+    <color name="widget_track">#FFF5DED8</color>
 </resources>

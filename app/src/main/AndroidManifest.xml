@@ -49,6 +49,18 @@
                 android:value="true" />
         </service>
 
+        <!-- Home-screen goal widget (percentages only; hidden when app lock is on). -->
+        <receiver
+            android:name=".widget.GoalWidget"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/goal_widget_info" />
+        </receiver>
+
         <!-- Fires when a reminder is due, and handles Snooze / Dismiss. Only this app can trigger it. -->
         <receiver
             android:name=".reminders.ReminderReceiver"

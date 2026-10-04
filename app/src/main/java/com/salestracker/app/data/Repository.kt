@@ -13,6 +13,7 @@ import java.security.SecureRandom
  * (see [KeystoreCipher]). The data set for one salesperson is small, so a single file is simple and fast.
  */
 class Repository(context: Context, private val cipher: DataCipher? = KeystoreCipher.getOrNull()) {
+    private val appContext = context.applicationContext
     private val dir = context.filesDir
     private val sealedFile = File(dir, SEALED_NAME)
     private val legacyFile = File(dir, LEGACY_NAME)
@@ -62,6 +63,8 @@ class Repository(context: Context, private val cipher: DataCipher? = KeystoreCip
             _data.value = next
             if (!readOnly) write(next)
         }
+        // Keep the home-screen widget in step with the data.
+        com.salestracker.app.widget.GoalWidget.refresh(appContext)
     }
 
     private fun write(data: AppData) {

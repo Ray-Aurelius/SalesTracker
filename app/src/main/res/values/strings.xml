@@ -623,4 +623,10 @@
     <string name="col_amount">Amount</string>
     <string name="col_status">Status</string>
     <string name="report_footer">Created with Ultimate Sales Productivity, privately on the user\'s phone.</string>
+
+    <!-- Home-screen widget -->
+    <string name="widget_title">Goals</string>
+    <string name="widget_locked">Locked. Open the app to see your goals.</string>
+    <string name="widget_empty">No goals yet. Tap to add one.</string>
+    <string name="widget_description">Your goal progress at a glance. Shows percentages only, never amounts or names.</string>
 </resources>
