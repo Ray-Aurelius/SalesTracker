@@ -17,6 +17,52 @@
     <string name="title_calc">Calculator</string>
     <string name="cd_colors">Colors and theme</string>
     <string name="cd_language">Language</string>
+    <string name="cd_settings">Settings</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_appearance_desc">Colors and light or dark mode</string>
+    <string name="settings_security">Security</string>
+    <string name="app_lock">Lock with fingerprint or PIN</string>
+    <string name="app_lock_desc">Ask for your fingerprint, face or phone PIN when opening the app</string>
+    <string name="lock_needs_screen_lock">Set up a screen lock (PIN, pattern or fingerprint) in your phone\'s settings first.</string>
+    <string name="settings_backup">Backup</string>
+    <string name="backup_create">Back up to an encrypted file</string>
+    <string name="backup_create_desc">Save all your data in a password-protected file</string>
+    <string name="backup_restore">Restore from a backup</string>
+    <string name="backup_restore_desc">Replace the data on this phone with a backup file</string>
+    <string name="last_backup">Last backup: %1$s</string>
+    <string name="never_backed_up">Not backed up yet</string>
+
+    <!-- Lock screen -->
+    <string name="locked_title">Sales Tracker is locked</string>
+    <string name="locked_body">Your sales, clients and goals are protected.</string>
+    <string name="unlock">Unlock</string>
+    <string name="unlock_prompt_title">Unlock Sales Tracker</string>
+    <string name="unlock_prompt_subtitle">Use your fingerprint, face or phone PIN</string>
+
+    <!-- Backup and restore -->
+    <string name="backup_password_title">Choose a backup password</string>
+    <string name="backup_password_body">You\'ll need this password to restore the backup. If you forget it, the backup can\'t be opened by anyone.</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="password_too_short">Use at least %1$d characters</string>
+    <string name="passwords_dont_match">Passwords don\'t match</string>
+    <string name="show_password">Show password</string>
+    <string name="hide_password">Hide password</string>
+    <string name="choose_location">Choose where to save</string>
+    <string name="backup_working">Encrypting your data…</string>
+    <string name="backup_saved">Backup saved</string>
+    <string name="backup_failed">Couldn\'t save the backup</string>
+    <string name="restore_password_title">Enter the backup password</string>
+    <string name="open_backup">Open</string>
+    <string name="restore_working">Unlocking the backup…</string>
+    <string name="restore_wrong_password">Wrong password. Check it and try again.</string>
+    <string name="restore_not_backup">This file isn\'t a Sales Tracker backup.</string>
+    <string name="restore_confirm_title">Replace your data?</string>
+    <string name="restore_confirm_body">Backup from %1$s\nClients: %2$d · Sales: %3$d · Appointments: %4$d · Goals: %5$d\n\nEverything currently in the app will be replaced with this backup.</string>
+    <string name="restore_replace">Replace</string>
+    <string name="restore_done">Backup restored</string>
 
     <!-- Common -->
     <string name="save">Save</string>

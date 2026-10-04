@@ -2,6 +2,11 @@
 
 package com.salestracker.app
 
+import com.salestracker.app.security.AppAuth
+import com.salestracker.app.ui.screens.SettingsDialog
+import com.salestracker.app.ui.screens.LockScreen
+import androidx.compose.material.icons.filled.Settings
+import android.os.Build
 import com.salestracker.app.ui.screens.LanguageDialog
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.MaterialTheme
@@ -78,8 +83,29 @@ class MainActivity : AppCompatActivity() {
                 enableEdgeToEdge(statusBarStyle = style, navigationBarStyle = style)
                 onDispose {}
             }
-            SalesTrackerTheme(palette = vm.palette, dark = dark) { SalesApp(vm, dark) }
+            // Keep the app's contents out of the recent-apps preview while the lock is on (Android 13+).
+            LaunchedEffect(vm.appLock) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) setRecentsScreenshotEnabled(!vm.appLock)
+            }
+            SalesTrackerTheme(palette = vm.palette, dark = dark) {
+                if (vm.appLock && !vm.unlocked) {
+                    LockScreen(onUnlock = { AppAuth.authenticate(this@MainActivity) { vm.unlocked = true } })
+                } else {
+                    SalesApp(vm, dark)
+                }
+            }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        vm.onReturnToApp()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Rotating or switching language restarts the screen; that isn't leaving the app.
+        if (!isChangingConfigurations) vm.backgroundedAt = System.currentTimeMillis()
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -136,8 +162,7 @@ private fun rememberTabLabelSize(labels: List<String>): TextUnit {
 @Composable
 private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     var tab by rememberSaveable { mutableStateOf(Tab.DASHBOARD) }
-    var showAppearance by rememberSaveable { mutableStateOf(false) }
-    var showLanguage by rememberSaveable { mutableStateOf(false) }
+    var showSettings by rememberSaveable { mutableStateOf(false) }
     val data by vm.data.collectAsState()
     val labels = Tab.entries.map { stringResource(it.label) }
     val labelSize = rememberTabLabelSize(labels)
@@ -151,11 +176,8 @@ private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
             TopAppBar(
                 title = { Text(stringResource(tab.title)) },
                 actions = {
-                    IconButton(onClick = { showLanguage = true }) {
-                        Icon(Icons.Filled.Language, contentDescription = stringResource(R.string.cd_language))
-                    }
-                    IconButton(onClick = { showAppearance = true }) {
-                        Icon(Icons.Filled.Palette, contentDescription = stringResource(R.string.cd_colors))
+                    IconButton(onClick = { showSettings = true }) {
+                        Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.cd_settings))
                     }
                 },
             )
@@ -185,17 +207,7 @@ private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
         }
     }
 
-    if (showLanguage) {
-        LanguageDialog(onDismiss = { showLanguage = false })
-    }
-    if (showAppearance) {
-        AppearanceDialog(
-            palette = vm.palette,
-            darkMode = vm.darkMode,
-            isDark = isDark,
-            onPalette = vm::choosePalette,
-            onDarkMode = vm::chooseDarkMode,
-            onDismiss = { showAppearance = false },
-        )
+    if (showSettings) {
+        SettingsDialog(vm = vm, data = data, isDark = isDark, onDismiss = { showSettings = false })
     }
 }

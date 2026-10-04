@@ -52,6 +52,52 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         settings.edit().putString("darkMode", m.name).apply()
     }
 
+    // ---- App lock ----
+    /** When on, the app asks for fingerprint / face / phone PIN when opened. */
+    var appLock by mutableStateOf(settings.getBoolean("appLock", false))
+        private set
+    /** Unlocked for this visit. Starts locked whenever the lock is on and the app is freshly opened. */
+    var unlocked by mutableStateOf(!appLock)
+    /** When the app last went to the background, to re-lock after a short time away. */
+    var backgroundedAt = 0L
+
+    fun setAppLockEnabled(on: Boolean) {
+        appLock = on
+        unlocked = true
+        settings.edit().putBoolean("appLock", on).apply()
+    }
+
+    /** Called when the app comes back to the screen: re-lock if it was away longer than the grace period. */
+    fun onReturnToApp(now: Long = System.currentTimeMillis()) {
+        // Coming back from a screen the app opened itself (file picker, settings) never re-locks,
+        // otherwise a slow pick would lock the app and lose the file you just chose.
+        if (openedOwnScreen) {
+            openedOwnScreen = false
+            return
+        }
+        if (appLock && backgroundedAt != 0L && now - backgroundedAt > LOCK_GRACE_MS) unlocked = false
+    }
+
+    /** Set just before the app opens another screen on purpose (e.g. the file picker). */
+    var openedOwnScreen = false
+
+    // ---- Backups ----
+    var lastBackupAt by mutableLongStateOf(settings.getLong("lastBackupAt", 0L))
+        private set
+
+    fun markBackedUp(at: Long = System.currentTimeMillis()) {
+        lastBackupAt = at
+        settings.edit().putLong("lastBackupAt", at).apply()
+    }
+
+    /** Replaces everything with a restored backup and re-arms reminders to match. */
+    fun replaceAllData(newData: AppData) {
+        val old = repo.data.value
+        repo.update { newData }
+        old.appointments.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
+        ReminderScheduler.rescheduleAll(getApplication(), newData)
+    }
+
     // ---- Opening a day from a reminder notification ----
     /** Set when a reminder is tapped; the calendar jumps to this day and clears it. */
     var pendingOpenDay by mutableStateOf<Long?>(null)
@@ -145,6 +191,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     private companion object {
+        /** Leaving the app for less than this (e.g. to check a text) doesn't re-lock it. */
+        const val LOCK_GRACE_MS = 30_000L
         const val KEY_ACC = "accumulated"
         const val KEY_START = "startedAt"
         const val KEY_CLIENT = "clientId"
