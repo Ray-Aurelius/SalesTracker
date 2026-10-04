@@ -85,7 +85,7 @@ class StoreScreenshots {
         // Bring the commission and revenue bar charts into view (the second "Close rate" is the trend chart below them).
         rule.onAllNodesWithText(app.getString(R.string.close_rate))[1].performScrollTo()
         shot("8-charts-trends")
-        repeat(4) { rule.onNode(hasScrollAction()).performTouchInput { swipeUp() } }
+        repeat(4) { rule.onAllNodes(hasScrollAction())[0].performTouchInput { swipeUp() } }
         shot("9-charts-days")
         // Same stats screen in dark mode.
         dark = true
