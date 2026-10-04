@@ -43,7 +43,13 @@ jobs:
       - name: Run tests and build the APK
         run: |
           chmod +x gradlew
-          ./gradlew testDebugUnitTest assembleRelease --no-daemon
+          set -o pipefail
+          if ! ./gradlew testDebugUnitTest assembleRelease --no-daemon 2>&1 | tee build.log; then
+            # Surface compiler/test errors as annotations so they're readable without the full log.
+            grep -E "^e: |error:|FAILED|What went wrong|Exception" -A2 build.log | head -60 | sed 's/%/%25/g' | tr '\n' '\r' | sed 's/\r/%0A/g' > err.txt
+            echo "::error title=Build errors::$(cat err.txt)"
+            exit 1
+          fi
 
       - name: Rename APK
         run: |
