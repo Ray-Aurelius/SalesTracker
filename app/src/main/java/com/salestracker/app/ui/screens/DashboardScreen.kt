@@ -2,6 +2,15 @@
 
 package com.salestracker.app.ui.screens
 
+import java.time.ZoneId
+import java.time.Instant
+import com.salestracker.app.data.localizedFormatter
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.material.icons.filled.Backup
+import androidx.compose.material3.Button
+import androidx.compose.material3.CardDefaults
+import com.salestracker.app.data.PrivacyMode
 import com.salestracker.app.R
 import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.horizontalScroll
@@ -70,6 +79,9 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
+            if (vm.backupOverdue(data)) {
+                item { BackupNudge(vm) }
+            }
             item {
                 Row(
                     Modifier.horizontalScroll(rememberScrollState()),
@@ -110,7 +122,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                         Column(Modifier.weight(1f)) {
                             Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.titleMedium)
                             Text(
-                                stringResource(R.string.commission_default_rate, formatRateInput(data.defaultCommissionPercent)),
+                                stringResource(R.string.commission_default_rate, if (PrivacyMode.hideAmounts) "••" else formatRateInput(data.defaultCommissionPercent)),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -255,4 +267,39 @@ private fun CommissionRateDialog(current: Double, onSave: (Double) -> Unit, onDi
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
     )
+}
+
+/** Gentle reminder to make an encrypted backup when the last one is older than the chosen interval. */
+@Composable
+private fun BackupNudge(vm: AppViewModel) {
+    Card(
+        Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Filled.Backup, contentDescription = null, tint = MaterialTheme.colorScheme.onSecondaryContainer)
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    stringResource(R.string.backup_nudge_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                )
+            }
+            Text(
+                if (vm.lastBackupAt == 0L) stringResource(R.string.backup_nudge_never)
+                else stringResource(
+                    R.string.backup_nudge_old,
+                    localizedFormatter("yMMMd").format(Instant.ofEpochMilli(vm.lastBackupAt).atZone(ZoneId.systemDefault())),
+                ),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                modifier = Modifier.padding(top = 4.dp),
+            )
+            Row(Modifier.fillMaxWidth().padding(top = 8.dp), horizontalArrangement = Arrangement.End) {
+                TextButton(onClick = { vm.snoozeBackupNudge() }) { Text(stringResource(R.string.later)) }
+                Button(onClick = { vm.backupRequested = true }) { Text(stringResource(R.string.backup_create)) }
+            }
+        }
+    }
 }

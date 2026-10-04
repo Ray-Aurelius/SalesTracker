@@ -1,5 +1,10 @@
 package com.salestracker.app.ui
 
+import com.salestracker.app.ui.theme.AppFont
+import com.salestracker.app.data.AGREEMENT_VERSION
+import com.salestracker.app.data.PrivacyMode
+import com.salestracker.app.data.BackupReminder
+import com.salestracker.app.data.LockDelay
 import com.salestracker.app.ui.theme.CustomColors
 import com.salestracker.app.data.HighlightColor
 import android.app.Application
@@ -50,6 +55,20 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         settings.edit().putString("palette", p.name).putBoolean("useCustom", false).apply()
     }
 
+    /** Font style and text size, chosen under Settings → Text. */
+    var font by mutableStateOf(AppFont.entries.firstOrNull { it.name == settings.getString("font", null) } ?: AppFont.STANDARD)
+        private set
+    var textScale by mutableStateOf(settings.getFloat("textScale", 1.0f))
+        private set
+    fun chooseFont(f: AppFont) {
+        font = f
+        settings.edit().putString("font", f.name).apply()
+    }
+    fun chooseTextScale(s: Float) {
+        textScale = s
+        settings.edit().putFloat("textScale", s).apply()
+    }
+
     /** Colors picked on the color wheel, and whether they're in use instead of a ready-made palette. */
     var customColors by mutableStateOf(
         CustomColors(
@@ -82,6 +101,30 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         private set
     /** Unlocked for this visit. Starts locked whenever the lock is on and the app is freshly opened. */
     var unlocked by mutableStateOf(!appLock)
+
+    var lockDelay by mutableStateOf(LockDelay.entries.firstOrNull { it.name == settings.getString("lockDelay", null) } ?: LockDelay.SEC_30)
+        private set
+    fun chooseLockDelay(d: LockDelay) {
+        lockDelay = d
+        settings.edit().putString("lockDelay", d.name).apply()
+    }
+
+    /** Blocks screenshots and screen recording of the app (and hides it in recent apps). */
+    var blockScreenshots by mutableStateOf(settings.getBoolean("blockScreenshots", false))
+        private set
+    fun setBlockScreenshots(on: Boolean) {
+        blockScreenshots = on
+        settings.edit().putBoolean("blockScreenshots", on).apply()
+    }
+
+    // The fingerprint/PIN prompt itself can briefly take the app off screen; that must not re-lock it.
+    private var authInProgress = false
+    private var authEndedAt = 0L
+    fun beginAuth() { authInProgress = true }
+    fun endAuth() {
+        authInProgress = false
+        authEndedAt = System.currentTimeMillis()
+    }
     /** When the app last went to the background, to re-lock after a short time away. */
     var backgroundedAt = 0L
 
@@ -99,11 +142,95 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
             openedOwnScreen = false
             return
         }
-        if (appLock && backgroundedAt != 0L && now - backgroundedAt > LOCK_GRACE_MS) unlocked = false
+        if (authInProgress || now - authEndedAt < 3_000L) return
+        if (appLock && backgroundedAt != 0L && now - backgroundedAt >= lockDelay.ms) unlocked = false
     }
 
     /** Set just before the app opens another screen on purpose (e.g. the file picker). */
     var openedOwnScreen = false
+
+    // ---- Privacy mode ----
+    var startInPrivacyMode by mutableStateOf(settings.getBoolean("startPrivate", false))
+        private set
+    fun setStartInPrivacy(on: Boolean) {
+        startInPrivacyMode = on
+        settings.edit().putBoolean("startPrivate", on).apply()
+    }
+    fun togglePrivacyMode() { PrivacyMode.hideAmounts = !PrivacyMode.hideAmounts }
+
+    init {
+        // "Start in privacy mode": amounts are hidden every time the app is opened.
+        if (startInPrivacyMode) PrivacyMode.hideAmounts = true
+    }
+
+    // ---- User agreement ----
+    var agreementAcceptedAt by mutableLongStateOf(
+        if (settings.getInt("agreementVersion", 0) >= AGREEMENT_VERSION) settings.getLong("agreementAt", 0L) else 0L
+    )
+        private set
+    val agreementAccepted: Boolean get() = agreementAcceptedAt != 0L
+    fun acceptAgreement(at: Long = System.currentTimeMillis()) {
+        agreementAcceptedAt = at
+        settings.edit().putInt("agreementVersion", AGREEMENT_VERSION).putLong("agreementAt", at).apply()
+    }
+
+    // ---- Backups ----
+    var backupReminder by mutableStateOf(
+        BackupReminder.entries.firstOrNull { it.name == settings.getString("backupReminder", null) } ?: BackupReminder.WEEKLY
+    )
+        private set
+    fun chooseBackupReminder(r: BackupReminder) {
+        backupReminder = r
+        settings.edit().putString("backupReminder", r.name).apply()
+    }
+    private var backupNudgeSnoozedUntil by mutableLongStateOf(settings.getLong("backupSnooze", 0L))
+
+    /** True when there's data worth protecting and the last backup is older than the chosen reminder interval. */
+    fun backupOverdue(data: AppData, now: Long = System.currentTimeMillis()): Boolean {
+        if (backupReminder == BackupReminder.OFF || now < backupNudgeSnoozedUntil) return false
+        val hasData = data.clients.isNotEmpty() || data.sales.isNotEmpty() || data.appointments.isNotEmpty() || data.goals.isNotEmpty()
+        return hasData && now - lastBackupAt > backupReminder.days * 86_400_000L
+    }
+    fun snoozeBackupNudge(now: Long = System.currentTimeMillis()) {
+        backupNudgeSnoozedUntil = now + 3 * 86_400_000L
+        settings.edit().putLong("backupSnooze", backupNudgeSnoozedUntil).apply()
+    }
+
+    /** Asks the main screen to open the backup flow (from the reminder banner). */
+    var backupRequested by mutableStateOf(false)
+
+    val encryptedAtRest: Boolean get() = repo.encryptedAtRest
+
+    /**
+     * Erase all data: every client, sale, appointment, goal and setting, plus the encryption key,
+     * so nothing can be recovered from the phone. Reminders are cancelled.
+     */
+    fun eraseEverything() {
+        repo.data.value.appointments.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
+        repo.eraseEverything()
+        settings.edit().clear().commit()
+        prefs.edit().clear().commit()
+        palette = AppPalette.TEAL
+        darkMode = DarkMode.SYSTEM
+        font = AppFont.STANDARD
+        textScale = 1.0f
+        useCustomColors = false
+        customColors = CustomColors.DEFAULT
+        appLock = false
+        unlocked = true
+        lockDelay = LockDelay.SEC_30
+        blockScreenshots = false
+        startInPrivacyMode = false
+        PrivacyMode.hideAmounts = false
+        agreementAcceptedAt = 0L
+        backupReminder = BackupReminder.WEEKLY
+        backupNudgeSnoozedUntil = 0L
+        lastBackupAt = 0L
+        stopwatchAccumulatedMs = 0L
+        stopwatchStartedAt = 0L
+        stopwatchClientId = null
+        calculatorExpression = ""
+    }
 
     // ---- Backups ----
     var lastBackupAt by mutableLongStateOf(settings.getLong("lastBackupAt", 0L))
@@ -128,6 +255,19 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
     // ---- Clients ----
     fun saveClient(client: Client) = repo.update { it.copy(clients = it.clients.upsert(client) { c -> c.id }) }
+
+    /** Deletes a client and, if asked, every sale and appointment linked to them (e.g. a client's request to be forgotten). */
+    fun deleteClientAndRecords(id: Long) {
+        val appts = repo.data.value.appointments.filter { it.clientId == id }
+        repo.update { d ->
+            d.copy(
+                clients = d.clients.filterNot { it.id == id },
+                sales = d.sales.filterNot { it.clientId == id },
+                appointments = d.appointments.filterNot { it.clientId == id },
+            )
+        }
+        appts.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
+    }
 
     fun deleteClient(id: Long) = repo.update { d ->
         d.copy(
@@ -220,8 +360,6 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     private companion object {
-        /** Leaving the app for less than this (e.g. to check a text) doesn't re-lock it. */
-        const val LOCK_GRACE_MS = 30_000L
         const val KEY_ACC = "accumulated"
         const val KEY_START = "startedAt"
         const val KEY_CLIENT = "clientId"

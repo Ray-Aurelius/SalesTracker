@@ -89,11 +89,14 @@ object ReminderScheduler {
 
     // ---- Notification ----
 
-    const val CHANNEL_ID = "appointment_alarms"
+    // v2: private on the lock screen. (Android doesn't let an existing channel's privacy be changed, so it's replaced.)
+    const val CHANNEL_ID = "appointment_alarms_v2"
+    private const val OLD_CHANNEL_ID = "appointment_alarms"
 
     fun ensureChannel(context: Context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
         val nm = context.getSystemService(NotificationManager::class.java)
+        nm.deleteNotificationChannel(OLD_CHANNEL_ID)
         if (nm.getNotificationChannel(CHANNEL_ID) != null) return
         val channel = NotificationChannel(CHANNEL_ID, context.getString(R.string.channel_reminders), NotificationManager.IMPORTANCE_HIGH).apply {
             description = context.getString(R.string.channel_reminders_desc)
@@ -107,7 +110,7 @@ object ReminderScheduler {
             )
             enableVibration(true)
             vibrationPattern = longArrayOf(0, 600, 400, 600, 400, 600)
-            lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+            lockscreenVisibility = Notification.VISIBILITY_PRIVATE
         }
         nm.createNotificationChannel(channel)
     }
@@ -141,7 +144,15 @@ object ReminderScheduler {
             .setStyle(NotificationCompat.BigTextStyle().bigText(body))
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            // On the lock screen show only "Appointment reminder"; title, client and notes need the phone unlocked.
+            .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
+            .setPublicVersion(
+                NotificationCompat.Builder(context, CHANNEL_ID)
+                    .setSmallIcon(R.drawable.ic_stat_reminder)
+                    .setContentTitle(context.getString(R.string.notif_private_title))
+                    .setCategory(NotificationCompat.CATEGORY_ALARM)
+                    .build()
+            )
             .setContentIntent(open)
             .setAutoCancel(true)
             .addAction(0, context.getString(R.string.notif_snooze, SNOOZE_MINUTES), actionIntent(context, ReminderReceiver.ACTION_SNOOZE, appt.id))

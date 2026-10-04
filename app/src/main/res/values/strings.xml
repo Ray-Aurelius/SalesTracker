@@ -239,6 +239,7 @@
     <string name="notif_with">with %1$s</string>
     <string name="notif_snooze">Snooze %1$d min</string>
     <string name="notif_dismiss">Dismiss</string>
+    <string name="notif_private_title">Appointment reminder</string>
 
     <!-- Timer -->
     <string name="timer_running">Timing this sale…</string>
@@ -300,4 +301,136 @@
     <string name="manual_status">%1$s: %2$s of %3$s so far.</string>
     <string name="amount_to_add">Amount to add</string>
     <string name="subtract_hint">Use a minus sign to subtract, e.g. -50</string>
+
+    <!-- Security & privacy center -->
+    <string name="security_title">Security &amp; privacy</string>
+    <string name="security_desc">App lock, privacy, backups and your data</string>
+    <string name="cd_back">Back</string>
+    <string name="sec_status_title">Your protection</string>
+    <string name="sec_status_offline">No internet access: your data can\'t leave this phone on its own</string>
+    <string name="sec_status_encrypted">Encrypted on this phone with a hardware-protected key</string>
+    <string name="sec_status_not_encrypted">This phone\'s secure key storage isn\'t available, so data is protected by Android\'s storage encryption only</string>
+    <string name="sec_status_lock_on">App lock is on</string>
+    <string name="sec_status_lock_off">App lock is off: anyone holding your unlocked phone can open the app</string>
+    <string name="sec_status_backup_ok">Last backup: %1$s</string>
+    <string name="sec_status_backup_none">No backup yet: your data exists only on this phone</string>
+    <string name="sec_status_backup_old">Last backup %1$s. Time for a new one.</string>
+    <string name="section_app_lock">App lock</string>
+    <string name="relock_after">Ask again</string>
+    <string name="lock_delay_now">Immediately</string>
+    <string name="lock_delay_30s">After 30 seconds</string>
+    <string name="lock_delay_1m">After 1 minute</string>
+    <string name="lock_delay_5m">After 5 minutes</string>
+    <string name="block_screenshots">Block screenshots and screen recording</string>
+    <string name="block_screenshots_desc">Also hides the app\'s contents in the recent-apps view</string>
+    <string name="section_privacy">Privacy</string>
+    <string name="privacy_mode">Privacy mode</string>
+    <string name="privacy_mode_desc">Hide all dollar amounts so you can show your screen to a customer</string>
+    <string name="start_private">Start in privacy mode</string>
+    <string name="start_private_desc">Amounts are hidden every time the app opens</string>
+    <string name="lockscreen_note">Reminders on the lock screen always show only \"Appointment reminder\". Details appear after you unlock the phone.</string>
+    <string name="cd_show_amounts">Show amounts</string>
+    <string name="cd_hide_amounts">Hide amounts</string>
+    <string name="backup_reminder">Backup reminder</string>
+    <string name="reminder_freq_off">Off</string>
+    <string name="reminder_freq_week">Weekly</string>
+    <string name="reminder_freq_2weeks">Every 2 weeks</string>
+    <string name="reminder_freq_month">Monthly</string>
+    <string name="backup_guide">How backups work</string>
+    <string name="section_your_data">Your data</string>
+    <string name="data_summary">Stored on this phone: %1$d clients · %2$d sales · %3$d appointments · %4$d goals</string>
+    <string name="erase_all">Erase all data</string>
+    <string name="erase_all_desc">Permanently delete everything in the app from this phone</string>
+    <string name="erase_confirm_title">Erase everything?</string>
+    <string name="erase_confirm_body">This permanently deletes all clients, sales, appointments, goals and settings from this phone, and destroys the encryption key. It can\'t be undone. Make a backup first if you might need this data again.</string>
+    <string name="erase_button">Erase everything</string>
+    <string name="erase_done">All data erased</string>
+    <string name="section_transparency">Transparency</string>
+    <string name="privacy_info">How your data is handled</string>
+    <string name="privacy_info_desc">What the app does, what it never does, and every permission it uses</string>
+    <string name="agreement_view">User agreement</string>
+    <string name="agreement_accepted_on">Accepted %1$s</string>
+    <string name="delete_client_records">Also delete all of this client\'s sales and appointments</string>
+
+    <!-- Backup reminder banner -->
+    <string name="backup_nudge_title">Protect your data</string>
+    <string name="backup_nudge_never">You haven\'t made a backup yet. If this phone is lost or reset, your data can\'t be recovered.</string>
+    <string name="backup_nudge_old">Your last backup was %1$s. Back up to keep it current.</string>
+    <string name="later">Later</string>
+
+    <!-- Password strength -->
+    <string name="password_strength">Password strength: %1$s</string>
+    <string name="strength_weak">Weak</string>
+    <string name="strength_fair">Fair</string>
+    <string name="strength_strong">Strong</string>
+
+    <!-- How your data is handled -->
+    <string name="pi_offline_t">Stays on your phone</string>
+    <string name="pi_offline">The app has no internet permission. Android itself blocks it from connecting to anything, so your data can\'t be sent anywhere.</string>
+    <string name="pi_nothing_t">Nothing collected</string>
+    <string name="pi_nothing">No accounts, no analytics, no ads, no tracking, no crash reports. The makers of the app never see your data.</string>
+    <string name="pi_encrypted_t">Encrypted</string>
+    <string name="pi_encrypted">Your data file is encrypted with AES-256. The key is kept in the phone\'s secure hardware and can\'t be copied off the phone.</string>
+    <string name="pi_nobackup_t">No automatic cloud copies</string>
+    <string name="pi_nobackup">Google cloud backup and phone-to-phone transfer are turned off for this app. Your data only leaves the phone in a backup file you create and protect with your own password.</string>
+    <string name="pi_permissions_t">Permissions used</string>
+    <string name="perm_notifications">Notifications: to show appointment reminders</string>
+    <string name="perm_alarms">Alarms and reminders: so reminders ring on time</string>
+    <string name="perm_boot">Run at startup: to re-arm reminders after the phone restarts</string>
+    <string name="perm_biometric">Fingerprint or face: only when app lock is on. Android checks it; the app never sees your fingerprint or PIN.</string>
+    <string name="pi_never_t">Never requested</string>
+    <string name="pi_never">Internet, contacts, location, camera, microphone, photos and files, phone calls, text messages.</string>
+
+    <!-- User agreement -->
+    <string name="agreement_title">User Agreement</string>
+    <string name="agreement_intro">Please read this before using Ultimate Sales Productivity. It\'s short, and it explains who is responsible for your data.</string>
+    <string name="ag1_t">1. Your data stays with you</string>
+    <string name="ag1">Everything you enter is stored only on this phone. The app has no internet access, no accounts and no servers. The makers of the app never receive, see, store or process your data.</string>
+    <string name="ag2_t">2. You are solely responsible for your data</string>
+    <string name="ag2">You alone are responsible for the information you enter, including your clients\' personal details, and for keeping it accurate, secure and backed up. You are responsible for following any laws, regulations and company policies that apply to the client information you store, including getting any consent they require.</string>
+    <string name="ag3_t">3. Backups are your responsibility</string>
+    <string name="ag3">Because nothing leaves your phone, nobody else can recover your data. If the phone is lost, stolen, damaged or reset, or the app is uninstalled, your data is gone unless you have made a backup. Back up regularly and keep your backup password safe: a forgotten password can\'t be reset or recovered by anyone.</string>
+    <string name="ag4_t">4. No liability for lost data</string>
+    <string name="ag4">To the fullest extent permitted by law, the makers of the app are not liable for any loss, corruption or disclosure of client data, sales records or other app data, or for any damages, lost sales, lost income or other losses arising from using or being unable to use the app, however caused.</string>
+    <string name="ag5_t">5. Provided \"as is\"</string>
+    <string name="ag5">The app is provided \"as is\" and \"as available\", without warranties of any kind, express or implied. Figures such as commission, rates and goal progress are calculated for your convenience; check important numbers yourself.</string>
+    <string name="ag6_t">6. Security has limits</string>
+    <string name="ag6">App lock, encryption and backups greatly reduce risk, but no system is perfectly secure. Keep your phone\'s screen lock turned on and its software up to date.</string>
+    <string name="ag7_t">7. Changes to this agreement</string>
+    <string name="ag7">If this agreement changes, the app will ask you to read and accept the new version before continuing.</string>
+    <string name="ag_translation">If a translation of this agreement differs from the English version, the English version applies.</string>
+    <string name="agreement_checkbox">I have read and agree to this User Agreement, and I understand that I am solely responsible for backing up my data.</string>
+    <string name="agree">I agree</string>
+    <string name="decline">Decline</string>
+    <string name="agreement_declined">You need to accept the User Agreement to use the app.</string>
+
+    <!-- How to back up -->
+    <string name="guide_title">How to back up your data</string>
+    <string name="guide_intro">Your data lives only on this phone. A backup is a complete, encrypted copy you can use to restore everything if the phone is lost, broken, replaced or reset.</string>
+    <string name="guide_1">Open Settings (the gear at the top right) → Security &amp; privacy → Back up to an encrypted file.</string>
+    <string name="guide_2">Choose a strong backup password and write it down somewhere safe, away from your phone. It can\'t be recovered if forgotten.</string>
+    <string name="guide_3">Choose where to save the file. Best is somewhere off this phone, such as Google Drive or a computer, so the backup survives if the phone is lost.</string>
+    <string name="guide_4">Back up regularly. Each backup is a complete copy, so keep the newest one. The app reminds you when your last backup is getting old.</string>
+    <string name="guide_5">To restore, on this phone or a new one: install the app, open Settings → Security &amp; privacy → Restore from a backup, pick the file and enter the password.</string>
+    <string name="guide_tip">Backups are encrypted with AES-256. Without the password the file can\'t be opened by anyone, including the makers of the app.</string>
+
+    <!-- Text: font style and size -->
+    <string name="text_settings">Text</string>
+    <string name="text_settings_desc">Font style and text size</string>
+    <string name="text_size">Text size</string>
+    <string name="text_size_value">%1$d%%</string>
+    <string name="text_preview">Today you closed 4 of 6 sales. Keep it up!</string>
+    <string name="font_style">Font style</string>
+    <string name="font_standard">Standard</string>
+    <string name="font_standard_desc">The phone\'s usual font</string>
+    <string name="font_readable">Easy reading</string>
+    <string name="font_readable_desc">Designed for low vision: every letter is easy to tell apart</string>
+    <string name="font_modern">Modern</string>
+    <string name="font_modern_desc">Clean and open, designed to make reading easier</string>
+    <string name="font_rounded">Rounded</string>
+    <string name="font_rounded_desc">Soft and friendly</string>
+    <string name="font_classic">Classic</string>
+    <string name="font_classic_desc">A traditional serif, like a printed book</string>
+    <string name="font_compact">Compact</string>
+    <string name="font_compact_desc">Narrower letters fit more on the screen</string>
 </resources>

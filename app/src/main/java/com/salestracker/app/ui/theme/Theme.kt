@@ -172,9 +172,15 @@ fun SalesTrackerTheme(
     palette: AppPalette = AppPalette.TEAL,
     dark: Boolean = isSystemInDarkTheme(),
     custom: CustomColors? = null,
+    font: AppFont = AppFont.STANDARD,
     content: @Composable () -> Unit,
 ) {
-    MaterialTheme(colorScheme = custom?.let { customScheme(it, dark) } ?: palette.scheme(dark), content = content)
+    val typography = androidx.compose.runtime.remember(font) { typographyFor(font.family()) }
+    MaterialTheme(
+        colorScheme = custom?.let { customScheme(it, dark) } ?: palette.scheme(dark),
+        typography = typography,
+        content = content,
+    )
 }
 
 /** The three colors a user picks on the color wheel. Stored as ARGB ints. */

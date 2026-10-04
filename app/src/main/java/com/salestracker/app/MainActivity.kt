@@ -2,6 +2,16 @@
 
 package com.salestracker.app
 
+import com.salestracker.app.ui.screens.ScaledText
+import com.salestracker.app.ui.screens.AgreementScreen
+import com.salestracker.app.ui.screens.SecurityScreen
+import com.salestracker.app.data.PrivacyMode
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.ui.text.style.TextOverflow
+import android.widget.Toast
+import android.view.WindowManager
 import com.salestracker.app.security.AppAuth
 import com.salestracker.app.ui.screens.SettingsDialog
 import com.salestracker.app.ui.screens.LockScreen
@@ -87,11 +97,32 @@ class MainActivity : AppCompatActivity() {
             LaunchedEffect(vm.appLock) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) setRecentsScreenshotEnabled(!vm.appLock)
             }
-            SalesTrackerTheme(palette = vm.palette, dark = dark, custom = vm.customColors.takeIf { vm.useCustomColors }) {
-                if (vm.appLock && !vm.unlocked) {
-                    LockScreen(onUnlock = { AppAuth.authenticate(this@MainActivity) { vm.unlocked = true } })
-                } else {
-                    SalesApp(vm, dark)
+            // "Block screenshots": Android shows a blank screen in screenshots, recordings and recent apps.
+            LaunchedEffect(vm.blockScreenshots) {
+                if (vm.blockScreenshots) window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+                else window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+            }
+            ScaledText(vm.textScale) {
+                SalesTrackerTheme(
+                    palette = vm.palette, dark = dark,
+                    custom = vm.customColors.takeIf { vm.useCustomColors },
+                    font = vm.font,
+                ) {
+                    when {
+                        // 1. Locked: show nothing of the app until the owner unlocks.
+                        vm.appLock && !vm.unlocked -> LockScreen(onUnlock = {
+                            AppAuth.authenticate(this@MainActivity, onSuccess = { vm.unlocked = true }, onStart = vm::beginAuth, onEnd = vm::endAuth)
+                        })
+                        // 2. The user agreement must be accepted before first use (and after it changes).
+                        !vm.agreementAccepted -> AgreementScreen(
+                            onAccept = { vm.acceptAgreement() },
+                            onDecline = {
+                                Toast.makeText(this@MainActivity, getString(R.string.agreement_declined), Toast.LENGTH_LONG).show()
+                                finish()
+                            },
+                        )
+                        else -> SalesApp(vm, dark)
+                    }
                 }
             }
         }
@@ -163,7 +194,17 @@ private fun rememberTabLabelSize(labels: List<String>): TextUnit {
 private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     var tab by rememberSaveable { mutableStateOf(Tab.DASHBOARD) }
     var showSettings by rememberSaveable { mutableStateOf(false) }
+    var showSecurity by rememberSaveable { mutableStateOf(false) }
     val data by vm.data.collectAsState()
+
+    // The full-screen Security & privacy center replaces the tabs while open.
+    if (showSecurity || vm.backupRequested) {
+        SecurityScreen(
+            vm = vm, data = data, startBackup = vm.backupRequested,
+            onClose = { showSecurity = false; vm.backupRequested = false },
+        )
+        return
+    }
     val labels = Tab.entries.map { stringResource(it.label) }
     val labelSize = rememberTabLabelSize(labels)
 
@@ -174,8 +215,16 @@ private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(tab.title)) },
+                title = { Text(stringResource(tab.title), maxLines = 1, overflow = TextOverflow.Ellipsis) },
                 actions = {
+                    // Privacy mode: one tap hides every dollar amount (e.g. before showing the screen to a customer).
+                    IconButton(onClick = vm::togglePrivacyMode) {
+                        Icon(
+                            if (PrivacyMode.hideAmounts) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,
+                            contentDescription = stringResource(if (PrivacyMode.hideAmounts) R.string.cd_show_amounts else R.string.cd_hide_amounts),
+                            tint = if (PrivacyMode.hideAmounts) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                        )
+                    }
                     IconButton(onClick = { showSettings = true }) {
                         Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.cd_settings))
                     }
@@ -208,6 +257,6 @@ private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     }
 
     if (showSettings) {
-        SettingsDialog(vm = vm, data = data, isDark = isDark, onDismiss = { showSettings = false })
+        SettingsDialog(vm = vm, isDark = isDark, onOpenSecurity = { showSecurity = true }, onDismiss = { showSettings = false })
     }
 }

@@ -35,7 +35,8 @@ fun formatDuration(totalSeconds: Long): String {
     return if (h > 0) "%d:%02d:%02d".format(Locale.ROOT, h, m, s) else "%d:%02d".format(Locale.ROOT, m, s)
 }
 
-fun formatMoney(value: Double): String = NumberFormat.getCurrencyInstance(regionLocale()).format(value)
+fun formatMoney(value: Double): String =
+    if (PrivacyMode.hideAmounts) PrivacyMode.MASK else NumberFormat.getCurrencyInstance(regionLocale()).format(value)
 
 fun formatPercent(ratio: Double): String = "%.1f%%".format(regionLocale(), ratio * 100)
 

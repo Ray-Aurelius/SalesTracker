@@ -2,6 +2,8 @@
 
 package com.salestracker.app.ui.screens
 
+import androidx.compose.foundation.clickable
+import androidx.compose.material3.Checkbox
 import com.salestracker.app.R
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -124,7 +126,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
             newId = vm::newId,
             onDismiss = { adding = false; editing = null },
             onSave = vm::saveClient,
-            onDelete = { vm.deleteClient(it) },
+            onDelete = { id, withRecords -> if (withRecords) vm.deleteClientAndRecords(id) else vm.deleteClient(id) },
         )
     }
 }
@@ -161,7 +163,7 @@ private fun ClientDialog(
     newId: () -> Long,
     onDismiss: () -> Unit,
     onSave: (Client) -> Unit,
-    onDelete: (Long) -> Unit,
+    onDelete: (id: Long, withRecords: Boolean) -> Unit,
 ) {
     var first by remember { mutableStateOf(initial?.firstName ?: "") }
     var last by remember { mutableStateOf(initial?.lastName ?: "") }
@@ -216,10 +218,29 @@ private fun ClientDialog(
     )
 
     if (confirmDelete && initial != null) {
-        ConfirmDeleteDialog(
-            title = stringResource(R.string.delete_client_q, initial.fullName),
-            onConfirm = { onDelete(initial.id); onDismiss() },
-            onDismiss = { confirmDelete = false },
+        var withRecords by remember { mutableStateOf(false) }
+        AlertDialog(
+            onDismissRequest = { confirmDelete = false },
+            title = { Text(stringResource(R.string.delete_client_q, initial.fullName)) },
+            text = {
+                Column {
+                    Text(stringResource(R.string.delete_cannot_undo))
+                    // Lets a salesperson honor a client's request to have all their information removed.
+                    Row(
+                        Modifier.fillMaxWidth().clickable { withRecords = !withRecords }.padding(top = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Checkbox(checked = withRecords, onCheckedChange = { withRecords = it })
+                        Text(stringResource(R.string.delete_client_records), style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { onDelete(initial.id, withRecords); confirmDelete = false; onDismiss() }) {
+                    Text(stringResource(R.string.delete), color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = { TextButton(onClick = { confirmDelete = false }) { Text(stringResource(R.string.cancel)) } },
         )
     }
 }

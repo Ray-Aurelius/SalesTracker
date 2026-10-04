@@ -21,13 +21,24 @@ object AppAuth {
     fun isAvailable(context: Context): Boolean =
         BiometricManager.from(context).canAuthenticate(ALLOWED) == BiometricManager.BIOMETRIC_SUCCESS
 
-    fun authenticate(activity: FragmentActivity, onSuccess: () -> Unit) {
+    /** [onStart] runs before the prompt appears and [onEnd] when it closes either way (success, cancel or error). */
+    fun authenticate(
+        activity: FragmentActivity,
+        onSuccess: () -> Unit,
+        onStart: () -> Unit = {},
+        onEnd: () -> Unit = {},
+    ) {
+        onStart()
         val prompt = BiometricPrompt(
             activity,
             ContextCompat.getMainExecutor(activity),
             object : BiometricPrompt.AuthenticationCallback() {
-                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) = onSuccess()
-                // Cancelled or failed: stay as we are; the user can tap Unlock to try again.
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    onEnd()
+                    onSuccess()
+                }
+                // Cancelled or locked out: stay as we are; the user can tap Unlock to try again.
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) = onEnd()
             },
         )
         prompt.authenticate(
