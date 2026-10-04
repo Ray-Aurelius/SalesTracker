@@ -124,6 +124,9 @@
     <string name="avg_time">Rata-rata waktu / penjualan</string>
     <string name="sales_header">Penjualan (%1$d)</string>
     <string name="no_sales_period">Belum ada penjualan di periode ini. Ketuk \"Catat penjualan\" atau gunakan tab Timer.</string>
+    <string name="commission_upsell_only">Komisi hanya dari tambahan / upsell</string>
+    <string name="no_commission_without_upsell">Tidak ada komisi kecuali tambahan / upsell diterima</string>
+    <string name="commission_default_rate_upsell">Tarif default %1$s%% hanya untuk tambahan · ketuk untuk mengubah</string>
     <string name="commission_rate_title">Tarif komisi</string>
     <string name="commission_rate_body">Otomatis diterapkan pada setiap penjualan baru. Anda bisa mengubahnya per penjualan. Penjualan yang sudah dicatat tetap memakai tarif saat dicatat.</string>
     <string name="default_rate">Tarif default</string>

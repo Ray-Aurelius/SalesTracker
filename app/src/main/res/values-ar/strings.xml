@@ -124,6 +124,9 @@
     <string name="avg_time">متوسط الوقت / بيع</string>
     <string name="sales_header">المبيعات (%1$d)</string>
     <string name="no_sales_period">لا توجد مبيعات في هذه الفترة. انقر على \"تسجيل بيع\" أو استخدم تبويب المؤقت.</string>
+    <string name="commission_upsell_only">عمولة على الإضافة / البيع الإضافي فقط</string>
+    <string name="no_commission_without_upsell">لا عمولة ما لم يُقبل البيع الإضافي</string>
+    <string name="commission_default_rate_upsell">النسبة الافتراضية %1$s%% على الإضافات فقط · انقر للتغيير</string>
     <string name="commission_rate_title">نسبة العمولة</string>
     <string name="commission_rate_body">تُملأ تلقائيًا في كل بيع جديد. يمكنك تغييرها لكل بيع على حدة. تحتفظ المبيعات المسجلة سابقًا بالنسبة التي حُفظت بها.</string>
     <string name="default_rate">النسبة الافتراضية</string>

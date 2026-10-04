@@ -153,7 +153,10 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                         Column(Modifier.weight(1f)) {
                             Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.titleMedium)
                             Text(
-                                stringResource(R.string.commission_default_rate, if (PrivacyMode.hideAmounts) "••" else formatRateInput(data.defaultCommissionPercent)),
+                                stringResource(
+                                    if (data.defaultCommissionUpsellOnly) R.string.commission_default_rate_upsell else R.string.commission_default_rate,
+                                    if (PrivacyMode.hideAmounts) "••" else formatRateInput(data.defaultCommissionPercent),
+                                ),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -219,12 +222,14 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             onDismiss = { adding = false; editing = null },
             onSave = vm::saveSale,
             defaultCommissionPercent = data.defaultCommissionPercent,
+            defaultUpsellOnly = data.defaultCommissionUpsellOnly,
         )
     }
     if (reporting) ReportDialog(vm, data, onDismiss = { reporting = false })
     if (editingRate) {
         CommissionRateDialog(
             current = data.defaultCommissionPercent,
+            currentUpsellOnly = data.defaultCommissionUpsellOnly,
             onSave = vm::setDefaultCommission,
             onDismiss = { editingRate = false },
         )
@@ -269,8 +274,9 @@ private fun StatCard(label: String, value: String, modifier: Modifier = Modifier
 }
 
 @Composable
-private fun CommissionRateDialog(current: Double, onSave: (Double) -> Unit, onDismiss: () -> Unit) {
+private fun CommissionRateDialog(current: Double, currentUpsellOnly: Boolean, onSave: (Double, Boolean) -> Unit, onDismiss: () -> Unit) {
     var text by remember { mutableStateOf(formatRateInput(current)) }
+    var upsellOnly by remember { mutableStateOf(currentUpsellOnly) }
     val value = text.toDoubleOrNull()
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -291,10 +297,11 @@ private fun CommissionRateDialog(current: Double, onSave: (Double) -> Unit, onDi
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.fillMaxWidth(),
                 )
+                SwitchRow(stringResource(R.string.commission_upsell_only), upsellOnly, { upsellOnly = it })
             }
         },
         confirmButton = {
-            TextButton(enabled = value != null && value <= 100, onClick = { onSave(value ?: 0.0); onDismiss() }) {
+            TextButton(enabled = value != null && value <= 100, onClick = { onSave(value ?: 0.0, upsellOnly); onDismiss() }) {
                 Text(stringResource(R.string.save))
             }
         },

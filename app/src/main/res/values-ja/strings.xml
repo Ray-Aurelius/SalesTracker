@@ -124,6 +124,9 @@
     <string name="avg_time">平均時間 / 件</string>
     <string name="sales_header">販売（%1$d）</string>
     <string name="no_sales_period">この期間の販売はありません。「販売を記録」をタップするか、タイマーを使ってください。</string>
+    <string name="commission_upsell_only">アップセル/追加購入のみに手数料</string>
+    <string name="no_commission_without_upsell">アップセル/追加購入が受け入れられない限り手数料なし</string>
+    <string name="commission_default_rate_upsell">既定の率 %1$s%%（追加購入のみ）· タップして変更</string>
     <string name="commission_rate_title">コミッション率</string>
     <string name="commission_rate_body">新しい販売ごとに自動入力されます。販売ごとに変更することもできます。記録済みの販売は保存時の率のままです。</string>
     <string name="default_rate">既定の率</string>

@@ -124,6 +124,9 @@
     <string name="avg_time">平均用时 / 笔</string>
     <string name="sales_header">销售（%1$d）</string>
     <string name="no_sales_period">此期间没有销售记录。点按“记录销售”或使用计时标签页。</string>
+    <string name="commission_upsell_only">仅对附加/追加销售计算佣金</string>
+    <string name="no_commission_without_upsell">除非客户接受附加/追加销售，否则没有佣金</string>
+    <string name="commission_default_rate_upsell">默认比例 %1$s%%，仅计附加销售 · 点按以更改</string>
     <string name="commission_rate_title">佣金比例</string>
     <string name="commission_rate_body">每笔新销售都会自动填入。你仍可单独修改某笔销售。已记录的销售保留保存时的比例。</string>
     <string name="default_rate">默认比例</string>

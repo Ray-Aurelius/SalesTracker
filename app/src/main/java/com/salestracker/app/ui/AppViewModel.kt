@@ -419,6 +419,9 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun deleteGoal(id: Long) = repo.update { d -> d.copy(goals = d.goals.filterNot { it.id == id }) }
     fun setDefaultCommission(percent: Double) =
         repo.update { it.copy(defaultCommissionPercent = percent.coerceIn(0.0, 100.0)) }
+    /** Rate and "upsell only" together, from the default-commission dialog. Only affects new sales. */
+    fun setDefaultCommission(percent: Double, upsellOnly: Boolean) =
+        repo.update { it.copy(defaultCommissionPercent = percent.coerceIn(0.0, 100.0), defaultCommissionUpsellOnly = upsellOnly) }
 
     // ---- Calculator (kept here so it survives switching tabs) ----
     var calculatorExpression by mutableStateOf("")

@@ -124,6 +124,9 @@
     <string name="avg_time">건당 평균 시간</string>
     <string name="sales_header">판매 (%1$d)</string>
     <string name="no_sales_period">이 기간에 기록된 판매가 없습니다. \"판매 기록\"을 탭하거나 타이머 탭을 사용하세요.</string>
+    <string name="commission_upsell_only">추가 판매에만 수수료</string>
+    <string name="no_commission_without_upsell">추가 판매가 수락되지 않으면 수수료 없음</string>
+    <string name="commission_default_rate_upsell">기본 비율 %1$s%% (추가 판매에만) · 탭하여 변경</string>
     <string name="commission_rate_title">수수료 비율</string>
     <string name="commission_rate_body">새 판매마다 자동으로 입력됩니다. 판매별로 변경할 수도 있습니다. 이미 기록된 판매는 저장 당시의 비율을 유지합니다.</string>
     <string name="default_rate">기본 비율</string>

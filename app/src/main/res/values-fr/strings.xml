@@ -124,6 +124,9 @@
     <string name="avg_time">Temps moyen / vente</string>
     <string name="sales_header">Ventes (%1$d)</string>
     <string name="no_sales_period">Aucune vente sur cette période. Touchez « Ajouter une vente » ou utilisez l\'onglet Chrono.</string>
+    <string name="commission_upsell_only">Commission sur l\'option / vente additionnelle uniquement</string>
+    <string name="no_commission_without_upsell">Pas de commission sauf si l\'option / vente additionnelle est acceptée</string>
+    <string name="commission_default_rate_upsell">Taux par défaut %1$s %% sur les options uniquement · touchez pour modifier</string>
     <string name="commission_rate_title">Taux de commission</string>
     <string name="commission_rate_body">Appliqué à chaque nouvelle vente. Vous pouvez le modifier vente par vente. Les ventes déjà saisies gardent le taux enregistré.</string>
     <string name="default_rate">Taux par défaut</string>

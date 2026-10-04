@@ -115,6 +115,7 @@ fun SaleDialog(
     defaultClientId: Long? = null,
     defaultDurationSeconds: Long = 0,
     defaultCommissionPercent: Double = 0.0,
+    defaultUpsellOnly: Boolean = false,
 ) {
     var clientId by remember { mutableStateOf(initial?.clientId ?: defaultClientId) }
     var closed by remember { mutableStateOf(initial?.closed ?: true) }
@@ -129,6 +130,7 @@ fun SaleDialog(
     var commission by remember {
         mutableStateOf(formatRateInput(initial?.commissionPercent ?: defaultCommissionPercent))
     }
+    var upsellOnly by remember { mutableStateOf(initial?.commissionOnUpsellOnly ?: defaultUpsellOnly) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -179,12 +181,20 @@ fun SaleDialog(
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.fillMaxWidth(),
                     supportingText = {
-                        val revenue = if (!closed) 0.0 else
-                            (parseMoney(amount) ?: 0.0) + if (upsellAccepted) parseMoney(upsellAmount) ?: 0.0 else 0.0
-                        val earned = revenue * (commission.toDoubleOrNull() ?: 0.0) / 100.0
-                        Text(if (closed) stringResource(R.string.you_earn, formatMoney(earned)) else stringResource(R.string.no_commission_unless_closed))
+                        val upsell = if (closed && upsellAccepted) parseMoney(upsellAmount) ?: 0.0 else 0.0
+                        val base = if (!closed) 0.0 else if (upsellOnly) upsell else (parseMoney(amount) ?: 0.0) + upsell
+                        val earned = base * (commission.toDoubleOrNull() ?: 0.0) / 100.0
+                        Text(
+                            when {
+                                !closed -> stringResource(R.string.no_commission_unless_closed)
+                                upsellOnly && !upsellAccepted -> stringResource(R.string.no_commission_without_upsell)
+                                else -> stringResource(R.string.you_earn, formatMoney(earned))
+                            }
+                        )
                     },
                 )
+                // Some reps are paid only on the add-on, not the main sale.
+                SwitchRow(stringResource(R.string.commission_upsell_only), upsellOnly, { upsellOnly = it })
                 Text(stringResource(R.string.time_spent), style = MaterialTheme.typography.labelLarge)
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedTextField(
@@ -229,6 +239,7 @@ fun SaleDialog(
                         durationSeconds = duration,
                         notes = notes.trim(),
                         commissionPercent = (commission.toDoubleOrNull() ?: 0.0).coerceIn(0.0, 100.0),
+                        commissionOnUpsellOnly = upsellOnly,
                     )
                 )
                 onDismiss()

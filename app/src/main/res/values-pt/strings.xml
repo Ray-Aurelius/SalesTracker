@@ -124,6 +124,9 @@
     <string name="avg_time">Tempo médio / venda</string>
     <string name="sales_header">Vendas (%1$d)</string>
     <string name="no_sales_period">Nenhuma venda neste período. Toque em \"Registrar venda\" ou use a aba Tempo.</string>
+    <string name="commission_upsell_only">Comissão apenas sobre o adicional / venda extra</string>
+    <string name="no_commission_without_upsell">Sem comissão a menos que o adicional / venda extra seja aceito</string>
+    <string name="commission_default_rate_upsell">Taxa padrão de %1$s%% só em adicionais · toque para alterar</string>
     <string name="commission_rate_title">Taxa de comissão</string>
     <string name="commission_rate_body">Preenchida em cada nova venda. Você pode mudá-la em vendas individuais. Vendas já registradas mantêm a taxa com que foram salvas.</string>
     <string name="default_rate">Taxa padrão</string>

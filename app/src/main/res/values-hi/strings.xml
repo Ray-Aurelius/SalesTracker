@@ -124,6 +124,9 @@
     <string name="avg_time">औसत समय / बिक्री</string>
     <string name="sales_header">बिक्री (%1$d)</string>
     <string name="no_sales_period">इस अवधि में कोई बिक्री नहीं। \"बिक्री दर्ज करें\" पर टैप करें या टाइमर टैब का उपयोग करें।</string>
+    <string name="commission_upsell_only">केवल ऐड-ऑन / अपसेल पर कमीशन</string>
+    <string name="no_commission_without_upsell">ऐड-ऑन / अपसेल स्वीकार होने पर ही कमीशन</string>
+    <string name="commission_default_rate_upsell">डिफ़ॉल्ट दर %1$s%% केवल ऐड-ऑन पर · बदलने के लिए टैप करें</string>
     <string name="commission_rate_title">कमीशन दर</string>
     <string name="commission_rate_body">हर नई बिक्री में अपने आप भरी जाती है। आप इसे किसी एक बिक्री में बदल सकते हैं। पहले से दर्ज बिक्री अपनी सहेजी गई दर रखती है।</string>
     <string name="default_rate">डिफ़ॉल्ट दर</string>

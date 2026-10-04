@@ -124,6 +124,9 @@
     <string name="avg_time">গড় সময় / বিক্রয়</string>
     <string name="sales_header">বিক্রয় (%1$d)</string>
     <string name="no_sales_period">এই সময়ে কোনো বিক্রয় নেই। \"বিক্রয় লিখুন\" ট্যাপ করুন বা টাইমার ট্যাব ব্যবহার করুন।</string>
+    <string name="commission_upsell_only">শুধু অ্যাড-অন / আপসেলে কমিশন</string>
+    <string name="no_commission_without_upsell">অ্যাড-অন / আপসেল গ্রহণ না হলে কমিশন নেই</string>
+    <string name="commission_default_rate_upsell">ডিফল্ট হার %1$s%% শুধু অ্যাড-অনে · বদলাতে ট্যাপ করুন</string>
     <string name="commission_rate_title">কমিশনের হার</string>
     <string name="commission_rate_body">প্রতিটি নতুন বিক্রয়ে স্বয়ংক্রিয়ভাবে বসে। আলাদা বিক্রয়ে এটি বদলাতে পারেন। আগে লেখা বিক্রয় তাদের সংরক্ষিত হার রাখে।</string>
     <string name="default_rate">ডিফল্ট হার</string>

@@ -147,6 +147,9 @@
     <string name="avg_time">Avg time / sale</string>
     <string name="sales_header">Sales (%1$d)</string>
     <string name="no_sales_period">No sales logged in this period. Tap \"Log sale\" or use the Timer tab.</string>
+    <string name="commission_upsell_only">Commission on add-on / upsell only</string>
+    <string name="no_commission_without_upsell">No commission unless the add-on / upsell is accepted</string>
+    <string name="commission_default_rate_upsell">Default rate %1$s%% on add-ons only · tap to change</string>
     <string name="commission_rate_title">Commission rate</string>
     <string name="commission_rate_body">Filled in on every new sale. You can still change it on individual sales. Sales you\'ve already logged keep the rate they were saved with.</string>
     <string name="default_rate">Default rate</string>

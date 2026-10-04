@@ -63,12 +63,18 @@ data class Sale(
     val notes: String,
     /** Commission % saved with the sale when it was logged. Null for older sales (use the default rate). */
     val commissionPercent: Double? = null,
+    /** True when the salesperson is paid commission only on the upsell / add-on, not the main sale. */
+    val commissionOnUpsellOnly: Boolean = false,
 ) {
     val revenue: Double
         get() = if (!closed) 0.0 else amount + if (upsellAccepted) upsellAmount else 0.0
 
+    /** The part of the revenue commission is paid on: everything, or only an accepted upsell. */
+    val commissionBase: Double
+        get() = if (!commissionOnUpsellOnly) revenue else if (closed && upsellAccepted) upsellAmount else 0.0
+
     /** What the salesperson earns on this sale. */
-    fun commission(defaultPercent: Double): Double = revenue * (commissionPercent ?: defaultPercent) / 100.0
+    fun commission(defaultPercent: Double): Double = commissionBase * (commissionPercent ?: defaultPercent) / 100.0
 
     fun toJson(): JSONObject = JSONObject()
         .put("id", id)
@@ -82,6 +88,7 @@ data class Sale(
         .put("durationSeconds", durationSeconds)
         .put("notes", notes)
         .put("commissionPercent", commissionPercent ?: JSONObject.NULL)
+        .put("commissionOnUpsellOnly", commissionOnUpsellOnly)
 
     companion object {
         fun fromJson(o: JSONObject) = Sale(
@@ -97,6 +104,7 @@ data class Sale(
             notes = o.optString("notes"),
             commissionPercent = if (!o.has("commissionPercent") || o.isNull("commissionPercent")) null
             else o.optDouble("commissionPercent"),
+            commissionOnUpsellOnly = o.optBoolean("commissionOnUpsellOnly", false),
         )
     }
 }
@@ -153,6 +161,8 @@ data class AppData(
     val goals: List<Goal> = emptyList(),
     /** Commission % pre-filled on new sales. */
     val defaultCommissionPercent: Double = 0.0,
+    /** Pre-sets "commission on upsell only" for new sales (some reps are only paid on add-ons). */
+    val defaultCommissionUpsellOnly: Boolean = false,
     /** Important days marked on the calendar: LocalDate.toEpochDay() → highlight color. */
     val dayHighlights: Map<Long, HighlightColor> = emptyMap(),
 ) {
@@ -163,6 +173,7 @@ data class AppData(
         .put("appointments", JSONArray(appointments.map { it.toJson() }))
         .put("goals", JSONArray(goals.map { it.toJson() }))
         .put("defaultCommissionPercent", defaultCommissionPercent)
+        .put("defaultCommissionUpsellOnly", defaultCommissionUpsellOnly)
         .put("dayHighlights", JSONObject().apply { dayHighlights.forEach { (day, c) -> put(day.toString(), c.name) } })
 
     companion object {
@@ -172,6 +183,7 @@ data class AppData(
             appointments = o.optJSONArray("appointments").objects().map(Appointment::fromJson),
             goals = o.optJSONArray("goals").objects().map(Goal::fromJson),
             defaultCommissionPercent = o.optDouble("defaultCommissionPercent", 0.0).takeIf { !it.isNaN() } ?: 0.0,
+            defaultCommissionUpsellOnly = o.optBoolean("defaultCommissionUpsellOnly", false),
             dayHighlights = o.optJSONObject("dayHighlights")?.let { h ->
                 h.keys().asSequence().mapNotNull { k ->
                     val color = HighlightColor.entries.firstOrNull { it.name == h.optString(k) }

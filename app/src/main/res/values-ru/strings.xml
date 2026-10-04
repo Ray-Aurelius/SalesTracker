@@ -124,6 +124,9 @@
     <string name="avg_time">Ср. время / продажа</string>
     <string name="sales_header">Продажи (%1$d)</string>
     <string name="no_sales_period">За этот период продаж нет. Нажмите «Добавить продажу» или используйте вкладку «Таймер».</string>
+    <string name="commission_upsell_only">Комиссия только с допродажи</string>
+    <string name="no_commission_without_upsell">Нет комиссии, пока допродажа не принята</string>
+    <string name="commission_default_rate_upsell">Ставка по умолчанию %1$s%% только с допродаж · нажмите, чтобы изменить</string>
     <string name="commission_rate_title">Ставка комиссии</string>
     <string name="commission_rate_body">Подставляется в каждую новую продажу. Её можно изменить для отдельной продажи. Уже записанные продажи сохраняют свою ставку.</string>
     <string name="default_rate">Ставка по умолчанию</string>

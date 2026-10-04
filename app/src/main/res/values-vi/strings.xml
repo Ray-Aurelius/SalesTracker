@@ -124,6 +124,9 @@
     <string name="avg_time">TB thời gian / giao dịch</string>
     <string name="sales_header">Giao dịch (%1$d)</string>
     <string name="no_sales_period">Chưa có giao dịch trong kỳ này. Chạm \"Ghi giao dịch\" hoặc dùng thẻ Hẹn giờ.</string>
+    <string name="commission_upsell_only">Chỉ tính hoa hồng trên phần bán thêm</string>
+    <string name="no_commission_without_upsell">Không có hoa hồng nếu khách không nhận bán thêm</string>
+    <string name="commission_default_rate_upsell">Tỷ lệ mặc định %1$s%% chỉ trên bán thêm · chạm để đổi</string>
     <string name="commission_rate_title">Tỷ lệ hoa hồng</string>
     <string name="commission_rate_body">Tự động áp dụng cho mỗi giao dịch mới. Bạn có thể đổi cho từng giao dịch. Các giao dịch đã ghi giữ nguyên tỷ lệ lúc ghi.</string>
     <string name="default_rate">Tỷ lệ mặc định</string>

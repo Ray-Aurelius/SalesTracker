@@ -124,6 +124,9 @@
     <string name="avg_time">Ort. süre / satış</string>
     <string name="sales_header">Satışlar (%1$d)</string>
     <string name="no_sales_period">Bu dönemde satış yok. \"Satış ekle\"ye dokunun veya Süre sekmesini kullanın.</string>
+    <string name="commission_upsell_only">Yalnızca ek ürün / ek satıştan komisyon</string>
+    <string name="no_commission_without_upsell">Ek ürün / ek satış kabul edilmezse komisyon yok</string>
+    <string name="commission_default_rate_upsell">Varsayılan oran %%%1$s yalnızca ek satışlarda · değiştirmek için dokunun</string>
     <string name="commission_rate_title">Komisyon oranı</string>
     <string name="commission_rate_body">Her yeni satışa otomatik eklenir. Tek tek satışlarda değiştirebilirsiniz. Önceden kaydedilen satışlar kaydedildikleri oranı korur.</string>
     <string name="default_rate">Varsayılan oran</string>

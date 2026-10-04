@@ -124,6 +124,9 @@
     <string name="avg_time">Tempo medio / vendita</string>
     <string name="sales_header">Vendite (%1$d)</string>
     <string name="no_sales_period">Nessuna vendita in questo periodo. Tocca \"Registra vendita\" o usa la scheda Timer.</string>
+    <string name="commission_upsell_only">Provvigione solo su extra / vendita aggiuntiva</string>
+    <string name="no_commission_without_upsell">Nessuna provvigione se l\'extra / vendita aggiuntiva non viene accettato</string>
+    <string name="commission_default_rate_upsell">Tasso predefinito %1$s%% solo sugli extra · tocca per modificare</string>
     <string name="commission_rate_title">Percentuale di provvigione</string>
     <string name="commission_rate_body">Viene inserita in ogni nuova vendita. Puoi cambiarla nelle singole vendite. Le vendite già registrate mantengono la percentuale con cui sono state salvate.</string>
     <string name="default_rate">Percentuale predefinita</string>

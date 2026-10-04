@@ -124,6 +124,9 @@
     <string name="avg_time">Ø Zeit / Verkauf</string>
     <string name="sales_header">Verkäufe (%1$d)</string>
     <string name="no_sales_period">Keine Verkäufe in diesem Zeitraum. Tippe auf „Verkauf erfassen“ oder nutze den Timer.</string>
+    <string name="commission_upsell_only">Provision nur auf Zusatzverkauf / Upsell</string>
+    <string name="no_commission_without_upsell">Keine Provision, außer der Zusatzverkauf / Upsell wird angenommen</string>
+    <string name="commission_default_rate_upsell">Standardsatz %1$s %% nur auf Zusatzverkäufe · tippen zum Ändern</string>
     <string name="commission_rate_title">Provisionssatz</string>
     <string name="commission_rate_body">Wird bei jedem neuen Verkauf eingetragen. Du kannst ihn pro Verkauf ändern. Bereits erfasste Verkäufe behalten ihren gespeicherten Satz.</string>
     <string name="default_rate">Standardsatz</string>
