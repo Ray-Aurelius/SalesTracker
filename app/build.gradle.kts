@@ -56,6 +56,14 @@ android {
     buildFeatures {
         compose = true
     }
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.all {
+            // Store screenshots render only when asked: ./gradlew testDebugUnitTest -PstoreShots
+            it.systemProperty("storeShots", project.hasProperty("storeShots").toString())
+            it.systemProperty("storeShotsDir", layout.buildDirectory.dir("store-screenshots").get().asFile.absolutePath)
+        }
+    }
 }
 
 dependencies {
@@ -77,5 +85,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.robolectric:robolectric:4.14.1") // store screenshots, rendered off-device
+    testImplementation("androidx.test.ext:junit:1.2.1")
+    testImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
     testImplementation("org.json:json:20240303") // real JSON for tests (Android's is a stub off-device)
 }

@@ -1,0 +1,47 @@
+name: Play Store screenshots
+
+# Renders the real app screens with sample data (no phone needed) and attaches them to the
+# "store-assets" release. Runs when the screenshot code changes, or on demand from the Actions tab.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/src/test/java/com/salestracker/app/StoreScreenshots.kt'
+      - '.github/workflows/store-screenshots.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Render screenshots
+        run: |
+          chmod +x gradlew
+          set -o pipefail
+          if ! ./gradlew testDebugUnitTest --tests "com.salestracker.app.StoreScreenshots" -PstoreShots --no-daemon 2>&1 | tee build.log; then
+            grep -E "^e: |error:|FAILED|What went wrong|Exception|Caused by" -A3 build.log | head -80 | sed 's/%/%25/g' | tr '\n' '\r' | sed 's/\r/%0A/g' > err.txt
+            echo "::error title=Screenshot errors::$(cat err.txt)"
+            # Test failures are described in the XML report.
+            R=$(ls app/build/test-results/testDebugUnitTest/*StoreScreenshots*.xml 2>/dev/null | head -1)
+            if [ -n "$R" ]; then
+              head -c 3000 "$R" | sed 's/%/%25/g' | tr '\n' '\r' | sed 's/\r/%0A/g' > rep.txt
+              echo "::error title=Test report::$(cat rep.txt)"
+            fi
+            exit 1
+          fi
+          ls -la app/build/store-screenshots
+      - name: Attach to the store-assets release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release view store-assets >/dev/null 2>&1 || gh release create store-assets --title "Play Store assets" --notes "Screenshots for the Google Play listing, rendered from the real app with sample data." --latest=false
+          gh release upload store-assets app/build/store-screenshots/*.png --clobber

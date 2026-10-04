@@ -198,7 +198,7 @@ private fun rememberTabLabelSize(labels: List<String>): TextUnit {
 }
 
 @Composable
-private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
+internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     var tab by rememberSaveable { mutableStateOf(Tab.DASHBOARD) }
     var showSettings by rememberSaveable { mutableStateOf(false) }
     var showSecurity by rememberSaveable { mutableStateOf(false) }
