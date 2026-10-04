@@ -239,7 +239,7 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
             }
             item {
                 SwitchSetting(stringResource(R.string.block_screenshots), stringResource(R.string.block_screenshots_desc), vm.blockScreenshots) {
-                    vm.setBlockScreenshots(it)
+                    vm.changeBlockScreenshots(it)
                 }
             }
 

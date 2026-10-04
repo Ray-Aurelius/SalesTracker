@@ -112,7 +112,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     /** Blocks screenshots and screen recording of the app (and hides it in recent apps). */
     var blockScreenshots by mutableStateOf(settings.getBoolean("blockScreenshots", false))
         private set
-    fun setBlockScreenshots(on: Boolean) {
+    fun changeBlockScreenshots(on: Boolean) {
         blockScreenshots = on
         settings.edit().putBoolean("blockScreenshots", on).apply()
     }
