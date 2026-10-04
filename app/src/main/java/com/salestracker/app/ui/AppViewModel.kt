@@ -41,7 +41,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     private val settings = app.getSharedPreferences("settings", Context.MODE_PRIVATE)
 
     var palette by mutableStateOf(
-        AppPalette.entries.firstOrNull { it.name == settings.getString("palette", null) } ?: AppPalette.TEAL
+        AppPalette.entries.firstOrNull { it.name == settings.getString("palette", null) } ?: AppPalette.BULLSEYE
     )
         private set
     var darkMode by mutableStateOf(
@@ -210,7 +210,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         repo.eraseEverything()
         settings.edit().clear().commit()
         prefs.edit().clear().commit()
-        palette = AppPalette.TEAL
+        palette = AppPalette.BULLSEYE
         darkMode = DarkMode.SYSTEM
         font = AppFont.STANDARD
         textScale = 1.0f

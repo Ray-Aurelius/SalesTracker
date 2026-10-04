@@ -92,6 +92,8 @@
     <string name="mode_dark">Escuro</string>
     <string name="appearance_palette">Paleta de cores</string>
     <string name="selected">Selecionado</string>
+    <string name="palette_bullseye">Alvo</string>
+    <string name="palette_bullseye_desc">Coral e ardósia, combinando com o ícone do app</string>
     <string name="palette_teal">Verde-azulado clássico</string>
     <string name="palette_teal_desc">O visual original</string>
     <string name="palette_gray">Tons de cinza</string>

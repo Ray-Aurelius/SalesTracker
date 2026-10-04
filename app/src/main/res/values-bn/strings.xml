@@ -92,6 +92,8 @@
     <string name="mode_dark">গাঢ়</string>
     <string name="appearance_palette">রঙের প্যালেট</string>
     <string name="selected">নির্বাচিত</string>
+    <string name="palette_bullseye">বুলস-আই</string>
+    <string name="palette_bullseye_desc">প্রবাল ও স্লেট রং, অ্যাপ আইকনের সাথে মিল রেখে</string>
     <string name="palette_teal">ক্লাসিক টিল</string>
     <string name="palette_teal_desc">মূল চেহারা</string>
     <string name="palette_gray">গ্রেস্কেল</string>

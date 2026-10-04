@@ -92,6 +92,8 @@
     <string name="mode_dark">Sombre</string>
     <string name="appearance_palette">Palette de couleurs</string>
     <string name="selected">Sélectionné</string>
+    <string name="palette_bullseye">Cible</string>
+    <string name="palette_bullseye_desc">Corail et ardoise, assortis à l\'icône de l\'app</string>
     <string name="palette_teal">Sarcelle classique</string>
     <string name="palette_teal_desc">L\'aspect d\'origine</string>
     <string name="palette_gray">Niveaux de gris</string>

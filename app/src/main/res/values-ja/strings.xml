@@ -92,6 +92,8 @@
     <string name="mode_dark">ダーク</string>
     <string name="appearance_palette">カラーパレット</string>
     <string name="selected">選択中</string>
+    <string name="palette_bullseye">ブルズアイ</string>
+    <string name="palette_bullseye_desc">アプリのアイコンに合わせたコーラルとスレート</string>
     <string name="palette_teal">クラシックティール</string>
     <string name="palette_teal_desc">元のデザイン</string>
     <string name="palette_gray">グレースケール</string>

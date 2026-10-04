@@ -92,6 +92,8 @@
     <string name="mode_dark">داكن</string>
     <string name="appearance_palette">لوحة الألوان</string>
     <string name="selected">محدد</string>
+    <string name="palette_bullseye">عين الهدف</string>
+    <string name="palette_bullseye_desc">مرجاني ورمادي داكن، مطابق لأيقونة التطبيق</string>
     <string name="palette_teal">أزرق مخضر كلاسيكي</string>
     <string name="palette_teal_desc">المظهر الأصلي</string>
     <string name="palette_gray">تدرج رمادي</string>

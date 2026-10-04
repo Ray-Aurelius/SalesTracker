@@ -92,6 +92,8 @@
     <string name="mode_dark">Тёмный</string>
     <string name="appearance_palette">Цветовая палитра</string>
     <string name="selected">Выбрано</string>
+    <string name="palette_bullseye">Мишень</string>
+    <string name="palette_bullseye_desc">Коралловый и графитовый, как значок приложения</string>
     <string name="palette_teal">Классический бирюзовый</string>
     <string name="palette_teal_desc">Исходный вид</string>
     <string name="palette_gray">Оттенки серого</string>

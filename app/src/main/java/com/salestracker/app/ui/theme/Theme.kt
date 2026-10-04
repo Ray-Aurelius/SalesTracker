@@ -62,6 +62,24 @@ private fun Tones.toScheme(dark: Boolean): ColorScheme {
 }
 
 enum class AppPalette(@StringRes val label: Int, @StringRes val description: Int, private val light: Tones, private val dark: Tones) {
+    // Matches the bullseye app icon. The default for new users.
+    BULLSEYE(
+        R.string.palette_bullseye, R.string.palette_bullseye_desc,
+        light = Tones(
+            0xFFB93E1C, 0xFFFFFFFF, 0xFFFFDBD1, 0xFF3B0900,
+            0xFF44546A, 0xFFFFFFFF, 0xFFD8E2F2, 0xFF101C2B,
+            0xFF8A5100,
+            0xFFFFF8F6, 0xFF231917,
+            0xFFF5DED8, 0xFF53433F, 0xFF85736E,
+        ),
+        dark = Tones(
+            0xFFFFB4A1, 0xFF611200, 0xFF8A2A10, 0xFFFFDBD1,
+            0xFFB8C7DE, 0xFF22314A, 0xFF39475E, 0xFFD6E3FA,
+            0xFFFFB86B,
+            0xFF1A110F, 0xFFF1DFDA,
+            0xFF53433F, 0xFFD8C2BC, 0xFFA08C87,
+        ),
+    ),
     TEAL(
         R.string.palette_teal, R.string.palette_teal_desc,
         light = Tones(
@@ -169,7 +187,7 @@ fun isDarkTheme(mode: DarkMode): Boolean = when (mode) {
 
 @Composable
 fun SalesTrackerTheme(
-    palette: AppPalette = AppPalette.TEAL,
+    palette: AppPalette = AppPalette.BULLSEYE,
     dark: Boolean = isSystemInDarkTheme(),
     custom: CustomColors? = null,
     font: AppFont = AppFont.STANDARD,
@@ -186,7 +204,7 @@ fun SalesTrackerTheme(
 /** The three colors a user picks on the color wheel. Stored as ARGB ints. */
 data class CustomColors(val main: Int, val accent: Int, val background: Int) {
     companion object {
-        val DEFAULT = CustomColors(0xFF1B5E5A.toInt(), 0xFFB4651A.toInt(), 0xFFF7FAF9.toInt())
+        val DEFAULT = CustomColors(0xFFE4572E.toInt(), 0xFF44546A.toInt(), 0xFFFFF8F6.toInt())
     }
 }
 

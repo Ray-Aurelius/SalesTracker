@@ -92,6 +92,8 @@
     <string name="mode_dark">गहरा</string>
     <string name="appearance_palette">रंग पैलेट</string>
     <string name="selected">चुना गया</string>
+    <string name="palette_bullseye">बुल्सआई</string>
+    <string name="palette_bullseye_desc">कोरल और स्लेट, ऐप आइकन से मेल खाते हुए</string>
     <string name="palette_teal">क्लासिक टील</string>
     <string name="palette_teal_desc">मूल रूप</string>
     <string name="palette_gray">ग्रेस्केल</string>

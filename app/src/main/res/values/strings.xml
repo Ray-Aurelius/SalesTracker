@@ -111,6 +111,8 @@
     <string name="mode_dark">Dark</string>
     <string name="appearance_palette">Color palette</string>
     <string name="selected">Selected</string>
+    <string name="palette_bullseye">Bullseye</string>
+    <string name="palette_bullseye_desc">Coral and slate, matching the app icon</string>
     <string name="palette_teal">Classic Teal</string>
     <string name="palette_teal_desc">The original look</string>
     <string name="palette_gray">Grayscale</string>

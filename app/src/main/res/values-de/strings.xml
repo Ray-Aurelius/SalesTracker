@@ -92,6 +92,8 @@
     <string name="mode_dark">Dunkel</string>
     <string name="appearance_palette">Farbpalette</string>
     <string name="selected">Ausgewählt</string>
+    <string name="palette_bullseye">Volltreffer</string>
+    <string name="palette_bullseye_desc">Koralle und Schiefer, passend zum App-Symbol</string>
     <string name="palette_teal">Klassisches Petrol</string>
     <string name="palette_teal_desc">Der ursprüngliche Look</string>
     <string name="palette_gray">Graustufen</string>
