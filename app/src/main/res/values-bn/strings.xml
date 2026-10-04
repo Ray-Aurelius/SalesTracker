@@ -528,6 +528,21 @@
     <string name="widget_locked">লক করা। লক্ষ্য দেখতে অ্যাপ খুলুন।</string>
     <string name="widget_empty">এখনো কোনো লক্ষ্য নেই। যোগ করতে ট্যাপ করুন।</string>
     <string name="widget_description">এক নজরে লক্ষ্যের অগ্রগতি। শুধু শতাংশ দেখায়, কখনো পরিমাণ বা নাম নয়।</string>
+    <string name="tab_charts">চার্ট</string>
+    <string name="title_charts">চার্ট</string>
+    <string name="charts_empty">কয়েকটি বিক্রি লিখুন, আপনার চার্ট এখানে দেখা যাবে।</string>
+    <string name="charts_pace">এই মাসে %1$s কমিশনের পথে</string>
+    <string name="charts_best_month">সেরা মাস: %1$s · %2$s</string>
+    <string name="charts_per_sale">প্রতি বিক্রি</string>
+    <string name="charts_avg_time">প্রতি বিক্রিতে গড় সময়</string>
+    <string name="charts_avg_sale">গড় বিক্রির পরিমাণ</string>
+    <string name="charts_avg_commission">প্রতি বিক্রিতে গড় কমিশন</string>
+    <string name="charts_biggest">সবচেয়ে বড় বিক্রি</string>
+    <string name="charts_trends">প্রবণতা</string>
+    <string name="charts_weekly">সাপ্তাহিক</string>
+    <string name="charts_monthly">মাসিক</string>
+    <string name="charts_week_of">%1$s-এর সপ্তাহ</string>
+    <string name="charts_best_days">সপ্তাহের দিন অনুযায়ী সম্পন্ন বিক্রি</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
@@ -555,5 +570,9 @@
     <plurals name="goal_behind_pace">
         <item quantity="one">পিছিয়ে · %2$d দিনের জন্য দৈনিক %1$s দরকার</item>
         <item quantity="other">পিছিয়ে · %2$d দিনের জন্য দৈনিক %1$s দরকার</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="one">%d টি বিক্রি সম্পন্ন</item>
+        <item quantity="other">%d টি বিক্রি সম্পন্ন</item>
     </plurals>
 </resources>

@@ -78,6 +78,11 @@ class StoreScreenshots {
         tap(app.getString(R.string.tab_goals)); shot("2-goals")
         tap(app.getString(R.string.tab_clients)); shot("3-clients")
         tap(app.getString(R.string.tab_calendar)); shot("4-calendar")
+        tap(app.getString(R.string.tab_charts)); shot("7-charts")
+        rule.onAllNodesWithText(app.getString(R.string.charts_trends)).onFirst().performScrollTo()
+        shot("8-charts-trends")
+        rule.onAllNodesWithText(app.getString(R.string.charts_best_days)).onFirst().performScrollTo()
+        shot("9-charts-days")
         // Same stats screen in dark mode.
         dark = true
         tap(app.getString(R.string.tab_stats)); shot("5-stats-dark")

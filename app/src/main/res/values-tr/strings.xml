@@ -528,6 +528,21 @@
     <string name="widget_locked">Kilitli. Hedeflerinizi görmek için uygulamayı açın.</string>
     <string name="widget_empty">Henüz hedef yok. Eklemek için dokunun.</string>
     <string name="widget_description">Hedef ilerlemeniz bir bakışta. Yalnızca yüzdeleri gösterir; tutarları veya adları asla göstermez.</string>
+    <string name="tab_charts">Grafikler</string>
+    <string name="title_charts">Grafikler</string>
+    <string name="charts_empty">Birkaç satış kaydedin, grafikleriniz burada görünecek.</string>
+    <string name="charts_pace">Bu ay %1$s komisyon hedefine doğru gidiyorsunuz</string>
+    <string name="charts_best_month">En iyi ay: %1$s · %2$s</string>
+    <string name="charts_per_sale">Satış başına</string>
+    <string name="charts_avg_time">Satış başına ortalama süre</string>
+    <string name="charts_avg_sale">Ortalama satış tutarı</string>
+    <string name="charts_avg_commission">Satış başına ortalama komisyon</string>
+    <string name="charts_biggest">En büyük satış</string>
+    <string name="charts_trends">Eğilimler</string>
+    <string name="charts_weekly">Haftalık</string>
+    <string name="charts_monthly">Aylık</string>
+    <string name="charts_week_of">%1$s haftası</string>
+    <string name="charts_best_days">Haftanın günlerine göre kapanan satışlar</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>
@@ -555,5 +570,9 @@
     <plurals name="goal_behind_pace">
         <item quantity="one">Geride · %2$d gün boyunca günde %1$s gerekli</item>
         <item quantity="other">Geride · %2$d gün boyunca günde %1$s gerekli</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="one">%d satış kapandı</item>
+        <item quantity="other">%d satış kapandı</item>
     </plurals>
 </resources>

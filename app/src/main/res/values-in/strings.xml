@@ -528,6 +528,21 @@
     <string name="widget_locked">Terkunci. Buka aplikasi untuk melihat target Anda.</string>
     <string name="widget_empty">Belum ada target. Ketuk untuk menambahkan.</string>
     <string name="widget_description">Progres target Anda sekilas. Hanya menampilkan persentase, tidak pernah nominal atau nama.</string>
+    <string name="tab_charts">Grafik</string>
+    <string name="title_charts">Grafik</string>
+    <string name="charts_empty">Catat beberapa penjualan dan grafik Anda akan muncul di sini.</string>
+    <string name="charts_pace">Sesuai jalur untuk komisi %1$s bulan ini</string>
+    <string name="charts_best_month">Bulan terbaik: %1$s · %2$s</string>
+    <string name="charts_per_sale">Per penjualan</string>
+    <string name="charts_avg_time">Rata-rata waktu per penjualan</string>
+    <string name="charts_avg_sale">Rata-rata nilai penjualan</string>
+    <string name="charts_avg_commission">Rata-rata komisi per penjualan</string>
+    <string name="charts_biggest">Penjualan terbesar</string>
+    <string name="charts_trends">Tren</string>
+    <string name="charts_weekly">Mingguan</string>
+    <string name="charts_monthly">Bulanan</string>
+    <string name="charts_week_of">Minggu %1$s</string>
+    <string name="charts_best_days">Penjualan closing per hari dalam seminggu</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>
@@ -548,5 +563,8 @@
     </plurals>
     <plurals name="goal_behind_pace">
         <item quantity="other">Tertinggal · perlu %1$s per hari selama %2$d hari</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="other">%d penjualan closing</item>
     </plurals>
 </resources>

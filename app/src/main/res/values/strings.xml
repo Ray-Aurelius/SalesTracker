@@ -629,4 +629,25 @@
     <string name="widget_locked">Locked. Open the app to see your goals.</string>
     <string name="widget_empty">No goals yet. Tap to add one.</string>
     <string name="widget_description">Your goal progress at a glance. Shows percentages only, never amounts or names.</string>
+
+    <!-- Charts tab -->
+    <string name="tab_charts">Charts</string>
+    <string name="title_charts">Charts</string>
+    <string name="charts_empty">Log a few sales and your charts will appear here.</string>
+    <string name="charts_pace">On pace for %1$s in commission this month</string>
+    <string name="charts_best_month">Best month: %1$s · %2$s</string>
+    <string name="charts_per_sale">Per sale</string>
+    <string name="charts_avg_time">Average time per sale</string>
+    <string name="charts_avg_sale">Average sale amount</string>
+    <string name="charts_avg_commission">Average commission per sale</string>
+    <string name="charts_biggest">Biggest sale</string>
+    <string name="charts_trends">Trends</string>
+    <string name="charts_weekly">Weekly</string>
+    <string name="charts_monthly">Monthly</string>
+    <string name="charts_week_of">Week of %1$s</string>
+    <string name="charts_best_days">Closed sales by day of week</string>
+    <plurals name="charts_closed_sales">
+        <item quantity="one">%d sale closed</item>
+        <item quantity="other">%d sales closed</item>
+    </plurals>
 </resources>

@@ -528,6 +528,21 @@
     <string name="widget_locked">Bloqueado. Abra o app para ver suas metas.</string>
     <string name="widget_empty">Nenhuma meta ainda. Toque para adicionar.</string>
     <string name="widget_description">O progresso das suas metas num relance. Mostra só porcentagens, nunca valores ou nomes.</string>
+    <string name="tab_charts">Gráficos</string>
+    <string name="title_charts">Gráficos</string>
+    <string name="charts_empty">Registre algumas vendas e seus gráficos aparecerão aqui.</string>
+    <string name="charts_pace">No ritmo para %1$s de comissão este mês</string>
+    <string name="charts_best_month">Melhor mês: %1$s · %2$s</string>
+    <string name="charts_per_sale">Por venda</string>
+    <string name="charts_avg_time">Tempo médio por venda</string>
+    <string name="charts_avg_sale">Valor médio da venda</string>
+    <string name="charts_avg_commission">Comissão média por venda</string>
+    <string name="charts_biggest">Maior venda</string>
+    <string name="charts_trends">Tendências</string>
+    <string name="charts_weekly">Semanal</string>
+    <string name="charts_monthly">Mensal</string>
+    <string name="charts_week_of">Semana de %1$s</string>
+    <string name="charts_best_days">Vendas fechadas por dia da semana</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>
@@ -562,5 +577,10 @@
         <item quantity="one">Atrasado · precisa de %1$s/dia por %2$d dia</item>
         <item quantity="many">Atrasado · precisa de %1$s/dia por %2$d dias</item>
         <item quantity="other">Atrasado · precisa de %1$s/dia por %2$d dias</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="one">%d venda fechada</item>
+        <item quantity="many">%d vendas fechadas</item>
+        <item quantity="other">%d vendas fechadas</item>
     </plurals>
 </resources>

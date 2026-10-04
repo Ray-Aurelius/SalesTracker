@@ -528,6 +528,21 @@
     <string name="widget_locked">مقفل. افتح التطبيق لرؤية أهدافك.</string>
     <string name="widget_empty">لا توجد أهداف بعد. انقر للإضافة.</string>
     <string name="widget_description">تقدّم أهدافك بنظرة سريعة. يعرض النسب المئوية فقط، ولا يعرض المبالغ أو الأسماء أبدًا.</string>
+    <string name="tab_charts">الرسوم البيانية</string>
+    <string name="title_charts">الرسوم البيانية</string>
+    <string name="charts_empty">سجّل بعض المبيعات وستظهر رسومك البيانية هنا.</string>
+    <string name="charts_pace">في طريقك إلى عمولة %1$s هذا الشهر</string>
+    <string name="charts_best_month">أفضل شهر: %1$s · %2$s</string>
+    <string name="charts_per_sale">لكل عملية بيع</string>
+    <string name="charts_avg_time">متوسط الوقت لكل عملية بيع</string>
+    <string name="charts_avg_sale">متوسط مبلغ البيع</string>
+    <string name="charts_avg_commission">متوسط العمولة لكل عملية بيع</string>
+    <string name="charts_biggest">أكبر عملية بيع</string>
+    <string name="charts_trends">الاتجاهات</string>
+    <string name="charts_weekly">أسبوعي</string>
+    <string name="charts_monthly">شهري</string>
+    <string name="charts_week_of">أسبوع %1$s</string>
+    <string name="charts_best_days">المبيعات المغلقة حسب يوم الأسبوع</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>
@@ -583,5 +598,13 @@
         <item quantity="few">متأخر · يلزم %1$s يوميًا لمدة %2$d أيام</item>
         <item quantity="many">متأخر · يلزم %1$s يوميًا لمدة %2$d يومًا</item>
         <item quantity="other">متأخر · يلزم %1$s يوميًا لمدة %2$d يوم</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="zero">%d عمليات بيع مغلقة</item>
+        <item quantity="one">عملية بيع واحدة مغلقة</item>
+        <item quantity="two">عمليتا بيع مغلقتان</item>
+        <item quantity="few">%d عمليات بيع مغلقة</item>
+        <item quantity="many">%d عملية بيع مغلقة</item>
+        <item quantity="other">%d عملية بيع مغلقة</item>
     </plurals>
 </resources>

@@ -528,6 +528,21 @@
     <string name="widget_locked">Gesperrt. Öffne die App, um deine Ziele zu sehen.</string>
     <string name="widget_empty">Noch keine Ziele. Tippe, um eines hinzuzufügen.</string>
     <string name="widget_description">Dein Zielfortschritt auf einen Blick. Zeigt nur Prozentwerte, nie Beträge oder Namen.</string>
+    <string name="tab_charts">Diagramme</string>
+    <string name="title_charts">Diagramme</string>
+    <string name="charts_empty">Erfasse ein paar Verkäufe, dann erscheinen hier deine Diagramme.</string>
+    <string name="charts_pace">Auf Kurs für %1$s Provision in diesem Monat</string>
+    <string name="charts_best_month">Bester Monat: %1$s · %2$s</string>
+    <string name="charts_per_sale">Pro Verkauf</string>
+    <string name="charts_avg_time">Durchschnittliche Zeit pro Verkauf</string>
+    <string name="charts_avg_sale">Durchschnittlicher Verkaufsbetrag</string>
+    <string name="charts_avg_commission">Durchschnittliche Provision pro Verkauf</string>
+    <string name="charts_biggest">Größter Verkauf</string>
+    <string name="charts_trends">Trends</string>
+    <string name="charts_weekly">Wöchentlich</string>
+    <string name="charts_monthly">Monatlich</string>
+    <string name="charts_week_of">Woche ab %1$s</string>
+    <string name="charts_best_days">Abschlüsse nach Wochentag</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>
@@ -555,5 +570,9 @@
     <plurals name="goal_behind_pace">
         <item quantity="one">Im Rückstand · %1$s/Tag nötig für %2$d Tag</item>
         <item quantity="other">Im Rückstand · %1$s/Tag nötig für %2$d Tage</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="one">%d Verkauf abgeschlossen</item>
+        <item quantity="other">%d Verkäufe abgeschlossen</item>
     </plurals>
 </resources>

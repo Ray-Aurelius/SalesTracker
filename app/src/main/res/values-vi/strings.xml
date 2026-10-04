@@ -528,6 +528,21 @@
     <string name="widget_locked">Đang khóa. Mở ứng dụng để xem mục tiêu.</string>
     <string name="widget_empty">Chưa có mục tiêu. Chạm để thêm.</string>
     <string name="widget_description">Tiến độ mục tiêu trong nháy mắt. Chỉ hiện phần trăm, không bao giờ hiện số tiền hay tên.</string>
+    <string name="tab_charts">Biểu đồ</string>
+    <string name="title_charts">Biểu đồ</string>
+    <string name="charts_empty">Ghi vài giao dịch và biểu đồ sẽ xuất hiện ở đây.</string>
+    <string name="charts_pace">Đang trên đà đạt %1$s hoa hồng tháng này</string>
+    <string name="charts_best_month">Tháng tốt nhất: %1$s · %2$s</string>
+    <string name="charts_per_sale">Mỗi giao dịch</string>
+    <string name="charts_avg_time">Thời gian TB mỗi giao dịch</string>
+    <string name="charts_avg_sale">Số tiền TB mỗi giao dịch</string>
+    <string name="charts_avg_commission">Hoa hồng TB mỗi giao dịch</string>
+    <string name="charts_biggest">Giao dịch lớn nhất</string>
+    <string name="charts_trends">Xu hướng</string>
+    <string name="charts_weekly">Theo tuần</string>
+    <string name="charts_monthly">Theo tháng</string>
+    <string name="charts_week_of">Tuần %1$s</string>
+    <string name="charts_best_days">Giao dịch đã chốt theo ngày trong tuần</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>
@@ -548,5 +563,8 @@
     </plurals>
     <plurals name="goal_behind_pace">
         <item quantity="other">Chậm tiến độ · cần %1$s mỗi ngày trong %2$d ngày</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="other">Đã chốt %d giao dịch</item>
     </plurals>
 </resources>

@@ -528,6 +528,21 @@
     <string name="widget_locked">잠겨 있습니다. 앱을 열어 목표를 확인하세요.</string>
     <string name="widget_empty">아직 목표가 없습니다. 탭하여 추가하세요.</string>
     <string name="widget_description">목표 진행 상황을 한눈에. 백분율만 표시하며 금액이나 이름은 표시하지 않습니다.</string>
+    <string name="tab_charts">차트</string>
+    <string name="title_charts">차트</string>
+    <string name="charts_empty">판매를 몇 건 기록하면 여기에 차트가 표시됩니다.</string>
+    <string name="charts_pace">이번 달 수수료 %1$s 달성 페이스</string>
+    <string name="charts_best_month">최고의 달: %1$s · %2$s</string>
+    <string name="charts_per_sale">판매당</string>
+    <string name="charts_avg_time">판매당 평균 시간</string>
+    <string name="charts_avg_sale">평균 판매 금액</string>
+    <string name="charts_avg_commission">판매당 평균 수수료</string>
+    <string name="charts_biggest">최대 판매</string>
+    <string name="charts_trends">추이</string>
+    <string name="charts_weekly">주별</string>
+    <string name="charts_monthly">월별</string>
+    <string name="charts_week_of">%1$s 주</string>
+    <string name="charts_best_days">요일별 성사 건수</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>
@@ -548,5 +563,8 @@
     </plurals>
     <plurals name="goal_behind_pace">
         <item quantity="other">뒤처짐 · %2$d일 동안 하루 %1$s 필요</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="other">%d건 성사</item>
     </plurals>
 </resources>

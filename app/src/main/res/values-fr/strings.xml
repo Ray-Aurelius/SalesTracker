@@ -528,6 +528,21 @@
     <string name="widget_locked">Verrouillé. Ouvrez l\'app pour voir vos objectifs.</string>
     <string name="widget_empty">Aucun objectif. Touchez pour en ajouter un.</string>
     <string name="widget_description">La progression de vos objectifs en un coup d\'œil. Uniquement des pourcentages, jamais de montants ni de noms.</string>
+    <string name="tab_charts">Graphiques</string>
+    <string name="title_charts">Graphiques</string>
+    <string name="charts_empty">Enregistrez quelques ventes et vos graphiques apparaîtront ici.</string>
+    <string name="charts_pace">En route pour %1$s de commission ce mois-ci</string>
+    <string name="charts_best_month">Meilleur mois : %1$s · %2$s</string>
+    <string name="charts_per_sale">Par vente</string>
+    <string name="charts_avg_time">Temps moyen par vente</string>
+    <string name="charts_avg_sale">Montant moyen d\'une vente</string>
+    <string name="charts_avg_commission">Commission moyenne par vente</string>
+    <string name="charts_biggest">Plus grosse vente</string>
+    <string name="charts_trends">Tendances</string>
+    <string name="charts_weekly">Hebdomadaire</string>
+    <string name="charts_monthly">Mensuel</string>
+    <string name="charts_week_of">Semaine du %1$s</string>
+    <string name="charts_best_days">Ventes conclues par jour de la semaine</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>
@@ -562,5 +577,10 @@
         <item quantity="one">En retard · %1$s/jour nécessaires pendant %2$d jour</item>
         <item quantity="many">En retard · %1$s/jour nécessaires pendant %2$d jours</item>
         <item quantity="other">En retard · %1$s/jour nécessaires pendant %2$d jours</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="one">%d vente conclue</item>
+        <item quantity="many">%d ventes conclues</item>
+        <item quantity="other">%d ventes conclues</item>
     </plurals>
 </resources>

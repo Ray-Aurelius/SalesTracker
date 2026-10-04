@@ -528,6 +528,21 @@
     <string name="widget_locked">Bloccato. Apri l\'app per vedere gli obiettivi.</string>
     <string name="widget_empty">Ancora nessun obiettivo. Tocca per aggiungerne uno.</string>
     <string name="widget_description">I progressi dei tuoi obiettivi a colpo d\'occhio. Solo percentuali, mai importi o nomi.</string>
+    <string name="tab_charts">Grafici</string>
+    <string name="title_charts">Grafici</string>
+    <string name="charts_empty">Registra qualche vendita e i tuoi grafici appariranno qui.</string>
+    <string name="charts_pace">In linea per %1$s di provvigione questo mese</string>
+    <string name="charts_best_month">Mese migliore: %1$s · %2$s</string>
+    <string name="charts_per_sale">Per vendita</string>
+    <string name="charts_avg_time">Tempo medio per vendita</string>
+    <string name="charts_avg_sale">Importo medio di vendita</string>
+    <string name="charts_avg_commission">Provvigione media per vendita</string>
+    <string name="charts_biggest">Vendita più grande</string>
+    <string name="charts_trends">Andamento</string>
+    <string name="charts_weekly">Settimanale</string>
+    <string name="charts_monthly">Mensile</string>
+    <string name="charts_week_of">Settimana del %1$s</string>
+    <string name="charts_best_days">Vendite chiuse per giorno della settimana</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>
@@ -562,5 +577,10 @@
         <item quantity="one">In ritardo · servono %1$s/giorno per %2$d giorno</item>
         <item quantity="many">In ritardo · servono %1$s/giorno per %2$d giorni</item>
         <item quantity="other">In ritardo · servono %1$s/giorno per %2$d giorni</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="one">%d vendita chiusa</item>
+        <item quantity="many">%d vendite chiuse</item>
+        <item quantity="other">%d vendite chiuse</item>
     </plurals>
 </resources>

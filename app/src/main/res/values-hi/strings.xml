@@ -528,6 +528,21 @@
     <string name="widget_locked">लॉक है। अपने लक्ष्य देखने के लिए ऐप खोलें।</string>
     <string name="widget_empty">अभी कोई लक्ष्य नहीं। जोड़ने के लिए टैप करें।</string>
     <string name="widget_description">एक नज़र में आपके लक्ष्यों की प्रगति। केवल प्रतिशत दिखाता है, कभी राशि या नाम नहीं।</string>
+    <string name="tab_charts">चार्ट</string>
+    <string name="title_charts">चार्ट</string>
+    <string name="charts_empty">कुछ बिक्री दर्ज करें, आपके चार्ट यहाँ दिखेंगे।</string>
+    <string name="charts_pace">इस महीने %1$s कमीशन की राह पर</string>
+    <string name="charts_best_month">सबसे अच्छा महीना: %1$s · %2$s</string>
+    <string name="charts_per_sale">प्रति बिक्री</string>
+    <string name="charts_avg_time">प्रति बिक्री औसत समय</string>
+    <string name="charts_avg_sale">औसत बिक्री राशि</string>
+    <string name="charts_avg_commission">प्रति बिक्री औसत कमीशन</string>
+    <string name="charts_biggest">सबसे बड़ी बिक्री</string>
+    <string name="charts_trends">रुझान</string>
+    <string name="charts_weekly">साप्ताहिक</string>
+    <string name="charts_monthly">मासिक</string>
+    <string name="charts_week_of">%1$s वाला सप्ताह</string>
+    <string name="charts_best_days">सप्ताह के दिन के अनुसार बंद बिक्री</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
@@ -555,5 +570,9 @@
     <plurals name="goal_behind_pace">
         <item quantity="one">पीछे · %2$d दिन के लिए %1$s/दिन चाहिए</item>
         <item quantity="other">पीछे · %2$d दिनों के लिए %1$s/दिन चाहिए</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="one">%d बिक्री बंद</item>
+        <item quantity="other">%d बिक्री बंद</item>
     </plurals>
 </resources>

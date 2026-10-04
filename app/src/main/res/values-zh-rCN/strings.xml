@@ -528,6 +528,21 @@
     <string name="widget_locked">已锁定。打开应用查看目标。</string>
     <string name="widget_empty">还没有目标。点按以添加。</string>
     <string name="widget_description">一眼查看目标进度。只显示百分比，绝不显示金额或姓名。</string>
+    <string name="tab_charts">图表</string>
+    <string name="title_charts">图表</string>
+    <string name="charts_empty">记录几笔销售后，图表会显示在这里。</string>
+    <string name="charts_pace">按当前进度，本月佣金约为 %1$s</string>
+    <string name="charts_best_month">最佳月份：%1$s · %2$s</string>
+    <string name="charts_per_sale">每笔销售</string>
+    <string name="charts_avg_time">每笔销售平均用时</string>
+    <string name="charts_avg_sale">平均销售金额</string>
+    <string name="charts_avg_commission">每笔销售平均佣金</string>
+    <string name="charts_biggest">最大一笔销售</string>
+    <string name="charts_trends">趋势</string>
+    <string name="charts_weekly">按周</string>
+    <string name="charts_monthly">按月</string>
+    <string name="charts_week_of">%1$s 当周</string>
+    <string name="charts_best_days">按星期统计的成交数</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>
@@ -548,5 +563,8 @@
     </plurals>
     <plurals name="goal_behind_pace">
         <item quantity="other">进度落后 · 接下来 %2$d 天每天需 %1$s</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="other">成交 %d 笔</item>
     </plurals>
 </resources>

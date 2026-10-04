@@ -528,6 +528,21 @@
     <string name="widget_locked">Заблокировано. Откройте приложение, чтобы увидеть цели.</string>
     <string name="widget_empty">Целей пока нет. Нажмите, чтобы добавить.</string>
     <string name="widget_description">Прогресс ваших целей одним взглядом. Только проценты, никаких сумм и имён.</string>
+    <string name="tab_charts">Графики</string>
+    <string name="title_charts">Графики</string>
+    <string name="charts_empty">Добавьте несколько продаж, и здесь появятся графики.</string>
+    <string name="charts_pace">В этом месяце выходите на %1$s комиссии</string>
+    <string name="charts_best_month">Лучший месяц: %1$s · %2$s</string>
+    <string name="charts_per_sale">На продажу</string>
+    <string name="charts_avg_time">Среднее время на продажу</string>
+    <string name="charts_avg_sale">Средняя сумма продажи</string>
+    <string name="charts_avg_commission">Средняя комиссия с продажи</string>
+    <string name="charts_biggest">Крупнейшая продажа</string>
+    <string name="charts_trends">Динамика</string>
+    <string name="charts_weekly">По неделям</string>
+    <string name="charts_monthly">По месяцам</string>
+    <string name="charts_week_of">Неделя с %1$s</string>
+    <string name="charts_best_days">Закрытые продажи по дням недели</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>
@@ -569,5 +584,11 @@
         <item quantity="few">Отставание · нужно %1$s/день в течение %2$d дней</item>
         <item quantity="many">Отставание · нужно %1$s/день в течение %2$d дней</item>
         <item quantity="other">Отставание · нужно %1$s/день в течение %2$d дня</item>
+    </plurals>
+    <plurals name="charts_closed_sales">
+        <item quantity="one">%d продажа закрыта</item>
+        <item quantity="few">%d продажи закрыто</item>
+        <item quantity="many">%d продаж закрыто</item>
+        <item quantity="other">%d продажи закрыто</item>
     </plurals>
 </resources>

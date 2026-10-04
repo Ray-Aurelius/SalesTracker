@@ -44,6 +44,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Calculate
+import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material.icons.filled.Insights
@@ -72,6 +73,7 @@ import androidx.compose.ui.unit.sp
 import com.salestracker.app.ui.AppViewModel
 import com.salestracker.app.ui.screens.AppearanceDialog
 import com.salestracker.app.ui.screens.CalculatorScreen
+import com.salestracker.app.ui.screens.ChartsScreen
 import com.salestracker.app.ui.screens.CalendarScreen
 import com.salestracker.app.ui.screens.ClientsScreen
 import com.salestracker.app.ui.screens.DashboardScreen
@@ -172,6 +174,7 @@ private enum class Tab(@StringRes val label: Int, @StringRes val title: Int, val
     CALENDAR(R.string.tab_calendar, R.string.title_calendar, Icons.Filled.CalendarMonth),
     TIMER(R.string.tab_timer, R.string.title_timer, Icons.Filled.Timer),
     CALCULATOR(R.string.tab_calc, R.string.title_calc, Icons.Filled.Calculate),
+    CHARTS(R.string.tab_charts, R.string.title_charts, Icons.Filled.BarChart),
 }
 
 /**
@@ -263,6 +266,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                 Tab.CALENDAR -> CalendarScreen(vm, data)
                 Tab.TIMER -> StopwatchScreen(vm, data)
                 Tab.CALCULATOR -> CalculatorScreen(vm)
+                Tab.CHARTS -> ChartsScreen(data)
             }
         }
     }
