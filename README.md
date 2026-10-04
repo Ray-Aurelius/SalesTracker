@@ -31,7 +31,7 @@ Everything is stored privately on the phone — no account or internet needed.
 ## Privacy & security
 
 - **No internet permission.** The manifest strips it, and the CI privacy audit fails the build if it ever appears. Nothing can be sent anywhere. Every release lists its permissions.
-- **Minimal permissions:** notifications, exact alarms, run at startup (re-arm reminders), biometric. Nothing else.
+- **Minimal permissions:** notifications, exact alarms (SCHEDULE_EXACT_ALARM, which the user allows once; USE_EXACT_ALARM is blocked by the CI audit because Play restricts it), run at startup (re-arm reminders), biometric. Nothing else.
 - **Release build** (not debuggable) signed with the permanent key.
 - **Encrypted at rest:** the data file is AES-256-GCM with a non-exportable Android Keystore key; older plain files are migrated and overwritten.
 - **No Google cloud backup or device transfer** of app data (`allowBackup=false`, data extraction rules exclude everything). Users move data only with their own encrypted backup file.
@@ -100,3 +100,10 @@ app/src/main/java/com/salestracker/app/
 ```
 
 Data file location on the phone: the app's private storage (`files/sales_data.json`). Uninstalling the app deletes it; Android's automatic backup includes it if backup is on.
+
+## Google Play
+
+- Every build attaches **QuotaVault.aab** (signed with the permanent key, which is the Play *upload key*) next to the APK. Upload the .aab in Play Console.
+- Targets Android 16 (API 36), as Play requires for new apps from Aug 31, 2026.
+- **Privacy policy:** `docs/privacy.html`, served by GitHub Pages at https://ray-aurelius.github.io/SalesTracker/privacy.html once Pages is enabled (Settings → Pages → Deploy from a branch → `main` / `/docs`).
+- **Store screenshots:** the "Play Store screenshots" workflow renders the real screens with sample data (Robolectric) and attaches them to the `store-assets` release.
