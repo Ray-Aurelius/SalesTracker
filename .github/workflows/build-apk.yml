@@ -43,10 +43,31 @@ jobs:
       - name: Run tests and build the APK
         run: |
           chmod +x gradlew
-          ./gradlew testDebugUnitTest assembleDebug --no-daemon
+          ./gradlew testDebugUnitTest assembleRelease --no-daemon
 
       - name: Rename APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk UltimateSalesProductivity.apk
+        run: |
+          APK=app/build/outputs/apk/release/app-release.apk
+          if [ ! -f "$APK" ]; then
+            echo "::error::No signed release APK. Is the SIGNING_KEYSTORE secret set?"
+            exit 1
+          fi
+          cp "$APK" UltimateSalesProductivity.apk
+
+      - name: Privacy audit (fails the build if the app could reach the internet or be debugged)
+        run: |
+          AAPT2="$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -1)aapt2"
+          "$AAPT2" dump permissions UltimateSalesProductivity.apk | tee permissions.txt
+          if grep -q "android.permission.INTERNET" permissions.txt; then
+            echo "::error::The app requests INTERNET. That breaks the privacy promise; build stopped."
+            exit 1
+          fi
+          if "$AAPT2" dump badging UltimateSalesProductivity.apk | grep -q "application-debuggable"; then
+            echo "::error::The app is debuggable. Release builds must not be; build stopped."
+            exit 1
+          fi
+          grep -o "name='[^']*'" permissions.txt | sed "s/name='\(.*\)'/- \1/" | sort -u > permission-list.md
+          echo "Permissions:"; cat permission-list.md
 
       - name: Keep a copy on the run page
         uses: actions/upload-artifact@v4
@@ -59,7 +80,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="build-${{ github.run_number }}"
+          {
+            echo "Open this page on your Android phone, tap **UltimateSalesProductivity.apk** to download, then open it to install."
+            echo
+            echo "**Privacy check passed:** no internet access, not debuggable. Every Android permission this build has:"
+            echo
+            cat permission-list.md
+            echo
+            echo "Built from commit ${{ github.sha }}."
+          } > notes.md
           gh release create "$TAG" UltimateSalesProductivity.apk \
             --title "Ultimate Sales Productivity build ${{ github.run_number }}" \
-            --notes "Open this page on your Android phone, tap UltimateSalesProductivity.apk to download, then open it to install. Built from commit ${{ github.sha }}." \
+            --notes-file notes.md \
             --latest

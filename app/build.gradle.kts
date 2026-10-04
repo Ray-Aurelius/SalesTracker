@@ -36,12 +36,13 @@ android {
         debug {
             if (stableKey.exists()) signingConfig = signingConfigs.getByName("stable")
         }
+        // What users install: not debuggable, so no computer can attach to the app or copy its files.
+        // Code shrinking stays off on purpose; it adds little security for an offline app and could
+        // introduce behavior differences that can't be tested on a phone before release.
         release {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            isMinifyEnabled = false
+            isDebuggable = false
+            if (stableKey.exists()) signingConfig = signingConfigs.getByName("stable")
         }
     }
 
