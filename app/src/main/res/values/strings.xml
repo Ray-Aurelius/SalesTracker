@@ -485,7 +485,6 @@
     <string name="trade_retail_ex">Customers · Sales · Add-ons · Appointments</string>
     <string name="trade_b2b">B2B &amp; software</string>
     <string name="trade_b2b_ex">Accounts · Deals · Expansions · Meetings</string>
-    <string name="trade_commission_note">Suggested starting commission: %1$s%%. You can change it any time on the Stats tab.</string>
 
     <string name="t_re_log">Log deal</string>
     <string name="t_re_edit">Edit deal</string>

@@ -14,7 +14,19 @@ Everything is stored privately on the phone — no account or internet needed.
 | **Timer** | Stopwatch for timing a sale. Pick the client, Start/Pause/Reset, then **Finish & log this sale** to save it with the time filled in. Keeps running if you switch tabs or leave the app. |
 | **Calc** | Calculator with + − × ÷ and % (e.g. `1200 × 15%` = 180), live result preview. |
 
-**Settings** (gear icon, top right): Security & privacy, Appearance, Text, Language. The eye icon next to it is **privacy mode** (hides every dollar amount).
+**Settings** (gear icon, top right): Security & privacy, Trade, Appearance, Accessibility, Text, Language.
+
+**Accessibility:** high-contrast palette, bold text, larger touch targets (56dp), text up to 200%, color-blind-friendly calendar highlights (each color has its own symbol), and a full TalkBack pass (headings, spoken calendar days and calculator keys). Also works with Select to Speak, Switch Access and magnification.
+
+**Sales trades:** General, Real estate, Insurance, Automotive, Home services & solar, Retail, B2B & software. Changes the app's wording (Clients / Customers / Homeowners / Accounts, Sale / Deal / Policy / Job, Upsell / Rider / Upgrade / Expansion, Appointment / Showing / Meeting / Site visit) and suggests a starting commission.
+
+**Pipeline & follow-ups:** each client has a stage (Lead → Contacted → Proposal → Negotiating → Won / Lost) with filter chips, plus a follow-up date that becomes a calendar appointment with a reminder. "Follow-ups due" shows at the top of Clients.
+
+**Welcome tour & demo mode:** first launch walks through the app, asks for your trade, and offers made-up sample data that can be removed in one tap (only the sample records are removed). Existing users skip the tour.
+
+**Manager report (PDF):** Stats → Report (PDF). Built on the phone; client names and commission are left out unless turned on; optional AES-256 password.
+
+**Home-screen widget:** goal progress as percentages only (never amounts or names). Shows "Locked" when app lock is on. The eye icon next to it is **privacy mode** (hides every dollar amount).
 
 ## Privacy & security
 
@@ -33,7 +45,7 @@ Everything is stored privately on the phone — no account or internet needed.
 
 **Encrypted backup:** **Back up to an encrypted file** saves all data in a password-protected file (AES-256-GCM, key derived from your password with PBKDF2-SHA256). Store it anywhere — Google Drive, Downloads, email. **Restore from a backup** brings it back on any phone. The password is never stored; if it's forgotten, the backup can't be opened.
 
-**Languages:** choose from to switch between English, Español, Français, Deutsch, Português, Русский, 中文, 日本語, हिन्दी, বাংলা and العربية (or follow the phone's language). Money always stays in your phone's own currency.
+**Languages:** 16 languages: English, Español, Français, Deutsch, Português, Italiano, Русский, Türkçe, 中文, 日本語, 한국어, Tiếng Việt, Bahasa Indonesia, हिन्दी, বাংলা and العربية (or follow the phone's language). Translations are machine-assisted; have native speakers review them before a wide launch. Money always stays in your phone's own currency.
 
 **Colors:** under Appearance choose Classic Teal, Grayscale, Soft Sunset (orange), Soft Rose (red), Calm Sage (green), or **Custom colors** picked on a color wheel (main, accent and background; shades are adjusted automatically to keep text readable), plus Auto / Light / Dark mode.
 

@@ -12,4 +12,9 @@
     <locale android:name="hi" />
     <locale android:name="bn" />
     <locale android:name="ar" />
+    <locale android:name="it" />
+    <locale android:name="ko" />
+    <locale android:name="tr" />
+    <locale android:name="vi" />
+    <locale android:name="id" />
 </locale-config>

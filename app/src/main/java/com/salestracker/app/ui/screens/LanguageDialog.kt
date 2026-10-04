@@ -39,6 +39,11 @@ val APP_LANGUAGES: List<Pair<String, String>> = listOf(
     "hi" to "हिन्दी",
     "bn" to "বাংলা",
     "ar" to "العربية",
+    "it" to "Italiano",
+    "ko" to "한국어",
+    "tr" to "Türkçe",
+    "vi" to "Tiếng Việt",
+    "id" to "Bahasa Indonesia",
 )
 
 @Composable
