@@ -1,15 +1,17 @@
 package com.salestracker.app.data
 
+import com.salestracker.app.R
+import androidx.annotation.StringRes
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.temporal.TemporalAdjusters
 
-enum class Period(val label: String) {
-    TODAY("Today"),
-    WEEK("This week"),
-    MONTH("This month"),
-    ALL("All time");
+enum class Period(@StringRes val label: Int) {
+    TODAY(R.string.period_today),
+    WEEK(R.string.period_week),
+    MONTH(R.string.period_month),
+    ALL(R.string.period_all);
 
     fun startMillis(zone: ZoneId = ZoneId.systemDefault()): Long {
         val today = LocalDate.now(zone)

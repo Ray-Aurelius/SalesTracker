@@ -2,6 +2,8 @@
 
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.R
+import androidx.compose.ui.res.stringResource
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -48,23 +50,23 @@ fun AppearanceDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Appearance") },
+        title = { Text(stringResource(R.string.appearance_title)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("Mode", style = MaterialTheme.typography.labelLarge)
+                Text(stringResource(R.string.appearance_mode), style = MaterialTheme.typography.labelLarge)
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     DarkMode.entries.forEach { m ->
-                        FilterChip(selected = darkMode == m, onClick = { onDarkMode(m) }, label = { Text(m.label) })
+                        FilterChip(selected = darkMode == m, onClick = { onDarkMode(m) }, label = { Text(stringResource(m.label)) })
                     }
                 }
                 Spacer(Modifier.size(4.dp))
-                Text("Color palette", style = MaterialTheme.typography.labelLarge)
+                Text(stringResource(R.string.appearance_palette), style = MaterialTheme.typography.labelLarge)
                 AppPalette.entries.forEach { p ->
                     PaletteRow(p, selected = p == palette, isDark = isDark) { onPalette(p) }
                 }
             }
         },
-        confirmButton = { TextButton(onClick = onDismiss) { Text("Done") } },
+        confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.done)) } },
     )
 }
 
@@ -92,9 +94,9 @@ private fun PaletteRow(p: AppPalette, selected: Boolean, isDark: Boolean, onClic
         }
         Spacer(Modifier.width(10.dp))
         Column(Modifier.weight(1f)) {
-            Text(p.label, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.SemiBold)
-            Text(p.description, style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
+            Text(stringResource(p.label), style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.SemiBold)
+            Text(stringResource(p.description), style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
         }
-        if (selected) Icon(Icons.Filled.CheckCircle, contentDescription = "Selected", tint = colors.primary)
+        if (selected) Icon(Icons.Filled.CheckCircle, contentDescription = stringResource(R.string.selected), tint = colors.primary)
     }
 }

@@ -1,5 +1,7 @@
 package com.salestracker.app.ui.theme
 
+import com.salestracker.app.R
+import androidx.annotation.StringRes
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -10,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 
 /** Light / dark preference chosen in the Appearance dialog. */
-enum class DarkMode(val label: String) { SYSTEM("Auto"), LIGHT("Light"), DARK("Dark") }
+enum class DarkMode(@StringRes val label: Int) { SYSTEM(R.string.mode_auto), LIGHT(R.string.mode_light), DARK(R.string.mode_dark) }
 
 /**
  * The hand-picked colors for one palette in one mode. Every other Material color
@@ -58,9 +60,9 @@ private fun Tones.toScheme(dark: Boolean): ColorScheme {
     )
 }
 
-enum class AppPalette(val label: String, val description: String, private val light: Tones, private val dark: Tones) {
+enum class AppPalette(@StringRes val label: Int, @StringRes val description: Int, private val light: Tones, private val dark: Tones) {
     TEAL(
-        "Classic Teal", "The original look",
+        R.string.palette_teal, R.string.palette_teal_desc,
         light = Tones(
             0xFF1B5E5A, 0xFFFFFFFF, 0xFFBCEBE5, 0xFF00201E,
             0xFFB4651A, 0xFFFFFFFF, 0xFFFFDCC0, 0xFF2E1500,
@@ -77,7 +79,7 @@ enum class AppPalette(val label: String, val description: String, private val li
         ),
     ),
     GRAYSCALE(
-        "Grayscale", "No color, just shades of gray",
+        R.string.palette_gray, R.string.palette_gray_desc,
         light = Tones(
             0xFF333333, 0xFFFFFFFF, 0xFFE0E0E0, 0xFF1A1A1A,
             0xFF5C5C5C, 0xFFFFFFFF, 0xFFE8E8E8, 0xFF1F1F1F,
@@ -96,7 +98,7 @@ enum class AppPalette(val label: String, val description: String, private val li
         ),
     ),
     SUNSET(
-        "Soft Sunset", "Warm, gentle oranges",
+        R.string.palette_sunset, R.string.palette_sunset_desc,
         light = Tones(
             0xFFA0521F, 0xFFFFFFFF, 0xFFFFDBC8, 0xFF361400,
             0xFF8F6342, 0xFFFFFFFF, 0xFFFBE2CC, 0xFF2E1704,
@@ -113,7 +115,7 @@ enum class AppPalette(val label: String, val description: String, private val li
         ),
     ),
     ROSE(
-        "Soft Rose", "Muted, calming reds",
+        R.string.palette_rose, R.string.palette_rose_desc,
         light = Tones(
             0xFF9C3D49, 0xFFFFFFFF, 0xFFFFD9DC, 0xFF3F0012,
             0xFF8A5A5E, 0xFFFFFFFF, 0xFFFFDADC, 0xFF32171A,
@@ -130,7 +132,7 @@ enum class AppPalette(val label: String, val description: String, private val li
         ),
     ),
     SAGE(
-        "Calm Sage", "Soft, natural greens",
+        R.string.palette_sage, R.string.palette_sage_desc,
         light = Tones(
             0xFF4A6741, 0xFFFFFFFF, 0xFFCCEBBF, 0xFF072100,
             0xFF6E6A3E, 0xFFFFFFFF, 0xFFF0EAB8, 0xFF201D00,

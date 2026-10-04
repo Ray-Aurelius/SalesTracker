@@ -2,6 +2,9 @@
 
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.R
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -79,10 +82,12 @@ fun GoalsScreen(vm: AppViewModel, data: AppData) {
             if (goals.isEmpty()) {
                 item(key = "empty-$scope") {
                     Text(
-                        when (scope) {
-                            GoalScope.PERSONAL -> "Set a target for what you want to earn, like \"\$5,000 commission this month\"."
-                            GoalScope.COMPANY -> "Track your part of the company's numbers, like \"\$100,000 revenue this quarter\"."
-                        },
+                        stringResource(
+                            when (scope) {
+                                GoalScope.PERSONAL -> R.string.goals_personal_empty
+                                GoalScope.COMPANY -> R.string.goals_company_empty
+                            }
+                        ),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -129,9 +134,9 @@ private fun SectionHeader(scope: GoalScope, onAdd: () -> Unit) {
         )
         Spacer(Modifier.width(8.dp))
         Column(Modifier.weight(1f)) {
-            Text("${scope.label} goals", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
+            Text(stringResource(if (scope == GoalScope.PERSONAL) R.string.goals_personal else R.string.goals_company), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
             Text(
-                if (scope == GoalScope.PERSONAL) "Your own income targets" else "Team and company targets",
+                stringResource(if (scope == GoalScope.PERSONAL) R.string.goals_personal_sub else R.string.goals_company_sub),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -139,7 +144,7 @@ private fun SectionHeader(scope: GoalScope, onAdd: () -> Unit) {
         TextButton(onClick = onAdd) {
             Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.size(18.dp))
             Spacer(Modifier.width(4.dp))
-            Text("Add")
+            Text(stringResource(R.string.add))
         }
     }
 }
@@ -158,7 +163,7 @@ private fun GoalCard(goal: Goal, progress: GoalProgress, onClick: () -> Unit, on
                 Column(Modifier.weight(1f)) {
                     Text(goal.name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
                     Text(
-                        "${goal.period.label} · ${goal.metric.short}",
+                        "${stringResource(goal.period.label)} · ${stringResource(goal.metric.short)}",
                         style = MaterialTheme.typography.labelMedium,
                         color = colors.onSurfaceVariant,
                     )
@@ -176,7 +181,7 @@ private fun GoalCard(goal: Goal, progress: GoalProgress, onClick: () -> Unit, on
                 modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp).height(10.dp),
             )
             Text(
-                "${formatMoney(progress.current)} of ${formatMoney(progress.target)}",
+                stringResource(R.string.goal_progress_of, formatMoney(progress.current), formatMoney(progress.target)),
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Medium,
             )
@@ -184,7 +189,7 @@ private fun GoalCard(goal: Goal, progress: GoalProgress, onClick: () -> Unit, on
             PaceLine(progress)
             if (goal.metric == GoalMetric.MANUAL) {
                 OutlinedButton(onClick = onUpdateManual, modifier = Modifier.padding(top = 8.dp)) {
-                    Text("Update progress")
+                    Text(stringResource(R.string.update_progress))
                 }
             }
         }
@@ -195,16 +200,16 @@ private fun GoalCard(goal: Goal, progress: GoalProgress, onClick: () -> Unit, on
 @Composable
 private fun PaceLine(p: GoalProgress) {
     val colors = MaterialTheme.colorScheme
-    val dayWord = if (p.daysLeft == 1L) "day" else "days"
+    val days = p.daysLeft.toInt()
     val (icon, tint, text) = when {
-        p.reached -> Triple(Icons.Filled.CheckCircle, colors.primary, "Goal reached! Keep the momentum going.")
+        p.reached -> Triple(Icons.Filled.CheckCircle, colors.primary, stringResource(R.string.goal_reached))
         p.onPace -> Triple(
             Icons.Filled.TrendingUp, colors.primary,
-            "On pace · ${formatMoney(p.remaining)} to go, ${p.daysLeft} $dayWord left",
+            pluralStringResource(R.plurals.goal_on_pace, days, formatMoney(p.remaining), days),
         )
         else -> Triple(
             Icons.Filled.TrendingDown, colors.error,
-            "Behind pace · ${formatMoney(p.neededPerDay)}/day needed for ${p.daysLeft} $dayWord",
+            pluralStringResource(R.plurals.goal_behind_pace, days, formatMoney(p.neededPerDay), days),
         )
     }
     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -236,38 +241,38 @@ private fun GoalDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(if (initial == null) "New goal" else "Edit goal") },
+        title = { Text(stringResource(if (initial == null) R.string.new_goal else R.string.edit_goal)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(
                     name, { name = it },
-                    label = { Text("Goal name") },
-                    placeholder = { Text(if (scope == GoalScope.PERSONAL) "e.g. Monthly commission" else "e.g. Q4 team revenue") },
+                    label = { Text(stringResource(R.string.goal_name)) },
+                    placeholder = { Text(stringResource(if (scope == GoalScope.PERSONAL) R.string.goal_name_hint_personal else R.string.goal_name_hint_company)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
                     modifier = Modifier.fillMaxWidth(),
                 )
-                Label("Type")
+                Label(stringResource(R.string.goal_type))
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     GoalScope.entries.forEach { s ->
-                        FilterChip(selected = scope == s, onClick = { scope = s }, label = { Text(s.label) })
+                        FilterChip(selected = scope == s, onClick = { scope = s }, label = { Text(stringResource(s.label)) })
                     }
                 }
-                Label("Track")
+                Label(stringResource(R.string.goal_track))
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     GoalMetric.entries.forEach { m ->
-                        FilterChip(selected = metric == m, onClick = { metric = m }, label = { Text(m.label) })
+                        FilterChip(selected = metric == m, onClick = { metric = m }, label = { Text(stringResource(m.label)) })
                     }
                 }
-                Label("Time frame")
+                Label(stringResource(R.string.goal_time_frame))
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     GoalPeriod.entries.forEach { p ->
-                        FilterChip(selected = period == p, onClick = { period = p }, label = { Text(p.label) })
+                        FilterChip(selected = period == p, onClick = { period = p }, label = { Text(stringResource(p.label)) })
                     }
                 }
                 OutlinedTextField(
                     target, { target = it },
-                    label = { Text("Target amount") },
+                    label = { Text(stringResource(R.string.goal_target)) },
                     prefix = { Text("$") },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
@@ -276,7 +281,7 @@ private fun GoalDialog(
                 if (metric == GoalMetric.MANUAL) {
                     OutlinedTextField(
                         manual, { manual = it },
-                        label = { Text("Progress so far") },
+                        label = { Text(stringResource(R.string.goal_progress_so_far)) },
                         prefix = { Text("$") },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
@@ -284,14 +289,14 @@ private fun GoalDialog(
                     )
                 } else {
                     Text(
-                        "Progress fills in automatically from the closed sales you log.",
+                        stringResource(R.string.goal_auto_note),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
                 if (initial != null) {
                     TextButton(onClick = { confirmDelete = true }) {
-                        Text("Delete goal", color = MaterialTheme.colorScheme.error)
+                        Text(stringResource(R.string.delete_goal), color = MaterialTheme.colorScheme.error)
                     }
                 }
             }
@@ -313,14 +318,14 @@ private fun GoalDialog(
                     )
                     onDismiss()
                 },
-            ) { Text("Save") }
+            ) { Text(stringResource(R.string.save)) }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
     )
 
     if (confirmDelete && initial != null) {
         ConfirmDeleteDialog(
-            what = "this goal",
+            title = stringResource(R.string.delete_goal_q),
             onConfirm = { onDelete(initial.id); onDismiss() },
             onDismiss = { confirmDelete = false },
         )
@@ -338,17 +343,17 @@ private fun ManualProgressDialog(goal: Goal, onSave: (Double) -> Unit, onDismiss
     val addValue = parseMoney(add)
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Update progress") },
+        title = { Text(stringResource(R.string.update_progress)) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("${goal.name}: ${formatMoney(goal.manualProgress)} of ${formatMoney(goal.target)} so far.")
+                Text(stringResource(R.string.manual_status, goal.name, formatMoney(goal.manualProgress), formatMoney(goal.target)))
                 OutlinedTextField(
                     add, { add = it },
-                    label = { Text("Amount to add") },
+                    label = { Text(stringResource(R.string.amount_to_add)) },
                     prefix = { Text("$") },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                    supportingText = { Text("Use a minus sign to subtract, e.g. -50") },
+                    supportingText = { Text(stringResource(R.string.subtract_hint)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
@@ -357,8 +362,8 @@ private fun ManualProgressDialog(goal: Goal, onSave: (Double) -> Unit, onDismiss
             TextButton(enabled = addValue != null, onClick = {
                 onSave((goal.manualProgress + (addValue ?: 0.0)).coerceAtLeast(0.0))
                 onDismiss()
-            }) { Text("Add") }
+            }) { Text(stringResource(R.string.add)) }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
     )
 }

@@ -1,4 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sales Tracker</string>
+
+    <!-- Tabs (short label) and screen titles -->
+    <string name="tab_stats">Stats</string>
+    <string name="title_stats">Productivity</string>
+    <string name="tab_goals">Goals</string>
+    <string name="title_goals">Goals</string>
+    <string name="tab_clients">Clients</string>
+    <string name="title_clients">Clients</string>
+    <string name="tab_calendar">Calendar</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="tab_timer">Timer</string>
+    <string name="title_timer">Sale timer</string>
+    <string name="tab_calc">Calc</string>
+    <string name="title_calc">Calculator</string>
+    <string name="cd_colors">Colors and theme</string>
+    <string name="cd_language">Language</string>
+
+    <!-- Common -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="done">Done</string>
+    <string name="add">Add</string>
+    <string name="notes">Notes</string>
+    <string name="delete_cannot_undo">This can\'t be undone.</string>
+
+    <!-- Language picker -->
+    <string name="language_title">Language</string>
+    <string name="language_system">Phone\'s language</string>
+
+    <!-- Appearance -->
+    <string name="appearance_title">Appearance</string>
+    <string name="appearance_mode">Mode</string>
+    <string name="mode_auto">Auto</string>
+    <string name="mode_light">Light</string>
+    <string name="mode_dark">Dark</string>
+    <string name="appearance_palette">Color palette</string>
+    <string name="selected">Selected</string>
+    <string name="palette_teal">Classic Teal</string>
+    <string name="palette_teal_desc">The original look</string>
+    <string name="palette_gray">Grayscale</string>
+    <string name="palette_gray_desc">No color, just shades of gray</string>
+    <string name="palette_sunset">Soft Sunset</string>
+    <string name="palette_sunset_desc">Warm, gentle oranges</string>
+    <string name="palette_rose">Soft Rose</string>
+    <string name="palette_rose_desc">Muted, calming reds</string>
+    <string name="palette_sage">Calm Sage</string>
+    <string name="palette_sage_desc">Soft, natural greens</string>
+
+    <!-- Periods -->
+    <string name="period_today">Today</string>
+    <string name="period_week">This week</string>
+    <string name="period_month">This month</string>
+    <string name="period_quarter">This quarter</string>
+    <string name="period_year">This year</string>
+    <string name="period_all">All time</string>
+
+    <!-- Stats -->
+    <string name="close_rate">Close rate</string>
+    <string name="close_rate_detail">%1$d closed of %2$d opportunities</string>
+    <string name="upsell_rate">Upsell rate</string>
+    <string name="upsell_rate_detail">%1$d of %2$d closed sales included an upsell</string>
+    <string name="upsell_acceptance">Upsell acceptance</string>
+    <string name="upsell_acceptance_detail">%1$d accepted of %2$d offered</string>
+    <string name="commission_earned">Commission earned</string>
+    <string name="commission_default_rate">Default rate %1$s%% · tap to change</string>
+    <string name="revenue">Revenue</string>
+    <string name="upsell_revenue">Upsell revenue</string>
+    <string name="avg_sale">Avg sale</string>
+    <string name="avg_time">Avg time / sale</string>
+    <string name="sales_header">Sales (%1$d)</string>
+    <string name="no_sales_period">No sales logged in this period. Tap \"Log sale\" or use the Timer tab.</string>
+    <string name="commission_rate_title">Commission rate</string>
+    <string name="commission_rate_body">Filled in on every new sale. You can still change it on individual sales. Sales you\'ve already logged keep the rate they were saved with.</string>
+    <string name="default_rate">Default rate</string>
+
+    <!-- Sale form and list -->
+    <string name="log_sale">Log sale</string>
+    <string name="edit_sale">Edit sale</string>
+    <string name="sale_closed">Sale closed</string>
+    <string name="sale_amount">Sale amount</string>
+    <string name="potential_amount">Potential amount</string>
+    <string name="upsell_offered">Upsell offered</string>
+    <string name="upsell_accepted">Upsell accepted</string>
+    <string name="upsell_amount">Upsell amount</string>
+    <string name="commission_rate">Commission rate</string>
+    <string name="you_earn">You earn %1$s on this sale</string>
+    <string name="no_commission_unless_closed">No commission unless the sale closes</string>
+    <string name="time_spent">Time spent</string>
+    <string name="minutes_short">Min</string>
+    <string name="seconds_short">Sec</string>
+    <string name="tag_closed">Closed</string>
+    <string name="tag_not_closed">Not closed</string>
+    <string name="tag_upsell">Upsell ✓</string>
+    <string name="tag_upsell_declined">Upsell declined</string>
+    <string name="cd_delete_sale">Delete sale</string>
+    <string name="delete_sale_q">Delete this sale?</string>
+
+    <!-- Client picker -->
+    <string name="client_none_saved">No clients saved yet</string>
+    <string name="client_choose">Choose client (optional)</string>
+    <string name="client_none">No client</string>
+
+    <!-- Clients -->
+    <string name="search_clients">Search name, phone or email</string>
+    <string name="no_clients_yet">No clients yet. Tap \"Add client\" to save your first one.</string>
+    <string name="no_clients_match">No clients match \"%1$s\".</string>
+    <string name="no_sales_yet">No sales yet</string>
+    <plurals name="client_summary">
+        <item quantity="one">%1$d sale · %2$s closed · %3$s</item>
+        <item quantity="other">%1$d sales · %2$s closed · %3$s</item>
+    </plurals>
+    <string name="add_client">Add client</string>
+    <string name="cd_call">Call %1$s</string>
+    <string name="cd_email">Email %1$s</string>
+    <string name="new_client">New client</string>
+    <string name="edit_client">Edit client</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="check_email">Check the email address</string>
+    <string name="delete_client">Delete client</string>
+    <string name="delete_client_q">Delete %1$s?</string>
+    <string name="no_phone_app">No phone app found</string>
+    <string name="no_email_app">No email app found</string>
+
+    <!-- Calendar -->
+    <plurals name="day_sales_summary">
+        <item quantity="one">%1$d sale logged · %2$d closed · %3$s</item>
+        <item quantity="other">%1$d sales logged · %2$d closed · %3$s</item>
+    </plurals>
+    <string name="no_appointments">No appointments.</string>
+    <string name="appointment_fab">Appointment</string>
+    <string name="cd_prev_month">Previous month</string>
+    <string name="cd_next_month">Next month</string>
+    <string name="new_appointment">New appointment</string>
+    <string name="edit_appointment">Edit appointment</string>
+    <string name="appt_title">Title</string>
+    <string name="appt_title_hint">e.g. Follow-up call</string>
+    <string name="notifications_off_warning">Notifications are off, so this reminder can\'t ring. Tap to turn them on.</string>
+    <string name="delete_appointment">Delete appointment</string>
+    <string name="delete_appointment_q">Delete this appointment?</string>
+    <string name="reminder_picker">Reminder: %1$s</string>
+
+    <!-- Reminders -->
+    <string name="reminder_none">No reminder</string>
+    <string name="reminder_at_start">At start time</string>
+    <plurals name="reminder_minutes_before">
+        <item quantity="one">%d minute before</item>
+        <item quantity="other">%d minutes before</item>
+    </plurals>
+    <plurals name="reminder_hours_before">
+        <item quantity="one">%d hour before</item>
+        <item quantity="other">%d hours before</item>
+    </plurals>
+    <string name="reminder_day_before">1 day before</string>
+    <string name="channel_reminders">Appointment reminders</string>
+    <string name="channel_reminders_desc">Rings like an alarm before your appointments</string>
+    <string name="notif_starting_now">Starting now (%1$s)</string>
+    <string name="notif_today_at">Today at %1$s</string>
+    <string name="notif_tomorrow_at">Tomorrow at %1$s</string>
+    <string name="notif_date_at">%1$s at %2$s</string>
+    <string name="notif_with">with %1$s</string>
+    <string name="notif_snooze">Snooze %1$d min</string>
+    <string name="notif_dismiss">Dismiss</string>
+
+    <!-- Timer -->
+    <string name="timer_running">Timing this sale…</string>
+    <string name="timer_paused">Paused</string>
+    <string name="timer_hint">Start when you begin with a customer</string>
+    <string name="reset">Reset</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="start">Start</string>
+    <string name="finish_and_log">Finish &amp; log this sale</string>
+    <plurals name="today_sales_summary">
+        <item quantity="one">%1$d sale logged, %2$d closed</item>
+        <item quantity="other">%1$d sales logged, %2$d closed</item>
+    </plurals>
+    <string name="time_on_sales">Time on sales: %1$s</string>
+    <string name="avg_per_sale">Average per sale: %1$s</string>
+
+    <!-- Goals -->
+    <string name="scope_personal">Personal</string>
+    <string name="scope_company">Company</string>
+    <string name="goals_personal">Personal goals</string>
+    <string name="goals_company">Company goals</string>
+    <string name="goals_personal_sub">Your own income targets</string>
+    <string name="goals_company_sub">Team and company targets</string>
+    <string name="goals_personal_empty">Set a target for what you want to earn, like \"$5,000 commission this month\".</string>
+    <string name="goals_company_empty">Track your part of the company\'s numbers, like \"$100,000 revenue this quarter\".</string>
+    <string name="metric_revenue">Sales revenue</string>
+    <string name="metric_revenue_short">Revenue</string>
+    <string name="metric_commission">Commission earned</string>
+    <string name="metric_commission_short">Commission</string>
+    <string name="metric_upsell">Upsell revenue</string>
+    <string name="metric_upsell_short">Upsells</string>
+    <string name="metric_manual">I\'ll update it myself</string>
+    <string name="metric_manual_short">Manual</string>
+    <string name="goal_progress_of">%1$s of %2$s</string>
+    <string name="goal_reached">Goal reached! Keep the momentum going.</string>
+    <plurals name="goal_on_pace">
+        <item quantity="one">On pace · %1$s to go, %2$d day left</item>
+        <item quantity="other">On pace · %1$s to go, %2$d days left</item>
+    </plurals>
+    <plurals name="goal_behind_pace">
+        <item quantity="one">Behind pace · %1$s/day needed for %2$d day</item>
+        <item quantity="other">Behind pace · %1$s/day needed for %2$d days</item>
+    </plurals>
+    <string name="update_progress">Update progress</string>
+    <string name="new_goal">New goal</string>
+    <string name="edit_goal">Edit goal</string>
+    <string name="goal_name">Goal name</string>
+    <string name="goal_name_hint_personal">e.g. Monthly commission</string>
+    <string name="goal_name_hint_company">e.g. Q4 team revenue</string>
+    <string name="goal_type">Type</string>
+    <string name="goal_track">Track</string>
+    <string name="goal_time_frame">Time frame</string>
+    <string name="goal_target">Target amount</string>
+    <string name="goal_progress_so_far">Progress so far</string>
+    <string name="goal_auto_note">Progress fills in automatically from the closed sales you log.</string>
+    <string name="delete_goal">Delete goal</string>
+    <string name="delete_goal_q">Delete this goal?</string>
+    <string name="manual_status">%1$s: %2$s of %3$s so far.</string>
+    <string name="amount_to_add">Amount to add</string>
+    <string name="subtract_hint">Use a minus sign to subtract, e.g. -50</string>
 </resources>

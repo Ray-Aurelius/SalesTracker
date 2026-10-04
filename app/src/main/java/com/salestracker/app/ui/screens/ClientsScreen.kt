@@ -2,6 +2,9 @@
 
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.R
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -77,7 +80,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
                 OutlinedTextField(
                     value = query,
                     onValueChange = { query = it },
-                    placeholder = { Text("Search name, phone or email") },
+                    placeholder = { Text(stringResource(R.string.search_clients)) },
                     leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
@@ -86,8 +89,8 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
             if (clients.isEmpty()) {
                 item {
                     Text(
-                        if (data.clients.isEmpty()) "No clients yet. Tap \"Add client\" to save your first one."
-                        else "No clients match \"$query\".",
+                        if (data.clients.isEmpty()) stringResource(R.string.no_clients_yet)
+                        else stringResource(R.string.no_clients_match, query),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
@@ -96,8 +99,11 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
                 val stats = SalesStats.of(salesByClient[client.id].orEmpty())
                 ClientCard(
                     client = client,
-                    summary = if (stats.opportunities == 0) "No sales yet"
-                    else "${stats.opportunities} sales · ${formatPercent(stats.closeRate)} closed · ${formatMoney(stats.revenue)}",
+                    summary = if (stats.opportunities == 0) stringResource(R.string.no_sales_yet)
+                    else pluralStringResource(
+                        R.plurals.client_summary, stats.opportunities,
+                        stats.opportunities, formatPercent(stats.closeRate), formatMoney(stats.revenue),
+                    ),
                     onClick = { editing = client },
                     onCall = { dial(context, client.phone) },
                     onEmail = { email(context, client.email) },
@@ -107,7 +113,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
         ExtendedFloatingActionButton(
             onClick = { adding = true },
             icon = { Icon(Icons.Filled.PersonAdd, contentDescription = null) },
-            text = { Text("Add client") },
+            text = { Text(stringResource(R.string.add_client)) },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         )
     }
@@ -140,10 +146,10 @@ private fun ClientCard(
                 Text(summary, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
             }
             if (client.phone.isNotBlank()) {
-                IconButton(onClick = onCall) { Icon(Icons.Filled.Phone, contentDescription = "Call ${client.fullName}") }
+                IconButton(onClick = onCall) { Icon(Icons.Filled.Phone, contentDescription = stringResource(R.string.cd_call, client.fullName)) }
             }
             if (client.email.isNotBlank()) {
-                IconButton(onClick = onEmail) { Icon(Icons.Filled.Email, contentDescription = "Email ${client.fullName}") }
+                IconButton(onClick = onEmail) { Icon(Icons.Filled.Email, contentDescription = stringResource(R.string.cd_email, client.fullName)) }
             }
         }
     }
@@ -170,23 +176,23 @@ private fun ClientDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(if (initial == null) "New client" else "Edit client") },
+        title = { Text(stringResource(if (initial == null) R.string.new_client else R.string.edit_client)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedTextField(first, { first = it }, label = { Text("First name") }, singleLine = true,
+                OutlinedTextField(first, { first = it }, label = { Text(stringResource(R.string.first_name)) }, singleLine = true,
                     keyboardOptions = nameCaps, modifier = Modifier.fillMaxWidth())
-                OutlinedTextField(last, { last = it }, label = { Text("Last name") }, singleLine = true,
+                OutlinedTextField(last, { last = it }, label = { Text(stringResource(R.string.last_name)) }, singleLine = true,
                     keyboardOptions = nameCaps, modifier = Modifier.fillMaxWidth())
-                OutlinedTextField(phone, { phone = it }, label = { Text("Phone") }, singleLine = true,
+                OutlinedTextField(phone, { phone = it }, label = { Text(stringResource(R.string.phone)) }, singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone), modifier = Modifier.fillMaxWidth())
-                OutlinedTextField(email, { email = it }, label = { Text("Email") }, singleLine = true,
+                OutlinedTextField(email, { email = it }, label = { Text(stringResource(R.string.email)) }, singleLine = true,
                     isError = !emailValid,
-                    supportingText = { if (!emailValid) Text("Check the email address") },
+                    supportingText = { if (!emailValid) Text(stringResource(R.string.check_email)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth())
-                OutlinedTextField(notes, { notes = it }, label = { Text("Notes") }, minLines = 2, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(notes, { notes = it }, label = { Text(stringResource(R.string.notes)) }, minLines = 2, modifier = Modifier.fillMaxWidth())
                 if (initial != null) {
                     TextButton(onClick = { confirmDelete = true }) {
-                        Text("Delete client", color = MaterialTheme.colorScheme.error)
+                        Text(stringResource(R.string.delete_client), color = MaterialTheme.colorScheme.error)
                     }
                 }
             }
@@ -204,14 +210,14 @@ private fun ClientDialog(
                     )
                 )
                 onDismiss()
-            }) { Text("Save") }
+            }) { Text(stringResource(R.string.save)) }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
     )
 
     if (confirmDelete && initial != null) {
         ConfirmDeleteDialog(
-            what = initial.fullName,
+            title = stringResource(R.string.delete_client_q, initial.fullName),
             onConfirm = { onDelete(initial.id); onDismiss() },
             onDismiss = { confirmDelete = false },
         )
@@ -219,10 +225,10 @@ private fun ClientDialog(
 }
 
 private fun dial(context: Context, phone: String) =
-    launch(context, Intent(Intent.ACTION_DIAL, Uri.parse("tel:${Uri.encode(phone)}")), "No phone app found")
+    launch(context, Intent(Intent.ACTION_DIAL, Uri.parse("tel:${Uri.encode(phone)}")), context.getString(R.string.no_phone_app))
 
 private fun email(context: Context, address: String) =
-    launch(context, Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:${address.trim()}")), "No email app found")
+    launch(context, Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:${address.trim()}")), context.getString(R.string.no_email_app))
 
 private fun launch(context: Context, intent: Intent, error: String) {
     try {

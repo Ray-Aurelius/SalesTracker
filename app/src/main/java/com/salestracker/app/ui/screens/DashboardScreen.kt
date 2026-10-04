@@ -2,6 +2,8 @@
 
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.R
+import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -74,31 +76,31 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Period.entries.forEach { p ->
-                        FilterChip(selected = period == p, onClick = { period = p }, label = { Text(p.label) })
+                        FilterChip(selected = period == p, onClick = { period = p }, label = { Text(stringResource(p.label)) })
                     }
                 }
             }
             item {
                 RateCard(
-                    title = "Close rate",
+                    title = stringResource(R.string.close_rate),
                     rate = stats.closeRate,
-                    detail = "${stats.closed} closed of ${stats.opportunities} opportunities",
+                    detail = stringResource(R.string.close_rate_detail, stats.closed, stats.opportunities),
                     color = MaterialTheme.colorScheme.primary,
                 )
             }
             item {
                 RateCard(
-                    title = "Upsell rate",
+                    title = stringResource(R.string.upsell_rate),
                     rate = stats.upsellRate,
-                    detail = "${stats.upsellsAccepted} of ${stats.closed} closed sales included an upsell",
+                    detail = stringResource(R.string.upsell_rate_detail, stats.upsellsAccepted, stats.closed),
                     color = MaterialTheme.colorScheme.secondary,
                 )
             }
             item {
                 RateCard(
-                    title = "Upsell acceptance",
+                    title = stringResource(R.string.upsell_acceptance),
                     rate = stats.upsellAcceptance,
-                    detail = "${stats.upsellsAccepted} accepted of ${stats.upsellsOffered} offered",
+                    detail = stringResource(R.string.upsell_acceptance_detail, stats.upsellsAccepted, stats.upsellsOffered),
                     color = MaterialTheme.colorScheme.tertiary,
                 )
             }
@@ -106,9 +108,9 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                 Card(onClick = { editingRate = true }, modifier = Modifier.fillMaxWidth()) {
                     Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
-                            Text("Commission earned", style = MaterialTheme.typography.titleMedium)
+                            Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.titleMedium)
                             Text(
-                                "Default rate ${formatRateInput(data.defaultCommissionPercent)}% · tap to change",
+                                stringResource(R.string.commission_default_rate, formatRateInput(data.defaultCommissionPercent)),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -124,19 +126,19 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             }
             item {
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    StatCard("Revenue", formatMoney(stats.revenue), Modifier.weight(1f))
-                    StatCard("Upsell revenue", formatMoney(stats.upsellRevenue), Modifier.weight(1f))
+                    StatCard(stringResource(R.string.revenue), formatMoney(stats.revenue), Modifier.weight(1f))
+                    StatCard(stringResource(R.string.upsell_revenue), formatMoney(stats.upsellRevenue), Modifier.weight(1f))
                 }
             }
             item {
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    StatCard("Avg sale", formatMoney(stats.averageSale), Modifier.weight(1f))
-                    StatCard("Avg time / sale", formatDuration(stats.averageSeconds), Modifier.weight(1f))
+                    StatCard(stringResource(R.string.avg_sale), formatMoney(stats.averageSale), Modifier.weight(1f))
+                    StatCard(stringResource(R.string.avg_time), formatDuration(stats.averageSeconds), Modifier.weight(1f))
                 }
             }
             item {
                 Text(
-                    "Sales (${sales.size})",
+                    stringResource(R.string.sales_header, sales.size),
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(top = 8.dp),
                 )
@@ -144,7 +146,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             if (sales.isEmpty()) {
                 item {
                     Text(
-                        "No sales logged for ${period.label.lowercase()}. Tap \"Log sale\" or use the Timer tab.",
+                        stringResource(R.string.no_sales_period),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
@@ -152,7 +154,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             items(sales, key = { it.id }) { sale ->
                 SaleCard(
                     sale = sale,
-                    clientName = sale.clientId?.let { clientsById[it]?.fullName } ?: "No client",
+                    clientName = sale.clientId?.let { clientsById[it]?.fullName } ?: stringResource(R.string.client_none),
                     onClick = { editing = sale },
                     onDelete = { deleting = sale },
                 )
@@ -161,7 +163,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
         ExtendedFloatingActionButton(
             onClick = { adding = true },
             icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-            text = { Text("Log sale") },
+            text = { Text(stringResource(R.string.log_sale)) },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         )
     }
@@ -184,7 +186,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
         )
     }
     deleting?.let { s ->
-        ConfirmDeleteDialog("this sale", onConfirm = { vm.deleteSale(s.id) }, onDismiss = { deleting = null })
+        ConfirmDeleteDialog(stringResource(R.string.delete_sale_q), onConfirm = { vm.deleteSale(s.id) }, onDismiss = { deleting = null })
     }
 }
 
@@ -227,18 +229,17 @@ private fun CommissionRateDialog(current: Double, onSave: (Double) -> Unit, onDi
     val value = text.toDoubleOrNull()
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Commission rate") },
+        title = { Text(stringResource(R.string.commission_rate_title)) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(
-                    "Filled in on every new sale. You can still change it on individual sales. " +
-                        "Sales you've already logged keep the rate they were saved with.",
+                    stringResource(R.string.commission_rate_body),
                     style = MaterialTheme.typography.bodyMedium,
                 )
                 OutlinedTextField(
                     value = text,
                     onValueChange = { v -> text = v.filter { it.isDigit() || it == '.' } },
-                    label = { Text("Default rate") },
+                    label = { Text(stringResource(R.string.default_rate)) },
                     suffix = { Text("%") },
                     singleLine = true,
                     isError = value == null || value > 100,
@@ -249,9 +250,9 @@ private fun CommissionRateDialog(current: Double, onSave: (Double) -> Unit, onDi
         },
         confirmButton = {
             TextButton(enabled = value != null && value <= 100, onClick = { onSave(value ?: 0.0); onDismiss() }) {
-                Text("Save")
+                Text(stringResource(R.string.save))
             }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
     )
 }

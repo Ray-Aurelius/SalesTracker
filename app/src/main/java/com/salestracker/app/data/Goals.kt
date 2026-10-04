@@ -1,5 +1,7 @@
 package com.salestracker.app.data
 
+import com.salestracker.app.R
+import androidx.annotation.StringRes
 import org.json.JSONObject
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -7,18 +9,18 @@ import java.time.ZoneId
 import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalAdjusters
 
-enum class GoalScope(val label: String) { PERSONAL("Personal"), COMPANY("Company") }
+enum class GoalScope(@StringRes val label: Int) { PERSONAL(R.string.scope_personal), COMPANY(R.string.scope_company) }
 
 /** What a goal measures. Everything except MANUAL is tracked automatically from logged sales. */
-enum class GoalMetric(val label: String, val short: String) {
-    REVENUE("Sales revenue", "Revenue"),
-    COMMISSION("Commission earned", "Commission"),
-    UPSELL("Upsell revenue", "Upsells"),
-    MANUAL("I'll update it myself", "Manual"),
+enum class GoalMetric(@StringRes val label: Int, @StringRes val short: Int) {
+    REVENUE(R.string.metric_revenue, R.string.metric_revenue_short),
+    COMMISSION(R.string.metric_commission, R.string.metric_commission_short),
+    UPSELL(R.string.metric_upsell, R.string.metric_upsell_short),
+    MANUAL(R.string.metric_manual, R.string.metric_manual_short),
 }
 
-enum class GoalPeriod(val label: String) {
-    WEEK("This week"), MONTH("This month"), QUARTER("This quarter"), YEAR("This year");
+enum class GoalPeriod(@StringRes val label: Int) {
+    WEEK(R.string.period_week), MONTH(R.string.period_month), QUARTER(R.string.period_quarter), YEAR(R.string.period_year);
 
     /** First day of the current period and the first day after it. */
     fun range(today: LocalDate = LocalDate.now()): Pair<LocalDate, LocalDate> = when (this) {

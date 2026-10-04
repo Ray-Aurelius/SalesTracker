@@ -1,5 +1,6 @@
 package com.salestracker.app.reminders
 
+import com.salestracker.app.data.localizedFormatter
 import android.app.AlarmManager
 import android.app.Notification
 import android.app.NotificationChannel
@@ -27,14 +28,17 @@ import java.util.Locale
 /** Choices offered in the appointment dialog, in minutes before the start (null = none). */
 val REMINDER_CHOICES: List<Int?> = listOf(null, 0, 5, 10, 15, 30, 60, 120, 1440)
 
-fun reminderLabel(minutes: Int?): String = when (minutes) {
-    null -> "No reminder"
-    0 -> "At start time"
-    1440 -> "1 day before"
-    else -> if (minutes % 60 == 0) {
-        val h = minutes / 60
-        "$h hour${if (h == 1) "" else "s"} before"
-    } else "$minutes minutes before"
+fun reminderLabel(context: Context, minutes: Int?): String {
+    val r = context.resources
+    return when (minutes) {
+        null -> r.getString(R.string.reminder_none)
+        0 -> r.getString(R.string.reminder_at_start)
+        1440 -> r.getString(R.string.reminder_day_before)
+        else -> if (minutes % 60 == 0) {
+            val h = minutes / 60
+            r.getQuantityString(R.plurals.reminder_hours_before, h, h)
+        } else r.getQuantityString(R.plurals.reminder_minutes_before, minutes, minutes)
+    }
 }
 
 /** Schedules, cancels and re-creates appointment alarms. */
@@ -91,8 +95,8 @@ object ReminderScheduler {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
         val nm = context.getSystemService(NotificationManager::class.java)
         if (nm.getNotificationChannel(CHANNEL_ID) != null) return
-        val channel = NotificationChannel(CHANNEL_ID, "Appointment reminders", NotificationManager.IMPORTANCE_HIGH).apply {
-            description = "Rings like an alarm before your appointments"
+        val channel = NotificationChannel(CHANNEL_ID, context.getString(R.string.channel_reminders), NotificationManager.IMPORTANCE_HIGH).apply {
+            description = context.getString(R.string.channel_reminders_desc)
             setSound(
                 RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
                     ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION),
@@ -116,13 +120,13 @@ object ReminderScheduler {
         val time = formatMinuteOfDay(appt.minuteOfDay)
         val date = LocalDate.ofEpochDay(appt.epochDay)
         val whenText = when {
-            appt.startMillis() <= System.currentTimeMillis() + 60_000 -> "Starting now ($time)"
-            date == LocalDate.now() -> "Today at $time"
-            date == LocalDate.now().plusDays(1) -> "Tomorrow at $time"
-            else -> "${date.format(DateTimeFormatter.ofPattern("EEE, MMM d", Locale.getDefault()))} at $time"
+            appt.startMillis() <= System.currentTimeMillis() + 60_000 -> context.getString(R.string.notif_starting_now, time)
+            date == LocalDate.now() -> context.getString(R.string.notif_today_at, time)
+            date == LocalDate.now().plusDays(1) -> context.getString(R.string.notif_tomorrow_at, time)
+            else -> context.getString(R.string.notif_date_at, date.format(localizedFormatter("EEEMMMd")), time)
         }
         val client = appt.clientId?.let { id -> data.clients.firstOrNull { it.id == id }?.fullName }
-        val line = listOfNotNull(whenText, client?.let { "with $it" }).joinToString(" · ")
+        val line = listOfNotNull(whenText, client?.let { context.getString(R.string.notif_with, it) }).joinToString(" · ")
         val body = if (appt.notes.isBlank()) line else "$line\n${appt.notes}"
 
         val nid = notificationId(appt.id)
@@ -140,8 +144,8 @@ object ReminderScheduler {
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setContentIntent(open)
             .setAutoCancel(true)
-            .addAction(0, "Snooze $SNOOZE_MINUTES min", actionIntent(context, ReminderReceiver.ACTION_SNOOZE, appt.id))
-            .addAction(0, "Dismiss", actionIntent(context, ReminderReceiver.ACTION_DISMISS, appt.id))
+            .addAction(0, context.getString(R.string.notif_snooze, SNOOZE_MINUTES), actionIntent(context, ReminderReceiver.ACTION_SNOOZE, appt.id))
+            .addAction(0, context.getString(R.string.notif_dismiss), actionIntent(context, ReminderReceiver.ACTION_DISMISS, appt.id))
             .build()
         // Keep ringing until the salesperson responds, like a real alarm.
         notification.flags = notification.flags or Notification.FLAG_INSISTENT

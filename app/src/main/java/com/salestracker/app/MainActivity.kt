@@ -2,10 +2,21 @@
 
 package com.salestracker.app
 
+import com.salestracker.app.ui.screens.LanguageDialog
+import androidx.compose.material.icons.filled.Language
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.remember
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.res.stringResource
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -51,7 +62,8 @@ import com.salestracker.app.ui.screens.StopwatchScreen
 import com.salestracker.app.ui.theme.SalesTrackerTheme
 import com.salestracker.app.ui.theme.isDarkTheme
 
-class MainActivity : ComponentActivity() {
+// AppCompatActivity (a kind of ComponentActivity) is what lets the app switch language on its own.
+class MainActivity : AppCompatActivity() {
     private val vm: AppViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,20 +101,46 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-private enum class Tab(val label: String, val title: String, val icon: ImageVector) {
-    DASHBOARD("Stats", "Productivity", Icons.Filled.Insights),
-    GOALS("Goals", "Goals", Icons.Filled.Flag),
-    CLIENTS("Clients", "Clients", Icons.Filled.People),
-    CALENDAR("Calendar", "Calendar", Icons.Filled.CalendarMonth),
-    TIMER("Timer", "Sale timer", Icons.Filled.Timer),
-    CALCULATOR("Calc", "Calculator", Icons.Filled.Calculate),
+private enum class Tab(@StringRes val label: Int, @StringRes val title: Int, val icon: ImageVector) {
+    DASHBOARD(R.string.tab_stats, R.string.title_stats, Icons.Filled.Insights),
+    GOALS(R.string.tab_goals, R.string.title_goals, Icons.Filled.Flag),
+    CLIENTS(R.string.tab_clients, R.string.title_clients, Icons.Filled.People),
+    CALENDAR(R.string.tab_calendar, R.string.title_calendar, Icons.Filled.CalendarMonth),
+    TIMER(R.string.tab_timer, R.string.title_timer, Icons.Filled.Timer),
+    CALCULATOR(R.string.tab_calc, R.string.title_calc, Icons.Filled.Calculate),
+}
+
+/**
+ * Picks one font size for every tab label: the largest (up to the normal 12sp) at which even the
+ * longest label, e.g. "Calendar" or "Calendario", fits on one line. All labels share it, so they look even.
+ */
+@Composable
+private fun rememberTabLabelSize(labels: List<String>): TextUnit {
+    val measurer = rememberTextMeasurer()
+    val density = LocalDensity.current
+    val screenWidth = LocalConfiguration.current.screenWidthDp
+    val style = MaterialTheme.typography.labelMedium
+    return remember(labels, screenWidth, style, density) {
+        // Items share the width equally with 8dp gaps; keep a little breathing room on each side.
+        val itemDp = (screenWidth - 8f * (labels.size - 1)) / labels.size - 6f
+        val maxPx = with(density) { itemDp.dp.toPx() }
+        var size = 12f
+        while (size > 8f && labels.any {
+                measurer.measure(it, style.copy(fontSize = size.sp), maxLines = 1, softWrap = false).size.width > maxPx
+            }
+        ) size -= 0.5f
+        size.sp
+    }
 }
 
 @Composable
 private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     var tab by rememberSaveable { mutableStateOf(Tab.DASHBOARD) }
     var showAppearance by rememberSaveable { mutableStateOf(false) }
+    var showLanguage by rememberSaveable { mutableStateOf(false) }
     val data by vm.data.collectAsState()
+    val labels = Tab.entries.map { stringResource(it.label) }
+    val labelSize = rememberTabLabelSize(labels)
 
     LaunchedEffect(vm.pendingOpenDay) {
         if (vm.pendingOpenDay != null) tab = Tab.CALENDAR
@@ -111,23 +149,25 @@ private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(tab.title) },
+                title = { Text(stringResource(tab.title)) },
                 actions = {
+                    IconButton(onClick = { showLanguage = true }) {
+                        Icon(Icons.Filled.Language, contentDescription = stringResource(R.string.cd_language))
+                    }
                     IconButton(onClick = { showAppearance = true }) {
-                        Icon(Icons.Filled.Palette, contentDescription = "Colors and theme")
+                        Icon(Icons.Filled.Palette, contentDescription = stringResource(R.string.cd_colors))
                     }
                 },
             )
         },
         bottomBar = {
             NavigationBar {
-                Tab.entries.forEach { t ->
+                Tab.entries.forEachIndexed { i, t ->
                     NavigationBarItem(
                         selected = tab == t,
                         onClick = { tab = t },
                         icon = { Icon(t.icon, contentDescription = null) },
-                        // Slightly smaller, one-line labels so "Calendar" fits neatly beside the others.
-                        label = { Text(t.label, fontSize = 11.sp, maxLines = 1, softWrap = false) },
+                        label = { Text(labels[i], fontSize = labelSize, maxLines = 1, softWrap = false) },
                     )
                 }
             }
@@ -145,6 +185,9 @@ private fun SalesApp(vm: AppViewModel, isDark: Boolean) {
         }
     }
 
+    if (showLanguage) {
+        LanguageDialog(onDismiss = { showLanguage = false })
+    }
     if (showAppearance) {
         AppearanceDialog(
             palette = vm.palette,

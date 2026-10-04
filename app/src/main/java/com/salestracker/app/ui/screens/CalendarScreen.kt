@@ -2,6 +2,11 @@
 
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.data.localizedFormatter
+import com.salestracker.app.data.appLocale
+import com.salestracker.app.R
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import android.Manifest
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -89,9 +94,10 @@ import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.Locale
 
-private val monthTitle = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.getDefault())
-private val dayTitle = DateTimeFormatter.ofPattern("EEEE, MMMM d", Locale.getDefault())
-private val shortDate = DateTimeFormatter.ofPattern("EEE, MMM d, yyyy", Locale.getDefault())
+// Built on demand so they follow the language chosen in the app.
+private fun monthTitle() = localizedFormatter("MMMMyyyy")
+private fun dayTitle() = localizedFormatter("EEEEMMMMd")
+private fun shortDate() = localizedFormatter("EEEMMMdyyyy")
 
 @Composable
 fun CalendarScreen(vm: AppViewModel, data: AppData) {
@@ -137,10 +143,13 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
             }
             item {
                 Column {
-                    Text(selected.format(dayTitle), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp))
+                    Text(selected.format(dayTitle()), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp))
                     if (dayStats.opportunities > 0) {
                         Text(
-                            "${dayStats.opportunities} sales logged · ${dayStats.closed} closed · ${formatMoney(dayStats.revenue)}",
+                            pluralStringResource(
+                                R.plurals.day_sales_summary, dayStats.opportunities,
+                                dayStats.opportunities, dayStats.closed, formatMoney(dayStats.revenue),
+                            ),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.primary,
                         )
@@ -148,7 +157,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                 }
             }
             if (dayAppts.isEmpty()) {
-                item { Text("No appointments.", color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                item { Text(stringResource(R.string.no_appointments), color = MaterialTheme.colorScheme.onSurfaceVariant) }
             }
             items(dayAppts, key = { it.id }) { a ->
                 Card(onClick = { editing = a }, modifier = Modifier.fillMaxWidth()) {
@@ -174,7 +183,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                                     )
                                     Spacer(Modifier.width(4.dp))
                                     Text(
-                                        reminderLabel(a.reminderMinutes),
+                                        reminderLabel(LocalContext.current, a.reminderMinutes),
                                         style = MaterialTheme.typography.labelSmall,
                                         color = MaterialTheme.colorScheme.secondary,
                                     )
@@ -188,7 +197,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
         ExtendedFloatingActionButton(
             onClick = { adding = true },
             icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-            text = { Text("Appointment") },
+            text = { Text(stringResource(R.string.appointment_fab)) },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         )
     }
@@ -219,20 +228,20 @@ private fun MonthGrid(
 ) {
     Column {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onPrev) { Icon(Icons.Filled.ChevronLeft, contentDescription = "Previous month") }
+            IconButton(onClick = onPrev) { Icon(Icons.Filled.ChevronLeft, contentDescription = stringResource(R.string.cd_prev_month)) }
             Text(
-                month.format(monthTitle),
+                month.format(monthTitle()),
                 style = MaterialTheme.typography.titleLarge,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.weight(1f),
             )
-            IconButton(onClick = onNext) { Icon(Icons.Filled.ChevronRight, contentDescription = "Next month") }
+            IconButton(onClick = onNext) { Icon(Icons.Filled.ChevronRight, contentDescription = stringResource(R.string.cd_next_month)) }
         }
-        TextButton(onClick = onToday, modifier = Modifier.align(Alignment.CenterHorizontally)) { Text("Today") }
+        TextButton(onClick = onToday, modifier = Modifier.align(Alignment.CenterHorizontally)) { Text(stringResource(R.string.period_today)) }
 
         // Sunday-first week, matching US calendars.
         val weekdays = listOf(7, 1, 2, 3, 4, 5, 6).map {
-            java.time.DayOfWeek.of(it).getDisplayName(TextStyle.SHORT, Locale.getDefault())
+            java.time.DayOfWeek.of(it).getDisplayName(TextStyle.SHORT, appLocale())
         }
         Row {
             weekdays.forEach {
@@ -337,13 +346,13 @@ private fun AppointmentDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(if (initial == null) "New appointment" else "Edit appointment") },
+        title = { Text(stringResource(if (initial == null) R.string.new_appointment else R.string.edit_appointment)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(
                     title, { title = it },
-                    label = { Text("Title") },
-                    placeholder = { Text("e.g. Follow-up call") },
+                    label = { Text(stringResource(R.string.appt_title)) },
+                    placeholder = { Text(stringResource(R.string.appt_title_hint)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
                     modifier = Modifier.fillMaxWidth(),
@@ -357,7 +366,7 @@ private fun AppointmentDialog(
                 ) {
                     Icon(Icons.Filled.Event, contentDescription = null)
                     Spacer(Modifier.width(8.dp))
-                    Text(date.format(shortDate), modifier = Modifier.weight(1f))
+                    Text(date.format(shortDate()), modifier = Modifier.weight(1f))
                 }
                 OutlinedButton(
                     onClick = {
@@ -377,16 +386,16 @@ private fun AppointmentDialog(
                             Icon(Icons.Filled.NotificationsOff, contentDescription = null, tint = MaterialTheme.colorScheme.error)
                             Spacer(Modifier.width(8.dp))
                             Text(
-                                "Notifications are off, so this reminder can't ring. Tap to turn them on.",
+                                stringResource(R.string.notifications_off_warning),
                                 style = MaterialTheme.typography.bodySmall,
                             )
                         }
                     }
                 }
-                OutlinedTextField(notes, { notes = it }, label = { Text("Notes") }, minLines = 2, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(notes, { notes = it }, label = { Text(stringResource(R.string.notes)) }, minLines = 2, modifier = Modifier.fillMaxWidth())
                 if (initial != null) {
                     TextButton(onClick = { confirmDelete = true }) {
-                        Text("Delete appointment", color = MaterialTheme.colorScheme.error)
+                        Text(stringResource(R.string.delete_appointment), color = MaterialTheme.colorScheme.error)
                     }
                 }
             }
@@ -407,14 +416,14 @@ private fun AppointmentDialog(
                 // First time someone sets a reminder, ask for notification permission.
                 if (reminder != null && !notificationsOn) askForNotifications()
                 onDismiss()
-            }) { Text("Save") }
+            }) { Text(stringResource(R.string.save)) }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
     )
 
     if (confirmDelete && initial != null) {
         ConfirmDeleteDialog(
-            what = "this appointment",
+            title = stringResource(R.string.delete_appointment_q),
             onConfirm = { onDelete(initial.id); onDismiss() },
             onDismiss = { confirmDelete = false },
         )
@@ -432,14 +441,15 @@ private fun ReminderPicker(selected: Int?, onSelect: (Int?) -> Unit) {
             )
             Spacer(Modifier.width(8.dp))
             Text(
-                if (selected == null) "No reminder" else "Remind me: ${reminderLabel(selected).lowercase()}",
+                if (selected == null) stringResource(R.string.reminder_none)
+                else stringResource(R.string.reminder_picker, reminderLabel(LocalContext.current, selected)),
                 modifier = Modifier.weight(1f),
             )
             Icon(Icons.Filled.ArrowDropDown, contentDescription = null)
         }
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             REMINDER_CHOICES.forEach { m ->
-                DropdownMenuItem(text = { Text(reminderLabel(m)) }, onClick = { onSelect(m); expanded = false })
+                DropdownMenuItem(text = { Text(reminderLabel(LocalContext.current, m)) }, onClick = { onSelect(m); expanded = false })
             }
         }
     }

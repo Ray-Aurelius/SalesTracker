@@ -1,5 +1,8 @@
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.R
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -76,9 +79,9 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
         )
         Text(
             when {
-                vm.stopwatchRunning -> "Timing this sale…"
-                elapsed > 0 -> "Paused"
-                else -> "Start when you begin with a customer"
+                vm.stopwatchRunning -> stringResource(R.string.timer_running)
+                elapsed > 0 -> stringResource(R.string.timer_paused)
+                else -> stringResource(R.string.timer_hint)
             },
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -88,7 +91,7 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
             OutlinedButton(onClick = vm::resetStopwatch, enabled = elapsed > 0 && !vm.stopwatchRunning) {
                 Icon(Icons.Filled.Replay, contentDescription = null)
                 Spacer(Modifier.width(6.dp))
-                Text("Reset")
+                Text(stringResource(R.string.reset))
             }
             Button(
                 onClick = { if (vm.stopwatchRunning) vm.pauseStopwatch() else vm.startStopwatch() },
@@ -96,7 +99,7 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
             ) {
                 Icon(if (vm.stopwatchRunning) Icons.Filled.Pause else Icons.Filled.PlayArrow, contentDescription = null)
                 Spacer(Modifier.width(6.dp))
-                Text(if (vm.stopwatchRunning) "Pause" else if (elapsed > 0) "Resume" else "Start")
+                Text(stringResource(if (vm.stopwatchRunning) R.string.pause else if (elapsed > 0) R.string.resume else R.string.start))
             }
         }
         Spacer(Modifier.height(16.dp))
@@ -112,16 +115,16 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
         ) {
             Icon(Icons.Filled.CheckCircle, contentDescription = null)
             Spacer(Modifier.width(8.dp))
-            Text("Finish & log this sale")
+            Text(stringResource(R.string.finish_and_log))
         }
 
         Spacer(Modifier.height(32.dp))
         Card(Modifier.fillMaxWidth()) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text("Today", style = MaterialTheme.typography.titleMedium)
-                Text("${todayStats.opportunities} sales logged, ${todayStats.closed} closed")
-                Text("Time on sales: ${formatDuration(todayStats.totalSeconds)}")
-                Text("Average per sale: ${formatDuration(todayStats.averageSeconds)}")
+                Text(stringResource(R.string.period_today), style = MaterialTheme.typography.titleMedium)
+                Text(pluralStringResource(R.plurals.today_sales_summary, todayStats.opportunities, todayStats.opportunities, todayStats.closed))
+                Text(stringResource(R.string.time_on_sales, formatDuration(todayStats.totalSeconds)))
+                Text(stringResource(R.string.avg_per_sale, formatDuration(todayStats.averageSeconds)))
             }
         }
     }

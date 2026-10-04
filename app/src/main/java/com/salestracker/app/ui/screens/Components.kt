@@ -2,6 +2,8 @@
 
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.R
+import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -62,7 +64,7 @@ fun ClientPicker(
             Icon(Icons.Filled.Person, contentDescription = null)
             Spacer(Modifier.width(8.dp))
             Text(
-                selected?.fullName ?: if (clients.isEmpty()) "No clients saved yet" else "Choose client (optional)",
+                selected?.fullName ?: stringResource(if (clients.isEmpty()) R.string.client_none_saved else R.string.client_choose),
                 modifier = Modifier.weight(1f),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -70,7 +72,7 @@ fun ClientPicker(
             Icon(Icons.Filled.ArrowDropDown, contentDescription = null)
         }
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-            DropdownMenuItem(text = { Text("No client") }, onClick = { onSelect(null); expanded = false })
+            DropdownMenuItem(text = { Text(stringResource(R.string.client_none)) }, onClick = { onSelect(null); expanded = false })
             clients.sortedBy { it.fullName.lowercase() }.forEach { c ->
                 DropdownMenuItem(text = { Text(c.fullName) }, onClick = { onSelect(c.id); expanded = false })
             }
@@ -79,13 +81,13 @@ fun ClientPicker(
 }
 
 @Composable
-fun ConfirmDeleteDialog(what: String, onConfirm: () -> Unit, onDismiss: () -> Unit) {
+fun ConfirmDeleteDialog(title: String, onConfirm: () -> Unit, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Delete $what?") },
-        text = { Text("This can't be undone.") },
-        confirmButton = { TextButton(onClick = { onConfirm(); onDismiss() }) { Text("Delete") } },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } },
+        title = { Text(title) },
+        text = { Text(stringResource(R.string.delete_cannot_undo)) },
+        confirmButton = { TextButton(onClick = { onConfirm(); onDismiss() }) { Text(stringResource(R.string.delete)) } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
     )
 }
 
@@ -129,29 +131,29 @@ fun SaleDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(if (initial == null) "Log sale" else "Edit sale") },
+        title = { Text(stringResource(if (initial == null) R.string.log_sale else R.string.edit_sale)) },
         text = {
             Column(
                 Modifier.verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 ClientPicker(clients, clientId, { clientId = it })
-                SwitchRow("Sale closed", closed, { closed = it; if (!it) upsellAccepted = false })
+                SwitchRow(stringResource(R.string.sale_closed), closed, { closed = it; if (!it) upsellAccepted = false })
                 OutlinedTextField(
                     value = amount,
                     onValueChange = { amount = it },
-                    label = { Text(if (closed) "Sale amount" else "Potential amount") },
+                    label = { Text(stringResource(if (closed) R.string.sale_amount else R.string.potential_amount)) },
                     prefix = { Text("$") },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.fillMaxWidth(),
                 )
-                SwitchRow("Upsell offered", upsellOffered, {
+                SwitchRow(stringResource(R.string.upsell_offered), upsellOffered, {
                     upsellOffered = it
                     if (!it) upsellAccepted = false
                 })
                 SwitchRow(
-                    "Upsell accepted",
+                    stringResource(R.string.upsell_accepted),
                     upsellAccepted,
                     { upsellAccepted = it },
                     enabled = upsellOffered && closed,
@@ -160,7 +162,7 @@ fun SaleDialog(
                     OutlinedTextField(
                         value = upsellAmount,
                         onValueChange = { upsellAmount = it },
-                        label = { Text("Upsell amount") },
+                        label = { Text(stringResource(R.string.upsell_amount)) },
                         prefix = { Text("$") },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
@@ -170,7 +172,7 @@ fun SaleDialog(
                 OutlinedTextField(
                     value = commission,
                     onValueChange = { v -> commission = v.filter { it.isDigit() || it == '.' } },
-                    label = { Text("Commission rate") },
+                    label = { Text(stringResource(R.string.commission_rate)) },
                     suffix = { Text("%") },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
@@ -179,15 +181,15 @@ fun SaleDialog(
                         val revenue = if (!closed) 0.0 else
                             (parseMoney(amount) ?: 0.0) + if (upsellAccepted) parseMoney(upsellAmount) ?: 0.0 else 0.0
                         val earned = revenue * (commission.toDoubleOrNull() ?: 0.0) / 100.0
-                        Text(if (closed) "You earn ${formatMoney(earned)} on this sale" else "No commission unless the sale closes")
+                        Text(if (closed) stringResource(R.string.you_earn, formatMoney(earned)) else stringResource(R.string.no_commission_unless_closed))
                     },
                 )
-                Text("Time spent", style = MaterialTheme.typography.labelLarge)
+                Text(stringResource(R.string.time_spent), style = MaterialTheme.typography.labelLarge)
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedTextField(
                         value = minutes,
                         onValueChange = { v -> minutes = v.filter { it.isDigit() } },
-                        label = { Text("Min") },
+                        label = { Text(stringResource(R.string.minutes_short)) },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         modifier = Modifier.weight(1f),
@@ -195,7 +197,7 @@ fun SaleDialog(
                     OutlinedTextField(
                         value = seconds,
                         onValueChange = { v -> seconds = v.filter { it.isDigit() } },
-                        label = { Text("Sec") },
+                        label = { Text(stringResource(R.string.seconds_short)) },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         modifier = Modifier.weight(1f),
@@ -204,7 +206,7 @@ fun SaleDialog(
                 OutlinedTextField(
                     value = notes,
                     onValueChange = { notes = it },
-                    label = { Text("Notes") },
+                    label = { Text(stringResource(R.string.notes)) },
                     modifier = Modifier.fillMaxWidth(),
                     minLines = 2,
                 )
@@ -229,9 +231,9 @@ fun SaleDialog(
                     )
                 )
                 onDismiss()
-            }) { Text("Save") }
+            }) { Text(stringResource(R.string.save)) }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
     )
 }
 
@@ -247,8 +249,9 @@ fun SaleCard(sale: Sale, clientName: String, onClick: () -> Unit, onDelete: () -
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 val tags = buildList {
-                    add(if (sale.closed) "Closed" else "Not closed")
-                    if (sale.upsellAccepted) add("Upsell ✓") else if (sale.upsellOffered) add("Upsell declined")
+                    add(stringResource(if (sale.closed) R.string.tag_closed else R.string.tag_not_closed))
+                    if (sale.upsellAccepted) add(stringResource(R.string.tag_upsell))
+                    else if (sale.upsellOffered) add(stringResource(R.string.tag_upsell_declined))
                 }
                 Text(
                     tags.joinToString(" · "),
@@ -261,7 +264,7 @@ fun SaleCard(sale: Sale, clientName: String, onClick: () -> Unit, onDelete: () -
                 style = MaterialTheme.typography.titleMedium,
                 color = if (sale.closed) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, contentDescription = "Delete sale") }
+            IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.cd_delete_sale)) }
         }
     }
 }
