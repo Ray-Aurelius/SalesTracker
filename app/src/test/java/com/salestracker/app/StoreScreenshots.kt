@@ -31,7 +31,7 @@ import java.io.File
 
 /**
  * Renders the real app screens with the built-in sample data and saves Play Store screenshots
- * (1080 × 1920) to app/build/store-screenshots. Only runs when asked: ./gradlew testDebugUnitTest -PstoreShots
+ * (1080 × 1920) to app/build/store-screenshots, including the Charts tab. Only runs when asked: ./gradlew testDebugUnitTest -PstoreShots
  */
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
