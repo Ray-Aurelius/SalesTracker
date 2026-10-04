@@ -14,6 +14,8 @@ Everything is stored privately on the phone — no account or internet needed.
 | **Timer** | Stopwatch for timing a sale. Pick the client, Start/Pause/Reset, then **Finish & log this sale** to save it with the time filled in. Keeps running if you switch tabs or leave the app. |
 | **Calc** | Calculator with + − × ÷ and % (e.g. `1200 × 15%` = 180), live result preview. |
 
+**Languages:** tap the globe icon at the top right to switch between English, Español, Français, Deutsch, Português, Русский, 中文, 日本語, हिन्दी, বাংলা and العربية (or follow the phone's language). Money always stays in your phone's own currency.
+
 **Colors:** tap the palette icon at the top right to choose Classic Teal, Grayscale, Soft Sunset (orange), Soft Rose (red) or Calm Sage (green), and Auto / Light / Dark mode.
 
 ### How the percentages are calculated
