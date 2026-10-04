@@ -2,6 +2,8 @@
 
 package com.salestracker.app.ui.screens
 
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import com.salestracker.app.R
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -126,7 +128,7 @@ fun GoalsScreen(vm: AppViewModel, data: AppData) {
 
 @Composable
 private fun SectionHeader(scope: GoalScope, onAdd: () -> Unit) {
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 4.dp)) {
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 4.dp).semantics { heading() }) {
         Icon(
             if (scope == GoalScope.PERSONAL) Icons.Filled.Person else Icons.Filled.Business,
             contentDescription = null,

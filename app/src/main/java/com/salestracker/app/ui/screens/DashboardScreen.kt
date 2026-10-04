@@ -2,6 +2,8 @@
 
 package com.salestracker.app.ui.screens
 
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import java.time.ZoneId
 import java.time.Instant
 import com.salestracker.app.data.localizedFormatter
@@ -152,7 +154,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                 Text(
                     stringResource(R.string.sales_header, sales.size),
                     style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(top = 8.dp),
+                    modifier = Modifier.padding(top = 8.dp).semantics { heading() },
                 )
             }
             if (sales.isEmpty()) {
@@ -204,7 +206,8 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
 
 @Composable
 private fun RateCard(title: String, rate: Double, detail: String, color: Color) {
-    Card(Modifier.fillMaxWidth()) {
+    // Read as one item by screen readers: "Close rate, 42.0%, 5 closed of 12 opportunities".
+    Card(Modifier.fillMaxWidth().semantics(mergeDescendants = true) {}) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.Bottom) {
                 Text(title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
@@ -227,7 +230,7 @@ private fun RateCard(title: String, rate: Double, detail: String, color: Color) 
 
 @Composable
 private fun StatCard(label: String, value: String, modifier: Modifier = Modifier) {
-    Card(modifier) {
+    Card(modifier.semantics(mergeDescendants = true) {}) {
         Column(Modifier.padding(16.dp)) {
             Text(label, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Text(value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)

@@ -440,4 +440,31 @@
     <string name="client_ref">Job / work order #</string>
     <string name="client_ref_hint">e.g. WO-1042</string>
     <string name="client_ref_display">Job # %1$s</string>
+
+    <!-- Accessibility -->
+    <string name="a11y_title">Accessibility</string>
+    <string name="a11y_desc">High contrast, bold text, larger buttons and more</string>
+    <string name="a11y_contrast">High-contrast colors</string>
+    <string name="a11y_contrast_desc">Pure black and white with strong accent colors</string>
+    <string name="a11y_bold">Bold text</string>
+    <string name="a11y_bold_desc">Heavier letters that are easier to read</string>
+    <string name="a11y_targets">Larger touch targets</string>
+    <string name="a11y_targets_desc">Bigger tap areas for every button and switch</string>
+    <string name="a11y_symbols">Color-blind-friendly highlights</string>
+    <string name="a11y_symbols_desc">Each calendar highlight color also shows its own symbol</string>
+    <string name="a11y_text_link">Text size and easy-reading font</string>
+    <string name="a11y_system_note">The app also works with your phone\'s TalkBack screen reader, Select to Speak, Switch Access, magnification and font size settings.</string>
+    <string name="palette_contrast">High contrast</string>
+    <string name="palette_contrast_desc">Maximum readability</string>
+    <string name="cd_has_appointments">has appointments</string>
+    <string name="cd_highlight">%1$s highlight</string>
+    <string name="calc_clear">Clear</string>
+    <string name="calc_backspace">Delete</string>
+    <string name="calc_equals">Equals</string>
+    <string name="calc_percent">Percent</string>
+    <string name="calc_point">Point</string>
+    <string name="calc_plus">Plus</string>
+    <string name="calc_minus">Minus</string>
+    <string name="calc_times">Times</string>
+    <string name="calc_divide">Divided by</string>
 </resources>

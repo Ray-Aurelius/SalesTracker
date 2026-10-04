@@ -36,12 +36,16 @@ enum class AppFont(@StringRes val label: Int, @StringRes val description: Int, v
 }
 
 /** Text size choices, as a multiple of the phone's own text size setting. */
-val TEXT_SCALES = listOf(0.85f, 1.0f, 1.15f, 1.3f, 1.5f)
+val TEXT_SCALES = listOf(0.85f, 1.0f, 1.15f, 1.3f, 1.5f, 1.75f, 2.0f)
 
 /** The standard Material type scale with every style switched to [family]. */
-fun typographyFor(family: FontFamily): Typography {
+fun typographyFor(family: FontFamily, bold: Boolean = false): Typography {
     val t = Typography()
-    fun TextStyle.f() = copy(fontFamily = family)
+    // "Bold text" accessibility option: every style gets heavier strokes, which are easier to read with low vision.
+    fun TextStyle.f() = copy(
+        fontFamily = family,
+        fontWeight = if (bold) FontWeight(((fontWeight ?: FontWeight.Normal).weight + 200).coerceAtMost(800)) else fontWeight,
+    )
     return Typography(
         displayLarge = t.displayLarge.f(), displayMedium = t.displayMedium.f(), displaySmall = t.displaySmall.f(),
         headlineLarge = t.headlineLarge.f(), headlineMedium = t.headlineMedium.f(), headlineSmall = t.headlineSmall.f(),

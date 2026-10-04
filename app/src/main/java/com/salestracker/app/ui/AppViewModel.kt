@@ -69,6 +69,19 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         settings.edit().putFloat("textScale", s).apply()
     }
 
+    // ---- Accessibility ----
+    var boldText by mutableStateOf(settings.getBoolean("boldText", false))
+        private set
+    var largeTouchTargets by mutableStateOf(settings.getBoolean("largeTargets", false))
+        private set
+    var highlightSymbols by mutableStateOf(settings.getBoolean("highlightSymbols", false))
+        private set
+    fun changeBoldText(on: Boolean) { boldText = on; settings.edit().putBoolean("boldText", on).apply() }
+    fun changeLargeTouchTargets(on: Boolean) { largeTouchTargets = on; settings.edit().putBoolean("largeTargets", on).apply() }
+    fun changeHighlightSymbols(on: Boolean) { highlightSymbols = on; settings.edit().putBoolean("highlightSymbols", on).apply() }
+    val highContrast: Boolean get() = !useCustomColors && palette == AppPalette.HIGH_CONTRAST
+    fun changeHighContrast(on: Boolean) = choosePalette(if (on) AppPalette.HIGH_CONTRAST else AppPalette.BULLSEYE)
+
     /** Colors picked on the color wheel, and whether they're in use instead of a ready-made palette. */
     var customColors by mutableStateOf(
         CustomColors(
@@ -214,6 +227,9 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         darkMode = DarkMode.SYSTEM
         font = AppFont.STANDARD
         textScale = 1.0f
+        boldText = false
+        largeTouchTargets = false
+        highlightSymbols = false
         useCustomColors = false
         customColors = CustomColors.DEFAULT
         appLock = false

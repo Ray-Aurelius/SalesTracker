@@ -1,5 +1,6 @@
 package com.salestracker.app.ui.screens
 
+import androidx.compose.material.icons.filled.Accessibility
 import androidx.compose.material.icons.filled.TextFields
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
@@ -35,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.salestracker.app.R
 import com.salestracker.app.ui.AppViewModel
 
-private enum class Step { MENU, APPEARANCE, CUSTOM_COLORS, TEXT, LANGUAGE }
+private enum class Step { MENU, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE }
 
 /** Appearance and language, plus the way into the Security & privacy center. */
 @Composable
@@ -54,6 +55,9 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
                     }
                     SettingRow(Icons.Filled.Palette, stringResource(R.string.appearance_title), stringResource(R.string.settings_appearance_desc)) {
                         step = Step.APPEARANCE
+                    }
+                    SettingRow(Icons.Filled.Accessibility, stringResource(R.string.a11y_title), stringResource(R.string.a11y_desc)) {
+                        step = Step.ACCESSIBILITY
                     }
                     SettingRow(Icons.Filled.TextFields, stringResource(R.string.text_settings), stringResource(R.string.text_settings_desc)) {
                         step = Step.TEXT
@@ -92,6 +96,8 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
             onScale = vm::chooseTextScale,
             onDismiss = { step = Step.MENU },
         )
+
+        Step.ACCESSIBILITY -> AccessibilityDialog(vm, onOpenText = { step = Step.TEXT }, onDismiss = { step = Step.MENU })
 
         Step.LANGUAGE -> LanguageDialog(onDismiss = { step = Step.MENU })
     }

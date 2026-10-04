@@ -1,5 +1,9 @@
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.R
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -108,7 +112,9 @@ fun CalculatorScreen(vm: AppViewModel) {
                             modifier = Modifier.weight(if (wide) 2f else 1f).padding(vertical = 0.dp),
                             contentPadding = androidx.compose.foundation.layout.PaddingValues(vertical = 18.dp),
                         ) {
-                            Text(key, fontSize = 24.sp)
+                            // Screen readers say "divided by", "delete" etc. instead of skipping symbols.
+                            val spoken = spokenKey(key)
+                            Text(key, fontSize = 24.sp, modifier = if (spoken != null) Modifier.semantics { contentDescription = spoken } else Modifier)
                         }
                     }
                 }
@@ -128,4 +134,18 @@ private fun keyColors(key: String): ButtonColors {
             ButtonDefaults.buttonColors(containerColor = c.tertiaryContainer, contentColor = c.onTertiaryContainer)
         else -> ButtonDefaults.buttonColors(containerColor = c.surfaceVariant, contentColor = c.onSurface)
     }
+}
+
+@Composable
+private fun spokenKey(key: String): String? = when (key) {
+    CLEAR -> stringResource(R.string.calc_clear)
+    BACK -> stringResource(R.string.calc_backspace)
+    EQUALS -> stringResource(R.string.calc_equals)
+    "%" -> stringResource(R.string.calc_percent)
+    "." -> stringResource(R.string.calc_point)
+    "${Calculator.PLUS}" -> stringResource(R.string.calc_plus)
+    "${Calculator.MINUS}" -> stringResource(R.string.calc_minus)
+    "${Calculator.TIMES}" -> stringResource(R.string.calc_times)
+    "${Calculator.DIVIDE}" -> stringResource(R.string.calc_divide)
+    else -> null
 }

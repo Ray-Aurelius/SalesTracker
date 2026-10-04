@@ -2,6 +2,8 @@
 
 package com.salestracker.app.ui.screens
 
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
@@ -392,7 +394,8 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
 private fun Section(title: String) {
     Column(Modifier.padding(top = 16.dp)) {
         HorizontalDivider(Modifier.padding(bottom = 12.dp))
-        Text(title, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.SemiBold)
+        Text(title, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.SemiBold,
+            modifier = Modifier.semantics { heading() })
     }
 }
 

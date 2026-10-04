@@ -2,6 +2,8 @@
 
 package com.salestracker.app.ui.screens
 
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.material.icons.filled.Check
@@ -144,6 +146,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                     today = today,
                     hasEvents = { it.toEpochDay() in apptDays },
                     highlightOf = { data.dayHighlights[it.toEpochDay()] },
+                    symbols = vm.highlightSymbols,
                     onPrev = { month = month.minusMonths(1) },
                     onNext = { month = month.plusMonths(1) },
                     onSelect = { selected = it },
@@ -164,6 +167,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                         )
                     }
                     HighlightPicker(
+                        symbols = vm.highlightSymbols,
                         current = data.dayHighlights[selected.toEpochDay()],
                         onPick = { vm.setDayHighlight(selected.toEpochDay(), it) },
                     )
@@ -235,6 +239,7 @@ private fun MonthGrid(
     today: LocalDate,
     hasEvents: (LocalDate) -> Boolean,
     highlightOf: (LocalDate) -> HighlightColor?,
+    symbols: Boolean,
     onPrev: () -> Unit,
     onNext: () -> Unit,
     onSelect: (LocalDate) -> Unit,
@@ -280,7 +285,7 @@ private fun MonthGrid(
                     Box(Modifier.weight(1f).aspectRatio(1f).padding(2.dp), contentAlignment = Alignment.Center) {
                         if (dayNum in 1..days) {
                             val date = month.atDay(dayNum)
-                            DayCell(date, date == selected, date == today, hasEvents(date), highlightOf(date)) { onSelect(date) }
+                            DayCell(date, date == selected, date == today, hasEvents(date), highlightOf(date), symbols) { onSelect(date) }
                         }
                     }
                 }
@@ -296,9 +301,17 @@ private fun DayCell(
     isToday: Boolean,
     hasEvents: Boolean,
     highlight: HighlightColor?,
+    symbols: Boolean,
     onClick: () -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
+    // What a screen reader says for this day, e.g. "Monday, October 5, today, has appointments, Red highlight".
+    val spoken = listOfNotNull(
+        date.format(dayTitle()),
+        if (isToday) stringResource(R.string.period_today) else null,
+        if (hasEvents) stringResource(R.string.cd_has_appointments) else null,
+        highlight?.let { stringResource(R.string.cd_highlight, stringResource(it.label)) },
+    ).joinToString(", ")
     val hl = highlight?.let { Color(it.argb) }
     // Highlighted days are filled with their color; the selected day gets a strong ring on top.
     val fill = hl ?: if (isSelected) colors.primary else null
@@ -314,12 +327,26 @@ private fun DayCell(
         isToday && !isSelected -> mod.border(1.5.dp, if (hl != null) readableOn(hl) else colors.primary, CircleShape)
         else -> mod
     }
-    Box(mod.clickable(onClick = onClick), contentAlignment = Alignment.Center) {
+    Box(
+        mod.clickable(onClick = onClick).semantics(mergeDescendants = true) {
+            contentDescription = spoken
+            selected = isSelected
+        },
+        contentAlignment = Alignment.Center,
+    ) {
         Text(
             date.dayOfMonth.toString(),
             color = textColor,
             fontWeight = if (isToday || hl != null) FontWeight.Bold else FontWeight.Normal,
         )
+        if (symbols && highlight != null) {
+            Text(
+                highlight.symbol,
+                color = textColor,
+                fontSize = 9.sp,
+                modifier = Modifier.align(Alignment.TopEnd).padding(top = 3.dp, end = 5.dp),
+            )
+        }
         if (hasEvents) {
             Box(
                 Modifier.align(Alignment.BottomCenter).padding(bottom = 5.dp).size(5.dp)
@@ -335,7 +362,7 @@ private fun readableOn(bg: Color): Color = if (bg.luminance() > 0.45f) Color.Bla
 
 /** A row of color dots to mark the selected day as important. Tap the same color again to clear it. */
 @Composable
-private fun HighlightPicker(current: HighlightColor?, onPick: (HighlightColor?) -> Unit) {
+private fun HighlightPicker(symbols: Boolean, current: HighlightColor?, onPick: (HighlightColor?) -> Unit) {
     val colors = MaterialTheme.colorScheme
     Column(Modifier.padding(top = 10.dp)) {
         Text(stringResource(R.string.highlight_day), style = MaterialTheme.typography.labelLarge)
@@ -362,10 +389,11 @@ private fun HighlightPicker(current: HighlightColor?, onPick: (HighlightColor?) 
                     Modifier.size(34.dp).clip(CircleShape).background(c)
                         .border(if (current == h) 3.dp else 0.dp, if (current == h) colors.onSurface else c, CircleShape)
                         .clickable { onPick(if (current == h) null else h) }
-                        .semantics { contentDescription = label },
+                        .semantics { contentDescription = label; selected = current == h },
                     contentAlignment = Alignment.Center,
                 ) {
-                    if (current == h) Icon(Icons.Filled.Check, contentDescription = null, tint = readableOn(c), modifier = Modifier.size(18.dp))
+                    if (symbols) Text(h.symbol, color = readableOn(c), fontWeight = FontWeight.Bold)
+                    else if (current == h) Icon(Icons.Filled.Check, contentDescription = null, tint = readableOn(c), modifier = Modifier.size(18.dp))
                 }
             }
         }

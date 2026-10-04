@@ -150,6 +150,26 @@ enum class AppPalette(@StringRes val label: Int, @StringRes val description: Int
             0xFF524344, 0xFFD7C1C2, 0xFFA08C8D,
         ),
     ),
+    // Maximum contrast for low vision: pure black and white with strong, clearly different accents.
+    HIGH_CONTRAST(
+        R.string.palette_contrast, R.string.palette_contrast_desc,
+        light = Tones(
+            0xFF003C8F, 0xFFFFFFFF, 0xFFD6E4FF, 0xFF000000,
+            0xFF7A2E00, 0xFFFFFFFF, 0xFFFFE0CC, 0xFF000000,
+            0xFF005A2B,
+            0xFFFFFFFF, 0xFF000000,
+            0xFFEDEDED, 0xFF1A1A1A, 0xFF000000,
+            tint = 0f,
+        ),
+        dark = Tones(
+            0xFFFFD43B, 0xFF000000, 0xFF3D3000, 0xFFFFFFFF,
+            0xFF7FD6FF, 0xFF000000, 0xFF003548, 0xFFFFFFFF,
+            0xFF8CF5A8,
+            0xFF000000, 0xFFFFFFFF,
+            0xFF1F1F1F, 0xFFF0F0F0, 0xFFFFFFFF,
+            tint = 0f,
+        ),
+    ),
     SAGE(
         R.string.palette_sage, R.string.palette_sage_desc,
         light = Tones(
@@ -191,14 +211,22 @@ fun SalesTrackerTheme(
     dark: Boolean = isSystemInDarkTheme(),
     custom: CustomColors? = null,
     font: AppFont = AppFont.STANDARD,
+    boldText: Boolean = false,
+    largeTouchTargets: Boolean = false,
     content: @Composable () -> Unit,
 ) {
-    val typography = androidx.compose.runtime.remember(font) { typographyFor(font.family()) }
+    val typography = androidx.compose.runtime.remember(font, boldText) { typographyFor(font.family(), boldText) }
     MaterialTheme(
         colorScheme = custom?.let { customScheme(it, dark) } ?: palette.scheme(dark),
         typography = typography,
-        content = content,
-    )
+    ) {
+        // "Larger touch targets": every button, switch and icon gets at least a 56dp tap area (normally 48dp).
+        androidx.compose.runtime.CompositionLocalProvider(
+            androidx.compose.material3.LocalMinimumInteractiveComponentSize provides
+                if (largeTouchTargets) androidx.compose.ui.unit.Dp(56f) else androidx.compose.ui.unit.Dp(48f),
+            content = content,
+        )
+    }
 }
 
 /** The three colors a user picks on the color wheel. Stored as ARGB ints. */

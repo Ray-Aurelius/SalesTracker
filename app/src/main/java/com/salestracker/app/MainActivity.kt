@@ -107,6 +107,8 @@ class MainActivity : AppCompatActivity() {
                     palette = vm.palette, dark = dark,
                     custom = vm.customColors.takeIf { vm.useCustomColors },
                     font = vm.font,
+                    boldText = vm.boldText,
+                    largeTouchTargets = vm.largeTouchTargets,
                 ) {
                     when {
                         // 1. Locked: show nothing of the app until the owner unlocks.
