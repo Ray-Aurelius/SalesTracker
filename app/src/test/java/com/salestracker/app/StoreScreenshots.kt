@@ -78,6 +78,10 @@ class StoreScreenshots {
         // Stats for all time, so the sample's three weeks of sales all count.
         rule.onAllNodesWithText(app.getString(R.string.period_all)).onFirst().performScrollTo().performClick()
         shot("1-stats")
+        // Privacy mode: every amount hidden, ready to show a customer (for ads).
+        vm.togglePrivacyMode(); rule.waitForIdle(); shot("1b-stats-private")
+        tap(app.getString(R.string.tab_charts)); shot("7b-charts-private")
+        vm.togglePrivacyMode(); tap(app.getString(R.string.tab_stats))
         tap(app.getString(R.string.tab_goals)); shot("2-goals")
         tap(app.getString(R.string.tab_clients)); shot("3-clients")
         tap(app.getString(R.string.tab_calendar)); shot("4-calendar")
