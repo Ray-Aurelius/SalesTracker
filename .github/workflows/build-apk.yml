@@ -26,12 +26,19 @@ jobs:
         env:
           KEY: ${{ secrets.SIGNING_KEYSTORE }}
         run: |
-          if [ -n "$KEY" ]; then
-            echo "$KEY" | base64 -d > app/stable.keystore
-            echo "Signing with the permanent key."
-          else
+          if [ -z "$KEY" ]; then
             echo "::warning::SIGNING_KEYSTORE secret is not set - this build can't update an installed copy in place."
+            exit 0
           fi
+          # Copying a long line on a phone can add spaces or line breaks; drop anything that isn't base64.
+          CLEAN=$(printf '%s' "$KEY" | tr -cd 'A-Za-z0-9+/=')
+          echo "Key text: ${#KEY} characters pasted, ${#CLEAN} usable (expected 3528), starts ${CLEAN:0:4}, ends ${CLEAN: -4}"
+          if ! printf '%s' "$CLEAN" | base64 -d > app/stable.keystore 2>/dev/null \
+             || ! keytool -list -keystore app/stable.keystore -storepass salestracker -alias salestracker >/dev/null 2>&1; then
+            echo "::error::SIGNING_KEYSTORE could not be read as the signing key (${#CLEAN} of 3528 characters, starts ${CLEAN:0:4}, ends ${CLEAN: -4}). Re-paste the full text from MIIK to EA==."
+            exit 1
+          fi
+          echo "Signing with the permanent key."
 
       - name: Build the APK
         run: |
