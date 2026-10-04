@@ -40,11 +40,11 @@ jobs:
           fi
           echo "Signing with the permanent key."
 
-      - name: Run tests and build the APK
+      - name: Run tests and build the APK and Play Store bundle
         run: |
           chmod +x gradlew
           set -o pipefail
-          if ! ./gradlew testDebugUnitTest assembleRelease --no-daemon 2>&1 | tee build.log; then
+          if ! ./gradlew testDebugUnitTest assembleRelease bundleRelease --no-daemon 2>&1 | tee build.log; then
             # Surface compiler/test errors as annotations so they're readable without the full log.
             grep -E "^e: |error:|FAILED|What went wrong|Exception" -A2 build.log | head -60 | sed 's/%/%25/g' | tr '\n' '\r' | sed 's/\r/%0A/g' > err.txt
             echo "::error title=Build errors::$(cat err.txt)"
@@ -58,17 +58,29 @@ jobs:
             echo "::error::No signed release APK. Is the SIGNING_KEYSTORE secret set?"
             exit 1
           fi
-          cp "$APK" UltimateSalesProductivity.apk
+          cp "$APK" QuotaVault.apk
+          AAB=app/build/outputs/bundle/release/app-release.aab
+          if [ ! -f "$AAB" ]; then
+            echo "::error::No signed release bundle (.aab) for the Play Store."
+            exit 1
+          fi
+          cp "$AAB" QuotaVault.aab
+          # The bundle must be signed with the permanent key (it becomes the Play upload key).
+          jarsigner -verify QuotaVault.aab | grep -q "jar verified" || { echo "::error::QuotaVault.aab is not signed."; exit 1; }
 
       - name: Privacy audit (fails the build if the app could reach the internet or be debugged)
         run: |
           AAPT2="$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -1)aapt2"
-          "$AAPT2" dump permissions UltimateSalesProductivity.apk | tee permissions.txt
+          "$AAPT2" dump permissions QuotaVault.apk | tee permissions.txt
           if grep -q "android.permission.INTERNET" permissions.txt; then
             echo "::error::The app requests INTERNET. That breaks the privacy promise; build stopped."
             exit 1
           fi
-          if "$AAPT2" dump badging UltimateSalesProductivity.apk | grep -q "application-debuggable"; then
+          if grep -q "android.permission.USE_EXACT_ALARM" permissions.txt; then
+            echo "::error::USE_EXACT_ALARM is restricted on Google Play for apps whose main purpose isn't alarms or a calendar; build stopped."
+            exit 1
+          fi
+          if "$AAPT2" dump badging QuotaVault.apk | grep -q "application-debuggable"; then
             echo "::error::The app is debuggable. Release builds must not be; build stopped."
             exit 1
           fi
@@ -78,8 +90,10 @@ jobs:
       - name: Keep a copy on the run page
         uses: actions/upload-artifact@v4
         with:
-          name: UltimateSalesProductivity-apk
-          path: UltimateSalesProductivity.apk
+          name: QuotaVault-build
+          path: |
+            QuotaVault.apk
+            QuotaVault.aab
 
       - name: Publish to Releases (download link for your phone)
         env:
@@ -87,7 +101,9 @@ jobs:
         run: |
           TAG="build-${{ github.run_number }}"
           {
-            echo "Open this page on your Android phone, tap **UltimateSalesProductivity.apk** to download, then open it to install."
+            echo "**Phone:** open this page on your Android phone, tap **QuotaVault.apk** to download, then open it to install."
+            echo
+            echo "**Google Play:** upload **QuotaVault.aab** in Play Console (Testing or Production → Create new release)."
             echo
             echo "**Privacy check passed:** no internet access, not debuggable. Every Android permission this build has:"
             echo
@@ -95,7 +111,7 @@ jobs:
             echo
             echo "Built from commit ${{ github.sha }}."
           } > notes.md
-          gh release create "$TAG" UltimateSalesProductivity.apk \
-            --title "Ultimate Sales Productivity build ${{ github.run_number }}" \
+          gh release create "$TAG" QuotaVault.apk QuotaVault.aab \
+            --title "Quota Vault build ${{ github.run_number }}" \
             --notes-file notes.md \
             --latest

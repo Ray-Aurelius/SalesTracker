@@ -28,10 +28,10 @@
     <string name="backup_restore_desc">Substitui os dados deste celular por um arquivo de backup</string>
     <string name="last_backup">Último backup: %1$s</string>
     <string name="never_backed_up">Ainda sem backup</string>
-    <string name="locked_title">Ultimate Sales Productivity está bloqueado</string>
+    <string name="locked_title">Quota Vault está bloqueado</string>
     <string name="locked_body">Suas vendas, clientes e metas estão protegidos.</string>
     <string name="unlock">Desbloquear</string>
-    <string name="unlock_prompt_title">Desbloquear Ultimate Sales Productivity</string>
+    <string name="unlock_prompt_title">Desbloquear Quota Vault</string>
     <string name="unlock_prompt_subtitle">Use sua digital, rosto ou PIN do celular</string>
     <string name="backup_password_title">Escolha uma senha para o backup</string>
     <string name="backup_password_body">Você vai precisar desta senha para restaurar o backup. Se esquecê-la, ninguém conseguirá abri-lo.</string>
@@ -49,7 +49,7 @@
     <string name="open_backup">Abrir</string>
     <string name="restore_working">Abrindo o backup…</string>
     <string name="restore_wrong_password">Senha incorreta. Confira e tente novamente.</string>
-    <string name="restore_not_backup">Este arquivo não é um backup do Ultimate Sales Productivity.</string>
+    <string name="restore_not_backup">Este arquivo não é um backup do Quota Vault.</string>
     <string name="restore_confirm_title">Substituir seus dados?</string>
     <string name="restore_confirm_body">Backup de %1$s\nClientes: %2$d · Vendas: %3$d · Compromissos: %4$d · Metas: %5$d\n\nTudo o que está no app agora será substituído por este backup.</string>
     <string name="restore_replace">Substituir</string>
@@ -177,6 +177,7 @@
     <string name="appt_title">Título</string>
     <string name="appt_title_hint">ex.: Ligação de acompanhamento</string>
     <string name="notifications_off_warning">As notificações estão desativadas, então este lembrete não vai tocar. Toque para ativá-las.</string>
+    <string name="exact_alarm_warning">Os lembretes podem tocar alguns minutos atrasados. Toque para permitir alarmes pontuais.</string>
     <string name="delete_appointment">Excluir compromisso</string>
     <string name="delete_appointment_q">Excluir este compromisso?</string>
     <string name="reminder_picker">Lembrete: %1$s</string>
@@ -310,7 +311,7 @@
     <string name="pi_never_t">Nunca solicitado</string>
     <string name="pi_never">Internet, contatos, localização, câmera, microfone, fotos e arquivos, chamadas, mensagens SMS.</string>
     <string name="agreement_title">Contrato de usuário</string>
-    <string name="agreement_intro">Leia isto antes de usar o Ultimate Sales Productivity. É curto e explica quem é responsável pelos seus dados.</string>
+    <string name="agreement_intro">Leia isto antes de usar o Quota Vault. É curto e explica quem é responsável pelos seus dados.</string>
     <string name="ag1_t">1. Seus dados ficam com você</string>
     <string name="ag1">Tudo o que você insere fica armazenado apenas neste celular. O app não tem acesso à internet, contas nem servidores. Os criadores do app nunca recebem, veem, armazenam ou processam seus dados.</string>
     <string name="ag2_t">2. Você é o único responsável pelos seus dados</string>
@@ -481,7 +482,7 @@
     <string name="follow_up_title">Retorno: %1$s</string>
     <string name="remove_follow_up">Remover retorno</string>
     <string name="welcome_step">Etapa %1$d de %2$d</string>
-    <string name="welcome_title">Boas-vindas ao Ultimate Sales Productivity</string>
+    <string name="welcome_title">Boas-vindas ao Quota Vault</string>
     <string name="welcome_f1_t">Conheça seus números</string>
     <string name="welcome_f1">Registre vendas em segundos e veja sua taxa de fechamento, vendas adicionais, comissão e tempo por venda.</string>
     <string name="welcome_f2_t">Mantenha o foco no alvo</string>
@@ -522,7 +523,7 @@
     <string name="col_date">Data</string>
     <string name="col_amount">Valor</string>
     <string name="col_status">Situação</string>
-    <string name="report_footer">Criado com o Ultimate Sales Productivity, de forma privada no celular do usuário.</string>
+    <string name="report_footer">Criado com o Quota Vault, de forma privada no celular do usuário.</string>
     <string name="widget_title">Metas</string>
     <string name="widget_locked">Bloqueado. Abra o app para ver suas metas.</string>
     <string name="widget_empty">Nenhuma meta ainda. Toque para adicionar.</string>

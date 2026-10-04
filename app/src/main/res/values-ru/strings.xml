@@ -28,10 +28,10 @@
     <string name="backup_restore_desc">Заменить данные на этом телефоне данными из файла копии</string>
     <string name="last_backup">Последняя копия: %1$s</string>
     <string name="never_backed_up">Копий пока нет</string>
-    <string name="locked_title">Ultimate Sales Productivity заблокировано</string>
+    <string name="locked_title">Quota Vault заблокировано</string>
     <string name="locked_body">Ваши продажи, клиенты и цели под защитой.</string>
     <string name="unlock">Разблокировать</string>
-    <string name="unlock_prompt_title">Разблокировать Ultimate Sales Productivity</string>
+    <string name="unlock_prompt_title">Разблокировать Quota Vault</string>
     <string name="unlock_prompt_subtitle">Используйте отпечаток, лицо или PIN телефона</string>
     <string name="backup_password_title">Придумайте пароль для копии</string>
     <string name="backup_password_body">Этот пароль понадобится для восстановления. Если вы его забудете, открыть копию не сможет никто.</string>
@@ -49,7 +49,7 @@
     <string name="open_backup">Открыть</string>
     <string name="restore_working">Открытие копии…</string>
     <string name="restore_wrong_password">Неверный пароль. Проверьте и попробуйте снова.</string>
-    <string name="restore_not_backup">Этот файл не является копией Ultimate Sales Productivity.</string>
+    <string name="restore_not_backup">Этот файл не является копией Quota Vault.</string>
     <string name="restore_confirm_title">Заменить ваши данные?</string>
     <string name="restore_confirm_body">Копия от %1$s\nКлиенты: %2$d · Продажи: %3$d · Встречи: %4$d · Цели: %5$d\n\nВсё, что сейчас есть в приложении, будет заменено этой копией.</string>
     <string name="restore_replace">Заменить</string>
@@ -177,6 +177,7 @@
     <string name="appt_title">Название</string>
     <string name="appt_title_hint">напр. Повторный звонок</string>
     <string name="notifications_off_warning">Уведомления выключены, поэтому напоминание не прозвучит. Нажмите, чтобы включить.</string>
+    <string name="exact_alarm_warning">Напоминания могут срабатывать с опозданием на несколько минут. Нажмите, чтобы разрешить точные будильники.</string>
     <string name="delete_appointment">Удалить встречу</string>
     <string name="delete_appointment_q">Удалить эту встречу?</string>
     <string name="reminder_picker">Напоминание: %1$s</string>
@@ -310,7 +311,7 @@
     <string name="pi_never_t">Никогда не запрашивается</string>
     <string name="pi_never">Интернет, контакты, местоположение, камера, микрофон, фото и файлы, звонки, SMS.</string>
     <string name="agreement_title">Пользовательское соглашение</string>
-    <string name="agreement_intro">Пожалуйста, прочитайте это перед использованием Ultimate Sales Productivity. Это коротко и объясняет, кто отвечает за ваши данные.</string>
+    <string name="agreement_intro">Пожалуйста, прочитайте это перед использованием Quota Vault. Это коротко и объясняет, кто отвечает за ваши данные.</string>
     <string name="ag1_t">1. Ваши данные остаются у вас</string>
     <string name="ag1">Всё, что вы вводите, хранится только на этом телефоне. У приложения нет доступа к интернету, аккаунтов и серверов. Создатели приложения никогда не получают, не видят, не хранят и не обрабатывают ваши данные.</string>
     <string name="ag2_t">2. Только вы отвечаете за свои данные</string>
@@ -481,7 +482,7 @@
     <string name="follow_up_title">Связаться: %1$s</string>
     <string name="remove_follow_up">Убрать контакт</string>
     <string name="welcome_step">Шаг %1$d из %2$d</string>
-    <string name="welcome_title">Добро пожаловать в Ultimate Sales Productivity</string>
+    <string name="welcome_title">Добро пожаловать в Quota Vault</string>
     <string name="welcome_f1_t">Знайте свои цифры</string>
     <string name="welcome_f1">Записывайте продажи за секунды и следите за долей закрытых сделок, допродажами, комиссией и временем на продажу.</string>
     <string name="welcome_f2_t">Держите цель</string>
@@ -522,7 +523,7 @@
     <string name="col_date">Дата</string>
     <string name="col_amount">Сумма</string>
     <string name="col_status">Статус</string>
-    <string name="report_footer">Создано в Ultimate Sales Productivity, приватно на телефоне пользователя.</string>
+    <string name="report_footer">Создано в Quota Vault, приватно на телефоне пользователя.</string>
     <string name="widget_title">Цели</string>
     <string name="widget_locked">Заблокировано. Откройте приложение, чтобы увидеть цели.</string>
     <string name="widget_empty">Целей пока нет. Нажмите, чтобы добавить.</string>

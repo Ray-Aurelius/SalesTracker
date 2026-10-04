@@ -28,10 +28,10 @@
     <string name="backup_restore_desc">Remplace les données de ce téléphone par un fichier de sauvegarde</string>
     <string name="last_backup">Dernière sauvegarde : %1$s</string>
     <string name="never_backed_up">Pas encore sauvegardé</string>
-    <string name="locked_title">Ultimate Sales Productivity est verrouillée</string>
+    <string name="locked_title">Quota Vault est verrouillée</string>
     <string name="locked_body">Vos ventes, clients et objectifs sont protégés.</string>
     <string name="unlock">Déverrouiller</string>
-    <string name="unlock_prompt_title">Déverrouiller Ultimate Sales Productivity</string>
+    <string name="unlock_prompt_title">Déverrouiller Quota Vault</string>
     <string name="unlock_prompt_subtitle">Utilisez votre empreinte, votre visage ou le code du téléphone</string>
     <string name="backup_password_title">Choisissez un mot de passe de sauvegarde</string>
     <string name="backup_password_body">Ce mot de passe sera nécessaire pour restaurer la sauvegarde. Si vous l\'oubliez, personne ne pourra l\'ouvrir.</string>
@@ -49,7 +49,7 @@
     <string name="open_backup">Ouvrir</string>
     <string name="restore_working">Ouverture de la sauvegarde…</string>
     <string name="restore_wrong_password">Mot de passe incorrect. Vérifiez-le et réessayez.</string>
-    <string name="restore_not_backup">Ce fichier n\'est pas une sauvegarde Ultimate Sales Productivity.</string>
+    <string name="restore_not_backup">Ce fichier n\'est pas une sauvegarde Quota Vault.</string>
     <string name="restore_confirm_title">Remplacer vos données ?</string>
     <string name="restore_confirm_body">Sauvegarde du %1$s\nClients : %2$d · Ventes : %3$d · Rendez-vous : %4$d · Objectifs : %5$d\n\nTout ce qui se trouve actuellement dans l\'app sera remplacé par cette sauvegarde.</string>
     <string name="restore_replace">Remplacer</string>
@@ -177,6 +177,7 @@
     <string name="appt_title">Titre</string>
     <string name="appt_title_hint">ex. Appel de suivi</string>
     <string name="notifications_off_warning">Les notifications sont désactivées : ce rappel ne pourra pas sonner. Touchez pour les activer.</string>
+    <string name="exact_alarm_warning">Les rappels peuvent sonner avec quelques minutes de retard. Touchez pour autoriser les alarmes à l\'heure.</string>
     <string name="delete_appointment">Supprimer le rendez-vous</string>
     <string name="delete_appointment_q">Supprimer ce rendez-vous ?</string>
     <string name="reminder_picker">Rappel : %1$s</string>
@@ -310,7 +311,7 @@
     <string name="pi_never_t">Jamais demandé</string>
     <string name="pi_never">Internet, contacts, position, appareil photo, micro, photos et fichiers, appels, SMS.</string>
     <string name="agreement_title">Contrat d\'utilisation</string>
-    <string name="agreement_intro">Veuillez lire ceci avant d\'utiliser Ultimate Sales Productivity. C\'est court et cela explique qui est responsable de vos données.</string>
+    <string name="agreement_intro">Veuillez lire ceci avant d\'utiliser Quota Vault. C\'est court et cela explique qui est responsable de vos données.</string>
     <string name="ag1_t">1. Vos données restent chez vous</string>
     <string name="ag1">Tout ce que vous saisissez est stocké uniquement sur ce téléphone. L\'app n\'a ni accès à internet, ni compte, ni serveur. Les créateurs de l\'app ne reçoivent, ne voient, ne stockent ni ne traitent jamais vos données.</string>
     <string name="ag2_t">2. Vous êtes seul responsable de vos données</string>
@@ -481,7 +482,7 @@
     <string name="follow_up_title">Relance : %1$s</string>
     <string name="remove_follow_up">Supprimer la relance</string>
     <string name="welcome_step">Étape %1$d sur %2$d</string>
-    <string name="welcome_title">Bienvenue dans Ultimate Sales Productivity</string>
+    <string name="welcome_title">Bienvenue dans Quota Vault</string>
     <string name="welcome_f1_t">Connaissez vos chiffres</string>
     <string name="welcome_f1">Enregistrez une vente en quelques secondes et suivez votre taux de conclusion, vos ventes additionnelles, votre commission et le temps par vente.</string>
     <string name="welcome_f2_t">Restez sur la cible</string>
@@ -522,7 +523,7 @@
     <string name="col_date">Date</string>
     <string name="col_amount">Montant</string>
     <string name="col_status">Statut</string>
-    <string name="report_footer">Créé avec Ultimate Sales Productivity, en privé sur le téléphone de l\'utilisateur.</string>
+    <string name="report_footer">Créé avec Quota Vault, en privé sur le téléphone de l\'utilisateur.</string>
     <string name="widget_title">Objectifs</string>
     <string name="widget_locked">Verrouillé. Ouvrez l\'app pour voir vos objectifs.</string>
     <string name="widget_empty">Aucun objectif. Touchez pour en ajouter un.</string>

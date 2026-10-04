@@ -28,10 +28,10 @@
     <string name="backup_restore_desc">Ganti data di ponsel ini dengan file cadangan</string>
     <string name="last_backup">Cadangan terakhir: %1$s</string>
     <string name="never_backed_up">Belum pernah dicadangkan</string>
-    <string name="locked_title">Ultimate Sales Productivity terkunci</string>
+    <string name="locked_title">Quota Vault terkunci</string>
     <string name="locked_body">Penjualan, klien, dan target Anda terlindungi.</string>
     <string name="unlock">Buka kunci</string>
-    <string name="unlock_prompt_title">Buka kunci Ultimate Sales Productivity</string>
+    <string name="unlock_prompt_title">Buka kunci Quota Vault</string>
     <string name="unlock_prompt_subtitle">Gunakan sidik jari, wajah, atau PIN ponsel</string>
     <string name="backup_password_title">Pilih kata sandi cadangan</string>
     <string name="backup_password_body">Anda memerlukan kata sandi ini untuk memulihkan cadangan. Jika lupa, tidak ada yang bisa membuka cadangan.</string>
@@ -49,7 +49,7 @@
     <string name="open_backup">Buka</string>
     <string name="restore_working">Membuka cadangan…</string>
     <string name="restore_wrong_password">Kata sandi salah. Periksa dan coba lagi.</string>
-    <string name="restore_not_backup">File ini bukan cadangan Ultimate Sales Productivity.</string>
+    <string name="restore_not_backup">File ini bukan cadangan Quota Vault.</string>
     <string name="restore_confirm_title">Ganti data Anda?</string>
     <string name="restore_confirm_body">Cadangan dari %1$s\nKlien: %2$d · Penjualan: %3$d · Janji temu: %4$d · Target: %5$d\n\nSemua isi aplikasi akan diganti dengan cadangan ini.</string>
     <string name="restore_replace">Ganti</string>
@@ -177,6 +177,7 @@
     <string name="appt_title">Judul</string>
     <string name="appt_title_hint">mis. Telepon tindak lanjut</string>
     <string name="notifications_off_warning">Notifikasi nonaktif, jadi pengingat tidak dapat berbunyi. Ketuk untuk mengaktifkan.</string>
+    <string name="exact_alarm_warning">Pengingat mungkin berbunyi terlambat beberapa menit. Ketuk untuk mengizinkan alarm tepat waktu.</string>
     <string name="delete_appointment">Hapus janji temu</string>
     <string name="delete_appointment_q">Hapus janji temu ini?</string>
     <string name="reminder_picker">Pengingat: %1$s</string>
@@ -310,7 +311,7 @@
     <string name="pi_never_t">Tidak pernah diminta</string>
     <string name="pi_never">Internet, kontak, lokasi, kamera, mikrofon, foto dan file, panggilan telepon, SMS.</string>
     <string name="agreement_title">Perjanjian Pengguna</string>
-    <string name="agreement_intro">Harap baca sebelum menggunakan Ultimate Sales Productivity. Perjanjian ini singkat dan menjelaskan siapa yang bertanggung jawab atas data Anda.</string>
+    <string name="agreement_intro">Harap baca sebelum menggunakan Quota Vault. Perjanjian ini singkat dan menjelaskan siapa yang bertanggung jawab atas data Anda.</string>
     <string name="ag1_t">1. Data Anda tetap milik Anda</string>
     <string name="ag1">Semua yang Anda masukkan hanya disimpan di ponsel ini. Aplikasi tidak memiliki akses internet, akun, atau server. Pembuat aplikasi tidak pernah menerima, melihat, menyimpan, atau memproses data Anda.</string>
     <string name="ag2_t">2. Anda sepenuhnya bertanggung jawab atas data Anda</string>
@@ -481,7 +482,7 @@
     <string name="follow_up_title">Tindak lanjut: %1$s</string>
     <string name="remove_follow_up">Hapus tindak lanjut</string>
     <string name="welcome_step">Langkah %1$d dari %2$d</string>
-    <string name="welcome_title">Selamat datang di Ultimate Sales Productivity</string>
+    <string name="welcome_title">Selamat datang di Quota Vault</string>
     <string name="welcome_f1_t">Kenali angka Anda</string>
     <string name="welcome_f1">Catat penjualan dalam hitungan detik dan lihat tingkat closing, upsell, komisi, dan waktu per penjualan.</string>
     <string name="welcome_f2_t">Tetap tepat sasaran</string>
@@ -522,7 +523,7 @@
     <string name="col_date">Tanggal</string>
     <string name="col_amount">Nilai</string>
     <string name="col_status">Status</string>
-    <string name="report_footer">Dibuat dengan Ultimate Sales Productivity, secara privat di ponsel pengguna.</string>
+    <string name="report_footer">Dibuat dengan Quota Vault, secara privat di ponsel pengguna.</string>
     <string name="widget_title">Target</string>
     <string name="widget_locked">Terkunci. Buka aplikasi untuk melihat target Anda.</string>
     <string name="widget_empty">Belum ada target. Ketuk untuk menambahkan.</string>

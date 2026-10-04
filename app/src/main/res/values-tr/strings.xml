@@ -28,10 +28,10 @@
     <string name="backup_restore_desc">Bu telefondaki verileri bir yedek dosyasıyla değiştirin</string>
     <string name="last_backup">Son yedek: %1$s</string>
     <string name="never_backed_up">Henüz yedeklenmedi</string>
-    <string name="locked_title">Ultimate Sales Productivity kilitli</string>
+    <string name="locked_title">Quota Vault kilitli</string>
     <string name="locked_body">Satışlarınız, müşterileriniz ve hedefleriniz korunuyor.</string>
     <string name="unlock">Kilidi aç</string>
-    <string name="unlock_prompt_title">Ultimate Sales Productivity kilidini aç</string>
+    <string name="unlock_prompt_title">Quota Vault kilidini aç</string>
     <string name="unlock_prompt_subtitle">Parmak izinizi, yüzünüzü veya telefon PIN\'inizi kullanın</string>
     <string name="backup_password_title">Bir yedek parolası seçin</string>
     <string name="backup_password_body">Yedeği geri yüklemek için bu parola gerekir. Unutursanız yedeği kimse açamaz.</string>
@@ -49,7 +49,7 @@
     <string name="open_backup">Aç</string>
     <string name="restore_working">Yedek açılıyor…</string>
     <string name="restore_wrong_password">Yanlış parola. Kontrol edip tekrar deneyin.</string>
-    <string name="restore_not_backup">Bu dosya bir Ultimate Sales Productivity yedeği değil.</string>
+    <string name="restore_not_backup">Bu dosya bir Quota Vault yedeği değil.</string>
     <string name="restore_confirm_title">Verileriniz değiştirilsin mi?</string>
     <string name="restore_confirm_body">%1$s tarihli yedek\nMüşteriler: %2$d · Satışlar: %3$d · Randevular: %4$d · Hedefler: %5$d\n\nUygulamadaki her şey bu yedekle değiştirilecek.</string>
     <string name="restore_replace">Değiştir</string>
@@ -177,6 +177,7 @@
     <string name="appt_title">Başlık</string>
     <string name="appt_title_hint">örn. Takip araması</string>
     <string name="notifications_off_warning">Bildirimler kapalı, bu yüzden hatırlatıcı çalamaz. Açmak için dokunun.</string>
+    <string name="exact_alarm_warning">Hatırlatıcılar birkaç dakika geç çalabilir. Zamanında alarmlara izin vermek için dokunun.</string>
     <string name="delete_appointment">Randevuyu sil</string>
     <string name="delete_appointment_q">Bu randevu silinsin mi?</string>
     <string name="reminder_picker">Hatırlatıcı: %1$s</string>
@@ -310,7 +311,7 @@
     <string name="pi_never_t">Asla istenmez</string>
     <string name="pi_never">İnternet, kişiler, konum, kamera, mikrofon, fotoğraflar ve dosyalar, telefon aramaları, SMS.</string>
     <string name="agreement_title">Kullanıcı Sözleşmesi</string>
-    <string name="agreement_intro">Ultimate Sales Productivity\'yi kullanmadan önce lütfen okuyun. Kısadır ve verilerinizden kimin sorumlu olduğunu açıklar.</string>
+    <string name="agreement_intro">Quota Vault\'u kullanmadan önce lütfen okuyun. Kısadır ve verilerinizden kimin sorumlu olduğunu açıklar.</string>
     <string name="ag1_t">1. Verileriniz sizde kalır</string>
     <string name="ag1">Girdiğiniz her şey yalnızca bu telefonda saklanır. Uygulamanın internet erişimi, hesabı veya sunucusu yoktur. Uygulamanın yapımcıları verilerinizi asla almaz, görmez, saklamaz veya işlemez.</string>
     <string name="ag2_t">2. Verilerinizden yalnızca siz sorumlusunuz</string>
@@ -481,7 +482,7 @@
     <string name="follow_up_title">Takip: %1$s</string>
     <string name="remove_follow_up">Takibi kaldır</string>
     <string name="welcome_step">Adım %1$d / %2$d</string>
-    <string name="welcome_title">Ultimate Sales Productivity\'ye hoş geldiniz</string>
+    <string name="welcome_title">Quota Vault\'a hoş geldiniz</string>
     <string name="welcome_f1_t">Rakamlarınızı bilin</string>
     <string name="welcome_f1">Satışları saniyeler içinde kaydedin; kapanış oranınızı, ek satışlarınızı, komisyonunuzu ve satış başına sürenizi görün.</string>
     <string name="welcome_f2_t">Hedefte kalın</string>
@@ -522,7 +523,7 @@
     <string name="col_date">Tarih</string>
     <string name="col_amount">Tutar</string>
     <string name="col_status">Durum</string>
-    <string name="report_footer">Ultimate Sales Productivity ile, kullanıcının telefonunda gizli olarak oluşturuldu.</string>
+    <string name="report_footer">Quota Vault ile, kullanıcının telefonunda gizli olarak oluşturuldu.</string>
     <string name="widget_title">Hedefler</string>
     <string name="widget_locked">Kilitli. Hedeflerinizi görmek için uygulamayı açın.</string>
     <string name="widget_empty">Henüz hedef yok. Eklemek için dokunun.</string>

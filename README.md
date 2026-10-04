@@ -1,4 +1,4 @@
-# Ultimate Sales Productivity (Android)
+# Quota Vault (Android)
 
 A native Android app (Kotlin + Jetpack Compose) for tracking your sales productivity.
 Everything is stored privately on the phone — no account or internet needed.
@@ -74,7 +74,7 @@ Requires Android 8.0 or newer.
 Every push to `main` builds the app automatically (see `.github/workflows/build-apk.yml`).
 
 1. On your phone, open the repository on github.com and tap **Releases** (right side, or scroll down on mobile).
-2. Open the newest release and tap **UltimateSalesProductivity.apk** to download it.
+2. Open the newest release and tap **QuotaVault.apk** to download it.
 3. Open the downloaded file. Android will ask you to allow installs from your browser — allow it, then tap **Install**.
 
 To update, install the newer APK over the old one — your saved data stays. This works because every build is signed

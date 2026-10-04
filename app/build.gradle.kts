@@ -6,16 +6,16 @@ plugins {
 
 android {
     namespace = "com.salestracker.app"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.salestracker.app"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         // Each GitHub build gets a higher number, so phones accept it as an update.
         val build = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
         versionCode = build
-        versionName = "1.1.$build"
+        versionName = "1.2.$build"
     }
 
     // A permanent signing key lets every new build install over the last one, keeping your data.
@@ -68,6 +68,7 @@ dependencies {
     implementation("com.tom-roush:pdfbox-android:2.0.27.0") // password-protecting report PDFs (works offline)
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")

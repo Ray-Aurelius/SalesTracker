@@ -10,12 +10,9 @@
     <!-- Appointment reminders -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <!-- Exact alarms so reminders ring on time. USE_EXACT_ALARM is granted automatically on Android 13+;
-         SCHEDULE_EXACT_ALARM covers Android 12. -->
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
-    <uses-permission
-        android:name="android.permission.SCHEDULE_EXACT_ALARM"
-        android:maxSdkVersion="32" />
+    <!-- Exact alarms so reminders ring on time. The user allows this once (Settings → Alarms & reminders);
+         until then reminders still fire, just possibly a few minutes late. -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:allowBackup="false"

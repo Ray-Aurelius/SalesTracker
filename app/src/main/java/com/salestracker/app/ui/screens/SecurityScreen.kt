@@ -321,7 +321,7 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
             onConfirm = { pw ->
                 backupPassword = pw
                 vm.openedOwnScreen = true
-                saveLauncher.launch("UltimateSalesProductivity-backup-${LocalDate.now()}.stbackup")
+                saveLauncher.launch("QuotaVault-backup-${LocalDate.now()}.stbackup")
             },
         )
         Flow.RESTORE_PASSWORD -> EnterPasswordDialog(error = restoreError, onCancel = { flow = Flow.NONE }, onConfirm = ::tryRestore)

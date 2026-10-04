@@ -28,10 +28,10 @@
     <string name="backup_restore_desc">Thay dữ liệu trên điện thoại này bằng một tệp sao lưu</string>
     <string name="last_backup">Sao lưu gần nhất: %1$s</string>
     <string name="never_backed_up">Chưa từng sao lưu</string>
-    <string name="locked_title">Ultimate Sales Productivity đang khóa</string>
+    <string name="locked_title">Quota Vault đang khóa</string>
     <string name="locked_body">Giao dịch, khách hàng và mục tiêu của bạn được bảo vệ.</string>
     <string name="unlock">Mở khóa</string>
-    <string name="unlock_prompt_title">Mở khóa Ultimate Sales Productivity</string>
+    <string name="unlock_prompt_title">Mở khóa Quota Vault</string>
     <string name="unlock_prompt_subtitle">Dùng vân tay, khuôn mặt hoặc mã PIN điện thoại</string>
     <string name="backup_password_title">Chọn mật khẩu sao lưu</string>
     <string name="backup_password_body">Bạn cần mật khẩu này để khôi phục bản sao lưu. Nếu quên, không ai có thể mở được bản sao lưu.</string>
@@ -49,7 +49,7 @@
     <string name="open_backup">Mở</string>
     <string name="restore_working">Đang mở bản sao lưu…</string>
     <string name="restore_wrong_password">Sai mật khẩu. Hãy kiểm tra và thử lại.</string>
-    <string name="restore_not_backup">Tệp này không phải bản sao lưu của Ultimate Sales Productivity.</string>
+    <string name="restore_not_backup">Tệp này không phải bản sao lưu của Quota Vault.</string>
     <string name="restore_confirm_title">Thay thế dữ liệu của bạn?</string>
     <string name="restore_confirm_body">Bản sao lưu ngày %1$s\nKhách hàng: %2$d · Giao dịch: %3$d · Lịch hẹn: %4$d · Mục tiêu: %5$d\n\nMọi thứ trong ứng dụng sẽ được thay bằng bản sao lưu này.</string>
     <string name="restore_replace">Thay thế</string>
@@ -177,6 +177,7 @@
     <string name="appt_title">Tiêu đề</string>
     <string name="appt_title_hint">vd. Gọi lại theo dõi</string>
     <string name="notifications_off_warning">Thông báo đang tắt nên lời nhắc không thể reo. Chạm để bật.</string>
+    <string name="exact_alarm_warning">Lời nhắc có thể reo trễ vài phút. Chạm để cho phép báo thức đúng giờ.</string>
     <string name="delete_appointment">Xóa lịch hẹn</string>
     <string name="delete_appointment_q">Xóa lịch hẹn này?</string>
     <string name="reminder_picker">Nhắc nhở: %1$s</string>
@@ -310,7 +311,7 @@
     <string name="pi_never_t">Không bao giờ yêu cầu</string>
     <string name="pi_never">Internet, danh bạ, vị trí, máy ảnh, micrô, ảnh và tệp, cuộc gọi, SMS.</string>
     <string name="agreement_title">Thỏa thuận người dùng</string>
-    <string name="agreement_intro">Vui lòng đọc trước khi dùng Ultimate Sales Productivity. Thỏa thuận ngắn và giải thích ai chịu trách nhiệm về dữ liệu của bạn.</string>
+    <string name="agreement_intro">Vui lòng đọc trước khi dùng Quota Vault. Thỏa thuận ngắn và giải thích ai chịu trách nhiệm về dữ liệu của bạn.</string>
     <string name="ag1_t">1. Dữ liệu thuộc về bạn</string>
     <string name="ag1">Mọi thứ bạn nhập chỉ được lưu trên điện thoại này. Ứng dụng không có truy cập internet, tài khoản hay máy chủ. Nhà phát triển không bao giờ nhận, xem, lưu trữ hay xử lý dữ liệu của bạn.</string>
     <string name="ag2_t">2. Bạn hoàn toàn chịu trách nhiệm về dữ liệu của mình</string>
@@ -481,7 +482,7 @@
     <string name="follow_up_title">Theo dõi: %1$s</string>
     <string name="remove_follow_up">Bỏ lịch theo dõi</string>
     <string name="welcome_step">Bước %1$d / %2$d</string>
-    <string name="welcome_title">Chào mừng đến với Ultimate Sales Productivity</string>
+    <string name="welcome_title">Chào mừng đến với Quota Vault</string>
     <string name="welcome_f1_t">Nắm rõ con số</string>
     <string name="welcome_f1">Ghi giao dịch trong vài giây và xem tỷ lệ chốt, bán thêm, hoa hồng và thời gian mỗi giao dịch.</string>
     <string name="welcome_f2_t">Luôn đúng mục tiêu</string>
@@ -522,7 +523,7 @@
     <string name="col_date">Ngày</string>
     <string name="col_amount">Số tiền</string>
     <string name="col_status">Trạng thái</string>
-    <string name="report_footer">Tạo bằng Ultimate Sales Productivity, riêng tư trên điện thoại của người dùng.</string>
+    <string name="report_footer">Tạo bằng Quota Vault, riêng tư trên điện thoại của người dùng.</string>
     <string name="widget_title">Mục tiêu</string>
     <string name="widget_locked">Đang khóa. Mở ứng dụng để xem mục tiêu.</string>
     <string name="widget_empty">Chưa có mục tiêu. Chạm để thêm.</string>

@@ -28,10 +28,10 @@
     <string name="backup_restore_desc">この端末のデータをバックアップファイルの内容で置き換えます</string>
     <string name="last_backup">前回のバックアップ：%1$s</string>
     <string name="never_backed_up">まだバックアップしていません</string>
-    <string name="locked_title">Ultimate Sales Productivity はロック中です</string>
+    <string name="locked_title">Quota Vault はロック中です</string>
     <string name="locked_body">販売・顧客・目標は保護されています。</string>
     <string name="unlock">ロック解除</string>
-    <string name="unlock_prompt_title">Ultimate Sales Productivity のロックを解除</string>
+    <string name="unlock_prompt_title">Quota Vault のロックを解除</string>
     <string name="unlock_prompt_subtitle">指紋・顔・端末の PIN を使用</string>
     <string name="backup_password_title">バックアップのパスワードを設定</string>
     <string name="backup_password_body">復元にはこのパスワードが必要です。忘れると、誰もバックアップを開けません。</string>
@@ -49,7 +49,7 @@
     <string name="open_backup">開く</string>
     <string name="restore_working">バックアップを開いています…</string>
     <string name="restore_wrong_password">パスワードが違います。確認してもう一度お試しください。</string>
-    <string name="restore_not_backup">このファイルは Ultimate Sales Productivity のバックアップではありません。</string>
+    <string name="restore_not_backup">このファイルは Quota Vault のバックアップではありません。</string>
     <string name="restore_confirm_title">データを置き換えますか？</string>
     <string name="restore_confirm_body">バックアップ日時：%1$s\n顧客：%2$d · 販売：%3$d · 予定：%4$d · 目標：%5$d\n\n現在アプリにあるデータはすべてこのバックアップで置き換えられます。</string>
     <string name="restore_replace">置き換える</string>
@@ -177,6 +177,7 @@
     <string name="appt_title">タイトル</string>
     <string name="appt_title_hint">例：フォローアップの電話</string>
     <string name="notifications_off_warning">通知がオフのため、このリマインダーは鳴りません。タップしてオンにしてください。</string>
+    <string name="exact_alarm_warning">リマインダーが数分遅れて鳴ることがあります。タップして正確なアラームを許可してください。</string>
     <string name="delete_appointment">予定を削除</string>
     <string name="delete_appointment_q">この予定を削除しますか？</string>
     <string name="reminder_picker">リマインダー：%1$s</string>
@@ -310,7 +311,7 @@
     <string name="pi_never_t">決して求めない権限</string>
     <string name="pi_never">インターネット、連絡先、位置情報、カメラ、マイク、写真とファイル、電話、SMS。</string>
     <string name="agreement_title">利用規約</string>
-    <string name="agreement_intro">Ultimate Sales Productivity を使う前にお読みください。短い内容で、データの責任が誰にあるかを説明しています。</string>
+    <string name="agreement_intro">Quota Vault を使う前にお読みください。短い内容で、データの責任が誰にあるかを説明しています。</string>
     <string name="ag1_t">1. データはあなたの手元に</string>
     <string name="ag1">入力した内容はすべてこの端末にのみ保存されます。アプリにはインターネット接続、アカウント、サーバーがありません。アプリの開発者があなたのデータを受け取ったり、見たり、保存したり、処理したりすることはありません。</string>
     <string name="ag2_t">2. データの責任はあなただけにあります</string>
@@ -481,7 +482,7 @@
     <string name="follow_up_title">フォローアップ：%1$s</string>
     <string name="remove_follow_up">フォローアップを解除</string>
     <string name="welcome_step">ステップ %1$d / %2$d</string>
-    <string name="welcome_title">Ultimate Sales Productivity へようこそ</string>
+    <string name="welcome_title">Quota Vault へようこそ</string>
     <string name="welcome_f1_t">数字を把握</string>
     <string name="welcome_f1">販売を数秒で記録し、成約率、アップセル、コミッション、1 件あたりの時間を確認できます。</string>
     <string name="welcome_f2_t">目標を外さない</string>
@@ -522,7 +523,7 @@
     <string name="col_date">日付</string>
     <string name="col_amount">金額</string>
     <string name="col_status">状態</string>
-    <string name="report_footer">Ultimate Sales Productivity により、ユーザーの端末上で非公開に作成されました。</string>
+    <string name="report_footer">Quota Vault により、ユーザーの端末上で非公開に作成されました。</string>
     <string name="widget_title">目標</string>
     <string name="widget_locked">ロック中です。アプリを開いて目標を確認してください。</string>
     <string name="widget_empty">目標はまだありません。タップして追加。</string>

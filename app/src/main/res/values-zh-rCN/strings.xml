@@ -28,10 +28,10 @@
     <string name="backup_restore_desc">用备份文件替换此手机上的数据</string>
     <string name="last_backup">上次备份：%1$s</string>
     <string name="never_backed_up">尚未备份</string>
-    <string name="locked_title">Ultimate Sales Productivity 已锁定</string>
+    <string name="locked_title">Quota Vault 已锁定</string>
     <string name="locked_body">你的销售、客户和目标受到保护。</string>
     <string name="unlock">解锁</string>
-    <string name="unlock_prompt_title">解锁 Ultimate Sales Productivity</string>
+    <string name="unlock_prompt_title">解锁 Quota Vault</string>
     <string name="unlock_prompt_subtitle">使用指纹、面容或手机 PIN</string>
     <string name="backup_password_title">设置备份密码</string>
     <string name="backup_password_body">恢复备份时需要此密码。如果忘记密码，任何人都无法打开备份。</string>
@@ -49,7 +49,7 @@
     <string name="open_backup">打开</string>
     <string name="restore_working">正在打开备份…</string>
     <string name="restore_wrong_password">密码错误。请检查后重试。</string>
-    <string name="restore_not_backup">此文件不是 Ultimate Sales Productivity 备份。</string>
+    <string name="restore_not_backup">此文件不是 Quota Vault 备份。</string>
     <string name="restore_confirm_title">替换你的数据？</string>
     <string name="restore_confirm_body">备份时间：%1$s\n客户：%2$d · 销售：%3$d · 预约：%4$d · 目标：%5$d\n\n应用中当前的所有内容都将被此备份替换。</string>
     <string name="restore_replace">替换</string>
@@ -177,6 +177,7 @@
     <string name="appt_title">标题</string>
     <string name="appt_title_hint">例如：跟进电话</string>
     <string name="notifications_off_warning">通知已关闭，此提醒无法响铃。点按开启。</string>
+    <string name="exact_alarm_warning">提醒可能会晚几分钟响起。点按以允许准时闹钟。</string>
     <string name="delete_appointment">删除预约</string>
     <string name="delete_appointment_q">删除这个预约？</string>
     <string name="reminder_picker">提醒：%1$s</string>
@@ -310,7 +311,7 @@
     <string name="pi_never_t">从不请求</string>
     <string name="pi_never">网络、通讯录、位置、相机、麦克风、照片和文件、电话、短信。</string>
     <string name="agreement_title">用户协议</string>
-    <string name="agreement_intro">使用 Ultimate Sales Productivity 前请阅读本协议。它很简短，说明了谁对你的数据负责。</string>
+    <string name="agreement_intro">使用 Quota Vault 前请阅读本协议。它很简短，说明了谁对你的数据负责。</string>
     <string name="ag1_t">1. 你的数据由你掌握</string>
     <string name="ag1">你输入的所有内容只存储在这部手机上。应用没有网络访问、没有账户、也没有服务器。应用的开发者绝不会接收、查看、存储或处理你的数据。</string>
     <string name="ag2_t">2. 你对自己的数据承担全部责任</string>
@@ -481,7 +482,7 @@
     <string name="follow_up_title">跟进：%1$s</string>
     <string name="remove_follow_up">移除跟进</string>
     <string name="welcome_step">第 %1$d 步，共 %2$d 步</string>
-    <string name="welcome_title">欢迎使用 Ultimate Sales Productivity</string>
+    <string name="welcome_title">欢迎使用 Quota Vault</string>
     <string name="welcome_f1_t">掌握你的数据</string>
     <string name="welcome_f1">几秒钟记录一笔销售，查看成交率、追加销售、佣金和每笔用时。</string>
     <string name="welcome_f2_t">紧盯目标</string>
@@ -522,7 +523,7 @@
     <string name="col_date">日期</string>
     <string name="col_amount">金额</string>
     <string name="col_status">状态</string>
-    <string name="report_footer">由 Ultimate Sales Productivity 在用户手机上私密生成。</string>
+    <string name="report_footer">由 Quota Vault 在用户手机上私密生成。</string>
     <string name="widget_title">目标</string>
     <string name="widget_locked">已锁定。打开应用查看目标。</string>
     <string name="widget_empty">还没有目标。点按以添加。</string>

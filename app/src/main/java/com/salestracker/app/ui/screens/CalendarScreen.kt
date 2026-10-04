@@ -437,6 +437,30 @@ private fun AppointmentDialog(
         // If Android won't show the prompt again (denied before), send them to settings instead.
         if (!granted) openNotificationSettings()
     }
+    // On-time alarms need the user's OK on Android 12+ (Settings → Alarms & reminders).
+    val alarmManager = remember { context.getSystemService(android.app.AlarmManager::class.java) }
+    fun exactAllowed() = Build.VERSION.SDK_INT < Build.VERSION_CODES.S || alarmManager.canScheduleExactAlarms()
+    var exactOn by remember { mutableStateOf(exactAllowed()) }
+    val openExactAlarmSettings = {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            context.startActivity(
+                Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, android.net.Uri.parse("package:" + context.packageName))
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
+        }
+    }
+    // Re-check both permissions when the user comes back from Settings.
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+    androidx.compose.runtime.DisposableEffect(lifecycleOwner) {
+        val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
+            if (event == androidx.lifecycle.Lifecycle.Event.ON_RESUME) {
+                notificationsOn = NotificationManagerCompat.from(context).areNotificationsEnabled()
+                exactOn = exactAllowed()
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
     val askForNotifications = {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
@@ -488,6 +512,18 @@ private fun AppointmentDialog(
                             Spacer(Modifier.width(8.dp))
                             Text(
                                 stringResource(R.string.notifications_off_warning),
+                                style = MaterialTheme.typography.bodySmall,
+                            )
+                        }
+                    }
+                }
+                if (reminder != null && notificationsOn && !exactOn) {
+                    Card(onClick = openExactAlarmSettings, modifier = Modifier.fillMaxWidth()) {
+                        Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Filled.Schedule, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                stringResource(R.string.exact_alarm_warning),
                                 style = MaterialTheme.typography.bodySmall,
                             )
                         }

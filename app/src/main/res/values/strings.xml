@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ultimate Sales Productivity</string>
+    <string name="app_name">Quota Vault</string>
 
     <!-- Tabs (short label) and screen titles -->
     <string name="tab_stats">Stats</string>
@@ -35,10 +35,10 @@
     <string name="never_backed_up">Not backed up yet</string>
 
     <!-- Lock screen -->
-    <string name="locked_title">Ultimate Sales Productivity is locked</string>
+    <string name="locked_title">Quota Vault is locked</string>
     <string name="locked_body">Your sales, clients and goals are protected.</string>
     <string name="unlock">Unlock</string>
-    <string name="unlock_prompt_title">Unlock Ultimate Sales Productivity</string>
+    <string name="unlock_prompt_title">Unlock Quota Vault</string>
     <string name="unlock_prompt_subtitle">Use your fingerprint, face or phone PIN</string>
 
     <!-- Backup and restore -->
@@ -58,7 +58,7 @@
     <string name="open_backup">Open</string>
     <string name="restore_working">Unlocking the backup…</string>
     <string name="restore_wrong_password">Wrong password. Check it and try again.</string>
-    <string name="restore_not_backup">This file isn\'t an Ultimate Sales Productivity backup.</string>
+    <string name="restore_not_backup">This file isn\'t an Quota Vault backup.</string>
     <string name="restore_confirm_title">Replace your data?</string>
     <string name="restore_confirm_body">Backup from %1$s\nClients: %2$d · Sales: %3$d · Appointments: %4$d · Goals: %5$d\n\nEverything currently in the app will be replaced with this backup.</string>
     <string name="restore_replace">Replace</string>
@@ -216,6 +216,7 @@
     <string name="appt_title">Title</string>
     <string name="appt_title_hint">e.g. Follow-up call</string>
     <string name="notifications_off_warning">Notifications are off, so this reminder can\'t ring. Tap to turn them on.</string>
+    <string name="exact_alarm_warning">Reminders may ring a few minutes late. Tap to allow on-time alarms.</string>
     <string name="delete_appointment">Delete appointment</string>
     <string name="delete_appointment_q">Delete this appointment?</string>
     <string name="reminder_picker">Reminder: %1$s</string>
@@ -385,7 +386,7 @@
 
     <!-- User agreement -->
     <string name="agreement_title">User Agreement</string>
-    <string name="agreement_intro">Please read this before using Ultimate Sales Productivity. It\'s short, and it explains who is responsible for your data.</string>
+    <string name="agreement_intro">Please read this before using Quota Vault. It\'s short, and it explains who is responsible for your data.</string>
     <string name="ag1_t">1. Your data stays with you</string>
     <string name="ag1">Everything you enter is stored only on this phone. The app has no internet access, no accounts and no servers. The makers of the app never receive, see, store or process your data.</string>
     <string name="ag2_t">2. You are solely responsible for your data</string>
@@ -578,7 +579,7 @@
 
     <!-- Welcome tour and sample data -->
     <string name="welcome_step">Step %1$d of %2$d</string>
-    <string name="welcome_title">Welcome to Ultimate Sales Productivity</string>
+    <string name="welcome_title">Welcome to Quota Vault</string>
     <string name="welcome_f1_t">Know your numbers</string>
     <string name="welcome_f1">Log sales in seconds and see your close rate, upsells, commission and time per sale.</string>
     <string name="welcome_f2_t">Stay on target</string>
@@ -621,7 +622,7 @@
     <string name="col_date">Date</string>
     <string name="col_amount">Amount</string>
     <string name="col_status">Status</string>
-    <string name="report_footer">Created with Ultimate Sales Productivity, privately on the user\'s phone.</string>
+    <string name="report_footer">Created with Quota Vault, privately on the user\'s phone.</string>
 
     <!-- Home-screen widget -->
     <string name="widget_title">Goals</string>

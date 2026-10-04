@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "UltimateSalesProductivity"
+rootProject.name = "QuotaVault"
 include(":app")

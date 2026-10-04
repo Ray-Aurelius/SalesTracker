@@ -28,10 +28,10 @@
     <string name="backup_restore_desc">এই ফোনের ডেটা একটি ব্যাকআপ ফাইল দিয়ে প্রতিস্থাপন করুন</string>
     <string name="last_backup">শেষ ব্যাকআপ: %1$s</string>
     <string name="never_backed_up">এখনো ব্যাকআপ নেওয়া হয়নি</string>
-    <string name="locked_title">Ultimate Sales Productivity লক করা আছে</string>
+    <string name="locked_title">Quota Vault লক করা আছে</string>
     <string name="locked_body">আপনার বিক্রয়, গ্রাহক ও লক্ষ্য সুরক্ষিত।</string>
     <string name="unlock">আনলক</string>
-    <string name="unlock_prompt_title">Ultimate Sales Productivity আনলক করুন</string>
+    <string name="unlock_prompt_title">Quota Vault আনলক করুন</string>
     <string name="unlock_prompt_subtitle">আঙুলের ছাপ, মুখ বা ফোনের PIN ব্যবহার করুন</string>
     <string name="backup_password_title">ব্যাকআপের পাসওয়ার্ড বেছে নিন</string>
     <string name="backup_password_body">ব্যাকআপ পুনরুদ্ধার করতে এই পাসওয়ার্ড লাগবে। ভুলে গেলে কেউই ব্যাকআপটি খুলতে পারবে না।</string>
@@ -49,7 +49,7 @@
     <string name="open_backup">খুলুন</string>
     <string name="restore_working">ব্যাকআপ খোলা হচ্ছে…</string>
     <string name="restore_wrong_password">পাসওয়ার্ড ভুল। যাচাই করে আবার চেষ্টা করুন।</string>
-    <string name="restore_not_backup">এই ফাইলটি Ultimate Sales Productivity-এর ব্যাকআপ নয়।</string>
+    <string name="restore_not_backup">এই ফাইলটি Quota Vault-এর ব্যাকআপ নয়।</string>
     <string name="restore_confirm_title">আপনার ডেটা প্রতিস্থাপন করবেন?</string>
     <string name="restore_confirm_body">%1$s তারিখের ব্যাকআপ\nগ্রাহক: %2$d · বিক্রয়: %3$d · অ্যাপয়েন্টমেন্ট: %4$d · লক্ষ্য: %5$d\n\nঅ্যাপে এখন যা আছে সবকিছু এই ব্যাকআপ দিয়ে প্রতিস্থাপিত হবে।</string>
     <string name="restore_replace">প্রতিস্থাপন</string>
@@ -177,6 +177,7 @@
     <string name="appt_title">শিরোনাম</string>
     <string name="appt_title_hint">যেমন ফলো-আপ কল</string>
     <string name="notifications_off_warning">নোটিফিকেশন বন্ধ, তাই এই রিমাইন্ডার বাজবে না। চালু করতে ট্যাপ করুন।</string>
+    <string name="exact_alarm_warning">রিমাইন্ডার কয়েক মিনিট দেরিতে বাজতে পারে। সময়মতো অ্যালার্মের অনুমতি দিতে ট্যাপ করুন।</string>
     <string name="delete_appointment">অ্যাপয়েন্টমেন্ট মুছুন</string>
     <string name="delete_appointment_q">এই অ্যাপয়েন্টমেন্ট মুছবেন?</string>
     <string name="reminder_picker">রিমাইন্ডার: %1$s</string>
@@ -310,7 +311,7 @@
     <string name="pi_never_t">কখনো চাওয়া হয় না</string>
     <string name="pi_never">ইন্টারনেট, পরিচিতি, অবস্থান, ক্যামেরা, মাইক্রোফোন, ছবি ও ফাইল, ফোন কল, SMS।</string>
     <string name="agreement_title">ব্যবহারকারী চুক্তি</string>
-    <string name="agreement_intro">Ultimate Sales Productivity ব্যবহারের আগে দয়া করে এটি পড়ুন। এটি সংক্ষিপ্ত এবং আপনার ডেটার দায়িত্ব কার, তা ব্যাখ্যা করে।</string>
+    <string name="agreement_intro">Quota Vault ব্যবহারের আগে দয়া করে এটি পড়ুন। এটি সংক্ষিপ্ত এবং আপনার ডেটার দায়িত্ব কার, তা ব্যাখ্যা করে।</string>
     <string name="ag1_t">১. আপনার ডেটা আপনার কাছেই থাকে</string>
     <string name="ag1">আপনি যা লেখেন সবকিছু শুধু এই ফোনে সংরক্ষিত হয়। অ্যাপটির ইন্টারনেট অ্যাক্সেস, অ্যাকাউন্ট বা সার্ভার নেই। অ্যাপের নির্মাতারা কখনো আপনার ডেটা গ্রহণ, দেখা, সংরক্ষণ বা প্রক্রিয়া করেন না।</string>
     <string name="ag2_t">২. আপনার ডেটার একমাত্র দায়িত্ব আপনার</string>
@@ -481,7 +482,7 @@
     <string name="follow_up_title">ফলো-আপ: %1$s</string>
     <string name="remove_follow_up">ফলো-আপ সরান</string>
     <string name="welcome_step">ধাপ %1$d / %2$d</string>
-    <string name="welcome_title">Ultimate Sales Productivity-তে স্বাগতম</string>
+    <string name="welcome_title">Quota Vault-তে স্বাগতম</string>
     <string name="welcome_f1_t">নিজের সংখ্যা জানুন</string>
     <string name="welcome_f1">কয়েক সেকেন্ডে বিক্রয় লিখুন এবং ক্লোজ হার, আপসেল, কমিশন ও প্রতি বিক্রয়ের সময় দেখুন।</string>
     <string name="welcome_f2_t">লক্ষ্যে স্থির থাকুন</string>
@@ -522,7 +523,7 @@
     <string name="col_date">তারিখ</string>
     <string name="col_amount">পরিমাণ</string>
     <string name="col_status">অবস্থা</string>
-    <string name="report_footer">Ultimate Sales Productivity দিয়ে ব্যবহারকারীর ফোনে গোপনে তৈরি।</string>
+    <string name="report_footer">Quota Vault দিয়ে ব্যবহারকারীর ফোনে গোপনে তৈরি।</string>
     <string name="widget_title">লক্ষ্য</string>
     <string name="widget_locked">লক করা। লক্ষ্য দেখতে অ্যাপ খুলুন।</string>
     <string name="widget_empty">এখনো কোনো লক্ষ্য নেই। যোগ করতে ট্যাপ করুন।</string>
