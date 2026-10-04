@@ -27,7 +27,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -290,10 +291,14 @@ private fun TrendCard(
                         val x = i * slot + (slot - barW) / 2
                         val yTop = y(value)
                         val color = if (i == selected) primary else muted
-                        // Round only the top: draw a rounded bar, then square off its bottom edge.
-                        drawRoundRect(color, Offset(x, yTop), Size(barW, h - yTop), CornerRadius(radius, radius))
-                        val sq = minOf(radius, h - yTop)
-                        drawRect(color, Offset(x, h - sq), Size(barW, sq))
+                        // One shape, rounded only at the top, sitting on the baseline.
+                        val r = CornerRadius(minOf(radius, (h - yTop) / 2, barW / 2))
+                        drawPath(
+                            Path().apply {
+                                addRoundRect(RoundRect(Rect(x, yTop, x + barW, h), topLeft = r, topRight = r, bottomRight = CornerRadius.Zero, bottomLeft = CornerRadius.Zero))
+                            },
+                            color,
+                        )
                     }
                 } else {
                     val lineW = with(density) { 2.dp.toPx() }
