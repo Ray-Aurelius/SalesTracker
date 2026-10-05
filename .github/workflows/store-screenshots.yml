@@ -7,6 +7,9 @@ on:
     branches: [main]
     paths:
       - 'app/src/test/java/com/salestracker/app/StoreScreenshots.kt'
+      - 'app/src/test/java/com/salestracker/app/LayoutAudit.kt'
+      - 'app/src/main/java/com/salestracker/app/ui/**'
+      - 'app/src/main/java/com/salestracker/app/MainActivity.kt'
       - '.github/workflows/store-screenshots.yml'
   workflow_dispatch:
 
@@ -27,11 +30,11 @@ jobs:
         run: |
           chmod +x gradlew
           set -o pipefail
-          if ! ./gradlew testDebugUnitTest --tests "com.salestracker.app.StoreScreenshots" -PstoreShots --no-daemon 2>&1 | tee build.log; then
+          if ! ./gradlew testDebugUnitTest --tests "com.salestracker.app.StoreScreenshots" --tests "com.salestracker.app.LayoutAudit" -PstoreShots --no-daemon 2>&1 | tee build.log; then
             grep -E "^e: |error:|FAILED|What went wrong|Exception|Caused by" -A3 build.log | head -80 | sed 's/%/%25/g' | tr '\n' '\r' | sed 's/\r/%0A/g' > err.txt
             echo "::error title=Screenshot errors::$(cat err.txt)"
             # Test failures are described in the XML report.
-            R=$(ls app/build/test-results/testDebugUnitTest/*StoreScreenshots*.xml 2>/dev/null | head -1)
+            R=$(grep -l "<failure" app/build/test-results/testDebugUnitTest/*.xml 2>/dev/null | head -1)
             if [ -n "$R" ]; then
               head -c 3000 "$R" | sed 's/%/%25/g' | tr '\n' '\r' | sed 's/\r/%0A/g' > rep.txt
               echo "::error title=Test report::$(cat rep.txt)"
@@ -45,3 +48,6 @@ jobs:
         run: |
           gh release view store-assets >/dev/null 2>&1 || gh release create store-assets --title "Play Store assets" --notes "Screenshots for the Google Play listing, rendered from the real app with sample data." --latest=false
           gh release upload store-assets app/build/store-screenshots/*.png --clobber
+          # Layout audit: every tab in tight layouts (side menu, small phone, large text, landscape).
+          gh release view layout-audit >/dev/null 2>&1 || gh release create layout-audit --title "Layout audit" --notes "Every screen rendered in tight layouts, for checking overlap and legibility." --latest=false
+          gh release upload layout-audit app/build/layout-audit/*.png --clobber
