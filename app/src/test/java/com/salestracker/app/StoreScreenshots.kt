@@ -89,6 +89,7 @@ class StoreScreenshots {
         rule.waitForIdle(); shot("4b-tasks")
         rule.onAllNodesWithText(app.getString(R.string.schedule_calendar)).onFirst().performClick()
         rule.waitForIdle()
+        tap(app.getString(R.string.tab_timer)); shot("5-timer")
         tap(app.getString(R.string.tab_charts)); shot("7-charts")
         // Bring the commission and revenue bar charts into view (the second "Close rate" is the trend chart below them).
         rule.onAllNodesWithText(app.getString(R.string.close_rate))[1].performScrollTo()
