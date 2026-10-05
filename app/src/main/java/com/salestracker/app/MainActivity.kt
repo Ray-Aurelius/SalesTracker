@@ -267,7 +267,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     // In landscape a bottom bar leaves too little room for the page, so the menu goes to the side.
     val side = vm.menuOnLeft || config.screenHeightDp < 480
     // Bottom bar: 7 items share the width. Side menu: labels when they fit in 68dp, otherwise icons only.
-    val bottomItemWidth = (config.screenWidthDp - 8f * (labels.size - 1)) / labels.size - 6f
+    val bottomItemWidth = (config.screenWidthDp - 8f * (labels.size - 1)) / labels.size - 10f
     // Every label when they fit at a readable size; otherwise only the current page's name shows.
     // At normal text sizes every label shows (shrunk to fit, as before). With large text chosen,
     // labels that would end up tinier than 9pt give way to just the current page's name.
