@@ -269,7 +269,10 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     // Bottom bar: 7 items share the width. Side menu: labels when they fit in 68dp, otherwise icons only.
     val bottomItemWidth = (config.screenWidthDp - 8f * (labels.size - 1)) / labels.size - 6f
     // Every label when they fit at a readable size; otherwise only the current page's name shows.
-    val bottomAllLabels = rememberLabelSize(labels, bottomItemWidth, 9f)
+    // At normal text sizes every label shows (shrunk to fit, as before). With large text chosen,
+    // labels that would end up tinier than 9pt give way to just the current page's name.
+    val largeText = LocalDensity.current.fontScale > 1.15f
+    val bottomAllLabels = rememberLabelSize(labels, bottomItemWidth, if (largeText) 9f else 7.5f)
     val bottomLabelSize = bottomAllLabels ?: rememberLabelSize(labels, bottomItemWidth + 6f, 6.5f) ?: 7.sp
     val sideLabelSize = rememberLabelSize(labels, 68f, 9f)
 
