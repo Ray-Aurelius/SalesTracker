@@ -37,6 +37,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -143,10 +144,17 @@ private fun SectionHeader(scope: GoalScope, onAdd: () -> Unit) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
-        TextButton(onClick = onAdd) {
-            Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.size(18.dp))
-            Spacer(Modifier.width(4.dp))
-            Text(stringResource(R.string.add))
+        // On a narrow page the "Add" word would squeeze the heading; the icon alone is enough there.
+        if (isNarrow()) {
+            IconButton(onClick = onAdd) {
+                Icon(Icons.Filled.Add, contentDescription = stringResource(R.string.add), tint = MaterialTheme.colorScheme.primary)
+            }
+        } else {
+            TextButton(onClick = onAdd) {
+                Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.size(18.dp))
+                Spacer(Modifier.width(4.dp))
+                Text(stringResource(R.string.add))
+            }
         }
     }
 }
@@ -161,22 +169,27 @@ private fun GoalCard(goal: Goal, progress: GoalProgress, onClick: () -> Unit, on
     val barColor = scopeColor(goal.scope)
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
-                    Text(goal.name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+            TitleValueRow(
+                title = {
+                    Column {
+                        Text(goal.name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                        Text(
+                            "${stringResource(goal.period.label)} · ${stringResource(goal.metric.short)}",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = colors.onSurfaceVariant,
+                        )
+                    }
+                },
+                value = {
                     Text(
-                        "${stringResource(goal.period.label)} · ${stringResource(goal.metric.short)}",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = colors.onSurfaceVariant,
+                        "${(progress.fraction * 100).toInt()}%",
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = barColor,
+                        maxLines = 1,
                     )
-                }
-                Text(
-                    "${(progress.fraction * 100).toInt()}%",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = barColor,
-                )
-            }
+                },
+            )
             LinearProgressIndicator(
                 progress = { progress.fraction.toFloat().coerceIn(0f, 1f) },
                 color = barColor,

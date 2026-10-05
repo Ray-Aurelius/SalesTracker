@@ -4,6 +4,8 @@ import com.salestracker.app.R
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -71,12 +73,24 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
         ClientPicker(data.clients, vm.stopwatchClientId, vm::setStopwatchClient, Modifier.fillMaxWidth())
         Spacer(Modifier.height(32.dp))
 
-        Text(
-            formatClock(elapsed),
-            fontSize = 60.sp,
-            fontFamily = FontFamily.Monospace,
-            fontWeight = FontWeight.Light,
-        )
+        // The clock is as big as fits: 60sp normally, smaller when the page is narrow
+        // (side menu, small phone, large text), so the digits never wrap onto two lines.
+        BoxWithConstraints(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            val clock = formatClock(elapsed)
+            val density = LocalDensity.current
+            val size = with(density) {
+                val fitPx = constraints.maxWidth / (clock.length * 0.62f)
+                minOf(60.sp.toPx(), fitPx).toSp()
+            }
+            Text(
+                clock,
+                fontSize = size,
+                fontFamily = FontFamily.Monospace,
+                fontWeight = FontWeight.Light,
+                maxLines = 1,
+                softWrap = false,
+            )
+        }
         Text(
             when {
                 vm.stopwatchRunning -> stringResource(R.string.timer_running)
@@ -84,18 +98,20 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
                 else -> stringResource(R.string.timer_hint)
             },
             color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
         )
         Spacer(Modifier.height(32.dp))
 
-        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            OutlinedButton(onClick = vm::resetStopwatch, enabled = elapsed > 0 && !vm.stopwatchRunning) {
+        // Two equal buttons that share the width, so they fit next to a side menu or with large text.
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            OutlinedButton(onClick = vm::resetStopwatch, enabled = elapsed > 0 && !vm.stopwatchRunning, modifier = Modifier.weight(1f)) {
                 Icon(Icons.Filled.Replay, contentDescription = null)
                 Spacer(Modifier.width(6.dp))
                 Text(stringResource(R.string.reset))
             }
             Button(
                 onClick = { if (vm.stopwatchRunning) vm.pauseStopwatch() else vm.startStopwatch() },
-                modifier = Modifier.width(150.dp),
+                modifier = Modifier.weight(1f),
             ) {
                 Icon(if (vm.stopwatchRunning) Icons.Filled.Pause else Icons.Filled.PlayArrow, contentDescription = null)
                 Spacer(Modifier.width(6.dp))

@@ -5,6 +5,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -81,43 +85,65 @@ fun CalculatorScreen(vm: AppViewModel) {
         listOf("0", ".", EQUALS),
     )
 
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
-        Column(
-            Modifier.fillMaxWidth().weight(1f),
-            verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.End,
-        ) {
-            Text(
-                expr.ifEmpty { "0" },
-                fontSize = 40.sp,
-                textAlign = TextAlign.End,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Text(
-                if (preview != null && preview != expr) "= $preview" else " ",
-                fontSize = 22.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+    // Sized from the space actually available, so every key shows in full: next to the side menu,
+    // with large text, and in landscape (where the display sits beside the keypad).
+    BoxWithConstraints(Modifier.fillMaxSize().padding(16.dp)) {
+        val wide = maxWidth > maxHeight * 1.2f
+        val gap = 10.dp
+        val display: @Composable (Modifier) -> Unit = { mod ->
+            Column(mod, verticalArrangement = Arrangement.Bottom, horizontalAlignment = Alignment.End) {
+                Text(
+                    expr.ifEmpty { "0" },
+                    fontSize = 40.sp,
+                    textAlign = TextAlign.End,
+                    maxLines = if (wide) 2 else 3,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                Text(
+                    if (preview != null && preview != expr) "= $preview" else " ",
+                    fontSize = 22.sp,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
-        Spacer(Modifier.padding(8.dp))
-        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            rows.forEach { row ->
-                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    row.forEach { key ->
-                        val wide = key == "0"
-                        Button(
-                            onClick = { press(key) },
-                            colors = keyColors(key),
-                            modifier = Modifier.weight(if (wide) 2f else 1f).padding(vertical = 0.dp),
-                            contentPadding = androidx.compose.foundation.layout.PaddingValues(vertical = 18.dp),
-                        ) {
-                            // Screen readers say "divided by", "delete" etc. instead of skipping symbols.
-                            val spoken = spokenKey(key)
-                            Text(key, fontSize = 24.sp, modifier = if (spoken != null) Modifier.semantics { contentDescription = spoken } else Modifier)
+        val keypadHeight = if (wide) maxHeight else maxHeight * 0.72f
+        val keyHeight = minOf(72.dp, (keypadHeight - gap * 4) / 5)
+        val keypad: @Composable (Modifier) -> Unit = { mod ->
+            Column(mod, verticalArrangement = Arrangement.spacedBy(gap)) {
+                rows.forEach { row ->
+                    Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
+                        row.forEach { key ->
+                            Button(
+                                onClick = { press(key) },
+                                colors = keyColors(key),
+                                modifier = Modifier.weight(if (key == "0") 2f else 1f).height(keyHeight),
+                                contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp),
+                            ) {
+                                // Screen readers say "divided by", "delete" etc. instead of skipping symbols.
+                                val spoken = spokenKey(key)
+                                val size = with(LocalDensity.current) { minOf(24.sp.toPx(), keyHeight.toPx() * 0.45f).toSp() }
+                                Text(
+                                    key, fontSize = size, maxLines = 1, softWrap = false,
+                                    modifier = if (spoken != null) Modifier.semantics { contentDescription = spoken } else Modifier,
+                                )
+                            }
                         }
                     }
                 }
+            }
+        }
+        if (wide) {
+            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                display(Modifier.weight(1f).fillMaxHeight())
+                keypad(Modifier.weight(1.4f))
+            }
+        } else {
+            Column {
+                display(Modifier.fillMaxWidth().weight(1f))
+                Spacer(Modifier.height(12.dp))
+                keypad(Modifier.fillMaxWidth())
             }
         }
     }

@@ -254,7 +254,19 @@ fun SaleCard(sale: Sale, clientName: String, onClick: () -> Unit, onDelete: () -
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
         Row(Modifier.padding(start = 16.dp, top = 12.dp, bottom = 12.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                Text(clientName, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+                // Name and amount share a line when there's room; on a narrow page the amount moves below.
+                TitleValueRow(
+                    title = { Text(clientName, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold) },
+                    value = {
+                        Text(
+                            formatMoney(sale.revenue),
+                            style = MaterialTheme.typography.titleMedium,
+                            maxLines = 1,
+                            softWrap = false,
+                            color = if (sale.closed) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    },
+                )
                 Text(
                     "${formatDateTime(sale.timestamp)} · ${formatDuration(sale.durationSeconds)}",
                     style = MaterialTheme.typography.bodySmall,
@@ -271,11 +283,6 @@ fun SaleCard(sale: Sale, clientName: String, onClick: () -> Unit, onDelete: () -
                     color = if (sale.closed) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
                 )
             }
-            Text(
-                formatMoney(sale.revenue),
-                style = MaterialTheme.typography.titleMedium,
-                color = if (sale.closed) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
-            )
             IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.cd_delete_sale)) }
         }
     }

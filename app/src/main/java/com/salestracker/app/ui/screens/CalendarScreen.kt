@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 
 package com.salestracker.app.ui.screens
 
@@ -31,6 +31,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -212,12 +214,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                 }
             }
         }
-        ExtendedFloatingActionButton(
-            onClick = { adding = true },
-            icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-            text = { Text(stringResource(LocalTerms.current.appointment)) },
-            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-        )
+        AddFab(stringResource(LocalTerms.current.appointment), Icons.Filled.Add, onClick = { adding = true }, modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp))
     }
 
     if (adding || editing != null) {
@@ -249,7 +246,7 @@ private fun MonthGrid(
     Column {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onPrev) { Icon(Icons.Filled.ChevronLeft, contentDescription = stringResource(R.string.cd_prev_month)) }
-            Text(
+            FitText(
                 month.format(monthTitle()),
                 style = MaterialTheme.typography.titleLarge,
                 textAlign = TextAlign.Center,
@@ -259,9 +256,10 @@ private fun MonthGrid(
         }
         TextButton(onClick = onToday, modifier = Modifier.align(Alignment.CenterHorizontally)) { Text(stringResource(R.string.period_today)) }
 
-        // Sunday-first week, matching US calendars.
+        // Sunday-first week, matching US calendars. Narrow columns get one-letter names (S M T W…).
+        val dayStyle = if (effectiveWidth() / 7 < 46.dp) TextStyle.NARROW else TextStyle.SHORT
         val weekdays = listOf(7, 1, 2, 3, 4, 5, 6).map {
-            java.time.DayOfWeek.of(it).getDisplayName(TextStyle.SHORT, appLocale())
+            java.time.DayOfWeek.of(it).getDisplayName(dayStyle, appLocale())
         }
         Row {
             weekdays.forEach {
@@ -269,6 +267,8 @@ private fun MonthGrid(
                     it,
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Center,
+                    maxLines = 1,
+                    softWrap = false,
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -328,16 +328,22 @@ private fun DayCell(
         isToday && !isSelected -> mod.border(1.5.dp, if (hl != null) readableOn(hl) else colors.primary, CircleShape)
         else -> mod
     }
-    Box(
+    BoxWithConstraints(
         mod.clickable(onClick = onClick).semantics(mergeDescendants = true) {
             contentDescription = spoken
             selected = isSelected
         },
         contentAlignment = Alignment.Center,
     ) {
+        // The number fits its circle: normal size, or smaller in a small cell with large text.
+        val base = MaterialTheme.typography.bodyLarge.fontSize
+        val size = with(LocalDensity.current) { minOf(base.toPx(), maxHeight.toPx() * 0.45f).toSp() }
         Text(
             date.dayOfMonth.toString(),
             color = textColor,
+            fontSize = size,
+            maxLines = 1,
+            softWrap = false,
             fontWeight = if (isToday || hl != null) FontWeight.Bold else FontWeight.Normal,
         )
         if (symbols && highlight != null) {
@@ -367,10 +373,11 @@ private fun HighlightPicker(symbols: Boolean, current: HighlightColor?, onPick: 
     val colors = MaterialTheme.colorScheme
     Column(Modifier.padding(top = 10.dp)) {
         Text(stringResource(R.string.highlight_day), style = MaterialTheme.typography.labelLarge)
-        Row(
-            Modifier.horizontalScroll(rememberScrollState()).padding(top = 6.dp),
+        // Wraps onto a second line on narrow pages, so every color stays visible.
+        androidx.compose.foundation.layout.FlowRow(
+            Modifier.padding(top = 6.dp),
             horizontalArrangement = Arrangement.spacedBy(10.dp),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             // "None" choice: an outlined circle with a slash.
             val noneLabel = stringResource(R.string.highlight_none)

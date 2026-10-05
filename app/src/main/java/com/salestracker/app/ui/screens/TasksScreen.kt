@@ -103,11 +103,11 @@ fun ScheduleScreen(vm: AppViewModel, data: AppData) {
             SegmentedButton(
                 selected = view == 0, onClick = { view = 0 },
                 shape = SegmentedButtonDefaults.itemShape(0, 2),
-            ) { Text(stringResource(R.string.schedule_calendar)) }
+            ) { FitText(stringResource(R.string.schedule_calendar)) }
             SegmentedButton(
                 selected = view == 1, onClick = { view = 1 },
                 shape = SegmentedButtonDefaults.itemShape(1, 2),
-            ) { Text(if (remaining > 0) stringResource(R.string.schedule_tasks_count, remaining) else stringResource(R.string.schedule_tasks)) }
+            ) { FitText(if (remaining > 0) stringResource(R.string.schedule_tasks_count, remaining) else stringResource(R.string.schedule_tasks)) }
         }
         Box(Modifier.weight(1f)) {
             if (view == 0) CalendarScreen(vm, data) else TasksScreen(vm, data)
@@ -138,7 +138,7 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
                     IconButton(onClick = { day-- }) {
                         Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = stringResource(R.string.cd_prev_day))
                     }
-                    Text(
+                    FitText(
                         dayLabel(day, today),
                         style = MaterialTheme.typography.titleLarge,
                         modifier = Modifier.weight(1f).clickable { day = today }.semantics { heading() },
@@ -221,12 +221,7 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
                 }
             }
         }
-        ExtendedFloatingActionButton(
-            onClick = { adding = true },
-            icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-            text = { Text(stringResource(R.string.add_task)) },
-            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-        )
+        AddFab(stringResource(R.string.add_task), Icons.Filled.Add, onClick = { adding = true }, modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp))
     }
 
     if (adding || editing != null) {

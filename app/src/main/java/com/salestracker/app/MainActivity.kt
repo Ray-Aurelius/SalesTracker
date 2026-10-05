@@ -2,6 +2,13 @@
 
 package com.salestracker.app
 
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight
+import com.salestracker.app.ui.screens.LocalContentWidth
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.expandVertically
@@ -212,25 +219,27 @@ private enum class Tab(@StringRes val label: Int, @StringRes val title: Int, val
 }
 
 /**
- * Picks one font size for every tab label: the largest (up to the normal 12sp) at which even the
- * longest label, e.g. "Calendar" or "Calendario", fits on one line. All labels share it, so they look even.
+ * Picks one font size for every menu label: the largest (up to 12sp on screen) at which even the longest
+ * label, e.g. "Schedule" or "Calendario", fits on one line in [itemWidthDp]. Menu labels don't grow with the
+ * app's text size beyond what fits, so they never get cut off. Null if even the smallest size won't fit.
  */
 @Composable
-private fun rememberTabLabelSize(labels: List<String>): TextUnit {
+private fun rememberLabelSize(labels: List<String>, itemWidthDp: Float, minSize: Float = 8f): TextUnit? {
     val measurer = rememberTextMeasurer()
     val density = LocalDensity.current
-    val screenWidth = LocalConfiguration.current.screenWidthDp
     val style = MaterialTheme.typography.labelMedium
-    return remember(labels, screenWidth, style, density) {
-        // Items share the width equally with 8dp gaps; keep a little breathing room on each side.
-        val itemDp = (screenWidth - 8f * (labels.size - 1)) / labels.size - 6f
-        val maxPx = with(density) { itemDp.dp.toPx() }
+    return remember(labels, itemWidthDp, style, density) {
+        val maxPx = with(density) { itemWidthDp.dp.toPx() }
+        // sizes in on-screen points: divide by the font scale so the result is the same on every text setting
         var size = 12f
-        while (size > 8f && labels.any {
-                measurer.measure(it, style.copy(fontSize = size.sp), maxLines = 1, softWrap = false).size.width > maxPx
+        fun sp(v: Float) = (v / density.fontScale).sp
+        while (size >= minSize) {
+            if (labels.all { measurer.measure(it, style.copy(fontSize = sp(size)), maxLines = 1, softWrap = false).size.width <= maxPx }) {
+                return@remember sp(size)
             }
-        ) size -= 0.5f
-        size.sp
+            size -= 0.5f
+        }
+        null
     }
 }
 
@@ -254,7 +263,12 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     fun Tab.labelRes() = if (this == Tab.CLIENTS) terms.clients else label
     fun Tab.titleRes() = if (this == Tab.CLIENTS) terms.clients else title
     val labels = Tab.entries.map { stringResource(it.labelRes()) }
-    val labelSize = rememberTabLabelSize(labels)
+    val config = LocalConfiguration.current
+    // In landscape a bottom bar leaves too little room for the page, so the menu goes to the side.
+    val side = vm.menuOnLeft || config.screenHeightDp < 480
+    // Bottom bar: 7 items share the width. Side menu: labels when they fit in 68dp, otherwise icons only.
+    val bottomLabelSize = rememberLabelSize(labels, (config.screenWidthDp - 8f * (labels.size - 1)) / labels.size - 6f, 7f) ?: 7.sp
+    val sideLabelSize = rememberLabelSize(labels, 68f, 9f)
 
     LaunchedEffect(vm.pendingOpenDay) {
         if (vm.pendingOpenDay != null) tab = Tab.CALENDAR
@@ -283,7 +297,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
             )
         },
         bottomBar = {
-            if (!vm.menuOnLeft) {
+            if (!side) {
                 Column {
                     MenuToggle(hidden = vm.menuHidden, side = false) { vm.changeMenuHidden(!vm.menuHidden) }
                     AnimatedVisibility(visible = !vm.menuHidden, enter = expandVertically(), exit = shrinkVertically()) {
@@ -293,7 +307,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                                     selected = tab == t,
                                     onClick = { tab = t },
                                     icon = { Icon(t.icon, contentDescription = null) },
-                                    label = { Text(labels[i], fontSize = labelSize, maxLines = 1, softWrap = false) },
+                                    label = { Text(labels[i], fontSize = bottomLabelSize, maxLines = 1, softWrap = false) },
                                 )
                             }
                         }
@@ -303,39 +317,30 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
         },
     ) { padding ->
         Row(Modifier.fillMaxSize().padding(padding)) {
-            if (vm.menuOnLeft) {
-                // Menu down the side (left, or right in right-to-left languages), scrollable on short screens.
-                AnimatedVisibility(visible = !vm.menuHidden, enter = expandHorizontally(), exit = shrinkHorizontally()) {
-                    NavigationRail(
-                        containerColor = MaterialTheme.colorScheme.surfaceContainer,
-                        windowInsets = WindowInsets(0, 0, 0, 0),
-                    ) {
-                        Column(
-                            Modifier.verticalScroll(rememberScrollState()).padding(vertical = 4.dp),
-                            verticalArrangement = Arrangement.spacedBy(4.dp),
-                        ) {
-                            Tab.entries.forEachIndexed { i, t ->
-                                NavigationRailItem(
-                                    selected = tab == t,
-                                    onClick = { tab = t },
-                                    icon = { Icon(t.icon, contentDescription = null) },
-                                    label = { Text(labels[i], maxLines = 1, softWrap = false) },
-                                )
-                            }
-                        }
-                    }
+            if (side) {
+                // Menu down the side (left, or right in right-to-left languages). Its own arrow hides it;
+                // when hidden, a slim strip with an arrow brings it back.
+                if (vm.menuHidden) {
+                    MenuToggle(hidden = true, side = true) { vm.changeMenuHidden(false) }
+                } else {
+                    SideMenu(
+                        labels = labels, selected = tab.ordinal, labelSize = sideLabelSize,
+                        onSelect = { tab = Tab.entries[it] }, onHide = { vm.changeMenuHidden(true) },
+                    )
                 }
-                MenuToggle(hidden = vm.menuHidden, side = true) { vm.changeMenuHidden(!vm.menuHidden) }
             }
-            Box(Modifier.weight(1f).fillMaxHeight()) {
-                when (tab) {
-                    Tab.DASHBOARD -> DashboardScreen(vm, data)
-                    Tab.GOALS -> GoalsScreen(vm, data)
-                    Tab.CLIENTS -> ClientsScreen(vm, data)
-                    Tab.CALENDAR -> ScheduleScreen(vm, data)
-                    Tab.TIMER -> StopwatchScreen(vm, data)
-                    Tab.CALCULATOR -> CalculatorScreen(vm)
-                    Tab.CHARTS -> ChartsScreen(data)
+            // The page's own width, so screens can choose layouts that fit next to the menu.
+            BoxWithConstraints(Modifier.weight(1f).fillMaxHeight()) {
+                CompositionLocalProvider(LocalContentWidth provides maxWidth) {
+                    when (tab) {
+                        Tab.DASHBOARD -> DashboardScreen(vm, data)
+                        Tab.GOALS -> GoalsScreen(vm, data)
+                        Tab.CLIENTS -> ClientsScreen(vm, data)
+                        Tab.CALENDAR -> ScheduleScreen(vm, data)
+                        Tab.TIMER -> StopwatchScreen(vm, data)
+                        Tab.CALCULATOR -> CalculatorScreen(vm)
+                        Tab.CHARTS -> ChartsScreen(data)
+                    }
                 }
             }
         }
@@ -364,11 +369,67 @@ private fun MenuToggle(hidden: Boolean, side: Boolean, onToggle: () -> Unit) {
         .clickable(onClickLabel = label, role = Role.Button, onClick = onToggle)
         .semantics { contentDescription = label }
     Box(
-        if (side) base.fillMaxHeight().width(28.dp)
+        if (side) base.fillMaxHeight().width(22.dp)
         // With the bar hidden, the strip itself keeps clear of the phone's gesture area.
         else base.fillMaxWidth().then(if (hidden) Modifier.navigationBarsPadding() else Modifier).height(30.dp),
         contentAlignment = Alignment.Center,
     ) {
         Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+}
+
+/**
+ * The side menu: compact, scrollable on short screens, with its hide arrow at the bottom.
+ * Shows labels when they fit ([labelSize] not null), otherwise icons only (each still named for screen readers).
+ */
+@Composable
+private fun SideMenu(labels: List<String>, selected: Int, labelSize: TextUnit?, onSelect: (Int) -> Unit, onHide: () -> Unit) {
+    Column(
+        Modifier.fillMaxHeight().width(if (labelSize != null) 76.dp else 60.dp)
+            .background(MaterialTheme.colorScheme.surfaceContainer),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Column(
+            Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()).padding(vertical = 6.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(2.dp),
+        ) {
+            Tab.entries.forEachIndexed { i, t ->
+                val isSelected = i == selected
+                Column(
+                    Modifier.fillMaxWidth()
+                        .selectable(selected = isSelected, role = Role.Tab, onClick = { onSelect(i) })
+                        .padding(vertical = 6.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Box(
+                        Modifier.size(width = 52.dp, height = 32.dp).clip(RoundedCornerShape(16.dp))
+                            .background(if (isSelected) MaterialTheme.colorScheme.secondaryContainer else androidx.compose.ui.graphics.Color.Transparent),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Icon(
+                            t.icon,
+                            contentDescription = if (labelSize == null) labels[i] else null,
+                            tint = if (isSelected) MaterialTheme.colorScheme.onSecondaryContainer else MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    if (labelSize != null) {
+                        Text(
+                            labels[i], fontSize = labelSize, maxLines = 1, softWrap = false,
+                            fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+                            color = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(top = 2.dp),
+                        )
+                    }
+                }
+            }
+        }
+        IconButton(onClick = onHide) {
+            Icon(
+                Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                contentDescription = stringResource(R.string.cd_hide_menu),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
     }
 }

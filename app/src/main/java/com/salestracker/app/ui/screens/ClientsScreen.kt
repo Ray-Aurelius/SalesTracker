@@ -36,6 +36,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -110,7 +111,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
                 OutlinedTextField(
                     value = query,
                     onValueChange = { query = it },
-                    placeholder = { Text(stringResource(R.string.search_clients)) },
+                    placeholder = { Text(stringResource(R.string.search_clients), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis) },
                     leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
@@ -167,12 +168,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
                 )
             }
         }
-        ExtendedFloatingActionButton(
-            onClick = { adding = true },
-            icon = { Icon(Icons.Filled.PersonAdd, contentDescription = null) },
-            text = { Text(stringResource(LocalTerms.current.addClient)) },
-            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-        )
+        AddFab(stringResource(LocalTerms.current.addClient), Icons.Filled.PersonAdd, onClick = { adding = true }, modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp))
     }
 
     if (adding || editing != null) {
@@ -196,13 +192,28 @@ private fun ClientCard(
     onCall: () -> Unit,
     onEmail: () -> Unit,
 ) {
+    // On a narrow page the call / email buttons sit under the details instead of beside them,
+    // so names and addresses get the full width.
+    val narrow = isNarrow()
+    val actions: @Composable () -> Unit = {
+        if (client.phone.isNotBlank()) {
+            IconButton(onClick = onCall) { Icon(Icons.Filled.Phone, contentDescription = stringResource(R.string.cd_call, client.fullName)) }
+        }
+        if (client.email.isNotBlank()) {
+            IconButton(onClick = onEmail) { Icon(Icons.Filled.Email, contentDescription = stringResource(R.string.cd_email, client.fullName)) }
+        }
+    }
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
         Row(Modifier.padding(start = 16.dp, top = 12.dp, bottom = 12.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(client.fullName, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f, fill = false))
-                    Spacer(Modifier.width(8.dp))
-                    StageBadge(client.stage)
+                // The stage badge wraps under the name when both don't fit.
+                androidx.compose.foundation.layout.FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(2.dp),
+                ) {
+                    Text(client.fullName, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.align(Alignment.CenterVertically))
+                    Box(Modifier.align(Alignment.CenterVertically)) { StageBadge(client.stage) }
                 }
                 if (followUp != null) {
                     val due = followUp.isDue()
@@ -228,15 +239,11 @@ private fun ClientCard(
                     )
                 }
                 if (client.phone.isNotBlank()) Text(client.phone, style = MaterialTheme.typography.bodyMedium)
-                if (client.email.isNotBlank()) Text(client.email, style = MaterialTheme.typography.bodyMedium)
+                if (client.email.isNotBlank()) Text(client.email, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
                 Text(summary, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
+                if (narrow) Row(Modifier.offset(x = (-12).dp)) { actions() }
             }
-            if (client.phone.isNotBlank()) {
-                IconButton(onClick = onCall) { Icon(Icons.Filled.Phone, contentDescription = stringResource(R.string.cd_call, client.fullName)) }
-            }
-            if (client.email.isNotBlank()) {
-                IconButton(onClick = onEmail) { Icon(Icons.Filled.Email, contentDescription = stringResource(R.string.cd_email, client.fullName)) }
-            }
+            if (!narrow) actions()
         }
     }
 }

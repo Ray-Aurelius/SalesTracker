@@ -149,8 +149,8 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             }
             item {
                 Card(onClick = { editingRate = true }, modifier = Modifier.fillMaxWidth()) {
-                    Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Column(Modifier.weight(1f)) {
+                    Column(Modifier.padding(16.dp)) {
+                        Column {
                             Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.titleMedium)
                             Text(
                                 stringResource(
@@ -161,26 +161,28 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                         }
-                        Text(
+                        // Below the title, so a big number never squeezes the words.
+                        FitText(
                             formatMoney(stats.commission),
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
                         )
                     }
                 }
             }
             item {
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    StatCard(stringResource(R.string.revenue), formatMoney(stats.revenue), Modifier.weight(1f))
-                    StatCard(stringResource(R.string.upsell_revenue), formatMoney(stats.upsellRevenue), Modifier.weight(1f))
-                }
+                PairRow(
+                    { StatCard(stringResource(R.string.revenue), formatMoney(stats.revenue), it) },
+                    { StatCard(stringResource(R.string.upsell_revenue), formatMoney(stats.upsellRevenue), it) },
+                )
             }
             item {
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    StatCard(stringResource(R.string.avg_sale), formatMoney(stats.averageSale), Modifier.weight(1f))
-                    StatCard(stringResource(R.string.avg_time), formatDuration(stats.averageSeconds), Modifier.weight(1f))
-                }
+                PairRow(
+                    { StatCard(stringResource(R.string.avg_sale), formatMoney(stats.averageSale), it) },
+                    { StatCard(stringResource(R.string.avg_time), formatDuration(stats.averageSeconds), it) },
+                )
             }
             item {
                 Text(
@@ -206,10 +208,8 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                 )
             }
         }
-        ExtendedFloatingActionButton(
-            onClick = { adding = true },
-            icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-            text = { Text(stringResource(LocalTerms.current.logSale)) },
+        AddFab(
+            stringResource(LocalTerms.current.logSale), Icons.Filled.Add, onClick = { adding = true },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         )
     }
@@ -244,15 +244,19 @@ private fun RateCard(title: String, rate: Double, detail: String, color: Color) 
     // Read as one item by screen readers: "Close rate, 42.0%, 5 closed of 12 opportunities".
     Card(Modifier.fillMaxWidth().semantics(mergeDescendants = true) {}) {
         Column(Modifier.padding(16.dp)) {
-            Row(verticalAlignment = Alignment.Bottom) {
-                Text(title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
-                Text(
-                    formatPercent(rate),
-                    style = MaterialTheme.typography.headlineMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = color,
-                )
-            }
+            TitleValueRow(
+                title = { Text(title, style = MaterialTheme.typography.titleMedium) },
+                value = {
+                    Text(
+                        formatPercent(rate),
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = color,
+                        maxLines = 1,
+                        softWrap = false,
+                    )
+                },
+            )
             LinearProgressIndicator(
                 progress = { rate.toFloat().coerceIn(0f, 1f) },
                 color = color,
@@ -268,7 +272,7 @@ private fun StatCard(label: String, value: String, modifier: Modifier = Modifier
     Card(modifier.semantics(mergeDescendants = true) {}) {
         Column(Modifier.padding(16.dp)) {
             Text(label, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            Text(value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
+            FitText(value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
         }
     }
 }
