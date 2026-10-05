@@ -110,4 +110,14 @@ class StoreScreenshots {
         rule.waitForIdle()
         tap(app.getString(R.string.security_title)); shot("6-security")
     }
+
+    @Test
+    fun lockScreen() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        rule.setContent {
+            SalesTrackerTheme(dark = false) { com.salestracker.app.ui.screens.LockScreen(onUnlock = {}) }
+        }
+        rule.mainClock.advanceTimeBy(1000)
+        shot("13-lock")
+    }
 }
