@@ -136,7 +136,8 @@ fun PairRow(
 /** The floating "Add …" button: icon and words, or just the icon when the page is narrow. */
 @Composable
 fun AddFab(text: String, icon: ImageVector, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    val expanded = !isNarrow()
+    // Words only when there's room across and up-and-down (in landscape the wide button would cover the page).
+    val expanded = !isNarrow() && androidx.compose.ui.platform.LocalConfiguration.current.screenHeightDp >= 480
     ExtendedFloatingActionButton(
         text = { Text(text, maxLines = 1, softWrap = false) },
         icon = { Icon(icon, contentDescription = if (expanded) null else text) },
