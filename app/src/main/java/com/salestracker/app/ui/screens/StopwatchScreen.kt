@@ -102,20 +102,33 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
         )
         Spacer(Modifier.height(32.dp))
 
-        // Two equal buttons that share the width, so they fit next to a side menu or with large text.
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            OutlinedButton(onClick = vm::resetStopwatch, enabled = elapsed > 0 && !vm.stopwatchRunning, modifier = Modifier.weight(1f)) {
+        // Two equal buttons side by side, or stacked full-width when the page is too narrow for both.
+        val timerButtons: @Composable (Modifier) -> Unit = { m ->
+            OutlinedButton(onClick = vm::resetStopwatch, enabled = elapsed > 0 && !vm.stopwatchRunning, modifier = m) {
                 Icon(Icons.Filled.Replay, contentDescription = null)
                 Spacer(Modifier.width(6.dp))
-                Text(stringResource(R.string.reset))
+                Text(stringResource(R.string.reset), maxLines = 1)
             }
+        }
+        val startButton: @Composable (Modifier) -> Unit = { m ->
             Button(
                 onClick = { if (vm.stopwatchRunning) vm.pauseStopwatch() else vm.startStopwatch() },
-                modifier = Modifier.weight(1f),
+                modifier = m,
             ) {
                 Icon(if (vm.stopwatchRunning) Icons.Filled.Pause else Icons.Filled.PlayArrow, contentDescription = null)
                 Spacer(Modifier.width(6.dp))
-                Text(stringResource(if (vm.stopwatchRunning) R.string.pause else if (elapsed > 0) R.string.resume else R.string.start))
+                Text(stringResource(if (vm.stopwatchRunning) R.string.pause else if (elapsed > 0) R.string.resume else R.string.start), maxLines = 1)
+            }
+        }
+        if (effectiveWidth() < 280.dp) {
+            Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                startButton(Modifier.fillMaxWidth())
+                timerButtons(Modifier.fillMaxWidth())
+            }
+        } else {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                timerButtons(Modifier.weight(1f))
+                startButton(Modifier.weight(1f))
             }
         }
         Spacer(Modifier.height(16.dp))

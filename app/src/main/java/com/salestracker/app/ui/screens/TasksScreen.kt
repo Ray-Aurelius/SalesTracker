@@ -98,15 +98,18 @@ fun ScheduleScreen(vm: AppViewModel, data: AppData) {
     val today = LocalDate.now().toEpochDay()
     val remaining = DayTasks.of(data.tasks, today, today).remaining
 
+    val narrow = isNarrow()
     Column(Modifier.fillMaxSize()) {
         SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
             SegmentedButton(
                 selected = view == 0, onClick = { view = 0 },
                 shape = SegmentedButtonDefaults.itemShape(0, 2),
+                icon = { if (!narrow) SegmentedButtonDefaults.Icon(view == 0) },
             ) { FitText(stringResource(R.string.schedule_calendar)) }
             SegmentedButton(
                 selected = view == 1, onClick = { view = 1 },
                 shape = SegmentedButtonDefaults.itemShape(1, 2),
+                icon = { if (!narrow) SegmentedButtonDefaults.Icon(view == 1) },
             ) { FitText(if (remaining > 0) stringResource(R.string.schedule_tasks_count, remaining) else stringResource(R.string.schedule_tasks)) }
         }
         Box(Modifier.weight(1f)) {

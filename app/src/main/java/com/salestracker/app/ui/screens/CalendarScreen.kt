@@ -31,6 +31,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -277,13 +278,15 @@ private fun MonthGrid(
         Spacer(Modifier.height(4.dp))
 
         val offset = month.atDay(1).dayOfWeek.value % 7
+        // Square cells on a phone; on a wide page (landscape, tablet) capped so the whole month fits.
+        val cellHeight = minOf((LocalContentWidth.current - 32.dp) / 7, 52.dp)
         val days = month.lengthOfMonth()
         val rows = (offset + days + 6) / 7
         for (r in 0 until rows) {
             Row {
                 for (c in 0 until 7) {
                     val dayNum = r * 7 + c - offset + 1
-                    Box(Modifier.weight(1f).aspectRatio(1f).padding(2.dp), contentAlignment = Alignment.Center) {
+                    Box(Modifier.weight(1f).height(cellHeight).padding(2.dp), contentAlignment = Alignment.Center) {
                         if (dayNum in 1..days) {
                             val date = month.atDay(dayNum)
                             DayCell(date, date == selected, date == today, hasEvents(date), highlightOf(date), symbols) { onSelect(date) }
@@ -321,7 +324,7 @@ private fun DayCell(
         isSelected -> colors.onPrimary
         else -> colors.onSurface
     }
-    var mod = Modifier.fillMaxSize().clip(CircleShape)
+    var mod = Modifier.fillMaxHeight().aspectRatio(1f, matchHeightConstraintsFirst = true).clip(CircleShape)
     if (fill != null) mod = mod.background(fill)
     mod = when {
         isSelected && hl != null -> mod.border(3.dp, colors.onSurface, CircleShape)
