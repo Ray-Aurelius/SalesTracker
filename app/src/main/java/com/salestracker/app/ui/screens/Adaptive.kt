@@ -3,7 +3,6 @@
 package com.salestracker.app.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
@@ -14,17 +13,17 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -58,24 +57,39 @@ fun FitText(
     textAlign: TextAlign? = null,
     minScale: Float = 0.55f,
 ) {
-    val measurer = rememberTextMeasurer()
-    BoxWithConstraints(modifier) {
-        val full = style.copy(fontWeight = fontWeight ?: style.fontWeight)
-        val width = remember(text, full, constraints.maxWidth) {
-            measurer.measure(text, full, maxLines = 1, softWrap = false).size.width
+    // A plain layout (not BoxWithConstraints), so it also works inside components that ask their
+    // content for its natural size first, such as the segmented Calendar / Tasks switch.
+    Layout(
+        content = {
+            Text(
+                text,
+                style = style.copy(fontWeight = fontWeight ?: style.fontWeight),
+                color = color,
+                maxLines = 1,
+                softWrap = false,
+            )
+        },
+        modifier = if (textAlign != null) modifier.fillMaxWidth() else modifier,
+    ) { measurables, constraints ->
+        val p = measurables.first().measure(Constraints())
+        val scale = if (constraints.hasBoundedWidth && p.width > constraints.maxWidth && p.width > 0)
+            maxOf(minScale, constraints.maxWidth.toFloat() / p.width) else 1f
+        val drawnWidth = (p.width * scale).toInt()
+        val width = if (textAlign != null && constraints.hasBoundedWidth) constraints.maxWidth
+            else minOf(drawnWidth, if (constraints.hasBoundedWidth) constraints.maxWidth else drawnWidth)
+        val height = (p.height * scale).toInt().coerceIn(constraints.minHeight, constraints.maxHeight)
+        val x = when (textAlign) {
+            TextAlign.Center -> (width - drawnWidth) / 2
+            TextAlign.End, TextAlign.Right -> width - drawnWidth
+            else -> 0
+        }.coerceAtLeast(0)
+        layout(width.coerceAtLeast(constraints.minWidth), height) {
+            p.placeWithLayer(x, 0) {
+                scaleX = scale
+                scaleY = scale
+                transformOrigin = TransformOrigin(0f, 0f)
+            }
         }
-        val scale = if (constraints.hasBoundedWidth && width > constraints.maxWidth && width > 0)
-            maxOf(minScale, constraints.maxWidth.toFloat() / width * 0.98f) else 1f
-        Text(
-            text,
-            style = full.copy(fontSize = full.fontSize * scale),
-            color = color,
-            textAlign = textAlign,
-            maxLines = 1,
-            softWrap = false,
-            overflow = TextOverflow.Ellipsis,
-            modifier = if (textAlign != null) Modifier.fillMaxWidth() else Modifier,
-        )
     }
 }
 
