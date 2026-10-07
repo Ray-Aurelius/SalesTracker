@@ -271,13 +271,14 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     // In landscape a bottom bar leaves too little room for the page, so the menu goes to the side.
     val side = vm.menuOnLeft || config.screenHeightDp < 480
     // Bottom bar: 7 items share the width. Side menu: labels when they fit in 68dp, otherwise icons only.
-    val bottomItemWidth = (config.screenWidthDp - 8f * (labels.size - 1)) / labels.size - 6f
+    // Each item gets an equal slice of the width, with 2dp breathing room on each side of its label.
+    val bottomItemWidth = config.screenWidthDp.toFloat() / labels.size - 4f
     // Every label when they fit at a readable size; otherwise only the current page's name shows.
     // At normal text sizes every label shows (shrunk to fit, as before). With large text chosen,
     // labels that would end up tinier than 9pt give way to just the current page's name.
     val largeText = LocalDensity.current.fontScale > 1.15f
     val bottomAllLabels = rememberLabelSize(labels, bottomItemWidth, if (largeText) 9f else 7.5f)
-    val bottomLabelSize = bottomAllLabels ?: rememberLabelSize(labels, bottomItemWidth + 6f, 6.5f) ?: 7.sp
+    val bottomLabelSize = bottomAllLabels ?: rememberLabelSize(labels, bottomItemWidth, 6.5f) ?: 7.sp
     val sideLabelSize = rememberLabelSize(labels, 68f, 9f)
 
     LaunchedEffect(vm.pendingOpenDay) {
@@ -311,25 +312,11 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                 Column {
                     MenuToggle(hidden = vm.menuHidden, side = false) { vm.changeMenuHidden(!vm.menuHidden) }
                     AnimatedVisibility(visible = !vm.menuHidden, enter = expandVertically(), exit = shrinkVertically()) {
-                        NavigationBar {
-                            Tab.entries.forEachIndexed { i, t ->
-                                NavigationBarItem(
-                                    selected = tab == t,
-                                    onClick = { tab = t },
-                                    icon = { Icon(t.icon, contentDescription = null) },
-                                    // One shared size for an even look; each label still shrinks a touch if its
-                                    // real space is narrower, so nothing is ever cut off.
-                                    label = {
-                                        FitText(
-                                            labels[i],
-                                            style = MaterialTheme.typography.labelMedium.copy(fontSize = bottomLabelSize),
-                                            minScale = 0.7f,
-                                        )
-                                    },
-                                    alwaysShowLabel = bottomAllLabels != null,
-                                )
-                            }
-                        }
+                        BottomMenu(
+                            labels = labels, selected = tab.ordinal,
+                            labelSize = bottomLabelSize, showAllLabels = bottomAllLabels != null,
+                            onSelect = { tab = Tab.entries[it] },
+                        )
                     }
                 }
             }
@@ -450,6 +437,49 @@ private fun SideMenu(labels: List<String>, selected: Int, labelSize: TextUnit?, 
                 contentDescription = stringResource(R.string.cd_hide_menu),
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+        }
+    }
+}
+
+/**
+ * The bottom menu. Custom rather than the standard bar so each label can use the full width of its slot:
+ * with eight tabs on a phone, the standard bar's padding leaves no room for words like "Schedule".
+ */
+@Composable
+private fun BottomMenu(labels: List<String>, selected: Int, labelSize: TextUnit, showAllLabels: Boolean, onSelect: (Int) -> Unit) {
+    Row(
+        Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surfaceContainer)
+            .navigationBarsPadding().padding(top = 8.dp, bottom = 10.dp),
+    ) {
+        Tab.entries.forEachIndexed { i, t ->
+            val isSelected = i == selected
+            Column(
+                Modifier.weight(1f).selectable(selected = isSelected, role = Role.Tab, onClick = { onSelect(i) }),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Box(
+                    Modifier.size(width = 48.dp, height = 30.dp).clip(RoundedCornerShape(15.dp))
+                        .background(if (isSelected) MaterialTheme.colorScheme.secondaryContainer else androidx.compose.ui.graphics.Color.Transparent),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(
+                        t.icon,
+                        // Named for screen readers when its label isn't shown.
+                        contentDescription = if (showAllLabels || isSelected) null else labels[i],
+                        tint = if (isSelected) MaterialTheme.colorScheme.onSecondaryContainer else MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                if (showAllLabels || isSelected) {
+                    FitText(
+                        labels[i],
+                        style = MaterialTheme.typography.labelMedium.copy(fontSize = labelSize),
+                        fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+                        color = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
+                        minScale = 0.8f,
+                        modifier = Modifier.padding(top = 4.dp, start = 2.dp, end = 2.dp),
+                    )
+                }
+            }
         }
     }
 }
