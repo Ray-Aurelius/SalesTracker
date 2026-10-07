@@ -581,6 +581,17 @@
     <string name="delete_task">タスクを削除</string>
     <string name="delete_task_q">このタスクを削除しますか？</string>
     <string name="notif_task_private_title">タスクのリマインダー</string>
+    <string name="tab_sales">販売</string>
+    <string name="title_sales">販売ログ</string>
+    <string name="period_q1">Q1</string>
+    <string name="period_q2">Q2</string>
+    <string name="period_q3">Q3</string>
+    <string name="period_q4">Q4</string>
+    <string name="sales_empty_period">この期間の販売はありません。</string>
+    <string name="protect_deletes">削除時に指紋または PIN で確認</string>
+    <string name="protect_deletes_desc">顧客や販売を削除する前に、指紋・顔・スマホの PIN を確認します。すべてのデータの消去では常に確認します。</string>
+    <string name="confirm_delete_title">本人確認</string>
+    <string name="confirm_delete_subtitle">指紋・顔・スマホの PIN で削除します</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

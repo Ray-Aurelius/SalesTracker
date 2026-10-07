@@ -581,6 +581,17 @@
     <string name="delete_task">Elimina attività</string>
     <string name="delete_task_q">Eliminare questa attività?</string>
     <string name="notif_task_private_title">Promemoria attività</string>
+    <string name="tab_sales">Vendite</string>
+    <string name="title_sales">Registro vendite</string>
+    <string name="period_q1">T1</string>
+    <string name="period_q2">T2</string>
+    <string name="period_q3">T3</string>
+    <string name="period_q4">T4</string>
+    <string name="sales_empty_period">Nessuna vendita in questo periodo.</string>
+    <string name="protect_deletes">Conferma le eliminazioni con impronta o PIN</string>
+    <string name="protect_deletes_desc">Eliminare un cliente o una vendita richiede prima impronta, volto o PIN del telefono. Cancellare tutti i dati lo richiede sempre.</string>
+    <string name="confirm_delete_title">Conferma la tua identità</string>
+    <string name="confirm_delete_subtitle">Usa impronta, volto o PIN del telefono per eliminare</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>

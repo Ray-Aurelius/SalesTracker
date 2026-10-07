@@ -27,6 +27,8 @@ object AppAuth {
         onSuccess: () -> Unit,
         onStart: () -> Unit = {},
         onEnd: () -> Unit = {},
+        title: Int = R.string.unlock_prompt_title,
+        subtitle: Int = R.string.unlock_prompt_subtitle,
     ) {
         onStart()
         val prompt = BiometricPrompt(
@@ -43,8 +45,8 @@ object AppAuth {
         )
         prompt.authenticate(
             BiometricPrompt.PromptInfo.Builder()
-                .setTitle(activity.getString(R.string.unlock_prompt_title))
-                .setSubtitle(activity.getString(R.string.unlock_prompt_subtitle))
+                .setTitle(activity.getString(title))
+                .setSubtitle(activity.getString(subtitle))
                 .setAllowedAuthenticators(ALLOWED)
                 .build()
         )

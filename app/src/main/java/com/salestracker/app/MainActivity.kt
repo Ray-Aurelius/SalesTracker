@@ -110,6 +110,8 @@ import com.salestracker.app.ui.AppViewModel
 import com.salestracker.app.ui.screens.AppearanceDialog
 import com.salestracker.app.ui.screens.CalculatorScreen
 import com.salestracker.app.ui.screens.ChartsScreen
+import androidx.compose.material.icons.automirrored.filled.ReceiptLong
+import com.salestracker.app.ui.screens.SalesScreen
 import com.salestracker.app.ui.screens.ScheduleScreen
 import com.salestracker.app.ui.screens.CalendarScreen
 import com.salestracker.app.ui.screens.ClientsScreen
@@ -211,6 +213,7 @@ class MainActivity : AppCompatActivity() {
 
 private enum class Tab(@StringRes val label: Int, @StringRes val title: Int, val icon: ImageVector) {
     DASHBOARD(R.string.tab_stats, R.string.title_stats, Icons.Filled.Insights),
+    SALES(R.string.tab_sales, R.string.title_sales, Icons.AutoMirrored.Filled.ReceiptLong),
     GOALS(R.string.tab_goals, R.string.title_goals, Icons.Filled.Flag),
     CLIENTS(R.string.tab_clients, R.string.title_clients, Icons.Filled.People),
     CALENDAR(R.string.tab_calendar, R.string.title_calendar, Icons.Filled.CalendarMonth),
@@ -350,6 +353,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                 CompositionLocalProvider(LocalContentWidth provides maxWidth) {
                     when (tab) {
                         Tab.DASHBOARD -> DashboardScreen(vm, data)
+                        Tab.SALES -> SalesScreen(vm, data)
                         Tab.GOALS -> GoalsScreen(vm, data)
                         Tab.CLIENTS -> ClientsScreen(vm, data)
                         Tab.CALENDAR -> ScheduleScreen(vm, data)

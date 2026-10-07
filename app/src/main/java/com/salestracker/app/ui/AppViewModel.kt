@@ -180,6 +180,17 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         settings.edit().putString("darkMode", m.name).apply()
     }
 
+    /**
+     * Deleting a client or a sale, or erasing all data, first asks for the phone's fingerprint, face, PIN or
+     * password (on by default). Android checks it; the app never sees or stores the PIN.
+     */
+    var protectDeletes by mutableStateOf(settings.getBoolean("protectDeletes", true))
+        private set
+    fun changeProtectDeletes(on: Boolean) {
+        protectDeletes = on
+        settings.edit().putBoolean("protectDeletes", on).apply()
+    }
+
     /** Where the tab menu sits: along the bottom (default) or down the left side. */
     var menuOnLeft by mutableStateOf(settings.getBoolean("menuOnLeft", false))
         private set

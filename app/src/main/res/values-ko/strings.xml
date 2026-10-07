@@ -581,6 +581,17 @@
     <string name="delete_task">할 일 삭제</string>
     <string name="delete_task_q">이 할 일을 삭제할까요?</string>
     <string name="notif_task_private_title">할 일 알림</string>
+    <string name="tab_sales">판매</string>
+    <string name="title_sales">판매 기록</string>
+    <string name="period_q1">Q1</string>
+    <string name="period_q2">Q2</string>
+    <string name="period_q3">Q3</string>
+    <string name="period_q4">Q4</string>
+    <string name="sales_empty_period">이 기간에 판매가 없습니다.</string>
+    <string name="protect_deletes">지문 또는 PIN으로 삭제 확인</string>
+    <string name="protect_deletes_desc">고객이나 판매를 삭제하기 전에 지문, 얼굴 또는 휴대폰 PIN을 확인합니다. 모든 데이터 삭제 시에는 항상 확인합니다.</string>
+    <string name="confirm_delete_title">본인 확인</string>
+    <string name="confirm_delete_subtitle">삭제하려면 지문, 얼굴 또는 휴대폰 PIN을 사용하세요</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

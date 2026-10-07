@@ -581,6 +581,17 @@
     <string name="delete_task">حذف المهمة</string>
     <string name="delete_task_q">حذف هذه المهمة؟</string>
     <string name="notif_task_private_title">تذكير بمهمة</string>
+    <string name="tab_sales">المبيعات</string>
+    <string name="title_sales">سجل المبيعات</string>
+    <string name="period_q1">الربع 1</string>
+    <string name="period_q2">الربع 2</string>
+    <string name="period_q3">الربع 3</string>
+    <string name="period_q4">الربع 4</string>
+    <string name="sales_empty_period">لا توجد مبيعات في هذه الفترة.</string>
+    <string name="protect_deletes">تأكيد الحذف ببصمة الإصبع أو الرمز</string>
+    <string name="protect_deletes_desc">يطلب حذف عميل أو عملية بيع بصمة إصبعك أو وجهك أو رمز الهاتف أولًا. ويطلبه دائمًا عند مسح كل البيانات.</string>
+    <string name="confirm_delete_title">أكّد أنه أنت</string>
+    <string name="confirm_delete_subtitle">استخدم البصمة أو الوجه أو رمز الهاتف للحذف</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

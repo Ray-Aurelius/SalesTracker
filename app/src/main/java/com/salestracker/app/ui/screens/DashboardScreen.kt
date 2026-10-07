@@ -71,13 +71,10 @@ import com.salestracker.app.ui.AppViewModel
 fun DashboardScreen(vm: AppViewModel, data: AppData) {
     var period by rememberSaveable { mutableStateOf(Period.WEEK) }
     var adding by remember { mutableStateOf(false) }
-    var editing by remember { mutableStateOf<Sale?>(null) }
-    var deleting by remember { mutableStateOf<Sale?>(null) }
     var editingRate by remember { mutableStateOf(false) }
     var reporting by remember { mutableStateOf(false) }
 
-    val start = period.startMillis()
-    val sales = data.sales.filter { it.timestamp >= start }.sortedByDescending { it.timestamp }
+    val sales = period.filter(data.sales)
     val stats = SalesStats.of(sales, data.defaultCommissionPercent)
     val clientsById = data.clients.associateBy { it.id }
 
@@ -184,29 +181,6 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                     { StatCard(stringResource(R.string.avg_time), formatDuration(stats.averageSeconds), it) },
                 )
             }
-            item {
-                Text(
-                    stringResource(R.string.sales_header, sales.size),
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(top = 8.dp).semantics { heading() },
-                )
-            }
-            if (sales.isEmpty()) {
-                item {
-                    Text(
-                        stringResource(R.string.no_sales_period),
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-            items(sales, key = { it.id }) { sale ->
-                SaleCard(
-                    sale = sale,
-                    clientName = sale.clientId?.let { clientsById[it]?.fullName } ?: stringResource(LocalTerms.current.noClient),
-                    onClick = { editing = sale },
-                    onDelete = { deleting = sale },
-                )
-            }
         }
         AddFab(
             stringResource(LocalTerms.current.logSale), Icons.Filled.Add, onClick = { adding = true },
@@ -214,12 +188,12 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
         )
     }
 
-    if (adding || editing != null) {
+    if (adding) {
         SaleDialog(
-            initial = editing,
+            initial = null,
             clients = data.clients,
             newId = vm::newId,
-            onDismiss = { adding = false; editing = null },
+            onDismiss = { adding = false },
             onSave = vm::saveSale,
             defaultCommissionPercent = data.defaultCommissionPercent,
             defaultUpsellOnly = data.defaultCommissionUpsellOnly,
@@ -233,9 +207,6 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             onSave = vm::setDefaultCommission,
             onDismiss = { editingRate = false },
         )
-    }
-    deleting?.let { s ->
-        ConfirmDeleteDialog(stringResource(R.string.delete_sale_q), onConfirm = { vm.deleteSale(s.id) }, onDismiss = { deleting = null })
     }
 }
 

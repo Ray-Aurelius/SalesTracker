@@ -76,7 +76,7 @@ class LayoutAudit {
             }
         }
         val tabs = listOf(
-            R.string.tab_stats to "1-stats", R.string.tab_goals to "2-goals", R.string.tab_clients to "3-clients",
+            R.string.tab_stats to "1-stats", R.string.tab_sales to "1s-sales", R.string.tab_goals to "2-goals", R.string.tab_clients to "3-clients",
             R.string.tab_calendar to "4-schedule", R.string.tab_timer to "6-timer", R.string.tab_calc to "7-calc",
             R.string.tab_charts to "8-charts",
         )
@@ -88,7 +88,7 @@ class LayoutAudit {
                 shot("$config-5-tasks")
                 tap(app.getString(R.string.schedule_calendar))
             }
-            if (name in setOf("1-stats", "2-goals", "8-charts", "6-timer", "4-schedule")) {
+            if (name in setOf("1-stats", "1s-sales", "2-goals", "8-charts", "6-timer", "4-schedule")) {
                 scrollDown()
                 shot("$config-$name-b")
             }

@@ -581,6 +581,17 @@
     <string name="delete_task">Удалить задачу</string>
     <string name="delete_task_q">Удалить эту задачу?</string>
     <string name="notif_task_private_title">Напоминание о задаче</string>
+    <string name="tab_sales">Продажи</string>
+    <string name="title_sales">Журнал продаж</string>
+    <string name="period_q1">К1</string>
+    <string name="period_q2">К2</string>
+    <string name="period_q3">К3</string>
+    <string name="period_q4">К4</string>
+    <string name="sales_empty_period">Нет продаж за этот период.</string>
+    <string name="protect_deletes">Подтверждать удаление отпечатком или PIN-кодом</string>
+    <string name="protect_deletes_desc">Удаление клиента или продажи сначала запрашивает отпечаток, лицо или PIN-код телефона. Удаление всех данных — всегда.</string>
+    <string name="confirm_delete_title">Подтвердите, что это вы</string>
+    <string name="confirm_delete_subtitle">Используйте отпечаток, лицо или PIN-код телефона для удаления</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

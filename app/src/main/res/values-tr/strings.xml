@@ -581,6 +581,17 @@
     <string name="delete_task">Görevi sil</string>
     <string name="delete_task_q">Bu görev silinsin mi?</string>
     <string name="notif_task_private_title">Görev hatırlatıcısı</string>
+    <string name="tab_sales">Satışlar</string>
+    <string name="title_sales">Satış kaydı</string>
+    <string name="period_q1">Ç1</string>
+    <string name="period_q2">Ç2</string>
+    <string name="period_q3">Ç3</string>
+    <string name="period_q4">Ç4</string>
+    <string name="sales_empty_period">Bu dönemde satış yok.</string>
+    <string name="protect_deletes">Silmeleri parmak izi veya PIN ile onayla</string>
+    <string name="protect_deletes_desc">Müşteri veya satış silmek önce parmak izinizi, yüzünüzü veya telefon PIN\'inizi ister. Tüm verileri silmek her zaman ister.</string>
+    <string name="confirm_delete_title">Siz olduğunuzu doğrulayın</string>
+    <string name="confirm_delete_subtitle">Silmek için parmak izi, yüz veya telefon PIN\'i kullanın</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

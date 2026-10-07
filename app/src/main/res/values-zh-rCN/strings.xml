@@ -581,6 +581,17 @@
     <string name="delete_task">删除任务</string>
     <string name="delete_task_q">要删除此任务吗？</string>
     <string name="notif_task_private_title">任务提醒</string>
+    <string name="tab_sales">销售</string>
+    <string name="title_sales">销售记录</string>
+    <string name="period_q1">第一季度</string>
+    <string name="period_q2">第二季度</string>
+    <string name="period_q3">第三季度</string>
+    <string name="period_q4">第四季度</string>
+    <string name="sales_empty_period">此期间没有销售。</string>
+    <string name="protect_deletes">删除时用指纹或 PIN 确认</string>
+    <string name="protect_deletes_desc">删除客户或销售记录前需验证指纹、面部或手机 PIN。清除所有数据时始终需要验证。</string>
+    <string name="confirm_delete_title">确认是您本人</string>
+    <string name="confirm_delete_subtitle">使用指纹、面部或手机 PIN 进行删除</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

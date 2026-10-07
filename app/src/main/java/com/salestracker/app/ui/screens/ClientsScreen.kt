@@ -86,6 +86,7 @@ import com.salestracker.app.ui.AppViewModel
 
 @Composable
 fun ClientsScreen(vm: AppViewModel, data: AppData) {
+    val ownerCheck = rememberOwnerCheck(vm)
     var query by rememberSaveable { mutableStateOf("") }
     var adding by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Client?>(null) }
@@ -178,7 +179,8 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
             newId = vm::newId,
             onDismiss = { adding = false; editing = null },
             onSave = vm::saveClientWithFollowUp,
-            onDelete = { id, withRecords -> if (withRecords) vm.deleteClientAndRecords(id) else vm.deleteClient(id) },
+            // The phone's fingerprint / PIN check comes after the confirm dialog, before anything is removed.
+            onDelete = { id, withRecords -> ownerCheck { if (withRecords) vm.deleteClientAndRecords(id) else vm.deleteClient(id) } },
         )
     }
 }

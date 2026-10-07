@@ -581,6 +581,17 @@
     <string name="delete_task">Excluir tarefa</string>
     <string name="delete_task_q">Excluir esta tarefa?</string>
     <string name="notif_task_private_title">Lembrete de tarefa</string>
+    <string name="tab_sales">Vendas</string>
+    <string name="title_sales">Registro de vendas</string>
+    <string name="period_q1">T1</string>
+    <string name="period_q2">T2</string>
+    <string name="period_q3">T3</string>
+    <string name="period_q4">T4</string>
+    <string name="sales_empty_period">Nenhuma venda neste período.</string>
+    <string name="protect_deletes">Confirmar exclusões com digital ou PIN</string>
+    <string name="protect_deletes_desc">Excluir um cliente ou uma venda pede primeiro sua digital, rosto ou PIN do telefone. Apagar todos os dados sempre pede.</string>
+    <string name="confirm_delete_title">Confirme que é você</string>
+    <string name="confirm_delete_subtitle">Use sua digital, rosto ou PIN do telefone para excluir</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>

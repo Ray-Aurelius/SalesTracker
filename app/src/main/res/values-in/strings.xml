@@ -581,6 +581,17 @@
     <string name="delete_task">Hapus tugas</string>
     <string name="delete_task_q">Hapus tugas ini?</string>
     <string name="notif_task_private_title">Pengingat tugas</string>
+    <string name="tab_sales">Penjualan</string>
+    <string name="title_sales">Log penjualan</string>
+    <string name="period_q1">K1</string>
+    <string name="period_q2">K2</string>
+    <string name="period_q3">K3</string>
+    <string name="period_q4">K4</string>
+    <string name="sales_empty_period">Tidak ada penjualan pada periode ini.</string>
+    <string name="protect_deletes">Konfirmasi penghapusan dengan sidik jari atau PIN</string>
+    <string name="protect_deletes_desc">Menghapus klien atau penjualan meminta sidik jari, wajah, atau PIN ponsel terlebih dahulu. Menghapus semua data selalu memintanya.</string>
+    <string name="confirm_delete_title">Konfirmasi bahwa ini Anda</string>
+    <string name="confirm_delete_subtitle">Gunakan sidik jari, wajah, atau PIN ponsel untuk menghapus</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

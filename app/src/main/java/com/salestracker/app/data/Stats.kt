@@ -7,21 +7,40 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.temporal.TemporalAdjusters
 
+/**
+ * Time ranges for the Stats and Sales tabs. Weeks start on Monday; quarters are the current
+ * calendar year's (Q1 = January–March … Q4 = October–December).
+ */
 enum class Period(@StringRes val label: Int) {
     TODAY(R.string.period_today),
     WEEK(R.string.period_week),
     MONTH(R.string.period_month),
+    Q1(R.string.period_q1),
+    Q2(R.string.period_q2),
+    Q3(R.string.period_q3),
+    Q4(R.string.period_q4),
+    YEAR(R.string.period_year),
     ALL(R.string.period_all);
 
-    fun startMillis(zone: ZoneId = ZoneId.systemDefault()): Long {
-        val today = LocalDate.now(zone)
-        val start = when (this) {
-            TODAY -> today
-            WEEK -> today.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY))
-            MONTH -> today.withDayOfMonth(1)
-            ALL -> return 0L
-        }
-        return start.atStartOfDay(zone).toInstant().toEpochMilli()
+    /** First day of the range and the first day after it; null for all time. */
+    fun range(today: LocalDate = LocalDate.now()): Pair<LocalDate, LocalDate>? = when (this) {
+        TODAY -> today to today.plusDays(1)
+        WEEK -> today.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).let { it to it.plusWeeks(1) }
+        MONTH -> today.withDayOfMonth(1).let { it to it.plusMonths(1) }
+        Q1, Q2, Q3, Q4 -> LocalDate.of(today.year, (ordinal - Q1.ordinal) * 3 + 1, 1).let { it to it.plusMonths(3) }
+        YEAR -> today.withDayOfYear(1).let { it to it.plusYears(1) }
+        ALL -> null
+    }
+
+    fun startMillis(zone: ZoneId = ZoneId.systemDefault()): Long =
+        range(LocalDate.now(zone))?.first?.atStartOfDay(zone)?.toInstant()?.toEpochMilli() ?: 0L
+
+    /** The sales that fall in this range. */
+    fun filter(sales: List<Sale>, today: LocalDate = LocalDate.now(), zone: ZoneId = ZoneId.systemDefault()): List<Sale> {
+        val (from, to) = range(today) ?: return sales
+        val start = from.atStartOfDay(zone).toInstant().toEpochMilli()
+        val end = to.atStartOfDay(zone).toInstant().toEpochMilli()
+        return sales.filter { it.timestamp in start until end }
     }
 }
 

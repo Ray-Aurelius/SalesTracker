@@ -581,6 +581,17 @@
     <string name="delete_task">Xóa việc</string>
     <string name="delete_task_q">Xóa việc này?</string>
     <string name="notif_task_private_title">Nhắc việc</string>
+    <string name="tab_sales">Doanh số</string>
+    <string name="title_sales">Nhật ký bán hàng</string>
+    <string name="period_q1">Q1</string>
+    <string name="period_q2">Q2</string>
+    <string name="period_q3">Q3</string>
+    <string name="period_q4">Q4</string>
+    <string name="sales_empty_period">Không có giao dịch trong kỳ này.</string>
+    <string name="protect_deletes">Xác nhận xóa bằng vân tay hoặc PIN</string>
+    <string name="protect_deletes_desc">Xóa khách hàng hoặc giao dịch sẽ yêu cầu vân tay, khuôn mặt hoặc mã PIN điện thoại trước. Xóa toàn bộ dữ liệu luôn yêu cầu.</string>
+    <string name="confirm_delete_title">Xác nhận đó là bạn</string>
+    <string name="confirm_delete_subtitle">Dùng vân tay, khuôn mặt hoặc mã PIN điện thoại để xóa</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

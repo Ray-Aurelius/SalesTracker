@@ -13,6 +13,8 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
+import com.salestracker.app.security.findActivity
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.TransformOrigin
@@ -145,4 +147,32 @@ fun AddFab(text: String, icon: ImageVector, onClick: () -> Unit, modifier: Modif
         expanded = expanded,
         modifier = modifier,
     )
+}
+
+/**
+ * Runs a deletion only after the owner proves it's them with the phone's fingerprint, face, PIN or
+ * password, when that protection is on and the phone has a screen lock. Otherwise runs it straight away
+ * (it has already been confirmed in a dialog).
+ */
+@Composable
+fun rememberOwnerCheck(vm: com.salestracker.app.ui.AppViewModel): ((() -> Unit) -> Unit) {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val protect = vm.protectDeletes
+    return remember(protect, context) {
+        { action ->
+            val activity = context.findActivity()
+            if (protect && activity != null && com.salestracker.app.security.AppAuth.isAvailable(context)) {
+                com.salestracker.app.security.AppAuth.authenticate(
+                    activity,
+                    onSuccess = action,
+                    onStart = vm::beginAuth,
+                    onEnd = vm::endAuth,
+                    title = com.salestracker.app.R.string.confirm_delete_title,
+                    subtitle = com.salestracker.app.R.string.confirm_delete_subtitle,
+                )
+            } else {
+                action()
+            }
+        }
+    }
 }

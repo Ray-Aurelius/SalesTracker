@@ -244,6 +244,14 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                     vm.changeBlockScreenshots(it)
                 }
             }
+            item {
+                // Deleting clients or sales asks for the phone's fingerprint, face or PIN first.
+                SwitchSetting(
+                    stringResource(R.string.protect_deletes),
+                    stringResource(if (AppAuth.isAvailable(context)) R.string.protect_deletes_desc else R.string.lock_needs_screen_lock),
+                    vm.protectDeletes,
+                ) { vm.changeProtectDeletes(it) }
+            }
 
             // ---- Privacy ----
             item { Section(stringResource(R.string.section_privacy)) }

@@ -581,6 +581,17 @@
     <string name="delete_task">Supprimer la tâche</string>
     <string name="delete_task_q">Supprimer cette tâche ?</string>
     <string name="notif_task_private_title">Rappel de tâche</string>
+    <string name="tab_sales">Ventes</string>
+    <string name="title_sales">Journal des ventes</string>
+    <string name="period_q1">T1</string>
+    <string name="period_q2">T2</string>
+    <string name="period_q3">T3</string>
+    <string name="period_q4">T4</string>
+    <string name="sales_empty_period">Aucune vente sur cette période.</string>
+    <string name="protect_deletes">Confirmer les suppressions par empreinte ou code</string>
+    <string name="protect_deletes_desc">Supprimer un client ou une vente demande d\'abord votre empreinte, votre visage ou le code du téléphone. Effacer toutes les données le demande toujours.</string>
+    <string name="confirm_delete_title">Confirmez votre identité</string>
+    <string name="confirm_delete_subtitle">Utilisez votre empreinte, votre visage ou le code du téléphone pour supprimer</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

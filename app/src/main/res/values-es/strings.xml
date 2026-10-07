@@ -581,6 +581,17 @@
     <string name="delete_task">Eliminar tarea</string>
     <string name="delete_task_q">¿Eliminar esta tarea?</string>
     <string name="notif_task_private_title">Recordatorio de tarea</string>
+    <string name="tab_sales">Ventas</string>
+    <string name="title_sales">Registro de ventas</string>
+    <string name="period_q1">T1</string>
+    <string name="period_q2">T2</string>
+    <string name="period_q3">T3</string>
+    <string name="period_q4">T4</string>
+    <string name="sales_empty_period">No hay ventas en este periodo.</string>
+    <string name="protect_deletes">Confirmar eliminaciones con huella o PIN</string>
+    <string name="protect_deletes_desc">Eliminar un cliente o una venta pide primero tu huella, rostro o PIN del teléfono. Borrar todos los datos siempre lo pide.</string>
+    <string name="confirm_delete_title">Confirma que eres tú</string>
+    <string name="confirm_delete_subtitle">Usa tu huella, rostro o PIN del teléfono para eliminar</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>
