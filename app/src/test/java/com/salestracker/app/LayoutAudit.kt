@@ -19,7 +19,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.salestracker.app.data.LocalTerms
 import com.salestracker.app.ui.AppViewModel
 import com.salestracker.app.ui.screens.ScaledText
+import com.salestracker.app.ui.theme.AppPalette
 import com.salestracker.app.ui.theme.SalesTrackerTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import org.junit.Assume.assumeTrue
 import org.junit.Rule
 import org.junit.Test
@@ -104,6 +108,31 @@ class LayoutAudit {
             if (name in setOf("1-stats", "1s-sales", "2-goals", "8-charts", "6-timer", "4-schedule")) {
                 scrollDown()
                 shot("$config-$name-b")
+            }
+        }
+    }
+
+    /** Each holiday palette in light and dark, on the Stats tab with the + menu open. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun f_holidayThemes() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        val prefs = app.getSharedPreferences("settings", Context.MODE_PRIVATE)
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); setDefaultCommission(10.0); loadSampleData() }
+        prefs.edit().remove("sampleIds").remove("sampleDays").putLong("lastBackupAt", System.currentTimeMillis()).commit()
+        val vm = AppViewModel(app)
+        var palette by mutableStateOf(AppPalette.SPRING)
+        var dark by mutableStateOf(false)
+        rule.setContent {
+            CompositionLocalProvider(LocalTerms provides vm.trade.terms) {
+                SalesTrackerTheme(palette = palette, dark = dark) { SalesApp(vm, dark) }
+            }
+        }
+        tap(app.getString(R.string.quick_add))
+        for (p in AppPalette.entries.filter { it.holiday }) {
+            for (d in listOf(false, true)) {
+                palette = p; dark = d
+                shot("f-${p.name.lowercase()}-${if (d) "dark" else "light"}")
             }
         }
     }

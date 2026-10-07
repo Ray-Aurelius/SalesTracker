@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">Используйте отпечаток, лицо или PIN-код телефона для удаления</string>
     <string name="quick_add">Записать продажу или добавить клиента</string>
     <string name="quick_add_close">Закрыть меню</string>
+    <string name="appearance_holiday">Праздничные темы</string>
+    <string name="palette_spring">Весеннее цветение</string>
+    <string name="palette_spring_desc">Нежно-розовый и бирюзовый</string>
+    <string name="palette_halloween">Хэллоуин</string>
+    <string name="palette_halloween_desc">Тыквенно-оранжевый и полуночно-фиолетовый</string>
+    <string name="palette_christmas">Рождество</string>
+    <string name="palette_christmas_desc">Красный остролист, хвойно-зелёный и золотой</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

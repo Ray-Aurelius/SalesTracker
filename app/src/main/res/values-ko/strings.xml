@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">삭제하려면 지문, 얼굴 또는 휴대폰 PIN을 사용하세요</string>
     <string name="quick_add">판매 기록 또는 고객 추가</string>
     <string name="quick_add_close">메뉴 닫기</string>
+    <string name="appearance_holiday">명절 테마</string>
+    <string name="palette_spring">봄꽃</string>
+    <string name="palette_spring_desc">부드러운 핑크와 청록</string>
+    <string name="palette_halloween">핼러윈</string>
+    <string name="palette_halloween_desc">호박 오렌지와 미드나잇 퍼플</string>
+    <string name="palette_christmas">크리스마스</string>
+    <string name="palette_christmas_desc">호랑가시 레드, 소나무 그린, 골드</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

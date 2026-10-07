@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">মুছতে ফিঙ্গারপ্রিন্ট, মুখ বা ফোনের PIN ব্যবহার করুন</string>
     <string name="quick_add">বিক্রয় লিখুন বা ক্লায়েন্ট যোগ করুন</string>
     <string name="quick_add_close">মেনু বন্ধ করুন</string>
+    <string name="appearance_holiday">উৎসবের থিম</string>
+    <string name="palette_spring">বসন্তের ফুল</string>
+    <string name="palette_spring_desc">নরম গোলাপি ও ফিরোজা</string>
+    <string name="palette_halloween">হ্যালোইন</string>
+    <string name="palette_halloween_desc">কুমড়া কমলা ও মধ্যরাতের বেগুনি</string>
+    <string name="palette_christmas">বড়দিন</string>
+    <string name="palette_christmas_desc">হলি লাল, পাইন সবুজ ও সোনালি</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

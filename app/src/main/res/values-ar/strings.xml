@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">استخدم البصمة أو الوجه أو رمز الهاتف للحذف</string>
     <string name="quick_add">تسجيل عملية بيع أو إضافة عميل</string>
     <string name="quick_add_close">إغلاق القائمة</string>
+    <string name="appearance_holiday">سمات الأعياد</string>
+    <string name="palette_spring">زهر الربيع</string>
+    <string name="palette_spring_desc">وردي ناعم وفيروزي</string>
+    <string name="palette_halloween">الهالوين</string>
+    <string name="palette_halloween_desc">برتقالي اليقطين وبنفسجي منتصف الليل</string>
+    <string name="palette_christmas">عيد الميلاد</string>
+    <string name="palette_christmas_desc">أحمر البهشية وأخضر الصنوبر وذهبي</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

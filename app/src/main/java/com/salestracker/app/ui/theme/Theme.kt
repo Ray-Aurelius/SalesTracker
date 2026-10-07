@@ -61,7 +61,11 @@ private fun Tones.toScheme(dark: Boolean): ColorScheme {
     )
 }
 
-enum class AppPalette(@StringRes val label: Int, @StringRes val description: Int, private val light: Tones, private val dark: Tones) {
+enum class AppPalette(
+    @StringRes val label: Int, @StringRes val description: Int, private val light: Tones, private val dark: Tones,
+    /** Listed under "Holiday themes" in the Appearance dialog. */
+    val holiday: Boolean = false,
+) {
     // Matches the bullseye app icon. The default for new users.
     BULLSEYE(
         R.string.palette_bullseye, R.string.palette_bullseye_desc,
@@ -187,6 +191,69 @@ enum class AppPalette(@StringRes val label: Int, @StringRes val description: Int
             0xFF43483F, 0xFFC3C8BB, 0xFF8D9286,
         ),
     ),
+
+    // ---- Holiday themes. Every color still meets the 4.5:1 contrast guideline in light and dark. ----
+
+    // Soft spring: blossom pink with turquoise and a hint of lavender.
+    SPRING(
+        R.string.palette_spring, R.string.palette_spring_desc,
+        light = Tones(
+            0xFFB0306A, 0xFFFFFFFF, 0xFFFFD8E7, 0xFF3E0021,
+            0xFF00696B, 0xFFFFFFFF, 0xFFB2F0EE, 0xFF002020,
+            0xFF6F5BA8,
+            0xFFFFF7FA, 0xFF201A1C,
+            0xFFF2DDE4, 0xFF514348, 0xFF837378,
+            tint = 0.06f,
+        ),
+        dark = Tones(
+            0xFFFFB0CC, 0xFF620035, 0xFF8C1A50, 0xFFFFD8E7,
+            0xFF6FD8D6, 0xFF003737, 0xFF004F50, 0xFFB2F0EE,
+            0xFFCDBDFF,
+            0xFF191114, 0xFFEFDFE3,
+            0xFF514348, 0xFFD5C2C7, 0xFF9E8C91,
+            tint = 0.06f,
+        ),
+        holiday = true,
+    ),
+    // Halloween: pumpkin orange and midnight purple, with a touch of slime green.
+    HALLOWEEN(
+        R.string.palette_halloween, R.string.palette_halloween_desc,
+        light = Tones(
+            0xFFA84300, 0xFFFFFFFF, 0xFFFFDBC9, 0xFF351000,
+            0xFF6A3D9A, 0xFFFFFFFF, 0xFFEBDCFF, 0xFF25005A,
+            0xFF4A6B1E,
+            0xFFFFF8F4, 0xFF201A17,
+            0xFFF1DFD6, 0xFF52443C, 0xFF85746B,
+        ),
+        dark = Tones(
+            0xFFFF9A4D, 0xFF3A1400, 0xFF7A3300, 0xFFFFDBC9,
+            0xFFCFA8FF, 0xFF3B0E6E, 0xFF4E2A7A, 0xFFEBDCFF,
+            0xFFB5E36B,
+            0xFF140F12, 0xFFEDE0E6,
+            0xFF3A2F3A, 0xFFD4C3CF, 0xFF9D8C98,
+            tint = 0.07f,
+        ),
+        holiday = true,
+    ),
+    // Christmas: holly red, pine green and gold on snowy white (or a deep pine night).
+    CHRISTMAS(
+        R.string.palette_christmas, R.string.palette_christmas_desc,
+        light = Tones(
+            0xFFB3202A, 0xFFFFFFFF, 0xFFFFDAD6, 0xFF410004,
+            0xFF1E6B3A, 0xFFFFFFFF, 0xFFB4F1C0, 0xFF00210C,
+            0xFF7D5A00,
+            0xFFFFFBF5, 0xFF1F1B16,
+            0xFFEDE1D9, 0xFF4F453E, 0xFF817569,
+        ),
+        dark = Tones(
+            0xFFFFB3AC, 0xFF680009, 0xFF8E1520, 0xFFFFDAD6,
+            0xFF8DD8A0, 0xFF00391A, 0xFF005229, 0xFFB4F1C0,
+            0xFFF2C14E,
+            0xFF101511, 0xFFE1E5DF,
+            0xFF3E4A40, 0xFFBFCABF, 0xFF8A948A,
+        ),
+        holiday = true,
+    ),
     ;
 
     fun scheme(dark: Boolean): ColorScheme = if (dark) this.dark.toScheme(true) else light.toScheme(false)
@@ -194,7 +261,9 @@ enum class AppPalette(@StringRes val label: Int, @StringRes val description: Int
     /** Three colors shown as dots in the palette picker. */
     fun swatch(dark: Boolean): List<Color> {
         val t = if (dark) this.dark else light
-        return listOf(Color(t.primary), Color(t.secondary), Color(t.primaryContainer))
+        // Holiday themes show their three signature colors (e.g. red, green and gold).
+        return if (holiday) listOf(Color(t.primary), Color(t.secondary), Color(t.tertiary))
+        else listOf(Color(t.primary), Color(t.secondary), Color(t.primaryContainer))
     }
 }
 

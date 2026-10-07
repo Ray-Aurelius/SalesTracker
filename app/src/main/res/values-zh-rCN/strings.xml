@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">使用指纹、面部或手机 PIN 进行删除</string>
     <string name="quick_add">记录销售或添加客户</string>
     <string name="quick_add_close">关闭菜单</string>
+    <string name="appearance_holiday">节日主题</string>
+    <string name="palette_spring">春日花开</string>
+    <string name="palette_spring_desc">柔粉与青绿</string>
+    <string name="palette_halloween">万圣节</string>
+    <string name="palette_halloween_desc">南瓜橙与午夜紫</string>
+    <string name="palette_christmas">圣诞节</string>
+    <string name="palette_christmas_desc">冬青红、松绿与金色</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

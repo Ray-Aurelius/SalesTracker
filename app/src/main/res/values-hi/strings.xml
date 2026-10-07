@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">हटाने के लिए फ़िंगरप्रिंट, चेहरा या फ़ोन PIN इस्तेमाल करें</string>
     <string name="quick_add">बिक्री दर्ज करें या ग्राहक जोड़ें</string>
     <string name="quick_add_close">मेनू बंद करें</string>
+    <string name="appearance_holiday">त्योहार थीम</string>
+    <string name="palette_spring">वसंत बहार</string>
+    <string name="palette_spring_desc">हल्का गुलाबी और फ़िरोज़ी</string>
+    <string name="palette_halloween">हैलोवीन</string>
+    <string name="palette_halloween_desc">कद्दू नारंगी और आधी रात बैंगनी</string>
+    <string name="palette_christmas">क्रिसमस</string>
+    <string name="palette_christmas_desc">होली लाल, चीड़ हरा और सुनहरा</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

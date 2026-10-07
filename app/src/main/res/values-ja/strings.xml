@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">指紋・顔・スマホの PIN で削除します</string>
     <string name="quick_add">販売を記録または顧客を追加</string>
     <string name="quick_add_close">メニューを閉じる</string>
+    <string name="appearance_holiday">季節のテーマ</string>
+    <string name="palette_spring">春の花</string>
+    <string name="palette_spring_desc">やさしいピンクとターコイズ</string>
+    <string name="palette_halloween">ハロウィン</string>
+    <string name="palette_halloween_desc">パンプキンオレンジとミッドナイトパープル</string>
+    <string name="palette_christmas">クリスマス</string>
+    <string name="palette_christmas_desc">ヒイラギの赤、松の緑、ゴールド</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

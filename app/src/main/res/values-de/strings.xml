@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">Mit Fingerabdruck, Gesicht oder Telefon-PIN löschen</string>
     <string name="quick_add">Verkauf erfassen oder Kunden hinzufügen</string>
     <string name="quick_add_close">Menü schließen</string>
+    <string name="appearance_holiday">Feiertags-Designs</string>
+    <string name="palette_spring">Frühlingsblüte</string>
+    <string name="palette_spring_desc">Zartrosa und Türkis</string>
+    <string name="palette_halloween">Halloween</string>
+    <string name="palette_halloween_desc">Kürbisorange und Mitternachtslila</string>
+    <string name="palette_christmas">Weihnachten</string>
+    <string name="palette_christmas_desc">Stechpalmenrot, Tannengrün und Gold</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -66,8 +67,10 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
     val elapsed = vm.stopwatchElapsedMs(now)
     val todayStats = SalesStats.of(data.sales.filter { it.timestamp >= Period.TODAY.startMillis() })
 
+    Box(Modifier.fillMaxSize()) {
     Column(
-        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
+        // Extra room at the bottom so the + button never covers the Today card.
+        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 88.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ClientPicker(data.clients, vm.stopwatchClientId, vm::setStopwatchClient, Modifier.fillMaxWidth())
@@ -156,6 +159,8 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
                 Text(stringResource(R.string.avg_per_sale, formatDuration(todayStats.averageSeconds)))
             }
         }
+    }
+        QuickAdd(vm, data)
     }
 
     if (logging) {

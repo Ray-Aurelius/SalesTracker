@@ -75,7 +75,7 @@ fun AppearanceDialog(
                 }
                 Spacer(Modifier.size(4.dp))
                 Text(stringResource(R.string.appearance_palette), style = MaterialTheme.typography.labelLarge)
-                AppPalette.entries.forEach { p ->
+                AppPalette.entries.filter { !it.holiday }.forEach { p ->
                     PaletteRow(
                         p.swatch(isDark), stringResource(p.label), stringResource(p.description),
                         selected = !customSelected && p == palette,
@@ -89,6 +89,14 @@ fun AppearanceDialog(
                     selected = customSelected,
                     onClick = onCustom,
                 )
+                Spacer(Modifier.size(4.dp))
+                Text(stringResource(R.string.appearance_holiday), style = MaterialTheme.typography.labelLarge)
+                AppPalette.entries.filter { it.holiday }.forEach { p ->
+                    PaletteRow(
+                        p.swatch(isDark), stringResource(p.label), stringResource(p.description),
+                        selected = !customSelected && p == palette,
+                    ) { onPalette(p) }
+                }
             }
         },
         confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.done)) } },

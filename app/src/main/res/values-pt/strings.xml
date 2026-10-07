@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">Use sua digital, rosto ou PIN do telefone para excluir</string>
     <string name="quick_add">Registrar uma venda ou adicionar um cliente</string>
     <string name="quick_add_close">Fechar menu</string>
+    <string name="appearance_holiday">Temas festivos</string>
+    <string name="palette_spring">Flor de primavera</string>
+    <string name="palette_spring_desc">Rosa suave e turquesa</string>
+    <string name="palette_halloween">Halloween</string>
+    <string name="palette_halloween_desc">Laranja abóbora e roxo meia-noite</string>
+    <string name="palette_christmas">Natal</string>
+    <string name="palette_christmas_desc">Vermelho azevinho, verde pinheiro e dourado</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>

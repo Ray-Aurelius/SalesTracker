@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">Dùng vân tay, khuôn mặt hoặc mã PIN điện thoại để xóa</string>
     <string name="quick_add">Ghi giao dịch hoặc thêm khách hàng</string>
     <string name="quick_add_close">Đóng menu</string>
+    <string name="appearance_holiday">Chủ đề ngày lễ</string>
+    <string name="palette_spring">Hoa xuân</string>
+    <string name="palette_spring_desc">Hồng nhạt và xanh ngọc</string>
+    <string name="palette_halloween">Halloween</string>
+    <string name="palette_halloween_desc">Cam bí ngô và tím nửa đêm</string>
+    <string name="palette_christmas">Giáng sinh</string>
+    <string name="palette_christmas_desc">Đỏ nhựa ruồi, xanh thông và vàng kim</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

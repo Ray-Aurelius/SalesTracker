@@ -705,4 +705,11 @@
     <string name="confirm_delete_subtitle">Use your fingerprint, face or phone PIN to delete</string>
     <string name="quick_add">Log a sale or add a client</string>
     <string name="quick_add_close">Close menu</string>
+    <string name="appearance_holiday">Holiday themes</string>
+    <string name="palette_spring">Spring Blossom</string>
+    <string name="palette_spring_desc">Soft pink and turquoise</string>
+    <string name="palette_halloween">Halloween</string>
+    <string name="palette_halloween_desc">Pumpkin orange and midnight purple</string>
+    <string name="palette_christmas">Christmas</string>
+    <string name="palette_christmas_desc">Holly red, pine green and gold</string>
 </resources>

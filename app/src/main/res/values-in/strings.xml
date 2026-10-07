@@ -594,6 +594,13 @@
     <string name="confirm_delete_subtitle">Gunakan sidik jari, wajah, atau PIN ponsel untuk menghapus</string>
     <string name="quick_add">Catat penjualan atau tambah klien</string>
     <string name="quick_add_close">Tutup menu</string>
+    <string name="appearance_holiday">Tema hari raya</string>
+    <string name="palette_spring">Mekar Musim Semi</string>
+    <string name="palette_spring_desc">Merah muda lembut dan toska</string>
+    <string name="palette_halloween">Halloween</string>
+    <string name="palette_halloween_desc">Oranye labu dan ungu tengah malam</string>
+    <string name="palette_christmas">Natal</string>
+    <string name="palette_christmas_desc">Merah holly, hijau pinus, dan emas</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>
