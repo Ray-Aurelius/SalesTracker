@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.graphics.Bitmap
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasScrollAction
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onFirst
@@ -49,7 +51,9 @@ class LayoutAudit {
     }
 
     private fun tap(label: String, substring: Boolean = false) {
-        rule.onAllNodesWithText(label, substring = substring).onFirst().let { node ->
+        // At very large text the bottom menu shows icons only; those are found by their spoken name.
+        val matcher = hasText(label, substring = substring) or hasContentDescription(label, substring = substring)
+        rule.onAllNodes(matcher).onFirst().let { node ->
             // Menu items can be scrolled out of view (side menu in landscape): bring it into view first.
             try { node.performScrollTo() } catch (e: Throwable) { }
             node.performClick()
