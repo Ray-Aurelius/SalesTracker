@@ -122,15 +122,12 @@ fun ChartsScreen(data: AppData) {
         Spacer(Modifier.height(4.dp))
         SectionTitle(stringResource(R.string.charts_per_sale))
         var range by rememberSaveable { mutableStateOf(AvgRange.MONTH) }
-        Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            AvgRange.entries.forEach { r ->
-                FilterChip(
-                    selected = range == r,
-                    onClick = { range = r },
-                    label = { Text(stringResource(r.period?.label ?: R.string.period_all)) },
-                )
-            }
-        }
+        DropdownPicker(
+            options = AvgRange.entries,
+            selected = range,
+            label = { stringResource(it.period?.label ?: R.string.period_all) },
+            onSelect = { range = it },
+        )
         val st = range.period?.let { byPeriod.getValue(it) } ?: SalesStats.of(sales, pct)
         val inRange = range.period?.let { p -> p.range(today).let { (a, b) -> ChartData.between(sales, a, b) } } ?: sales
         val biggest = inRange.filter { it.closed }.maxOfOrNull { it.revenue }

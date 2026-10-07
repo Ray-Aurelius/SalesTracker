@@ -1,21 +1,17 @@
 package com.salestracker.app.ui.screens
 
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -63,12 +59,8 @@ fun SalesScreen(vm: AppViewModel, data: AppData) {
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             item {
-                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    // Today isn't offered here: the log is for looking back over a stretch of time.
-                    Period.entries.filter { it != Period.TODAY }.forEach { p ->
-                        FilterChip(selected = period == p, onClick = { period = p }, label = { Text(stringResource(p.label)) })
-                    }
-                }
+                // Today isn't offered here: the log is for looking back over a stretch of time.
+                PeriodPicker(period, { period = it }, options = Period.entries.filter { it != Period.TODAY })
             }
             item {
                 Card(Modifier.fillMaxWidth().semantics(mergeDescendants = true) {}) {

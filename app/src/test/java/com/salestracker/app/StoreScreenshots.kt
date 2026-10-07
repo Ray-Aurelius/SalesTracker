@@ -6,7 +6,9 @@ import android.graphics.Bitmap
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onFirst
+import androidx.compose.ui.test.onLast
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.hasScrollAction
@@ -51,6 +53,39 @@ class StoreScreenshots {
         File(out, "$name.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 
+    /** Like [shot] but also draws open pop-up windows (menus), for the layout review only. */
+    private fun shotWithPopups(name: String) {
+        rule.waitForIdle()
+        try {
+            val wmg = Class.forName("android.view.WindowManagerGlobal")
+            val inst = wmg.getMethod("getInstance").invoke(null)
+            @Suppress("UNCHECKED_CAST")
+            val names = wmg.getMethod("getViewRootNames").invoke(inst) as Array<String>
+            val main = rule.activity.window.decorView
+            val bmp = Bitmap.createBitmap(main.width, main.height, Bitmap.Config.ARGB_8888)
+            val canvas = android.graphics.Canvas(bmp)
+            main.draw(canvas)
+            names.map { wmg.getMethod("getRootView", String::class.java).invoke(inst, it) as android.view.View }
+                .filter { it !== main && it.width > 0 }
+                .forEach { v ->
+                    val lp = v.layoutParams as? android.view.WindowManager.LayoutParams
+                    canvas.save(); canvas.translate((lp?.x ?: 0).toFloat(), (lp?.y ?: 0).toFloat()); v.draw(canvas); canvas.restore()
+                }
+            val dir = File(out.path.replace("store-screenshots", "layout-audit")).apply { mkdirs() }
+            File(dir, "$name.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        } catch (e: Throwable) {
+            println("popup shot failed: $e")
+        }
+    }
+
+    /** Opens the period drop-down on the current tab and picks [label]. */
+    private fun pickPeriod(label: String) {
+        rule.onAllNodesWithTag(com.salestracker.app.ui.screens.PERIOD_PICKER_TAG).onFirst().performClick()
+        rule.waitForIdle()
+        rule.onAllNodesWithText(label).onLast().performClick()
+        rule.waitForIdle()
+    }
+
     private fun tap(label: String) {
         rule.onAllNodesWithText(label).onFirst().let { node ->
             // Menu items can be scrolled out of view (side menu in landscape): bring it into view first.
@@ -80,15 +115,19 @@ class StoreScreenshots {
         }
         rule.mainClock.advanceTimeBy(1000)
         // Stats for all time, so the sample's three weeks of sales all count.
-        rule.onAllNodesWithText(app.getString(R.string.period_all)).onFirst().performScrollTo().performClick()
+        pickPeriod(app.getString(R.string.period_all))
         shot("1-stats")
         // Privacy mode: every amount hidden, ready to show a customer (for ads).
         vm.togglePrivacyMode(); rule.waitForIdle(); shot("1b-stats-private")
         tap(app.getString(R.string.tab_charts)); shot("7b-charts-private")
         vm.togglePrivacyMode(); tap(app.getString(R.string.tab_stats))
         tap(app.getString(R.string.tab_sales))
-        rule.onAllNodesWithText(app.getString(R.string.period_all)).onFirst().performScrollTo().performClick()
+        pickPeriod(app.getString(R.string.period_all))
         shot("1s-sales")
+        rule.onAllNodesWithTag(com.salestracker.app.ui.screens.PERIOD_PICKER_TAG).onFirst().performClick()
+        shotWithPopups("menu-sales-period")
+        rule.onAllNodesWithText(app.getString(R.string.period_all)).onLast().performClick()
+        rule.waitForIdle()
         tap(app.getString(R.string.tab_goals)); shot("2-goals")
         tap(app.getString(R.string.tab_clients)); shot("3-clients")
         tap(app.getString(R.string.tab_calendar)); shot("4-calendar")

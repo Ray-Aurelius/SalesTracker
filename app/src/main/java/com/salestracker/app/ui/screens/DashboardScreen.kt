@@ -1,3 +1,5 @@
+@file:OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+
 @file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.salestracker.app.ui.screens
@@ -19,7 +21,7 @@ import androidx.compose.material3.CardDefaults
 import com.salestracker.app.data.PrivacyMode
 import com.salestracker.app.R
 import androidx.compose.ui.res.stringResource
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,7 +44,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -105,18 +106,16 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                 item { BackupNudge(vm) }
             }
             item {
-                Row(
-                    Modifier.horizontalScroll(rememberScrollState()),
+                FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    Period.entries.forEach { p ->
-                        FilterChip(selected = period == p, onClick = { period = p }, label = { Text(stringResource(p.label)) })
-                    }
+                    PeriodPicker(period, { period = it }, modifier = Modifier.align(Alignment.CenterVertically))
                     // Manager report: a PDF summary, created on the phone only when tapped.
                     AssistChip(
                         onClick = { reporting = true },
                         label = { Text(stringResource(R.string.report_button)) },
                         leadingIcon = { Icon(Icons.Filled.PictureAsPdf, contentDescription = null, modifier = Modifier.size(18.dp)) },
+                        modifier = Modifier.align(Alignment.CenterVertically),
                     )
                 }
             }
