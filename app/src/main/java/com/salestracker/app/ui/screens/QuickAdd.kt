@@ -125,7 +125,7 @@ fun BoxScope.QuickAdd(
     val short = LocalConfiguration.current.screenHeightDp < 480
 
     if (short) {
-        // Short screen (landscape): the choices line up beside the button instead of stacking up the page.
+        // Short screen (landscape): the choices sit beside the button instead of stacking up the page.
         Row(
             Modifier.align(corner).padding(16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -138,7 +138,18 @@ fun BoxScope.QuickAdd(
                 exit = fadeOut() + shrinkHorizontally(shrinkTowards = if (atTopStart) Alignment.Start else Alignment.End),
                 modifier = Modifier.weight(1f, fill = false),
             ) {
-                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(10.dp)) { buttons() }
+                // Two rows of two, so all four choices fit beside the button on a landscape screen.
+                Column(
+                    Modifier.horizontalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                    horizontalAlignment = if (atTopStart) Alignment.Start else Alignment.End,
+                ) {
+                    actions.chunked(2).forEach { pair ->
+                        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            pair.forEach { a -> QuickActionButton(a, iconFirst = atTopStart) { open = false; a.onClick() } }
+                        }
+                    }
+                }
             }
             if (!atTopStart) fab()
         }
