@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">Xóa khách hàng hoặc giao dịch sẽ yêu cầu vân tay, khuôn mặt hoặc mã PIN điện thoại trước. Xóa toàn bộ dữ liệu luôn yêu cầu.</string>
     <string name="confirm_delete_title">Xác nhận đó là bạn</string>
     <string name="confirm_delete_subtitle">Dùng vân tay, khuôn mặt hoặc mã PIN điện thoại để xóa</string>
+    <string name="quick_add">Ghi giao dịch hoặc thêm khách hàng</string>
+    <string name="quick_add_close">Đóng menu</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

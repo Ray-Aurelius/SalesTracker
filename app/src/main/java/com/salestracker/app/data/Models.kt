@@ -20,6 +20,20 @@ data class Client(
     val fullName: String
         get() = listOf(firstName, lastName).filter { it.isNotBlank() }.joinToString(" ")
 
+    /**
+     * What to call this client: the name, or when no name was entered, the job / work order number
+     * (shown through [refFormat], e.g. "Job # WO-1042"), then the phone, email or first line of the notes.
+     */
+    fun label(refFormat: (String) -> String = { it }): String = when {
+        fullName.isNotBlank() -> fullName
+        reference.isNotBlank() -> refFormat(reference)
+        phone.isNotBlank() -> phone
+        email.isNotBlank() -> email
+        else -> notes.lineSequence().firstOrNull().orEmpty().take(40)
+    }
+
+    fun label(context: android.content.Context): String = label { context.getString(com.salestracker.app.R.string.client_ref_display, it) }
+
     fun toJson(): JSONObject = JSONObject()
         .put("id", id)
         .put("firstName", firstName)

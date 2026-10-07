@@ -29,6 +29,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddTask
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Add
@@ -224,7 +225,7 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
                 }
             }
         }
-        AddFab(stringResource(R.string.add_task), Icons.Filled.Add, onClick = { adding = true }, modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp))
+        QuickAdd(vm, data, pageAction = QuickAction(stringResource(R.string.add_task), Icons.Filled.AddTask) { adding = true })
     }
 
     if (adding || editing != null) {
@@ -281,7 +282,7 @@ private fun TaskRow(
             }
             val details = buildList {
                 if (overdue) add(stringResource(R.string.task_due_on, LocalDate.ofEpochDay(task.epochDay).format(localizedFormatter("MMMd"))))
-                client?.let { add(it.fullName) }
+                client?.let { add(it.displayName()) }
                 task.reminderMinute?.let { add("⏰ " + formatMinuteOfDay(it)) }
                 if (task.repeat != TaskRepeat.NONE) add(stringResource(task.repeat.label))
             }
@@ -296,7 +297,7 @@ private fun TaskRow(
         val phone = client?.phone?.takeIf { it.isNotBlank() }
         if (phone != null && !done) {
             IconButton(onClick = { onCall(phone) }) {
-                Icon(Icons.Filled.Call, contentDescription = stringResource(R.string.cd_call, client.fullName))
+                Icon(Icons.Filled.Call, contentDescription = stringResource(R.string.cd_call, client.displayName()))
             }
         }
     }

@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">Удаление клиента или продажи сначала запрашивает отпечаток, лицо или PIN-код телефона. Удаление всех данных — всегда.</string>
     <string name="confirm_delete_title">Подтвердите, что это вы</string>
     <string name="confirm_delete_subtitle">Используйте отпечаток, лицо или PIN-код телефона для удаления</string>
+    <string name="quick_add">Записать продажу или добавить клиента</string>
+    <string name="quick_add_close">Закрыть меню</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

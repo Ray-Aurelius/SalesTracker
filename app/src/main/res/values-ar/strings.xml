@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">يطلب حذف عميل أو عملية بيع بصمة إصبعك أو وجهك أو رمز الهاتف أولًا. ويطلبه دائمًا عند مسح كل البيانات.</string>
     <string name="confirm_delete_title">أكّد أنه أنت</string>
     <string name="confirm_delete_subtitle">استخدم البصمة أو الوجه أو رمز الهاتف للحذف</string>
+    <string name="quick_add">تسجيل عملية بيع أو إضافة عميل</string>
+    <string name="quick_add_close">إغلاق القائمة</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

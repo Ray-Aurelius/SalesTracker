@@ -93,6 +93,10 @@ class LayoutAudit {
             tap(app.getString(label))
             shot("$config-$name")
             if (name == "4-schedule") {
+                // The + menu at its fullest (new appointment, log sale, add client).
+                tap(app.getString(R.string.quick_add))
+                shot("$config-4-schedule-plus")
+                tap(app.getString(R.string.quick_add_close))
                 tap(app.getString(R.string.schedule_tasks), substring = true)
                 shot("$config-5-tasks")
                 tap(app.getString(R.string.schedule_calendar))

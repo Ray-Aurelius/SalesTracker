@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">Müşteri veya satış silmek önce parmak izinizi, yüzünüzü veya telefon PIN\'inizi ister. Tüm verileri silmek her zaman ister.</string>
     <string name="confirm_delete_title">Siz olduğunuzu doğrulayın</string>
     <string name="confirm_delete_subtitle">Silmek için parmak izi, yüz veya telefon PIN\'i kullanın</string>
+    <string name="quick_add">Satış kaydet veya müşteri ekle</string>
+    <string name="quick_add_close">Menüyü kapat</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

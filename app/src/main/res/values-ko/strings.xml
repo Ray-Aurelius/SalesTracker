@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">고객이나 판매를 삭제하기 전에 지문, 얼굴 또는 휴대폰 PIN을 확인합니다. 모든 데이터 삭제 시에는 항상 확인합니다.</string>
     <string name="confirm_delete_title">본인 확인</string>
     <string name="confirm_delete_subtitle">삭제하려면 지문, 얼굴 또는 휴대폰 PIN을 사용하세요</string>
+    <string name="quick_add">판매 기록 또는 고객 추가</string>
+    <string name="quick_add_close">메뉴 닫기</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

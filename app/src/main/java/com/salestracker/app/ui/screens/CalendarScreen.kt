@@ -191,7 +191,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                         )
                         Column(Modifier.weight(1f)) {
                             Text(a.title, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
-                            val who = a.clientId?.let { clientsById[it]?.fullName }
+                            val who = a.clientId?.let { clientsById[it]?.displayName() }
                             if (who != null) Text(who, style = MaterialTheme.typography.bodySmall)
                             if (a.notes.isNotBlank()) {
                                 Text(a.notes, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -215,7 +215,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                 }
             }
         }
-        AddFab(stringResource(LocalTerms.current.appointment), Icons.Filled.Add, onClick = { adding = true }, modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp))
+        QuickAdd(vm, data, pageAction = QuickAction(stringResource(LocalTerms.current.newAppointment), Icons.Filled.Event) { adding = true })
     }
 
     if (adding || editing != null) {

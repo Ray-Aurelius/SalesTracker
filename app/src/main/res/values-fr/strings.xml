@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">Supprimer un client ou une vente demande d\'abord votre empreinte, votre visage ou le code du téléphone. Effacer toutes les données le demande toujours.</string>
     <string name="confirm_delete_title">Confirmez votre identité</string>
     <string name="confirm_delete_subtitle">Utilisez votre empreinte, votre visage ou le code du téléphone pour supprimer</string>
+    <string name="quick_add">Enregistrer une vente ou ajouter un client</string>
+    <string name="quick_add_close">Fermer le menu</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

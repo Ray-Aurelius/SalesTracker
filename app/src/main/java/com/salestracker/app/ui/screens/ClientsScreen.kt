@@ -88,7 +88,6 @@ import com.salestracker.app.ui.AppViewModel
 fun ClientsScreen(vm: AppViewModel, data: AppData) {
     val ownerCheck = rememberOwnerCheck(vm)
     var query by rememberSaveable { mutableStateOf("") }
-    var adding by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Client?>(null) }
     var stageFilter by rememberSaveable { mutableStateOf<ClientStage?>(null) }
     var dueOnly by rememberSaveable { mutableStateOf(false) }
@@ -97,10 +96,10 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
     val q = query.trim().lowercase()
     val dueIds = data.clients.filter { c -> data.followUpFor(c)?.isDue() == true }.map { it.id }.toSet()
     val clients = data.clients
-        .filter { q.isEmpty() || "${it.fullName} ${it.phone} ${it.email} ${it.reference}".lowercase().contains(q) }
+        .filter { q.isEmpty() || "${it.fullName} ${it.phone} ${it.email} ${it.reference} ${it.notes}".lowercase().contains(q) }
         .filter { stageFilter == null || it.stage == stageFilter }
         .filter { !dueOnly || it.id in dueIds }
-        .sortedBy { it.fullName.lowercase() }
+        .sortedBy { it.label().lowercase() }
     val salesByClient = data.sales.groupBy { it.clientId }
 
     Box(Modifier.fillMaxSize()) {
@@ -169,15 +168,15 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
                 )
             }
         }
-        AddFab(stringResource(LocalTerms.current.addClient), Icons.Filled.PersonAdd, onClick = { adding = true }, modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp))
+        QuickAdd(vm, data, clientFirst = true)
     }
 
-    if (adding || editing != null) {
+    if (editing != null) {
         ClientDialog(
             initial = editing,
             existingFollowUp = editing?.let { data.followUpFor(it) },
             newId = vm::newId,
-            onDismiss = { adding = false; editing = null },
+            onDismiss = { editing = null },
             onSave = vm::saveClientWithFollowUp,
             // The phone's fingerprint / PIN check comes after the confirm dialog, before anything is removed.
             onDelete = { id, withRecords -> ownerCheck { if (withRecords) vm.deleteClientAndRecords(id) else vm.deleteClient(id) } },
@@ -197,12 +196,20 @@ private fun ClientCard(
     // On a narrow page the call / email buttons sit under the details instead of beside them,
     // so names and addresses get the full width.
     val narrow = isNarrow()
+    // With no name entered, the card is titled by the job number (or phone, email) instead; that line isn't repeated below.
+    val name = client.displayName()
+    val titledBy = when {
+        client.fullName.isNotBlank() -> 0
+        client.reference.isNotBlank() -> 1
+        client.phone.isNotBlank() -> 2
+        else -> 3
+    }
     val actions: @Composable () -> Unit = {
         if (client.phone.isNotBlank()) {
-            IconButton(onClick = onCall) { Icon(Icons.Filled.Phone, contentDescription = stringResource(R.string.cd_call, client.fullName)) }
+            IconButton(onClick = onCall) { Icon(Icons.Filled.Phone, contentDescription = stringResource(R.string.cd_call, name)) }
         }
         if (client.email.isNotBlank()) {
-            IconButton(onClick = onEmail) { Icon(Icons.Filled.Email, contentDescription = stringResource(R.string.cd_email, client.fullName)) }
+            IconButton(onClick = onEmail) { Icon(Icons.Filled.Email, contentDescription = stringResource(R.string.cd_email, name)) }
         }
     }
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
@@ -213,7 +220,7 @@ private fun ClientCard(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalArrangement = Arrangement.spacedBy(2.dp),
                 ) {
-                    Text(client.fullName, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold,
+                    Text(name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold,
                         modifier = Modifier.align(Alignment.CenterVertically))
                     Box(Modifier.align(Alignment.CenterVertically)) { StageBadge(client.stage) }
                 }
@@ -233,15 +240,15 @@ private fun ClientCard(
                         )
                     }
                 }
-                if (client.reference.isNotBlank()) {
+                if (client.reference.isNotBlank() && titledBy != 1) {
                     Text(
                         stringResource(R.string.client_ref_display, client.reference),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.secondary,
                     )
                 }
-                if (client.phone.isNotBlank()) Text(client.phone, style = MaterialTheme.typography.bodyMedium)
-                if (client.email.isNotBlank()) Text(client.email, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                if (client.phone.isNotBlank() && titledBy != 2) Text(client.phone, style = MaterialTheme.typography.bodyMedium)
+                if (client.email.isNotBlank() && titledBy != 3) Text(client.email, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
                 Text(summary, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
                 if (narrow) Row(Modifier.offset(x = (-12).dp)) { actions() }
             }
@@ -251,7 +258,7 @@ private fun ClientCard(
 }
 
 @Composable
-private fun ClientDialog(
+internal fun ClientDialog(
     initial: Client?,
     existingFollowUp: Appointment?,
     newId: () -> Long,
@@ -280,7 +287,8 @@ private fun ClientDialog(
     }
 
     val emailValid = email.isBlank() || android.util.Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()
-    val canSave = (first.isNotBlank() || last.isNotBlank()) && emailValid
+    // Any one detail is enough to save (a work order number on its own, say); the rest can be filled in later.
+    val canSave = listOf(first, last, reference, phone, email, notes).any { it.isNotBlank() } && emailValid
     val nameCaps = KeyboardOptions(capitalization = KeyboardCapitalization.Words)
 
     AlertDialog(
@@ -358,7 +366,7 @@ private fun ClientDialog(
         var withRecords by remember { mutableStateOf(false) }
         AlertDialog(
             onDismissRequest = { confirmDelete = false },
-            title = { Text(stringResource(R.string.delete_client_q, initial.fullName)) },
+            title = { Text(stringResource(R.string.delete_client_q, initial.displayName())) },
             text = {
                 Column {
                     Text(stringResource(R.string.delete_cannot_undo))

@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">Eliminar un cliente o una venta pide primero tu huella, rostro o PIN del teléfono. Borrar todos los datos siempre lo pide.</string>
     <string name="confirm_delete_title">Confirma que eres tú</string>
     <string name="confirm_delete_subtitle">Usa tu huella, rostro o PIN del teléfono para eliminar</string>
+    <string name="quick_add">Registrar una venta o añadir un cliente</string>
+    <string name="quick_add_close">Cerrar menú</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>

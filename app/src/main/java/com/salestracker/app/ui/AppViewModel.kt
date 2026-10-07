@@ -403,7 +403,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         if (followUp != null) {
             val appt = Appointment(
                 id = existing?.id ?: newId(),
-                title = getApplication<Application>().getString(R.string.follow_up_title, client.fullName),
+                title = getApplication<Application>().getString(R.string.follow_up_title, client.label(getApplication<Application>())),
                 epochDay = followUp.first,
                 minuteOfDay = followUp.second,
                 clientId = client.id,

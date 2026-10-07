@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">Das Löschen eines Kunden oder Verkaufs fragt zuerst nach Fingerabdruck, Gesicht oder Telefon-PIN. Beim Löschen aller Daten immer.</string>
     <string name="confirm_delete_title">Bestätige, dass du es bist</string>
     <string name="confirm_delete_subtitle">Mit Fingerabdruck, Gesicht oder Telefon-PIN löschen</string>
+    <string name="quick_add">Verkauf erfassen oder Kunden hinzufügen</string>
+    <string name="quick_add_close">Menü schließen</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

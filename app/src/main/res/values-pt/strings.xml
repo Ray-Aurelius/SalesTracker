@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">Excluir um cliente ou uma venda pede primeiro sua digital, rosto ou PIN do telefone. Apagar todos os dados sempre pede.</string>
     <string name="confirm_delete_title">Confirme que é você</string>
     <string name="confirm_delete_subtitle">Use sua digital, rosto ou PIN do telefone para excluir</string>
+    <string name="quick_add">Registrar uma venda ou adicionar um cliente</string>
+    <string name="quick_add_close">Fechar menu</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>

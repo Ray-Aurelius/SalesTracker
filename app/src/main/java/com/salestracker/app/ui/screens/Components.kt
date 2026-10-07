@@ -65,7 +65,7 @@ fun ClientPicker(
             Icon(Icons.Filled.Person, contentDescription = null)
             Spacer(Modifier.width(8.dp))
             Text(
-                selected?.fullName ?: stringResource(if (clients.isEmpty()) R.string.client_none_saved else LocalTerms.current.chooseClient),
+                selected?.displayName() ?: stringResource(if (clients.isEmpty()) R.string.client_none_saved else LocalTerms.current.chooseClient),
                 modifier = Modifier.weight(1f),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -74,8 +74,8 @@ fun ClientPicker(
         }
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             DropdownMenuItem(text = { Text(stringResource(LocalTerms.current.noClient)) }, onClick = { onSelect(null); expanded = false })
-            clients.sortedBy { it.fullName.lowercase() }.forEach { c ->
-                DropdownMenuItem(text = { Text(c.fullName) }, onClick = { onSelect(c.id); expanded = false })
+            clients.sortedBy { it.label().lowercase() }.forEach { c ->
+                DropdownMenuItem(text = { Text(c.displayName()) }, onClick = { onSelect(c.id); expanded = false })
             }
         }
     }
@@ -291,3 +291,7 @@ fun SaleCard(sale: Sale, clientName: String, onClick: () -> Unit, onDelete: () -
 /** "10" for 10.0, "7.5" for 7.5 — so rate fields don't show a pointless ".0". */
 fun formatRateInput(percent: Double): String =
     if (percent == Math.floor(percent)) percent.toLong().toString() else percent.toString()
+
+/** The client's name, or their job number / phone / email when no name was entered. */
+@Composable
+fun com.salestracker.app.data.Client.displayName(): String = label(androidx.compose.ui.platform.LocalContext.current)

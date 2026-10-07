@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">ক্লায়েন্ট বা বিক্রি মোছার আগে আপনার ফিঙ্গারপ্রিন্ট, মুখ বা ফোনের PIN চাওয়া হয়। সব ডেটা মুছতে সবসময়।</string>
     <string name="confirm_delete_title">নিশ্চিত করুন এটি আপনি</string>
     <string name="confirm_delete_subtitle">মুছতে ফিঙ্গারপ্রিন্ট, মুখ বা ফোনের PIN ব্যবহার করুন</string>
+    <string name="quick_add">বিক্রয় লিখুন বা ক্লায়েন্ট যোগ করুন</string>
+    <string name="quick_add_close">মেনু বন্ধ করুন</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

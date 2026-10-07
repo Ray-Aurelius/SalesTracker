@@ -7,6 +7,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onLast
 import androidx.compose.ui.test.performClick
@@ -127,6 +128,12 @@ class StoreScreenshots {
         rule.onAllNodesWithTag(com.salestracker.app.ui.screens.PERIOD_PICKER_TAG).onFirst().performClick()
         shotWithPopups("menu-sales-period")
         rule.onAllNodesWithText(app.getString(R.string.period_all)).onLast().performClick()
+        rule.waitForIdle()
+        rule.onAllNodesWithContentDescription(app.getString(R.string.quick_add)).onFirst().performClick()
+        rule.mainClock.advanceTimeBy(800)
+        shotWithPopups("menu-quick-add")
+        rule.onAllNodesWithContentDescription(app.getString(R.string.quick_add_close)).onFirst().performClick()
+        rule.mainClock.advanceTimeBy(800)
         rule.waitForIdle()
         tap(app.getString(R.string.tab_goals)); shot("2-goals")
         tap(app.getString(R.string.tab_clients)); shot("3-clients")

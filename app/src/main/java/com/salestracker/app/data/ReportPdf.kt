@@ -134,7 +134,7 @@ object ReportPdf {
             divider()
             sales.forEach { sale ->
                 val date = Instant.ofEpochMilli(sale.timestamp).atZone(zone).toLocalDate().format(dateFmt)
-                val name = sale.clientId?.let { clients[it]?.fullName } ?: "—"
+                val name = sale.clientId?.let { clients[it]?.label(context) } ?: "—"
                 val status = buildString {
                     append(context.getString(if (sale.closed) R.string.tag_closed else R.string.tag_not_closed))
                     if (sale.upsellAccepted) append(" · ").append(context.getString(R.string.tag_upsell))

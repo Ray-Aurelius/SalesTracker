@@ -44,7 +44,6 @@ import com.salestracker.app.ui.AppViewModel
 @Composable
 fun SalesScreen(vm: AppViewModel, data: AppData) {
     var period by rememberSaveable { mutableStateOf(Period.WEEK) }
-    var adding by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Sale?>(null) }
     var deleting by remember { mutableStateOf<Sale?>(null) }
     val ownerCheck = rememberOwnerCheck(vm)
@@ -103,24 +102,21 @@ fun SalesScreen(vm: AppViewModel, data: AppData) {
             items(sales, key = { it.id }) { sale ->
                 SaleCard(
                     sale = sale,
-                    clientName = sale.clientId?.let { clientsById[it]?.fullName } ?: stringResource(LocalTerms.current.noClient),
+                    clientName = sale.clientId?.let { clientsById[it]?.displayName() } ?: stringResource(LocalTerms.current.noClient),
                     onClick = { editing = sale },
                     onDelete = { deleting = sale },
                 )
             }
         }
-        AddFab(
-            stringResource(LocalTerms.current.logSale), Icons.Filled.Add, onClick = { adding = true },
-            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-        )
+        QuickAdd(vm, data)
     }
 
-    if (adding || editing != null) {
+    if (editing != null) {
         SaleDialog(
             initial = editing,
             clients = data.clients,
             newId = vm::newId,
-            onDismiss = { adding = false; editing = null },
+            onDismiss = { editing = null },
             onSave = vm::saveSale,
             defaultCommissionPercent = data.defaultCommissionPercent,
             defaultUpsellOnly = data.defaultCommissionUpsellOnly,

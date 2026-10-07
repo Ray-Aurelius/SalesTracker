@@ -69,7 +69,6 @@ import com.salestracker.app.ui.AppViewModel
 @Composable
 fun DashboardScreen(vm: AppViewModel, data: AppData) {
     var period by rememberSaveable { mutableStateOf(Period.WEEK) }
-    var adding by remember { mutableStateOf(false) }
     var editingRate by remember { mutableStateOf(false) }
     var reporting by remember { mutableStateOf(false) }
 
@@ -179,23 +178,9 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                 )
             }
         }
-        AddFab(
-            stringResource(LocalTerms.current.logSale), Icons.Filled.Add, onClick = { adding = true },
-            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-        )
+        QuickAdd(vm, data)
     }
 
-    if (adding) {
-        SaleDialog(
-            initial = null,
-            clients = data.clients,
-            newId = vm::newId,
-            onDismiss = { adding = false },
-            onSave = vm::saveSale,
-            defaultCommissionPercent = data.defaultCommissionPercent,
-            defaultUpsellOnly = data.defaultCommissionUpsellOnly,
-        )
-    }
     if (reporting) ReportDialog(vm, data, onDismiss = { reporting = false })
     if (editingRate) {
         CommissionRateDialog(

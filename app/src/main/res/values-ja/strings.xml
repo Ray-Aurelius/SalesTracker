@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">顧客や販売を削除する前に、指紋・顔・スマホの PIN を確認します。すべてのデータの消去では常に確認します。</string>
     <string name="confirm_delete_title">本人確認</string>
     <string name="confirm_delete_subtitle">指紋・顔・スマホの PIN で削除します</string>
+    <string name="quick_add">販売を記録または顧客を追加</string>
+    <string name="quick_add_close">メニューを閉じる</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

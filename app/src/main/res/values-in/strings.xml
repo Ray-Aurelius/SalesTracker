@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">Menghapus klien atau penjualan meminta sidik jari, wajah, atau PIN ponsel terlebih dahulu. Menghapus semua data selalu memintanya.</string>
     <string name="confirm_delete_title">Konfirmasi bahwa ini Anda</string>
     <string name="confirm_delete_subtitle">Gunakan sidik jari, wajah, atau PIN ponsel untuk menghapus</string>
+    <string name="quick_add">Catat penjualan atau tambah klien</string>
+    <string name="quick_add_close">Tutup menu</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">क्लाइंट या बिक्री हटाने से पहले आपका फ़िंगरप्रिंट, चेहरा या फ़ोन PIN माँगा जाता है। सारा डेटा मिटाने पर हमेशा।</string>
     <string name="confirm_delete_title">पुष्टि करें कि यह आप हैं</string>
     <string name="confirm_delete_subtitle">हटाने के लिए फ़िंगरप्रिंट, चेहरा या फ़ोन PIN इस्तेमाल करें</string>
+    <string name="quick_add">बिक्री दर्ज करें या ग्राहक जोड़ें</string>
+    <string name="quick_add_close">मेनू बंद करें</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

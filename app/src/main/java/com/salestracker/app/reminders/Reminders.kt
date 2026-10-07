@@ -77,7 +77,7 @@ object ReminderScheduler {
         val nmc = NotificationManagerCompat.from(context)
         if (!nmc.areNotificationsEnabled()) return
         ensureChannel(context)
-        val client = task.clientId?.let { id -> data.clients.firstOrNull { it.id == id }?.fullName }
+        val client = task.clientId?.let { id -> data.clients.firstOrNull { it.id == id }?.label(context) }
         val line = listOfNotNull(
             context.getString(if (task.important) R.string.task_important else R.string.task_other),
             client,
@@ -181,7 +181,7 @@ object ReminderScheduler {
             date == LocalDate.now().plusDays(1) -> context.getString(R.string.notif_tomorrow_at, time)
             else -> context.getString(R.string.notif_date_at, date.format(localizedFormatter("EEEMMMd")), time)
         }
-        val client = appt.clientId?.let { id -> data.clients.firstOrNull { it.id == id }?.fullName }
+        val client = appt.clientId?.let { id -> data.clients.firstOrNull { it.id == id }?.label(context) }
         val line = listOfNotNull(whenText, client?.let { context.getString(R.string.notif_with, it) }).joinToString(" · ")
         val body = if (appt.notes.isBlank()) line else "$line\n${appt.notes}"
 

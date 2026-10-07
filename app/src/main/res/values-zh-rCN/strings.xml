@@ -592,6 +592,8 @@
     <string name="protect_deletes_desc">删除客户或销售记录前需验证指纹、面部或手机 PIN。清除所有数据时始终需要验证。</string>
     <string name="confirm_delete_title">确认是您本人</string>
     <string name="confirm_delete_subtitle">使用指纹、面部或手机 PIN 进行删除</string>
+    <string name="quick_add">记录销售或添加客户</string>
+    <string name="quick_add_close">关闭菜单</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>
