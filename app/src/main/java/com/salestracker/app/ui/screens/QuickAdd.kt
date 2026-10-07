@@ -29,6 +29,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AddTask
+import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.PersonAdd
 import androidx.compose.material.icons.filled.PointOfSale
 import androidx.compose.material3.FloatingActionButton
@@ -58,30 +60,41 @@ import com.salestracker.app.R
 import com.salestracker.app.data.AppData
 import com.salestracker.app.data.LocalTerms
 import com.salestracker.app.ui.AppViewModel
+import java.time.LocalDate
 
 /** One choice in the + menu. */
 class QuickAction(val label: String, val icon: ImageVector, val onClick: () -> Unit)
 
 /**
- * The + button found on the busiest pages. Tapping it offers "Log sale" and "Add client"
- * (plus the page's own action, such as a new appointment, when given), so either can be done
- * from wherever the salesperson is.
+ * The + button on every page. It always offers the same four choices in the same order:
+ * Log sale, Add client, New appointment and Add task, so it works the same wherever you are.
+ *
+ * @param appointmentDate the day a new appointment starts on (the Schedule page passes its selected day).
+ * @param taskDay the day a new task is for (the Tasks list passes the day being shown).
+ * @param atTopStart puts the button in the top-left corner instead of the bottom-right (the calculator,
+ *   whose keypad fills the bottom of the page).
  */
 @Composable
 fun BoxScope.QuickAdd(
     vm: AppViewModel,
     data: AppData,
-    clientFirst: Boolean = false,
-    pageAction: QuickAction? = null,
+    appointmentDate: LocalDate = LocalDate.now(),
+    taskDay: Long = LocalDate.now().toEpochDay(),
+    atTopStart: Boolean = false,
 ) {
     var open by rememberSaveable { mutableStateOf(false) }
     var addingSale by remember { mutableStateOf(false) }
     var addingClient by remember { mutableStateOf(false) }
+    var addingAppointment by remember { mutableStateOf(false) }
+    var addingTask by remember { mutableStateOf(false) }
     val terms = LocalTerms.current
 
-    val sale = QuickAction(stringResource(terms.logSale), Icons.Filled.PointOfSale) { addingSale = true }
-    val client = QuickAction(stringResource(terms.addClient), Icons.Filled.PersonAdd) { addingClient = true }
-    val actions = listOfNotNull(pageAction) + if (clientFirst) listOf(client, sale) else listOf(sale, client)
+    val actions = listOf(
+        QuickAction(stringResource(terms.logSale), Icons.Filled.PointOfSale) { addingSale = true },
+        QuickAction(stringResource(terms.addClient), Icons.Filled.PersonAdd) { addingClient = true },
+        QuickAction(stringResource(terms.newAppointment), Icons.Filled.Event) { addingAppointment = true },
+        QuickAction(stringResource(R.string.add_task), Icons.Filled.AddTask) { addingTask = true },
+    )
 
     BackHandler(enabled = open) { open = false }
 
@@ -105,49 +118,51 @@ fun BoxScope.QuickAdd(
             Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.rotate(turn))
         }
     }
-    val choose: (QuickAction) -> Unit = { a -> open = false; a.onClick() }
+    val buttons: @Composable () -> Unit = {
+        actions.forEach { a -> QuickActionButton(a, iconFirst = atTopStart) { open = false; a.onClick() } }
+    }
+    val corner = if (atTopStart) Alignment.TopStart else Alignment.BottomEnd
+    val short = LocalConfiguration.current.screenHeightDp < 480
 
-    if (LocalConfiguration.current.screenHeightDp < 480) {
-        // Short screen (landscape): the choices line up to the left of the button instead of stacking up the page.
+    if (short) {
+        // Short screen (landscape): the choices line up beside the button instead of stacking up the page.
         Row(
-            Modifier.align(Alignment.BottomEnd).padding(16.dp),
+            Modifier.align(corner).padding(16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
+            if (atTopStart) fab()
             AnimatedVisibility(
                 open,
-                enter = fadeIn() + expandHorizontally(expandFrom = Alignment.End),
-                exit = fadeOut() + shrinkHorizontally(shrinkTowards = Alignment.End),
+                enter = fadeIn() + expandHorizontally(expandFrom = if (atTopStart) Alignment.Start else Alignment.End),
+                exit = fadeOut() + shrinkHorizontally(shrinkTowards = if (atTopStart) Alignment.Start else Alignment.End),
                 modifier = Modifier.weight(1f, fill = false),
             ) {
-                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    actions.forEach { a -> QuickActionButton(a) { choose(a) } }
-                }
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(10.dp)) { buttons() }
             }
-            fab()
+            if (!atTopStart) fab()
         }
     } else {
         Column(
-            Modifier.align(Alignment.BottomEnd).padding(16.dp),
-            horizontalAlignment = Alignment.End,
+            Modifier.align(corner).padding(16.dp),
+            horizontalAlignment = if (atTopStart) Alignment.Start else Alignment.End,
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
+            if (atTopStart) fab()
             AnimatedVisibility(
                 open,
-                enter = fadeIn() + expandVertically(expandFrom = Alignment.Bottom),
-                exit = fadeOut() + shrinkVertically(shrinkTowards = Alignment.Bottom),
-                // Takes only the room left above the button; scrolls if very large text makes it too tall.
+                enter = fadeIn() + expandVertically(expandFrom = if (atTopStart) Alignment.Top else Alignment.Bottom),
+                exit = fadeOut() + shrinkVertically(shrinkTowards = if (atTopStart) Alignment.Top else Alignment.Bottom),
+                // Takes only the room left beside the button; scrolls if very large text makes it too tall.
                 modifier = Modifier.weight(1f, fill = false),
             ) {
                 Column(
                     Modifier.verticalScroll(rememberScrollState()),
-                    horizontalAlignment = Alignment.End,
+                    horizontalAlignment = if (atTopStart) Alignment.Start else Alignment.End,
                     verticalArrangement = Arrangement.spacedBy(10.dp),
-                ) {
-                    actions.forEach { a -> QuickActionButton(a) { choose(a) } }
-                }
+                ) { buttons() }
             }
-            fab()
+            if (!atTopStart) fab()
         }
     }
 
@@ -160,6 +175,28 @@ fun BoxScope.QuickAdd(
             onSave = vm::saveSale,
             defaultCommissionPercent = data.defaultCommissionPercent,
             defaultUpsellOnly = data.defaultCommissionUpsellOnly,
+        )
+    }
+    if (addingAppointment) {
+        AppointmentDialog(
+            initial = null,
+            defaultDate = appointmentDate,
+            clients = data.clients,
+            newId = vm::newId,
+            onDismiss = { addingAppointment = false },
+            onSave = vm::saveAppointment,
+            onDelete = vm::deleteAppointment,
+        )
+    }
+    if (addingTask) {
+        TaskDialog(
+            initial = null,
+            defaultDay = taskDay,
+            clients = data.clients,
+            newId = vm::newId,
+            onSave = vm::saveTask,
+            onDelete = { vm.deleteTask(it) },
+            onDismiss = { addingTask = false },
         )
     }
     if (addingClient) {
@@ -176,7 +213,7 @@ fun BoxScope.QuickAdd(
 
 /** A pill with the action's name and icon, lined up above the + button. */
 @Composable
-private fun QuickActionButton(action: QuickAction, onClick: () -> Unit) {
+private fun QuickActionButton(action: QuickAction, iconFirst: Boolean = false, onClick: () -> Unit) {
     Surface(
         onClick = onClick,
         shape = RoundedCornerShape(28.dp),
@@ -184,15 +221,22 @@ private fun QuickActionButton(action: QuickAction, onClick: () -> Unit) {
         shadowElevation = 4.dp,
         modifier = Modifier.semantics { role = Role.Button },
     ) {
-        Row(Modifier.padding(start = 18.dp, end = 8.dp, top = 6.dp, bottom = 6.dp), verticalAlignment = Alignment.CenterVertically) {
-            Text(action.label, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold, maxLines = 1)
-            Spacer(Modifier.width(12.dp))
+        val icon: @Composable () -> Unit = {
             Box(
                 Modifier.size(40.dp).background(MaterialTheme.colorScheme.primaryContainer, CircleShape),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(action.icon, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimaryContainer)
             }
+        }
+        // The icon sits on the side nearest the + button.
+        Row(
+            Modifier.padding(start = if (iconFirst) 8.dp else 18.dp, end = if (iconFirst) 18.dp else 8.dp, top = 6.dp, bottom = 6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            if (iconFirst) { icon(); Spacer(Modifier.width(12.dp)) }
+            Text(action.label, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold, maxLines = 1)
+            if (!iconFirst) { Spacer(Modifier.width(12.dp)); icon() }
         }
     }
 }

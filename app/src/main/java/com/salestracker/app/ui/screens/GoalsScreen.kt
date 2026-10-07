@@ -8,6 +8,7 @@ import com.salestracker.app.R
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -72,9 +73,11 @@ fun GoalsScreen(vm: AppViewModel, data: AppData) {
     var addingScope by remember { mutableStateOf<GoalScope?>(null) }
     var updatingManual by remember { mutableStateOf<Goal?>(null) }
 
+    Box(Modifier.fillMaxSize()) {
     LazyColumn(
         Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 32.dp),
+        // Room at the bottom so the + button never covers the last goal.
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         GoalScope.entries.forEach { scope ->
@@ -106,6 +109,9 @@ fun GoalsScreen(vm: AppViewModel, data: AppData) {
             }
             item(key = "spacer-$scope") { Spacer(Modifier.height(8.dp)) }
         }
+    }
+
+        QuickAdd(vm, data)
     }
 
     if (editing != null || addingScope != null) {

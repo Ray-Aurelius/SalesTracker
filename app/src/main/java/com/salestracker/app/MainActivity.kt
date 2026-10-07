@@ -345,8 +345,8 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                         Tab.CLIENTS -> ClientsScreen(vm, data)
                         Tab.CALENDAR -> ScheduleScreen(vm, data)
                         Tab.TIMER -> StopwatchScreen(vm, data)
-                        Tab.CALCULATOR -> CalculatorScreen(vm)
-                        Tab.CHARTS -> ChartsScreen(data)
+                        Tab.CALCULATOR -> CalculatorScreen(vm, data)
+                        Tab.CHARTS -> ChartsScreen(vm, data)
                     }
                 }
             }

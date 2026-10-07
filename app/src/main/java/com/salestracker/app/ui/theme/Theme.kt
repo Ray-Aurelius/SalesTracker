@@ -235,18 +235,19 @@ enum class AppPalette(
         ),
         holiday = true,
     ),
-    // Christmas: holly red, pine green and gold on snowy white (or a deep pine night).
+    // Christmas: classic Christmas red (fire-engine red, a shade deeper), pine green and gold on snowy white
+    // (or a deep pine night, where the red is brightened just enough to read clearly).
     CHRISTMAS(
         R.string.palette_christmas, R.string.palette_christmas_desc,
         light = Tones(
-            0xFFB3202A, 0xFFFFFFFF, 0xFFFFDAD6, 0xFF410004,
+            0xFFC0141F, 0xFFFFFFFF, 0xFFFFD6D4, 0xFF410004,
             0xFF1E6B3A, 0xFFFFFFFF, 0xFFB4F1C0, 0xFF00210C,
             0xFF7D5A00,
             0xFFFFFBF5, 0xFF1F1B16,
             0xFFEDE1D9, 0xFF4F453E, 0xFF817569,
         ),
         dark = Tones(
-            0xFFFFB3AC, 0xFF680009, 0xFF8E1520, 0xFFFFDAD6,
+            0xFFFF4D55, 0xFF2B0003, 0xFF9B0A15, 0xFFFFDAD6,
             0xFF8DD8A0, 0xFF00391A, 0xFF005229, 0xFFB4F1C0,
             0xFFF2C14E,
             0xFF101511, 0xFFE1E5DF,

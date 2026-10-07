@@ -5,6 +5,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.ui.platform.LocalDensity
@@ -36,7 +37,16 @@ private const val EQUALS = "="
 private val OPERATORS = setOf(Calculator.PLUS, Calculator.MINUS, Calculator.TIMES, Calculator.DIVIDE)
 
 @Composable
-fun CalculatorScreen(vm: AppViewModel) {
+fun CalculatorScreen(vm: AppViewModel, data: com.salestracker.app.data.AppData) {
+    Box(Modifier.fillMaxSize()) {
+        CalculatorContent(vm)
+        // Top-left: the keypad fills the bottom of the page, and the display keeps clear of this corner.
+        QuickAdd(vm, data, atTopStart = true)
+    }
+}
+
+@Composable
+private fun CalculatorContent(vm: AppViewModel) {
     val expr = vm.calculatorExpression
     val preview = Calculator.evaluate(expr)?.let(Calculator::format)
 
@@ -136,12 +146,12 @@ fun CalculatorScreen(vm: AppViewModel) {
         }
         if (wide) {
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                display(Modifier.weight(1f).fillMaxHeight())
+                display(Modifier.weight(1f).fillMaxHeight().padding(start = 64.dp))
                 keypad(Modifier.weight(1.4f))
             }
         } else {
             Column {
-                display(Modifier.fillMaxWidth().weight(1f))
+                display(Modifier.fillMaxWidth().weight(1f).padding(start = 64.dp))
                 Spacer(Modifier.height(12.dp))
                 keypad(Modifier.fillMaxWidth())
             }

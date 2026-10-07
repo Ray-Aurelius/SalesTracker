@@ -168,7 +168,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
                 )
             }
         }
-        QuickAdd(vm, data, clientFirst = true)
+        QuickAdd(vm, data)
     }
 
     if (editing != null) {

@@ -4,6 +4,8 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import com.salestracker.app.ui.AppViewModel
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -70,7 +72,15 @@ private enum class AvgRange(val period: GoalPeriod?) { WEEK(GoalPeriod.WEEK), MO
  * Everything is drawn on the phone from the user's own data; nothing leaves the device.
  */
 @Composable
-fun ChartsScreen(data: AppData) {
+fun ChartsScreen(vm: AppViewModel, data: AppData) {
+    Box(Modifier.fillMaxSize()) {
+        ChartsContent(data)
+        QuickAdd(vm, data)
+    }
+}
+
+@Composable
+private fun ChartsContent(data: AppData) {
     val pct = data.defaultCommissionPercent
     val sales = data.sales
     val today = LocalDate.now()
@@ -87,7 +97,7 @@ fun ChartsScreen(data: AppData) {
     }
 
     Column(
-        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 12.dp),
+        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(start = 16.dp, end = 16.dp, top = 12.dp, bottom = 88.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         // ---- Commission earned this week / month / quarter / year ----

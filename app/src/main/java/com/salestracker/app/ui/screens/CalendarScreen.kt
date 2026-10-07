@@ -215,7 +215,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                 }
             }
         }
-        QuickAdd(vm, data, pageAction = QuickAction(stringResource(LocalTerms.current.newAppointment), Icons.Filled.Event) { adding = true })
+        QuickAdd(vm, data, appointmentDate = selected)
     }
 
     if (adding || editing != null) {
@@ -412,7 +412,7 @@ private fun HighlightPicker(symbols: Boolean, current: HighlightColor?, onPick: 
 }
 
 @Composable
-private fun AppointmentDialog(
+internal fun AppointmentDialog(
     initial: Appointment?,
     defaultDate: LocalDate,
     clients: List<Client>,

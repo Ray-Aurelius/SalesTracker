@@ -225,7 +225,7 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
                 }
             }
         }
-        QuickAdd(vm, data, pageAction = QuickAction(stringResource(R.string.add_task), Icons.Filled.AddTask) { adding = true })
+        QuickAdd(vm, data, taskDay = day)
     }
 
     if (adding || editing != null) {
@@ -305,7 +305,7 @@ private fun TaskRow(
 
 /** Add or edit a task. */
 @Composable
-private fun TaskDialog(
+internal fun TaskDialog(
     initial: Task?,
     defaultDay: Long,
     clients: List<Client>,
