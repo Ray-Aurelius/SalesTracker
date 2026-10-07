@@ -9,6 +9,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeUp
 import androidx.test.core.app.ApplicationProvider
@@ -48,7 +49,11 @@ class LayoutAudit {
     }
 
     private fun tap(label: String, substring: Boolean = false) {
-        rule.onAllNodesWithText(label, substring = substring).onFirst().performClick()
+        rule.onAllNodesWithText(label, substring = substring).onFirst().let { node ->
+            // Menu items can be scrolled out of view (side menu in landscape): bring it into view first.
+            try { node.performScrollTo() } catch (e: Throwable) { }
+            node.performClick()
+        }
         rule.waitForIdle()
     }
 

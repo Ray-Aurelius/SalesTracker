@@ -52,7 +52,11 @@ class StoreScreenshots {
     }
 
     private fun tap(label: String) {
-        rule.onAllNodesWithText(label).onFirst().performClick()
+        rule.onAllNodesWithText(label).onFirst().let { node ->
+            // Menu items can be scrolled out of view (side menu in landscape): bring it into view first.
+            try { node.performScrollTo() } catch (e: Throwable) { }
+            node.performClick()
+        }
         rule.waitForIdle()
     }
 
