@@ -365,10 +365,20 @@ internal fun TaskDialog(
                     Spacer(Modifier.width(8.dp))
                     Text(LocalDate.ofEpochDay(day).format(localizedFormatter("EEEMMMdyyyy")), modifier = Modifier.weight(1f))
                 }
+                // Repeat: a heading, then one full-width switch so "Once / Every day / Weekdays" always sit on one line.
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Icon(Icons.Filled.Repeat, contentDescription = stringResource(R.string.task_repeat), tint = MaterialTheme.colorScheme.onSurfaceVariant)
-                    TaskRepeat.entries.forEach { r ->
-                        FilterChip(selected = repeat == r, onClick = { repeat = r }, label = { Text(stringResource(r.label)) })
+                    Icon(Icons.Filled.Repeat, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(18.dp))
+                    Text(stringResource(R.string.task_repeat), style = MaterialTheme.typography.labelLarge)
+                }
+                SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+                    TaskRepeat.entries.forEachIndexed { i, r ->
+                        SegmentedButton(
+                            selected = repeat == r,
+                            onClick = { repeat = r },
+                            shape = SegmentedButtonDefaults.itemShape(i, TaskRepeat.entries.size),
+                            // No check mark: the filled background shows the choice and leaves the words room to fit.
+                            icon = {},
+                        ) { FitText(stringResource(r.label), minScale = 0.7f) }
                     }
                 }
                 SwitchRow(stringResource(R.string.task_remind), remind, { remind = it; if (it) askForNotificationsIfNeeded() })
