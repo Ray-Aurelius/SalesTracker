@@ -55,8 +55,8 @@ class StoreScreenshots {
     }
 
     /** Like [shot] but also draws open pop-up windows (menus), for the layout review only. */
-    private fun shotWithPopups(name: String) {
-        rule.waitForIdle()
+    private fun shotWithPopups(name: String, waitIdle: Boolean = true) {
+        if (waitIdle) rule.waitForIdle()
         try {
             val wmg = Class.forName("android.view.WindowManagerGlobal")
             val inst = wmg.getMethod("getInstance").invoke(null)
@@ -138,10 +138,14 @@ class StoreScreenshots {
         // The new-task form opened from the + menu (for checking the Repeat choices fit on one line).
         rule.onAllNodesWithContentDescription(app.getString(R.string.quick_add)).onFirst().performClick()
         rule.mainClock.advanceTimeBy(800)
+        // A focused text box blinks its cursor forever, so step the clock by hand instead of waiting for idle.
+        rule.mainClock.autoAdvance = false
         rule.onAllNodesWithText(app.getString(R.string.add_task)).onFirst().performClick()
-        rule.mainClock.advanceTimeBy(800)
-        shotWithPopups("dialog-new-task")
+        rule.mainClock.advanceTimeBy(1000)
+        shotWithPopups("dialog-new-task", waitIdle = false)
         rule.onAllNodesWithText(app.getString(R.string.cancel)).onLast().performClick()
+        rule.mainClock.advanceTimeBy(1000)
+        rule.mainClock.autoAdvance = true
         rule.waitForIdle()
         tap(app.getString(R.string.tab_goals)); shot("2-goals")
         tap(app.getString(R.string.tab_clients)); shot("3-clients")
