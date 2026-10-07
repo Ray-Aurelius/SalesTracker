@@ -3,11 +3,16 @@ package com.salestracker.app.ui.screens
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -41,6 +46,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -88,28 +94,60 @@ fun BoxScope.QuickAdd(
         )
     }
 
-    Column(
-        Modifier.align(Alignment.BottomEnd).padding(16.dp),
-        horizontalAlignment = Alignment.End,
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        AnimatedVisibility(
-            open,
-            enter = fadeIn() + expandVertically(expandFrom = Alignment.Bottom),
-            exit = fadeOut() + shrinkVertically(shrinkTowards = Alignment.Bottom),
-        ) {
-            Column(horizontalAlignment = Alignment.End, verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                actions.forEach { a -> QuickActionButton(a) { open = false; a.onClick() } }
-            }
-        }
-        val turn by animateFloatAsState(if (open) 45f else 0f, label = "quickAddTurn")
-        val name = stringResource(if (open) R.string.quick_add_close else R.string.quick_add)
+    val turn by animateFloatAsState(if (open) 45f else 0f, label = "quickAddTurn")
+    val name = stringResource(if (open) R.string.quick_add_close else R.string.quick_add)
+    val fab: @Composable () -> Unit = {
         FloatingActionButton(
             onClick = { open = !open },
             modifier = Modifier.semantics { contentDescription = name },
         ) {
             // The + turns into an × while the menu is open.
             Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.rotate(turn))
+        }
+    }
+    val choose: (QuickAction) -> Unit = { a -> open = false; a.onClick() }
+
+    if (LocalConfiguration.current.screenHeightDp < 480) {
+        // Short screen (landscape): the choices line up to the left of the button instead of stacking up the page.
+        Row(
+            Modifier.align(Alignment.BottomEnd).padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            AnimatedVisibility(
+                open,
+                enter = fadeIn() + expandHorizontally(expandFrom = Alignment.End),
+                exit = fadeOut() + shrinkHorizontally(shrinkTowards = Alignment.End),
+                modifier = Modifier.weight(1f, fill = false),
+            ) {
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    actions.forEach { a -> QuickActionButton(a) { choose(a) } }
+                }
+            }
+            fab()
+        }
+    } else {
+        Column(
+            Modifier.align(Alignment.BottomEnd).padding(16.dp),
+            horizontalAlignment = Alignment.End,
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            AnimatedVisibility(
+                open,
+                enter = fadeIn() + expandVertically(expandFrom = Alignment.Bottom),
+                exit = fadeOut() + shrinkVertically(shrinkTowards = Alignment.Bottom),
+                // Takes only the room left above the button; scrolls if very large text makes it too tall.
+                modifier = Modifier.weight(1f, fill = false),
+            ) {
+                Column(
+                    Modifier.verticalScroll(rememberScrollState()),
+                    horizontalAlignment = Alignment.End,
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                ) {
+                    actions.forEach { a -> QuickActionButton(a) { choose(a) } }
+                }
+            }
+            fab()
         }
     }
 
