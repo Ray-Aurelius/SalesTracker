@@ -125,6 +125,8 @@ class LayoutAudit {
     fun h_welcome() {
         assumeTrue(System.getProperty("storeShots") == "true")
         val app = ApplicationProvider.getApplicationContext<Application>()
+        // Start as a brand-new user so the welcome pages show.
+        app.getSharedPreferences("settings", Context.MODE_PRIVATE).edit().putBoolean("onboarded", false).commit()
         val vm = AppViewModel(app).apply { acceptAgreement() }
         var dark by mutableStateOf(false)
         rule.setContent {
