@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">Завтра</string>
     <string name="widget_stats_title">Статистика продаж</string>
     <string name="widget_stats_description">Продажи за сегодня и за неделю, время на продажи и доля закрытых сделок. Никогда не показывает суммы и имена. Скрыто, когда включена блокировка приложения.</string>
+    <string name="occupation">Профессия</string>
+    <string name="occupation_hint">напр. стоматолог, подрядчик, домовладелец</string>
+    <string name="client_stats">Статистика клиента</string>
+    <string name="client_stats_empty">С этим клиентом ещё нет записанных визитов. Выберите его в таймере или при записи продажи — и его показатели появятся здесь.</string>
+    <string name="cs_visits">Записано визитов</string>
+    <string name="cs_time_total">Всего времени с клиентом</string>
+    <string name="cs_time_avg">Среднее время визита</string>
+    <string name="cs_closed">Закрыто сделок</string>
+    <string name="cs_closed_value">%1$d из %2$d (%3$s)</string>
+    <string name="cs_total_sales">Всего продаж</string>
+    <string name="cs_avg_sale">Средняя продажа</string>
+    <string name="cs_largest">Крупнейшая продажа</string>
+    <string name="cs_upsells">Принято доп. продаж</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">Продажи в час с клиентом</string>
+    <string name="cs_per_hour_value">%1$s / час</string>
+    <string name="cs_first">Первый визит</string>
+    <string name="cs_last">Последний визит</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">Средний интервал между визитами</string>
+    <string name="cs_upcoming">Предстоящие встречи</string>
+    <string name="cs_open_tasks">Открытые задачи</string>
+    <string name="cs_visit_note">Визит — это каждая встреча, засечённая таймером, или каждая продажа, записанная с этим клиентом.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>
@@ -665,5 +688,17 @@
         <item quantity="few">осталось %d</item>
         <item quantity="many">осталось %d</item>
         <item quantity="other">осталось %d</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="one">%d день назад</item>
+        <item quantity="few">%d дня назад</item>
+        <item quantity="many">%d дней назад</item>
+        <item quantity="other">%d дня назад</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="one">раз в %d день</item>
+        <item quantity="few">раз в %d дня</item>
+        <item quantity="many">раз в %d дней</item>
+        <item quantity="other">раз в %d дня</item>
     </plurals>
 </resources>

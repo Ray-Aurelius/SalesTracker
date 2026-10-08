@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">Besok</string>
     <string name="widget_stats_title">Statistik penjualan</string>
     <string name="widget_stats_description">Penjualan hari ini dan minggu ini, waktu penjualan, dan tingkat closing. Tidak pernah menampilkan jumlah uang atau nama. Disembunyikan saat kunci aplikasi aktif.</string>
+    <string name="occupation">Pekerjaan</string>
+    <string name="occupation_hint">mis. dokter gigi, kontraktor, pemilik rumah</string>
+    <string name="client_stats">Statistik klien</string>
+    <string name="client_stats_empty">Belum ada kunjungan yang dicatat dengan klien ini. Pilih klien di pengatur waktu atau saat mencatat penjualan, dan angkanya akan muncul di sini.</string>
+    <string name="cs_visits">Kunjungan tercatat</string>
+    <string name="cs_time_total">Total waktu dengan klien</string>
+    <string name="cs_time_avg">Rata-rata waktu per kunjungan</string>
+    <string name="cs_closed">Penjualan yang closing</string>
+    <string name="cs_closed_value">%1$d dari %2$d (%3$s)</string>
+    <string name="cs_total_sales">Total penjualan</string>
+    <string name="cs_avg_sale">Rata-rata per penjualan</string>
+    <string name="cs_largest">Penjualan terbesar</string>
+    <string name="cs_upsells">Upsell diterima</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">Penjualan per jam dengan klien</string>
+    <string name="cs_per_hour_value">%1$s / jam</string>
+    <string name="cs_first">Kunjungan pertama</string>
+    <string name="cs_last">Kunjungan terakhir</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">Rata-rata jarak antar kunjungan</string>
+    <string name="cs_upcoming">Janji temu mendatang</string>
+    <string name="cs_open_tasks">Tugas terbuka</string>
+    <string name="cs_visit_note">Kunjungan adalah setiap pertemuan yang Anda ukur waktunya atau penjualan yang Anda catat dengan klien ini.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>
@@ -638,5 +661,11 @@
     </plurals>
     <plurals name="widget_tasks_left">
         <item quantity="other">%d tersisa</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="other">%d hari lalu</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="other">setiap %d hari</item>
     </plurals>
 </resources>

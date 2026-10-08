@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">Yarın</string>
     <string name="widget_stats_title">Satış istatistikleri</string>
     <string name="widget_stats_description">Bugünün ve bu haftanın satışları, satışa harcanan süre ve kapanış oranı. Asla tutar veya isim göstermez. Uygulama kilidi açıkken gizlenir.</string>
+    <string name="occupation">Meslek</string>
+    <string name="occupation_hint">ör. diş hekimi, müteahhit, ev sahibi</string>
+    <string name="client_stats">Müşteri istatistikleri</string>
+    <string name="client_stats_empty">Bu müşteriyle henüz kayıtlı ziyaret yok. Zamanlayıcıda veya satış kaydederken onu seçin; rakamları burada görünür.</string>
+    <string name="cs_visits">Kayıtlı ziyaretler</string>
+    <string name="cs_time_total">Müşteriyle toplam süre</string>
+    <string name="cs_time_avg">Ziyaret başına ortalama süre</string>
+    <string name="cs_closed">Kapanan satışlar</string>
+    <string name="cs_closed_value">%2$d satıştan %1$d (%3$s)</string>
+    <string name="cs_total_sales">Toplam satış</string>
+    <string name="cs_avg_sale">Satış başına ortalama</string>
+    <string name="cs_largest">En büyük satış</string>
+    <string name="cs_upsells">Kabul edilen ek satışlar</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">Müşteriyle saat başına satış</string>
+    <string name="cs_per_hour_value">Saatte %1$s</string>
+    <string name="cs_first">İlk ziyaret</string>
+    <string name="cs_last">Son ziyaret</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">Ziyaretler arası ortalama süre</string>
+    <string name="cs_upcoming">Yaklaşan randevular</string>
+    <string name="cs_open_tasks">Açık görevler</string>
+    <string name="cs_visit_note">Ziyaret, bu müşteriyle süresini tuttuğunuz her görüşme veya kaydettiğiniz her satıştır.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>
@@ -647,5 +670,13 @@
     <plurals name="widget_tasks_left">
         <item quantity="one">%d kaldı</item>
         <item quantity="other">%d kaldı</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="one">%d gün önce</item>
+        <item quantity="other">%d gün önce</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="one">her gün</item>
+        <item quantity="other">%d günde bir</item>
     </plurals>
 </resources>

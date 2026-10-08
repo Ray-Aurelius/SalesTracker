@@ -12,6 +12,8 @@ data class Client(
     val notes: String = "",
     /** The client's job number, work order or account ID, so they can be found by it. Optional. */
     val reference: String = "",
+    /** What the client does for a living (dentist, contractor, homeowner…). Optional. */
+    val occupation: String = "",
     /** Pipeline stage (Lead → … → Won / Lost). */
     val stage: ClientStage = ClientStage.LEAD,
     /** The calendar appointment holding this client's next follow-up, if one is scheduled. */
@@ -22,13 +24,14 @@ data class Client(
 
     /**
      * What to call this client: the name, or when no name was entered, the job / work order number
-     * (shown through [refFormat], e.g. "Job # WO-1042"), then the phone, email or first line of the notes.
+     * (shown through [refFormat], e.g. "Job # WO-1042"), then the phone, email, occupation or first line of the notes.
      */
     fun label(refFormat: (String) -> String = { it }): String = when {
         fullName.isNotBlank() -> fullName
         reference.isNotBlank() -> refFormat(reference)
         phone.isNotBlank() -> phone
         email.isNotBlank() -> email
+        occupation.isNotBlank() -> occupation
         else -> notes.lineSequence().firstOrNull().orEmpty().take(40)
     }
 
@@ -42,6 +45,7 @@ data class Client(
         .put("email", email)
         .put("notes", notes)
         .put("reference", reference)
+        .put("occupation", occupation)
         .put("stage", stage.name)
         .put("followUpId", followUpId ?: JSONObject.NULL)
 
@@ -54,6 +58,7 @@ data class Client(
             email = o.optString("email"),
             notes = o.optString("notes"),
             reference = o.optString("reference"),
+            occupation = o.optString("occupation"),
             stage = ClientStage.entries.firstOrNull { it.name == o.optString("stage") } ?: ClientStage.LEAD,
             followUpId = if (!o.has("followUpId") || o.isNull("followUpId")) null else o.optLong("followUpId"),
         )

@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">غدًا</string>
     <string name="widget_stats_title">إحصاءات المبيعات</string>
     <string name="widget_stats_description">مبيعات اليوم وهذا الأسبوع، ووقت البيع، ونسبة الإغلاق. لا تعرض أي مبالغ أو أسماء أبدًا. تُخفى عند تفعيل قفل التطبيق.</string>
+    <string name="occupation">المهنة</string>
+    <string name="occupation_hint">مثل: طبيب أسنان، مقاول، مالك منزل</string>
+    <string name="client_stats">إحصاءات العميل</string>
+    <string name="client_stats_empty">لا توجد زيارات مسجّلة مع هذا العميل بعد. اختره في المؤقت أو عند تسجيل عملية بيع، وستظهر أرقامه هنا.</string>
+    <string name="cs_visits">الزيارات المسجّلة</string>
+    <string name="cs_time_total">إجمالي الوقت مع العميل</string>
+    <string name="cs_time_avg">متوسط وقت الزيارة</string>
+    <string name="cs_closed">الصفقات المغلقة</string>
+    <string name="cs_closed_value">%1$d من %2$d (%3$s)</string>
+    <string name="cs_total_sales">إجمالي المبيعات</string>
+    <string name="cs_avg_sale">متوسط البيع</string>
+    <string name="cs_largest">أكبر عملية بيع</string>
+    <string name="cs_upsells">مبيعات إضافية مقبولة</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">المبيعات في الساعة مع العميل</string>
+    <string name="cs_per_hour_value">%1$s / ساعة</string>
+    <string name="cs_first">أول زيارة</string>
+    <string name="cs_last">آخر زيارة</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">متوسط المدة بين الزيارات</string>
+    <string name="cs_upcoming">المواعيد القادمة</string>
+    <string name="cs_open_tasks">المهام المفتوحة</string>
+    <string name="cs_visit_note">الزيارة هي كل اجتماع توقّته أو كل عملية بيع تسجّلها مع هذا العميل.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>
@@ -683,5 +706,21 @@
         <item quantity="few">تبقّت %d</item>
         <item quantity="many">تبقّت %d</item>
         <item quantity="other">تبقّت %d</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="zero">اليوم</item>
+        <item quantity="one">منذ يوم</item>
+        <item quantity="two">منذ يومين</item>
+        <item quantity="few">منذ %d أيام</item>
+        <item quantity="many">منذ %d يومًا</item>
+        <item quantity="other">منذ %d يوم</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="zero">كل يوم</item>
+        <item quantity="one">كل يوم</item>
+        <item quantity="two">كل يومين</item>
+        <item quantity="few">كل %d أيام</item>
+        <item quantity="many">كل %d يومًا</item>
+        <item quantity="other">كل %d يوم</item>
     </plurals>
 </resources>

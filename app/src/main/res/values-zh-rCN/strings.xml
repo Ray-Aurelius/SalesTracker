@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">明天</string>
     <string name="widget_stats_title">销售统计</string>
     <string name="widget_stats_description">今日和本周的销售、销售用时和成交率。从不显示金额或姓名。开启应用锁时隐藏。</string>
+    <string name="occupation">职业</string>
+    <string name="occupation_hint">例如：牙医、承包商、房主</string>
+    <string name="client_stats">客户统计</string>
+    <string name="client_stats_empty">还没有记录与该客户的拜访。在计时器上或记录销售时选择该客户，相关数据就会显示在这里。</string>
+    <string name="cs_visits">已记录拜访</string>
+    <string name="cs_time_total">与客户的总时长</string>
+    <string name="cs_time_avg">每次拜访平均时长</string>
+    <string name="cs_closed">成交笔数</string>
+    <string name="cs_closed_value">%2$d 笔中成交 %1$d 笔（%3$s）</string>
+    <string name="cs_total_sales">销售总额</string>
+    <string name="cs_avg_sale">每笔平均金额</string>
+    <string name="cs_largest">最大一笔销售</string>
+    <string name="cs_upsells">已接受的追加销售</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">每小时销售额</string>
+    <string name="cs_per_hour_value">每小时 %1$s</string>
+    <string name="cs_first">首次拜访</string>
+    <string name="cs_last">最近拜访</string>
+    <string name="cs_last_value">%1$s（%2$s）</string>
+    <string name="cs_cycle">平均拜访间隔</string>
+    <string name="cs_upcoming">即将到来的预约</string>
+    <string name="cs_open_tasks">未完成任务</string>
+    <string name="cs_visit_note">每次计时的会面或与该客户记录的每笔销售都算一次拜访。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>
@@ -638,5 +661,11 @@
     </plurals>
     <plurals name="widget_tasks_left">
         <item quantity="other">剩 %d 项</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="other">%d 天前</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="other">每 %d 天</item>
     </plurals>
 </resources>

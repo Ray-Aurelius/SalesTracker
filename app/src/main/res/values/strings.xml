@@ -727,4 +727,35 @@
         <item quantity="one">%d left</item>
         <item quantity="other">%d left</item>
     </plurals>
+    <string name="occupation">Occupation</string>
+    <string name="occupation_hint">e.g. Dentist, contractor, homeowner</string>
+    <string name="client_stats">Client stats</string>
+    <string name="client_stats_empty">No visits logged with this client yet. Choose them on the timer or when logging a sale, and their numbers show up here.</string>
+    <string name="cs_visits">Visits logged</string>
+    <string name="cs_time_total">Total time with client</string>
+    <string name="cs_time_avg">Average time per visit</string>
+    <string name="cs_closed">Deals closed</string>
+    <string name="cs_closed_value">%1$d of %2$d (%3$s)</string>
+    <string name="cs_total_sales">Total sales</string>
+    <string name="cs_avg_sale">Average per sale</string>
+    <string name="cs_largest">Largest sale</string>
+    <string name="cs_upsells">Upsells accepted</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">Sales per hour with client</string>
+    <string name="cs_per_hour_value">%1$s / hour</string>
+    <string name="cs_first">First visit</string>
+    <string name="cs_last">Last visit</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">Average time between visits</string>
+    <string name="cs_upcoming">Upcoming appointments</string>
+    <string name="cs_open_tasks">Open tasks</string>
+    <string name="cs_visit_note">A visit is each meeting you time or sale you log with this client.</string>
+    <plurals name="cs_days_ago">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="one">every day</item>
+        <item quantity="other">every %d days</item>
+    </plurals>
 </resources>

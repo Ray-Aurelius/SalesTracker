@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">내일</string>
     <string name="widget_stats_title">판매 통계</string>
     <string name="widget_stats_description">오늘과 이번 주의 판매, 판매 시간, 성사율. 금액이나 이름은 절대 표시하지 않습니다. 앱 잠금이 켜져 있으면 숨겨집니다.</string>
+    <string name="occupation">직업</string>
+    <string name="occupation_hint">예: 치과의사, 시공업자, 주택 소유자</string>
+    <string name="client_stats">고객 통계</string>
+    <string name="client_stats_empty">이 고객과의 방문 기록이 아직 없습니다. 타이머나 판매 기록에서 이 고객을 선택하면 여기에 수치가 표시됩니다.</string>
+    <string name="cs_visits">기록된 방문</string>
+    <string name="cs_time_total">고객과 보낸 총 시간</string>
+    <string name="cs_time_avg">방문당 평균 시간</string>
+    <string name="cs_closed">성사된 거래</string>
+    <string name="cs_closed_value">%2$d건 중 %1$d건 (%3$s)</string>
+    <string name="cs_total_sales">총 판매액</string>
+    <string name="cs_avg_sale">판매당 평균</string>
+    <string name="cs_largest">최대 판매</string>
+    <string name="cs_upsells">수락된 추가 판매</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">고객과의 시간당 판매액</string>
+    <string name="cs_per_hour_value">시간당 %1$s</string>
+    <string name="cs_first">첫 방문</string>
+    <string name="cs_last">최근 방문</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">평균 방문 간격</string>
+    <string name="cs_upcoming">예정된 약속</string>
+    <string name="cs_open_tasks">남은 할 일</string>
+    <string name="cs_visit_note">방문은 이 고객과 타이머로 잰 만남이나 기록한 판매 한 건을 말합니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>
@@ -638,5 +661,11 @@
     </plurals>
     <plurals name="widget_tasks_left">
         <item quantity="other">%d개 남음</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="other">%d일 전</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="other">%d일마다</item>
     </plurals>
 </resources>

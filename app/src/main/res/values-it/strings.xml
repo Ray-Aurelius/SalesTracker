@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">Domani</string>
     <string name="widget_stats_title">Statistiche vendite</string>
     <string name="widget_stats_description">Vendite di oggi e di questa settimana, tempo di vendita e tasso di chiusura. Non mostra mai importi o nomi. Nascosto quando il blocco dell\'app è attivo.</string>
+    <string name="occupation">Professione</string>
+    <string name="occupation_hint">es. dentista, impresario, proprietario di casa</string>
+    <string name="client_stats">Statistiche cliente</string>
+    <string name="client_stats_empty">Nessuna visita registrata con questo cliente. Sceglilo nel cronometro o quando registri una vendita e qui compariranno i suoi numeri.</string>
+    <string name="cs_visits">Visite registrate</string>
+    <string name="cs_time_total">Tempo totale con il cliente</string>
+    <string name="cs_time_avg">Tempo medio per visita</string>
+    <string name="cs_closed">Vendite concluse</string>
+    <string name="cs_closed_value">%1$d su %2$d (%3$s)</string>
+    <string name="cs_total_sales">Vendite totali</string>
+    <string name="cs_avg_sale">Media per vendita</string>
+    <string name="cs_largest">Vendita più grande</string>
+    <string name="cs_upsells">Vendite aggiuntive accettate</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">Vendite all\'ora con il cliente</string>
+    <string name="cs_per_hour_value">%1$s / ora</string>
+    <string name="cs_first">Prima visita</string>
+    <string name="cs_last">Ultima visita</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">Intervallo medio tra le visite</string>
+    <string name="cs_upcoming">Prossimi appuntamenti</string>
+    <string name="cs_open_tasks">Attività aperte</string>
+    <string name="cs_visit_note">Una visita è ogni incontro cronometrato o ogni vendita registrata con questo cliente.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>
@@ -656,5 +679,15 @@
         <item quantity="one">%d rimasta</item>
         <item quantity="many">%d rimaste</item>
         <item quantity="other">%d rimaste</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="one">%d giorno fa</item>
+        <item quantity="many">%d giorni fa</item>
+        <item quantity="other">%d giorni fa</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="one">ogni giorno</item>
+        <item quantity="many">ogni %d giorni</item>
+        <item quantity="other">ogni %d giorni</item>
     </plurals>
 </resources>

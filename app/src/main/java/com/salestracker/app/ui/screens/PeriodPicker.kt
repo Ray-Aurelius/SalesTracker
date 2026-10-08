@@ -48,15 +48,17 @@ fun <T> DropdownPicker(
     modifier: Modifier = Modifier,
     detail: @Composable (T) -> String? = { null },
     dividerBefore: (T) -> Boolean = { false },
+    icon: androidx.compose.ui.graphics.vector.ImageVector = Icons.Filled.DateRange,
+    tag: String = PERIOD_PICKER_TAG,
 ) {
     var open by remember { mutableStateOf(false) }
     Box(modifier) {
         OutlinedButton(
             onClick = { open = true },
             contentPadding = PaddingValues(start = 14.dp, end = 6.dp),
-            modifier = Modifier.testTag(PERIOD_PICKER_TAG),
+            modifier = Modifier.testTag(tag),
         ) {
-            Icon(Icons.Filled.DateRange, contentDescription = null, modifier = Modifier.size(18.dp))
+            Icon(icon, contentDescription = null, modifier = Modifier.size(18.dp))
             Spacer(Modifier.width(8.dp))
             Text(label(selected), maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
             Icon(Icons.Filled.ArrowDropDown, contentDescription = null)

@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">Ngày mai</string>
     <string name="widget_stats_title">Thống kê bán hàng</string>
     <string name="widget_stats_description">Giao dịch hôm nay và tuần này, thời gian bán hàng và tỷ lệ chốt. Không bao giờ hiển thị số tiền hay tên. Ẩn khi bật khóa ứng dụng.</string>
+    <string name="occupation">Nghề nghiệp</string>
+    <string name="occupation_hint">vd: nha sĩ, nhà thầu, chủ nhà</string>
+    <string name="client_stats">Thống kê khách hàng</string>
+    <string name="client_stats_empty">Chưa có lần gặp nào được ghi với khách hàng này. Hãy chọn họ trên đồng hồ bấm giờ hoặc khi ghi giao dịch, số liệu sẽ hiện ở đây.</string>
+    <string name="cs_visits">Số lần gặp đã ghi</string>
+    <string name="cs_time_total">Tổng thời gian với khách</string>
+    <string name="cs_time_avg">Thời gian trung bình mỗi lần gặp</string>
+    <string name="cs_closed">Giao dịch đã chốt</string>
+    <string name="cs_closed_value">%1$d / %2$d (%3$s)</string>
+    <string name="cs_total_sales">Tổng doanh số</string>
+    <string name="cs_avg_sale">Trung bình mỗi giao dịch</string>
+    <string name="cs_largest">Giao dịch lớn nhất</string>
+    <string name="cs_upsells">Bán thêm được chấp nhận</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">Doanh số mỗi giờ với khách</string>
+    <string name="cs_per_hour_value">%1$s / giờ</string>
+    <string name="cs_first">Lần gặp đầu</string>
+    <string name="cs_last">Lần gặp gần nhất</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">Khoảng cách trung bình giữa các lần gặp</string>
+    <string name="cs_upcoming">Lịch hẹn sắp tới</string>
+    <string name="cs_open_tasks">Việc chưa xong</string>
+    <string name="cs_visit_note">Mỗi lần gặp là một buổi bạn bấm giờ hoặc một giao dịch bạn ghi với khách hàng này.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>
@@ -638,5 +661,11 @@
     </plurals>
     <plurals name="widget_tasks_left">
         <item quantity="other">còn %d</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="other">%d ngày trước</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="other">mỗi %d ngày</item>
     </plurals>
 </resources>

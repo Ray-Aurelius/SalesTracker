@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">明日</string>
     <string name="widget_stats_title">販売統計</string>
     <string name="widget_stats_description">今日と今週の販売数、販売時間、成約率。金額や名前は表示しません。アプリのロックがオンのときは非表示。</string>
+    <string name="occupation">職業</string>
+    <string name="occupation_hint">例：歯科医、施工業者、住宅所有者</string>
+    <string name="client_stats">顧客の統計</string>
+    <string name="client_stats_empty">この顧客との訪問はまだ記録されていません。タイマーや販売の記録でこの顧客を選ぶと、ここに数値が表示されます。</string>
+    <string name="cs_visits">記録した訪問</string>
+    <string name="cs_time_total">顧客との合計時間</string>
+    <string name="cs_time_avg">1回あたりの平均時間</string>
+    <string name="cs_closed">成約数</string>
+    <string name="cs_closed_value">%2$d件中%1$d件（%3$s）</string>
+    <string name="cs_total_sales">売上合計</string>
+    <string name="cs_avg_sale">1件あたりの平均</string>
+    <string name="cs_largest">最大の売上</string>
+    <string name="cs_upsells">受け入れられたアップセル</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">顧客との1時間あたり売上</string>
+    <string name="cs_per_hour_value">1時間あたり%1$s</string>
+    <string name="cs_first">初回訪問</string>
+    <string name="cs_last">最終訪問</string>
+    <string name="cs_last_value">%1$s（%2$s）</string>
+    <string name="cs_cycle">訪問の平均間隔</string>
+    <string name="cs_upcoming">今後の予定</string>
+    <string name="cs_open_tasks">未完了のタスク</string>
+    <string name="cs_visit_note">訪問とは、この顧客とのタイマー計測した面談、または記録した販売1件ごとのことです。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>
@@ -638,5 +661,11 @@
     </plurals>
     <plurals name="widget_tasks_left">
         <item quantity="other">残り %d 件</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="other">%d日前</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="other">%d日ごと</item>
     </plurals>
 </resources>

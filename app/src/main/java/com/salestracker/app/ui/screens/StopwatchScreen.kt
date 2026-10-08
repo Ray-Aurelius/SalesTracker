@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -107,20 +108,25 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
 
         // Two equal buttons side by side, or stacked full-width when the page is too narrow for both.
         val timerButtons: @Composable (Modifier) -> Unit = { m ->
-            OutlinedButton(onClick = vm::resetStopwatch, enabled = elapsed > 0 && !vm.stopwatchRunning, modifier = m) {
+            // Narrower side padding and words that shrink to fit, so "Resume" or a long translation never cuts off.
+            OutlinedButton(
+                onClick = vm::resetStopwatch, enabled = elapsed > 0 && !vm.stopwatchRunning, modifier = m,
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
+            ) {
                 Icon(Icons.Filled.Replay, contentDescription = null)
                 Spacer(Modifier.width(6.dp))
-                Text(stringResource(R.string.reset), maxLines = 1)
+                FitText(stringResource(R.string.reset), minScale = 0.7f)
             }
         }
         val startButton: @Composable (Modifier) -> Unit = { m ->
             Button(
                 onClick = { if (vm.stopwatchRunning) vm.pauseStopwatch() else vm.startStopwatch() },
                 modifier = m,
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
             ) {
                 Icon(if (vm.stopwatchRunning) Icons.Filled.Pause else Icons.Filled.PlayArrow, contentDescription = null)
                 Spacer(Modifier.width(6.dp))
-                Text(stringResource(if (vm.stopwatchRunning) R.string.pause else if (elapsed > 0) R.string.resume else R.string.start), maxLines = 1)
+                FitText(stringResource(if (vm.stopwatchRunning) R.string.pause else if (elapsed > 0) R.string.resume else R.string.start), minScale = 0.7f)
             }
         }
         if (effectiveWidth() < 280.dp) {

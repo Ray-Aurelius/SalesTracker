@@ -27,11 +27,12 @@ object SampleData {
             Triple("Sam", "Patel", ClientStage.PROPOSAL), Triple("Taylor", "Brooks", ClientStage.CONTACTED),
             Triple("Casey", "Rivera", ClientStage.LEAD), Triple("Morgan", "Chen", ClientStage.WON),
         )
+        val jobs = listOf("Dentist", "Restaurant owner", "Contractor", "Teacher", "Homeowner", "Nurse")
         val clients = names.mapIndexed { i, (first, last, stage) ->
             Client(
                 id = newId(), firstName = first, lastName = last,
                 phone = "555-01${10 + i}", email = "${first.lowercase()}@example.com",
-                reference = "WO-${1040 + i}", stage = stage,
+                reference = "WO-${1040 + i}", occupation = jobs[i % jobs.size], stage = stage,
             )
         }
         // Three weeks of sales: roughly 6 in 10 closed, some with upsells, varied amounts and times.

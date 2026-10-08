@@ -149,6 +149,20 @@ class StoreScreenshots {
         rule.waitForIdle()
         tap(app.getString(R.string.tab_goals)); shot("2-goals")
         tap(app.getString(R.string.tab_clients)); shot("3-clients")
+        // The stage filter menu, then a client's profile with their stats (for layout review).
+        rule.onAllNodesWithTag(com.salestracker.app.ui.screens.CLIENT_FILTER_TAG).onFirst().performClick()
+        rule.mainClock.advanceTimeBy(500)
+        shotWithPopups("menu-client-filter")
+        rule.onAllNodesWithText(app.getString(R.string.pipeline_all), substring = true).onLast().performClick()
+        rule.waitForIdle()
+        rule.mainClock.autoAdvance = false
+        rule.onAllNodesWithText("Alex Morgan").onFirst().performClick()
+        rule.mainClock.advanceTimeBy(1000)
+        shotWithPopups("dialog-client-profile", waitIdle = false)
+        rule.onAllNodesWithText(app.getString(R.string.cancel)).onLast().performClick()
+        rule.mainClock.advanceTimeBy(1000)
+        rule.mainClock.autoAdvance = true
+        rule.waitForIdle()
         tap(app.getString(R.string.tab_calendar)); shot("4-calendar")
         rule.onAllNodesWithText(app.getString(R.string.schedule_tasks), substring = true).onFirst().performClick()
         rule.waitForIdle(); shot("4b-tasks")

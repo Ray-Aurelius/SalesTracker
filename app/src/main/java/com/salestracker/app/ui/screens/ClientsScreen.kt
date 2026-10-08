@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.background
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -96,7 +97,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
     val q = query.trim().lowercase()
     val dueIds = data.clients.filter { c -> data.followUpFor(c)?.isDue() == true }.map { it.id }.toSet()
     val clients = data.clients
-        .filter { q.isEmpty() || "${it.fullName} ${it.phone} ${it.email} ${it.reference} ${it.notes}".lowercase().contains(q) }
+        .filter { q.isEmpty() || "${it.fullName} ${it.occupation} ${it.phone} ${it.email} ${it.reference} ${it.notes}".lowercase().contains(q) }
         .filter { stageFilter == null || it.stage == stageFilter }
         .filter { !dueOnly || it.id in dueIds }
         .sortedBy { it.label().lowercase() }
@@ -117,30 +118,28 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
-            // The pipeline at a glance: how many clients are at each stage. Tap one to show only those.
+            // The pipeline at a glance: one menu with how many clients are at each stage. Pick one to show only those.
             item {
-                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    FilterChip(
-                        selected = stageFilter == null && !dueOnly,
-                        onClick = { stageFilter = null; dueOnly = false },
-                        label = { Text(stringResource(R.string.chip_count, stringResource(R.string.pipeline_all), data.clients.size)) },
-                    )
-                    if (dueIds.isNotEmpty()) {
-                        FilterChip(
-                            selected = dueOnly,
-                            onClick = { dueOnly = !dueOnly; stageFilter = null },
-                            label = { Text(stringResource(R.string.chip_count, stringResource(R.string.follow_ups_due), dueIds.size)) },
-                            leadingIcon = { Icon(Icons.Filled.NotificationsActive, contentDescription = null, modifier = Modifier.size(18.dp)) },
-                        )
-                    }
-                    ClientStage.entries.forEach { s ->
-                        FilterChip(
-                            selected = stageFilter == s,
-                            onClick = { stageFilter = if (stageFilter == s) null else s; dueOnly = false },
-                            label = { Text(stringResource(R.string.chip_count, stringResource(s.label), data.clients.count { it.stage == s })) },
-                        )
-                    }
+                val filters = buildList {
+                    add(ClientFilter(null, false))
+                    if (dueIds.isNotEmpty() || dueOnly) add(ClientFilter(null, true))
+                    ClientStage.entries.forEach { add(ClientFilter(it, false)) }
                 }
+                DropdownPicker(
+                    options = filters,
+                    selected = ClientFilter(stageFilter, dueOnly),
+                    label = { f ->
+                        when {
+                            f.dueOnly -> stringResource(R.string.chip_count, stringResource(R.string.follow_ups_due), dueIds.size)
+                            f.stage == null -> stringResource(R.string.chip_count, stringResource(R.string.pipeline_all), data.clients.size)
+                            else -> stringResource(R.string.chip_count, stringResource(f.stage.label), data.clients.count { it.stage == f.stage })
+                        }
+                    },
+                    onSelect = { f -> stageFilter = f.stage; dueOnly = f.dueOnly },
+                    dividerBefore = { it.stage == ClientStage.entries.first() },
+                    icon = Icons.Filled.FilterList,
+                    tag = CLIENT_FILTER_TAG,
+                )
             }
             if (clients.isEmpty()) {
                 item {
@@ -175,6 +174,7 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
         ClientDialog(
             initial = editing,
             existingFollowUp = editing?.let { data.followUpFor(it) },
+            metrics = editing?.let { com.salestracker.app.data.ClientMetrics.of(it, data) },
             newId = vm::newId,
             onDismiss = { editing = null },
             onSave = vm::saveClientWithFollowUp,
@@ -183,6 +183,12 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
         )
     }
 }
+
+/** One choice in the Clients filter menu: everyone, follow-ups due, or one pipeline stage. */
+private data class ClientFilter(val stage: ClientStage?, val dueOnly: Boolean)
+
+/** Tag the screenshot tests use to open the Clients filter menu. */
+const val CLIENT_FILTER_TAG = "clientFilter"
 
 @Composable
 private fun ClientCard(
@@ -223,6 +229,10 @@ private fun ClientCard(
                     Text(name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold,
                         modifier = Modifier.align(Alignment.CenterVertically))
                     Box(Modifier.align(Alignment.CenterVertically)) { StageBadge(client.stage) }
+                }
+                if (client.occupation.isNotBlank() && name != client.occupation) {
+                    Text(client.occupation, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
                 }
                 if (followUp != null) {
                     val due = followUp.isDue()
@@ -265,6 +275,8 @@ internal fun ClientDialog(
     onDismiss: () -> Unit,
     onSave: (Client, Pair<Long, Int>?) -> Unit,
     onDelete: (id: Long, withRecords: Boolean) -> Unit,
+    /** The client's history (visits, time, sales…), shown at the top when opening an existing client. */
+    metrics: com.salestracker.app.data.ClientMetrics? = null,
 ) {
     var first by remember { mutableStateOf(initial?.firstName ?: "") }
     var last by remember { mutableStateOf(initial?.lastName ?: "") }
@@ -272,6 +284,7 @@ internal fun ClientDialog(
     var email by remember { mutableStateOf(initial?.email ?: "") }
     var notes by remember { mutableStateOf(initial?.notes ?: "") }
     var reference by remember { mutableStateOf(initial?.reference ?: "") }
+    var occupation by remember { mutableStateOf(initial?.occupation ?: "") }
     var stage by remember { mutableStateOf(initial?.stage ?: ClientStage.LEAD) }
     // Follow-up as (day, minute of day); null = none.
     var followUp by remember { mutableStateOf(existingFollowUp?.let { it.epochDay to it.minuteOfDay }) }
@@ -288,7 +301,7 @@ internal fun ClientDialog(
 
     val emailValid = email.isBlank() || android.util.Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()
     // Any one detail is enough to save (a work order number on its own, say); the rest can be filled in later.
-    val canSave = listOf(first, last, reference, phone, email, notes).any { it.isNotBlank() } && emailValid
+    val canSave = listOf(first, last, occupation, reference, phone, email, notes).any { it.isNotBlank() } && emailValid
     val nameCaps = KeyboardOptions(capitalization = KeyboardCapitalization.Words)
 
     AlertDialog(
@@ -296,10 +309,15 @@ internal fun ClientDialog(
         title = { Text(stringResource(if (initial == null) LocalTerms.current.newClient else LocalTerms.current.editClient)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (metrics != null) ClientStatsCard(metrics)
                 OutlinedTextField(first, { first = it }, label = { Text(stringResource(R.string.first_name)) }, singleLine = true,
                     keyboardOptions = nameCaps, modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(last, { last = it }, label = { Text(stringResource(R.string.last_name)) }, singleLine = true,
                     keyboardOptions = nameCaps, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(occupation, { occupation = it }, label = { Text(stringResource(R.string.occupation)) },
+                    placeholder = { Text(stringResource(R.string.occupation_hint), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis) },
+                    singleLine = true, keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
+                    modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(reference, { reference = it }, label = { Text(stringResource(R.string.client_ref)) },
                     placeholder = { Text(stringResource(R.string.client_ref_hint)) }, singleLine = true,
                     keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters), modifier = Modifier.fillMaxWidth())
@@ -351,6 +369,7 @@ internal fun ClientDialog(
                         email = email.trim(),
                         notes = notes.trim(),
                         reference = reference.trim(),
+                        occupation = occupation.trim(),
                         stage = stage,
                         followUpId = initial?.followUpId,
                     ),

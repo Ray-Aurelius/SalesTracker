@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">আগামীকাল</string>
     <string name="widget_stats_title">বিক্রয়ের পরিসংখ্যান</string>
     <string name="widget_stats_description">আজ ও এই সপ্তাহের বিক্রয়, বিক্রয়ে ব্যয় করা সময় ও ক্লোজ রেট। কখনো পরিমাণ বা নাম দেখায় না। অ্যাপ লক চালু থাকলে লুকানো থাকে।</string>
+    <string name="occupation">পেশা</string>
+    <string name="occupation_hint">যেমন দন্তচিকিৎসক, ঠিকাদার, বাড়ির মালিক</string>
+    <string name="client_stats">ক্লায়েন্টের পরিসংখ্যান</string>
+    <string name="client_stats_empty">এই ক্লায়েন্টের সাথে এখনো কোনো সাক্ষাৎ লেখা হয়নি। টাইমারে বা বিক্রয় লেখার সময় তাঁকে বেছে নিন, তাঁর হিসাব এখানে দেখাবে।</string>
+    <string name="cs_visits">লেখা সাক্ষাৎ</string>
+    <string name="cs_time_total">ক্লায়েন্টের সাথে মোট সময়</string>
+    <string name="cs_time_avg">প্রতি সাক্ষাতে গড় সময়</string>
+    <string name="cs_closed">সম্পন্ন চুক্তি</string>
+    <string name="cs_closed_value">%2$dটির মধ্যে %1$dটি (%3$s)</string>
+    <string name="cs_total_sales">মোট বিক্রয়</string>
+    <string name="cs_avg_sale">প্রতি বিক্রয়ে গড়</string>
+    <string name="cs_largest">সবচেয়ে বড় বিক্রয়</string>
+    <string name="cs_upsells">গৃহীত আপসেল</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">ক্লায়েন্টের সাথে প্রতি ঘণ্টায় বিক্রয়</string>
+    <string name="cs_per_hour_value">%1$s / ঘণ্টা</string>
+    <string name="cs_first">প্রথম সাক্ষাৎ</string>
+    <string name="cs_last">শেষ সাক্ষাৎ</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">সাক্ষাতের মধ্যে গড় ব্যবধান</string>
+    <string name="cs_upcoming">আসন্ন অ্যাপয়েন্টমেন্ট</string>
+    <string name="cs_open_tasks">বাকি কাজ</string>
+    <string name="cs_visit_note">এই ক্লায়েন্টের সাথে টাইমারে মাপা প্রতিটি মিটিং বা লেখা প্রতিটি বিক্রয় একটি সাক্ষাৎ।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
@@ -647,5 +670,13 @@
     <plurals name="widget_tasks_left">
         <item quantity="one">%dটি বাকি</item>
         <item quantity="other">%dটি বাকি</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="one">%d দিন আগে</item>
+        <item quantity="other">%d দিন আগে</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="one">প্রতিদিন</item>
+        <item quantity="other">প্রতি %d দিনে</item>
     </plurals>
 </resources>

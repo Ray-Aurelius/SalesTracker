@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">कल</string>
     <string name="widget_stats_title">बिक्री आँकड़े</string>
     <string name="widget_stats_description">आज और इस सप्ताह की बिक्री, बिक्री पर लगा समय और क्लोज़ दर। कभी भी राशि या नाम नहीं दिखाता। ऐप लॉक चालू होने पर छिपा रहता है।</string>
+    <string name="occupation">व्यवसाय</string>
+    <string name="occupation_hint">जैसे दंत चिकित्सक, ठेकेदार, गृहस्वामी</string>
+    <string name="client_stats">ग्राहक आँकड़े</string>
+    <string name="client_stats_empty">इस ग्राहक के साथ अभी कोई मुलाकात दर्ज नहीं है। टाइमर पर या बिक्री दर्ज करते समय इन्हें चुनें, और इनके आँकड़े यहाँ दिखेंगे।</string>
+    <string name="cs_visits">दर्ज मुलाकातें</string>
+    <string name="cs_time_total">ग्राहक के साथ कुल समय</string>
+    <string name="cs_time_avg">प्रति मुलाकात औसत समय</string>
+    <string name="cs_closed">पूरे हुए सौदे</string>
+    <string name="cs_closed_value">%2$d में से %1$d (%3$s)</string>
+    <string name="cs_total_sales">कुल बिक्री</string>
+    <string name="cs_avg_sale">प्रति बिक्री औसत</string>
+    <string name="cs_largest">सबसे बड़ी बिक्री</string>
+    <string name="cs_upsells">स्वीकृत अपसेल</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">ग्राहक के साथ प्रति घंटा बिक्री</string>
+    <string name="cs_per_hour_value">%1$s / घंटा</string>
+    <string name="cs_first">पहली मुलाकात</string>
+    <string name="cs_last">आखिरी मुलाकात</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">मुलाकातों के बीच औसत समय</string>
+    <string name="cs_upcoming">आगामी अपॉइंटमेंट</string>
+    <string name="cs_open_tasks">खुले कार्य</string>
+    <string name="cs_visit_note">इस ग्राहक के साथ टाइमर से मापी गई हर मीटिंग या दर्ज की गई हर बिक्री एक मुलाकात है।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
@@ -647,5 +670,13 @@
     <plurals name="widget_tasks_left">
         <item quantity="one">%d बाकी</item>
         <item quantity="other">%d बाकी</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="one">%d दिन पहले</item>
+        <item quantity="other">%d दिन पहले</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="one">हर दिन</item>
+        <item quantity="other">हर %d दिन</item>
     </plurals>
 </resources>

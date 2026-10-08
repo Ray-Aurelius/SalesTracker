@@ -105,6 +105,12 @@ class LayoutAudit {
                 shot("$config-5-tasks")
                 tap(app.getString(R.string.schedule_calendar))
             }
+            if (name == "6-timer") {
+                // Paused, so the start button reads "Resume" (the longest of its labels).
+                vm.startStopwatch(); Thread.sleep(1200); vm.pauseStopwatch()
+                shot("$config-6-timer-paused")
+                vm.resetStopwatch()
+            }
             if (name == "7-calc") {
                 // A long sum that has to shrink and then wrap onto more lines.
                 vm.calculatorExpression = "1234567×89012+3456789−12345÷678×9012345+4321"

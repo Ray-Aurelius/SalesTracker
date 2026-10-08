@@ -612,6 +612,29 @@
     <string name="widget_tomorrow">Morgen</string>
     <string name="widget_stats_title">Verkaufsstatistik</string>
     <string name="widget_stats_description">Verkäufe heute und diese Woche, Verkaufszeit und Abschlussquote. Zeigt nie Beträge oder Namen. Ausgeblendet, wenn die App-Sperre aktiv ist.</string>
+    <string name="occupation">Beruf</string>
+    <string name="occupation_hint">z. B. Zahnarzt, Handwerker, Hausbesitzer</string>
+    <string name="client_stats">Kundenstatistik</string>
+    <string name="client_stats_empty">Noch keine Besuche mit diesem Kunden erfasst. Wähle ihn in der Stoppuhr oder beim Erfassen eines Verkaufs aus, dann erscheinen seine Zahlen hier.</string>
+    <string name="cs_visits">Erfasste Besuche</string>
+    <string name="cs_time_total">Gesamtzeit mit dem Kunden</string>
+    <string name="cs_time_avg">Durchschnittszeit pro Besuch</string>
+    <string name="cs_closed">Abgeschlossene Verkäufe</string>
+    <string name="cs_closed_value">%1$d von %2$d (%3$s)</string>
+    <string name="cs_total_sales">Gesamtumsatz</string>
+    <string name="cs_avg_sale">Durchschnitt pro Verkauf</string>
+    <string name="cs_largest">Größter Verkauf</string>
+    <string name="cs_upsells">Angenommene Zusatzverkäufe</string>
+    <string name="cs_upsells_value">%1$d · %2$s</string>
+    <string name="cs_per_hour">Umsatz pro Stunde mit dem Kunden</string>
+    <string name="cs_per_hour_value">%1$s / Stunde</string>
+    <string name="cs_first">Erster Besuch</string>
+    <string name="cs_last">Letzter Besuch</string>
+    <string name="cs_last_value">%1$s (%2$s)</string>
+    <string name="cs_cycle">Durchschnittlicher Abstand zwischen Besuchen</string>
+    <string name="cs_upcoming">Anstehende Termine</string>
+    <string name="cs_open_tasks">Offene Aufgaben</string>
+    <string name="cs_visit_note">Ein Besuch ist jedes gestoppte Treffen oder jeder erfasste Verkauf mit diesem Kunden.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>
@@ -647,5 +670,13 @@
     <plurals name="widget_tasks_left">
         <item quantity="one">%d offen</item>
         <item quantity="other">%d offen</item>
+    </plurals>
+    <plurals name="cs_days_ago">
+        <item quantity="one">vor %d Tag</item>
+        <item quantity="other">vor %d Tagen</item>
+    </plurals>
+    <plurals name="cs_every_days">
+        <item quantity="one">jeden Tag</item>
+        <item quantity="other">alle %d Tage</item>
     </plurals>
 </resources>
