@@ -134,11 +134,18 @@ private fun CalculatorContent(vm: AppViewModel) {
                         // Still too long: keep the end being typed, and mark the hidden start with "…".
                         var text = shown
                         var cut = 0
-                        while (overflows(text) && cut < shown.length - 1) { cut++; text = "…" + shown.drop(cut) }
+                        // (A word joiner keeps the "…" on the same line as the numbers after it.)
+                        while (overflows(text) && cut < shown.length - 1) { cut++; text = "…\u2060" + shown.drop(cut) }
                         Triple(sz, text, lines)
                     }
                 }
                 val (size, text, lines) = fit
+                val resultText = if (preview != null && preview != expr) "= $preview" else " "
+                val resultSize = remember(resultText, widthPx, baseStyle) {
+                    listOf(22, 20, 18, 16).firstOrNull { sz ->
+                        measurer.measure(resultText, baseStyle.copy(fontSize = sz.sp), maxLines = 1, softWrap = false).size.width <= widthPx
+                    } ?: 16
+                }
                 Column(horizontalAlignment = Alignment.End) {
                     Text(
                         text,
@@ -149,8 +156,8 @@ private fun CalculatorContent(vm: AppViewModel) {
                         overflow = TextOverflow.Clip,
                     )
                     Text(
-                        if (preview != null && preview != expr) "= $preview" else " ",
-                        fontSize = 22.sp,
+                        resultText,
+                        fontSize = resultSize.sp,
                         lineHeight = 28.sp,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
