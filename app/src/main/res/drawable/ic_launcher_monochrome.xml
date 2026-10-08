@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- One-color version for Android 13+ "themed icons": the phone tints it to match the wallpaper.
-     Same bullseye, drawn as rings so it still reads in a single color. -->
+     The same vault door: dial ring, bullseye (a ring with a centre dot), handle and bolts. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <group android:pivotX="54" android:pivotY="54" android:scaleX="0.86" android:scaleY="0.86">
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="8" android:pathData="M27,58a23,23 0,1 0,46 0a23,23 0,1 0,-46 0z" />
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="7" android:pathData="M42.5,58a7.5,7.5 0,1 0,15 0a7.5,7.5 0,1 0,-15 0z" />
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="4.5" android:strokeLineCap="round" android:pathData="M51,57L80,28" />
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="4" android:strokeLineCap="round"
-            android:strokeLineJoin="round" android:pathData="M74,26L80,28L82,34" />
-        <path android:strokeColor="#FFFFFF" android:strokeWidth="4" android:strokeLineCap="round"
-            android:strokeLineJoin="round" android:pathData="M70,30L76,32L78,38" />
+    <group android:translateX="22" android:translateY="22" android:scaleX="0.27" android:scaleY="0.27">
+        <path android:strokeColor="#FFFFFFFF" android:strokeWidth="20.4" android:pathData="M48,120a72,72 0 1,0 144,0a72,72 0 1,0 -144,0z" />
+        <path android:strokeColor="#FFFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" android:pathData="M120,64.2L120,73.8M147.9,71.68L143.1,79.99M168.32,92.1L160.01,96.9M175.8,120L166.2,120M168.32,147.9L160.01,143.1M147.9,168.32L143.1,160.01M120,175.8L120,166.2M92.1,168.32L96.9,160.01M71.68,147.9L79.99,143.1M64.2,120L73.8,120M71.68,92.1L79.99,96.9M92.1,71.68L96.9,79.99" />
+        <path android:fillColor="#FFFFFFFF" android:fillType="evenOdd" android:pathData="M92.4,120a27.6,27.6 0 1,0 55.2,0a27.6,27.6 0 1,0 -55.2,0zM105.6,120a14.4,14.4 0 1,0 28.8,0a14.4,14.4 0 1,0 -28.8,0z" />
+        <path android:fillColor="#FFFFFFFF" android:pathData="M113.76,120a6.24,6.24 0 1,0 12.48,0a6.24,6.24 0 1,0 -12.48,0z" />
+        <path android:strokeColor="#FFFFFFFF" android:strokeWidth="20.4" android:pathData="M164.64,164.64L206.4,206.4" />
+        <path android:fillColor="#FFFFFFFF" android:pathData="M34.08,40.8a6.72,6.72 0 1,0 13.44,0a6.72,6.72 0 1,0 -13.44,0zM192.48,40.8a6.72,6.72 0 1,0 13.44,0a6.72,6.72 0 1,0 -13.44,0zM34.08,199.2a6.72,6.72 0 1,0 13.44,0a6.72,6.72 0 1,0 -13.44,0z" />
     </group>
 </vector>
