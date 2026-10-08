@@ -549,6 +549,8 @@
     <string name="charts_trends">Tren</string>
     <string name="charts_weekly">Mingguan</string>
     <string name="charts_monthly">Bulanan</string>
+    <string name="charts_quarterly">Per kuartal</string>
+    <string name="charts_yearly">Per tahun</string>
     <string name="charts_week_of">Minggu %1$s</string>
     <string name="charts_best_days">Penjualan closing per hari dalam seminggu</string>
     <string name="schedule_calendar">Kalender</string>
@@ -626,8 +628,6 @@
     <string name="cs_largest">Penjualan terbesar</string>
     <string name="cs_upsells">Upsell diterima</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">Penjualan per jam dengan klien</string>
-    <string name="cs_per_hour_value">%1$s / jam</string>
     <string name="cs_first">Kunjungan pertama</string>
     <string name="cs_last">Kunjungan terakhir</string>
     <string name="cs_last_value">%1$s (%2$s)</string>

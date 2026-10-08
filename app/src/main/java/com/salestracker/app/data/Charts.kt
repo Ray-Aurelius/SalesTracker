@@ -8,7 +8,8 @@ import java.time.ZoneId
 import java.time.temporal.TemporalAdjusters
 
 /** How the trend charts group sales: one bar per week or per month. */
-enum class ChartSpan(val count: Int) { WEEKS(12), MONTHS(12) }
+/** How a trend chart groups sales, and how many bars it shows: 12 weeks, 12 months, 8 quarters or 5 years. */
+enum class ChartSpan(val count: Int) { WEEKS(12), MONTHS(12), QUARTERS(8), YEARS(5) }
 
 /** One bar on a trend chart: the sales between [start] (inclusive) and [end] (exclusive). */
 data class ChartBucket(val start: LocalDate, val end: LocalDate, val stats: SalesStats)
@@ -38,8 +39,15 @@ object ChartData {
         val current = when (span) {
             ChartSpan.WEEKS -> today.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY))
             ChartSpan.MONTHS -> today.withDayOfMonth(1)
+            ChartSpan.QUARTERS -> LocalDate.of(today.year, (today.monthValue - 1) / 3 * 3 + 1, 1)
+            ChartSpan.YEARS -> today.withDayOfYear(1)
         }
-        fun step(d: LocalDate, n: Long) = if (span == ChartSpan.WEEKS) d.plusWeeks(n) else d.plusMonths(n)
+        fun step(d: LocalDate, n: Long) = when (span) {
+            ChartSpan.WEEKS -> d.plusWeeks(n)
+            ChartSpan.MONTHS -> d.plusMonths(n)
+            ChartSpan.QUARTERS -> d.plusMonths(3 * n)
+            ChartSpan.YEARS -> d.plusYears(n)
+        }
         val byDay = sales.groupBy { it.day(zone) }
         return (span.count - 1 downTo 0).map { back ->
             val start = step(current, -back.toLong())

@@ -549,6 +549,8 @@
     <string name="charts_trends">推移</string>
     <string name="charts_weekly">週ごと</string>
     <string name="charts_monthly">月ごと</string>
+    <string name="charts_quarterly">四半期ごと</string>
+    <string name="charts_yearly">年ごと</string>
     <string name="charts_week_of">%1$s の週</string>
     <string name="charts_best_days">曜日別の成約数</string>
     <string name="schedule_calendar">カレンダー</string>
@@ -626,8 +628,6 @@
     <string name="cs_largest">最大の売上</string>
     <string name="cs_upsells">受け入れられたアップセル</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">顧客との1時間あたり売上</string>
-    <string name="cs_per_hour_value">1時間あたり%1$s</string>
     <string name="cs_first">初回訪問</string>
     <string name="cs_last">最終訪問</string>
     <string name="cs_last_value">%1$s（%2$s）</string>

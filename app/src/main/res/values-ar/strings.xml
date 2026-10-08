@@ -549,6 +549,8 @@
     <string name="charts_trends">الاتجاهات</string>
     <string name="charts_weekly">أسبوعي</string>
     <string name="charts_monthly">شهري</string>
+    <string name="charts_quarterly">ربع سنوي</string>
+    <string name="charts_yearly">سنوي</string>
     <string name="charts_week_of">أسبوع %1$s</string>
     <string name="charts_best_days">المبيعات المغلقة حسب يوم الأسبوع</string>
     <string name="schedule_calendar">التقويم</string>
@@ -626,8 +628,6 @@
     <string name="cs_largest">أكبر عملية بيع</string>
     <string name="cs_upsells">مبيعات إضافية مقبولة</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">المبيعات في الساعة مع العميل</string>
-    <string name="cs_per_hour_value">%1$s / ساعة</string>
     <string name="cs_first">أول زيارة</string>
     <string name="cs_last">آخر زيارة</string>
     <string name="cs_last_value">%1$s (%2$s)</string>

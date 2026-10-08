@@ -549,6 +549,8 @@
     <string name="charts_trends">Eğilimler</string>
     <string name="charts_weekly">Haftalık</string>
     <string name="charts_monthly">Aylık</string>
+    <string name="charts_quarterly">Üç aylık</string>
+    <string name="charts_yearly">Yıllık</string>
     <string name="charts_week_of">%1$s haftası</string>
     <string name="charts_best_days">Haftanın günlerine göre kapanan satışlar</string>
     <string name="schedule_calendar">Takvim</string>
@@ -626,8 +628,6 @@
     <string name="cs_largest">En büyük satış</string>
     <string name="cs_upsells">Kabul edilen ek satışlar</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">Müşteriyle saat başına satış</string>
-    <string name="cs_per_hour_value">Saatte %1$s</string>
     <string name="cs_first">İlk ziyaret</string>
     <string name="cs_last">Son ziyaret</string>
     <string name="cs_last_value">%1$s (%2$s)</string>

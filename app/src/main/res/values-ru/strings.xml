@@ -549,6 +549,8 @@
     <string name="charts_trends">Динамика</string>
     <string name="charts_weekly">По неделям</string>
     <string name="charts_monthly">По месяцам</string>
+    <string name="charts_quarterly">По кварталам</string>
+    <string name="charts_yearly">По годам</string>
     <string name="charts_week_of">Неделя с %1$s</string>
     <string name="charts_best_days">Закрытые продажи по дням недели</string>
     <string name="schedule_calendar">Календарь</string>
@@ -626,8 +628,6 @@
     <string name="cs_largest">Крупнейшая продажа</string>
     <string name="cs_upsells">Принято доп. продаж</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">Продажи в час с клиентом</string>
-    <string name="cs_per_hour_value">%1$s / час</string>
     <string name="cs_first">Первый визит</string>
     <string name="cs_last">Последний визит</string>
     <string name="cs_last_value">%1$s (%2$s)</string>

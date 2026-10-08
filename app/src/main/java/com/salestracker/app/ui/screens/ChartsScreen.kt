@@ -17,6 +17,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.FilterChip
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -159,16 +161,44 @@ private fun ChartsContent(data: AppData) {
         Spacer(Modifier.height(4.dp))
         SectionTitle(stringResource(R.string.charts_trends))
         var span by rememberSaveable { mutableStateOf(ChartSpan.WEEKS) }
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            FilterChip(selected = span == ChartSpan.WEEKS, onClick = { span = ChartSpan.WEEKS }, label = { Text(stringResource(R.string.charts_weekly)) })
-            FilterChip(selected = span == ChartSpan.MONTHS, onClick = { span = ChartSpan.MONTHS }, label = { Text(stringResource(R.string.charts_monthly)) })
-        }
+        DropdownPicker(
+            options = ChartSpan.entries,
+            selected = span,
+            label = {
+                stringResource(
+                    when (it) {
+                        ChartSpan.WEEKS -> R.string.charts_weekly
+                        ChartSpan.MONTHS -> R.string.charts_monthly
+                        ChartSpan.QUARTERS -> R.string.charts_quarterly
+                        ChartSpan.YEARS -> R.string.charts_yearly
+                    }
+                )
+            },
+            onSelect = { span = it },
+            icon = Icons.Filled.BarChart,
+            tag = CHART_SPAN_TAG,
+        )
         val buckets = remember(sales, pct, span, today) { ChartData.buckets(sales, pct, span, today) }
-        val shortFmt = localizedFormatter(if (span == ChartSpan.WEEKS) "MMMd" else "MMM")
-        val longFmt = localizedFormatter(if (span == ChartSpan.WEEKS) "yMMMd" else "yMMMM")
+        val quarterNames = listOf(R.string.period_q1, R.string.period_q2, R.string.period_q3, R.string.period_q4).map { stringResource(it) }
         val weekOf = stringResource(R.string.charts_week_of, "%s")
-        fun longLabel(b: ChartBucket) = b.start.format(longFmt).let { if (span == ChartSpan.WEEKS) weekOf.replace("%s", it) else it }
-        val axis = buckets.map { it.start.format(shortFmt) }
+        val dayShort = localizedFormatter("MMMd"); val dayLong = localizedFormatter("yMMMd")
+        val monthShort = localizedFormatter("MMM"); val monthLong = localizedFormatter("yMMMM")
+        fun quarter(d: java.time.LocalDate) = quarterNames[(d.monthValue - 1) / 3]
+        // Axis labels stay short; the readout above the chart spells the period out in full.
+        val axis = buckets.map { b ->
+            when (span) {
+                ChartSpan.WEEKS -> b.start.format(dayShort)
+                ChartSpan.MONTHS -> b.start.format(monthShort)
+                ChartSpan.QUARTERS -> "${quarter(b.start)} ’${b.start.year % 100}"
+                ChartSpan.YEARS -> b.start.year.toString()
+            }
+        }
+        fun longLabel(b: ChartBucket) = when (span) {
+            ChartSpan.WEEKS -> weekOf.replace("%s", b.start.format(dayLong))
+            ChartSpan.MONTHS -> b.start.format(monthLong)
+            ChartSpan.QUARTERS -> "${quarter(b.start)} ${b.start.year}"
+            ChartSpan.YEARS -> b.start.year.toString()
+        }
 
         TrendCard(
             title = stringResource(R.string.metric_commission_short),
@@ -212,6 +242,9 @@ private fun ChartsContent(data: AppData) {
         Spacer(Modifier.height(8.dp))
     }
 }
+
+/** Tag the screenshot tests use to open the trends menu. */
+const val CHART_SPAN_TAG = "chartSpan"
 
 @Composable
 private fun SectionTitle(text: String) {

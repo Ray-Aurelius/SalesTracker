@@ -549,6 +549,8 @@
     <string name="charts_trends">প্রবণতা</string>
     <string name="charts_weekly">সাপ্তাহিক</string>
     <string name="charts_monthly">মাসিক</string>
+    <string name="charts_quarterly">ত্রৈমাসিক</string>
+    <string name="charts_yearly">বার্ষিক</string>
     <string name="charts_week_of">%1$s-এর সপ্তাহ</string>
     <string name="charts_best_days">সপ্তাহের দিন অনুযায়ী সম্পন্ন বিক্রি</string>
     <string name="schedule_calendar">ক্যালেন্ডার</string>
@@ -626,8 +628,6 @@
     <string name="cs_largest">সবচেয়ে বড় বিক্রয়</string>
     <string name="cs_upsells">গৃহীত আপসেল</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">ক্লায়েন্টের সাথে প্রতি ঘণ্টায় বিক্রয়</string>
-    <string name="cs_per_hour_value">%1$s / ঘণ্টা</string>
     <string name="cs_first">প্রথম সাক্ষাৎ</string>
     <string name="cs_last">শেষ সাক্ষাৎ</string>
     <string name="cs_last_value">%1$s (%2$s)</string>

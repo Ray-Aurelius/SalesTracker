@@ -549,6 +549,8 @@
     <string name="charts_trends">रुझान</string>
     <string name="charts_weekly">साप्ताहिक</string>
     <string name="charts_monthly">मासिक</string>
+    <string name="charts_quarterly">तिमाही</string>
+    <string name="charts_yearly">वार्षिक</string>
     <string name="charts_week_of">%1$s वाला सप्ताह</string>
     <string name="charts_best_days">सप्ताह के दिन के अनुसार बंद बिक्री</string>
     <string name="schedule_calendar">कैलेंडर</string>
@@ -626,8 +628,6 @@
     <string name="cs_largest">सबसे बड़ी बिक्री</string>
     <string name="cs_upsells">स्वीकृत अपसेल</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">ग्राहक के साथ प्रति घंटा बिक्री</string>
-    <string name="cs_per_hour_value">%1$s / घंटा</string>
     <string name="cs_first">पहली मुलाकात</string>
     <string name="cs_last">आखिरी मुलाकात</string>
     <string name="cs_last_value">%1$s (%2$s)</string>

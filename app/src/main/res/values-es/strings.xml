@@ -549,6 +549,8 @@
     <string name="charts_trends">Tendencias</string>
     <string name="charts_weekly">Semanal</string>
     <string name="charts_monthly">Mensual</string>
+    <string name="charts_quarterly">Trimestral</string>
+    <string name="charts_yearly">Anual</string>
     <string name="charts_week_of">Semana del %1$s</string>
     <string name="charts_best_days">Ventas cerradas por día de la semana</string>
     <string name="schedule_calendar">Calendario</string>
@@ -626,8 +628,6 @@
     <string name="cs_largest">Venta más grande</string>
     <string name="cs_upsells">Ventas adicionales aceptadas</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">Ventas por hora con el cliente</string>
-    <string name="cs_per_hour_value">%1$s / hora</string>
     <string name="cs_first">Primera visita</string>
     <string name="cs_last">Última visita</string>
     <string name="cs_last_value">%1$s (%2$s)</string>

@@ -34,7 +34,6 @@ class ClientMetricsTest {
         assertEquals(1200.0, m.largestSale, 0.001)
         assertEquals(160.0, m.commission, 0.001)
         assertEquals(1, m.upsellsAccepted)
-        assertEquals(1600.0, m.revenuePerHour!!, 0.001)  // one hour in total
         assertEquals(LocalDate.of(2026, 10, 1).toEpochDay(), m.firstVisitDay)
         assertEquals(today.toEpochDay(), m.lastVisitDay)
         assertEquals(9.5, m.averageDaysBetweenVisits!!, 0.001) // 19 days over 2 gaps
@@ -44,7 +43,6 @@ class ClientMetricsTest {
         val c = Client(1, "Ann", "", "", "")
         val m = ClientMetrics.of(c, AppData(clients = listOf(c)), today, zone, at(today))
         assertEquals(0, m.visits)
-        assertNull(m.revenuePerHour)
         assertNull(m.averageDaysBetweenVisits)
     }
 

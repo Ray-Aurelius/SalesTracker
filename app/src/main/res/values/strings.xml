@@ -652,6 +652,8 @@
     <string name="charts_trends">Trends</string>
     <string name="charts_weekly">Weekly</string>
     <string name="charts_monthly">Monthly</string>
+    <string name="charts_quarterly">Quarterly</string>
+    <string name="charts_yearly">Yearly</string>
     <string name="charts_week_of">Week of %1$s</string>
     <string name="charts_best_days">Closed sales by day of week</string>
     <plurals name="charts_closed_sales">
@@ -741,8 +743,6 @@
     <string name="cs_largest">Largest sale</string>
     <string name="cs_upsells">Upsells accepted</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">Sales per hour with client</string>
-    <string name="cs_per_hour_value">%1$s / hour</string>
     <string name="cs_first">First visit</string>
     <string name="cs_last">Last visit</string>
     <string name="cs_last_value">%1$s (%2$s)</string>

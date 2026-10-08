@@ -52,6 +52,24 @@ class ChartDataTest {
         assertEquals(3000.0, b.first { it.start == LocalDate.of(2025, 12, 1) }.stats.revenue, 1e-9)
     }
 
+    @Test fun quarterlyBucketsCoverTwoYears() {
+        val b = ChartData.buckets(sales, 10.0, ChartSpan.QUARTERS, today, zone)
+        assertEquals(8, b.size)
+        assertEquals(LocalDate.of(2025, 1, 1), b.first().start) // Q1 2025 is 7 quarters back
+        assertEquals(LocalDate.of(2026, 10, 1), b.last().start)
+        assertEquals(3500.0, b.last().stats.revenue, 1e-9)                    // Q4 2026: Oct sales that closed
+        assertEquals(4500.0, b[6].stats.revenue, 1e-9)                        // Q3 2026
+        assertEquals(3000.0, b[3].stats.revenue, 1e-9)                        // Q4 2025
+    }
+
+    @Test fun yearlyBucketsCoverFiveYears() {
+        val b = ChartData.buckets(sales, 10.0, ChartSpan.YEARS, today, zone)
+        assertEquals(5, b.size)
+        assertEquals(LocalDate.of(2022, 1, 1), b.first().start)
+        assertEquals(8000.0, b.last().stats.revenue, 1e-9)
+        assertEquals(3000.0, b[3].stats.revenue, 1e-9)
+    }
+
     @Test fun weekdays() {
         // Closed: Mon 12 Oct, Wed 14 Oct, Mon 5 Oct, Thu 20 Aug, Wed 31 Dec.
         assertArrayEquals(intArrayOf(2, 0, 2, 1, 0, 0, 0), ChartData.closedByWeekday(sales, zone))

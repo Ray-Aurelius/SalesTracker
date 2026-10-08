@@ -173,6 +173,19 @@ class StoreScreenshots {
         // Bring the commission and revenue bar charts into view (the second "Close rate" is the trend chart below them).
         rule.onAllNodesWithText(app.getString(R.string.close_rate))[1].performScrollTo()
         shot("8-charts-trends")
+        // Trends menu: quarterly and yearly views (for layout review).
+        fun pickSpan(label: Int, name: String) {
+            rule.onAllNodesWithTag(com.salestracker.app.ui.screens.CHART_SPAN_TAG).onFirst().performScrollTo().performClick()
+            rule.waitForIdle()
+            if (name == "quarterly") shotWithPopups("menu-chart-span")
+            rule.onAllNodesWithText(app.getString(label)).onLast().performClick()
+            rule.waitForIdle()
+            rule.onAllNodesWithText(app.getString(R.string.close_rate))[1].performScrollTo()
+            shotWithPopups("charts-$name")
+        }
+        pickSpan(R.string.charts_quarterly, "quarterly")
+        pickSpan(R.string.charts_yearly, "yearly")
+        pickSpan(R.string.charts_weekly, "weekly")
         repeat(4) { rule.onAllNodes(hasScrollAction())[0].performTouchInput { swipeUp() } }
         shot("9-charts-days")
         // Menu options: down the side, then tucked away with its arrow (checked here, not store shots).

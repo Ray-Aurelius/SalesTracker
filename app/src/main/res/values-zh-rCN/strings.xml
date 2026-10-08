@@ -549,6 +549,8 @@
     <string name="charts_trends">趋势</string>
     <string name="charts_weekly">按周</string>
     <string name="charts_monthly">按月</string>
+    <string name="charts_quarterly">按季度</string>
+    <string name="charts_yearly">按年</string>
     <string name="charts_week_of">%1$s 当周</string>
     <string name="charts_best_days">按星期统计的成交数</string>
     <string name="schedule_calendar">日历</string>
@@ -626,8 +628,6 @@
     <string name="cs_largest">最大一笔销售</string>
     <string name="cs_upsells">已接受的追加销售</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">每小时销售额</string>
-    <string name="cs_per_hour_value">每小时 %1$s</string>
     <string name="cs_first">首次拜访</string>
     <string name="cs_last">最近拜访</string>
     <string name="cs_last_value">%1$s（%2$s）</string>

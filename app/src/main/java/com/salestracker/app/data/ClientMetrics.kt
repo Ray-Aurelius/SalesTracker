@@ -31,9 +31,6 @@ data class ClientMetrics(
     /** What the client spends per closed sale. */
     val averageSale: Double get() = if (closed == 0) 0.0 else revenue / closed
 
-    /** Sales brought in per hour spent with the client: a quick read on whether the time pays off. */
-    val revenuePerHour: Double? get() = if (totalSeconds < 60 || revenue <= 0.0) null else revenue / (totalSeconds / 3600.0)
-
     /** The typical gap between visits, in days (how often they buy or meet); needs two visits on different days. */
     val averageDaysBetweenVisits: Double?
         get() {

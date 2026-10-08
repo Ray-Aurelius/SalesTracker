@@ -549,6 +549,8 @@
     <string name="charts_trends">Xu hướng</string>
     <string name="charts_weekly">Theo tuần</string>
     <string name="charts_monthly">Theo tháng</string>
+    <string name="charts_quarterly">Theo quý</string>
+    <string name="charts_yearly">Theo năm</string>
     <string name="charts_week_of">Tuần %1$s</string>
     <string name="charts_best_days">Giao dịch đã chốt theo ngày trong tuần</string>
     <string name="schedule_calendar">Lịch</string>
@@ -626,8 +628,6 @@
     <string name="cs_largest">Giao dịch lớn nhất</string>
     <string name="cs_upsells">Bán thêm được chấp nhận</string>
     <string name="cs_upsells_value">%1$d · %2$s</string>
-    <string name="cs_per_hour">Doanh số mỗi giờ với khách</string>
-    <string name="cs_per_hour_value">%1$s / giờ</string>
     <string name="cs_first">Lần gặp đầu</string>
     <string name="cs_last">Lần gặp gần nhất</string>
     <string name="cs_last_value">%1$s (%2$s)</string>

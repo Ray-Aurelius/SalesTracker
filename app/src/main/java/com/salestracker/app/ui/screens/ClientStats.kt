@@ -63,7 +63,6 @@ fun ClientStatsCard(m: ClientMetrics) {
             }
             if (m.commission > 0) Stat(R.string.commission_earned, formatMoney(m.commission))
             if (m.upsellsAccepted > 0) Stat(R.string.cs_upsells, stringResource(R.string.cs_upsells_value, m.upsellsAccepted, formatMoney(m.upsellRevenue)))
-            m.revenuePerHour?.let { Stat(R.string.cs_per_hour, stringResource(R.string.cs_per_hour_value, formatMoney(it))) }
             HorizontalDivider(Modifier.padding(vertical = 2.dp))
             // Relationship
             val today = LocalDate.now().toEpochDay()
