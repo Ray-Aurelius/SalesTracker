@@ -159,6 +159,10 @@ class StoreScreenshots {
         rule.onAllNodesWithText("Alex Morgan").onFirst().performClick()
         rule.mainClock.advanceTimeBy(1000)
         shotWithPopups("dialog-client-profile", waitIdle = false)
+        // The stats now sit at the bottom of the form: scroll down to them.
+        try { rule.onAllNodesWithText(app.getString(R.string.client_stats)).onFirst().performScrollTo() } catch (e: Throwable) { }
+        rule.mainClock.advanceTimeBy(800)
+        shotWithPopups("dialog-client-profile-stats", waitIdle = false)
         rule.onAllNodesWithText(app.getString(R.string.cancel)).onLast().performClick()
         rule.mainClock.advanceTimeBy(1000)
         rule.mainClock.autoAdvance = true

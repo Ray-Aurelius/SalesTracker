@@ -7,6 +7,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.background
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.FilterList
+import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -45,6 +46,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -190,6 +192,9 @@ private data class ClientFilter(val stage: ClientStage?, val dueOnly: Boolean)
 /** Tag the screenshot tests use to open the Clients filter menu. */
 const val CLIENT_FILTER_TAG = "clientFilter"
 
+/** Tag for the Stage menu in the client form. */
+const val CLIENT_STAGE_TAG = "clientStage"
+
 @Composable
 private fun ClientCard(
     client: Client,
@@ -309,7 +314,33 @@ internal fun ClientDialog(
         title = { Text(stringResource(if (initial == null) LocalTerms.current.newClient else LocalTerms.current.editClient)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                if (metrics != null) ClientStatsCard(metrics)
+                // Order: where the client stands and when to follow up first, then their details, then their stats.
+                Text(stringResource(R.string.stage_label), style = MaterialTheme.typography.labelLarge)
+                DropdownPicker(
+                    options = ClientStage.entries,
+                    selected = stage,
+                    label = { stringResource(it.label) },
+                    onSelect = { stage = it },
+                    icon = Icons.Filled.TrendingUp,
+                    tag = CLIENT_STAGE_TAG,
+                )
+                Text(stringResource(R.string.follow_up), style = MaterialTheme.typography.labelLarge)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    OutlinedButton(onClick = ::pickFollowUp, modifier = Modifier.weight(1f)) {
+                        Icon(Icons.Filled.NotificationsActive, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            followUp?.let { (d, m) ->
+                                LocalDate.ofEpochDay(d).format(localizedFormatter("EEEMMMd")) + ", " + formatMinuteOfDay(m)
+                            } ?: stringResource(R.string.schedule_follow_up)
+                        )
+                    }
+                    if (followUp != null) {
+                        IconButton(onClick = { followUp = null }) {
+                            Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.remove_follow_up))
+                        }
+                    }
+                }
                 OutlinedTextField(first, { first = it }, label = { Text(stringResource(R.string.first_name)) }, singleLine = true,
                     keyboardOptions = nameCaps, modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(last, { last = it }, label = { Text(stringResource(R.string.last_name)) }, singleLine = true,
@@ -328,29 +359,8 @@ internal fun ClientDialog(
                     supportingText = { if (!emailValid) Text(stringResource(R.string.check_email)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(notes, { notes = it }, label = { Text(stringResource(R.string.notes)) }, minLines = 2, modifier = Modifier.fillMaxWidth())
-                Text(stringResource(R.string.stage_label), style = MaterialTheme.typography.labelLarge)
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    ClientStage.entries.forEach { s ->
-                        FilterChip(selected = stage == s, onClick = { stage = s }, label = { Text(stringResource(s.label)) })
-                    }
-                }
-                Text(stringResource(R.string.follow_up), style = MaterialTheme.typography.labelLarge)
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    OutlinedButton(onClick = ::pickFollowUp, modifier = Modifier.weight(1f)) {
-                        Icon(Icons.Filled.NotificationsActive, contentDescription = null, modifier = Modifier.size(18.dp))
-                        Spacer(Modifier.width(8.dp))
-                        Text(
-                            followUp?.let { (d, m) ->
-                                LocalDate.ofEpochDay(d).format(localizedFormatter("EEEMMMd")) + ", " + formatMinuteOfDay(m)
-                            } ?: stringResource(R.string.schedule_follow_up)
-                        )
-                    }
-                    if (followUp != null) {
-                        IconButton(onClick = { followUp = null }) {
-                            Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.remove_follow_up))
-                        }
-                    }
-                }
+                Spacer(Modifier.height(4.dp))
+                if (metrics != null) ClientStatsCard(metrics)
                 if (initial != null) {
                     TextButton(onClick = { confirmDelete = true }) {
                         Text(stringResource(R.string.delete_client), color = MaterialTheme.colorScheme.error)
