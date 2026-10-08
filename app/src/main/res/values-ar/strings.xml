@@ -97,8 +97,8 @@
     <string name="cd_show_menu">إظهار القائمة</string>
     <string name="appearance_palette">لوحة الألوان</string>
     <string name="selected">محدد</string>
-    <string name="palette_bullseye">عين الهدف</string>
-    <string name="palette_bullseye_desc">مرجاني ورمادي داكن، مطابق لأيقونة التطبيق</string>
+    <string name="palette_bullseye">Quota Vault</string>
+    <string name="palette_bullseye_desc">رمادي وأبيض وبرتقالي، مطابق لأيقونة التطبيق</string>
     <string name="palette_teal">أزرق مخضر كلاسيكي</string>
     <string name="palette_teal_desc">المظهر الأصلي</string>
     <string name="palette_gray">تدرج رمادي</string>

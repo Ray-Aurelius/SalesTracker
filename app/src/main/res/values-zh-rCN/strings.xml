@@ -97,8 +97,8 @@
     <string name="cd_show_menu">显示菜单</string>
     <string name="appearance_palette">配色方案</string>
     <string name="selected">已选择</string>
-    <string name="palette_bullseye">靶心</string>
-    <string name="palette_bullseye_desc">珊瑚色与石板灰，与应用图标一致</string>
+    <string name="palette_bullseye">Quota Vault</string>
+    <string name="palette_bullseye_desc">灰、白、橙，与应用图标一致</string>
     <string name="palette_teal">经典青绿</string>
     <string name="palette_teal_desc">原始外观</string>
     <string name="palette_gray">灰度</string>

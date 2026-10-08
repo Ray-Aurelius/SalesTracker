@@ -90,7 +90,7 @@ object ReminderScheduler {
         )
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_reminder)
-            .setColor(0xFFE4572E.toInt())
+            .setColor(0xFFF26B1D.toInt())
             .setContentTitle(task.title)
             .setContentText(line)
             .setStyle(NotificationCompat.BigTextStyle().bigText(body))
@@ -192,7 +192,7 @@ object ReminderScheduler {
         )
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_reminder)
-            .setColor(0xFFE4572E.toInt()) // brand coral, matching the app icon
+            .setColor(0xFFF26B1D.toInt()) // brand orange, matching the app icon
             .setContentTitle(appt.title)
             .setContentText(line)
             .setStyle(NotificationCompat.BigTextStyle().bigText(body))

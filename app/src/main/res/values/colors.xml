@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#22252B</color>
-    <!-- Widget colors (light mode); matches the Bullseye palette -->
-    <color name="widget_bg">#F2FFF8F6</color>
-    <color name="widget_text">#FF231917</color>
-    <color name="widget_accent">#FFB93E1C</color>
-    <color name="widget_track">#FFF5DED8</color>
+    <color name="ic_launcher_background">#3A3F45</color>
+    <!-- Widget colors (light mode): the brand gray, white and orange -->
+    <color name="widget_bg">#F2FFFFFF</color>
+    <color name="widget_text">#FF2A2E33</color>
+    <color name="widget_accent">#FFB84A08</color>
+    <color name="widget_track">#FFE6E7EA</color>
 </resources>

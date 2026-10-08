@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Widget colors in dark mode -->
-    <color name="widget_bg">#F21A110F</color>
-    <color name="widget_text">#FFF1DFDA</color>
-    <color name="widget_accent">#FFFFB4A1</color>
-    <color name="widget_track">#FF53433F</color>
+    <color name="widget_bg">#F22A2E33</color>
+    <color name="widget_text">#FFF3F4F6</color>
+    <color name="widget_accent">#FFFF9A5C</color>
+    <color name="widget_track">#FF4B5159</color>
 </resources>

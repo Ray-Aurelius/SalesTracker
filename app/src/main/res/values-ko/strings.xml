@@ -97,8 +97,8 @@
     <string name="cd_show_menu">메뉴 표시</string>
     <string name="appearance_palette">색상 팔레트</string>
     <string name="selected">선택됨</string>
-    <string name="palette_bullseye">불스아이</string>
-    <string name="palette_bullseye_desc">앱 아이콘과 어울리는 코럴과 슬레이트</string>
+    <string name="palette_bullseye">Quota Vault</string>
+    <string name="palette_bullseye_desc">회색, 흰색, 주황색 (앱 아이콘과 같은 색)</string>
     <string name="palette_teal">클래식 틸</string>
     <string name="palette_teal_desc">원래 디자인</string>
     <string name="palette_gray">그레이스케일</string>

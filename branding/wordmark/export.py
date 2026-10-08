@@ -1,7 +1,7 @@
 import sys; sys.path.insert(0,'.')
 import glyphs as G
 from glyphs import *
-CREAM="#F6ECE8"; NIGHT="#16191D"
+CREAM="#FFFFFF"; NIGHT="#2A2E33"
 def standalone(inner_parts, clips, vb):
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}"><defs>{"".join(clips)}</defs>{inner_parts}</svg>'
 def caps(ink, prefix):
@@ -30,10 +30,10 @@ s,_=caps(CREAM,"b"); files["qv-a-dark.svg"]=s
 s,_=lower(INK,"c"); files["qv-b-light.svg"]=s
 s,_=lower(CREAM,"d"); files["qv-b-dark.svg"]=s.replace('stroke-width="2.6"','stroke-width="2.6"')
 files["qv-c-light.svg"]=lockup(INK, INK, "#FFFFFF","e")
-files["qv-c-dark.svg"]=lockup(CREAM, "#2C3138", CREAM,"f", edge="#454C56")
+files["qv-c-dark.svg"]=lockup(CREAM, "#4B5159", CREAM,"f", edge="#646B74")
 files["qv-c-name-light.svg"]=name_only(INK,"g")
 files["qv-c-name-dark.svg"]=name_only(CREAM,"h")
 files["qv-c-mark-light.svg"]=mark(INK,"#FFFFFF")
-files["qv-c-mark-dark.svg"]=mark("#2C3138",CREAM, edge="#454C56")
+files["qv-c-mark-dark.svg"]=mark("#4B5159",CREAM, edge="#646B74")
 for k,v in files.items():
     open("out/"+k,"w").write(v); print(k,len(v))

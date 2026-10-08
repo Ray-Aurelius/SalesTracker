@@ -97,8 +97,8 @@
     <string name="cd_show_menu">Mostra menu</string>
     <string name="appearance_palette">Tavolozza colori</string>
     <string name="selected">Selezionato</string>
-    <string name="palette_bullseye">Bersaglio</string>
-    <string name="palette_bullseye_desc">Corallo e ardesia, abbinati all\'icona dell\'app</string>
+    <string name="palette_bullseye">Quota Vault</string>
+    <string name="palette_bullseye_desc">Grigio, bianco e arancione, come l\'icona dell\'app</string>
     <string name="palette_teal">Verde acqua classico</string>
     <string name="palette_teal_desc">L\'aspetto originale</string>
     <string name="palette_gray">Scala di grigi</string>

@@ -19,7 +19,7 @@ def to_svg_inner(vd, recolor=None):
     return f'<g transform="translate({tx},{ty}) scale({sc})">'+"".join(out)+'</g>'
 FG=to_svg_inner(fg); MONO=to_svg_inner(mono, recolor="#3A4A2E")
 n=[0]
-def icon(mask, bg="#22252B", inner=FG, size=160):
+def icon(mask, bg="#3A3F45", inner=FG, size=160):
     n[0]+=1
     clip={'circle':'<circle cx="54" cy="54" r="36"/>','squircle':'<path d="M18,54 C18,22 22,18 54,18 C86,18 90,22 90,54 C90,86 86,90 54,90 C22,90 18,86 18,54z"/>',
           'rounded':'<rect x="18" y="18" width="72" height="72" rx="16"/>'}.get(mask,'<rect x="18" y="18" width="72" height="72"/>')

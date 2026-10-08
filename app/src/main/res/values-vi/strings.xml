@@ -97,8 +97,8 @@
     <string name="cd_show_menu">Hiện menu</string>
     <string name="appearance_palette">Bảng màu</string>
     <string name="selected">Đã chọn</string>
-    <string name="palette_bullseye">Hồng tâm</string>
-    <string name="palette_bullseye_desc">Màu san hô và xám đá, hợp với biểu tượng ứng dụng</string>
+    <string name="palette_bullseye">Quota Vault</string>
+    <string name="palette_bullseye_desc">Xám, trắng và cam, hợp với biểu tượng ứng dụng</string>
     <string name="palette_teal">Xanh mòng két cổ điển</string>
     <string name="palette_teal_desc">Giao diện gốc</string>
     <string name="palette_gray">Thang xám</string>

@@ -66,22 +66,26 @@ enum class AppPalette(
     /** Listed under "Holiday themes" in the Appearance dialog. */
     val holiday: Boolean = false,
 ) {
-    // Matches the bullseye app icon. The default for new users.
+    // The Quota Vault brand: charcoal gray, safety orange and white, matching the app icon. The default for
+    // new users. (Kept under its old name so existing settings carry over.) The brand orange (#F26B1D) is too
+    // light for text on white, so text and buttons use a deeper shade of the same orange that reads at 4.5:1.
     BULLSEYE(
         R.string.palette_bullseye, R.string.palette_bullseye_desc,
         light = Tones(
-            0xFFB93E1C, 0xFFFFFFFF, 0xFFFFDBD1, 0xFF3B0900,
-            0xFF44546A, 0xFFFFFFFF, 0xFFD8E2F2, 0xFF101C2B,
-            0xFF8A5100,
-            0xFFFFF8F6, 0xFF231917,
-            0xFFF5DED8, 0xFF53433F, 0xFF85736E,
+            0xFFBC4B0A, 0xFFFFFFFF, 0xFFFFDCC7, 0xFF3A1600,
+            0xFF3A3F45, 0xFFFFFFFF, 0xFFE3E5E8, 0xFF1F2328,
+            0xFF8A6100,
+            0xFFFBFBFC, 0xFF1E2125,
+            0xFFE6E7EA, 0xFF474B52, 0xFF787C83,
+            tint = 0.02f,
         ),
         dark = Tones(
-            0xFFFFB4A1, 0xFF611200, 0xFF8A2A10, 0xFFFFDBD1,
-            0xFFB8C7DE, 0xFF22314A, 0xFF39475E, 0xFFD6E3FA,
-            0xFFFFB86B,
-            0xFF1A110F, 0xFFF1DFDA,
-            0xFF53433F, 0xFFD8C2BC, 0xFFA08C87,
+            0xFFFF9151, 0xFF4A1C00, 0xFF8A3A06, 0xFFFFDCC7,
+            0xFFC3C7CD, 0xFF2B2F35, 0xFF42474E, 0xFFE3E5E8,
+            0xFFE8C06A,
+            0xFF17191C, 0xFFE6E7E9,
+            0xFF42464C, 0xFFC5C8CD, 0xFF8E9298,
+            tint = 0.02f,
         ),
     ),
     TEAL(
@@ -302,7 +306,7 @@ fun SalesTrackerTheme(
 /** The three colors a user picks on the color wheel. Stored as ARGB ints. */
 data class CustomColors(val main: Int, val accent: Int, val background: Int) {
     companion object {
-        val DEFAULT = CustomColors(0xFFE4572E.toInt(), 0xFF44546A.toInt(), 0xFFFFF8F6.toInt())
+        val DEFAULT = CustomColors(0xFFF26B1D.toInt(), 0xFF3A3F45.toInt(), 0xFFFBFBFC.toInt())
     }
 }
 

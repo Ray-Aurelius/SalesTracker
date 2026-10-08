@@ -97,8 +97,8 @@
     <string name="cd_show_menu">Tampilkan menu</string>
     <string name="appearance_palette">Palet warna</string>
     <string name="selected">Dipilih</string>
-    <string name="palette_bullseye">Bullseye</string>
-    <string name="palette_bullseye_desc">Koral dan abu batu, serasi dengan ikon aplikasi</string>
+    <string name="palette_bullseye">Quota Vault</string>
+    <string name="palette_bullseye_desc">Abu-abu, putih, dan oranye, serasi dengan ikon aplikasi</string>
     <string name="palette_teal">Teal klasik</string>
     <string name="palette_teal_desc">Tampilan asli</string>
     <string name="palette_gray">Skala abu-abu</string>

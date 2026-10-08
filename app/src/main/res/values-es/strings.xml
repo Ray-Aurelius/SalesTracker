@@ -97,8 +97,8 @@
     <string name="cd_show_menu">Mostrar menú</string>
     <string name="appearance_palette">Paleta de colores</string>
     <string name="selected">Seleccionado</string>
-    <string name="palette_bullseye">Diana</string>
-    <string name="palette_bullseye_desc">Coral y pizarra, a juego con el icono de la app</string>
+    <string name="palette_bullseye">Quota Vault</string>
+    <string name="palette_bullseye_desc">Gris, blanco y naranja, como el icono de la app</string>
     <string name="palette_teal">Verde azulado clásico</string>
     <string name="palette_teal_desc">El aspecto original</string>
     <string name="palette_gray">Escala de grises</string>

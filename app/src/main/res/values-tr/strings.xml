@@ -97,8 +97,8 @@
     <string name="cd_show_menu">Menüyü göster</string>
     <string name="appearance_palette">Renk paleti</string>
     <string name="selected">Seçili</string>
-    <string name="palette_bullseye">On İkiden</string>
-    <string name="palette_bullseye_desc">Uygulama simgesine uyan mercan ve arduvaz</string>
+    <string name="palette_bullseye">Quota Vault</string>
+    <string name="palette_bullseye_desc">Gri, beyaz ve turuncu; uygulama simgesiyle uyumlu</string>
     <string name="palette_teal">Klasik camgöbeği</string>
     <string name="palette_teal_desc">Orijinal görünüm</string>
     <string name="palette_gray">Gri tonlama</string>

@@ -1,6 +1,7 @@
 # Custom monoline lettering for the Quota Vault wordmark. Every letter is built from strokes on a grid,
 # so the shapes are ours (not taken from any font).
-INK="#22252B"; CORAL="#E4572E"; WHITE="#FFFFFF"
+# Brand colors: charcoal gray, safety orange and white.
+INK="#3A3F45"; CORAL="#F26B1D"; WHITE="#FFFFFF"
 
 def f(v): return f"{v:.2f}".rstrip('0').rstrip('.')
 

@@ -97,8 +97,8 @@
     <string name="cd_show_menu">メニューを表示</string>
     <string name="appearance_palette">カラーパレット</string>
     <string name="selected">選択中</string>
-    <string name="palette_bullseye">ブルズアイ</string>
-    <string name="palette_bullseye_desc">アプリのアイコンに合わせたコーラルとスレート</string>
+    <string name="palette_bullseye">Quota Vault</string>
+    <string name="palette_bullseye_desc">グレー・白・オレンジ（アプリアイコンと同じ配色）</string>
     <string name="palette_teal">クラシックティール</string>
     <string name="palette_teal_desc">元のデザイン</string>
     <string name="palette_gray">グレースケール</string>

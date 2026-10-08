@@ -52,8 +52,8 @@ object ReportPdf {
         var page: PdfDocument.Page? = null
         var y = 0f
 
-        val title = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { textSize = 22f; typeface = Typeface.DEFAULT_BOLD; color = Color.rgb(20, 22, 26) }
-        val h2 = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { textSize = 14f; typeface = Typeface.DEFAULT_BOLD; color = Color.rgb(185, 62, 28) }
+        val title = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { textSize = 22f; typeface = Typeface.DEFAULT_BOLD; color = Color.rgb(58, 63, 69) }
+        val h2 = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { textSize = 14f; typeface = Typeface.DEFAULT_BOLD; color = Color.rgb(188, 75, 10) }
         val body = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { textSize = 10.5f; color = Color.rgb(30, 33, 38) }
         val muted = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { textSize = 9f; color = Color.rgb(90, 96, 104) }
         val rule = Paint().apply { color = Color.rgb(220, 222, 226); strokeWidth = 0.8f }

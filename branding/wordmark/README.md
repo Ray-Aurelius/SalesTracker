@@ -7,7 +7,7 @@ nothing is taken from an existing font, so the shapes are original to Quota Vaul
 - `qv-b-*.svg`: B, Vault dial (one lowercase word; the "o" is a safe's combination dial)
 - `qv-c-*.svg`: C, Vault door (QV vault-door mark with QUOTA over VAULT); `qv-c-mark-*` is the mark alone
 
-Rebuild the files with `python3 export.py` (writes to `out/`). Colors: ink #22252B, coral #E4572E, cream #F6ECE8.
+Rebuild the files with `python3 export.py` (writes to `out/`). Brand colors: charcoal gray #3A3F45, safety orange #F26B1D, white #FFFFFF. In the app, text and buttons use a deeper orange, #BC4B0A, so they stay readable on white.
 
 ## Chosen: C, Vault door
 

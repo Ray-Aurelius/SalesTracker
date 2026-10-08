@@ -7,74 +7,74 @@
     android:viewportHeight="258">
     <group android:translateX="4" android:translateY="4">
         <group >
-            <path android:pathData="M48,0h144a48,48 0 0,1 48,48v144a48,48 0 0,1 -48,48h-144a48,48 0 0,1 -48,-48v-144a48,48 0 0,1 48,-48z" android:fillColor="#FF2C3138" />
-            <path android:pathData="M48.96,1.92h142.08a47.04,47.04 0 0,1 47.04,47.04v142.08a47.04,47.04 0 0,1 -47.04,47.04h-142.08a47.04,47.04 0 0,1 -47.04,-47.04v-142.08a47.04,47.04 0 0,1 47.04,-47.04z" android:strokeColor="#FF454C56" android:strokeWidth="3.84" />
-            <path android:pathData="M48,120a72,72 0 1,0 144,0a72,72 0 1,0 -144,0z" android:strokeColor="#FFF6ECE8" android:strokeWidth="20.4" />
-            <path android:pathData="M120,64.2L120,73.8" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M147.9,71.68L143.1,79.99" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M168.32,92.1L160.01,96.9" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M175.8,120L166.2,120" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M168.32,147.9L160.01,143.1" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M147.9,168.32L143.1,160.01" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M120,175.8L120,166.2" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M92.1,168.32L96.9,160.01" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M71.68,147.9L79.99,143.1" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M64.2,120L73.8,120" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M71.68,92.1L79.99,96.9" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M92.1,71.68L96.9,79.99" android:strokeColor="#8CF6ECE8" android:strokeWidth="3.84" android:strokeLineCap="round" />
-            <path android:pathData="M92.4,120a27.6,27.6 0 1,0 55.2,0a27.6,27.6 0 1,0 -55.2,0z" android:fillColor="#FFE4572E" />
-            <path android:pathData="M105.6,120a14.4,14.4 0 1,0 28.8,0a14.4,14.4 0 1,0 -28.8,0z" android:fillColor="#FF2C3138" />
-            <path android:pathData="M113.76,120a6.24,6.24 0 1,0 12.48,0a6.24,6.24 0 1,0 -12.48,0z" android:fillColor="#FFE4572E" />
-            <path android:pathData="M164.64,164.64L206.4,206.4" android:strokeColor="#FFF6ECE8" android:strokeWidth="20.4" android:strokeLineCap="butt" />
-            <path android:pathData="M24.48,31.2a6.72,6.72 0 1,0 13.44,0a6.72,6.72 0 1,0 -13.44,0z" android:fillColor="#CCF6ECE8" />
-            <path android:pathData="M202.08,31.2a6.72,6.72 0 1,0 13.44,0a6.72,6.72 0 1,0 -13.44,0z" android:fillColor="#CCF6ECE8" />
-            <path android:pathData="M24.48,208.8a6.72,6.72 0 1,0 13.44,0a6.72,6.72 0 1,0 -13.44,0z" android:fillColor="#CCF6ECE8" />
+            <path android:pathData="M48,0h144a48,48 0 0,1 48,48v144a48,48 0 0,1 -48,48h-144a48,48 0 0,1 -48,-48v-144a48,48 0 0,1 48,-48z" android:fillColor="#FF4B5159" />
+            <path android:pathData="M48.96,1.92h142.08a47.04,47.04 0 0,1 47.04,47.04v142.08a47.04,47.04 0 0,1 -47.04,47.04h-142.08a47.04,47.04 0 0,1 -47.04,-47.04v-142.08a47.04,47.04 0 0,1 47.04,-47.04z" android:strokeColor="#FF646B74" android:strokeWidth="3.84" />
+            <path android:pathData="M48,120a72,72 0 1,0 144,0a72,72 0 1,0 -144,0z" android:strokeColor="#FFFFFFFF" android:strokeWidth="20.4" />
+            <path android:pathData="M120,64.2L120,73.8" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M147.9,71.68L143.1,79.99" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M168.32,92.1L160.01,96.9" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M175.8,120L166.2,120" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M168.32,147.9L160.01,143.1" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M147.9,168.32L143.1,160.01" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M120,175.8L120,166.2" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M92.1,168.32L96.9,160.01" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M71.68,147.9L79.99,143.1" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M64.2,120L73.8,120" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M71.68,92.1L79.99,96.9" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M92.1,71.68L96.9,79.99" android:strokeColor="#8CFFFFFF" android:strokeWidth="3.84" android:strokeLineCap="round" />
+            <path android:pathData="M92.4,120a27.6,27.6 0 1,0 55.2,0a27.6,27.6 0 1,0 -55.2,0z" android:fillColor="#FFF26B1D" />
+            <path android:pathData="M105.6,120a14.4,14.4 0 1,0 28.8,0a14.4,14.4 0 1,0 -28.8,0z" android:fillColor="#FF4B5159" />
+            <path android:pathData="M113.76,120a6.24,6.24 0 1,0 12.48,0a6.24,6.24 0 1,0 -12.48,0z" android:fillColor="#FFF26B1D" />
+            <path android:pathData="M164.64,164.64L206.4,206.4" android:strokeColor="#FFFFFFFF" android:strokeWidth="20.4" android:strokeLineCap="butt" />
+            <path android:pathData="M24.48,31.2a6.72,6.72 0 1,0 13.44,0a6.72,6.72 0 1,0 -13.44,0z" android:fillColor="#CCFFFFFF" />
+            <path android:pathData="M202.08,31.2a6.72,6.72 0 1,0 13.44,0a6.72,6.72 0 1,0 -13.44,0z" android:fillColor="#CCFFFFFF" />
+            <path android:pathData="M24.48,208.8a6.72,6.72 0 1,0 13.44,0a6.72,6.72 0 1,0 -13.44,0z" android:fillColor="#CCFFFFFF" />
         </group>
         <group android:translateX="280" android:translateY="0">
             <group android:translateX="0" android:translateY="0">
-                <path android:pathData="M8.5,50a43.5,42.5 0 1,0 87,0a43.5,42.5 0 1,0 -87,0z" android:strokeColor="#FFF6ECE8" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                <path android:pathData="M8.5,50a43.5,42.5 0 1,0 87,0a43.5,42.5 0 1,0 -87,0z" android:strokeColor="#FFFFFFFF" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
             </group>
             <group android:translateX="0" android:translateY="0">
-                <path android:pathData="M62.4,66L106.08,112" android:strokeColor="#FFF6ECE8" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                <path android:pathData="M62.4,66L106.08,112" android:strokeColor="#FFFFFFFF" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
             </group>
             <group android:translateX="116" android:translateY="0">
-                <path android:pathData="M8.5,0V57a34.5,34.5 0 0,0 69,0V0" android:strokeColor="#FFF6ECE8" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                <path android:pathData="M8.5,0V57a34.5,34.5 0 0,0 69,0V0" android:strokeColor="#FFFFFFFF" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
             </group>
             <group android:translateX="212" android:translateY="0">
-                <path android:pathData="M8.5,50a43.5,42.5 0 1,0 87,0a43.5,42.5 0 1,0 -87,0z" android:strokeColor="#FFF6ECE8" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                <path android:pathData="M8.5,50a43.5,42.5 0 1,0 87,0a43.5,42.5 0 1,0 -87,0z" android:strokeColor="#FFFFFFFF" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
             </group>
             <group android:translateX="320" android:translateY="0">
-                <path android:pathData="M0,8.5H84M42,8.5V100" android:strokeColor="#FFF6ECE8" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                <path android:pathData="M0,8.5H84M42,8.5V100" android:strokeColor="#FFFFFFFF" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
             </group>
             <group android:translateX="416" android:translateY="0">
                 <clip-path android:pathData="M-30,0h154v100h-154z" />
-                <path android:pathData="M-6,112L47,-14L100,112" android:strokeColor="#FFF6ECE8" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                <path android:pathData="M-6,112L47,-14L100,112" android:strokeColor="#FFFFFFFF" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
             </group>
             <group android:translateX="416" android:translateY="0">
                 <clip-path android:pathData="M-6,112L47,-14L100,112z" />
-                <path android:pathData="M-10,70H104" android:strokeColor="#FFF6ECE8" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                <path android:pathData="M-10,70H104" android:strokeColor="#FFFFFFFF" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
             </group>
             <group android:translateX="0" android:translateY="140">
                 <group android:translateX="8" android:translateY="0">
                     <clip-path android:pathData="M-30,0h154v100h-154z" />
-                    <path android:pathData="M-6,-12L47,114L100,-12" android:strokeColor="#FFE4572E" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                    <path android:pathData="M-6,-12L47,114L100,-12" android:strokeColor="#FFF26B1D" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
                 </group>
                 <group android:translateX="117.5" android:translateY="0">
                     <clip-path android:pathData="M-30,0h154v100h-154z" />
-                    <path android:pathData="M-6,112L47,-14L100,112" android:strokeColor="#FFE4572E" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                    <path android:pathData="M-6,112L47,-14L100,112" android:strokeColor="#FFF26B1D" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
                 </group>
                 <group android:translateX="117.5" android:translateY="0">
                     <clip-path android:pathData="M-6,112L47,-14L100,112z" />
-                    <path android:pathData="M-10,70H104" android:strokeColor="#FFE4572E" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                    <path android:pathData="M-10,70H104" android:strokeColor="#FFF26B1D" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
                 </group>
                 <group android:translateX="239" android:translateY="0">
-                    <path android:pathData="M8.5,0V57a34.5,34.5 0 0,0 69,0V0" android:strokeColor="#FFE4572E" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                    <path android:pathData="M8.5,0V57a34.5,34.5 0 0,0 69,0V0" android:strokeColor="#FFF26B1D" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
                 </group>
                 <group android:translateX="352.5" android:translateY="0">
-                    <path android:pathData="M8.5,0V91.5H70" android:strokeColor="#FFE4572E" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                    <path android:pathData="M8.5,0V91.5H70" android:strokeColor="#FFF26B1D" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
                 </group>
                 <group android:translateX="436" android:translateY="0">
-                    <path android:pathData="M0,8.5H84M42,8.5V100" android:strokeColor="#FFE4572E" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
+                    <path android:pathData="M0,8.5H84M42,8.5V100" android:strokeColor="#FFF26B1D" android:strokeWidth="17" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeMiterLimit="10" />
                 </group>
             </group>
         </group>
