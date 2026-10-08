@@ -103,7 +103,7 @@ fun ClientPicker(
                     if (f.isFocused) { searching = true; query = ""; expanded = true } else { searching = false; query = ""; expanded = false }
                 },
         )
-        androidx.compose.material3.ExposedDropdownMenu(expanded = open, onDismissRequest = { expanded = false }) {
+        ExposedDropdownMenu(expanded = open, onDismissRequest = { expanded = false }) {
             if (matches.isEmpty()) {
                 DropdownMenuItem(text = { Text(stringResource(R.string.no_clients_match, query)) }, onClick = {}, enabled = false)
             }
