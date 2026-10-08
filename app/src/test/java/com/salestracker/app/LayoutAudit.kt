@@ -131,7 +131,9 @@ class LayoutAudit {
         var dark by mutableStateOf(false)
         rule.setContent {
             CompositionLocalProvider(LocalTerms provides vm.trade.terms) {
-                SalesTrackerTheme(palette = vm.palette, dark = dark) { SalesApp(vm, dark) }
+                SalesTrackerTheme(palette = vm.palette, dark = dark) {
+                    androidx.compose.material3.Surface { com.salestracker.app.ui.screens.WelcomeScreen(vm) }
+                }
             }
         }
         shot("h-welcome-light")
