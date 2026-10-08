@@ -120,12 +120,14 @@ def svg(p, width, top=-4, bottom=104, pad=6, extra_h=0):
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}"><defs>{"".join(p.clips)}</defs>{"".join(p.parts)}</svg>'
 
 
-def monogram(size=120, ink=INK, coral=CORAL, light=WHITE):
+def monogram(size=120, ink=INK, coral=CORAL, light=WHITE, edge=None):
     """Vault-door mark: a rounded-square door, a combination-dial ring with a bullseye centre, four bolts,
     and the Q's tail as the door handle."""
     import math
     s=size; r=s*0.2; cx=s/2; cy=s/2
     out=[f'<rect x="0" y="0" width="{f(s)}" height="{f(s)}" rx="{f(r)}" fill="{ink}"/>']
+    if edge:  # a thin rim so the door still reads on a dark background
+        out.append(f'<rect x="{f(s*0.008)}" y="{f(s*0.008)}" width="{f(s*0.984)}" height="{f(s*0.984)}" rx="{f(r*0.98)}" fill="none" stroke="{edge}" stroke-width="{f(s*0.016)}"/>')
     R=s*0.30; sw=s*0.085
     out.append(f'<circle cx="{f(cx)}" cy="{f(cy)}" r="{f(R)}" fill="none" stroke="{light}" stroke-width="{f(sw)}"/>')
     for i in range(12):
@@ -139,16 +141,20 @@ def monogram(size=120, ink=INK, coral=CORAL, light=WHITE):
     return "".join(out)
 
 def stacked(S=17, colors=(INK,CORAL)):
-    """QUOTA over VAULT, both lines the same width."""
+    """QUOTA over VAULT. The lines are matched by their VISIBLE edges: a slanted A or V reaches about
+    10 units past its box, so VAULT is placed and spaced to line up with QUOTA by eye, not by box."""
     c1,c2=colors
     p1=Pen(S); x=0
     for fn,ww,k in [(cap_Q,104,0),(cap_U,86,0),(cap_O,104,-2),(cap_T,84,-8),(cap_A,94,0)]:
         x+=k; fn(p1,x,c1,ww); x+=ww+12
     w1=x-12
-    p2=Pen(S); x=0
+    visible_right=w1+10          # QUOTA ends on the A's slanted foot
+    p2=Pen(S)
     letters=[(cap_V,94,0),(cap_A,94,-12),(cap_U,86,0),(cap_L,70,0),(cap_T,84,-14)]
     natural=sum(ww+k for _,ww,k in letters)
-    track=(w1-natural)/(len(letters)-1)
+    start=8                      # the V's top-left arm reaches ~10 left of its box
+    track=(visible_right-start-natural)/(len(letters)-1)
+    x=start
     for fn,ww,k in letters:
         x+=k; fn(p2,x,c2,ww); x+=ww+track
-    return p1,p2,w1
+    return p1,p2,visible_right

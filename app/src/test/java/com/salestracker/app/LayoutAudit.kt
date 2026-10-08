@@ -120,6 +120,23 @@ class LayoutAudit {
         }
     }
 
+    /** The first welcome page, which carries the Quota Vault lockup, in light and dark. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun h_welcome() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        val vm = AppViewModel(app).apply { acceptAgreement() }
+        var dark by mutableStateOf(false)
+        rule.setContent {
+            CompositionLocalProvider(LocalTerms provides vm.trade.terms) {
+                SalesTrackerTheme(palette = vm.palette, dark = dark) { SalesApp(vm, dark) }
+            }
+        }
+        shot("h-welcome-light")
+        dark = true
+        shot("h-welcome-dark")
+    }
+
     /** The home-screen widgets with the sample data, plus how a widget looks when app lock is on. */
     @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
     fun g_widgets() {

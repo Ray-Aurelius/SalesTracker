@@ -4,6 +4,8 @@ package com.salestracker.app.ui.screens
 
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.foundation.Image
+import androidx.compose.ui.graphics.luminance
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -83,12 +85,14 @@ fun WelcomeScreen(vm: AppViewModel) {
             ) {
                 when (page) {
                     0 -> {
-                        Box(
-                            Modifier.align(Alignment.CenterHorizontally).size(112.dp).clip(RoundedCornerShape(30.dp)).background(Color(0xFFE4572E)),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            Image(painterResource(R.drawable.ic_launcher_foreground), contentDescription = null, modifier = Modifier.size(150.dp))
-                        }
+                        // The Quota Vault lockup: the vault-door mark with QUOTA over VAULT. Follows the app's own
+                        // light / dark choice (which can differ from the phone's).
+                        val darkTheme = MaterialTheme.colorScheme.background.luminance() < 0.5f
+                        Image(
+                            painterResource(if (darkTheme) R.drawable.qv_lockup_dark else R.drawable.qv_lockup_light),
+                            contentDescription = stringResource(R.string.app_name),
+                            modifier = Modifier.align(Alignment.CenterHorizontally).fillMaxWidth(0.82f).widthIn(max = 340.dp).padding(vertical = 8.dp),
+                        )
                         Text(
                             stringResource(R.string.welcome_title),
                             style = MaterialTheme.typography.headlineMedium,
