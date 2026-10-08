@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">Ana ekranınızda tutarlar gizli. Güvenlik ve gizlilik\'ten izin verebilirsiniz.</string>
     <string name="widget_amounts">Hedef yolunda widget\'ında tutarları göster</string>
     <string name="widget_amounts_desc">Ana ekranınızı gören herkes beklenen kazancınızı okuyabilir. Varsayılan olarak kapalı.</string>
+    <string name="widget_pace_ahead">Önceki dönemin temposunun önündesiniz. Böyle devam!</string>
+    <string name="widget_pace_behind">Önceki dönemin temposunun gerisindesiniz. Yetişmek için hâlâ zaman var.</string>
+    <string name="widget_pace_keep_going">Temponuzu belirlemek için satış kaydetmeye devam edin.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">المبالغ مخفية على شاشتك الرئيسية. يمكنك السماح بها في الأمان والخصوصية.</string>
     <string name="widget_amounts">إظهار المبالغ في أداة «في الطريق إلى»</string>
     <string name="widget_amounts_desc">يمكن لأي شخص يرى شاشتك الرئيسية قراءة أرباحك المتوقعة. معطّل افتراضيًا.</string>
+    <string name="widget_pace_ahead">أنت متقدّم على وتيرة الفترة السابقة. واصل!</string>
+    <string name="widget_pace_behind">أنت متأخر عن وتيرة الفترة السابقة. ما زال هناك وقت للّحاق.</string>
+    <string name="widget_pace_keep_going">واصل تسجيل المبيعات لتحديد وتيرتك.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

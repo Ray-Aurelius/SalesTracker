@@ -240,8 +240,14 @@ class PaceWidget : AppWidgetProvider() {
                 v.setTextViewText(R.id.pace_line, context.getString(com.salestracker.app.ui.screens.paceKindRes(pace)))
                 v.setTextViewText(R.id.pace_detail, listOfNotNull(vs, left).joinToString(" · "))
             } else {
+                // No money on the home screen: the comparison with last period, and a nudge.
                 v.setTextViewText(R.id.pace_big, vs ?: left)
-                v.setTextViewText(R.id.pace_line, context.getString(R.string.widget_pace_hidden))
+                val nudge = when {
+                    pace.vsPrevious == null -> R.string.widget_pace_keep_going
+                    pace.vsPrevious!! >= 0 -> R.string.widget_pace_ahead
+                    else -> R.string.widget_pace_behind
+                }
+                v.setTextViewText(R.id.pace_line, context.getString(nudge))
                 v.setTextViewText(R.id.pace_detail, if (vs != null) left else "")
             }
             return v

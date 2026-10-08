@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">홈 화면에서는 금액이 숨겨져 있습니다. 보안 및 개인정보에서 허용할 수 있습니다.</string>
     <string name="widget_amounts">예상 달성 위젯에 금액 표시</string>
     <string name="widget_amounts_desc">홈 화면을 보는 누구나 예상 수입을 볼 수 있습니다. 기본값은 꺼짐입니다.</string>
+    <string name="widget_pace_ahead">지난 기간보다 빠른 속도입니다. 계속 이대로!</string>
+    <string name="widget_pace_behind">지난 기간보다 느린 속도입니다. 아직 따라잡을 시간이 있어요.</string>
+    <string name="widget_pace_keep_going">판매를 계속 기록해 속도를 만들어 보세요.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

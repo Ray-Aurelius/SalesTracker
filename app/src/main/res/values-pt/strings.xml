@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">Os valores estão ocultos na tela inicial. Você pode permiti-los em Segurança e privacidade.</string>
     <string name="widget_amounts">Mostrar valores no widget A caminho</string>
     <string name="widget_amounts_desc">Qualquer pessoa que veja sua tela inicial poderia ler seus ganhos previstos. Desativado por padrão.</string>
+    <string name="widget_pace_ahead">À frente do ritmo do período anterior. Continue assim!</string>
+    <string name="widget_pace_behind">Atrás do ritmo do período anterior. Ainda dá tempo de recuperar.</string>
+    <string name="widget_pace_keep_going">Continue registrando vendas para definir seu ritmo.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>

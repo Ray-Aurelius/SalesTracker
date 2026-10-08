@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">হোম স্ক্রিনে অঙ্ক লুকানো আছে। নিরাপত্তা ও গোপনীয়তায় অনুমতি দিতে পারেন।</string>
     <string name="widget_amounts">সম্ভাব্য উইজেটে অঙ্ক দেখান</string>
     <string name="widget_amounts_desc">আপনার হোম স্ক্রিন যে দেখবে সে আপনার সম্ভাব্য আয় পড়তে পারবে। শুরুতে বন্ধ।</string>
+    <string name="widget_pace_ahead">আগের সময়ের গতির চেয়ে এগিয়ে আছেন। এভাবেই চালিয়ে যান!</string>
+    <string name="widget_pace_behind">আগের সময়ের গতির চেয়ে পিছিয়ে আছেন। এখনো ধরার সময় আছে।</string>
+    <string name="widget_pace_keep_going">আপনার গতি ঠিক করতে বিক্রয় লিখতে থাকুন।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

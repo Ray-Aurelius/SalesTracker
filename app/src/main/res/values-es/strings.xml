@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">Los importes están ocultos en tu pantalla de inicio. Puedes permitirlos en Seguridad y privacidad.</string>
     <string name="widget_amounts">Mostrar importes en el widget En camino</string>
     <string name="widget_amounts_desc">Cualquiera que vea tu pantalla de inicio podría leer tus ganancias previstas. Desactivado de forma predeterminada.</string>
+    <string name="widget_pace_ahead">Vas por delante del ritmo del periodo anterior. ¡Sigue así!</string>
+    <string name="widget_pace_behind">Vas por detrás del ritmo del periodo anterior. Aún hay tiempo para recuperarte.</string>
+    <string name="widget_pace_keep_going">Sigue registrando ventas para marcar tu ritmo.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>

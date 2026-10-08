@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">Beträge sind auf deinem Startbildschirm ausgeblendet. Du kannst sie unter Sicherheit &amp; Datenschutz erlauben.</string>
     <string name="widget_amounts">Beträge im Auf-Kurs-Widget anzeigen</string>
     <string name="widget_amounts_desc">Jeder, der deinen Startbildschirm sieht, könnte deine erwarteten Einnahmen lesen. Standardmäßig aus.</string>
+    <string name="widget_pace_ahead">Du liegst vor dem Tempo des letzten Zeitraums. Weiter so!</string>
+    <string name="widget_pace_behind">Du liegst hinter dem Tempo des letzten Zeitraums. Noch ist Zeit zum Aufholen.</string>
+    <string name="widget_pace_keep_going">Erfasse weiter Verkäufe, um dein Tempo zu bestimmen.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

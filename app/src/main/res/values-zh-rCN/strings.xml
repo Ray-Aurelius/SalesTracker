@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">主屏幕上的金额已隐藏。你可以在“安全与隐私”中允许显示。</string>
     <string name="widget_amounts">在“预计达成”小组件中显示金额</string>
     <string name="widget_amounts_desc">任何看到你主屏幕的人都可能看到你的预计收入。默认关闭。</string>
+    <string name="widget_pace_ahead">领先上一期的进度，继续加油！</string>
+    <string name="widget_pace_behind">落后于上一期的进度，还有时间追上。</string>
+    <string name="widget_pace_keep_going">继续记录销售，确立你的节奏。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

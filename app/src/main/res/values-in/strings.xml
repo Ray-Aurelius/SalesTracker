@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">Jumlah uang disembunyikan di layar utama. Anda bisa mengizinkannya di Keamanan &amp; privasi.</string>
     <string name="widget_amounts">Tampilkan jumlah di widget Menuju</string>
     <string name="widget_amounts_desc">Siapa pun yang melihat layar utama Anda bisa membaca perkiraan penghasilan Anda. Nonaktif secara default.</string>
+    <string name="widget_pace_ahead">Anda lebih cepat dari laju periode sebelumnya. Pertahankan!</string>
+    <string name="widget_pace_behind">Anda tertinggal dari laju periode sebelumnya. Masih ada waktu untuk mengejar.</string>
+    <string name="widget_pace_keep_going">Terus catat penjualan untuk menetapkan laju Anda.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

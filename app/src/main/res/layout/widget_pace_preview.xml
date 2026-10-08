@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="@string/widget_pace_hidden"
+            android:text="@string/widget_pace_ahead"
             android:textColor="@color/widget_text"
             android:textSize="13sp" />
         <TextView

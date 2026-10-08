@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">Số tiền đang được ẩn trên màn hình chính. Bạn có thể cho phép trong Bảo mật và quyền riêng tư.</string>
     <string name="widget_amounts">Hiện số tiền trên tiện ích Dự kiến đạt</string>
     <string name="widget_amounts_desc">Bất kỳ ai thấy màn hình chính đều có thể đọc thu nhập dự kiến của bạn. Mặc định tắt.</string>
+    <string name="widget_pace_ahead">Bạn đang nhanh hơn nhịp của kỳ trước. Cứ thế tiếp tục!</string>
+    <string name="widget_pace_behind">Bạn đang chậm hơn nhịp của kỳ trước. Vẫn còn thời gian để bắt kịp.</string>
+    <string name="widget_pace_keep_going">Hãy tiếp tục ghi giao dịch để tạo nhịp cho mình.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

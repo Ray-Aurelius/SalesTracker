@@ -660,6 +660,9 @@
     <string name="widget_pace_hidden">आपकी होम स्क्रीन पर राशि छिपी है। आप सुरक्षा और निजता में इसकी अनुमति दे सकते हैं।</string>
     <string name="widget_amounts">अनुमानित विजेट पर राशि दिखाएँ</string>
     <string name="widget_amounts_desc">आपकी होम स्क्रीन देखने वाला कोई भी आपकी अनुमानित कमाई पढ़ सकता है। शुरुआत में बंद।</string>
+    <string name="widget_pace_ahead">पिछली अवधि की रफ़्तार से आगे हैं। ऐसे ही जारी रखें!</string>
+    <string name="widget_pace_behind">पिछली अवधि की रफ़्तार से पीछे हैं। अभी भी बराबरी का समय है।</string>
+    <string name="widget_pace_keep_going">अपनी रफ़्तार तय करने के लिए बिक्री दर्ज करते रहें।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
