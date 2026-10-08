@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import android.graphics.Bitmap
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.hasText
@@ -124,6 +126,27 @@ class LayoutAudit {
                 shot("$config-$name-b")
             }
         }
+    }
+
+    /** A client's stats card (it sits at the bottom of the client form, below the fold). */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun i_clientStats() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); setDefaultCommission(10.0); loadSampleData() }
+        val data = com.salestracker.app.data.Repository.readSnapshot(app)
+        val client = data.clients.first { it.firstName == "Alex" }
+        val metrics = com.salestracker.app.data.ClientMetrics.of(client, data)
+        rule.setContent {
+            SalesTrackerTheme(dark = false) {
+                androidx.compose.material3.Surface {
+                    androidx.compose.foundation.layout.Box(androidx.compose.ui.Modifier.padding(16.dp)) {
+                        com.salestracker.app.ui.screens.ClientStatsCard(metrics)
+                    }
+                }
+            }
+        }
+        shot("i-client-stats")
     }
 
     /** The first welcome page, which carries the Quota Vault lockup, in light and dark. */
