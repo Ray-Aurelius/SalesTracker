@@ -36,6 +36,7 @@ object Widgets {
         update(context, TasksWidget::class.java) { TasksWidget.build(context, snapshot) }
         update(context, ScheduleWidget::class.java) { ScheduleWidget.build(context, snapshot) }
         update(context, StatsWidget::class.java) { StatsWidget.build(context, snapshot) }
+        update(context, PaceWidget::class.java) { PaceWidget.build(context, snapshot) }
     }
 
     internal fun update(context: Context, cls: Class<out AppWidgetProvider>, build: () -> RemoteViews) {
@@ -194,6 +195,55 @@ class StatsWidget : AppWidgetProvider() {
                 R.id.week_line2,
                 context.getString(R.string.close_rate) + " · " + if (week.opportunities == 0) "—" else formatPercent(week.closeRate),
             )
+            return v
+        }
+    }
+}
+
+/**
+ * "On track for": where this week, month, quarter or year is headed, following the period picked on the
+ * Stats tab. Shows money only when allowed in Security & privacy (off by default); otherwise just how the
+ * pace compares with last period, which motivates without putting earnings on the home screen.
+ */
+class PaceWidget : AppWidgetProvider() {
+    override fun onUpdate(context: Context, manager: AppWidgetManager, appWidgetIds: IntArray) {
+        val views = build(context, Repository.readSnapshot(context))
+        appWidgetIds.forEach { manager.updateAppWidget(it, views) }
+    }
+
+    companion object {
+        fun build(context: Context, data: AppData): RemoteViews {
+            val prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+            // The widget can be drawn before the app has run: load the chosen currency here too.
+            com.salestracker.app.data.MoneySettings.currencyCode = prefs.getString("currency", null)
+            val period = com.salestracker.app.data.GoalPeriod.entries.firstOrNull { it.name == prefs.getString("pacePeriod", null) }
+                ?: com.salestracker.app.data.GoalPeriod.MONTH
+            val v = RemoteViews(context.packageName, R.layout.widget_pace)
+            v.setOnClickPendingIntent(R.id.widget_root, Widgets.openApp(context, 14))
+            v.setTextViewText(R.id.widget_title, context.getString(R.string.on_track_title) + " · " + context.getString(period.label))
+            fun message(text: String): RemoteViews {
+                v.setViewVisibility(R.id.pace_body, View.GONE)
+                v.setViewVisibility(R.id.widget_message, View.VISIBLE)
+                v.setTextViewText(R.id.widget_message, text)
+                return v
+            }
+            if (Widgets.isLocked(context)) return message(context.getString(R.string.widget_locked_any))
+            val pace = com.salestracker.app.data.Pace.of(data.sales, data.defaultCommissionPercent, period)
+            if (pace.isEmpty) return message(context.getString(R.string.on_track_empty))
+            v.setViewVisibility(R.id.pace_body, View.VISIBLE)
+            v.setViewVisibility(R.id.widget_message, View.GONE)
+            val left = if (pace.daysLeft == 0) context.getString(R.string.on_track_last_day)
+                else context.resources.getQuantityString(R.plurals.on_track_days_left, pace.daysLeft, pace.daysLeft)
+            val vs = pace.vsPrevious?.let { context.getString(com.salestracker.app.ui.screens.paceVsRes(period), com.salestracker.app.ui.screens.signedPercent(it)) }
+            if (prefs.getBoolean("widgetAmounts", false)) {
+                v.setTextViewText(R.id.pace_big, com.salestracker.app.data.formatMoney(pace.projected))
+                v.setTextViewText(R.id.pace_line, context.getString(com.salestracker.app.ui.screens.paceKindRes(pace)))
+                v.setTextViewText(R.id.pace_detail, listOfNotNull(vs, left).joinToString(" · "))
+            } else {
+                v.setTextViewText(R.id.pace_big, vs ?: left)
+                v.setTextViewText(R.id.pace_line, context.getString(R.string.widget_pace_hidden))
+                v.setTextViewText(R.id.pace_detail, if (vs != null) left else "")
+            }
             return v
         }
     }

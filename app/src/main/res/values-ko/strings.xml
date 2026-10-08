@@ -639,6 +639,27 @@
     <string name="currency_auto">자동</string>
     <string name="currency_auto_desc">휴대전화 지역 설정: %1$s</string>
     <string name="currency_note">기호와 숫자 형식만 바뀝니다. 이미 입력한 금액은 환산되지 않습니다.</string>
+    <string name="on_track_title">예상 달성</string>
+    <string name="on_track_commission_week">주말까지의 수수료</string>
+    <string name="on_track_commission_month">월말까지의 수수료</string>
+    <string name="on_track_commission_quarter">분기말까지의 수수료</string>
+    <string name="on_track_commission_year">연말까지의 수수료</string>
+    <string name="on_track_sales_week">주말까지의 매출</string>
+    <string name="on_track_sales_month">월말까지의 매출</string>
+    <string name="on_track_sales_quarter">분기말까지의 매출</string>
+    <string name="on_track_sales_year">연말까지의 매출</string>
+    <string name="on_track_so_far">지금까지 번 금액: %1$s</string>
+    <string name="on_track_sales_so_far">지금까지 매출: %1$s</string>
+    <string name="on_track_last_day">마지막 날</string>
+    <string name="on_track_vs_week">지난주 대비 %1$s</string>
+    <string name="on_track_vs_month">지난달 대비 %1$s</string>
+    <string name="on_track_vs_quarter">지난 분기 대비 %1$s</string>
+    <string name="on_track_vs_year">작년 대비 %1$s</string>
+    <string name="on_track_empty">이 기간에 판매를 기록하면 예상 흐름이 보입니다.</string>
+    <string name="widget_pace_description">이번 주·달·분기·연도의 예상 흐름(통계 탭에서 선택). 금액은 보안 및 개인정보에서 허용한 경우에만 표시됩니다. 앱 잠금이 켜져 있으면 숨겨집니다.</string>
+    <string name="widget_pace_hidden">홈 화면에서는 금액이 숨겨져 있습니다. 보안 및 개인정보에서 허용할 수 있습니다.</string>
+    <string name="widget_amounts">예상 달성 위젯에 금액 표시</string>
+    <string name="widget_amounts_desc">홈 화면을 보는 누구나 예상 수입을 볼 수 있습니다. 기본값은 꺼짐입니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>
@@ -671,5 +692,8 @@
     </plurals>
     <plurals name="cs_every_days">
         <item quantity="other">%d일마다</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="other">%d일 남음</item>
     </plurals>
 </resources>

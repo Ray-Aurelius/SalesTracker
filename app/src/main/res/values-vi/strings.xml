@@ -639,6 +639,27 @@
     <string name="currency_auto">Tự động</string>
     <string name="currency_auto_desc">Theo khu vực của điện thoại: %1$s</string>
     <string name="currency_note">Chỉ đổi ký hiệu và định dạng số. Các số tiền đã nhập không bị quy đổi.</string>
+    <string name="on_track_title">Dự kiến đạt</string>
+    <string name="on_track_commission_week">tiền hoa hồng đến cuối tuần</string>
+    <string name="on_track_commission_month">tiền hoa hồng đến cuối tháng</string>
+    <string name="on_track_commission_quarter">tiền hoa hồng đến cuối quý</string>
+    <string name="on_track_commission_year">tiền hoa hồng đến cuối năm</string>
+    <string name="on_track_sales_week">doanh số đến cuối tuần</string>
+    <string name="on_track_sales_month">doanh số đến cuối tháng</string>
+    <string name="on_track_sales_quarter">doanh số đến cuối quý</string>
+    <string name="on_track_sales_year">doanh số đến cuối năm</string>
+    <string name="on_track_so_far">Đã kiếm được: %1$s</string>
+    <string name="on_track_sales_so_far">Doanh số đến nay: %1$s</string>
+    <string name="on_track_last_day">Ngày cuối</string>
+    <string name="on_track_vs_week">%1$s so với tuần trước</string>
+    <string name="on_track_vs_month">%1$s so với tháng trước</string>
+    <string name="on_track_vs_quarter">%1$s so với quý trước</string>
+    <string name="on_track_vs_year">%1$s so với năm trước</string>
+    <string name="on_track_empty">Hãy ghi một giao dịch trong kỳ này để xem bạn đang hướng tới đâu.</string>
+    <string name="widget_pace_description">Tuần, tháng, quý hoặc năm của bạn đang hướng tới đâu (chọn ở thẻ Thống kê). Số tiền chỉ hiện nếu bạn cho phép trong Bảo mật và quyền riêng tư. Ẩn khi bật khóa ứng dụng.</string>
+    <string name="widget_pace_hidden">Số tiền đang được ẩn trên màn hình chính. Bạn có thể cho phép trong Bảo mật và quyền riêng tư.</string>
+    <string name="widget_amounts">Hiện số tiền trên tiện ích Dự kiến đạt</string>
+    <string name="widget_amounts_desc">Bất kỳ ai thấy màn hình chính đều có thể đọc thu nhập dự kiến của bạn. Mặc định tắt.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>
@@ -671,5 +692,8 @@
     </plurals>
     <plurals name="cs_every_days">
         <item quantity="other">mỗi %d ngày</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="other">còn %d ngày</item>
     </plurals>
 </resources>

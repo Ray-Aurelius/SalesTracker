@@ -639,6 +639,27 @@
     <string name="currency_auto">Otomatik</string>
     <string name="currency_auto_desc">Telefonunuzun bölgesine göre: %1$s</string>
     <string name="currency_note">Yalnızca simgeyi ve sayı biçimini değiştirir. Daha önce girilen tutarlar çevrilmez.</string>
+    <string name="on_track_title">Hedef yolunda</string>
+    <string name="on_track_commission_week">hafta sonuna kadar komisyon</string>
+    <string name="on_track_commission_month">ay sonuna kadar komisyon</string>
+    <string name="on_track_commission_quarter">çeyrek sonuna kadar komisyon</string>
+    <string name="on_track_commission_year">yıl sonuna kadar komisyon</string>
+    <string name="on_track_sales_week">hafta sonuna kadar satış</string>
+    <string name="on_track_sales_month">ay sonuna kadar satış</string>
+    <string name="on_track_sales_quarter">çeyrek sonuna kadar satış</string>
+    <string name="on_track_sales_year">yıl sonuna kadar satış</string>
+    <string name="on_track_so_far">Şimdiye kadar kazanılan: %1$s</string>
+    <string name="on_track_sales_so_far">Şimdiye kadarki satış: %1$s</string>
+    <string name="on_track_last_day">Son gün</string>
+    <string name="on_track_vs_week">Geçen haftaya göre %1$s</string>
+    <string name="on_track_vs_month">Geçen aya göre %1$s</string>
+    <string name="on_track_vs_quarter">Geçen çeyreğe göre %1$s</string>
+    <string name="on_track_vs_year">Geçen yıla göre %1$s</string>
+    <string name="on_track_empty">Nereye gittiğinizi görmek için bu dönemde bir satış kaydedin.</string>
+    <string name="widget_pace_description">Haftanızın, ayınızın, çeyreğinizin veya yılınızın gidişatı (İstatistik sekmesinden seçin). Tutarlar yalnızca Güvenlik ve gizlilik\'te izin verirseniz görünür. Uygulama kilidi açıkken gizlenir.</string>
+    <string name="widget_pace_hidden">Ana ekranınızda tutarlar gizli. Güvenlik ve gizlilik\'ten izin verebilirsiniz.</string>
+    <string name="widget_amounts">Hedef yolunda widget\'ında tutarları göster</string>
+    <string name="widget_amounts_desc">Ana ekranınızı gören herkes beklenen kazancınızı okuyabilir. Varsayılan olarak kapalı.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>
@@ -682,5 +703,9 @@
     <plurals name="cs_every_days">
         <item quantity="one">her gün</item>
         <item quantity="other">%d günde bir</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="one">%d gün kaldı</item>
+        <item quantity="other">%d gün kaldı</item>
     </plurals>
 </resources>

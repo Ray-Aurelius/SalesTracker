@@ -639,6 +639,27 @@
     <string name="currency_auto">স্বয়ংক্রিয়</string>
     <string name="currency_auto_desc">আপনার ফোনের অঞ্চল অনুযায়ী: %1$s</string>
     <string name="currency_note">শুধু চিহ্ন ও সংখ্যার বিন্যাস বদলায়। আগে লেখা অঙ্ক রূপান্তর হয় না।</string>
+    <string name="on_track_title">সম্ভাব্য</string>
+    <string name="on_track_commission_week">সপ্তাহ শেষে কমিশন</string>
+    <string name="on_track_commission_month">মাস শেষে কমিশন</string>
+    <string name="on_track_commission_quarter">ত্রৈমাসিক শেষে কমিশন</string>
+    <string name="on_track_commission_year">বছর শেষে কমিশন</string>
+    <string name="on_track_sales_week">সপ্তাহ শেষে বিক্রয়</string>
+    <string name="on_track_sales_month">মাস শেষে বিক্রয়</string>
+    <string name="on_track_sales_quarter">ত্রৈমাসিক শেষে বিক্রয়</string>
+    <string name="on_track_sales_year">বছর শেষে বিক্রয়</string>
+    <string name="on_track_so_far">এখন পর্যন্ত আয়: %1$s</string>
+    <string name="on_track_sales_so_far">এখন পর্যন্ত বিক্রয়: %1$s</string>
+    <string name="on_track_last_day">শেষ দিন</string>
+    <string name="on_track_vs_week">গত সপ্তাহের তুলনায় %1$s</string>
+    <string name="on_track_vs_month">গত মাসের তুলনায় %1$s</string>
+    <string name="on_track_vs_quarter">গত ত্রৈমাসিকের তুলনায় %1$s</string>
+    <string name="on_track_vs_year">গত বছরের তুলনায় %1$s</string>
+    <string name="on_track_empty">আপনি কোথায় যাচ্ছেন দেখতে এই সময়ে একটি বিক্রয় লিখুন।</string>
+    <string name="widget_pace_description">আপনার সপ্তাহ, মাস, ত্রৈমাসিক বা বছর কোথায় যাচ্ছে (পরিসংখ্যান ট্যাবে বেছে নিন)। নিরাপত্তা ও গোপনীয়তায় অনুমতি দিলে তবেই অঙ্ক দেখায়। অ্যাপ লক চালু থাকলে লুকানো থাকে।</string>
+    <string name="widget_pace_hidden">হোম স্ক্রিনে অঙ্ক লুকানো আছে। নিরাপত্তা ও গোপনীয়তায় অনুমতি দিতে পারেন।</string>
+    <string name="widget_amounts">সম্ভাব্য উইজেটে অঙ্ক দেখান</string>
+    <string name="widget_amounts_desc">আপনার হোম স্ক্রিন যে দেখবে সে আপনার সম্ভাব্য আয় পড়তে পারবে। শুরুতে বন্ধ।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
@@ -682,5 +703,9 @@
     <plurals name="cs_every_days">
         <item quantity="one">প্রতিদিন</item>
         <item quantity="other">প্রতি %d দিনে</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="one">%d দিন বাকি</item>
+        <item quantity="other">%d দিন বাকি</item>
     </plurals>
 </resources>

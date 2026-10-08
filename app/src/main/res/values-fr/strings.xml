@@ -639,6 +639,27 @@
     <string name="currency_auto">Automatique</string>
     <string name="currency_auto_desc">Selon la région de votre téléphone : %1$s</string>
     <string name="currency_note">Change seulement le symbole et le format des nombres. Les montants déjà saisis ne sont pas convertis.</string>
+    <string name="on_track_title">En route pour</string>
+    <string name="on_track_commission_week">de commission d\'ici la fin de la semaine</string>
+    <string name="on_track_commission_month">de commission d\'ici la fin du mois</string>
+    <string name="on_track_commission_quarter">de commission d\'ici la fin du trimestre</string>
+    <string name="on_track_commission_year">de commission d\'ici la fin de l\'année</string>
+    <string name="on_track_sales_week">de ventes d\'ici la fin de la semaine</string>
+    <string name="on_track_sales_month">de ventes d\'ici la fin du mois</string>
+    <string name="on_track_sales_quarter">de ventes d\'ici la fin du trimestre</string>
+    <string name="on_track_sales_year">de ventes d\'ici la fin de l\'année</string>
+    <string name="on_track_so_far">Gagné jusqu\'ici : %1$s</string>
+    <string name="on_track_sales_so_far">Ventes jusqu\'ici : %1$s</string>
+    <string name="on_track_last_day">Dernier jour</string>
+    <string name="on_track_vs_week">%1$s par rapport à la semaine dernière</string>
+    <string name="on_track_vs_month">%1$s par rapport au mois dernier</string>
+    <string name="on_track_vs_quarter">%1$s par rapport au trimestre dernier</string>
+    <string name="on_track_vs_year">%1$s par rapport à l\'an dernier</string>
+    <string name="on_track_empty">Enregistrez une vente sur cette période pour voir où vous allez.</string>
+    <string name="widget_pace_description">Où vont votre semaine, votre mois, votre trimestre ou votre année (à choisir dans l\'onglet Stats). Les montants ne s\'affichent que si vous l\'autorisez dans Sécurité et confidentialité. Masqué quand le verrouillage de l\'app est activé.</string>
+    <string name="widget_pace_hidden">Les montants sont masqués sur votre écran d\'accueil. Vous pouvez les autoriser dans Sécurité et confidentialité.</string>
+    <string name="widget_amounts">Afficher les montants sur le widget En route</string>
+    <string name="widget_amounts_desc">Toute personne qui voit votre écran d\'accueil pourrait lire vos gains prévus. Désactivé par défaut.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>
@@ -693,5 +714,10 @@
         <item quantity="one">chaque jour</item>
         <item quantity="many">tous les %d jours</item>
         <item quantity="other">tous les %d jours</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="one">%d jour restant</item>
+        <item quantity="many">%d jours restants</item>
+        <item quantity="other">%d jours restants</item>
     </plurals>
 </resources>

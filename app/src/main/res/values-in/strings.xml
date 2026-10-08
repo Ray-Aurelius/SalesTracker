@@ -639,6 +639,27 @@
     <string name="currency_auto">Otomatis</string>
     <string name="currency_auto_desc">Sesuai wilayah ponsel Anda: %1$s</string>
     <string name="currency_note">Hanya mengubah simbol dan format angka. Jumlah yang sudah dimasukkan tidak dikonversi.</string>
+    <string name="on_track_title">Menuju</string>
+    <string name="on_track_commission_week">komisi di akhir minggu</string>
+    <string name="on_track_commission_month">komisi di akhir bulan</string>
+    <string name="on_track_commission_quarter">komisi di akhir kuartal</string>
+    <string name="on_track_commission_year">komisi di akhir tahun</string>
+    <string name="on_track_sales_week">penjualan di akhir minggu</string>
+    <string name="on_track_sales_month">penjualan di akhir bulan</string>
+    <string name="on_track_sales_quarter">penjualan di akhir kuartal</string>
+    <string name="on_track_sales_year">penjualan di akhir tahun</string>
+    <string name="on_track_so_far">Diperoleh sejauh ini: %1$s</string>
+    <string name="on_track_sales_so_far">Penjualan sejauh ini: %1$s</string>
+    <string name="on_track_last_day">Hari terakhir</string>
+    <string name="on_track_vs_week">%1$s dibanding minggu lalu</string>
+    <string name="on_track_vs_month">%1$s dibanding bulan lalu</string>
+    <string name="on_track_vs_quarter">%1$s dibanding kuartal lalu</string>
+    <string name="on_track_vs_year">%1$s dibanding tahun lalu</string>
+    <string name="on_track_empty">Catat penjualan di periode ini untuk melihat ke mana arah Anda.</string>
+    <string name="widget_pace_description">Ke mana arah minggu, bulan, kuartal, atau tahun Anda (pilih di tab Statistik). Jumlah uang hanya tampil jika Anda izinkan di Keamanan &amp; privasi. Disembunyikan saat kunci aplikasi aktif.</string>
+    <string name="widget_pace_hidden">Jumlah uang disembunyikan di layar utama. Anda bisa mengizinkannya di Keamanan &amp; privasi.</string>
+    <string name="widget_amounts">Tampilkan jumlah di widget Menuju</string>
+    <string name="widget_amounts_desc">Siapa pun yang melihat layar utama Anda bisa membaca perkiraan penghasilan Anda. Nonaktif secara default.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>
@@ -671,5 +692,8 @@
     </plurals>
     <plurals name="cs_every_days">
         <item quantity="other">setiap %d hari</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="other">%d hari lagi</item>
     </plurals>
 </resources>

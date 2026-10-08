@@ -639,6 +639,27 @@
     <string name="currency_auto">Automatisch</string>
     <string name="currency_auto_desc">Nach der Region deines Telefons: %1$s</string>
     <string name="currency_note">Ändert nur das Symbol und das Zahlenformat. Bereits eingegebene Beträge werden nicht umgerechnet.</string>
+    <string name="on_track_title">Auf Kurs für</string>
+    <string name="on_track_commission_week">Provision bis Wochenende</string>
+    <string name="on_track_commission_month">Provision bis Monatsende</string>
+    <string name="on_track_commission_quarter">Provision bis Quartalsende</string>
+    <string name="on_track_commission_year">Provision bis Jahresende</string>
+    <string name="on_track_sales_week">Umsatz bis Wochenende</string>
+    <string name="on_track_sales_month">Umsatz bis Monatsende</string>
+    <string name="on_track_sales_quarter">Umsatz bis Quartalsende</string>
+    <string name="on_track_sales_year">Umsatz bis Jahresende</string>
+    <string name="on_track_so_far">Bisher verdient: %1$s</string>
+    <string name="on_track_sales_so_far">Bisheriger Umsatz: %1$s</string>
+    <string name="on_track_last_day">Letzter Tag</string>
+    <string name="on_track_vs_week">%1$s ggü. letzter Woche</string>
+    <string name="on_track_vs_month">%1$s ggü. letztem Monat</string>
+    <string name="on_track_vs_quarter">%1$s ggü. letztem Quartal</string>
+    <string name="on_track_vs_year">%1$s ggü. letztem Jahr</string>
+    <string name="on_track_empty">Erfasse in diesem Zeitraum einen Verkauf, um zu sehen, wohin es geht.</string>
+    <string name="widget_pace_description">Wohin deine Woche, dein Monat, Quartal oder Jahr steuert (Auswahl im Tab Statistik). Beträge erscheinen nur, wenn du sie unter Sicherheit &amp; Datenschutz erlaubst. Ausgeblendet bei aktiver App-Sperre.</string>
+    <string name="widget_pace_hidden">Beträge sind auf deinem Startbildschirm ausgeblendet. Du kannst sie unter Sicherheit &amp; Datenschutz erlauben.</string>
+    <string name="widget_amounts">Beträge im Auf-Kurs-Widget anzeigen</string>
+    <string name="widget_amounts_desc">Jeder, der deinen Startbildschirm sieht, könnte deine erwarteten Einnahmen lesen. Standardmäßig aus.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>
@@ -682,5 +703,9 @@
     <plurals name="cs_every_days">
         <item quantity="one">jeden Tag</item>
         <item quantity="other">alle %d Tage</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="one">noch %d Tag</item>
+        <item quantity="other">noch %d Tage</item>
     </plurals>
 </resources>

@@ -639,6 +639,27 @@
     <string name="currency_auto">自动</string>
     <string name="currency_auto_desc">根据手机地区：%1$s</string>
     <string name="currency_note">只更改货币符号和数字格式，已输入的金额不会换算。</string>
+    <string name="on_track_title">预计达成</string>
+    <string name="on_track_commission_week">本周末的佣金</string>
+    <string name="on_track_commission_month">本月底的佣金</string>
+    <string name="on_track_commission_quarter">本季度末的佣金</string>
+    <string name="on_track_commission_year">年底的佣金</string>
+    <string name="on_track_sales_week">本周末的销售额</string>
+    <string name="on_track_sales_month">本月底的销售额</string>
+    <string name="on_track_sales_quarter">本季度末的销售额</string>
+    <string name="on_track_sales_year">年底的销售额</string>
+    <string name="on_track_so_far">目前已赚：%1$s</string>
+    <string name="on_track_sales_so_far">目前销售额：%1$s</string>
+    <string name="on_track_last_day">最后一天</string>
+    <string name="on_track_vs_week">较上周 %1$s</string>
+    <string name="on_track_vs_month">较上月 %1$s</string>
+    <string name="on_track_vs_quarter">较上季度 %1$s</string>
+    <string name="on_track_vs_year">较去年 %1$s</string>
+    <string name="on_track_empty">在本期记录一笔销售，即可看到你的走势。</string>
+    <string name="widget_pace_description">你的本周、本月、本季度或本年的走势（在“统计”标签中选择）。只有在“安全与隐私”中允许后才会显示金额。开启应用锁时隐藏。</string>
+    <string name="widget_pace_hidden">主屏幕上的金额已隐藏。你可以在“安全与隐私”中允许显示。</string>
+    <string name="widget_amounts">在“预计达成”小组件中显示金额</string>
+    <string name="widget_amounts_desc">任何看到你主屏幕的人都可能看到你的预计收入。默认关闭。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>
@@ -671,5 +692,8 @@
     </plurals>
     <plurals name="cs_every_days">
         <item quantity="other">每 %d 天</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="other">还剩 %d 天</item>
     </plurals>
 </resources>

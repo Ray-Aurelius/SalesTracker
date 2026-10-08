@@ -93,6 +93,18 @@
                 android:resource="@xml/stats_widget_info" />
         </receiver>
 
+        <receiver
+            android:name=".widget.PaceWidget"
+            android:exported="true"
+            android:label="@string/on_track_title">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/pace_widget_info" />
+        </receiver>
+
         <!-- Fires when a reminder is due, and handles Snooze / Dismiss. Only this app can trigger it. -->
         <receiver
             android:name=".reminders.ReminderReceiver"

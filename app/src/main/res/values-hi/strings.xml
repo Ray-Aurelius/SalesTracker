@@ -639,6 +639,27 @@
     <string name="currency_auto">स्वचालित</string>
     <string name="currency_auto_desc">आपके फ़ोन के क्षेत्र से: %1$s</string>
     <string name="currency_note">सिर्फ़ चिह्न और संख्या का प्रारूप बदलता है। पहले से दर्ज राशियाँ बदली नहीं जातीं।</string>
+    <string name="on_track_title">अनुमानित</string>
+    <string name="on_track_commission_week">सप्ताह के अंत तक कमीशन</string>
+    <string name="on_track_commission_month">महीने के अंत तक कमीशन</string>
+    <string name="on_track_commission_quarter">तिमाही के अंत तक कमीशन</string>
+    <string name="on_track_commission_year">साल के अंत तक कमीशन</string>
+    <string name="on_track_sales_week">सप्ताह के अंत तक बिक्री</string>
+    <string name="on_track_sales_month">महीने के अंत तक बिक्री</string>
+    <string name="on_track_sales_quarter">तिमाही के अंत तक बिक्री</string>
+    <string name="on_track_sales_year">साल के अंत तक बिक्री</string>
+    <string name="on_track_so_far">अब तक कमाया: %1$s</string>
+    <string name="on_track_sales_so_far">अब तक बिक्री: %1$s</string>
+    <string name="on_track_last_day">आखिरी दिन</string>
+    <string name="on_track_vs_week">पिछले सप्ताह की तुलना में %1$s</string>
+    <string name="on_track_vs_month">पिछले महीने की तुलना में %1$s</string>
+    <string name="on_track_vs_quarter">पिछली तिमाही की तुलना में %1$s</string>
+    <string name="on_track_vs_year">पिछले साल की तुलना में %1$s</string>
+    <string name="on_track_empty">इस अवधि में एक बिक्री दर्ज करें ताकि पता चले आप कहाँ पहुँच रहे हैं।</string>
+    <string name="widget_pace_description">आपका सप्ताह, महीना, तिमाही या साल कहाँ जा रहा है (आँकड़े टैब पर चुनें)। राशि तभी दिखेगी जब आप सुरक्षा और निजता में अनुमति दें। ऐप लॉक चालू होने पर छिपा रहता है।</string>
+    <string name="widget_pace_hidden">आपकी होम स्क्रीन पर राशि छिपी है। आप सुरक्षा और निजता में इसकी अनुमति दे सकते हैं।</string>
+    <string name="widget_amounts">अनुमानित विजेट पर राशि दिखाएँ</string>
+    <string name="widget_amounts_desc">आपकी होम स्क्रीन देखने वाला कोई भी आपकी अनुमानित कमाई पढ़ सकता है। शुरुआत में बंद।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
@@ -682,5 +703,9 @@
     <plurals name="cs_every_days">
         <item quantity="one">हर दिन</item>
         <item quantity="other">हर %d दिन</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="one">%d दिन बाकी</item>
+        <item quantity="other">%d दिन बाकी</item>
     </plurals>
 </resources>

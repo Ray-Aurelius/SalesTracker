@@ -252,6 +252,12 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                     vm.protectDeletes,
                 ) { vm.changeProtectDeletes(it) }
             }
+            item {
+                // The "On track" widget shows amounts only when allowed here (off by default).
+                SwitchSetting(stringResource(R.string.widget_amounts), stringResource(R.string.widget_amounts_desc), vm.widgetAmounts) {
+                    vm.changeWidgetAmounts(it)
+                }
+            }
 
             // ---- Privacy ----
             item { Section(stringResource(R.string.section_privacy)) }

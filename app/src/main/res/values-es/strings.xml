@@ -639,6 +639,27 @@
     <string name="currency_auto">Automática</string>
     <string name="currency_auto_desc">Según la región de tu teléfono: %1$s</string>
     <string name="currency_note">Solo cambia el símbolo y el formato de los números. Los importes ya introducidos no se convierten.</string>
+    <string name="on_track_title">En camino a</string>
+    <string name="on_track_commission_week">de comisión al final de la semana</string>
+    <string name="on_track_commission_month">de comisión al final del mes</string>
+    <string name="on_track_commission_quarter">de comisión al final del trimestre</string>
+    <string name="on_track_commission_year">de comisión al final del año</string>
+    <string name="on_track_sales_week">en ventas al final de la semana</string>
+    <string name="on_track_sales_month">en ventas al final del mes</string>
+    <string name="on_track_sales_quarter">en ventas al final del trimestre</string>
+    <string name="on_track_sales_year">en ventas al final del año</string>
+    <string name="on_track_so_far">Ganado hasta ahora: %1$s</string>
+    <string name="on_track_sales_so_far">Ventas hasta ahora: %1$s</string>
+    <string name="on_track_last_day">Último día</string>
+    <string name="on_track_vs_week">%1$s frente a la semana pasada</string>
+    <string name="on_track_vs_month">%1$s frente al mes pasado</string>
+    <string name="on_track_vs_quarter">%1$s frente al trimestre pasado</string>
+    <string name="on_track_vs_year">%1$s frente al año pasado</string>
+    <string name="on_track_empty">Registra una venta en este periodo para ver hacia dónde vas.</string>
+    <string name="widget_pace_description">Hacia dónde va tu semana, mes, trimestre o año (elígelo en la pestaña Estadísticas). Los importes solo se muestran si lo permites en Seguridad y privacidad. Se oculta con el bloqueo de la app activado.</string>
+    <string name="widget_pace_hidden">Los importes están ocultos en tu pantalla de inicio. Puedes permitirlos en Seguridad y privacidad.</string>
+    <string name="widget_amounts">Mostrar importes en el widget En camino</string>
+    <string name="widget_amounts_desc">Cualquiera que vea tu pantalla de inicio podría leer tus ganancias previstas. Desactivado de forma predeterminada.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>
@@ -693,5 +714,10 @@
         <item quantity="one">cada día</item>
         <item quantity="many">cada %d días</item>
         <item quantity="other">cada %d días</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="one">queda %d día</item>
+        <item quantity="many">quedan %d días</item>
+        <item quantity="other">quedan %d días</item>
     </plurals>
 </resources>

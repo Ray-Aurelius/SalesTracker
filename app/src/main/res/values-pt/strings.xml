@@ -639,6 +639,27 @@
     <string name="currency_auto">Automática</string>
     <string name="currency_auto_desc">Pela região do seu telefone: %1$s</string>
     <string name="currency_note">Muda só o símbolo e o formato dos números. Valores já informados não são convertidos.</string>
+    <string name="on_track_title">A caminho de</string>
+    <string name="on_track_commission_week">em comissão até o fim da semana</string>
+    <string name="on_track_commission_month">em comissão até o fim do mês</string>
+    <string name="on_track_commission_quarter">em comissão até o fim do trimestre</string>
+    <string name="on_track_commission_year">em comissão até o fim do ano</string>
+    <string name="on_track_sales_week">em vendas até o fim da semana</string>
+    <string name="on_track_sales_month">em vendas até o fim do mês</string>
+    <string name="on_track_sales_quarter">em vendas até o fim do trimestre</string>
+    <string name="on_track_sales_year">em vendas até o fim do ano</string>
+    <string name="on_track_so_far">Ganho até agora: %1$s</string>
+    <string name="on_track_sales_so_far">Vendas até agora: %1$s</string>
+    <string name="on_track_last_day">Último dia</string>
+    <string name="on_track_vs_week">%1$s em relação à semana passada</string>
+    <string name="on_track_vs_month">%1$s em relação ao mês passado</string>
+    <string name="on_track_vs_quarter">%1$s em relação ao trimestre passado</string>
+    <string name="on_track_vs_year">%1$s em relação ao ano passado</string>
+    <string name="on_track_empty">Registre uma venda neste período para ver para onde você está indo.</string>
+    <string name="widget_pace_description">Para onde vão sua semana, mês, trimestre ou ano (escolha na aba Estatísticas). Os valores só aparecem se você permitir em Segurança e privacidade. Fica oculto com o bloqueio do app ativado.</string>
+    <string name="widget_pace_hidden">Os valores estão ocultos na tela inicial. Você pode permiti-los em Segurança e privacidade.</string>
+    <string name="widget_amounts">Mostrar valores no widget A caminho</string>
+    <string name="widget_amounts_desc">Qualquer pessoa que veja sua tela inicial poderia ler seus ganhos previstos. Desativado por padrão.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>
@@ -693,5 +714,10 @@
         <item quantity="one">todo dia</item>
         <item quantity="many">a cada %d dias</item>
         <item quantity="other">a cada %d dias</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="one">falta %d dia</item>
+        <item quantity="many">faltam %d dias</item>
+        <item quantity="other">faltam %d dias</item>
     </plurals>
 </resources>

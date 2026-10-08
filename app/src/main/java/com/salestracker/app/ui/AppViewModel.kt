@@ -191,6 +191,30 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         settings.edit().putBoolean("protectDeletes", on).apply()
     }
 
+    /** Which period the "On track for" card and widget follow: this week, month (default), quarter or year. */
+    var pacePeriod by mutableStateOf(
+        com.salestracker.app.data.GoalPeriod.entries.firstOrNull { it.name == settings.getString("pacePeriod", null) }
+            ?: com.salestracker.app.data.GoalPeriod.MONTH
+    )
+        private set
+    fun changePacePeriod(p: com.salestracker.app.data.GoalPeriod) {
+        pacePeriod = p
+        settings.edit().putString("pacePeriod", p.name).commit()
+        com.salestracker.app.widget.Widgets.refreshAll(getApplication())
+    }
+
+    /**
+     * Whether the "On track" home-screen widget may show money amounts. Off by default: anyone who sees
+     * the home screen could read them. Off, the widget shows only how the pace compares with last period.
+     */
+    var widgetAmounts by mutableStateOf(settings.getBoolean("widgetAmounts", false))
+        private set
+    fun changeWidgetAmounts(on: Boolean) {
+        widgetAmounts = on
+        settings.edit().putBoolean("widgetAmounts", on).commit()
+        com.salestracker.app.widget.Widgets.refreshAll(getApplication())
+    }
+
     /** Where the tab menu sits: along the bottom (default) or down the left side. */
     var menuOnLeft by mutableStateOf(settings.getBoolean("menuOnLeft", false))
         private set

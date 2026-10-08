@@ -762,4 +762,29 @@
     <string name="currency_auto">Automatic</string>
     <string name="currency_auto_desc">From your phone\'s region: %1$s</string>
     <string name="currency_note">Changes only the symbol and number format. Amounts you\'ve already entered aren\'t converted.</string>
+    <string name="on_track_title">On track for</string>
+    <string name="on_track_commission_week">in commission by the end of the week</string>
+    <string name="on_track_commission_month">in commission by the end of the month</string>
+    <string name="on_track_commission_quarter">in commission by the end of the quarter</string>
+    <string name="on_track_commission_year">in commission by the end of the year</string>
+    <string name="on_track_sales_week">in sales by the end of the week</string>
+    <string name="on_track_sales_month">in sales by the end of the month</string>
+    <string name="on_track_sales_quarter">in sales by the end of the quarter</string>
+    <string name="on_track_sales_year">in sales by the end of the year</string>
+    <string name="on_track_so_far">Earned so far: %1$s</string>
+    <string name="on_track_sales_so_far">Sales so far: %1$s</string>
+    <string name="on_track_last_day">Last day</string>
+    <string name="on_track_vs_week">%1$s vs. last week</string>
+    <string name="on_track_vs_month">%1$s vs. last month</string>
+    <string name="on_track_vs_quarter">%1$s vs. last quarter</string>
+    <string name="on_track_vs_year">%1$s vs. last year</string>
+    <string name="on_track_empty">Log a sale this period to see where you\'re headed.</string>
+    <string name="widget_pace_description">Where your week, month, quarter or year is headed (pick which on the Stats tab). Amounts show only if you allow them in Security &amp; privacy. Hidden when app lock is on.</string>
+    <string name="widget_pace_hidden">Amounts are hidden on your home screen. You can allow them in Security &amp; privacy.</string>
+    <string name="widget_amounts">Show amounts on the On-track widget</string>
+    <string name="widget_amounts_desc">Anyone who sees your home screen could read your projected earnings. Off by default.</string>
+    <plurals name="on_track_days_left">
+        <item quantity="one">%d day left</item>
+        <item quantity="other">%d days left</item>
+    </plurals>
 </resources>

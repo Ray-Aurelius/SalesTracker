@@ -639,6 +639,27 @@
     <string name="currency_auto">Automatica</string>
     <string name="currency_auto_desc">In base alla regione del telefono: %1$s</string>
     <string name="currency_note">Cambia solo il simbolo e il formato dei numeri. Gli importi già inseriti non vengono convertiti.</string>
+    <string name="on_track_title">In linea per</string>
+    <string name="on_track_commission_week">di provvigione entro fine settimana</string>
+    <string name="on_track_commission_month">di provvigione entro fine mese</string>
+    <string name="on_track_commission_quarter">di provvigione entro fine trimestre</string>
+    <string name="on_track_commission_year">di provvigione entro fine anno</string>
+    <string name="on_track_sales_week">di vendite entro fine settimana</string>
+    <string name="on_track_sales_month">di vendite entro fine mese</string>
+    <string name="on_track_sales_quarter">di vendite entro fine trimestre</string>
+    <string name="on_track_sales_year">di vendite entro fine anno</string>
+    <string name="on_track_so_far">Guadagnato finora: %1$s</string>
+    <string name="on_track_sales_so_far">Vendite finora: %1$s</string>
+    <string name="on_track_last_day">Ultimo giorno</string>
+    <string name="on_track_vs_week">%1$s rispetto alla settimana scorsa</string>
+    <string name="on_track_vs_month">%1$s rispetto al mese scorso</string>
+    <string name="on_track_vs_quarter">%1$s rispetto al trimestre scorso</string>
+    <string name="on_track_vs_year">%1$s rispetto all\'anno scorso</string>
+    <string name="on_track_empty">Registra una vendita in questo periodo per vedere dove stai andando.</string>
+    <string name="widget_pace_description">Dove sta andando la tua settimana, il mese, il trimestre o l\'anno (scegli nella scheda Statistiche). Gli importi compaiono solo se li consenti in Sicurezza e privacy. Nascosto con il blocco dell\'app attivo.</string>
+    <string name="widget_pace_hidden">Gli importi sono nascosti nella schermata Home. Puoi consentirli in Sicurezza e privacy.</string>
+    <string name="widget_amounts">Mostra gli importi nel widget In linea</string>
+    <string name="widget_amounts_desc">Chiunque veda la tua schermata Home potrebbe leggere i guadagni previsti. Disattivato per impostazione predefinita.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>
@@ -693,5 +714,10 @@
         <item quantity="one">ogni giorno</item>
         <item quantity="many">ogni %d giorni</item>
         <item quantity="other">ogni %d giorni</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="one">%d giorno rimasto</item>
+        <item quantity="many">%d giorni rimasti</item>
+        <item quantity="other">%d giorni rimasti</item>
     </plurals>
 </resources>

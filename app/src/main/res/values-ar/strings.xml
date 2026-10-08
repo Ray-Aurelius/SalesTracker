@@ -639,6 +639,27 @@
     <string name="currency_auto">تلقائي</string>
     <string name="currency_auto_desc">حسب منطقة هاتفك: %1$s</string>
     <string name="currency_note">يغيّر الرمز وتنسيق الأرقام فقط. لا تُحوَّل المبالغ التي أدخلتها من قبل.</string>
+    <string name="on_track_title">في الطريق إلى</string>
+    <string name="on_track_commission_week">عمولة بنهاية الأسبوع</string>
+    <string name="on_track_commission_month">عمولة بنهاية الشهر</string>
+    <string name="on_track_commission_quarter">عمولة بنهاية الربع</string>
+    <string name="on_track_commission_year">عمولة بنهاية السنة</string>
+    <string name="on_track_sales_week">مبيعات بنهاية الأسبوع</string>
+    <string name="on_track_sales_month">مبيعات بنهاية الشهر</string>
+    <string name="on_track_sales_quarter">مبيعات بنهاية الربع</string>
+    <string name="on_track_sales_year">مبيعات بنهاية السنة</string>
+    <string name="on_track_so_far">المكتسب حتى الآن: %1$s</string>
+    <string name="on_track_sales_so_far">المبيعات حتى الآن: %1$s</string>
+    <string name="on_track_last_day">آخر يوم</string>
+    <string name="on_track_vs_week">%1$s مقارنة بالأسبوع الماضي</string>
+    <string name="on_track_vs_month">%1$s مقارنة بالشهر الماضي</string>
+    <string name="on_track_vs_quarter">%1$s مقارنة بالربع الماضي</string>
+    <string name="on_track_vs_year">%1$s مقارنة بالسنة الماضية</string>
+    <string name="on_track_empty">سجّل عملية بيع في هذه الفترة لترى إلى أين تتجه.</string>
+    <string name="widget_pace_description">إلى أين يتجه أسبوعك أو شهرك أو ربعك أو سنتك (اختر من تبويب الإحصاءات). لا تظهر المبالغ إلا إذا سمحت بها في الأمان والخصوصية. تُخفى عند تفعيل قفل التطبيق.</string>
+    <string name="widget_pace_hidden">المبالغ مخفية على شاشتك الرئيسية. يمكنك السماح بها في الأمان والخصوصية.</string>
+    <string name="widget_amounts">إظهار المبالغ في أداة «في الطريق إلى»</string>
+    <string name="widget_amounts_desc">يمكن لأي شخص يرى شاشتك الرئيسية قراءة أرباحك المتوقعة. معطّل افتراضيًا.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>
@@ -726,5 +747,13 @@
         <item quantity="few">كل %d أيام</item>
         <item quantity="many">كل %d يومًا</item>
         <item quantity="other">كل %d يوم</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="zero">لم يتبقَّ أي يوم</item>
+        <item quantity="one">تبقّى يوم واحد</item>
+        <item quantity="two">تبقّى يومان</item>
+        <item quantity="few">تبقّت %d أيام</item>
+        <item quantity="many">تبقّى %d يومًا</item>
+        <item quantity="other">تبقّى %d يوم</item>
     </plurals>
 </resources>

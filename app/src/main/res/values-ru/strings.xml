@@ -639,6 +639,27 @@
     <string name="currency_auto">Автоматически</string>
     <string name="currency_auto_desc">По региону телефона: %1$s</string>
     <string name="currency_note">Меняет только символ и формат чисел. Уже введённые суммы не пересчитываются.</string>
+    <string name="on_track_title">Прогноз</string>
+    <string name="on_track_commission_week">комиссии к концу недели</string>
+    <string name="on_track_commission_month">комиссии к концу месяца</string>
+    <string name="on_track_commission_quarter">комиссии к концу квартала</string>
+    <string name="on_track_commission_year">комиссии к концу года</string>
+    <string name="on_track_sales_week">продаж к концу недели</string>
+    <string name="on_track_sales_month">продаж к концу месяца</string>
+    <string name="on_track_sales_quarter">продаж к концу квартала</string>
+    <string name="on_track_sales_year">продаж к концу года</string>
+    <string name="on_track_so_far">Заработано: %1$s</string>
+    <string name="on_track_sales_so_far">Продажи на сейчас: %1$s</string>
+    <string name="on_track_last_day">Последний день</string>
+    <string name="on_track_vs_week">%1$s к прошлой неделе</string>
+    <string name="on_track_vs_month">%1$s к прошлому месяцу</string>
+    <string name="on_track_vs_quarter">%1$s к прошлому кварталу</string>
+    <string name="on_track_vs_year">%1$s к прошлому году</string>
+    <string name="on_track_empty">Запишите продажу в этом периоде, чтобы увидеть прогноз.</string>
+    <string name="widget_pace_description">Куда идут ваша неделя, месяц, квартал или год (выбор на вкладке «Статистика»). Суммы видны, только если разрешить их в разделе «Безопасность и конфиденциальность». Скрыт при включённой блокировке приложения.</string>
+    <string name="widget_pace_hidden">Суммы скрыты на главном экране. Их можно разрешить в разделе «Безопасность и конфиденциальность».</string>
+    <string name="widget_amounts">Показывать суммы в виджете «Прогноз»</string>
+    <string name="widget_amounts_desc">Любой, кто видит ваш главный экран, сможет прочитать ваш ожидаемый заработок. По умолчанию выключено.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>
@@ -704,5 +725,11 @@
         <item quantity="few">раз в %d дня</item>
         <item quantity="many">раз в %d дней</item>
         <item quantity="other">раз в %d дня</item>
+    </plurals>
+    <plurals name="on_track_days_left">
+        <item quantity="one">остался %d день</item>
+        <item quantity="few">осталось %d дня</item>
+        <item quantity="many">осталось %d дней</item>
+        <item quantity="other">осталось %d дня</item>
     </plurals>
 </resources>

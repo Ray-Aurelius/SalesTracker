@@ -102,6 +102,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             if (vm.backupOverdue(data)) {
                 item { BackupNudge(vm) }
             }
+            item { OnTrackCard(vm, data) }
             item {
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
