@@ -218,8 +218,8 @@
     <string name="goals_company">Firmenziele</string>
     <string name="goals_personal_sub">Deine eigenen Einkommensziele</string>
     <string name="goals_company_sub">Team- und Firmenziele</string>
-    <string name="goals_personal_empty">Lege fest, was du verdienen willst, z. B. „5.000 $ Provision diesen Monat“.</string>
-    <string name="goals_company_empty">Verfolge deinen Anteil an den Firmenzahlen, z. B. „100.000 $ Umsatz dieses Quartal“.</string>
+    <string name="goals_personal_empty">Lege fest, was du verdienen willst, z. B. „%1$s Provision diesen Monat“.</string>
+    <string name="goals_company_empty">Verfolge deinen Anteil an den Firmenzahlen, z. B. „%1$s Umsatz dieses Quartal“.</string>
     <string name="metric_revenue">Verkaufsumsatz</string>
     <string name="metric_revenue_short">Umsatz</string>
     <string name="metric_commission">Verdiente Provision</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">Anstehende Termine</string>
     <string name="cs_open_tasks">Offene Aufgaben</string>
     <string name="cs_visit_note">Ein Besuch ist jedes gestoppte Treffen oder jeder erfasste Verkauf mit diesem Kunden.</string>
+    <string name="currency_title">Währung</string>
+    <string name="currency_auto">Automatisch</string>
+    <string name="currency_auto_desc">Nach der Region deines Telefons: %1$s</string>
+    <string name="currency_note">Ändert nur das Symbol und das Zahlenformat. Bereits eingegebene Beträge werden nicht umgerechnet.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

@@ -218,8 +218,8 @@
     <string name="goals_company">कंपनी के लक्ष्य</string>
     <string name="goals_personal_sub">आपके अपने आय लक्ष्य</string>
     <string name="goals_company_sub">टीम और कंपनी के लक्ष्य</string>
-    <string name="goals_personal_empty">तय करें कि आप कितना कमाना चाहते हैं, जैसे \"इस महीने $5,000 कमीशन\"।</string>
-    <string name="goals_company_empty">कंपनी के आँकड़ों में अपना हिस्सा ट्रैक करें, जैसे \"इस तिमाही $100,000 राजस्व\"।</string>
+    <string name="goals_personal_empty">तय करें कि आप कितना कमाना चाहते हैं, जैसे \"इस महीने %1$s कमीशन\"।</string>
+    <string name="goals_company_empty">कंपनी के आँकड़ों में अपना हिस्सा ट्रैक करें, जैसे \"इस तिमाही %1$s राजस्व\"।</string>
     <string name="metric_revenue">बिक्री राजस्व</string>
     <string name="metric_revenue_short">राजस्व</string>
     <string name="metric_commission">अर्जित कमीशन</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">आगामी अपॉइंटमेंट</string>
     <string name="cs_open_tasks">खुले कार्य</string>
     <string name="cs_visit_note">इस ग्राहक के साथ टाइमर से मापी गई हर मीटिंग या दर्ज की गई हर बिक्री एक मुलाकात है।</string>
+    <string name="currency_title">मुद्रा</string>
+    <string name="currency_auto">स्वचालित</string>
+    <string name="currency_auto_desc">आपके फ़ोन के क्षेत्र से: %1$s</string>
+    <string name="currency_note">सिर्फ़ चिह्न और संख्या का प्रारूप बदलता है। पहले से दर्ज राशियाँ बदली नहीं जातीं।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

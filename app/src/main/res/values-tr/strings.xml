@@ -218,8 +218,8 @@
     <string name="goals_company">Şirket hedefleri</string>
     <string name="goals_personal_sub">Kendi gelir hedefleriniz</string>
     <string name="goals_company_sub">Ekip ve şirket hedefleri</string>
-    <string name="goals_personal_empty">Ne kadar kazanmak istediğinizi belirleyin, örneğin \"bu ay 5.000 $ komisyon\".</string>
-    <string name="goals_company_empty">Şirket rakamlarındaki payınızı izleyin, örneğin \"bu çeyrek 100.000 $ gelir\".</string>
+    <string name="goals_personal_empty">Ne kadar kazanmak istediğinizi belirleyin, örneğin \"bu ay %1$s komisyon\".</string>
+    <string name="goals_company_empty">Şirket rakamlarındaki payınızı izleyin, örneğin \"bu çeyrek %1$s gelir\".</string>
     <string name="metric_revenue">Satış geliri</string>
     <string name="metric_revenue_short">Gelir</string>
     <string name="metric_commission">Kazanılan komisyon</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">Yaklaşan randevular</string>
     <string name="cs_open_tasks">Açık görevler</string>
     <string name="cs_visit_note">Ziyaret, bu müşteriyle süresini tuttuğunuz her görüşme veya kaydettiğiniz her satıştır.</string>
+    <string name="currency_title">Para birimi</string>
+    <string name="currency_auto">Otomatik</string>
+    <string name="currency_auto_desc">Telefonunuzun bölgesine göre: %1$s</string>
+    <string name="currency_note">Yalnızca simgeyi ve sayı biçimini değiştirir. Daha önce girilen tutarlar çevrilmez.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

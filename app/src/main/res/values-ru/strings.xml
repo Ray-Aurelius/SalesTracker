@@ -218,8 +218,8 @@
     <string name="goals_company">Цели компании</string>
     <string name="goals_personal_sub">Ваши личные цели по доходу</string>
     <string name="goals_company_sub">Цели команды и компании</string>
-    <string name="goals_personal_empty">Задайте, сколько хотите заработать, например «5 000 $ комиссии в этом месяце».</string>
-    <string name="goals_company_empty">Отслеживайте свой вклад в показатели компании, например «100 000 $ выручки за квартал».</string>
+    <string name="goals_personal_empty">Задайте, сколько хотите заработать, например «%1$s комиссии в этом месяце».</string>
+    <string name="goals_company_empty">Отслеживайте свой вклад в показатели компании, например «%1$s выручки за квартал».</string>
     <string name="metric_revenue">Выручка от продаж</string>
     <string name="metric_revenue_short">Выручка</string>
     <string name="metric_commission">Заработанная комиссия</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">Предстоящие встречи</string>
     <string name="cs_open_tasks">Открытые задачи</string>
     <string name="cs_visit_note">Визит — это каждая встреча, засечённая таймером, или каждая продажа, записанная с этим клиентом.</string>
+    <string name="currency_title">Валюта</string>
+    <string name="currency_auto">Автоматически</string>
+    <string name="currency_auto_desc">По региону телефона: %1$s</string>
+    <string name="currency_note">Меняет только символ и формат чисел. Уже введённые суммы не пересчитываются.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

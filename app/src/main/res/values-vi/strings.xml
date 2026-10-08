@@ -218,8 +218,8 @@
     <string name="goals_company">Mục tiêu công ty</string>
     <string name="goals_personal_sub">Mục tiêu thu nhập của riêng bạn</string>
     <string name="goals_company_sub">Mục tiêu của nhóm và công ty</string>
-    <string name="goals_personal_empty">Đặt mức bạn muốn kiếm, ví dụ \"5.000 $ hoa hồng tháng này\".</string>
-    <string name="goals_company_empty">Theo dõi phần đóng góp của bạn vào chỉ tiêu công ty, ví dụ \"100.000 $ doanh thu quý này\".</string>
+    <string name="goals_personal_empty">Đặt mức bạn muốn kiếm, ví dụ \"%1$s hoa hồng tháng này\".</string>
+    <string name="goals_company_empty">Theo dõi phần đóng góp của bạn vào chỉ tiêu công ty, ví dụ \"%1$s doanh thu quý này\".</string>
     <string name="metric_revenue">Doanh thu bán hàng</string>
     <string name="metric_revenue_short">Doanh thu</string>
     <string name="metric_commission">Hoa hồng đã kiếm</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">Lịch hẹn sắp tới</string>
     <string name="cs_open_tasks">Việc chưa xong</string>
     <string name="cs_visit_note">Mỗi lần gặp là một buổi bạn bấm giờ hoặc một giao dịch bạn ghi với khách hàng này.</string>
+    <string name="currency_title">Tiền tệ</string>
+    <string name="currency_auto">Tự động</string>
+    <string name="currency_auto_desc">Theo khu vực của điện thoại: %1$s</string>
+    <string name="currency_note">Chỉ đổi ký hiệu và định dạng số. Các số tiền đã nhập không bị quy đổi.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

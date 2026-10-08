@@ -218,8 +218,8 @@
     <string name="goals_company">কোম্পানির লক্ষ্য</string>
     <string name="goals_personal_sub">আপনার নিজের আয়ের লক্ষ্য</string>
     <string name="goals_company_sub">দল ও কোম্পানির লক্ষ্য</string>
-    <string name="goals_personal_empty">আপনি কত আয় করতে চান তা ঠিক করুন, যেমন \"এই মাসে $5,000 কমিশন\"।</string>
-    <string name="goals_company_empty">কোম্পানির সংখ্যায় আপনার অংশ ট্র্যাক করুন, যেমন \"এই ত্রৈমাসিকে $100,000 আয়\"।</string>
+    <string name="goals_personal_empty">আপনি কত আয় করতে চান তা ঠিক করুন, যেমন \"এই মাসে %1$s কমিশন\"।</string>
+    <string name="goals_company_empty">কোম্পানির সংখ্যায় আপনার অংশ ট্র্যাক করুন, যেমন \"এই ত্রৈমাসিকে %1$s আয়\"।</string>
     <string name="metric_revenue">বিক্রয় আয়</string>
     <string name="metric_revenue_short">আয়</string>
     <string name="metric_commission">অর্জিত কমিশন</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">আসন্ন অ্যাপয়েন্টমেন্ট</string>
     <string name="cs_open_tasks">বাকি কাজ</string>
     <string name="cs_visit_note">এই ক্লায়েন্টের সাথে টাইমারে মাপা প্রতিটি মিটিং বা লেখা প্রতিটি বিক্রয় একটি সাক্ষাৎ।</string>
+    <string name="currency_title">মুদ্রা</string>
+    <string name="currency_auto">স্বয়ংক্রিয়</string>
+    <string name="currency_auto_desc">আপনার ফোনের অঞ্চল অনুযায়ী: %1$s</string>
+    <string name="currency_note">শুধু চিহ্ন ও সংখ্যার বিন্যাস বদলায়। আগে লেখা অঙ্ক রূপান্তর হয় না।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

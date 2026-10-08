@@ -218,8 +218,8 @@
     <string name="goals_company">Objectifs de l\'entreprise</string>
     <string name="goals_personal_sub">Vos propres objectifs de revenus</string>
     <string name="goals_company_sub">Objectifs de l\'équipe et de l\'entreprise</string>
-    <string name="goals_personal_empty">Fixez ce que vous voulez gagner, par exemple « 5 000 $ de commission ce mois-ci ».</string>
-    <string name="goals_company_empty">Suivez votre part des chiffres de l\'entreprise, par exemple « 100 000 $ de CA ce trimestre ».</string>
+    <string name="goals_personal_empty">Fixez ce que vous voulez gagner, par exemple « %1$s de commission ce mois-ci ».</string>
+    <string name="goals_company_empty">Suivez votre part des chiffres de l\'entreprise, par exemple « %1$s de CA ce trimestre ».</string>
     <string name="metric_revenue">Chiffre d\'affaires</string>
     <string name="metric_revenue_short">CA</string>
     <string name="metric_commission">Commission gagnée</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">Rendez-vous à venir</string>
     <string name="cs_open_tasks">Tâches en cours</string>
     <string name="cs_visit_note">Une visite correspond à chaque rendez-vous chronométré ou chaque vente enregistrée avec ce client.</string>
+    <string name="currency_title">Devise</string>
+    <string name="currency_auto">Automatique</string>
+    <string name="currency_auto_desc">Selon la région de votre téléphone : %1$s</string>
+    <string name="currency_note">Change seulement le symbole et le format des nombres. Les montants déjà saisis ne sont pas convertis.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

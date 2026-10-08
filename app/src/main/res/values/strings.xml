@@ -275,8 +275,8 @@
     <string name="goals_company">Company goals</string>
     <string name="goals_personal_sub">Your own income targets</string>
     <string name="goals_company_sub">Team and company targets</string>
-    <string name="goals_personal_empty">Set a target for what you want to earn, like \"$5,000 commission this month\".</string>
-    <string name="goals_company_empty">Track your part of the company\'s numbers, like \"$100,000 revenue this quarter\".</string>
+    <string name="goals_personal_empty">Set a target for what you want to earn, like \"%1$s commission this month\".</string>
+    <string name="goals_company_empty">Track your part of the company\'s numbers, like \"%1$s revenue this quarter\".</string>
     <string name="metric_revenue">Sales revenue</string>
     <string name="metric_revenue_short">Revenue</string>
     <string name="metric_commission">Commission earned</string>
@@ -758,4 +758,8 @@
         <item quantity="one">every day</item>
         <item quantity="other">every %d days</item>
     </plurals>
+    <string name="currency_title">Currency</string>
+    <string name="currency_auto">Automatic</string>
+    <string name="currency_auto_desc">From your phone\'s region: %1$s</string>
+    <string name="currency_note">Changes only the symbol and number format. Amounts you\'ve already entered aren\'t converted.</string>
 </resources>

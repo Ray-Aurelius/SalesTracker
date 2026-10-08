@@ -88,12 +88,11 @@ fun GoalsScreen(vm: AppViewModel, data: AppData) {
             if (goals.isEmpty()) {
                 item(key = "empty-$scope") {
                     Text(
-                        stringResource(
-                            when (scope) {
-                                GoalScope.PERSONAL -> R.string.goals_personal_empty
-                                GoalScope.COMPANY -> R.string.goals_company_empty
-                            }
-                        ),
+                        // The example amount is written in the user's own currency.
+                        when (scope) {
+                            GoalScope.PERSONAL -> stringResource(R.string.goals_personal_empty, formatMoney(5000.0))
+                            GoalScope.COMPANY -> stringResource(R.string.goals_company_empty, formatMoney(100000.0))
+                        },
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -255,8 +254,8 @@ private fun GoalDialog(
         mutableStateOf(initial?.metric ?: if (defaultScope == GoalScope.PERSONAL) GoalMetric.COMMISSION else GoalMetric.REVENUE)
     }
     var period by remember { mutableStateOf(initial?.period ?: GoalPeriod.MONTH) }
-    var target by remember { mutableStateOf(initial?.target?.takeIf { it > 0 }?.let { formatRateInput(it) } ?: "") }
-    var manual by remember { mutableStateOf(initial?.manualProgress?.takeIf { it > 0 }?.let { formatRateInput(it) } ?: "") }
+    var target by remember { mutableStateOf(initial?.target?.takeIf { it > 0 }?.let { com.salestracker.app.data.formatAmountInput(it) } ?: "") }
+    var manual by remember { mutableStateOf(initial?.manualProgress?.takeIf { it > 0 }?.let { com.salestracker.app.data.formatAmountInput(it) } ?: "") }
     var confirmDelete by remember { mutableStateOf(false) }
     val targetValue = parseMoney(target)
 
@@ -294,7 +293,8 @@ private fun GoalDialog(
                 OutlinedTextField(
                     target, { target = it },
                     label = { Text(stringResource(R.string.goal_target)) },
-                    prefix = { Text("$") },
+                    prefix = moneyPrefix(),
+                    suffix = moneySuffix(),
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.fillMaxWidth(),
@@ -303,7 +303,8 @@ private fun GoalDialog(
                     OutlinedTextField(
                         manual, { manual = it },
                         label = { Text(stringResource(R.string.goal_progress_so_far)) },
-                        prefix = { Text("$") },
+                        prefix = moneyPrefix(),
+                    suffix = moneySuffix(),
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                         modifier = Modifier.fillMaxWidth(),
@@ -371,7 +372,8 @@ private fun ManualProgressDialog(goal: Goal, onSave: (Double) -> Unit, onDismiss
                 OutlinedTextField(
                     add, { add = it },
                     label = { Text(stringResource(R.string.amount_to_add)) },
-                    prefix = { Text("$") },
+                    prefix = moneyPrefix(),
+                    suffix = moneySuffix(),
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     supportingText = { Text(stringResource(R.string.subtract_hint)) },

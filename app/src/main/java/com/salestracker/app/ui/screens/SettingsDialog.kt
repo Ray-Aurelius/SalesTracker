@@ -15,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Language
+import androidx.compose.material.icons.filled.Payments
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material3.AlertDialog
@@ -37,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import com.salestracker.app.R
 import com.salestracker.app.ui.AppViewModel
 
-private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE }
+private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY }
 
 /** Appearance and language, plus the way into the Security & privacy center. */
 @Composable
@@ -68,6 +69,9 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
                     }
                     SettingRow(Icons.Filled.Language, stringResource(R.string.language_title), currentLanguageName()) {
                         step = Step.LANGUAGE
+                    }
+                    SettingRow(Icons.Filled.Payments, stringResource(R.string.currency_title), currencyRowLabel(vm.currencyCode)) {
+                        step = Step.CURRENCY
                     }
                 }
             },
@@ -108,6 +112,8 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
         Step.ACCESSIBILITY -> AccessibilityDialog(vm, onOpenText = { step = Step.TEXT }, onDismiss = { step = Step.MENU })
 
         Step.LANGUAGE -> LanguageDialog(onDismiss = { step = Step.MENU })
+
+        Step.CURRENCY -> CurrencyDialog(vm.currencyCode, onPick = vm::chooseCurrency, onDismiss = { step = Step.MENU })
     }
 }
 

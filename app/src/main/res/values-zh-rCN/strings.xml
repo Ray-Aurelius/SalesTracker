@@ -218,8 +218,8 @@
     <string name="goals_company">公司目标</string>
     <string name="goals_personal_sub">你自己的收入目标</string>
     <string name="goals_company_sub">团队和公司目标</string>
-    <string name="goals_personal_empty">设定你想赚多少，例如“本月佣金 $5,000”。</string>
-    <string name="goals_company_empty">追踪你在公司业绩中的份额，例如“本季度收入 $100,000”。</string>
+    <string name="goals_personal_empty">设定你想赚多少，例如“本月佣金 %1$s”。</string>
+    <string name="goals_company_empty">追踪你在公司业绩中的份额，例如“本季度收入 %1$s”。</string>
     <string name="metric_revenue">销售收入</string>
     <string name="metric_revenue_short">收入</string>
     <string name="metric_commission">已赚佣金</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">即将到来的预约</string>
     <string name="cs_open_tasks">未完成任务</string>
     <string name="cs_visit_note">每次计时的会面或与该客户记录的每笔销售都算一次拜访。</string>
+    <string name="currency_title">货币</string>
+    <string name="currency_auto">自动</string>
+    <string name="currency_auto_desc">根据手机地区：%1$s</string>
+    <string name="currency_note">只更改货币符号和数字格式，已输入的金额不会换算。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

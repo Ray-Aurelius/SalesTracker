@@ -49,6 +49,7 @@ import com.salestracker.app.data.Sale
 import com.salestracker.app.data.formatDateTime
 import com.salestracker.app.data.formatDuration
 import com.salestracker.app.data.formatMoney
+import com.salestracker.app.data.formatAmountInput
 import com.salestracker.app.data.parseMoney
 
 @Composable
@@ -119,10 +120,10 @@ fun SaleDialog(
 ) {
     var clientId by remember { mutableStateOf(initial?.clientId ?: defaultClientId) }
     var closed by remember { mutableStateOf(initial?.closed ?: true) }
-    var amount by remember { mutableStateOf(initial?.amount?.takeIf { it != 0.0 }?.toString() ?: "") }
+    var amount by remember { mutableStateOf(initial?.amount?.takeIf { it != 0.0 }?.let(::formatAmountInput) ?: "") }
     var upsellOffered by remember { mutableStateOf(initial?.upsellOffered ?: false) }
     var upsellAccepted by remember { mutableStateOf(initial?.upsellAccepted ?: false) }
-    var upsellAmount by remember { mutableStateOf(initial?.upsellAmount?.takeIf { it != 0.0 }?.toString() ?: "") }
+    var upsellAmount by remember { mutableStateOf(initial?.upsellAmount?.takeIf { it != 0.0 }?.let(::formatAmountInput) ?: "") }
     val startSeconds = initial?.durationSeconds ?: defaultDurationSeconds
     var minutes by remember { mutableStateOf((startSeconds / 60).toString()) }
     var seconds by remember { mutableStateOf((startSeconds % 60).toString()) }
@@ -146,7 +147,8 @@ fun SaleDialog(
                     value = amount,
                     onValueChange = { amount = it },
                     label = { Text(stringResource(if (closed) LocalTerms.current.saleAmount else R.string.potential_amount)) },
-                    prefix = { Text("$") },
+                    prefix = moneyPrefix(),
+                    suffix = moneySuffix(),
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.fillMaxWidth(),
@@ -166,7 +168,8 @@ fun SaleDialog(
                         value = upsellAmount,
                         onValueChange = { upsellAmount = it },
                         label = { Text(stringResource(LocalTerms.current.upsellAmount)) },
-                        prefix = { Text("$") },
+                        prefix = moneyPrefix(),
+                    suffix = moneySuffix(),
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                         modifier = Modifier.fillMaxWidth(),
@@ -295,3 +298,17 @@ fun formatRateInput(percent: Double): String =
 /** The client's name, or their job number / phone / email when no name was entered. */
 @Composable
 fun com.salestracker.app.data.Client.displayName(): String = label(androidx.compose.ui.platform.LocalContext.current)
+
+/** The currency symbol in front of an amount box ("$", "£", "R$"), or none when the region writes it after the number. */
+@Composable
+fun moneyPrefix(): (@Composable () -> Unit)? {
+    val symbol = com.salestracker.app.data.currencySymbol()
+    return if (com.salestracker.app.data.currencySymbolAfter()) null else { { Text(symbol) } }
+}
+
+/** The currency symbol after an amount box ("12,50 €"), where that's the local habit. */
+@Composable
+fun moneySuffix(): (@Composable () -> Unit)? {
+    val symbol = com.salestracker.app.data.currencySymbol()
+    return if (com.salestracker.app.data.currencySymbolAfter()) { { Text(symbol) } } else null
+}

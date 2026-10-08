@@ -218,8 +218,8 @@
     <string name="goals_company">회사 목표</string>
     <string name="goals_personal_sub">나의 수입 목표</string>
     <string name="goals_company_sub">팀 및 회사 목표</string>
-    <string name="goals_personal_empty">벌고 싶은 금액을 목표로 정하세요. 예: \"이번 달 수수료 $5,000\".</string>
-    <string name="goals_company_empty">회사 실적 중 내 몫을 추적하세요. 예: \"이번 분기 매출 $100,000\".</string>
+    <string name="goals_personal_empty">벌고 싶은 금액을 목표로 정하세요. 예: \"이번 달 수수료 %1$s\".</string>
+    <string name="goals_company_empty">회사 실적 중 내 몫을 추적하세요. 예: \"이번 분기 매출 %1$s\".</string>
     <string name="metric_revenue">판매 매출</string>
     <string name="metric_revenue_short">매출</string>
     <string name="metric_commission">수수료 수입</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">예정된 약속</string>
     <string name="cs_open_tasks">남은 할 일</string>
     <string name="cs_visit_note">방문은 이 고객과 타이머로 잰 만남이나 기록한 판매 한 건을 말합니다.</string>
+    <string name="currency_title">통화</string>
+    <string name="currency_auto">자동</string>
+    <string name="currency_auto_desc">휴대전화 지역 설정: %1$s</string>
+    <string name="currency_note">기호와 숫자 형식만 바뀝니다. 이미 입력한 금액은 환산되지 않습니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

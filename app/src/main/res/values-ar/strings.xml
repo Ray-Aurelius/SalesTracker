@@ -218,8 +218,8 @@
     <string name="goals_company">أهداف الشركة</string>
     <string name="goals_personal_sub">أهداف دخلك الخاصة</string>
     <string name="goals_company_sub">أهداف الفريق والشركة</string>
-    <string name="goals_personal_empty">حدّد ما تريد كسبه، مثل \"عمولة 5,000$ هذا الشهر\".</string>
-    <string name="goals_company_empty">تابع حصتك من أرقام الشركة، مثل \"إيرادات 100,000$ هذا الربع\".</string>
+    <string name="goals_personal_empty">حدّد ما تريد كسبه، مثل \"عمولة %1$s هذا الشهر\".</string>
+    <string name="goals_company_empty">تابع حصتك من أرقام الشركة، مثل \"إيرادات %1$s هذا الربع\".</string>
     <string name="metric_revenue">إيرادات المبيعات</string>
     <string name="metric_revenue_short">الإيرادات</string>
     <string name="metric_commission">العمولة المكتسبة</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">المواعيد القادمة</string>
     <string name="cs_open_tasks">المهام المفتوحة</string>
     <string name="cs_visit_note">الزيارة هي كل اجتماع توقّته أو كل عملية بيع تسجّلها مع هذا العميل.</string>
+    <string name="currency_title">العملة</string>
+    <string name="currency_auto">تلقائي</string>
+    <string name="currency_auto_desc">حسب منطقة هاتفك: %1$s</string>
+    <string name="currency_note">يغيّر الرمز وتنسيق الأرقام فقط. لا تُحوَّل المبالغ التي أدخلتها من قبل.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

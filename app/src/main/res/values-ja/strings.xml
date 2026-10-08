@@ -218,8 +218,8 @@
     <string name="goals_company">会社の目標</string>
     <string name="goals_personal_sub">あなた自身の収入目標</string>
     <string name="goals_company_sub">チームと会社の目標</string>
-    <string name="goals_personal_empty">稼ぎたい額を設定しましょう。例：「今月のコミッション $5,000」。</string>
-    <string name="goals_company_empty">会社の数字へのあなたの貢献を追跡しましょう。例：「今四半期の売上 $100,000」。</string>
+    <string name="goals_personal_empty">稼ぎたい額を設定しましょう。例：「今月のコミッション %1$s」。</string>
+    <string name="goals_company_empty">会社の数字へのあなたの貢献を追跡しましょう。例：「今四半期の売上 %1$s」。</string>
     <string name="metric_revenue">販売売上</string>
     <string name="metric_revenue_short">売上</string>
     <string name="metric_commission">獲得コミッション</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">今後の予定</string>
     <string name="cs_open_tasks">未完了のタスク</string>
     <string name="cs_visit_note">訪問とは、この顧客とのタイマー計測した面談、または記録した販売1件ごとのことです。</string>
+    <string name="currency_title">通貨</string>
+    <string name="currency_auto">自動</string>
+    <string name="currency_auto_desc">スマートフォンの地域設定：%1$s</string>
+    <string name="currency_note">記号と数字の表示形式だけが変わります。入力済みの金額は換算されません。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

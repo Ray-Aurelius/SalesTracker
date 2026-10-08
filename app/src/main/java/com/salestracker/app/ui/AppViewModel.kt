@@ -271,6 +271,17 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     }
     fun togglePrivacyMode() { PrivacyMode.hideAmounts = !PrivacyMode.hideAmounts }
 
+    /** The currency chosen in Settings, or null for automatic (the phone region's own currency). */
+    val currencyCode: String? get() = com.salestracker.app.data.MoneySettings.currencyCode
+    fun chooseCurrency(code: String?) {
+        com.salestracker.app.data.MoneySettings.currencyCode = code
+        settings.edit().apply { if (code == null) remove("currency") else putString("currency", code) }.apply()
+    }
+
+    init {
+        com.salestracker.app.data.MoneySettings.currencyCode = settings.getString("currency", null)
+    }
+
     init {
         // "Start in privacy mode": amounts are hidden every time the app is opened.
         if (startInPrivacyMode) PrivacyMode.hideAmounts = true

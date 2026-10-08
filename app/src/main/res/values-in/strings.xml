@@ -218,8 +218,8 @@
     <string name="goals_company">Target perusahaan</string>
     <string name="goals_personal_sub">Target penghasilan Anda sendiri</string>
     <string name="goals_company_sub">Target tim dan perusahaan</string>
-    <string name="goals_personal_empty">Tetapkan berapa yang ingin Anda hasilkan, mis. \"komisi $5.000 bulan ini\".</string>
-    <string name="goals_company_empty">Pantau bagian Anda dari angka perusahaan, mis. \"pendapatan $100.000 kuartal ini\".</string>
+    <string name="goals_personal_empty">Tetapkan berapa yang ingin Anda hasilkan, mis. \"komisi %1$s bulan ini\".</string>
+    <string name="goals_company_empty">Pantau bagian Anda dari angka perusahaan, mis. \"pendapatan %1$s kuartal ini\".</string>
     <string name="metric_revenue">Pendapatan penjualan</string>
     <string name="metric_revenue_short">Pendapatan</string>
     <string name="metric_commission">Komisi diperoleh</string>
@@ -635,6 +635,10 @@
     <string name="cs_upcoming">Janji temu mendatang</string>
     <string name="cs_open_tasks">Tugas terbuka</string>
     <string name="cs_visit_note">Kunjungan adalah setiap pertemuan yang Anda ukur waktunya atau penjualan yang Anda catat dengan klien ini.</string>
+    <string name="currency_title">Mata uang</string>
+    <string name="currency_auto">Otomatis</string>
+    <string name="currency_auto_desc">Sesuai wilayah ponsel Anda: %1$s</string>
+    <string name="currency_note">Hanya mengubah simbol dan format angka. Jumlah yang sudah dimasukkan tidak dikonversi.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>
