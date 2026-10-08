@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -111,20 +112,41 @@ private fun CalculatorContent(vm: AppViewModel) {
                 val shown = expr.ifEmpty { "0" }
                 val measurer = rememberTextMeasurer()
                 val baseStyle = LocalTextStyle.current
+                val density = LocalDensity.current
                 val widthPx = constraints.maxWidth
-                val size = remember(shown, widthPx, baseStyle) {
-                    listOf(40, 36, 32, 28, 26).firstOrNull { sz ->
-                        measurer.measure(shown, baseStyle.copy(fontSize = sz.sp), maxLines = 1, softWrap = false).size.width <= widthPx
-                    } ?: 26
+                val heightPx = if (constraints.hasBoundedHeight) constraints.maxHeight else Int.MAX_VALUE
+                // (font size, text to show, lines allowed)
+                val fit = remember(shown, widthPx, heightPx, baseStyle, density) {
+                    fun style(sz: Int) = baseStyle.copy(fontSize = sz.sp, lineHeight = (sz * 1.2f).sp)
+                    val oneLine = listOf(40, 36, 32, 28).firstOrNull { sz ->
+                        measurer.measure(shown, style(sz), maxLines = 1, softWrap = false).size.width <= widthPx
+                    }
+                    if (oneLine != null) Triple(oneLine, shown, 1)
+                    else {
+                        // Wrap at the smallest size, using only the lines that fit above the "= result" line.
+                        val sz = 28
+                        val lineH = with(density) { (sz * 1.2f).sp.toPx() }
+                        val previewH = with(density) { 28.sp.toPx() }
+                        val lines = ((heightPx - previewH) / lineH).toInt().coerceIn(1, 4)
+                        fun overflows(t: String) = measurer.measure(
+                            t, style(sz), maxLines = lines, constraints = Constraints(maxWidth = widthPx),
+                        ).hasVisualOverflow
+                        // Still too long: keep the end being typed, and mark the hidden start with "…".
+                        var text = shown
+                        var cut = 0
+                        while (overflows(text) && cut < shown.length - 1) { cut++; text = "…" + shown.drop(cut) }
+                        Triple(sz, text, lines)
+                    }
                 }
+                val (size, text, lines) = fit
                 Column(horizontalAlignment = Alignment.End) {
                     Text(
-                        shown,
+                        text,
                         fontSize = size.sp,
                         lineHeight = (size * 1.2f).sp,
                         textAlign = TextAlign.End,
-                        maxLines = if (wide) 3 else 4,
-                        overflow = TextOverflow.Ellipsis,
+                        maxLines = lines,
+                        overflow = TextOverflow.Clip,
                     )
                     Text(
                         if (preview != null && preview != expr) "= $preview" else " ",
