@@ -22,6 +22,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -101,21 +104,37 @@ private fun CalculatorContent(vm: AppViewModel) {
         val wide = maxWidth > maxHeight * 1.2f
         val gap = 10.dp
         val display: @Composable (Modifier) -> Unit = { mod ->
-            Column(mod, verticalArrangement = Arrangement.Bottom, horizontalAlignment = Alignment.End) {
-                Text(
-                    expr.ifEmpty { "0" },
-                    fontSize = 40.sp,
-                    textAlign = TextAlign.End,
-                    maxLines = if (wide) 2 else 3,
-                    overflow = TextOverflow.Ellipsis,
-                )
-                Text(
-                    if (preview != null && preview != expr) "= $preview" else " ",
-                    fontSize = 22.sp,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+            // Like a phone calculator: the numbers shrink step by step to stay on one line as the sum grows,
+            // and only wrap once they reach the smallest size. Line spacing follows the font size, so wrapped
+            // lines never run into each other.
+            BoxWithConstraints(mod, contentAlignment = Alignment.BottomEnd) {
+                val shown = expr.ifEmpty { "0" }
+                val measurer = rememberTextMeasurer()
+                val baseStyle = LocalTextStyle.current
+                val widthPx = constraints.maxWidth
+                val size = remember(shown, widthPx, baseStyle) {
+                    listOf(40, 36, 32, 28, 26).firstOrNull { sz ->
+                        measurer.measure(shown, baseStyle.copy(fontSize = sz.sp), maxLines = 1, softWrap = false).size.width <= widthPx
+                    } ?: 26
+                }
+                Column(horizontalAlignment = Alignment.End) {
+                    Text(
+                        shown,
+                        fontSize = size.sp,
+                        lineHeight = (size * 1.2f).sp,
+                        textAlign = TextAlign.End,
+                        maxLines = if (wide) 3 else 4,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    Text(
+                        if (preview != null && preview != expr) "= $preview" else " ",
+                        fontSize = 22.sp,
+                        lineHeight = 28.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
             }
         }
         val keypadHeight = if (wide) maxHeight else maxHeight * 0.72f

@@ -105,6 +105,14 @@ class LayoutAudit {
                 shot("$config-5-tasks")
                 tap(app.getString(R.string.schedule_calendar))
             }
+            if (name == "7-calc") {
+                // A long sum that has to shrink and then wrap onto more lines.
+                vm.calculatorExpression = "1234567×89012+3456789−12345÷678×9012345+4321"
+                shot("$config-7-calc-long")
+                vm.calculatorExpression = "125000×0.035"
+                shot("$config-7-calc-medium")
+                vm.calculatorExpression = ""
+            }
             if (name in setOf("1-stats", "1s-sales", "2-goals", "8-charts", "6-timer", "4-schedule")) {
                 scrollDown()
                 shot("$config-$name-b")
