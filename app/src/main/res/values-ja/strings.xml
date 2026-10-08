@@ -306,7 +306,7 @@
     <string name="pi_offline_t">端末の中にとどまります</string>
     <string name="pi_offline">このアプリにはインターネット権限がありません。Android 自体が接続を禁止するため、データがどこかへ送られることはありません。</string>
     <string name="pi_nothing_t">何も収集しません</string>
-    <string name="pi_nothing">アカウント、分析、広告、追跡、クラッシュレポートは一切ありません。アプリの開発者があなたのデータを見ることはありません。</string>
+    <string name="pi_nothing">アカウント、分析、広告、追跡、自動クラッシュレポートは一切ありません。アプリの開発者があなたのデータを見ることはありません。</string>
     <string name="pi_encrypted_t">暗号化</string>
     <string name="pi_encrypted">データファイルは AES-256 で暗号化されています。鍵は端末の安全なハードウェア内に保管され、端末の外へコピーできません。</string>
     <string name="pi_nobackup_t">クラウドへの自動コピーなし</string>
@@ -667,6 +667,22 @@
     <string name="hide_widgets">ウィジェットの内容を隠す</string>
     <string name="hide_widgets_desc">ホーム画面のウィジェットには、タスクや予定、数値の代わりに「非表示」とだけ表示されます。</string>
     <string name="widget_hidden_msg">非表示です。アプリを開いて確認してください。</string>
+    <string name="crash_title">Quota Vault が予期せず終了しました</string>
+    <string name="crash_prompt_body">クラッシュレポートがこのスマートフォンに保存されました。送信していただくと問題の修正に役立ちます。含まれるのは技術的な情報だけで、売上、顧客、入力した内容は一切含まれません。あなたが選ばない限り、何も送信されません。</string>
+    <string name="crash_view">レポートを見る</string>
+    <string name="crash_not_now">今はしない</string>
+    <string name="crash_reports">クラッシュレポート</string>
+    <string name="crash_reports_desc">このスマートフォンにのみ保存されます。あなたが選ばない限り、何も送信されません。</string>
+    <string name="crash_reports_none">クラッシュレポートはありません。アプリが予期せず終了した場合、レポートがこのスマートフォン内にのみ保存されます。</string>
+    <string name="crash_report_title">クラッシュレポート</string>
+    <string name="crash_report_contains">このレポートに含まれるのは、アプリのバージョン、Android のバージョン、スマートフォンの機種、アプリのコード内でエラーが起きた場所だけです。売上、顧客、メモ、入力した内容は一切含まれません。</string>
+    <string name="crash_send">レポートを送信</string>
+    <string name="crash_send_note">メールアプリが %1$s 宛てのこのレポートで開くので、送信前に内容を確認できます。送信元のメールアドレスは私たちに表示されます。</string>
+    <string name="crash_delete_all">すべて削除</string>
+    <string name="crash_email_subject">Quota Vault クラッシュレポート（%1$s）</string>
+    <string name="crash_email_intro">アプリが終了したとき、何をしていましたか？（任意）</string>
+    <string name="pi_crash_t">クラッシュレポートはスマートフォン内に保存されます</string>
+    <string name="pi_crash">アプリが予期せず終了すると、技術的なレポートがこのスマートフォンに保存されます。メールで送ることを選んだ場合にのみ送信され、あなたのデータは一切含まれません。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

@@ -306,7 +306,7 @@
     <string name="pi_offline_t">Ở lại trên điện thoại</string>
     <string name="pi_offline">Ứng dụng không có quyền internet. Chính Android ngăn nó kết nối, nên dữ liệu của bạn không thể bị gửi đi đâu.</string>
     <string name="pi_nothing_t">Không thu thập gì</string>
-    <string name="pi_nothing">Không tài khoản, không phân tích, không quảng cáo, không theo dõi, không báo cáo lỗi. Nhà phát triển không bao giờ thấy dữ liệu của bạn.</string>
+    <string name="pi_nothing">Không tài khoản, không phân tích, không quảng cáo, không theo dõi, không báo cáo lỗi tự động. Nhà phát triển không bao giờ thấy dữ liệu của bạn.</string>
     <string name="pi_encrypted_t">Được mã hóa</string>
     <string name="pi_encrypted">Tệp dữ liệu được mã hóa AES-256. Khóa nằm trong phần cứng bảo mật của điện thoại và không thể sao chép ra ngoài.</string>
     <string name="pi_nobackup_t">Không tự sao chép lên đám mây</string>
@@ -667,6 +667,22 @@
     <string name="hide_widgets">Ẩn nội dung tiện ích</string>
     <string name="hide_widgets_desc">Tiện ích trên màn hình chính chỉ hiện \"Đã ẩn\" thay cho việc, lịch và số liệu của bạn.</string>
     <string name="widget_hidden_msg">Đã ẩn. Mở ứng dụng để xem.</string>
+    <string name="crash_title">Quota Vault đã đóng đột ngột</string>
+    <string name="crash_prompt_body">Một báo cáo sự cố đã được lưu trên điện thoại này. Gửi báo cáo giúp chúng tôi khắc phục sự cố. Báo cáo chỉ chứa thông tin kỹ thuật, không bao giờ có doanh số, khách hàng hay bất cứ điều gì bạn đã nhập. Không có gì được gửi đi trừ khi bạn chọn.</string>
+    <string name="crash_view">Xem báo cáo</string>
+    <string name="crash_not_now">Để sau</string>
+    <string name="crash_reports">Báo cáo sự cố</string>
+    <string name="crash_reports_desc">Chỉ lưu trên điện thoại này. Không có gì được gửi đi trừ khi bạn chọn.</string>
+    <string name="crash_reports_none">Không có báo cáo sự cố. Nếu ứng dụng đóng đột ngột, một báo cáo sẽ được lưu ở đây, chỉ trên điện thoại này.</string>
+    <string name="crash_report_title">Báo cáo sự cố</string>
+    <string name="crash_report_contains">Báo cáo này chỉ chứa phiên bản ứng dụng, phiên bản Android, mẫu điện thoại và vị trí lỗi xảy ra trong mã của ứng dụng. Báo cáo không bao giờ có doanh số, khách hàng, ghi chú hay bất cứ điều gì bạn đã nhập.</string>
+    <string name="crash_send">Gửi báo cáo</string>
+    <string name="crash_send_note">Ứng dụng email của bạn sẽ mở với báo cáo này gửi tới %1$s, để bạn có thể đọc trước khi gửi. Chúng tôi sẽ thấy địa chỉ email bạn dùng để gửi.</string>
+    <string name="crash_delete_all">Xóa tất cả</string>
+    <string name="crash_email_subject">Báo cáo sự cố Quota Vault (%1$s)</string>
+    <string name="crash_email_intro">Bạn đang làm gì khi ứng dụng đóng? (không bắt buộc)</string>
+    <string name="pi_crash_t">Báo cáo sự cố nằm trên điện thoại của bạn</string>
+    <string name="pi_crash">Nếu ứng dụng đóng đột ngột, một báo cáo kỹ thuật được lưu trên điện thoại này. Báo cáo chỉ được gửi nếu bạn chọn gửi qua email, và không bao giờ chứa dữ liệu của bạn.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

@@ -27,6 +27,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Backup
+import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material.icons.filled.Description
@@ -79,7 +80,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 
-private enum class Flow { NONE, BACKUP_PASSWORD, RESTORE_PASSWORD, RESTORE_CONFIRM, WORKING, ERASE_CONFIRM, PRIVACY_INFO, AGREEMENT, GUIDE }
+private enum class Flow { NONE, BACKUP_PASSWORD, RESTORE_PASSWORD, RESTORE_CONFIRM, WORKING, ERASE_CONFIRM, PRIVACY_INFO, AGREEMENT, GUIDE, CRASH_REPORTS }
 
 private fun formatDay(millis: Long) = localizedFormatter("yMMMd").format(Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()))
 
@@ -329,6 +330,9 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                     Icons.Filled.Description, stringResource(R.string.agreement_view),
                     if (vm.agreementAccepted) stringResource(R.string.agreement_accepted_on, formatDay(vm.agreementAcceptedAt)) else "",
                 ) { flow = Flow.AGREEMENT }
+                SettingRow(Icons.Filled.BugReport, stringResource(R.string.crash_reports), stringResource(R.string.crash_reports_desc)) {
+                    flow = Flow.CRASH_REPORTS
+                }
             }
         }
     }
@@ -402,6 +406,7 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
         )
         Flow.PRIVACY_INFO -> PrivacyInfoDialog(encrypted = vm.encryptedAtRest, onDismiss = { flow = Flow.NONE })
         Flow.AGREEMENT -> InfoDialog(stringResource(R.string.agreement_title), onDismiss = { flow = Flow.NONE }) { AgreementText() }
+        Flow.CRASH_REPORTS -> CrashReportsDialog(openNewest = false, onDismiss = { flow = Flow.NONE })
         Flow.GUIDE -> InfoDialog(stringResource(R.string.guide_title), onDismiss = { flow = Flow.NONE }) { BackupGuideText() }
     }
 
@@ -467,6 +472,7 @@ private fun PrivacyInfoDialog(encrypted: Boolean, onDismiss: () -> Unit) {
             Text("• " + stringResource(it), style = MaterialTheme.typography.bodyMedium)
         }
         InfoBlock(R.string.pi_never_t, R.string.pi_never)
+        InfoBlock(R.string.pi_crash_t, R.string.pi_crash)
     }
 }
 

@@ -379,7 +379,7 @@
     <string name="pi_offline_t">Stays on your phone</string>
     <string name="pi_offline">The app has no internet permission. Android itself blocks it from connecting to anything, so your data can\'t be sent anywhere.</string>
     <string name="pi_nothing_t">Nothing collected</string>
-    <string name="pi_nothing">No accounts, no analytics, no ads, no tracking, no crash reports. The makers of the app never see your data.</string>
+    <string name="pi_nothing">No accounts, no analytics, no ads, no tracking and no automatic crash reports. The makers of the app never see your data.</string>
     <string name="pi_encrypted_t">Encrypted</string>
     <string name="pi_encrypted">Your data file is encrypted with AES-256. The key is kept in the phone\'s secure hardware and can\'t be copied off the phone.</string>
     <string name="pi_nobackup_t">No automatic cloud copies</string>
@@ -794,4 +794,21 @@
     <string name="hide_widgets">Hide widget contents</string>
     <string name="hide_widgets_desc">Home-screen widgets show only \"Hidden\" instead of your tasks, schedule and numbers.</string>
     <string name="widget_hidden_msg">Hidden. Open the app to see this.</string>
+    <!-- Crash reports (saved on the phone; sent only if the user emails one) -->
+    <string name="crash_title">Quota Vault closed unexpectedly</string>
+    <string name="crash_prompt_body">A crash report was saved on this phone. Sending it helps us fix the problem. It holds only technical details, never your sales, clients or anything you typed. Nothing is sent unless you choose to.</string>
+    <string name="crash_view">View report</string>
+    <string name="crash_not_now">Not now</string>
+    <string name="crash_reports">Crash reports</string>
+    <string name="crash_reports_desc">Saved on this phone only. Nothing is sent unless you choose to.</string>
+    <string name="crash_reports_none">No crash reports. If the app ever closes unexpectedly, a report is saved here, on this phone only.</string>
+    <string name="crash_report_title">Crash report</string>
+    <string name="crash_report_contains">This report holds only the app version, Android version, phone model and where the error happened in the app\'s code. It never includes your sales, clients, notes or anything you typed.</string>
+    <string name="crash_send">Send report</string>
+    <string name="crash_send_note">Your email app opens with this report addressed to %1$s, so you can read it before sending. We\'ll see the email address you send from.</string>
+    <string name="crash_delete_all">Delete all</string>
+    <string name="crash_email_subject">Quota Vault crash report (%1$s)</string>
+    <string name="crash_email_intro">What were you doing when the app closed? (optional)</string>
+    <string name="pi_crash_t">Crash reports stay on your phone</string>
+    <string name="pi_crash">If the app closes unexpectedly, a technical report is saved on this phone. It\'s sent only if you choose to email it, and it never contains your data.</string>
 </resources>

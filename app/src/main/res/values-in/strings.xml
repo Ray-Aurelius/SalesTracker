@@ -306,7 +306,7 @@
     <string name="pi_offline_t">Tetap di ponsel Anda</string>
     <string name="pi_offline">Aplikasi tidak memiliki izin internet. Android sendiri mencegahnya terhubung, jadi data Anda tidak bisa dikirim ke mana pun.</string>
     <string name="pi_nothing_t">Tidak ada yang dikumpulkan</string>
-    <string name="pi_nothing">Tanpa akun, analitik, iklan, pelacakan, atau laporan error. Pembuat aplikasi tidak pernah melihat data Anda.</string>
+    <string name="pi_nothing">Tanpa akun, analitik, iklan, pelacakan, atau laporan error otomatis. Pembuat aplikasi tidak pernah melihat data Anda.</string>
     <string name="pi_encrypted_t">Terenkripsi</string>
     <string name="pi_encrypted">File data Anda dienkripsi dengan AES-256. Kuncinya disimpan di perangkat keras aman ponsel dan tidak dapat disalin keluar.</string>
     <string name="pi_nobackup_t">Tanpa salinan cloud otomatis</string>
@@ -667,6 +667,22 @@
     <string name="hide_widgets">Sembunyikan isi widget</string>
     <string name="hide_widgets_desc">Widget layar utama hanya menampilkan \"Tersembunyi\" alih-alih tugas, jadwal, dan angka Anda.</string>
     <string name="widget_hidden_msg">Tersembunyi. Buka aplikasi untuk melihatnya.</string>
+    <string name="crash_title">Quota Vault tertutup secara tiba-tiba</string>
+    <string name="crash_prompt_body">Laporan error telah disimpan di ponsel ini. Mengirimnya membantu kami memperbaiki masalah. Laporan hanya berisi detail teknis, tidak pernah berisi penjualan, klien, atau apa pun yang Anda ketik. Tidak ada yang dikirim kecuali Anda memilihnya.</string>
+    <string name="crash_view">Lihat laporan</string>
+    <string name="crash_not_now">Nanti saja</string>
+    <string name="crash_reports">Laporan error</string>
+    <string name="crash_reports_desc">Hanya disimpan di ponsel ini. Tidak ada yang dikirim kecuali Anda memilihnya.</string>
+    <string name="crash_reports_none">Tidak ada laporan error. Jika aplikasi tertutup tiba-tiba, laporan akan disimpan di sini, hanya di ponsel ini.</string>
+    <string name="crash_report_title">Laporan error</string>
+    <string name="crash_report_contains">Laporan ini hanya berisi versi aplikasi, versi Android, model ponsel, dan lokasi terjadinya error dalam kode aplikasi. Laporan tidak pernah berisi penjualan, klien, catatan, atau apa pun yang Anda ketik.</string>
+    <string name="crash_send">Kirim laporan</string>
+    <string name="crash_send_note">Aplikasi email Anda akan terbuka dengan laporan ini yang ditujukan ke %1$s, sehingga Anda bisa membacanya sebelum mengirim. Kami akan melihat alamat email yang Anda gunakan untuk mengirim.</string>
+    <string name="crash_delete_all">Hapus semua</string>
+    <string name="crash_email_subject">Laporan error Quota Vault (%1$s)</string>
+    <string name="crash_email_intro">Apa yang sedang Anda lakukan saat aplikasi tertutup? (opsional)</string>
+    <string name="pi_crash_t">Laporan error tetap di ponsel Anda</string>
+    <string name="pi_crash">Jika aplikasi tertutup tiba-tiba, laporan teknis disimpan di ponsel ini. Laporan hanya dikirim jika Anda memilih mengirimnya lewat email, dan tidak pernah berisi data Anda.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

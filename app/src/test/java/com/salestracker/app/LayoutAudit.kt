@@ -156,6 +156,35 @@ class LayoutAudit {
         shotWithPopups("j-client-search-name")
     }
 
+    /** The crash report screen: the exact report text, and the list in Security & privacy. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun k_crashReport() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        com.salestracker.app.data.CrashLog.deleteAll(app)
+        val boom = IllegalStateException("Jordan Lee 555-0111", NumberFormatException("1,440.00"))
+        com.salestracker.app.data.CrashLog.save(app, Thread.currentThread(), boom)
+        // One composition (a test may set content only once); the stage picks what is on screen.
+        var stage by mutableStateOf(0)
+        rule.setContent {
+            SalesTrackerTheme(dark = false) {
+                androidx.compose.material3.Surface(androidx.compose.ui.Modifier.padding(0.dp)) {
+                    when (stage) {
+                        0 -> com.salestracker.app.ui.screens.CrashReportsDialog(openNewest = true, onDismiss = {})
+                        1 -> com.salestracker.app.ui.screens.CrashReportsDialog(openNewest = false, onDismiss = {})
+                        else -> com.salestracker.app.ui.screens.CrashPrompt(onView = {}, onDismiss = {})
+                    }
+                }
+            }
+        }
+        listOf("k-crash-report", "k-crash-list", "k-crash-prompt").forEachIndexed { i, name ->
+            stage = i
+            rule.waitForIdle(); rule.mainClock.advanceTimeBy(800); rule.waitForIdle()
+            shotWithPopups(name)
+        }
+        com.salestracker.app.data.CrashLog.deleteAll(app)
+    }
+
     /** Draws the app window plus any open pop-up (menus), without waiting for idle. */
     private fun shotWithPopups(name: String) {
         val wmg = Class.forName("android.view.WindowManagerGlobal")

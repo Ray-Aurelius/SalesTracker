@@ -253,6 +253,19 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     var showSettings by rememberSaveable { mutableStateOf(false) }
     var showSecurity by rememberSaveable { mutableStateOf(false) }
     val data by vm.data.collectAsState()
+    val context = androidx.compose.ui.platform.LocalContext.current
+    // After a crash: offer, once, to show the saved report. Nothing is sent unless the user chooses to.
+    var crashPrompt by rememberSaveable { mutableStateOf(com.salestracker.app.data.CrashLog.hasUnseen(context)) }
+    var showCrashReports by rememberSaveable { mutableStateOf(false) }
+    if (crashPrompt) {
+        com.salestracker.app.ui.screens.CrashPrompt(
+            onView = { com.salestracker.app.data.CrashLog.markSeen(context); crashPrompt = false; showCrashReports = true },
+            onDismiss = { com.salestracker.app.data.CrashLog.markSeen(context); crashPrompt = false },
+        )
+    }
+    if (showCrashReports) {
+        com.salestracker.app.ui.screens.CrashReportsDialog(openNewest = true, onDismiss = { showCrashReports = false })
+    }
 
     // The full-screen Security & privacy center replaces the tabs while open.
     if (showSecurity || vm.backupRequested) {

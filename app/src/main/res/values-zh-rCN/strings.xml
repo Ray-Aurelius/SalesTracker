@@ -306,7 +306,7 @@
     <string name="pi_offline_t">留在你的手机上</string>
     <string name="pi_offline">应用没有网络权限。Android 本身会阻止它连接任何地方，因此你的数据无法被发送出去。</string>
     <string name="pi_nothing_t">不收集任何信息</string>
-    <string name="pi_nothing">没有账户、没有分析、没有广告、没有追踪、没有崩溃报告。应用的开发者永远看不到你的数据。</string>
+    <string name="pi_nothing">没有账户、没有分析、没有广告、没有追踪、没有自动崩溃报告。应用的开发者永远看不到你的数据。</string>
     <string name="pi_encrypted_t">已加密</string>
     <string name="pi_encrypted">你的数据文件使用 AES-256 加密。密钥保存在手机的安全硬件中，无法从手机中复制出来。</string>
     <string name="pi_nobackup_t">不会自动复制到云端</string>
@@ -667,6 +667,22 @@
     <string name="hide_widgets">隐藏小组件内容</string>
     <string name="hide_widgets_desc">主屏幕小组件只显示“已隐藏”，不显示你的任务、日程和数据。</string>
     <string name="widget_hidden_msg">已隐藏。打开应用查看。</string>
+    <string name="crash_title">Quota Vault 意外关闭</string>
+    <string name="crash_prompt_body">此手机上已保存一份崩溃报告。发送它可以帮助我们修复问题。报告只包含技术细节，绝不包含你的销售、客户或你输入的任何内容。除非你选择发送，否则不会发送任何内容。</string>
+    <string name="crash_view">查看报告</string>
+    <string name="crash_not_now">以后再说</string>
+    <string name="crash_reports">崩溃报告</string>
+    <string name="crash_reports_desc">仅保存在此手机上。除非你选择发送，否则不会发送任何内容。</string>
+    <string name="crash_reports_none">没有崩溃报告。如果应用意外关闭，报告会保存在这里，仅保存在此手机上。</string>
+    <string name="crash_report_title">崩溃报告</string>
+    <string name="crash_report_contains">此报告只包含应用版本、Android 版本、手机型号以及错误发生在应用代码中的位置。绝不包含你的销售、客户、备注或你输入的任何内容。</string>
+    <string name="crash_send">发送报告</string>
+    <string name="crash_send_note">你的邮件应用将打开这份报告，收件人为 %1$s，你可以在发送前阅读。我们会看到你用来发送的邮箱地址。</string>
+    <string name="crash_delete_all">全部删除</string>
+    <string name="crash_email_subject">Quota Vault 崩溃报告（%1$s）</string>
+    <string name="crash_email_intro">应用关闭时你在做什么？（可选）</string>
+    <string name="pi_crash_t">崩溃报告保留在你的手机上</string>
+    <string name="pi_crash">如果应用意外关闭，会在此手机上保存一份技术报告。只有在你选择通过邮件发送时才会发送，而且绝不包含你的数据。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>
