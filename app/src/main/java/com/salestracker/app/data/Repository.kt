@@ -63,8 +63,8 @@ class Repository(context: Context, private val cipher: DataCipher? = KeystoreCip
             _data.value = next
             if (!readOnly) write(next)
         }
-        // Keep the home-screen widget in step with the data.
-        com.salestracker.app.widget.GoalWidget.refresh(appContext)
+        // Keep the home-screen widgets in step with the data.
+        com.salestracker.app.widget.Widgets.refreshAll(appContext, _data.value)
     }
 
     private fun write(data: AppData) {

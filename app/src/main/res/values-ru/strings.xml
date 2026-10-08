@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">Тыквенно-оранжевый и полуночно-фиолетовый</string>
     <string name="palette_christmas">Рождество</string>
     <string name="palette_christmas_desc">Красный остролист, хвойно-зелёный и золотой</string>
+    <string name="widget_locked_any">Заблокировано. Откройте приложение, чтобы посмотреть.</string>
+    <string name="widget_tasks_title">Задачи на сегодня</string>
+    <string name="widget_tasks_empty">На сегодня ничего нет. Нажмите, чтобы добавить задачу.</string>
+    <string name="widget_tasks_done">На сегодня всё сделано. Отличная работа!</string>
+    <string name="widget_tasks_more">Ещё +%1$d</string>
+    <string name="widget_tasks_description">Задачи на сегодня, важные — первыми. Скрыто, когда включена блокировка приложения.</string>
+    <string name="widget_schedule_empty">На ближайшие 7 дней ничего не запланировано.</string>
+    <string name="widget_schedule_description">Ваши ближайшие встречи. Скрыто, когда включена блокировка приложения.</string>
+    <string name="widget_tomorrow">Завтра</string>
+    <string name="widget_stats_title">Статистика продаж</string>
+    <string name="widget_stats_description">Продажи за сегодня и за неделю, время на продажи и доля закрытых сделок. Никогда не показывает суммы и имена. Скрыто, когда включена блокировка приложения.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>
@@ -648,5 +659,11 @@
         <item quantity="few">%d продажи закрыто</item>
         <item quantity="many">%d продаж закрыто</item>
         <item quantity="other">%d продажи закрыто</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="one">осталась %d</item>
+        <item quantity="few">осталось %d</item>
+        <item quantity="many">осталось %d</item>
+        <item quantity="other">осталось %d</item>
     </plurals>
 </resources>

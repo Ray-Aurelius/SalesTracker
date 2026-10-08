@@ -46,16 +46,51 @@
                 android:value="true" />
         </service>
 
-        <!-- Home-screen goal widget (percentages only; hidden when app lock is on). -->
+        <!-- Home-screen widgets. None shows amounts or client names, and all are hidden when app lock is on. -->
         <receiver
             android:name=".widget.GoalWidget"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/widget_title">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/goal_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.TasksWidget"
+            android:exported="true"
+            android:label="@string/widget_tasks_title">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/tasks_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widget.ScheduleWidget"
+            android:exported="true"
+            android:label="@string/title_calendar">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/schedule_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widget.StatsWidget"
+            android:exported="true"
+            android:label="@string/widget_stats_title">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/stats_widget_info" />
         </receiver>
 
         <!-- Fires when a reminder is due, and handles Snooze / Dismiss. Only this app can trigger it. -->

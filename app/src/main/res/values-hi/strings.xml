@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">कद्दू नारंगी और आधी रात बैंगनी</string>
     <string name="palette_christmas">क्रिसमस</string>
     <string name="palette_christmas_desc">होली लाल, चीड़ हरा और सुनहरा</string>
+    <string name="widget_locked_any">लॉक है। देखने के लिए ऐप खोलें।</string>
+    <string name="widget_tasks_title">आज के कार्य</string>
+    <string name="widget_tasks_empty">आज की सूची में कुछ नहीं है। कार्य जोड़ने के लिए टैप करें।</string>
+    <string name="widget_tasks_done">आज के सभी काम पूरे। बहुत बढ़िया!</string>
+    <string name="widget_tasks_more">+%1$d और</string>
+    <string name="widget_tasks_description">आज के कार्य, ज़रूरी वाले पहले। ऐप लॉक चालू होने पर छिपा रहता है।</string>
+    <string name="widget_schedule_empty">अगले 7 दिनों में कुछ भी तय नहीं है।</string>
+    <string name="widget_schedule_description">आपकी आने वाली अपॉइंटमेंट। ऐप लॉक चालू होने पर छिपा रहता है।</string>
+    <string name="widget_tomorrow">कल</string>
+    <string name="widget_stats_title">बिक्री आँकड़े</string>
+    <string name="widget_stats_description">आज और इस सप्ताह की बिक्री, बिक्री पर लगा समय और क्लोज़ दर। कभी भी राशि या नाम नहीं दिखाता। ऐप लॉक चालू होने पर छिपा रहता है।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
@@ -632,5 +643,9 @@
     <plurals name="charts_closed_sales">
         <item quantity="one">%d बिक्री बंद</item>
         <item quantity="other">%d बिक्री बंद</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="one">%d बाकी</item>
+        <item quantity="other">%d बाकी</item>
     </plurals>
 </resources>

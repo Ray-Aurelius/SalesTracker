@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">Laranja abóbora e roxo meia-noite</string>
     <string name="palette_christmas">Natal</string>
     <string name="palette_christmas_desc">Vermelho azevinho, verde pinheiro e dourado</string>
+    <string name="widget_locked_any">Bloqueado. Abra o app para ver isto.</string>
+    <string name="widget_tasks_title">Tarefas de hoje</string>
+    <string name="widget_tasks_empty">Nada na lista de hoje. Toque para adicionar uma tarefa.</string>
+    <string name="widget_tasks_done">Tudo feito por hoje. Bom trabalho!</string>
+    <string name="widget_tasks_more">+%1$d a mais</string>
+    <string name="widget_tasks_description">As tarefas de hoje, as importantes primeiro. Fica oculto quando o bloqueio do app está ativado.</string>
+    <string name="widget_schedule_empty">Nada agendado nos próximos 7 dias.</string>
+    <string name="widget_schedule_description">Seus próximos compromissos. Fica oculto quando o bloqueio do app está ativado.</string>
+    <string name="widget_tomorrow">Amanhã</string>
+    <string name="widget_stats_title">Estatísticas de vendas</string>
+    <string name="widget_stats_description">Vendas de hoje e desta semana, tempo em vendas e taxa de fechamento. Nunca mostra valores nem nomes. Fica oculto quando o bloqueio do app está ativado.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>
@@ -640,5 +651,10 @@
         <item quantity="one">%d venda fechada</item>
         <item quantity="many">%d vendas fechadas</item>
         <item quantity="other">%d vendas fechadas</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="one">falta %d</item>
+        <item quantity="many">faltam %d</item>
+        <item quantity="other">faltam %d</item>
     </plurals>
 </resources>

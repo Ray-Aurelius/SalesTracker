@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">Oranye labu dan ungu tengah malam</string>
     <string name="palette_christmas">Natal</string>
     <string name="palette_christmas_desc">Merah holly, hijau pinus, dan emas</string>
+    <string name="widget_locked_any">Terkunci. Buka aplikasi untuk melihatnya.</string>
+    <string name="widget_tasks_title">Tugas hari ini</string>
+    <string name="widget_tasks_empty">Tidak ada apa pun di daftar hari ini. Ketuk untuk menambah tugas.</string>
+    <string name="widget_tasks_done">Semua selesai untuk hari ini. Kerja bagus!</string>
+    <string name="widget_tasks_more">+%1$d lagi</string>
+    <string name="widget_tasks_description">Tugas hari ini, yang penting lebih dulu. Disembunyikan saat kunci aplikasi aktif.</string>
+    <string name="widget_schedule_empty">Tidak ada jadwal dalam 7 hari ke depan.</string>
+    <string name="widget_schedule_description">Janji temu Anda berikutnya. Disembunyikan saat kunci aplikasi aktif.</string>
+    <string name="widget_tomorrow">Besok</string>
+    <string name="widget_stats_title">Statistik penjualan</string>
+    <string name="widget_stats_description">Penjualan hari ini dan minggu ini, waktu penjualan, dan tingkat closing. Tidak pernah menampilkan jumlah uang atau nama. Disembunyikan saat kunci aplikasi aktif.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>
@@ -624,5 +635,8 @@
     </plurals>
     <plurals name="charts_closed_sales">
         <item quantity="other">%d penjualan closing</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="other">%d tersisa</item>
     </plurals>
 </resources>

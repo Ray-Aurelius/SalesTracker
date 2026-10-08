@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">Cam bí ngô và tím nửa đêm</string>
     <string name="palette_christmas">Giáng sinh</string>
     <string name="palette_christmas_desc">Đỏ nhựa ruồi, xanh thông và vàng kim</string>
+    <string name="widget_locked_any">Đã khóa. Mở ứng dụng để xem.</string>
+    <string name="widget_tasks_title">Việc hôm nay</string>
+    <string name="widget_tasks_empty">Danh sách hôm nay trống. Chạm để thêm việc.</string>
+    <string name="widget_tasks_done">Đã xong hết việc hôm nay. Làm tốt lắm!</string>
+    <string name="widget_tasks_more">+%1$d việc nữa</string>
+    <string name="widget_tasks_description">Việc hôm nay, việc quan trọng trước. Ẩn khi bật khóa ứng dụng.</string>
+    <string name="widget_schedule_empty">Không có lịch hẹn nào trong 7 ngày tới.</string>
+    <string name="widget_schedule_description">Các lịch hẹn sắp tới. Ẩn khi bật khóa ứng dụng.</string>
+    <string name="widget_tomorrow">Ngày mai</string>
+    <string name="widget_stats_title">Thống kê bán hàng</string>
+    <string name="widget_stats_description">Giao dịch hôm nay và tuần này, thời gian bán hàng và tỷ lệ chốt. Không bao giờ hiển thị số tiền hay tên. Ẩn khi bật khóa ứng dụng.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>
@@ -624,5 +635,8 @@
     </plurals>
     <plurals name="charts_closed_sales">
         <item quantity="other">Đã chốt %d giao dịch</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="other">còn %d</item>
     </plurals>
 </resources>

@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">Orange citrouille et violet nuit</string>
     <string name="palette_christmas">Noël</string>
     <string name="palette_christmas_desc">Rouge houx, vert sapin et or</string>
+    <string name="widget_locked_any">Verrouillé. Ouvrez l\'app pour voir ceci.</string>
+    <string name="widget_tasks_title">Tâches du jour</string>
+    <string name="widget_tasks_empty">Rien sur la liste du jour. Touchez pour ajouter une tâche.</string>
+    <string name="widget_tasks_done">Tout est fait pour aujourd\'hui. Bravo !</string>
+    <string name="widget_tasks_more">+%1$d de plus</string>
+    <string name="widget_tasks_description">Les tâches du jour, les importantes d\'abord. Masqué quand le verrouillage de l\'app est activé.</string>
+    <string name="widget_schedule_empty">Rien de prévu dans les 7 prochains jours.</string>
+    <string name="widget_schedule_description">Vos prochains rendez-vous. Masqué quand le verrouillage de l\'app est activé.</string>
+    <string name="widget_tomorrow">Demain</string>
+    <string name="widget_stats_title">Statistiques de ventes</string>
+    <string name="widget_stats_description">Ventes du jour et de la semaine, temps de vente et taux de conclusion. N\'affiche jamais de montants ni de noms. Masqué quand le verrouillage de l\'app est activé.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>
@@ -640,5 +651,10 @@
         <item quantity="one">%d vente conclue</item>
         <item quantity="many">%d ventes conclues</item>
         <item quantity="other">%d ventes conclues</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="one">%d restante</item>
+        <item quantity="many">%d restantes</item>
+        <item quantity="other">%d restantes</item>
     </plurals>
 </resources>

@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">Kürbisorange und Mitternachtslila</string>
     <string name="palette_christmas">Weihnachten</string>
     <string name="palette_christmas_desc">Stechpalmenrot, Tannengrün und Gold</string>
+    <string name="widget_locked_any">Gesperrt. Öffne die App, um dies zu sehen.</string>
+    <string name="widget_tasks_title">Heutige Aufgaben</string>
+    <string name="widget_tasks_empty">Heute steht nichts auf der Liste. Tippen, um eine Aufgabe hinzuzufügen.</string>
+    <string name="widget_tasks_done">Alles erledigt für heute. Gut gemacht!</string>
+    <string name="widget_tasks_more">+%1$d weitere</string>
+    <string name="widget_tasks_description">Die heutigen Aufgaben, wichtige zuerst. Ausgeblendet, wenn die App-Sperre aktiv ist.</string>
+    <string name="widget_schedule_empty">In den nächsten 7 Tagen ist nichts geplant.</string>
+    <string name="widget_schedule_description">Deine nächsten Termine. Ausgeblendet, wenn die App-Sperre aktiv ist.</string>
+    <string name="widget_tomorrow">Morgen</string>
+    <string name="widget_stats_title">Verkaufsstatistik</string>
+    <string name="widget_stats_description">Verkäufe heute und diese Woche, Verkaufszeit und Abschlussquote. Zeigt nie Beträge oder Namen. Ausgeblendet, wenn die App-Sperre aktiv ist.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>
@@ -632,5 +643,9 @@
     <plurals name="charts_closed_sales">
         <item quantity="one">%d Verkauf abgeschlossen</item>
         <item quantity="other">%d Verkäufe abgeschlossen</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="one">%d offen</item>
+        <item quantity="other">%d offen</item>
     </plurals>
 </resources>

@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">南瓜橙与午夜紫</string>
     <string name="palette_christmas">圣诞节</string>
     <string name="palette_christmas_desc">冬青红、松绿与金色</string>
+    <string name="widget_locked_any">已锁定。打开应用即可查看。</string>
+    <string name="widget_tasks_title">今日任务</string>
+    <string name="widget_tasks_empty">今天没有任务。点按即可添加任务。</string>
+    <string name="widget_tasks_done">今天的任务都完成了，干得好！</string>
+    <string name="widget_tasks_more">还有 %1$d 项</string>
+    <string name="widget_tasks_description">今天的任务，重要的排在前面。开启应用锁时隐藏。</string>
+    <string name="widget_schedule_empty">未来 7 天没有安排。</string>
+    <string name="widget_schedule_description">你接下来的预约。开启应用锁时隐藏。</string>
+    <string name="widget_tomorrow">明天</string>
+    <string name="widget_stats_title">销售统计</string>
+    <string name="widget_stats_description">今日和本周的销售、销售用时和成交率。从不显示金额或姓名。开启应用锁时隐藏。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>
@@ -624,5 +635,8 @@
     </plurals>
     <plurals name="charts_closed_sales">
         <item quantity="other">成交 %d 笔</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="other">剩 %d 项</item>
     </plurals>
 </resources>

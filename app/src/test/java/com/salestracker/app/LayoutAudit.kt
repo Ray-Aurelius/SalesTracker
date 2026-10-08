@@ -120,6 +120,37 @@ class LayoutAudit {
         }
     }
 
+    /** The home-screen widgets with the sample data, plus how a widget looks when app lock is on. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun g_widgets() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        val prefs = app.getSharedPreferences("settings", Context.MODE_PRIVATE)
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); setDefaultCommission(10.0); loadSampleData() }
+        val data = com.salestracker.app.data.Repository.readSnapshot(app)
+        val dp = app.resources.displayMetrics.density
+        fun render(name: String, views: android.widget.RemoteViews, wDp: Int = 300, hDp: Int = 190) {
+            val parent = android.widget.FrameLayout(app)
+            val v = views.apply(app, parent)
+            val w = (wDp * dp).toInt(); val h = (hDp * dp).toInt()
+            v.measure(android.view.View.MeasureSpec.makeMeasureSpec(w, android.view.View.MeasureSpec.EXACTLY),
+                android.view.View.MeasureSpec.makeMeasureSpec(h, android.view.View.MeasureSpec.EXACTLY))
+            v.layout(0, 0, w, h)
+            val bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+            val c = android.graphics.Canvas(bmp)
+            c.drawColor(0xFF5B7C99.toInt()) // stand-in wallpaper
+            v.draw(c)
+            File(out, "g-widget-$name.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        }
+        render("tasks", com.salestracker.app.widget.TasksWidget.build(app, data))
+        render("schedule", com.salestracker.app.widget.ScheduleWidget.build(app, data))
+        render("stats", com.salestracker.app.widget.StatsWidget.build(app, data), 220)
+        prefs.edit().putBoolean("appLock", true).commit()
+        render("tasks-locked", com.salestracker.app.widget.TasksWidget.build(app, data))
+        render("stats-locked", com.salestracker.app.widget.StatsWidget.build(app, data), 220)
+        prefs.edit().putBoolean("appLock", false).commit()
+    }
+
     /** Each holiday palette in light and dark, on the Stats tab with the + menu open. */
     @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
     fun f_holidayThemes() {

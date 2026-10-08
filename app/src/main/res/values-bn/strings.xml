@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">কুমড়া কমলা ও মধ্যরাতের বেগুনি</string>
     <string name="palette_christmas">বড়দিন</string>
     <string name="palette_christmas_desc">হলি লাল, পাইন সবুজ ও সোনালি</string>
+    <string name="widget_locked_any">লক করা আছে। দেখতে অ্যাপ খুলুন।</string>
+    <string name="widget_tasks_title">আজকের কাজ</string>
+    <string name="widget_tasks_empty">আজকের তালিকায় কিছু নেই। কাজ যোগ করতে ট্যাপ করুন।</string>
+    <string name="widget_tasks_done">আজকের সব কাজ শেষ। দারুণ!</string>
+    <string name="widget_tasks_more">আরও +%1$d</string>
+    <string name="widget_tasks_description">আজকের কাজ, গুরুত্বপূর্ণগুলো আগে। অ্যাপ লক চালু থাকলে লুকানো থাকে।</string>
+    <string name="widget_schedule_empty">আগামী ৭ দিনে কিছুই নির্ধারিত নেই।</string>
+    <string name="widget_schedule_description">আপনার আসন্ন অ্যাপয়েন্টমেন্ট। অ্যাপ লক চালু থাকলে লুকানো থাকে।</string>
+    <string name="widget_tomorrow">আগামীকাল</string>
+    <string name="widget_stats_title">বিক্রয়ের পরিসংখ্যান</string>
+    <string name="widget_stats_description">আজ ও এই সপ্তাহের বিক্রয়, বিক্রয়ে ব্যয় করা সময় ও ক্লোজ রেট। কখনো পরিমাণ বা নাম দেখায় না। অ্যাপ লক চালু থাকলে লুকানো থাকে।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
@@ -632,5 +643,9 @@
     <plurals name="charts_closed_sales">
         <item quantity="one">%d টি বিক্রি সম্পন্ন</item>
         <item quantity="other">%d টি বিক্রি সম্পন্ন</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="one">%dটি বাকি</item>
+        <item quantity="other">%dটি বাকি</item>
     </plurals>
 </resources>

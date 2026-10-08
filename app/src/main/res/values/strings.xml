@@ -712,4 +712,19 @@
     <string name="palette_halloween_desc">Pumpkin orange and midnight purple</string>
     <string name="palette_christmas">Christmas</string>
     <string name="palette_christmas_desc">Holly red, pine green and gold</string>
+    <string name="widget_locked_any">Locked. Open the app to see this.</string>
+    <string name="widget_tasks_title">Today\'s tasks</string>
+    <string name="widget_tasks_empty">Nothing on today\'s list. Tap to add a task.</string>
+    <string name="widget_tasks_done">All done for today. Nice work!</string>
+    <string name="widget_tasks_more">+%1$d more</string>
+    <string name="widget_tasks_description">Today\'s tasks, important ones first. Hidden when app lock is on.</string>
+    <string name="widget_schedule_empty">Nothing scheduled in the next 7 days.</string>
+    <string name="widget_schedule_description">Your upcoming appointments. Hidden when app lock is on.</string>
+    <string name="widget_tomorrow">Tomorrow</string>
+    <string name="widget_stats_title">Sales stats</string>
+    <string name="widget_stats_description">Today\'s and this week\'s sales, time on sales and close rate. Never shows amounts or names. Hidden when app lock is on.</string>
+    <plurals name="widget_tasks_left">
+        <item quantity="one">%d left</item>
+        <item quantity="other">%d left</item>
+    </plurals>
 </resources>

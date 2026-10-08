@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">Balkabağı turuncusu ve gece moru</string>
     <string name="palette_christmas">Noel</string>
     <string name="palette_christmas_desc">Çobanpüskülü kırmızısı, çam yeşili ve altın</string>
+    <string name="widget_locked_any">Kilitli. Görmek için uygulamayı açın.</string>
+    <string name="widget_tasks_title">Bugünün görevleri</string>
+    <string name="widget_tasks_empty">Bugünün listesinde bir şey yok. Görev eklemek için dokunun.</string>
+    <string name="widget_tasks_done">Bugünlük her şey tamam. Harika iş!</string>
+    <string name="widget_tasks_more">+%1$d tane daha</string>
+    <string name="widget_tasks_description">Bugünün görevleri, önemliler önce. Uygulama kilidi açıkken gizlenir.</string>
+    <string name="widget_schedule_empty">Önümüzdeki 7 günde planlanmış bir şey yok.</string>
+    <string name="widget_schedule_description">Yaklaşan randevularınız. Uygulama kilidi açıkken gizlenir.</string>
+    <string name="widget_tomorrow">Yarın</string>
+    <string name="widget_stats_title">Satış istatistikleri</string>
+    <string name="widget_stats_description">Bugünün ve bu haftanın satışları, satışa harcanan süre ve kapanış oranı. Asla tutar veya isim göstermez. Uygulama kilidi açıkken gizlenir.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>
@@ -632,5 +643,9 @@
     <plurals name="charts_closed_sales">
         <item quantity="one">%d satış kapandı</item>
         <item quantity="other">%d satış kapandı</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="one">%d kaldı</item>
+        <item quantity="other">%d kaldı</item>
     </plurals>
 </resources>

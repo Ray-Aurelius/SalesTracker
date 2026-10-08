@@ -601,6 +601,17 @@
     <string name="palette_halloween_desc">برتقالي اليقطين وبنفسجي منتصف الليل</string>
     <string name="palette_christmas">عيد الميلاد</string>
     <string name="palette_christmas_desc">أحمر البهشية وأخضر الصنوبر وذهبي</string>
+    <string name="widget_locked_any">مقفل. افتح التطبيق لعرض هذا.</string>
+    <string name="widget_tasks_title">مهام اليوم</string>
+    <string name="widget_tasks_empty">لا شيء في قائمة اليوم. انقر لإضافة مهمة.</string>
+    <string name="widget_tasks_done">أنجزت كل شيء اليوم. عمل رائع!</string>
+    <string name="widget_tasks_more">+%1$d أخرى</string>
+    <string name="widget_tasks_description">مهام اليوم، المهمة أولًا. تُخفى عند تفعيل قفل التطبيق.</string>
+    <string name="widget_schedule_empty">لا شيء مجدول خلال الأيام السبعة القادمة.</string>
+    <string name="widget_schedule_description">مواعيدك القادمة. تُخفى عند تفعيل قفل التطبيق.</string>
+    <string name="widget_tomorrow">غدًا</string>
+    <string name="widget_stats_title">إحصاءات المبيعات</string>
+    <string name="widget_stats_description">مبيعات اليوم وهذا الأسبوع، ووقت البيع، ونسبة الإغلاق. لا تعرض أي مبالغ أو أسماء أبدًا. تُخفى عند تفعيل قفل التطبيق.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>
@@ -664,5 +675,13 @@
         <item quantity="few">%d عمليات بيع مغلقة</item>
         <item quantity="many">%d عملية بيع مغلقة</item>
         <item quantity="other">%d عملية بيع مغلقة</item>
+    </plurals>
+    <plurals name="widget_tasks_left">
+        <item quantity="zero">لم يتبقَّ شيء</item>
+        <item quantity="one">تبقّت %d</item>
+        <item quantity="two">تبقّت %d</item>
+        <item quantity="few">تبقّت %d</item>
+        <item quantity="many">تبقّت %d</item>
+        <item quantity="other">تبقّت %d</item>
     </plurals>
 </resources>
