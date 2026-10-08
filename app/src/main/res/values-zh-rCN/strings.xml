@@ -663,6 +663,7 @@
     <string name="widget_pace_ahead">领先上一期的进度，继续加油！</string>
     <string name="widget_pace_behind">落后于上一期的进度，还有时间追上。</string>
     <string name="widget_pace_keep_going">继续记录销售，确立你的节奏。</string>
+    <string name="cd_clear_client">清除客户</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

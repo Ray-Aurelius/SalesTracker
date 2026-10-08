@@ -663,6 +663,7 @@
     <string name="widget_pace_ahead">Vas por delante del ritmo del periodo anterior. ¡Sigue así!</string>
     <string name="widget_pace_behind">Vas por detrás del ritmo del periodo anterior. Aún hay tiempo para recuperarte.</string>
     <string name="widget_pace_keep_going">Sigue registrando ventas para marcar tu ritmo.</string>
+    <string name="cd_clear_client">Quitar cliente</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>

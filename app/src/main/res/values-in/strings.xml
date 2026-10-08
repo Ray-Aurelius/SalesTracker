@@ -663,6 +663,7 @@
     <string name="widget_pace_ahead">Anda lebih cepat dari laju periode sebelumnya. Pertahankan!</string>
     <string name="widget_pace_behind">Anda tertinggal dari laju periode sebelumnya. Masih ada waktu untuk mengejar.</string>
     <string name="widget_pace_keep_going">Terus catat penjualan untuk menetapkan laju Anda.</string>
+    <string name="cd_clear_client">Hapus klien</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

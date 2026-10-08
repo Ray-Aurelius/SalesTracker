@@ -663,6 +663,7 @@
     <string name="widget_pace_ahead">पिछली अवधि की रफ़्तार से आगे हैं। ऐसे ही जारी रखें!</string>
     <string name="widget_pace_behind">पिछली अवधि की रफ़्तार से पीछे हैं। अभी भी बराबरी का समय है।</string>
     <string name="widget_pace_keep_going">अपनी रफ़्तार तय करने के लिए बिक्री दर्ज करते रहें।</string>
+    <string name="cd_clear_client">ग्राहक हटाएँ</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

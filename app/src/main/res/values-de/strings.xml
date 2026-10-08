@@ -663,6 +663,7 @@
     <string name="widget_pace_ahead">Du liegst vor dem Tempo des letzten Zeitraums. Weiter so!</string>
     <string name="widget_pace_behind">Du liegst hinter dem Tempo des letzten Zeitraums. Noch ist Zeit zum Aufholen.</string>
     <string name="widget_pace_keep_going">Erfasse weiter Verkäufe, um dein Tempo zu bestimmen.</string>
+    <string name="cd_clear_client">Kunden entfernen</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

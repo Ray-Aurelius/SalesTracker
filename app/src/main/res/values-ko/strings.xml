@@ -663,6 +663,7 @@
     <string name="widget_pace_ahead">지난 기간보다 빠른 속도입니다. 계속 이대로!</string>
     <string name="widget_pace_behind">지난 기간보다 느린 속도입니다. 아직 따라잡을 시간이 있어요.</string>
     <string name="widget_pace_keep_going">판매를 계속 기록해 속도를 만들어 보세요.</string>
+    <string name="cd_clear_client">고객 지우기</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

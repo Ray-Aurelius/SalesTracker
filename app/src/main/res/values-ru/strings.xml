@@ -663,6 +663,7 @@
     <string name="widget_pace_ahead">Вы опережаете темп прошлого периода. Так держать!</string>
     <string name="widget_pace_behind">Вы отстаёте от темпа прошлого периода. Ещё есть время наверстать.</string>
     <string name="widget_pace_keep_going">Продолжайте записывать продажи, чтобы задать темп.</string>
+    <string name="cd_clear_client">Убрать клиента</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

@@ -790,4 +790,5 @@
     <string name="widget_pace_ahead">Ahead of your last period\'s pace. Keep it up!</string>
     <string name="widget_pace_behind">Behind your last period\'s pace. There\'s still time to catch up.</string>
     <string name="widget_pace_keep_going">Keep logging sales to set your pace.</string>
+    <string name="cd_clear_client">Clear client</string>
 </resources>

@@ -34,6 +34,10 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,6 +56,11 @@ import com.salestracker.app.data.formatMoney
 import com.salestracker.app.data.formatAmountInput
 import com.salestracker.app.data.parseMoney
 
+/**
+ * Picks the client for a sale, task, appointment or the timer by searching: type part of a first or last
+ * name, a phone number, an email (or a job number / occupation) and tap the match. The X clears the choice.
+ */
+@OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
 fun ClientPicker(
     clients: List<Client>,
@@ -59,24 +68,58 @@ fun ClientPicker(
     onSelect: (Long?) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var expanded by remember { mutableStateOf(false) }
     val selected = clients.firstOrNull { it.id == selectedId }
-    Box(modifier) {
-        OutlinedButton(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth()) {
-            Icon(Icons.Filled.Person, contentDescription = null)
-            Spacer(Modifier.width(8.dp))
-            Text(
-                selected?.displayName() ?: stringResource(if (clients.isEmpty()) R.string.client_none_saved else LocalTerms.current.chooseClient),
-                modifier = Modifier.weight(1f),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Icon(Icons.Filled.ArrowDropDown, contentDescription = null)
-        }
-        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-            DropdownMenuItem(text = { Text(stringResource(LocalTerms.current.noClient)) }, onClick = { onSelect(null); expanded = false })
-            clients.sortedBy { it.label().lowercase() }.forEach { c ->
-                DropdownMenuItem(text = { Text(c.displayName()) }, onClick = { onSelect(c.id); expanded = false })
+    var query by remember { mutableStateOf("") }
+    var searching by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
+    val focus = androidx.compose.ui.platform.LocalFocusManager.current
+    val matches = remember(query, clients) { com.salestracker.app.data.ClientSearch.filter(clients, query).take(30) }
+    val open = expanded && clients.isNotEmpty()
+    androidx.compose.material3.ExposedDropdownMenuBox(expanded = open, onExpandedChange = { expanded = it }, modifier = modifier) {
+        OutlinedTextField(
+            // While searching the box holds what's typed; otherwise it shows the chosen client.
+            value = if (searching || selected == null) query else selected.displayName(),
+            onValueChange = { query = it; searching = true; expanded = true },
+            enabled = clients.isNotEmpty(),
+            singleLine = true,
+            label = { Text(stringResource(if (clients.isEmpty()) R.string.client_none_saved else LocalTerms.current.chooseClient), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+            placeholder = { Text(stringResource(R.string.search_clients), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+            leadingIcon = { Icon(if (selected != null && !searching) Icons.Filled.Person else Icons.Filled.Search, contentDescription = null) },
+            trailingIcon = {
+                if (selected != null || query.isNotEmpty()) {
+                    IconButton(onClick = { onSelect(null); query = "" }) {
+                        Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.cd_clear_client))
+                    }
+                } else {
+                    androidx.compose.material3.ExposedDropdownMenuDefaults.TrailingIcon(expanded = open)
+                }
+            },
+            keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words, imeAction = androidx.compose.ui.text.input.ImeAction.Search),
+            modifier = Modifier
+                .fillMaxWidth()
+                .menuAnchor(androidx.compose.material3.MenuAnchorType.PrimaryEditable)
+                .onFocusChanged { f ->
+                    // Tapping the box starts a fresh search; leaving it goes back to showing the chosen client.
+                    if (f.isFocused) { searching = true; query = ""; expanded = true } else { searching = false; query = ""; expanded = false }
+                },
+        )
+        androidx.compose.material3.ExposedDropdownMenu(expanded = open, onDismissRequest = { expanded = false }) {
+            if (matches.isEmpty()) {
+                DropdownMenuItem(text = { Text(stringResource(R.string.no_clients_match, query)) }, onClick = {}, enabled = false)
+            }
+            matches.forEach { c ->
+                val detail = listOf(c.phone, c.email).filter { it.isNotBlank() }.joinToString(" · ")
+                DropdownMenuItem(
+                    text = {
+                        Column {
+                            Text(c.displayName(), maxLines = 1, overflow = TextOverflow.Ellipsis,
+                                fontWeight = if (c.id == selectedId) FontWeight.SemiBold else null)
+                            if (detail.isNotEmpty()) Text(detail, style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                        }
+                    },
+                    onClick = { onSelect(c.id); expanded = false; focus.clearFocus() },
+                )
             }
         }
     }

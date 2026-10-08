@@ -13,6 +13,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextClearance
+import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeUp
@@ -126,6 +128,51 @@ class LayoutAudit {
                 shot("$config-$name-b")
             }
         }
+    }
+
+    /** Searching for a client by phone number on the timer page (the same search box the sale form uses). */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun j_clientSearch() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); setDefaultCommission(10.0); loadSampleData() }
+        val vm = AppViewModel(app)
+        rule.setContent {
+            CompositionLocalProvider(LocalTerms provides vm.trade.terms) {
+                SalesTrackerTheme(palette = vm.palette, dark = false) { SalesApp(vm, false) }
+            }
+        }
+        tap(app.getString(R.string.tab_timer))
+        // A focused text box blinks its cursor forever: step the clock by hand from here on.
+        rule.mainClock.autoAdvance = false
+        rule.onAllNodes(androidx.compose.ui.test.hasSetTextAction()).onFirst().performClick()
+        rule.mainClock.advanceTimeBy(300)
+        rule.onAllNodes(androidx.compose.ui.test.hasSetTextAction()).onFirst().performTextInput("0111")
+        rule.mainClock.advanceTimeBy(800)
+        shotWithPopups("j-client-search-phone")
+        rule.onAllNodes(androidx.compose.ui.test.hasSetTextAction()).onFirst().performTextClearance()
+        rule.onAllNodes(androidx.compose.ui.test.hasSetTextAction()).onFirst().performTextInput("mor")
+        rule.mainClock.advanceTimeBy(800)
+        shotWithPopups("j-client-search-name")
+    }
+
+    /** Draws the app window plus any open pop-up (menus), without waiting for idle. */
+    private fun shotWithPopups(name: String) {
+        val wmg = Class.forName("android.view.WindowManagerGlobal")
+        val inst = wmg.getMethod("getInstance").invoke(null)
+        @Suppress("UNCHECKED_CAST")
+        val names = wmg.getMethod("getViewRootNames").invoke(inst) as Array<String>
+        val main = rule.activity.window.decorView
+        val bmp = Bitmap.createBitmap(main.width, main.height, Bitmap.Config.ARGB_8888)
+        val canvas = android.graphics.Canvas(bmp)
+        main.draw(canvas)
+        names.map { wmg.getMethod("getRootView", String::class.java).invoke(inst, it) as android.view.View }
+            .filter { it !== main && it.width > 0 }
+            .forEach { v ->
+                val lp = v.layoutParams as? android.view.WindowManager.LayoutParams
+                canvas.save(); canvas.translate((lp?.x ?: 0).toFloat(), (lp?.y ?: 0).toFloat()); v.draw(canvas); canvas.restore()
+            }
+        File(out, "$name.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 
     /** A client's stats card (it sits at the bottom of the client form, below the fold). */

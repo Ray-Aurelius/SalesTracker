@@ -663,6 +663,7 @@
     <string name="widget_pace_ahead">Önceki dönemin temposunun önündesiniz. Böyle devam!</string>
     <string name="widget_pace_behind">Önceki dönemin temposunun gerisindesiniz. Yetişmek için hâlâ zaman var.</string>
     <string name="widget_pace_keep_going">Temponuzu belirlemek için satış kaydetmeye devam edin.</string>
+    <string name="cd_clear_client">Müşteriyi temizle</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>
