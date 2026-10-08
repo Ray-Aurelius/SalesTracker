@@ -668,11 +668,11 @@
     <string name="hide_widgets_desc">I widget della schermata Home mostrano solo \"Nascosto\" invece di attività, agenda e numeri.</string>
     <string name="widget_hidden_msg">Nascosto. Apri l\'app per vederlo.</string>
     <string name="crash_title">Quota Vault si è chiusa in modo imprevisto</string>
-    <string name="crash_prompt_body">Un rapporto di arresto anomalo è stato salvato su questo telefono. Inviarlo ci aiuta a risolvere il problema. Contiene solo dettagli tecnici, mai le tue vendite, i tuoi clienti o ciò che hai scritto. Non viene inviato nulla a meno che tu non lo scelga.</string>
+    <string name="crash_prompt_body">Un rapporto di arresto anomalo è stato salvato su questo telefono. Inviarlo ci aiuta a risolvere il problema. Contiene solo dettagli tecnici, mai le tue vendite, i tuoi clienti o ciò che hai scritto.</string>
     <string name="crash_view">Visualizza rapporto</string>
     <string name="crash_not_now">Non ora</string>
     <string name="crash_reports">Rapporti di arresto anomalo</string>
-    <string name="crash_reports_desc">Salvati solo su questo telefono. Non viene inviato nulla a meno che tu non lo scelga.</string>
+    <string name="crash_reports_desc">Del tutto facoltativo. Salvati solo su questo telefono.</string>
     <string name="crash_reports_none">Nessun rapporto di arresto anomalo. Se l\'app si chiude in modo imprevisto, un rapporto viene salvato qui, solo su questo telefono.</string>
     <string name="crash_report_title">Rapporto di arresto anomalo</string>
     <string name="crash_report_contains">Questo rapporto contiene solo la versione dell\'app, la versione di Android, il modello del telefono e il punto del codice dell\'app in cui si è verificato l\'errore. Non include mai le tue vendite, i tuoi clienti, le note o ciò che hai scritto.</string>
@@ -681,8 +681,11 @@
     <string name="crash_delete_all">Elimina tutto</string>
     <string name="crash_email_subject">Rapporto di arresto anomalo di Quota Vault (%1$s)</string>
     <string name="crash_email_intro">Cosa stavi facendo quando l\'app si è chiusa? (facoltativo)</string>
-    <string name="pi_crash_t">I rapporti di arresto anomalo restano sul tuo telefono</string>
-    <string name="pi_crash">Se l\'app si chiude in modo imprevisto, un rapporto tecnico viene salvato su questo telefono. Viene inviato solo se scegli di mandarlo via email e non contiene mai i tuoi dati.</string>
+    <string name="pi_crash_t">I rapporti di arresto anomalo sono del tutto facoltativi</string>
+    <string name="pi_crash">Se l\'app si chiude in modo imprevisto, su questo telefono può essere salvato un rapporto tecnico. Viene inviato solo se scegli di mandarlo via email, non contiene mai i tuoi dati e puoi disattivarlo in Rapporti di arresto anomalo.</string>
+    <string name="crash_optional">I rapporti di arresto anomalo sono del tutto facoltativi. Inviarne uno è sempre una tua scelta, e l\'app non invia mai nulla da sola.</string>
+    <string name="crash_save">Salva i rapporti di arresto anomalo</string>
+    <string name="crash_save_desc">Se l\'app si chiude in modo imprevisto, conserva un rapporto su questo telefono così puoi decidere se inviarlo. Disattivando l\'opzione vengono eliminati i rapporti salvati.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>

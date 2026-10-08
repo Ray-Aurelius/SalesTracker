@@ -668,11 +668,11 @@
     <string name="hide_widgets_desc">Os widgets da tela inicial mostram só \"Oculto\" em vez de suas tarefas, agenda e números.</string>
     <string name="widget_hidden_msg">Oculto. Abra o app para ver.</string>
     <string name="crash_title">O Quota Vault fechou inesperadamente</string>
-    <string name="crash_prompt_body">Um relatório de falha foi salvo neste telefone. Enviá-lo nos ajuda a corrigir o problema. Ele contém apenas detalhes técnicos, nunca suas vendas, clientes ou qualquer coisa que você digitou. Nada é enviado a menos que você escolha.</string>
+    <string name="crash_prompt_body">Um relatório de falha foi salvo neste telefone. Enviá-lo nos ajuda a corrigir o problema. Ele contém apenas detalhes técnicos, nunca suas vendas, clientes ou qualquer coisa que você digitou.</string>
     <string name="crash_view">Ver relatório</string>
     <string name="crash_not_now">Agora não</string>
     <string name="crash_reports">Relatórios de falhas</string>
-    <string name="crash_reports_desc">Salvos apenas neste telefone. Nada é enviado a menos que você escolha.</string>
+    <string name="crash_reports_desc">Totalmente opcional. Salvos apenas neste telefone.</string>
     <string name="crash_reports_none">Nenhum relatório de falha. Se o app fechar inesperadamente, um relatório será salvo aqui, apenas neste telefone.</string>
     <string name="crash_report_title">Relatório de falha</string>
     <string name="crash_report_contains">Este relatório contém apenas a versão do app, a versão do Android, o modelo do telefone e o ponto do código do app onde o erro aconteceu. Nunca inclui suas vendas, clientes, notas ou qualquer coisa que você digitou.</string>
@@ -681,8 +681,11 @@
     <string name="crash_delete_all">Excluir tudo</string>
     <string name="crash_email_subject">Relatório de falha do Quota Vault (%1$s)</string>
     <string name="crash_email_intro">O que você estava fazendo quando o app fechou? (opcional)</string>
-    <string name="pi_crash_t">Os relatórios de falhas ficam no seu telefone</string>
-    <string name="pi_crash">Se o app fechar inesperadamente, um relatório técnico é salvo neste telefone. Ele só é enviado se você escolher enviá-lo por e-mail, e nunca contém seus dados.</string>
+    <string name="pi_crash_t">Os relatórios de falhas são totalmente opcionais</string>
+    <string name="pi_crash">Se o app fechar inesperadamente, um relatório técnico pode ser salvo neste telefone. Ele só é enviado se você escolher enviá-lo por e-mail, nunca contém seus dados, e você pode desativá-lo em Relatórios de falhas.</string>
+    <string name="crash_optional">Os relatórios de falhas são totalmente opcionais. Enviar um é sempre escolha sua, e o app nunca envia nada por conta própria.</string>
+    <string name="crash_save">Salvar relatórios de falhas</string>
+    <string name="crash_save_desc">Se o app fechar inesperadamente, mantém um relatório neste telefone para você decidir se quer enviá-lo. Desativar exclui os relatórios salvos.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>

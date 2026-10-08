@@ -28,7 +28,7 @@ Everything is stored privately on the phone — no account or internet needed.
 
 **Manager report (PDF):** Stats → Report (PDF). Built on the phone; client names and commission are left out unless turned on; optional AES-256 password.
 
-**Crash reports (opt-in):** if the app crashes, a short technical report (app and Android version, phone model, error type and code locations; never error messages or anything typed) is saved on the phone only. The app offers to show it; "Send report" opens the user's email app addressed to quotavaultsupport@gmail.com, and nothing is sent unless they press send. Kept 30 days, at most 5.
+**Crash reports (completely optional, always the user's choice):** the app never sends one on its own, and saving them can be switched off in Security & privacy → Crash reports (which also deletes saved ones). If the app crashes, a short technical report (app and Android version, phone model, error type and code locations; never error messages or anything typed) is saved on the phone only. The app offers to show it; "Send report" opens the user's email app addressed to quotavaultsupport@gmail.com, and nothing is sent unless they press send. Kept 30 days, at most 5.
 
 **Home-screen widgets:** goals (percentages only), today's tasks, schedule, sales stats (counts only) and "On track for" (amounts only if allowed). "Hide widget contents" in Security & privacy makes them all show "Hidden". The eye icon next to it is **privacy mode** (hides every dollar amount).
 

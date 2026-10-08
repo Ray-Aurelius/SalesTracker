@@ -668,11 +668,11 @@
     <string name="hide_widgets_desc">홈 화면 위젯에 할 일, 일정, 수치 대신 \'숨김\'만 표시됩니다.</string>
     <string name="widget_hidden_msg">숨김. 앱을 열어 확인하세요.</string>
     <string name="crash_title">Quota Vault가 예기치 않게 종료되었습니다</string>
-    <string name="crash_prompt_body">이 휴대폰에 오류 보고서가 저장되었습니다. 보내 주시면 문제를 해결하는 데 도움이 됩니다. 기술 정보만 들어 있으며 판매, 고객 또는 입력한 내용은 절대 포함되지 않습니다. 직접 선택하지 않으면 아무것도 전송되지 않습니다.</string>
+    <string name="crash_prompt_body">이 휴대폰에 오류 보고서가 저장되었습니다. 보내 주시면 문제를 해결하는 데 도움이 됩니다. 기술 정보만 들어 있으며 판매, 고객 또는 입력한 내용은 절대 포함되지 않습니다.</string>
     <string name="crash_view">보고서 보기</string>
     <string name="crash_not_now">나중에</string>
     <string name="crash_reports">오류 보고서</string>
-    <string name="crash_reports_desc">이 휴대폰에만 저장됩니다. 직접 선택하지 않으면 아무것도 전송되지 않습니다.</string>
+    <string name="crash_reports_desc">전적으로 선택 사항입니다. 이 휴대폰에만 저장됩니다.</string>
     <string name="crash_reports_none">오류 보고서가 없습니다. 앱이 예기치 않게 종료되면 이 휴대폰에만 보고서가 저장됩니다.</string>
     <string name="crash_report_title">오류 보고서</string>
     <string name="crash_report_contains">이 보고서에는 앱 버전, Android 버전, 휴대폰 모델, 앱 코드에서 오류가 발생한 위치만 들어 있습니다. 판매, 고객, 메모 또는 입력한 내용은 절대 포함되지 않습니다.</string>
@@ -681,8 +681,11 @@
     <string name="crash_delete_all">모두 삭제</string>
     <string name="crash_email_subject">Quota Vault 오류 보고서 (%1$s)</string>
     <string name="crash_email_intro">앱이 종료될 때 무엇을 하고 있었나요? (선택 사항)</string>
-    <string name="pi_crash_t">오류 보고서는 휴대폰에만 남습니다</string>
-    <string name="pi_crash">앱이 예기치 않게 종료되면 이 휴대폰에 기술 보고서가 저장됩니다. 이메일로 보내기로 선택한 경우에만 전송되며 사용자 데이터는 절대 포함되지 않습니다.</string>
+    <string name="pi_crash_t">오류 보고서는 전적으로 선택 사항입니다</string>
+    <string name="pi_crash">앱이 예기치 않게 종료되면 이 휴대폰에 기술 보고서가 저장될 수 있습니다. 이메일로 보내기로 선택한 경우에만 전송되고, 사용자 데이터는 절대 포함되지 않으며, 오류 보고서에서 끌 수 있습니다.</string>
+    <string name="crash_optional">오류 보고서는 전적으로 선택 사항입니다. 보낼지 여부는 언제나 사용자가 결정하며, 앱이 스스로 무언가를 보내는 일은 없습니다.</string>
+    <string name="crash_save">오류 보고서 저장</string>
+    <string name="crash_save_desc">앱이 예기치 않게 종료되면 보낼지 결정할 수 있도록 이 휴대폰에 보고서를 보관합니다. 끄면 저장된 보고서가 삭제됩니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

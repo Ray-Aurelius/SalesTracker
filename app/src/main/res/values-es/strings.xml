@@ -668,11 +668,11 @@
     <string name="hide_widgets_desc">Los widgets de la pantalla de inicio solo muestran \"Oculto\" en lugar de tus tareas, agenda y cifras.</string>
     <string name="widget_hidden_msg">Oculto. Abre la app para verlo.</string>
     <string name="crash_title">Quota Vault se cerró inesperadamente</string>
-    <string name="crash_prompt_body">Se guardó un informe de error en este teléfono. Enviarlo nos ayuda a solucionar el problema. Solo contiene detalles técnicos, nunca tus ventas, clientes ni nada de lo que escribiste. No se envía nada a menos que tú lo decidas.</string>
+    <string name="crash_prompt_body">Se guardó un informe de error en este teléfono. Enviarlo nos ayuda a solucionar el problema. Solo contiene detalles técnicos, nunca tus ventas, clientes ni nada de lo que escribiste.</string>
     <string name="crash_view">Ver informe</string>
     <string name="crash_not_now">Ahora no</string>
     <string name="crash_reports">Informes de errores</string>
-    <string name="crash_reports_desc">Guardados solo en este teléfono. No se envía nada a menos que tú lo decidas.</string>
+    <string name="crash_reports_desc">Totalmente opcional. Guardados solo en este teléfono.</string>
     <string name="crash_reports_none">No hay informes de errores. Si la app se cierra inesperadamente, se guardará un informe aquí, solo en este teléfono.</string>
     <string name="crash_report_title">Informe de error</string>
     <string name="crash_report_contains">Este informe solo contiene la versión de la app, la versión de Android, el modelo del teléfono y en qué parte del código de la app ocurrió el error. Nunca incluye tus ventas, clientes, notas ni nada de lo que escribiste.</string>
@@ -681,8 +681,11 @@
     <string name="crash_delete_all">Eliminar todo</string>
     <string name="crash_email_subject">Informe de error de Quota Vault (%1$s)</string>
     <string name="crash_email_intro">¿Qué estabas haciendo cuando se cerró la app? (opcional)</string>
-    <string name="pi_crash_t">Los informes de errores se quedan en tu teléfono</string>
-    <string name="pi_crash">Si la app se cierra inesperadamente, se guarda un informe técnico en este teléfono. Solo se envía si decides enviarlo por correo, y nunca contiene tus datos.</string>
+    <string name="pi_crash_t">Los informes de errores son totalmente opcionales</string>
+    <string name="pi_crash">Si la app se cierra inesperadamente, puede guardarse un informe técnico en este teléfono. Solo se envía si decides enviarlo por correo, nunca contiene tus datos y puedes desactivarlo en Informes de errores.</string>
+    <string name="crash_optional">Los informes de errores son totalmente opcionales. Enviar uno siempre es tu decisión, y la app nunca envía nada por sí sola.</string>
+    <string name="crash_save">Guardar informes de errores</string>
+    <string name="crash_save_desc">Si la app se cierra inesperadamente, guarda un informe en este teléfono para que decidas si enviarlo. Al desactivarlo se eliminan los informes guardados.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>

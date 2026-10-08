@@ -37,6 +37,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material.icons.filled.VerifiedUser
+import androidx.compose.material3.Switch
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.font.FontWeight
 import com.salestracker.app.R
 import com.salestracker.app.data.CrashLog
 import com.salestracker.app.data.localizedFormatter
@@ -46,6 +51,27 @@ import java.time.ZoneId
 private fun crashTime(millis: Long) =
     localizedFormatter("yMMMdjmm").format(Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()))
 
+/** The promise, shown wherever crash reports appear: sending one is always and only the user's choice. */
+@Composable
+private fun OptionalStatement() {
+    Row(
+        Modifier.fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(MaterialTheme.colorScheme.secondaryContainer)
+            .padding(horizontal = 12.dp, vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Icon(Icons.Filled.VerifiedUser, contentDescription = null, tint = MaterialTheme.colorScheme.onSecondaryContainer)
+        Spacer(Modifier.width(10.dp))
+        Text(
+            stringResource(R.string.crash_optional),
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.onSecondaryContainer,
+        )
+    }
+}
+
 /** Shown once on the next launch after a crash. Nothing is sent from here: it only offers to show the report. */
 @Composable
 fun CrashPrompt(onView: () -> Unit, onDismiss: () -> Unit) {
@@ -53,7 +79,12 @@ fun CrashPrompt(onView: () -> Unit, onDismiss: () -> Unit) {
         onDismissRequest = onDismiss,
         icon = { Icon(Icons.Filled.BugReport, contentDescription = null) },
         title = { Text(stringResource(R.string.crash_title)) },
-        text = { Text(stringResource(R.string.crash_prompt_body)) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text(stringResource(R.string.crash_prompt_body))
+                OptionalStatement()
+            }
+        },
         confirmButton = { TextButton(onClick = onView) { Text(stringResource(R.string.crash_view)) } },
         dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.crash_not_now)) } },
     )
@@ -68,6 +99,7 @@ fun CrashReportsDialog(openNewest: Boolean, onDismiss: () -> Unit) {
     val context = LocalContext.current
     var reports by remember { mutableStateOf(CrashLog.reports(context)) }
     var open by remember { mutableStateOf(if (openNewest) reports.firstOrNull() else null) }
+    var enabled by remember { mutableStateOf(CrashLog.isEnabled(context)) }
 
     val report = open
     if (report != null) {
@@ -77,6 +109,7 @@ fun CrashReportsDialog(openNewest: Boolean, onDismiss: () -> Unit) {
             text = {
                 Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(crashTime(report.at), style = MaterialTheme.typography.titleSmall)
+                    OptionalStatement()
                     Text(stringResource(R.string.crash_report_contains), style = MaterialTheme.typography.bodyMedium)
                     // The exact text that would be sent, word for word.
                     Text(
@@ -129,15 +162,37 @@ fun CrashReportsDialog(openNewest: Boolean, onDismiss: () -> Unit) {
         title = { Text(stringResource(R.string.crash_reports)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState())) {
+                OptionalStatement()
+                // Saving is the user's choice too: off means nothing is written when the app crashes.
+                Row(
+                    Modifier.fillMaxWidth()
+                        .toggleable(value = enabled, role = Role.Switch, onValueChange = { on ->
+                            CrashLog.setEnabled(context, on)
+                            enabled = on
+                            reports = CrashLog.reports(context)
+                        })
+                        .padding(vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(Modifier.weight(1f)) {
+                        Text(stringResource(R.string.crash_save), style = MaterialTheme.typography.bodyLarge)
+                        Text(
+                            stringResource(R.string.crash_save_desc),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    Spacer(Modifier.width(12.dp))
+                    Switch(checked = enabled, onCheckedChange = null)
+                }
+                HorizontalDivider()
                 if (reports.isEmpty()) {
-                    Text(stringResource(R.string.crash_reports_none), style = MaterialTheme.typography.bodyMedium)
-                } else {
-                    Text(
-                        stringResource(R.string.crash_reports_desc),
+                    if (enabled) Text(
+                        stringResource(R.string.crash_reports_none),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(bottom = 6.dp),
+                        modifier = Modifier.padding(top = 12.dp),
                     )
+                } else {
                     reports.forEachIndexed { i, r ->
                         if (i > 0) HorizontalDivider()
                         Row(

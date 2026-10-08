@@ -668,11 +668,11 @@
     <string name="hide_widgets_desc">होम स्क्रीन विजेट आपके कार्य, शेड्यूल और आँकड़ों की जगह सिर्फ़ \"छिपा है\" दिखाते हैं।</string>
     <string name="widget_hidden_msg">छिपा है। देखने के लिए ऐप खोलें।</string>
     <string name="crash_title">Quota Vault अचानक बंद हो गया</string>
-    <string name="crash_prompt_body">इस फ़ोन पर एक क्रैश रिपोर्ट सेव की गई है। इसे भेजने से हमें समस्या ठीक करने में मदद मिलती है। इसमें केवल तकनीकी जानकारी होती है, आपकी बिक्री, क्लाइंट या आपने जो कुछ भी लिखा वह कभी नहीं। जब तक आप न चुनें, कुछ भी नहीं भेजा जाता।</string>
+    <string name="crash_prompt_body">इस फ़ोन पर एक क्रैश रिपोर्ट सेव की गई है। इसे भेजने से हमें समस्या ठीक करने में मदद मिलती है। इसमें केवल तकनीकी जानकारी होती है, आपकी बिक्री, क्लाइंट या आपने जो कुछ भी लिखा वह कभी नहीं।</string>
     <string name="crash_view">रिपोर्ट देखें</string>
     <string name="crash_not_now">अभी नहीं</string>
     <string name="crash_reports">क्रैश रिपोर्ट</string>
-    <string name="crash_reports_desc">केवल इसी फ़ोन पर सेव। जब तक आप न चुनें, कुछ भी नहीं भेजा जाता।</string>
+    <string name="crash_reports_desc">पूरी तरह वैकल्पिक। केवल इसी फ़ोन पर सेव।</string>
     <string name="crash_reports_none">कोई क्रैश रिपोर्ट नहीं। अगर ऐप कभी अचानक बंद होता है, तो एक रिपोर्ट यहाँ, केवल इसी फ़ोन पर सेव होगी।</string>
     <string name="crash_report_title">क्रैश रिपोर्ट</string>
     <string name="crash_report_contains">इस रिपोर्ट में केवल ऐप का वर्शन, Android वर्शन, फ़ोन मॉडल और ऐप के कोड में गड़बड़ी कहाँ हुई, यह होता है। इसमें आपकी बिक्री, क्लाइंट, नोट्स या आपने जो कुछ भी लिखा, वह कभी शामिल नहीं होता।</string>
@@ -681,8 +681,11 @@
     <string name="crash_delete_all">सब हटाएँ</string>
     <string name="crash_email_subject">Quota Vault क्रैश रिपोर्ट (%1$s)</string>
     <string name="crash_email_intro">ऐप बंद होते समय आप क्या कर रहे थे? (वैकल्पिक)</string>
-    <string name="pi_crash_t">क्रैश रिपोर्ट आपके फ़ोन पर ही रहती हैं</string>
-    <string name="pi_crash">अगर ऐप अचानक बंद होता है, तो इस फ़ोन पर एक तकनीकी रिपोर्ट सेव होती है। यह केवल तभी भेजी जाती है जब आप इसे ईमेल करना चुनें, और इसमें आपका डेटा कभी नहीं होता।</string>
+    <string name="pi_crash_t">क्रैश रिपोर्ट पूरी तरह वैकल्पिक हैं</string>
+    <string name="pi_crash">अगर ऐप अचानक बंद होता है, तो इस फ़ोन पर एक तकनीकी रिपोर्ट सेव हो सकती है। यह केवल तभी भेजी जाती है जब आप इसे ईमेल करना चुनें, इसमें आपका डेटा कभी नहीं होता, और आप इसे क्रैश रिपोर्ट में बंद कर सकते हैं।</string>
+    <string name="crash_optional">क्रैश रिपोर्ट पूरी तरह वैकल्पिक हैं। रिपोर्ट भेजना हमेशा आपकी मर्ज़ी है, और ऐप अपने-आप कभी कुछ नहीं भेजता।</string>
+    <string name="crash_save">क्रैश रिपोर्ट सेव करें</string>
+    <string name="crash_save_desc">अगर ऐप अचानक बंद हो, तो इस फ़ोन पर एक रिपोर्ट रखें ताकि आप तय कर सकें कि उसे भेजना है या नहीं। इसे बंद करने पर सेव की गई रिपोर्ट हट जाती हैं।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

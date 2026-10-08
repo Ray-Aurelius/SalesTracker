@@ -796,11 +796,11 @@
     <string name="widget_hidden_msg">Hidden. Open the app to see this.</string>
     <!-- Crash reports (saved on the phone; sent only if the user emails one) -->
     <string name="crash_title">Quota Vault closed unexpectedly</string>
-    <string name="crash_prompt_body">A crash report was saved on this phone. Sending it helps us fix the problem. It holds only technical details, never your sales, clients or anything you typed. Nothing is sent unless you choose to.</string>
+    <string name="crash_prompt_body">A crash report was saved on this phone. Sending it helps us fix the problem. It holds only technical details, never your sales, clients or anything you typed.</string>
     <string name="crash_view">View report</string>
     <string name="crash_not_now">Not now</string>
     <string name="crash_reports">Crash reports</string>
-    <string name="crash_reports_desc">Saved on this phone only. Nothing is sent unless you choose to.</string>
+    <string name="crash_reports_desc">Completely optional. Saved on this phone only.</string>
     <string name="crash_reports_none">No crash reports. If the app ever closes unexpectedly, a report is saved here, on this phone only.</string>
     <string name="crash_report_title">Crash report</string>
     <string name="crash_report_contains">This report holds only the app version, Android version, phone model and where the error happened in the app\'s code. It never includes your sales, clients, notes or anything you typed.</string>
@@ -809,6 +809,9 @@
     <string name="crash_delete_all">Delete all</string>
     <string name="crash_email_subject">Quota Vault crash report (%1$s)</string>
     <string name="crash_email_intro">What were you doing when the app closed? (optional)</string>
-    <string name="pi_crash_t">Crash reports stay on your phone</string>
-    <string name="pi_crash">If the app closes unexpectedly, a technical report is saved on this phone. It\'s sent only if you choose to email it, and it never contains your data.</string>
+    <string name="pi_crash_t">Crash reports are completely optional</string>
+    <string name="pi_crash">If the app closes unexpectedly, a technical report can be saved on this phone. It\'s sent only if you choose to email it, it never contains your data, and you can turn it off in Crash reports.</string>
+    <string name="crash_optional">Crash reports are completely optional. Sending one is always your choice, and the app never sends anything on its own.</string>
+    <string name="crash_save">Save crash reports</string>
+    <string name="crash_save_desc">If the app closes unexpectedly, keep a report on this phone so you can decide whether to send it. Turning this off deletes saved reports.</string>
 </resources>

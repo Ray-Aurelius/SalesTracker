@@ -27,6 +27,8 @@ object CrashLog {
 
     private const val DIR = "crash-reports"
     private const val SEEN = ".seen"
+    /** Present when the user has turned crash reports off. Kept outside the reports folder so "Delete all" leaves the choice alone. */
+    private const val OFF = "crash-reports-off"
     private const val KEEP = 5
     private const val MAX_FRAMES = 40
     private const val MAX_CAUSES = 6
@@ -39,7 +41,7 @@ object CrashLog {
         val app = context.applicationContext
         val previous = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler { thread, error ->
-            runCatching { save(app, thread, error) }
+            if (isEnabled(app)) runCatching { save(app, thread, error) }
             previous?.uncaughtException(thread, error)
         }
     }
@@ -130,6 +132,21 @@ object CrashLog {
     fun delete(report: Report) { report.file.delete() }
 
     fun deleteAll(context: Context) { File(context.noBackupFilesDir, DIR).deleteRecursively() }
+
+    /** Whether a report is saved when the app crashes. On by default; the user can turn it off at any time. */
+    fun isEnabled(context: Context) = !File(context.noBackupFilesDir, OFF).exists()
+
+    /** Turning reports off also deletes every saved one. */
+    fun setEnabled(context: Context, on: Boolean) {
+        val flag = File(context.noBackupFilesDir, OFF)
+        if (on) flag.delete() else { flag.createNewFile(); deleteAll(context) }
+    }
+
+    /** "Erase all data": every report and the on/off choice go back to the start. */
+    fun eraseAll(context: Context) {
+        deleteAll(context)
+        File(context.noBackupFilesDir, OFF).delete()
+    }
 
     /**
      * Opens the user's email app with the report filled in, addressed to [SUPPORT_EMAIL].

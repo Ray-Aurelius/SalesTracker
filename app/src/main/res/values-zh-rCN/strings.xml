@@ -668,11 +668,11 @@
     <string name="hide_widgets_desc">主屏幕小组件只显示“已隐藏”，不显示你的任务、日程和数据。</string>
     <string name="widget_hidden_msg">已隐藏。打开应用查看。</string>
     <string name="crash_title">Quota Vault 意外关闭</string>
-    <string name="crash_prompt_body">此手机上已保存一份崩溃报告。发送它可以帮助我们修复问题。报告只包含技术细节，绝不包含你的销售、客户或你输入的任何内容。除非你选择发送，否则不会发送任何内容。</string>
+    <string name="crash_prompt_body">此手机上已保存一份崩溃报告。发送它可以帮助我们修复问题。报告只包含技术细节，绝不包含你的销售、客户或你输入的任何内容。</string>
     <string name="crash_view">查看报告</string>
     <string name="crash_not_now">以后再说</string>
     <string name="crash_reports">崩溃报告</string>
-    <string name="crash_reports_desc">仅保存在此手机上。除非你选择发送，否则不会发送任何内容。</string>
+    <string name="crash_reports_desc">完全可选。仅保存在此手机上。</string>
     <string name="crash_reports_none">没有崩溃报告。如果应用意外关闭，报告会保存在这里，仅保存在此手机上。</string>
     <string name="crash_report_title">崩溃报告</string>
     <string name="crash_report_contains">此报告只包含应用版本、Android 版本、手机型号以及错误发生在应用代码中的位置。绝不包含你的销售、客户、备注或你输入的任何内容。</string>
@@ -681,8 +681,11 @@
     <string name="crash_delete_all">全部删除</string>
     <string name="crash_email_subject">Quota Vault 崩溃报告（%1$s）</string>
     <string name="crash_email_intro">应用关闭时你在做什么？（可选）</string>
-    <string name="pi_crash_t">崩溃报告保留在你的手机上</string>
-    <string name="pi_crash">如果应用意外关闭，会在此手机上保存一份技术报告。只有在你选择通过邮件发送时才会发送，而且绝不包含你的数据。</string>
+    <string name="pi_crash_t">崩溃报告完全可选</string>
+    <string name="pi_crash">如果应用意外关闭，可能会在此手机上保存一份技术报告。只有在你选择通过邮件发送时才会发送，绝不包含你的数据，你也可以在“崩溃报告”中关闭此功能。</string>
+    <string name="crash_optional">崩溃报告完全可选。是否发送始终由你决定，应用绝不会自行发送任何内容。</string>
+    <string name="crash_save">保存崩溃报告</string>
+    <string name="crash_save_desc">如果应用意外关闭，在此手机上保留一份报告，由你决定是否发送。关闭此项会删除已保存的报告。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

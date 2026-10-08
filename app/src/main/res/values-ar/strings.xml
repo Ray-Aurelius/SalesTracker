@@ -668,11 +668,11 @@
     <string name="hide_widgets_desc">تعرض أدوات الشاشة الرئيسية كلمة \"مخفي\" فقط بدلًا من مهامك وجدولك وأرقامك.</string>
     <string name="widget_hidden_msg">مخفي. افتح التطبيق لعرضه.</string>
     <string name="crash_title">أُغلق Quota Vault بشكل غير متوقع</string>
-    <string name="crash_prompt_body">تم حفظ تقرير عطل على هذا الهاتف. إرساله يساعدنا على إصلاح المشكلة. يحتوي على تفاصيل تقنية فقط، ولا يتضمن أبدًا مبيعاتك أو عملاءك أو أي شيء كتبته. لا يُرسل أي شيء إلا إذا اخترت ذلك.</string>
+    <string name="crash_prompt_body">تم حفظ تقرير عطل على هذا الهاتف. إرساله يساعدنا على إصلاح المشكلة. يحتوي على تفاصيل تقنية فقط، ولا يتضمن أبدًا مبيعاتك أو عملاءك أو أي شيء كتبته.</string>
     <string name="crash_view">عرض التقرير</string>
     <string name="crash_not_now">ليس الآن</string>
     <string name="crash_reports">تقارير الأعطال</string>
-    <string name="crash_reports_desc">محفوظة على هذا الهاتف فقط. لا يُرسل أي شيء إلا إذا اخترت ذلك.</string>
+    <string name="crash_reports_desc">اختيارية تمامًا. محفوظة على هذا الهاتف فقط.</string>
     <string name="crash_reports_none">لا توجد تقارير أعطال. إذا أُغلق التطبيق بشكل غير متوقع، فسيُحفظ تقرير هنا، على هذا الهاتف فقط.</string>
     <string name="crash_report_title">تقرير عطل</string>
     <string name="crash_report_contains">يحتوي هذا التقرير فقط على إصدار التطبيق وإصدار Android وطراز الهاتف والموضع الذي حدث فيه الخطأ في شيفرة التطبيق. ولا يتضمن أبدًا مبيعاتك أو عملاءك أو ملاحظاتك أو أي شيء كتبته.</string>
@@ -681,8 +681,11 @@
     <string name="crash_delete_all">حذف الكل</string>
     <string name="crash_email_subject">تقرير عطل Quota Vault (%1$s)</string>
     <string name="crash_email_intro">ماذا كنت تفعل عندما أُغلق التطبيق؟ (اختياري)</string>
-    <string name="pi_crash_t">تقارير الأعطال تبقى على هاتفك</string>
-    <string name="pi_crash">إذا أُغلق التطبيق بشكل غير متوقع، يُحفظ تقرير تقني على هذا الهاتف. لا يُرسل إلا إذا اخترت إرساله بالبريد الإلكتروني، ولا يحتوي أبدًا على بياناتك.</string>
+    <string name="pi_crash_t">تقارير الأعطال اختيارية تمامًا</string>
+    <string name="pi_crash">إذا أُغلق التطبيق بشكل غير متوقع، قد يُحفظ تقرير تقني على هذا الهاتف. لا يُرسل إلا إذا اخترت إرساله بالبريد الإلكتروني، ولا يحتوي أبدًا على بياناتك، ويمكنك إيقافه من تقارير الأعطال.</string>
+    <string name="crash_optional">تقارير الأعطال اختيارية تمامًا. إرسال أي تقرير قرارك دائمًا، ولا يرسل التطبيق أي شيء من تلقاء نفسه أبدًا.</string>
+    <string name="crash_save">حفظ تقارير الأعطال</string>
+    <string name="crash_save_desc">إذا أُغلق التطبيق بشكل غير متوقع، يُحتفظ بتقرير على هذا الهاتف لتقرر ما إذا كنت سترسله. إيقاف هذا الخيار يحذف التقارير المحفوظة.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

@@ -668,11 +668,11 @@
     <string name="hide_widgets_desc">Ana ekran widget\'ları görevleriniz, takviminiz ve rakamlarınız yerine yalnızca \"Gizli\" gösterir.</string>
     <string name="widget_hidden_msg">Gizli. Görmek için uygulamayı açın.</string>
     <string name="crash_title">Quota Vault beklenmedik şekilde kapandı</string>
-    <string name="crash_prompt_body">Bu telefona bir çökme raporu kaydedildi. Göndermeniz sorunu düzeltmemize yardımcı olur. Yalnızca teknik ayrıntılar içerir; satışlarınızı, müşterilerinizi veya yazdığınız hiçbir şeyi asla içermez. Siz seçmedikçe hiçbir şey gönderilmez.</string>
+    <string name="crash_prompt_body">Bu telefona bir çökme raporu kaydedildi. Göndermeniz sorunu düzeltmemize yardımcı olur. Yalnızca teknik ayrıntılar içerir; satışlarınızı, müşterilerinizi veya yazdığınız hiçbir şeyi asla içermez.</string>
     <string name="crash_view">Raporu görüntüle</string>
     <string name="crash_not_now">Şimdi değil</string>
     <string name="crash_reports">Çökme raporları</string>
-    <string name="crash_reports_desc">Yalnızca bu telefonda saklanır. Siz seçmedikçe hiçbir şey gönderilmez.</string>
+    <string name="crash_reports_desc">Tamamen isteğe bağlı. Yalnızca bu telefonda saklanır.</string>
     <string name="crash_reports_none">Çökme raporu yok. Uygulama beklenmedik şekilde kapanırsa burada, yalnızca bu telefonda bir rapor saklanır.</string>
     <string name="crash_report_title">Çökme raporu</string>
     <string name="crash_report_contains">Bu rapor yalnızca uygulama sürümünü, Android sürümünü, telefon modelini ve hatanın uygulama kodunda nerede oluştuğunu içerir. Satışlarınızı, müşterilerinizi, notlarınızı veya yazdığınız hiçbir şeyi asla içermez.</string>
@@ -681,8 +681,11 @@
     <string name="crash_delete_all">Tümünü sil</string>
     <string name="crash_email_subject">Quota Vault çökme raporu (%1$s)</string>
     <string name="crash_email_intro">Uygulama kapandığında ne yapıyordunuz? (isteğe bağlı)</string>
-    <string name="pi_crash_t">Çökme raporları telefonunuzda kalır</string>
-    <string name="pi_crash">Uygulama beklenmedik şekilde kapanırsa bu telefona teknik bir rapor kaydedilir. Yalnızca e-postayla göndermeyi seçerseniz gönderilir ve asla verilerinizi içermez.</string>
+    <string name="pi_crash_t">Çökme raporları tamamen isteğe bağlıdır</string>
+    <string name="pi_crash">Uygulama beklenmedik şekilde kapanırsa bu telefona teknik bir rapor kaydedilebilir. Yalnızca e-postayla göndermeyi seçerseniz gönderilir, asla verilerinizi içermez ve Çökme raporları bölümünden kapatılabilir.</string>
+    <string name="crash_optional">Çökme raporları tamamen isteğe bağlıdır. Rapor gönderip göndermemek her zaman sizin seçiminizdir ve uygulama kendi başına asla bir şey göndermez.</string>
+    <string name="crash_save">Çökme raporlarını kaydet</string>
+    <string name="crash_save_desc">Uygulama beklenmedik şekilde kapanırsa, göndermeye karar verebilmeniz için bu telefonda bir rapor saklar. Kapatıldığında kayıtlı raporlar silinir.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

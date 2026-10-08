@@ -15,7 +15,7 @@ import org.robolectric.annotation.Config
 @Config(sdk = [34])
 class CrashLogTest {
     private val app = ApplicationProvider.getApplicationContext<Application>()
-    @After fun clean() = CrashLog.deleteAll(app)
+    @After fun clean() = CrashLog.eraseAll(app)
 
     /** Everything a user might have typed, planted in error messages, the way real crashes can quote input. */
     private val secrets = listOf("Jordan", "Lee", "555-0111", "jordan@example.com", "1,440.00", "WO-1040", "Dentist", "follow up re: quote")
@@ -76,6 +76,18 @@ class CrashLogTest {
         CrashLog.save(app, t, crash(), now = 1_000_020L)
         assertTrue(CrashLog.hasUnseen(app))
         secrets.forEach { s -> CrashLog.reports(app, now).forEach { assertFalse(it.text.contains(s)) } }
+    }
+
+    @Test fun turningReportsOffDeletesThemAndEraseTurnsThemBackOn() {
+        assertTrue(CrashLog.isEnabled(app))
+        CrashLog.save(app, Thread.currentThread(), crash())
+        CrashLog.setEnabled(app, false)
+        assertFalse(CrashLog.isEnabled(app))
+        assertEquals(0, CrashLog.reports(app).size)
+        CrashLog.deleteAll(app)
+        assertFalse("Delete all must not undo the user's choice", CrashLog.isEnabled(app))
+        CrashLog.eraseAll(app)
+        assertTrue(CrashLog.isEnabled(app))
     }
 
     @Test fun oldReportsExpireAndDeleteAllClearsEverything() {

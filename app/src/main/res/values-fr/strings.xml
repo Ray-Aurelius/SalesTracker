@@ -668,11 +668,11 @@
     <string name="hide_widgets_desc">Les widgets de l\'écran d\'accueil affichent seulement « Masqué » au lieu de vos tâches, rendez-vous et chiffres.</string>
     <string name="widget_hidden_msg">Masqué. Ouvrez l\'app pour le voir.</string>
     <string name="crash_title">Quota Vault s\'est fermée de manière inattendue</string>
-    <string name="crash_prompt_body">Un rapport de plantage a été enregistré sur ce téléphone. L\'envoyer nous aide à corriger le problème. Il ne contient que des détails techniques, jamais vos ventes, vos clients ni ce que vous avez saisi. Rien n\'est envoyé sans votre accord.</string>
+    <string name="crash_prompt_body">Un rapport de plantage a été enregistré sur ce téléphone. L\'envoyer nous aide à corriger le problème. Il ne contient que des détails techniques, jamais vos ventes, vos clients ni ce que vous avez saisi.</string>
     <string name="crash_view">Voir le rapport</string>
     <string name="crash_not_now">Plus tard</string>
     <string name="crash_reports">Rapports de plantage</string>
-    <string name="crash_reports_desc">Enregistrés uniquement sur ce téléphone. Rien n\'est envoyé sans votre accord.</string>
+    <string name="crash_reports_desc">Entièrement facultatif. Enregistrés uniquement sur ce téléphone.</string>
     <string name="crash_reports_none">Aucun rapport de plantage. Si l\'app se ferme de manière inattendue, un rapport sera enregistré ici, uniquement sur ce téléphone.</string>
     <string name="crash_report_title">Rapport de plantage</string>
     <string name="crash_report_contains">Ce rapport contient uniquement la version de l\'app, la version d\'Android, le modèle du téléphone et l\'endroit du code de l\'app où l\'erreur s\'est produite. Il n\'inclut jamais vos ventes, vos clients, vos notes ni ce que vous avez saisi.</string>
@@ -681,8 +681,11 @@
     <string name="crash_delete_all">Tout supprimer</string>
     <string name="crash_email_subject">Rapport de plantage Quota Vault (%1$s)</string>
     <string name="crash_email_intro">Que faisiez-vous quand l\'app s\'est fermée ? (facultatif)</string>
-    <string name="pi_crash_t">Les rapports de plantage restent sur votre téléphone</string>
-    <string name="pi_crash">Si l\'app se ferme de manière inattendue, un rapport technique est enregistré sur ce téléphone. Il n\'est envoyé que si vous choisissez de l\'envoyer par e-mail, et il ne contient jamais vos données.</string>
+    <string name="pi_crash_t">Les rapports de plantage sont entièrement facultatifs</string>
+    <string name="pi_crash">Si l\'app se ferme de manière inattendue, un rapport technique peut être enregistré sur ce téléphone. Il n\'est envoyé que si vous choisissez de l\'envoyer par e-mail, il ne contient jamais vos données et vous pouvez le désactiver dans Rapports de plantage.</string>
+    <string name="crash_optional">Les rapports de plantage sont entièrement facultatifs. En envoyer un est toujours votre choix, et l\'app n\'envoie jamais rien d\'elle-même.</string>
+    <string name="crash_save">Enregistrer les rapports de plantage</string>
+    <string name="crash_save_desc">Si l\'app se ferme de manière inattendue, conserver un rapport sur ce téléphone pour que vous décidiez de l\'envoyer ou non. Désactiver cette option supprime les rapports enregistrés.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

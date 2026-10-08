@@ -366,7 +366,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         repo.data.value.appointments.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
         repo.data.value.tasks.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
         repo.eraseEverything()
-        com.salestracker.app.data.CrashLog.deleteAll(getApplication())
+        com.salestracker.app.data.CrashLog.eraseAll(getApplication())
         settings.edit().clear().commit()
         prefs.edit().clear().commit()
         palette = AppPalette.BULLSEYE
