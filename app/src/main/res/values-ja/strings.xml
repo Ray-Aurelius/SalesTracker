@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">今日のリストは空です。タップしてタスクを追加。</string>
     <string name="widget_tasks_done">今日のタスクはすべて完了。お疲れさまでした！</string>
     <string name="widget_tasks_more">ほか %1$d 件</string>
-    <string name="widget_tasks_description">今日のタスク（重要なものから表示）。アプリのロックがオンのときは非表示。</string>
+    <string name="widget_tasks_description">今日のタスク（重要なものから表示）。「セキュリティとプライバシー」で非表示にできます。</string>
     <string name="widget_schedule_empty">今後7日間の予定はありません。</string>
-    <string name="widget_schedule_description">今後の予定。アプリのロックがオンのときは非表示。</string>
+    <string name="widget_schedule_description">今後の予定。「セキュリティとプライバシー」で非表示にできます。</string>
     <string name="widget_tomorrow">明日</string>
     <string name="widget_stats_title">販売統計</string>
-    <string name="widget_stats_description">今日と今週の販売数、販売時間、成約率。金額や名前は表示しません。アプリのロックがオンのときは非表示。</string>
+    <string name="widget_stats_description">今日と今週の販売数、販売時間、成約率。金額や名前は表示しません。「セキュリティとプライバシー」で非表示にできます。</string>
     <string name="occupation">職業</string>
     <string name="occupation_hint">例：歯科医、施工業者、住宅所有者</string>
     <string name="client_stats">顧客の統計</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">前四半期比 %1$s</string>
     <string name="on_track_vs_year">前年比 %1$s</string>
     <string name="on_track_empty">この期間に販売を記録すると、見込みが表示されます。</string>
-    <string name="widget_pace_description">今週・今月・今四半期・今年の見込み（統計タブで選択）。金額は「セキュリティとプライバシー」で許可した場合のみ表示されます。アプリのロックがオンのときは非表示。</string>
+    <string name="widget_pace_description">今週・今月・今四半期・今年の見込み（統計タブで選択）。金額は「セキュリティとプライバシー」で許可した場合のみ表示されます。「セキュリティとプライバシー」で非表示にできます。</string>
     <string name="widget_pace_hidden">ホーム画面では金額を非表示にしています。「セキュリティとプライバシー」で表示を許可できます。</string>
     <string name="widget_amounts">見込みウィジェットに金額を表示</string>
     <string name="widget_amounts_desc">ホーム画面を見た人が見込み収入を読めるようになります。初期設定はオフです。</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">前の期間のペースを下回っています。まだ挽回できます。</string>
     <string name="widget_pace_keep_going">販売の記録を続けてペースをつかみましょう。</string>
     <string name="cd_clear_client">顧客をクリア</string>
+    <string name="hide_widgets">ウィジェットの内容を隠す</string>
+    <string name="hide_widgets_desc">ホーム画面のウィジェットには、タスクや予定、数値の代わりに「非表示」とだけ表示されます。</string>
+    <string name="widget_hidden_msg">非表示です。アプリを開いて確認してください。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

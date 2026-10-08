@@ -28,7 +28,7 @@ Everything is stored privately on the phone — no account or internet needed.
 
 **Manager report (PDF):** Stats → Report (PDF). Built on the phone; client names and commission are left out unless turned on; optional AES-256 password.
 
-**Home-screen widget:** goal progress as percentages only (never amounts or names). Shows "Locked" when app lock is on. The eye icon next to it is **privacy mode** (hides every dollar amount).
+**Home-screen widgets:** goals (percentages only), today's tasks, schedule, sales stats (counts only) and "On track for" (amounts only if allowed). "Hide widget contents" in Security & privacy makes them all show "Hidden". The eye icon next to it is **privacy mode** (hides every dollar amount).
 
 ## Privacy & security
 

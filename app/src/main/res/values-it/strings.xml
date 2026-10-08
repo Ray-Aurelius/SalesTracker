@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">Niente nell\'elenco di oggi. Tocca per aggiungere un\'attività.</string>
     <string name="widget_tasks_done">Tutto fatto per oggi. Ottimo lavoro!</string>
     <string name="widget_tasks_more">+%1$d altre</string>
-    <string name="widget_tasks_description">Le attività di oggi, prima le importanti. Nascosto quando il blocco dell\'app è attivo.</string>
+    <string name="widget_tasks_description">Le attività di oggi, prima le importanti. Si può nascondere in Sicurezza e privacy.</string>
     <string name="widget_schedule_empty">Nessun impegno nei prossimi 7 giorni.</string>
-    <string name="widget_schedule_description">I tuoi prossimi appuntamenti. Nascosto quando il blocco dell\'app è attivo.</string>
+    <string name="widget_schedule_description">I tuoi prossimi appuntamenti. Si può nascondere in Sicurezza e privacy.</string>
     <string name="widget_tomorrow">Domani</string>
     <string name="widget_stats_title">Statistiche vendite</string>
-    <string name="widget_stats_description">Vendite di oggi e di questa settimana, tempo di vendita e tasso di chiusura. Non mostra mai importi o nomi. Nascosto quando il blocco dell\'app è attivo.</string>
+    <string name="widget_stats_description">Vendite di oggi e di questa settimana, tempo di vendita e tasso di chiusura. Non mostra mai importi o nomi. Si può nascondere in Sicurezza e privacy.</string>
     <string name="occupation">Professione</string>
     <string name="occupation_hint">es. dentista, impresario, proprietario di casa</string>
     <string name="client_stats">Statistiche cliente</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">%1$s rispetto al trimestre scorso</string>
     <string name="on_track_vs_year">%1$s rispetto all\'anno scorso</string>
     <string name="on_track_empty">Registra una vendita in questo periodo per vedere dove stai andando.</string>
-    <string name="widget_pace_description">Dove sta andando la tua settimana, il mese, il trimestre o l\'anno (scegli nella scheda Statistiche). Gli importi compaiono solo se li consenti in Sicurezza e privacy. Nascosto con il blocco dell\'app attivo.</string>
+    <string name="widget_pace_description">Dove sta andando la tua settimana, il mese, il trimestre o l\'anno (scegli nella scheda Statistiche). Gli importi compaiono solo se li consenti in Sicurezza e privacy. Si può nascondere in Sicurezza e privacy.</string>
     <string name="widget_pace_hidden">Gli importi sono nascosti nella schermata Home. Puoi consentirli in Sicurezza e privacy.</string>
     <string name="widget_amounts">Mostra gli importi nel widget In linea</string>
     <string name="widget_amounts_desc">Chiunque veda la tua schermata Home potrebbe leggere i guadagni previsti. Disattivato per impostazione predefinita.</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">Sei indietro rispetto al ritmo del periodo precedente. C\'è ancora tempo per recuperare.</string>
     <string name="widget_pace_keep_going">Continua a registrare vendite per fissare il tuo ritmo.</string>
     <string name="cd_clear_client">Rimuovi cliente</string>
+    <string name="hide_widgets">Nascondi il contenuto dei widget</string>
+    <string name="hide_widgets_desc">I widget della schermata Home mostrano solo \"Nascosto\" invece di attività, agenda e numeri.</string>
+    <string name="widget_hidden_msg">Nascosto. Apri l\'app per vederlo.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>

@@ -191,6 +191,15 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         settings.edit().putBoolean("protectDeletes", on).apply()
     }
 
+    /** "Hide widget contents": home-screen widgets show only "Hidden". Off by default. */
+    var hideWidgets by mutableStateOf(settings.getBoolean("hideWidgets", false))
+        private set
+    fun changeHideWidgets(on: Boolean) {
+        hideWidgets = on
+        settings.edit().putBoolean("hideWidgets", on).commit()
+        com.salestracker.app.widget.Widgets.refreshAll(getApplication())
+    }
+
     /** Which period the "On track for" card and widget follow: this week, month (default), quarter or year. */
     var pacePeriod by mutableStateOf(
         com.salestracker.app.data.GoalPeriod.entries.firstOrNull { it.name == settings.getString("pacePeriod", null) }

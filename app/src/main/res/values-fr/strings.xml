@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">Rien sur la liste du jour. Touchez pour ajouter une tâche.</string>
     <string name="widget_tasks_done">Tout est fait pour aujourd\'hui. Bravo !</string>
     <string name="widget_tasks_more">+%1$d de plus</string>
-    <string name="widget_tasks_description">Les tâches du jour, les importantes d\'abord. Masqué quand le verrouillage de l\'app est activé.</string>
+    <string name="widget_tasks_description">Les tâches du jour, les importantes d\'abord. Peut être masqué dans Sécurité et confidentialité.</string>
     <string name="widget_schedule_empty">Rien de prévu dans les 7 prochains jours.</string>
-    <string name="widget_schedule_description">Vos prochains rendez-vous. Masqué quand le verrouillage de l\'app est activé.</string>
+    <string name="widget_schedule_description">Vos prochains rendez-vous. Peut être masqué dans Sécurité et confidentialité.</string>
     <string name="widget_tomorrow">Demain</string>
     <string name="widget_stats_title">Statistiques de ventes</string>
-    <string name="widget_stats_description">Ventes du jour et de la semaine, temps de vente et taux de conclusion. N\'affiche jamais de montants ni de noms. Masqué quand le verrouillage de l\'app est activé.</string>
+    <string name="widget_stats_description">Ventes du jour et de la semaine, temps de vente et taux de conclusion. N\'affiche jamais de montants ni de noms. Peut être masqué dans Sécurité et confidentialité.</string>
     <string name="occupation">Profession</string>
     <string name="occupation_hint">ex. dentiste, entrepreneur, propriétaire</string>
     <string name="client_stats">Statistiques du client</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">%1$s par rapport au trimestre dernier</string>
     <string name="on_track_vs_year">%1$s par rapport à l\'an dernier</string>
     <string name="on_track_empty">Enregistrez une vente sur cette période pour voir où vous allez.</string>
-    <string name="widget_pace_description">Où vont votre semaine, votre mois, votre trimestre ou votre année (à choisir dans l\'onglet Stats). Les montants ne s\'affichent que si vous l\'autorisez dans Sécurité et confidentialité. Masqué quand le verrouillage de l\'app est activé.</string>
+    <string name="widget_pace_description">Où vont votre semaine, votre mois, votre trimestre ou votre année (à choisir dans l\'onglet Stats). Les montants ne s\'affichent que si vous l\'autorisez dans Sécurité et confidentialité. Peut être masqué dans Sécurité et confidentialité.</string>
     <string name="widget_pace_hidden">Les montants sont masqués sur votre écran d\'accueil. Vous pouvez les autoriser dans Sécurité et confidentialité.</string>
     <string name="widget_amounts">Afficher les montants sur le widget En route</string>
     <string name="widget_amounts_desc">Toute personne qui voit votre écran d\'accueil pourrait lire vos gains prévus. Désactivé par défaut.</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">En retard sur le rythme de la période précédente. Il est encore temps de rattraper.</string>
     <string name="widget_pace_keep_going">Continuez à enregistrer des ventes pour établir votre rythme.</string>
     <string name="cd_clear_client">Effacer le client</string>
+    <string name="hide_widgets">Masquer le contenu des widgets</string>
+    <string name="hide_widgets_desc">Les widgets de l\'écran d\'accueil affichent seulement « Masqué » au lieu de vos tâches, rendez-vous et chiffres.</string>
+    <string name="widget_hidden_msg">Masqué. Ouvrez l\'app pour le voir.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

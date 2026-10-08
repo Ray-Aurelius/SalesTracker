@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">Bugünün listesinde bir şey yok. Görev eklemek için dokunun.</string>
     <string name="widget_tasks_done">Bugünlük her şey tamam. Harika iş!</string>
     <string name="widget_tasks_more">+%1$d tane daha</string>
-    <string name="widget_tasks_description">Bugünün görevleri, önemliler önce. Uygulama kilidi açıkken gizlenir.</string>
+    <string name="widget_tasks_description">Bugünün görevleri, önemliler önce. Güvenlik ve gizlilik\'ten gizlenebilir.</string>
     <string name="widget_schedule_empty">Önümüzdeki 7 günde planlanmış bir şey yok.</string>
-    <string name="widget_schedule_description">Yaklaşan randevularınız. Uygulama kilidi açıkken gizlenir.</string>
+    <string name="widget_schedule_description">Yaklaşan randevularınız. Güvenlik ve gizlilik\'ten gizlenebilir.</string>
     <string name="widget_tomorrow">Yarın</string>
     <string name="widget_stats_title">Satış istatistikleri</string>
-    <string name="widget_stats_description">Bugünün ve bu haftanın satışları, satışa harcanan süre ve kapanış oranı. Asla tutar veya isim göstermez. Uygulama kilidi açıkken gizlenir.</string>
+    <string name="widget_stats_description">Bugünün ve bu haftanın satışları, satışa harcanan süre ve kapanış oranı. Asla tutar veya isim göstermez. Güvenlik ve gizlilik\'ten gizlenebilir.</string>
     <string name="occupation">Meslek</string>
     <string name="occupation_hint">ör. diş hekimi, müteahhit, ev sahibi</string>
     <string name="client_stats">Müşteri istatistikleri</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">Geçen çeyreğe göre %1$s</string>
     <string name="on_track_vs_year">Geçen yıla göre %1$s</string>
     <string name="on_track_empty">Nereye gittiğinizi görmek için bu dönemde bir satış kaydedin.</string>
-    <string name="widget_pace_description">Haftanızın, ayınızın, çeyreğinizin veya yılınızın gidişatı (İstatistik sekmesinden seçin). Tutarlar yalnızca Güvenlik ve gizlilik\'te izin verirseniz görünür. Uygulama kilidi açıkken gizlenir.</string>
+    <string name="widget_pace_description">Haftanızın, ayınızın, çeyreğinizin veya yılınızın gidişatı (İstatistik sekmesinden seçin). Tutarlar yalnızca Güvenlik ve gizlilik\'te izin verirseniz görünür. Güvenlik ve gizlilik\'ten gizlenebilir.</string>
     <string name="widget_pace_hidden">Ana ekranınızda tutarlar gizli. Güvenlik ve gizlilik\'ten izin verebilirsiniz.</string>
     <string name="widget_amounts">Hedef yolunda widget\'ında tutarları göster</string>
     <string name="widget_amounts_desc">Ana ekranınızı gören herkes beklenen kazancınızı okuyabilir. Varsayılan olarak kapalı.</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">Önceki dönemin temposunun gerisindesiniz. Yetişmek için hâlâ zaman var.</string>
     <string name="widget_pace_keep_going">Temponuzu belirlemek için satış kaydetmeye devam edin.</string>
     <string name="cd_clear_client">Müşteriyi temizle</string>
+    <string name="hide_widgets">Widget içeriğini gizle</string>
+    <string name="hide_widgets_desc">Ana ekran widget\'ları görevleriniz, takviminiz ve rakamlarınız yerine yalnızca \"Gizli\" gösterir.</string>
+    <string name="widget_hidden_msg">Gizli. Görmek için uygulamayı açın.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

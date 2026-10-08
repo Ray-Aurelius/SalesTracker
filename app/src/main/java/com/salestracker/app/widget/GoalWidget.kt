@@ -15,7 +15,7 @@ import com.salestracker.app.data.Repository
 
 /**
  * Home-screen widget showing goal progress. Privacy rules: percentages only (never dollar amounts or client
- * names), and when app lock is on it shows only "Locked" — the home screen is visible to anyone holding the phone.
+ * names), and with "Hide widget contents" on it shows only "Hidden" — the home screen is visible to anyone holding the phone.
  */
 class GoalWidget : AppWidgetProvider() {
     override fun onUpdate(context: Context, manager: AppWidgetManager, appWidgetIds: IntArray) {
@@ -57,9 +57,9 @@ class GoalWidget : AppWidgetProvider() {
                 ROWS.forEach { v.setViewVisibility(it[0], View.GONE) }
             }
 
-            val locked = context.getSharedPreferences("settings", Context.MODE_PRIVATE).getBoolean("appLock", false)
+            val locked = Widgets.isLocked(context)
             if (locked) {
-                message(context.getString(R.string.widget_locked))
+                message(context.getString(R.string.widget_hidden_msg))
                 return v
             }
             val data = Repository.readSnapshot(context)

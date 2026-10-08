@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">आज की सूची में कुछ नहीं है। कार्य जोड़ने के लिए टैप करें।</string>
     <string name="widget_tasks_done">आज के सभी काम पूरे। बहुत बढ़िया!</string>
     <string name="widget_tasks_more">+%1$d और</string>
-    <string name="widget_tasks_description">आज के कार्य, ज़रूरी वाले पहले। ऐप लॉक चालू होने पर छिपा रहता है।</string>
+    <string name="widget_tasks_description">आज के कार्य, ज़रूरी वाले पहले। सुरक्षा और निजता में छिपाया जा सकता है।</string>
     <string name="widget_schedule_empty">अगले 7 दिनों में कुछ भी तय नहीं है।</string>
-    <string name="widget_schedule_description">आपकी आने वाली अपॉइंटमेंट। ऐप लॉक चालू होने पर छिपा रहता है।</string>
+    <string name="widget_schedule_description">आपकी आने वाली अपॉइंटमेंट। सुरक्षा और निजता में छिपाया जा सकता है।</string>
     <string name="widget_tomorrow">कल</string>
     <string name="widget_stats_title">बिक्री आँकड़े</string>
-    <string name="widget_stats_description">आज और इस सप्ताह की बिक्री, बिक्री पर लगा समय और क्लोज़ दर। कभी भी राशि या नाम नहीं दिखाता। ऐप लॉक चालू होने पर छिपा रहता है।</string>
+    <string name="widget_stats_description">आज और इस सप्ताह की बिक्री, बिक्री पर लगा समय और क्लोज़ दर। कभी भी राशि या नाम नहीं दिखाता। सुरक्षा और निजता में छिपाया जा सकता है।</string>
     <string name="occupation">व्यवसाय</string>
     <string name="occupation_hint">जैसे दंत चिकित्सक, ठेकेदार, गृहस्वामी</string>
     <string name="client_stats">ग्राहक आँकड़े</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">पिछली तिमाही की तुलना में %1$s</string>
     <string name="on_track_vs_year">पिछले साल की तुलना में %1$s</string>
     <string name="on_track_empty">इस अवधि में एक बिक्री दर्ज करें ताकि पता चले आप कहाँ पहुँच रहे हैं।</string>
-    <string name="widget_pace_description">आपका सप्ताह, महीना, तिमाही या साल कहाँ जा रहा है (आँकड़े टैब पर चुनें)। राशि तभी दिखेगी जब आप सुरक्षा और निजता में अनुमति दें। ऐप लॉक चालू होने पर छिपा रहता है।</string>
+    <string name="widget_pace_description">आपका सप्ताह, महीना, तिमाही या साल कहाँ जा रहा है (आँकड़े टैब पर चुनें)। राशि तभी दिखेगी जब आप सुरक्षा और निजता में अनुमति दें। सुरक्षा और निजता में छिपाया जा सकता है।</string>
     <string name="widget_pace_hidden">आपकी होम स्क्रीन पर राशि छिपी है। आप सुरक्षा और निजता में इसकी अनुमति दे सकते हैं।</string>
     <string name="widget_amounts">अनुमानित विजेट पर राशि दिखाएँ</string>
     <string name="widget_amounts_desc">आपकी होम स्क्रीन देखने वाला कोई भी आपकी अनुमानित कमाई पढ़ सकता है। शुरुआत में बंद।</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">पिछली अवधि की रफ़्तार से पीछे हैं। अभी भी बराबरी का समय है।</string>
     <string name="widget_pace_keep_going">अपनी रफ़्तार तय करने के लिए बिक्री दर्ज करते रहें।</string>
     <string name="cd_clear_client">ग्राहक हटाएँ</string>
+    <string name="hide_widgets">विजेट की सामग्री छिपाएँ</string>
+    <string name="hide_widgets_desc">होम स्क्रीन विजेट आपके कार्य, शेड्यूल और आँकड़ों की जगह सिर्फ़ \"छिपा है\" दिखाते हैं।</string>
+    <string name="widget_hidden_msg">छिपा है। देखने के लिए ऐप खोलें।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

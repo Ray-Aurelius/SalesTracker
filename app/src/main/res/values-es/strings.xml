@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">No hay nada en la lista de hoy. Toca para añadir una tarea.</string>
     <string name="widget_tasks_done">Todo listo por hoy. ¡Buen trabajo!</string>
     <string name="widget_tasks_more">+%1$d más</string>
-    <string name="widget_tasks_description">Las tareas de hoy, primero las importantes. Se oculta cuando el bloqueo de la app está activado.</string>
+    <string name="widget_tasks_description">Las tareas de hoy, primero las importantes. Se puede ocultar en Seguridad y privacidad.</string>
     <string name="widget_schedule_empty">No hay nada programado en los próximos 7 días.</string>
-    <string name="widget_schedule_description">Tus próximas citas. Se oculta cuando el bloqueo de la app está activado.</string>
+    <string name="widget_schedule_description">Tus próximas citas. Se puede ocultar en Seguridad y privacidad.</string>
     <string name="widget_tomorrow">Mañana</string>
     <string name="widget_stats_title">Estadísticas de ventas</string>
-    <string name="widget_stats_description">Ventas de hoy y de esta semana, tiempo en ventas y tasa de cierre. Nunca muestra importes ni nombres. Se oculta cuando el bloqueo de la app está activado.</string>
+    <string name="widget_stats_description">Ventas de hoy y de esta semana, tiempo en ventas y tasa de cierre. Nunca muestra importes ni nombres. Se puede ocultar en Seguridad y privacidad.</string>
     <string name="occupation">Ocupación</string>
     <string name="occupation_hint">p. ej. dentista, contratista, propietario</string>
     <string name="client_stats">Estadísticas del cliente</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">%1$s frente al trimestre pasado</string>
     <string name="on_track_vs_year">%1$s frente al año pasado</string>
     <string name="on_track_empty">Registra una venta en este periodo para ver hacia dónde vas.</string>
-    <string name="widget_pace_description">Hacia dónde va tu semana, mes, trimestre o año (elígelo en la pestaña Estadísticas). Los importes solo se muestran si lo permites en Seguridad y privacidad. Se oculta con el bloqueo de la app activado.</string>
+    <string name="widget_pace_description">Hacia dónde va tu semana, mes, trimestre o año (elígelo en la pestaña Estadísticas). Los importes solo se muestran si lo permites en Seguridad y privacidad. Se puede ocultar en Seguridad y privacidad.</string>
     <string name="widget_pace_hidden">Los importes están ocultos en tu pantalla de inicio. Puedes permitirlos en Seguridad y privacidad.</string>
     <string name="widget_amounts">Mostrar importes en el widget En camino</string>
     <string name="widget_amounts_desc">Cualquiera que vea tu pantalla de inicio podría leer tus ganancias previstas. Desactivado de forma predeterminada.</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">Vas por detrás del ritmo del periodo anterior. Aún hay tiempo para recuperarte.</string>
     <string name="widget_pace_keep_going">Sigue registrando ventas para marcar tu ritmo.</string>
     <string name="cd_clear_client">Quitar cliente</string>
+    <string name="hide_widgets">Ocultar el contenido de los widgets</string>
+    <string name="hide_widgets_desc">Los widgets de la pantalla de inicio solo muestran \"Oculto\" en lugar de tus tareas, agenda y cifras.</string>
+    <string name="widget_hidden_msg">Oculto. Abre la app para verlo.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>

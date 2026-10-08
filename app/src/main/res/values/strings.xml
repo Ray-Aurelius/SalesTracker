@@ -719,12 +719,12 @@
     <string name="widget_tasks_empty">Nothing on today\'s list. Tap to add a task.</string>
     <string name="widget_tasks_done">All done for today. Nice work!</string>
     <string name="widget_tasks_more">+%1$d more</string>
-    <string name="widget_tasks_description">Today\'s tasks, important ones first. Hidden when app lock is on.</string>
+    <string name="widget_tasks_description">Today\'s tasks, important ones first. Can be hidden in Security &amp; privacy.</string>
     <string name="widget_schedule_empty">Nothing scheduled in the next 7 days.</string>
-    <string name="widget_schedule_description">Your upcoming appointments. Hidden when app lock is on.</string>
+    <string name="widget_schedule_description">Your upcoming appointments. Can be hidden in Security &amp; privacy.</string>
     <string name="widget_tomorrow">Tomorrow</string>
     <string name="widget_stats_title">Sales stats</string>
-    <string name="widget_stats_description">Today\'s and this week\'s sales, time on sales and close rate. Never shows amounts or names. Hidden when app lock is on.</string>
+    <string name="widget_stats_description">Today\'s and this week\'s sales, time on sales and close rate. Never shows amounts or names. Can be hidden in Security &amp; privacy.</string>
     <plurals name="widget_tasks_left">
         <item quantity="one">%d left</item>
         <item quantity="other">%d left</item>
@@ -779,7 +779,7 @@
     <string name="on_track_vs_quarter">%1$s vs. last quarter</string>
     <string name="on_track_vs_year">%1$s vs. last year</string>
     <string name="on_track_empty">Log a sale this period to see where you\'re headed.</string>
-    <string name="widget_pace_description">Where your week, month, quarter or year is headed (pick which on the Stats tab). Amounts show only if you allow them in Security &amp; privacy. Hidden when app lock is on.</string>
+    <string name="widget_pace_description">Where your week, month, quarter or year is headed (pick which on the Stats tab). Amounts show only if you allow them in Security &amp; privacy. Can be hidden in Security &amp; privacy.</string>
     <string name="widget_pace_hidden">Amounts are hidden on your home screen. You can allow them in Security &amp; privacy.</string>
     <string name="widget_amounts">Show amounts on the On-track widget</string>
     <string name="widget_amounts_desc">Anyone who sees your home screen could read your projected earnings. Off by default.</string>
@@ -791,4 +791,7 @@
     <string name="widget_pace_behind">Behind your last period\'s pace. There\'s still time to catch up.</string>
     <string name="widget_pace_keep_going">Keep logging sales to set your pace.</string>
     <string name="cd_clear_client">Clear client</string>
+    <string name="hide_widgets">Hide widget contents</string>
+    <string name="hide_widgets_desc">Home-screen widgets show only \"Hidden\" instead of your tasks, schedule and numbers.</string>
+    <string name="widget_hidden_msg">Hidden. Open the app to see this.</string>
 </resources>

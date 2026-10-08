@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">আজকের তালিকায় কিছু নেই। কাজ যোগ করতে ট্যাপ করুন।</string>
     <string name="widget_tasks_done">আজকের সব কাজ শেষ। দারুণ!</string>
     <string name="widget_tasks_more">আরও +%1$d</string>
-    <string name="widget_tasks_description">আজকের কাজ, গুরুত্বপূর্ণগুলো আগে। অ্যাপ লক চালু থাকলে লুকানো থাকে।</string>
+    <string name="widget_tasks_description">আজকের কাজ, গুরুত্বপূর্ণগুলো আগে। নিরাপত্তা ও গোপনীয়তায় লুকানো যায়।</string>
     <string name="widget_schedule_empty">আগামী ৭ দিনে কিছুই নির্ধারিত নেই।</string>
-    <string name="widget_schedule_description">আপনার আসন্ন অ্যাপয়েন্টমেন্ট। অ্যাপ লক চালু থাকলে লুকানো থাকে।</string>
+    <string name="widget_schedule_description">আপনার আসন্ন অ্যাপয়েন্টমেন্ট। নিরাপত্তা ও গোপনীয়তায় লুকানো যায়।</string>
     <string name="widget_tomorrow">আগামীকাল</string>
     <string name="widget_stats_title">বিক্রয়ের পরিসংখ্যান</string>
-    <string name="widget_stats_description">আজ ও এই সপ্তাহের বিক্রয়, বিক্রয়ে ব্যয় করা সময় ও ক্লোজ রেট। কখনো পরিমাণ বা নাম দেখায় না। অ্যাপ লক চালু থাকলে লুকানো থাকে।</string>
+    <string name="widget_stats_description">আজ ও এই সপ্তাহের বিক্রয়, বিক্রয়ে ব্যয় করা সময় ও ক্লোজ রেট। কখনো পরিমাণ বা নাম দেখায় না। নিরাপত্তা ও গোপনীয়তায় লুকানো যায়।</string>
     <string name="occupation">পেশা</string>
     <string name="occupation_hint">যেমন দন্তচিকিৎসক, ঠিকাদার, বাড়ির মালিক</string>
     <string name="client_stats">ক্লায়েন্টের পরিসংখ্যান</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">গত ত্রৈমাসিকের তুলনায় %1$s</string>
     <string name="on_track_vs_year">গত বছরের তুলনায় %1$s</string>
     <string name="on_track_empty">আপনি কোথায় যাচ্ছেন দেখতে এই সময়ে একটি বিক্রয় লিখুন।</string>
-    <string name="widget_pace_description">আপনার সপ্তাহ, মাস, ত্রৈমাসিক বা বছর কোথায় যাচ্ছে (পরিসংখ্যান ট্যাবে বেছে নিন)। নিরাপত্তা ও গোপনীয়তায় অনুমতি দিলে তবেই অঙ্ক দেখায়। অ্যাপ লক চালু থাকলে লুকানো থাকে।</string>
+    <string name="widget_pace_description">আপনার সপ্তাহ, মাস, ত্রৈমাসিক বা বছর কোথায় যাচ্ছে (পরিসংখ্যান ট্যাবে বেছে নিন)। নিরাপত্তা ও গোপনীয়তায় অনুমতি দিলে তবেই অঙ্ক দেখায়। নিরাপত্তা ও গোপনীয়তায় লুকানো যায়।</string>
     <string name="widget_pace_hidden">হোম স্ক্রিনে অঙ্ক লুকানো আছে। নিরাপত্তা ও গোপনীয়তায় অনুমতি দিতে পারেন।</string>
     <string name="widget_amounts">সম্ভাব্য উইজেটে অঙ্ক দেখান</string>
     <string name="widget_amounts_desc">আপনার হোম স্ক্রিন যে দেখবে সে আপনার সম্ভাব্য আয় পড়তে পারবে। শুরুতে বন্ধ।</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">আগের সময়ের গতির চেয়ে পিছিয়ে আছেন। এখনো ধরার সময় আছে।</string>
     <string name="widget_pace_keep_going">আপনার গতি ঠিক করতে বিক্রয় লিখতে থাকুন।</string>
     <string name="cd_clear_client">ক্লায়েন্ট সরান</string>
+    <string name="hide_widgets">উইজেটের বিষয়বস্তু লুকান</string>
+    <string name="hide_widgets_desc">হোম স্ক্রিনের উইজেট আপনার কাজ, সময়সূচি ও সংখ্যার বদলে শুধু \"লুকানো\" দেখায়।</string>
+    <string name="widget_hidden_msg">লুকানো। দেখতে অ্যাপ খুলুন।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

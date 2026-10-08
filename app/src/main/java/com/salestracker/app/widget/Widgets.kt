@@ -23,7 +23,7 @@ import java.time.LocalDate
 
 /**
  * Home-screen widgets. The same privacy rules apply to every one of them:
- *  - when app lock is on, a widget shows only "Locked" (the home screen is visible to anyone holding the phone);
+ *  - with "Hide widget contents" on (Security & privacy), a widget shows only "Hidden";
  *  - never a dollar amount, and never a client's name (only the titles the user typed for tasks and appointments);
  *  - nothing is fetched from or sent anywhere: widgets are drawn from the same encrypted data on the phone.
  */
@@ -51,8 +51,9 @@ object Widgets {
         }
     }
 
+    /** Widgets show their contents unless "Hide widget contents" is on in Security & privacy. */
     internal fun isLocked(context: Context) =
-        context.getSharedPreferences("settings", Context.MODE_PRIVATE).getBoolean("appLock", false)
+        context.getSharedPreferences("settings", Context.MODE_PRIVATE).getBoolean("hideWidgets", false)
 
     /** Opens the app, optionally on a particular page. Each widget uses its own request code so their extras don't mix. */
     internal fun openApp(context: Context, requestCode: Int, extras: Intent.() -> Unit = {}): PendingIntent =
@@ -102,7 +103,7 @@ object Widgets {
     }
 
     internal fun locked(context: Context, title: String, open: PendingIntent): RemoteViews =
-        list(context, title, emptyList(), context.getString(R.string.widget_locked_any), 0, open)
+        list(context, title, emptyList(), context.getString(R.string.widget_hidden_msg), 0, open)
 }
 
 /** Today's tasks: overdue and important first, with their reminder times. Tap to open the task list. */
@@ -180,7 +181,7 @@ class StatsWidget : AppWidgetProvider() {
             if (Widgets.isLocked(context)) {
                 v.setViewVisibility(R.id.stats_body, View.GONE)
                 v.setViewVisibility(R.id.widget_message, View.VISIBLE)
-                v.setTextViewText(R.id.widget_message, context.getString(R.string.widget_locked_any))
+                v.setTextViewText(R.id.widget_message, context.getString(R.string.widget_hidden_msg))
                 return v
             }
             v.setViewVisibility(R.id.stats_body, View.VISIBLE)
@@ -227,7 +228,7 @@ class PaceWidget : AppWidgetProvider() {
                 v.setTextViewText(R.id.widget_message, text)
                 return v
             }
-            if (Widgets.isLocked(context)) return message(context.getString(R.string.widget_locked_any))
+            if (Widgets.isLocked(context)) return message(context.getString(R.string.widget_hidden_msg))
             val pace = com.salestracker.app.data.Pace.of(data.sales, data.defaultCommissionPercent, period)
             if (pace.isEmpty) return message(context.getString(R.string.on_track_empty))
             v.setViewVisibility(R.id.pace_body, View.VISIBLE)

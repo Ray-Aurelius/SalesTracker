@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">Tidak ada apa pun di daftar hari ini. Ketuk untuk menambah tugas.</string>
     <string name="widget_tasks_done">Semua selesai untuk hari ini. Kerja bagus!</string>
     <string name="widget_tasks_more">+%1$d lagi</string>
-    <string name="widget_tasks_description">Tugas hari ini, yang penting lebih dulu. Disembunyikan saat kunci aplikasi aktif.</string>
+    <string name="widget_tasks_description">Tugas hari ini, yang penting lebih dulu. Bisa disembunyikan di Keamanan &amp; privasi.</string>
     <string name="widget_schedule_empty">Tidak ada jadwal dalam 7 hari ke depan.</string>
-    <string name="widget_schedule_description">Janji temu Anda berikutnya. Disembunyikan saat kunci aplikasi aktif.</string>
+    <string name="widget_schedule_description">Janji temu Anda berikutnya. Bisa disembunyikan di Keamanan &amp; privasi.</string>
     <string name="widget_tomorrow">Besok</string>
     <string name="widget_stats_title">Statistik penjualan</string>
-    <string name="widget_stats_description">Penjualan hari ini dan minggu ini, waktu penjualan, dan tingkat closing. Tidak pernah menampilkan jumlah uang atau nama. Disembunyikan saat kunci aplikasi aktif.</string>
+    <string name="widget_stats_description">Penjualan hari ini dan minggu ini, waktu penjualan, dan tingkat closing. Tidak pernah menampilkan jumlah uang atau nama. Bisa disembunyikan di Keamanan &amp; privasi.</string>
     <string name="occupation">Pekerjaan</string>
     <string name="occupation_hint">mis. dokter gigi, kontraktor, pemilik rumah</string>
     <string name="client_stats">Statistik klien</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">%1$s dibanding kuartal lalu</string>
     <string name="on_track_vs_year">%1$s dibanding tahun lalu</string>
     <string name="on_track_empty">Catat penjualan di periode ini untuk melihat ke mana arah Anda.</string>
-    <string name="widget_pace_description">Ke mana arah minggu, bulan, kuartal, atau tahun Anda (pilih di tab Statistik). Jumlah uang hanya tampil jika Anda izinkan di Keamanan &amp; privasi. Disembunyikan saat kunci aplikasi aktif.</string>
+    <string name="widget_pace_description">Ke mana arah minggu, bulan, kuartal, atau tahun Anda (pilih di tab Statistik). Jumlah uang hanya tampil jika Anda izinkan di Keamanan &amp; privasi. Bisa disembunyikan di Keamanan &amp; privasi.</string>
     <string name="widget_pace_hidden">Jumlah uang disembunyikan di layar utama. Anda bisa mengizinkannya di Keamanan &amp; privasi.</string>
     <string name="widget_amounts">Tampilkan jumlah di widget Menuju</string>
     <string name="widget_amounts_desc">Siapa pun yang melihat layar utama Anda bisa membaca perkiraan penghasilan Anda. Nonaktif secara default.</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">Anda tertinggal dari laju periode sebelumnya. Masih ada waktu untuk mengejar.</string>
     <string name="widget_pace_keep_going">Terus catat penjualan untuk menetapkan laju Anda.</string>
     <string name="cd_clear_client">Hapus klien</string>
+    <string name="hide_widgets">Sembunyikan isi widget</string>
+    <string name="hide_widgets_desc">Widget layar utama hanya menampilkan \"Tersembunyi\" alih-alih tugas, jadwal, dan angka Anda.</string>
+    <string name="widget_hidden_msg">Tersembunyi. Buka aplikasi untuk melihatnya.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

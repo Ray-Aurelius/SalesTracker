@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">На сегодня ничего нет. Нажмите, чтобы добавить задачу.</string>
     <string name="widget_tasks_done">На сегодня всё сделано. Отличная работа!</string>
     <string name="widget_tasks_more">Ещё +%1$d</string>
-    <string name="widget_tasks_description">Задачи на сегодня, важные — первыми. Скрыто, когда включена блокировка приложения.</string>
+    <string name="widget_tasks_description">Задачи на сегодня, важные — первыми. Можно скрыть в разделе «Безопасность и конфиденциальность».</string>
     <string name="widget_schedule_empty">На ближайшие 7 дней ничего не запланировано.</string>
-    <string name="widget_schedule_description">Ваши ближайшие встречи. Скрыто, когда включена блокировка приложения.</string>
+    <string name="widget_schedule_description">Ваши ближайшие встречи. Можно скрыть в разделе «Безопасность и конфиденциальность».</string>
     <string name="widget_tomorrow">Завтра</string>
     <string name="widget_stats_title">Статистика продаж</string>
-    <string name="widget_stats_description">Продажи за сегодня и за неделю, время на продажи и доля закрытых сделок. Никогда не показывает суммы и имена. Скрыто, когда включена блокировка приложения.</string>
+    <string name="widget_stats_description">Продажи за сегодня и за неделю, время на продажи и доля закрытых сделок. Никогда не показывает суммы и имена. Можно скрыть в разделе «Безопасность и конфиденциальность».</string>
     <string name="occupation">Профессия</string>
     <string name="occupation_hint">напр. стоматолог, подрядчик, домовладелец</string>
     <string name="client_stats">Статистика клиента</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">%1$s к прошлому кварталу</string>
     <string name="on_track_vs_year">%1$s к прошлому году</string>
     <string name="on_track_empty">Запишите продажу в этом периоде, чтобы увидеть прогноз.</string>
-    <string name="widget_pace_description">Куда идут ваша неделя, месяц, квартал или год (выбор на вкладке «Статистика»). Суммы видны, только если разрешить их в разделе «Безопасность и конфиденциальность». Скрыт при включённой блокировке приложения.</string>
+    <string name="widget_pace_description">Куда идут ваша неделя, месяц, квартал или год (выбор на вкладке «Статистика»). Суммы видны, только если разрешить их в разделе «Безопасность и конфиденциальность». Можно скрыть в разделе «Безопасность и конфиденциальность».</string>
     <string name="widget_pace_hidden">Суммы скрыты на главном экране. Их можно разрешить в разделе «Безопасность и конфиденциальность».</string>
     <string name="widget_amounts">Показывать суммы в виджете «Прогноз»</string>
     <string name="widget_amounts_desc">Любой, кто видит ваш главный экран, сможет прочитать ваш ожидаемый заработок. По умолчанию выключено.</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">Вы отстаёте от темпа прошлого периода. Ещё есть время наверстать.</string>
     <string name="widget_pace_keep_going">Продолжайте записывать продажи, чтобы задать темп.</string>
     <string name="cd_clear_client">Убрать клиента</string>
+    <string name="hide_widgets">Скрывать содержимое виджетов</string>
+    <string name="hide_widgets_desc">Виджеты на главном экране показывают только «Скрыто» вместо ваших задач, расписания и цифр.</string>
+    <string name="widget_hidden_msg">Скрыто. Откройте приложение, чтобы посмотреть.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

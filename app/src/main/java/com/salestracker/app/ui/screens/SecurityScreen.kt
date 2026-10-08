@@ -272,6 +272,11 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                 }
             }
             item {
+                SwitchSetting(stringResource(R.string.hide_widgets), stringResource(R.string.hide_widgets_desc), vm.hideWidgets) {
+                    vm.changeHideWidgets(it)
+                }
+            }
+            item {
                 Text(
                     stringResource(R.string.lockscreen_note),
                     style = MaterialTheme.typography.bodySmall,

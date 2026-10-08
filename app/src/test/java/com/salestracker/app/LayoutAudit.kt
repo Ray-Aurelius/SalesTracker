@@ -248,10 +248,10 @@ class LayoutAudit {
         prefs.edit().putBoolean("widgetAmounts", false).putString("pacePeriod", "QUARTER").commit()
         render("pace-quarter", com.salestracker.app.widget.PaceWidget.build(app, data), 240)
         prefs.edit().remove("pacePeriod").commit()
-        prefs.edit().putBoolean("appLock", true).commit()
+        prefs.edit().putBoolean("hideWidgets", true).commit()
         render("tasks-locked", com.salestracker.app.widget.TasksWidget.build(app, data))
         render("stats-locked", com.salestracker.app.widget.StatsWidget.build(app, data), 220)
-        prefs.edit().putBoolean("appLock", false).commit()
+        prefs.edit().putBoolean("hideWidgets", false).commit()
     }
 
     /** Each holiday palette in light and dark, on the Stats tab with the + menu open. */

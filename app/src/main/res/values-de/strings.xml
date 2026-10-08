@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">Heute steht nichts auf der Liste. Tippen, um eine Aufgabe hinzuzufügen.</string>
     <string name="widget_tasks_done">Alles erledigt für heute. Gut gemacht!</string>
     <string name="widget_tasks_more">+%1$d weitere</string>
-    <string name="widget_tasks_description">Die heutigen Aufgaben, wichtige zuerst. Ausgeblendet, wenn die App-Sperre aktiv ist.</string>
+    <string name="widget_tasks_description">Die heutigen Aufgaben, wichtige zuerst. Lässt sich unter Sicherheit &amp; Datenschutz ausblenden.</string>
     <string name="widget_schedule_empty">In den nächsten 7 Tagen ist nichts geplant.</string>
-    <string name="widget_schedule_description">Deine nächsten Termine. Ausgeblendet, wenn die App-Sperre aktiv ist.</string>
+    <string name="widget_schedule_description">Deine nächsten Termine. Lässt sich unter Sicherheit &amp; Datenschutz ausblenden.</string>
     <string name="widget_tomorrow">Morgen</string>
     <string name="widget_stats_title">Verkaufsstatistik</string>
-    <string name="widget_stats_description">Verkäufe heute und diese Woche, Verkaufszeit und Abschlussquote. Zeigt nie Beträge oder Namen. Ausgeblendet, wenn die App-Sperre aktiv ist.</string>
+    <string name="widget_stats_description">Verkäufe heute und diese Woche, Verkaufszeit und Abschlussquote. Zeigt nie Beträge oder Namen. Lässt sich unter Sicherheit &amp; Datenschutz ausblenden.</string>
     <string name="occupation">Beruf</string>
     <string name="occupation_hint">z. B. Zahnarzt, Handwerker, Hausbesitzer</string>
     <string name="client_stats">Kundenstatistik</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">%1$s ggü. letztem Quartal</string>
     <string name="on_track_vs_year">%1$s ggü. letztem Jahr</string>
     <string name="on_track_empty">Erfasse in diesem Zeitraum einen Verkauf, um zu sehen, wohin es geht.</string>
-    <string name="widget_pace_description">Wohin deine Woche, dein Monat, Quartal oder Jahr steuert (Auswahl im Tab Statistik). Beträge erscheinen nur, wenn du sie unter Sicherheit &amp; Datenschutz erlaubst. Ausgeblendet bei aktiver App-Sperre.</string>
+    <string name="widget_pace_description">Wohin deine Woche, dein Monat, Quartal oder Jahr steuert (Auswahl im Tab Statistik). Beträge erscheinen nur, wenn du sie unter Sicherheit &amp; Datenschutz erlaubst. Lässt sich unter Sicherheit &amp; Datenschutz ausblenden.</string>
     <string name="widget_pace_hidden">Beträge sind auf deinem Startbildschirm ausgeblendet. Du kannst sie unter Sicherheit &amp; Datenschutz erlauben.</string>
     <string name="widget_amounts">Beträge im Auf-Kurs-Widget anzeigen</string>
     <string name="widget_amounts_desc">Jeder, der deinen Startbildschirm sieht, könnte deine erwarteten Einnahmen lesen. Standardmäßig aus.</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">Du liegst hinter dem Tempo des letzten Zeitraums. Noch ist Zeit zum Aufholen.</string>
     <string name="widget_pace_keep_going">Erfasse weiter Verkäufe, um dein Tempo zu bestimmen.</string>
     <string name="cd_clear_client">Kunden entfernen</string>
+    <string name="hide_widgets">Widget-Inhalte ausblenden</string>
+    <string name="hide_widgets_desc">Widgets auf dem Startbildschirm zeigen nur „Ausgeblendet“ statt deiner Aufgaben, Termine und Zahlen.</string>
+    <string name="widget_hidden_msg">Ausgeblendet. Öffne die App, um es zu sehen.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">لا شيء في قائمة اليوم. انقر لإضافة مهمة.</string>
     <string name="widget_tasks_done">أنجزت كل شيء اليوم. عمل رائع!</string>
     <string name="widget_tasks_more">+%1$d أخرى</string>
-    <string name="widget_tasks_description">مهام اليوم، المهمة أولًا. تُخفى عند تفعيل قفل التطبيق.</string>
+    <string name="widget_tasks_description">مهام اليوم، المهمة أولًا. يمكن إخفاؤها من الأمان والخصوصية.</string>
     <string name="widget_schedule_empty">لا شيء مجدول خلال الأيام السبعة القادمة.</string>
-    <string name="widget_schedule_description">مواعيدك القادمة. تُخفى عند تفعيل قفل التطبيق.</string>
+    <string name="widget_schedule_description">مواعيدك القادمة. يمكن إخفاؤها من الأمان والخصوصية.</string>
     <string name="widget_tomorrow">غدًا</string>
     <string name="widget_stats_title">إحصاءات المبيعات</string>
-    <string name="widget_stats_description">مبيعات اليوم وهذا الأسبوع، ووقت البيع، ونسبة الإغلاق. لا تعرض أي مبالغ أو أسماء أبدًا. تُخفى عند تفعيل قفل التطبيق.</string>
+    <string name="widget_stats_description">مبيعات اليوم وهذا الأسبوع، ووقت البيع، ونسبة الإغلاق. لا تعرض أي مبالغ أو أسماء أبدًا. يمكن إخفاؤها من الأمان والخصوصية.</string>
     <string name="occupation">المهنة</string>
     <string name="occupation_hint">مثل: طبيب أسنان، مقاول، مالك منزل</string>
     <string name="client_stats">إحصاءات العميل</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">%1$s مقارنة بالربع الماضي</string>
     <string name="on_track_vs_year">%1$s مقارنة بالسنة الماضية</string>
     <string name="on_track_empty">سجّل عملية بيع في هذه الفترة لترى إلى أين تتجه.</string>
-    <string name="widget_pace_description">إلى أين يتجه أسبوعك أو شهرك أو ربعك أو سنتك (اختر من تبويب الإحصاءات). لا تظهر المبالغ إلا إذا سمحت بها في الأمان والخصوصية. تُخفى عند تفعيل قفل التطبيق.</string>
+    <string name="widget_pace_description">إلى أين يتجه أسبوعك أو شهرك أو ربعك أو سنتك (اختر من تبويب الإحصاءات). لا تظهر المبالغ إلا إذا سمحت بها في الأمان والخصوصية. يمكن إخفاؤها من الأمان والخصوصية.</string>
     <string name="widget_pace_hidden">المبالغ مخفية على شاشتك الرئيسية. يمكنك السماح بها في الأمان والخصوصية.</string>
     <string name="widget_amounts">إظهار المبالغ في أداة «في الطريق إلى»</string>
     <string name="widget_amounts_desc">يمكن لأي شخص يرى شاشتك الرئيسية قراءة أرباحك المتوقعة. معطّل افتراضيًا.</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">أنت متأخر عن وتيرة الفترة السابقة. ما زال هناك وقت للّحاق.</string>
     <string name="widget_pace_keep_going">واصل تسجيل المبيعات لتحديد وتيرتك.</string>
     <string name="cd_clear_client">إزالة العميل</string>
+    <string name="hide_widgets">إخفاء محتوى الأدوات</string>
+    <string name="hide_widgets_desc">تعرض أدوات الشاشة الرئيسية كلمة \"مخفي\" فقط بدلًا من مهامك وجدولك وأرقامك.</string>
+    <string name="widget_hidden_msg">مخفي. افتح التطبيق لعرضه.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

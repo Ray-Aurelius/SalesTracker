@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">오늘 목록이 비어 있습니다. 탭하여 할 일을 추가하세요.</string>
     <string name="widget_tasks_done">오늘 할 일을 모두 마쳤어요. 수고하셨어요!</string>
     <string name="widget_tasks_more">외 %1$d개</string>
-    <string name="widget_tasks_description">오늘의 할 일, 중요한 일 먼저. 앱 잠금이 켜져 있으면 숨겨집니다.</string>
+    <string name="widget_tasks_description">오늘의 할 일, 중요한 일 먼저. 보안 및 개인정보에서 숨길 수 있습니다.</string>
     <string name="widget_schedule_empty">앞으로 7일간 예정된 일정이 없습니다.</string>
-    <string name="widget_schedule_description">다가오는 약속. 앱 잠금이 켜져 있으면 숨겨집니다.</string>
+    <string name="widget_schedule_description">다가오는 약속. 보안 및 개인정보에서 숨길 수 있습니다.</string>
     <string name="widget_tomorrow">내일</string>
     <string name="widget_stats_title">판매 통계</string>
-    <string name="widget_stats_description">오늘과 이번 주의 판매, 판매 시간, 성사율. 금액이나 이름은 절대 표시하지 않습니다. 앱 잠금이 켜져 있으면 숨겨집니다.</string>
+    <string name="widget_stats_description">오늘과 이번 주의 판매, 판매 시간, 성사율. 금액이나 이름은 절대 표시하지 않습니다. 보안 및 개인정보에서 숨길 수 있습니다.</string>
     <string name="occupation">직업</string>
     <string name="occupation_hint">예: 치과의사, 시공업자, 주택 소유자</string>
     <string name="client_stats">고객 통계</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">지난 분기 대비 %1$s</string>
     <string name="on_track_vs_year">작년 대비 %1$s</string>
     <string name="on_track_empty">이 기간에 판매를 기록하면 예상 흐름이 보입니다.</string>
-    <string name="widget_pace_description">이번 주·달·분기·연도의 예상 흐름(통계 탭에서 선택). 금액은 보안 및 개인정보에서 허용한 경우에만 표시됩니다. 앱 잠금이 켜져 있으면 숨겨집니다.</string>
+    <string name="widget_pace_description">이번 주·달·분기·연도의 예상 흐름(통계 탭에서 선택). 금액은 보안 및 개인정보에서 허용한 경우에만 표시됩니다. 보안 및 개인정보에서 숨길 수 있습니다.</string>
     <string name="widget_pace_hidden">홈 화면에서는 금액이 숨겨져 있습니다. 보안 및 개인정보에서 허용할 수 있습니다.</string>
     <string name="widget_amounts">예상 달성 위젯에 금액 표시</string>
     <string name="widget_amounts_desc">홈 화면을 보는 누구나 예상 수입을 볼 수 있습니다. 기본값은 꺼짐입니다.</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">지난 기간보다 느린 속도입니다. 아직 따라잡을 시간이 있어요.</string>
     <string name="widget_pace_keep_going">판매를 계속 기록해 속도를 만들어 보세요.</string>
     <string name="cd_clear_client">고객 지우기</string>
+    <string name="hide_widgets">위젯 내용 숨기기</string>
+    <string name="hide_widgets_desc">홈 화면 위젯에 할 일, 일정, 수치 대신 \'숨김\'만 표시됩니다.</string>
+    <string name="widget_hidden_msg">숨김. 앱을 열어 확인하세요.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

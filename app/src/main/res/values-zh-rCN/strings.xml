@@ -608,12 +608,12 @@
     <string name="widget_tasks_empty">今天没有任务。点按即可添加任务。</string>
     <string name="widget_tasks_done">今天的任务都完成了，干得好！</string>
     <string name="widget_tasks_more">还有 %1$d 项</string>
-    <string name="widget_tasks_description">今天的任务，重要的排在前面。开启应用锁时隐藏。</string>
+    <string name="widget_tasks_description">今天的任务，重要的排在前面。可在“安全与隐私”中隐藏。</string>
     <string name="widget_schedule_empty">未来 7 天没有安排。</string>
-    <string name="widget_schedule_description">你接下来的预约。开启应用锁时隐藏。</string>
+    <string name="widget_schedule_description">你接下来的预约。可在“安全与隐私”中隐藏。</string>
     <string name="widget_tomorrow">明天</string>
     <string name="widget_stats_title">销售统计</string>
-    <string name="widget_stats_description">今日和本周的销售、销售用时和成交率。从不显示金额或姓名。开启应用锁时隐藏。</string>
+    <string name="widget_stats_description">今日和本周的销售、销售用时和成交率。从不显示金额或姓名。可在“安全与隐私”中隐藏。</string>
     <string name="occupation">职业</string>
     <string name="occupation_hint">例如：牙医、承包商、房主</string>
     <string name="client_stats">客户统计</string>
@@ -656,7 +656,7 @@
     <string name="on_track_vs_quarter">较上季度 %1$s</string>
     <string name="on_track_vs_year">较去年 %1$s</string>
     <string name="on_track_empty">在本期记录一笔销售，即可看到你的走势。</string>
-    <string name="widget_pace_description">你的本周、本月、本季度或本年的走势（在“统计”标签中选择）。只有在“安全与隐私”中允许后才会显示金额。开启应用锁时隐藏。</string>
+    <string name="widget_pace_description">你的本周、本月、本季度或本年的走势（在“统计”标签中选择）。只有在“安全与隐私”中允许后才会显示金额。可在“安全与隐私”中隐藏。</string>
     <string name="widget_pace_hidden">主屏幕上的金额已隐藏。你可以在“安全与隐私”中允许显示。</string>
     <string name="widget_amounts">在“预计达成”小组件中显示金额</string>
     <string name="widget_amounts_desc">任何看到你主屏幕的人都可能看到你的预计收入。默认关闭。</string>
@@ -664,6 +664,9 @@
     <string name="widget_pace_behind">落后于上一期的进度，还有时间追上。</string>
     <string name="widget_pace_keep_going">继续记录销售，确立你的节奏。</string>
     <string name="cd_clear_client">清除客户</string>
+    <string name="hide_widgets">隐藏小组件内容</string>
+    <string name="hide_widgets_desc">主屏幕小组件只显示“已隐藏”，不显示你的任务、日程和数据。</string>
+    <string name="widget_hidden_msg">已隐藏。打开应用查看。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>
