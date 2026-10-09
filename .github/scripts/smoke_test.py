@@ -29,6 +29,21 @@ def note(msg):
     log.append(msg)
 
 
+def in_app():
+    return PKG in adb("shell", "dumpsys", "window", "displays").split("mCurrentFocus", 1)[-1].split("\n", 1)[0]
+
+
+def section(title):
+    """Each part of the walk-through starts inside the app, even if an earlier step left it."""
+    note(title)
+    if not in_app():
+        note("  (app was not in front; reopening it)")
+        adb("shell", "monkey", "-p", PKG, "-c", "android.intent.category.LAUNCHER", "1")
+        time.sleep(4)
+        if crashed():
+            fail(f"crash reopening the app before: {title}")
+
+
 def crashed():
     out = adb("logcat", "-d", "-b", "crash")
     return PKG in out or "com.salestracker" in out
@@ -150,17 +165,16 @@ def main(apk):
             break
     tap(r"Explore with sample data", "sample-data-loaded", wait=3)
 
-    note("Every tab")
+    section("Every tab")
     for label in ["Sales", "Goals", "Clients", "Schedule", "Timer", "Calc", "Charts", "Stats"]:
         tap(rf"^{label}$", f"tab-{label.lower()}", wait=2)
 
-    note("The + menu")
+    section("The + menu")
     if tap(r"^Log a sale or add a client$", "plus-menu"):
         tap(r"^Log sale$", "log-sale-form", wait=2)
-        back()
-        back()
+        tap(r"^Cancel$", wait=1.2)
 
-    note("A client's profile with stats")
+    section("A client's profile with stats")
     tap(r"^Clients$", wait=1.5)
     tap(r"Alex Morgan", "client-profile", wait=2)
     adb("shell", "input", "swipe", "540", "1700", "540", "500", "300")
@@ -168,20 +182,22 @@ def main(apk):
     shot("client-stats")
     back()
 
-    note("Timer")
+    section("Timer")
     tap(r"^Timer$", wait=1.5)
     tap(r"^Start$", wait=2.5)
     shot("timer-running")
     tap(r"^Reset$", wait=1.5)
 
-    note("Calculator")
+    section("Calculator")
     tap(r"^Calc$", wait=1.5)
     for key in ["7", "×", "8"]:
         tap(rf"^{re.escape(key)}$", wait=0.5)
     tap(r"^=$", "calculator", wait=1)
 
-    note("Password-protected PDF report (pdfbox and its encryption)")
+    section("Password-protected PDF report (pdfbox and its encryption)")
     tap(r"^Stats$", wait=1.5)
+    if not find(r"^Report \(PDF\)$"):
+        fail("could not reach the Report (PDF) button")
     if tap(r"^Report \(PDF\)$", "report-options", wait=2):
         tap(r"^Protect with a password$", wait=1)
         if tap(r"^Password$", wait=0.8):
@@ -195,14 +211,16 @@ def main(apk):
         files = adb("shell", "ls", "-l", "/sdcard/Download/")
         note("  Downloads: " + " | ".join(l for l in files.splitlines() if "SalesReport" in l))
         if "SalesReport" not in files:
-            note("  WARNING: no report file found")
+            fail("the PDF report was not created")
 
-    note("Settings and Security & privacy")
+    section("Settings and Security & privacy")
     tap(r"^Settings$", "settings", wait=1.5)
     tap(r"^Security & privacy$", "security", wait=2)
 
-    note("Encrypted backup")
-    if tap(r"^Back up to an encrypted file$", "backup-password", wait=2, scroll=4):
+    section("Encrypted backup")
+    if not tap(r"^Back up to an encrypted file$", "backup-password", wait=2, scroll=4):
+        fail("could not reach the backup button")
+    else:
         tap(r"^Password$", wait=0.8)
         type_text("SmokeTest2026x")
         tap(r"^Confirm password$", wait=0.8)
@@ -214,16 +232,16 @@ def main(apk):
         files = adb("shell", "ls", "-l", "/sdcard/Download/")
         note("  Downloads: " + " | ".join(l for l in files.splitlines() if "backup" in l.lower()))
         if "stbackup" not in files:
-            note("  WARNING: no backup file found")
+            fail("the encrypted backup was not created")
 
-    note("Crash reports and privacy info")
+    section("Crash reports and privacy info")
     tap(r"^Crash reports$", "crash-reports", wait=1.5, scroll=6)
     tap(r"^Done$", wait=1)
     tap(r"^How your data is handled$", "privacy-info", wait=1.5, scroll=2)
     back()
     back(wait=1.5)
 
-    note("A holiday theme")
+    section("A holiday theme")
     tap(r"^Settings$", wait=1.5)
     tap(r"^Appearance$", wait=1.5)
     tap(r"Christmas", "theme-christmas", wait=1.5, scroll=3)
@@ -242,7 +260,7 @@ def main(apk):
         note("  WARNING: main screen not showing after restart")
     tap(r"^Clients$", "clients-after-restart", wait=2)
     if not find(r"Alex Morgan"):
-        note("  WARNING: sample client missing after restart")
+        fail("saved data did not load after restart")
 
     if crashed():
         fail("crash")
