@@ -76,6 +76,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -92,6 +93,8 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
     val ownerCheck = rememberOwnerCheck(vm)
     var query by rememberSaveable { mutableStateOf("") }
     var editing by remember { mutableStateOf<Client?>(null) }
+    // Non-null while the Add client form is open; holds whatever the search box can fill in.
+    var adding by remember { mutableStateOf<Client?>(null) }
     var stageFilter by rememberSaveable { mutableStateOf<ClientStage?>(null) }
     var dueOnly by rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
@@ -110,6 +113,20 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
+            // Always one tap away, separate from the + menu, so a new client never waits.
+            item {
+                androidx.compose.material3.FilledTonalButton(
+                    onClick = {
+                        // Typed a name, phone or email that isn't on the list yet? Start the form with it.
+                        adding = (if (clients.isEmpty()) clientFromSearch(query) else null) ?: Client(id = 0, firstName = "", lastName = "", phone = "", email = "")
+                    },
+                    modifier = Modifier.fillMaxWidth().height(48.dp).testTag(CLIENTS_ADD_TAG),
+                ) {
+                    Icon(Icons.Filled.PersonAdd, contentDescription = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text(stringResource(LocalTerms.current.addClient), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                }
+            }
             item {
                 OutlinedTextField(
                     value = query,
@@ -172,6 +189,22 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
         QuickAdd(vm, data)
     }
 
+    adding?.let { start ->
+        ClientDialog(
+            initial = null,
+            existingFollowUp = null,
+            newId = vm::newId,
+            onDismiss = { adding = null },
+            onSave = { client, followUp ->
+                vm.saveClientWithFollowUp(client, followUp)
+                query = "" // show the whole list again, with the new client in it
+                adding = null
+            },
+            onDelete = { _, _ -> },
+            prefill = start,
+        )
+    }
+
     if (editing != null) {
         ClientDialog(
             initial = editing,
@@ -188,6 +221,9 @@ fun ClientsScreen(vm: AppViewModel, data: AppData) {
 
 /** One choice in the Clients filter menu: everyone, follow-ups due, or one pipeline stage. */
 private data class ClientFilter(val stage: ClientStage?, val dueOnly: Boolean)
+
+/** Tag for the Add client button at the top of the Clients list. */
+const val CLIENTS_ADD_TAG = "clientsAdd"
 
 /** Tag the screenshot tests use to open the Clients filter menu. */
 const val CLIENT_FILTER_TAG = "clientFilter"

@@ -12,6 +12,7 @@ import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onFirst
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
@@ -315,6 +316,18 @@ class LayoutAudit {
         shotWithPopups("n6-sale-form")
         clickPaused(app.getString(R.string.add_client))
         shotWithPopups("n6-sale-new-client")
+    }
+
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun n7_clientsAddClient() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val (app, _) = startApp()
+        tap(app.getString(R.string.tab_clients))
+        shot("n7-clients-add-button")
+        rule.mainClock.autoAdvance = false
+        rule.onNodeWithTag(com.salestracker.app.ui.screens.CLIENTS_ADD_TAG).performClick()
+        repeat(5) { rule.mainClock.advanceTimeBy(250) }
+        shotWithPopups("n7-clients-new-client")
     }
 
     @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")

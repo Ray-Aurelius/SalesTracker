@@ -254,6 +254,21 @@ def main(apk):
         fail("the sale with the new client is not in the sales log")
     shot("sales-log-new-client")
 
+    section("Add client button on the Clients page")
+    tap(r"^Clients$", wait=1.5)
+    shot("clients-add-button")
+    if not tap(r"^Add client$", "clients-add-client", wait=1.5):
+        fail("no Add client button on the Clients page")
+    tap(r"^First name$", wait=0.8)
+    type_text("Jordan")
+    tap(r"^Last name$", wait=0.8)
+    type_text("Ellis")
+    hide_keyboard()
+    tap(r"^Save$", wait=1.5)
+    if not find(r"Jordan Ellis"):
+        fail("the client added from the Clients page is not in the list")
+    shot("clients-new-client-listed")
+
     section("A client's profile with stats")
     tap(r"^Clients$", wait=1.5)
     tap(r"Alex Morgan", "client-profile", wait=2)
