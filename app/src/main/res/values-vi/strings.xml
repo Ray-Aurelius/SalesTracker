@@ -788,6 +788,7 @@
     <string name="unit_km_long">Ki-lô-mét</string>
     <string name="unit_mi">dặm</string>
     <string name="unit_miles">Dặm</string>
+    <string name="add_as_new_client">Thêm “%1$s” làm khách hàng mới</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

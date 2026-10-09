@@ -282,11 +282,14 @@ internal fun ClientDialog(
     onDelete: (id: Long, withRecords: Boolean) -> Unit,
     /** The client's history (visits, time, sales…), shown at the top when opening an existing client. */
     metrics: com.salestracker.app.data.ClientMetrics? = null,
+    /** Starting values for a new client, e.g. the name or number typed into a client search. */
+    prefill: Client? = null,
 ) {
-    var first by remember { mutableStateOf(initial?.firstName ?: "") }
-    var last by remember { mutableStateOf(initial?.lastName ?: "") }
-    var phone by remember { mutableStateOf(initial?.phone ?: "") }
-    var email by remember { mutableStateOf(initial?.email ?: "") }
+    val start = initial ?: prefill
+    var first by remember { mutableStateOf(start?.firstName ?: "") }
+    var last by remember { mutableStateOf(start?.lastName ?: "") }
+    var phone by remember { mutableStateOf(start?.phone ?: "") }
+    var email by remember { mutableStateOf(start?.email ?: "") }
     var notes by remember { mutableStateOf(initial?.notes ?: "") }
     var reference by remember { mutableStateOf(initial?.reference ?: "") }
     var occupation by remember { mutableStateOf(initial?.occupation ?: "") }

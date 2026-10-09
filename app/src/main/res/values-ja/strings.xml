@@ -788,6 +788,7 @@
     <string name="unit_km_long">キロメートル</string>
     <string name="unit_mi">マイル</string>
     <string name="unit_miles">マイル</string>
+    <string name="add_as_new_client">「%1$s」を新しい顧客として追加</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

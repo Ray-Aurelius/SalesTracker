@@ -921,4 +921,5 @@
         <item quantity="one">Mark commission on %1$d sale as paid?</item>
         <item quantity="other">Mark commission on %1$d sales as paid?</item>
     </plurals>
+    <string name="add_as_new_client">Add “%1$s” as a new client</string>
 </resources>

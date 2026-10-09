@@ -788,6 +788,7 @@
     <string name="unit_km_long">কিলোমিটার</string>
     <string name="unit_mi">মাইল</string>
     <string name="unit_miles">মাইল</string>
+    <string name="add_as_new_client">“%1$s” নতুন ক্লায়েন্ট হিসেবে যোগ করুন</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

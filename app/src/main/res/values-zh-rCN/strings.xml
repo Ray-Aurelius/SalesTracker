@@ -788,6 +788,7 @@
     <string name="unit_km_long">公里</string>
     <string name="unit_mi">英里</string>
     <string name="unit_miles">英里</string>
+    <string name="add_as_new_client">将“%1$s”添加为新客户</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

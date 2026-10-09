@@ -192,6 +192,7 @@ fun BoxScope.QuickAdd(
             onSave = vm::saveSale,
             defaultCommissionPercent = data.defaultCommissionPercent,
             plan = data.commissionPlan,
+            onCreateClient = vm::saveClientWithFollowUp,
             defaultUpsellOnly = data.defaultCommissionUpsellOnly,
         )
     }

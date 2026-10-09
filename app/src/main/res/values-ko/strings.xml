@@ -788,6 +788,7 @@
     <string name="unit_km_long">킬로미터</string>
     <string name="unit_mi">마일</string>
     <string name="unit_miles">마일</string>
+    <string name="add_as_new_client">\"%1$s\"을(를) 새 고객으로 추가</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

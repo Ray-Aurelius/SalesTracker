@@ -231,6 +231,29 @@ def main(apk):
         tap(r"^Log sale$", "log-sale-form", wait=2)
         tap(r"^Cancel$", wait=1.2)
 
+    section("A brand-new client from inside a sale")
+    if tap(r"^Log a sale or add a client$", wait=1.2):
+        tap(r"^Log sale$", wait=2)
+        if not tap(r"^Add client$", "sale-add-client", wait=1.5):
+            fail("no Add client button on the sale form")
+        tap(r"^First name$", wait=0.8)
+        type_text("Riley")
+        tap(r"^Last name$", wait=0.8)
+        type_text("Quinn")
+        hide_keyboard()
+        tap(r"^Save$", wait=1.5)
+        shot("sale-with-new-client")
+        if not find(r"Riley Quinn"):
+            fail("the new client was not chosen on the sale")
+        tap(r"^Sale amount$", wait=0.8)
+        type_text("500")
+        hide_keyboard()
+        tap(r"^Save$", wait=1.5)
+    tap(r"^Sales$", wait=1.5)
+    if not find(r"Riley Quinn"):
+        fail("the sale with the new client is not in the sales log")
+    shot("sales-log-new-client")
+
     section("A client's profile with stats")
     tap(r"^Clients$", wait=1.5)
     tap(r"Alex Morgan", "client-profile", wait=2)

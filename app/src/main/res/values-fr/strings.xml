@@ -788,6 +788,7 @@
     <string name="unit_km_long">Kilomètres</string>
     <string name="unit_mi">mi</string>
     <string name="unit_miles">Miles</string>
+    <string name="add_as_new_client">Ajouter « %1$s » comme nouveau client</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

@@ -788,6 +788,7 @@
     <string name="unit_km_long">كيلومترات</string>
     <string name="unit_mi">ميل</string>
     <string name="unit_miles">أميال</string>
+    <string name="add_as_new_client">إضافة «%1$s» كعميل جديد</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

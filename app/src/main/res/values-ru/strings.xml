@@ -788,6 +788,7 @@
     <string name="unit_km_long">Километры</string>
     <string name="unit_mi">миль</string>
     <string name="unit_miles">Мили</string>
+    <string name="add_as_new_client">Добавить «%1$s» как нового клиента</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

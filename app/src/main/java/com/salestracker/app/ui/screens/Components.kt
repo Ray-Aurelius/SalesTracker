@@ -2,6 +2,8 @@
 
 package com.salestracker.app.ui.screens
 
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.filled.PersonAdd
 import androidx.compose.ui.semantics.Role
 import androidx.compose.foundation.selection.toggleable
 import com.salestracker.app.data.LocalTerms
@@ -70,6 +72,8 @@ fun ClientPicker(
     selectedId: Long?,
     onSelect: (Long?) -> Unit,
     modifier: Modifier = Modifier,
+    /** When set, the search offers to add what was typed as a new client. */
+    onAddNew: ((String) -> Unit)? = null,
 ) {
     val selected = clients.firstOrNull { it.id == selectedId }
     var query by remember { mutableStateOf("") }
@@ -107,8 +111,16 @@ fun ClientPicker(
                 },
         )
         ExposedDropdownMenu(expanded = open, onDismissRequest = { expanded = false }) {
-            if (matches.isEmpty()) {
+            if (matches.isEmpty() && (onAddNew == null || query.isBlank())) {
                 DropdownMenuItem(text = { Text(stringResource(R.string.no_clients_match, query)) }, onClick = {}, enabled = false)
+            }
+            // Nobody matches what was typed? One tap turns it into a new client.
+            if (onAddNew != null && query.isNotBlank() && matches.isEmpty()) {
+                DropdownMenuItem(
+                    text = { Text(stringResource(R.string.add_as_new_client, query.trim()), fontWeight = FontWeight.SemiBold) },
+                    leadingIcon = { Icon(Icons.Filled.PersonAdd, contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
+                    onClick = { val q = query.trim(); expanded = false; focus.clearFocus(); onAddNew(q) },
+                )
             }
             matches.forEach { c ->
                 val detail = listOf(c.phone, c.email).filter { it.isNotBlank() }.joinToString(" · ")
@@ -169,6 +181,8 @@ fun SaleDialog(
     defaultUpsellOnly: Boolean = false,
     /** The commission plan (flat or tiered), so the form can show what this sale will earn. */
     plan: CommissionPlan = CommissionPlan.flat(defaultCommissionPercent),
+    /** Saves a client added from inside the sale form (and their follow-up, if one was set). */
+    onCreateClient: ((Client, Pair<Long, Int>?) -> Unit)? = null,
 ) {
     var clientId by remember { mutableStateOf(initial?.clientId ?: defaultClientId) }
     var closed by remember { mutableStateOf(initial?.closed ?: true) }
@@ -190,6 +204,8 @@ fun SaleDialog(
     var split by remember { mutableStateOf(initial?.isSplit ?: false) }
     var share by remember { mutableStateOf(formatRateInput(initial?.splitPercent?.takeIf { it < 100.0 } ?: 50.0)) }
     var paidAt by remember { mutableStateOf(initial?.commissionPaidAt) }
+    // Non-null while the "new client" form is open, holding anything typed into the client search.
+    var addingClient by remember { mutableStateOf<String?>(null) }
 
     fun build(id: Long): Sale {
         val duration = (minutes.toLongOrNull() ?: 0) * 60 + (seconds.toLongOrNull() ?: 0)
@@ -219,7 +235,15 @@ fun SaleDialog(
                 Modifier.verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                ClientPicker(clients, clientId, { clientId = it })
+                // A brand-new customer never slows a sale down: add them right here, then carry on.
+                if (onCreateClient != null) {
+                    OutlinedButton(onClick = { addingClient = "" }, modifier = Modifier.fillMaxWidth()) {
+                        Icon(Icons.Filled.PersonAdd, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text(stringResource(LocalTerms.current.addClient))
+                    }
+                }
+                ClientPicker(clients, clientId, { clientId = it }, onAddNew = onCreateClient?.let { { typed: String -> addingClient = typed } })
                 SwitchRow(stringResource(LocalTerms.current.saleClosed), closed, { closed = it; if (!it) upsellAccepted = false })
                 OutlinedTextField(
                     value = amount,
@@ -336,6 +360,34 @@ fun SaleDialog(
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
     )
+
+    val typed = addingClient
+    if (typed != null && onCreateClient != null) {
+        ClientDialog(
+            initial = null,
+            existingFollowUp = null,
+            newId = newId,
+            onDismiss = { addingClient = null },
+            onSave = { client, followUp ->
+                onCreateClient(client, followUp)
+                clientId = client.id // the new client is chosen for this sale straight away
+                addingClient = null
+            },
+            onDelete = { _, _ -> },
+            prefill = clientFromSearch(typed),
+        )
+    }
+}
+
+/** What someone typed into the client search, as the start of a new client: a phone, an email or a name. */
+internal fun clientFromSearch(typed: String): Client? {
+    val t = typed.trim()
+    if (t.isEmpty()) return null
+    return when {
+        '@' in t -> Client(id = 0, firstName = "", lastName = "", phone = "", email = t)
+        t.count { it.isDigit() } >= 5 && t.all { it.isDigit() || it in " +-().#" } -> Client(id = 0, firstName = "", lastName = "", phone = t, email = "")
+        else -> t.split(Regex("\\s+"), limit = 2).let { Client(id = 0, firstName = it[0], lastName = it.getOrElse(1) { "" }, phone = "", email = "") }
+    }
 }
 
 @Composable

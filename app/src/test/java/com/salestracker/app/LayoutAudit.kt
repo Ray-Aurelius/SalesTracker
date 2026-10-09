@@ -305,6 +305,18 @@ class LayoutAudit {
         shotWithPopups("n4-add-expense")
     }
 
+    /** The sale form with its Add client button at the top. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun n6_saleFormAddClient() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val (app, _) = startApp()
+        tap(app.getString(R.string.quick_add))
+        clickPaused(app.getString(R.string.log_sale))
+        shotWithPopups("n6-sale-form")
+        clickPaused(app.getString(R.string.add_client))
+        shotWithPopups("n6-sale-new-client")
+    }
+
     @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
     fun n5_menuTabs() {
         assumeTrue(System.getProperty("storeShots") == "true")

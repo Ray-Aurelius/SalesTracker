@@ -788,6 +788,7 @@
     <string name="unit_km_long">Kilometre</string>
     <string name="unit_mi">mil</string>
     <string name="unit_miles">Mil</string>
+    <string name="add_as_new_client">“%1$s” yeni müşteri olarak ekle</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

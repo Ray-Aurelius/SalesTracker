@@ -190,6 +190,7 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
             onSave = vm::saveSale,
             defaultCommissionPercent = data.defaultCommissionPercent,
             plan = data.commissionPlan,
+            onCreateClient = vm::saveClientWithFollowUp,
             defaultUpsellOnly = data.defaultCommissionUpsellOnly,
         )
     }

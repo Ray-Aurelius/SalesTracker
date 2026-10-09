@@ -788,6 +788,7 @@
     <string name="unit_km_long">किलोमीटर</string>
     <string name="unit_mi">मील</string>
     <string name="unit_miles">मील</string>
+    <string name="add_as_new_client">“%1$s” को नए क्लाइंट के रूप में जोड़ें</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
