@@ -680,12 +680,16 @@
     <string name="crash_send_note">你的邮件应用将打开这份报告，收件人为 %1$s，你可以在发送前阅读。我们会看到你用来发送的邮箱地址。</string>
     <string name="crash_delete_all">全部删除</string>
     <string name="crash_email_subject">Quota Vault 崩溃报告（%1$s）</string>
-    <string name="crash_email_intro">应用关闭时你在做什么？（可选）</string>
+    <string name="crash_email_intro">应用关闭时你在做什么？（可选；请不要填写姓名、电话号码或其他个人或客户信息）</string>
     <string name="pi_crash_t">崩溃报告完全可选</string>
     <string name="pi_crash">如果应用意外关闭，可能会在此手机上保存一份技术报告。只有在你选择通过邮件发送时才会发送，绝不包含你的数据，你也可以在“崩溃报告”中关闭此功能。</string>
     <string name="crash_optional">崩溃报告完全可选。是否发送始终由你决定，应用绝不会自行发送任何内容。</string>
     <string name="crash_save">保存崩溃报告</string>
     <string name="crash_save_desc">如果应用意外关闭，在此手机上保留一份报告，由你决定是否发送。关闭此项会删除已保存的报告。</string>
+    <string name="scam_title">我们绝不会索要你的数据</string>
+    <string name="scam_body">Quota Vault 绝不会索要你的个人信息、你客户的信息、你的备份文件或密码。无论是通过邮件、电话、短信还是社交媒体，即使是提供支持时也不会。你唯一可能发给我们的只有崩溃报告（由你决定是否发送），其中不包含你的任何数据。任何索要你的数据或你客户数据的人都是骗子。不要回复，不要分享任何内容，并将其拉黑。</string>
+    <string name="scam_backup">切勿将你的备份文件或其密码发送给任何人，即使对方自称是 Quota Vault。我们绝不会索要。任何索要的人都是骗子。</string>
+    <string name="scam_crash">不要在邮件中添加姓名、电话号码或任何个人或客户信息。我们绝不会索要这些信息，任何索要的人都是骗子。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

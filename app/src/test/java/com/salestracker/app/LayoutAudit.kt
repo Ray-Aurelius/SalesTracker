@@ -185,6 +185,29 @@ class LayoutAudit {
         com.salestracker.app.data.CrashLog.deleteAll(app)
     }
 
+    /** The scam warning at the top of Security & privacy, and on the backup password screen. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun l_scamWarning() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding() }
+        val vm = AppViewModel(app)
+        var backup by mutableStateOf(false)
+        rule.setContent {
+            SalesTrackerTheme(palette = vm.palette, dark = false) {
+                val data = com.salestracker.app.data.Repository.readSnapshot(app)
+                androidx.compose.runtime.key(backup) {
+                    com.salestracker.app.ui.screens.SecurityScreen(vm = vm, data = data, startBackup = backup, onClose = {})
+                }
+            }
+        }
+        rule.waitForIdle(); rule.mainClock.advanceTimeBy(800); rule.waitForIdle()
+        shotWithPopups("l-scam-security")
+        backup = true
+        rule.waitForIdle(); rule.mainClock.advanceTimeBy(800); rule.waitForIdle()
+        shotWithPopups("l-scam-backup")
+    }
+
     /** Draws the app window plus any open pop-up (menus), without waiting for idle. */
     private fun shotWithPopups(name: String) {
         val wmg = Class.forName("android.view.WindowManagerGlobal")

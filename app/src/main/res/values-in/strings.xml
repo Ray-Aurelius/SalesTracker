@@ -680,12 +680,16 @@
     <string name="crash_send_note">Aplikasi email Anda akan terbuka dengan laporan ini yang ditujukan ke %1$s, sehingga Anda bisa membacanya sebelum mengirim. Kami akan melihat alamat email yang Anda gunakan untuk mengirim.</string>
     <string name="crash_delete_all">Hapus semua</string>
     <string name="crash_email_subject">Laporan error Quota Vault (%1$s)</string>
-    <string name="crash_email_intro">Apa yang sedang Anda lakukan saat aplikasi tertutup? (opsional)</string>
+    <string name="crash_email_intro">Apa yang sedang Anda lakukan saat aplikasi tertutup? (opsional; mohon jangan sertakan nama, nomor telepon, atau informasi pribadi atau klien lainnya)</string>
     <string name="pi_crash_t">Laporan error sepenuhnya opsional</string>
     <string name="pi_crash">Jika aplikasi tertutup tiba-tiba, laporan teknis dapat disimpan di ponsel ini. Laporan hanya dikirim jika Anda memilih mengirimnya lewat email, tidak pernah berisi data Anda, dan dapat dimatikan di Laporan error.</string>
     <string name="crash_optional">Laporan error sepenuhnya opsional. Mengirim laporan selalu pilihan Anda, dan aplikasi tidak pernah mengirim apa pun dengan sendirinya.</string>
     <string name="crash_save">Simpan laporan error</string>
     <string name="crash_save_desc">Jika aplikasi tertutup tiba-tiba, simpan laporan di ponsel ini agar Anda bisa memutuskan apakah akan mengirimnya. Mematikan opsi ini akan menghapus laporan yang tersimpan.</string>
+    <string name="scam_title">Kami TIDAK AKAN PERNAH meminta data Anda</string>
+    <string name="scam_body">Quota Vault tidak akan pernah meminta informasi pribadi Anda, informasi klien Anda, file cadangan, atau kata sandi Anda. Tidak lewat email, telepon, SMS, atau media sosial, bahkan untuk dukungan sekalipun. Satu-satunya yang mungkin Anda kirim kepada kami adalah laporan error, jika Anda mau, dan laporan itu tidak berisi data Anda. Siapa pun yang meminta data Anda atau data klien Anda adalah penipu. Jangan balas, jangan bagikan apa pun, dan blokir mereka.</string>
+    <string name="scam_backup">Jangan pernah mengirim file cadangan atau kata sandinya kepada siapa pun, bahkan kepada orang yang mengaku dari Quota Vault. Kami tidak akan pernah memintanya. Siapa pun yang meminta adalah penipu.</string>
+    <string name="scam_crash">Jangan menambahkan nama, nomor telepon, atau informasi pribadi atau klien apa pun ke email. Kami tidak akan pernah memintanya, dan siapa pun yang meminta adalah penipu.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

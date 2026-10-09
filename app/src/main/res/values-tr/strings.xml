@@ -680,12 +680,16 @@
     <string name="crash_send_note">E-posta uygulamanız bu raporla %1$s adresine hazır şekilde açılır; göndermeden önce okuyabilirsiniz. Gönderdiğiniz e-posta adresini göreceğiz.</string>
     <string name="crash_delete_all">Tümünü sil</string>
     <string name="crash_email_subject">Quota Vault çökme raporu (%1$s)</string>
-    <string name="crash_email_intro">Uygulama kapandığında ne yapıyordunuz? (isteğe bağlı)</string>
+    <string name="crash_email_intro">Uygulama kapandığında ne yapıyordunuz? (isteğe bağlı; lütfen isim, telefon numarası veya başka kişisel ya da müşteri bilgisi yazmayın)</string>
     <string name="pi_crash_t">Çökme raporları tamamen isteğe bağlıdır</string>
     <string name="pi_crash">Uygulama beklenmedik şekilde kapanırsa bu telefona teknik bir rapor kaydedilebilir. Yalnızca e-postayla göndermeyi seçerseniz gönderilir, asla verilerinizi içermez ve Çökme raporları bölümünden kapatılabilir.</string>
     <string name="crash_optional">Çökme raporları tamamen isteğe bağlıdır. Rapor gönderip göndermemek her zaman sizin seçiminizdir ve uygulama kendi başına asla bir şey göndermez.</string>
     <string name="crash_save">Çökme raporlarını kaydet</string>
     <string name="crash_save_desc">Uygulama beklenmedik şekilde kapanırsa, göndermeye karar verebilmeniz için bu telefonda bir rapor saklar. Kapatıldığında kayıtlı raporlar silinir.</string>
+    <string name="scam_title">Verilerinizi ASLA istemeyiz</string>
+    <string name="scam_body">Quota Vault sizden asla kişisel bilgilerinizi, müşterilerinizin bilgilerini, yedek dosyalarınızı veya şifrelerinizi istemez. Ne e-postayla, ne telefonla, ne mesajla, ne de sosyal medyadan; destek için bile istemez. Bize gönderebileceğiniz tek şey, isterseniz bir çökme raporudur ve verilerinizin hiçbirini içermez. Sizden ya da müşterilerinizden veri isteyen herkes dolandırıcıdır. Yanıt vermeyin, hiçbir şey paylaşmayın ve engelleyin.</string>
+    <string name="scam_backup">Yedek dosyanızı veya şifresini kimseye göndermeyin; kendini Quota Vault olarak tanıtan birine bile. Bunları asla istemeyiz. İsteyen herkes dolandırıcıdır.</string>
+    <string name="scam_crash">E-postaya isim, telefon numarası veya kişisel ya da müşteri bilgisi eklemeyin. Bunları asla istemeyiz; isteyen herkes dolandırıcıdır.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

@@ -680,12 +680,16 @@
     <string name="crash_send_note">La tua app email si apre con questo rapporto indirizzato a %1$s, così puoi leggerlo prima di inviarlo. Vedremo l\'indirizzo email da cui lo invii.</string>
     <string name="crash_delete_all">Elimina tutto</string>
     <string name="crash_email_subject">Rapporto di arresto anomalo di Quota Vault (%1$s)</string>
-    <string name="crash_email_intro">Cosa stavi facendo quando l\'app si è chiusa? (facoltativo)</string>
+    <string name="crash_email_intro">Cosa stavi facendo quando l\'app si è chiusa? (facoltativo; per favore non includere nomi, numeri di telefono o altri dati personali o dei clienti)</string>
     <string name="pi_crash_t">I rapporti di arresto anomalo sono del tutto facoltativi</string>
     <string name="pi_crash">Se l\'app si chiude in modo imprevisto, su questo telefono può essere salvato un rapporto tecnico. Viene inviato solo se scegli di mandarlo via email, non contiene mai i tuoi dati e puoi disattivarlo in Rapporti di arresto anomalo.</string>
     <string name="crash_optional">I rapporti di arresto anomalo sono del tutto facoltativi. Inviarne uno è sempre una tua scelta, e l\'app non invia mai nulla da sola.</string>
     <string name="crash_save">Salva i rapporti di arresto anomalo</string>
     <string name="crash_save_desc">Se l\'app si chiude in modo imprevisto, conserva un rapporto su questo telefono così puoi decidere se inviarlo. Disattivando l\'opzione vengono eliminati i rapporti salvati.</string>
+    <string name="scam_title">Non ti chiederemo MAI i tuoi dati</string>
+    <string name="scam_body">Quota Vault non ti chiederà mai le tue informazioni personali, quelle dei tuoi clienti, i tuoi file di backup o le tue password. Né via email, telefono, SMS o social media, nemmeno per l\'assistenza. L\'unica cosa che potresti mai inviarci è un rapporto di arresto anomalo, se lo desideri, e non contiene nessuno dei tuoi dati. Chiunque ti chieda i tuoi dati o quelli dei tuoi clienti è un truffatore. Non rispondere, non condividere nulla e bloccalo.</string>
+    <string name="scam_backup">Non inviare mai il tuo file di backup o la sua password a nessuno, nemmeno a chi dice di essere Quota Vault. Non te li chiederemo mai. Chiunque lo faccia è un truffatore.</string>
+    <string name="scam_crash">Non aggiungere all\'email nomi, numeri di telefono o altri dati personali o dei clienti. Non te li chiederemo mai, e chiunque lo faccia è un truffatore.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>

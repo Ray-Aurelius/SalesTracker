@@ -680,12 +680,16 @@
     <string name="crash_send_note">メールアプリが %1$s 宛てのこのレポートで開くので、送信前に内容を確認できます。送信元のメールアドレスは私たちに表示されます。</string>
     <string name="crash_delete_all">すべて削除</string>
     <string name="crash_email_subject">Quota Vault クラッシュレポート（%1$s）</string>
-    <string name="crash_email_intro">アプリが終了したとき、何をしていましたか？（任意）</string>
+    <string name="crash_email_intro">アプリが終了したとき、何をしていましたか？（任意。名前、電話番号、その他の個人情報や顧客情報は書かないでください）</string>
     <string name="pi_crash_t">クラッシュレポートは完全に任意です</string>
     <string name="pi_crash">アプリが予期せず終了すると、技術的なレポートがこのスマートフォンに保存されることがあります。メールで送ることを選んだ場合にのみ送信され、あなたのデータは一切含まれず、「クラッシュレポート」でオフにできます。</string>
     <string name="crash_optional">クラッシュレポートは完全に任意です。送信するかどうかは常にあなたが決め、アプリが自動で何かを送信することはありません。</string>
     <string name="crash_save">クラッシュレポートを保存</string>
     <string name="crash_save_desc">アプリが予期せず終了したとき、送信するかどうかを決められるようにこのスマートフォンにレポートを保存します。オフにすると保存済みのレポートは削除されます。</string>
+    <string name="scam_title">私たちがあなたのデータを求めることは絶対にありません</string>
+    <string name="scam_body">Quota Vault が、あなたの個人情報、顧客の情報、バックアップファイル、パスワードを求めることは絶対にありません。メール、電話、SMS、SNS のいずれでも、サポートのためであっても同じです。あなたが私たちに送る可能性があるのは、ご自身で選んだ場合のクラッシュレポートだけで、そこにはあなたのデータは一切含まれません。あなたや顧客のデータを求める人は詐欺師です。返信せず、何も共有せず、ブロックしてください。</string>
+    <string name="scam_backup">バックアップファイルやそのパスワードは、Quota Vault を名乗る相手であっても、誰にも送らないでください。私たちがそれらを求めることはありません。求めてくる人は詐欺師です。</string>
+    <string name="scam_crash">メールに名前、電話番号、その他の個人情報や顧客情報を書き加えないでください。私たちがそれらを求めることはなく、求めてくる人は詐欺師です。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

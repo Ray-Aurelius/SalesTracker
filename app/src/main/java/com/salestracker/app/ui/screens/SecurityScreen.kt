@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -213,6 +214,12 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                         )
                     }
                 }
+            }
+
+            // ---- Scam warning: we never ask for anyone's data ----
+            item {
+                Spacer(Modifier.height(8.dp))
+                ScamWarning(stringResource(R.string.scam_body), title = stringResource(R.string.scam_title))
             }
 
             // ---- App lock ----
@@ -463,6 +470,7 @@ internal fun InfoDialog(title: String, onDismiss: () -> Unit, body: @Composable 
 @Composable
 private fun PrivacyInfoDialog(encrypted: Boolean, onDismiss: () -> Unit) {
     InfoDialog(stringResource(R.string.privacy_info), onDismiss) {
+        ScamWarning(stringResource(R.string.scam_body), title = stringResource(R.string.scam_title))
         InfoBlock(R.string.pi_offline_t, R.string.pi_offline)
         InfoBlock(R.string.pi_nothing_t, R.string.pi_nothing)
         InfoBlock(R.string.pi_encrypted_t, if (encrypted) R.string.pi_encrypted else R.string.sec_status_not_encrypted)

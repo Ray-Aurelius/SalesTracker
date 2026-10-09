@@ -125,6 +125,7 @@ fun CrashReportsDialog(openNewest: Boolean, onDismiss: () -> Unit) {
                             .horizontalScroll(rememberScrollState())
                             .padding(10.dp),
                     )
+                    ScamWarning(stringResource(R.string.scam_crash))
                     Text(
                         stringResource(R.string.crash_send_note, CrashLog.SUPPORT_EMAIL),
                         style = MaterialTheme.typography.bodySmall,

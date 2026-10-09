@@ -680,12 +680,16 @@
     <string name="crash_send_note">이메일 앱이 %1$s 주소로 이 보고서를 채워서 열리므로 보내기 전에 읽어 볼 수 있습니다. 보내는 이메일 주소는 저희에게 표시됩니다.</string>
     <string name="crash_delete_all">모두 삭제</string>
     <string name="crash_email_subject">Quota Vault 오류 보고서 (%1$s)</string>
-    <string name="crash_email_intro">앱이 종료될 때 무엇을 하고 있었나요? (선택 사항)</string>
+    <string name="crash_email_intro">앱이 종료될 때 무엇을 하고 있었나요? (선택 사항이며, 이름, 전화번호 또는 기타 개인이나 고객 정보는 적지 마세요)</string>
     <string name="pi_crash_t">오류 보고서는 전적으로 선택 사항입니다</string>
     <string name="pi_crash">앱이 예기치 않게 종료되면 이 휴대폰에 기술 보고서가 저장될 수 있습니다. 이메일로 보내기로 선택한 경우에만 전송되고, 사용자 데이터는 절대 포함되지 않으며, 오류 보고서에서 끌 수 있습니다.</string>
     <string name="crash_optional">오류 보고서는 전적으로 선택 사항입니다. 보낼지 여부는 언제나 사용자가 결정하며, 앱이 스스로 무언가를 보내는 일은 없습니다.</string>
     <string name="crash_save">오류 보고서 저장</string>
     <string name="crash_save_desc">앱이 예기치 않게 종료되면 보낼지 결정할 수 있도록 이 휴대폰에 보고서를 보관합니다. 끄면 저장된 보고서가 삭제됩니다.</string>
+    <string name="scam_title">저희는 절대로 데이터를 요청하지 않습니다</string>
+    <string name="scam_body">Quota Vault는 사용자의 개인 정보, 고객 정보, 백업 파일 또는 비밀번호를 절대 요청하지 않습니다. 이메일, 전화, 문자, 소셜 미디어 어디에서도, 지원을 위해서라도 마찬가지입니다. 저희에게 보낼 수 있는 것은 원하실 경우의 오류 보고서뿐이며, 여기에는 사용자의 데이터가 전혀 포함되지 않습니다. 사용자나 고객의 데이터를 요청하는 사람은 사기꾼입니다. 답장하지 말고, 아무것도 공유하지 말고, 차단하세요.</string>
+    <string name="scam_backup">백업 파일이나 비밀번호를 누구에게도 보내지 마세요. Quota Vault라고 주장하는 사람에게도 마찬가지입니다. 저희는 절대 요청하지 않습니다. 요청하는 사람은 사기꾼입니다.</string>
+    <string name="scam_crash">이메일에 이름, 전화번호 또는 개인이나 고객 정보를 추가하지 마세요. 저희는 절대 요청하지 않으며, 요청하는 사람은 사기꾼입니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

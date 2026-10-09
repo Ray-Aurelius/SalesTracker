@@ -680,12 +680,16 @@
     <string name="crash_send_note">Deine E-Mail-App öffnet sich mit diesem Bericht an %1$s, damit du ihn vor dem Senden lesen kannst. Wir sehen die E-Mail-Adresse, von der du sendest.</string>
     <string name="crash_delete_all">Alle löschen</string>
     <string name="crash_email_subject">Quota Vault Absturzbericht (%1$s)</string>
-    <string name="crash_email_intro">Was hast du gemacht, als die App beendet wurde? (optional)</string>
+    <string name="crash_email_intro">Was hast du gemacht, als die App beendet wurde? (optional; bitte keine Namen, Telefonnummern oder anderen persönlichen oder Kundendaten angeben)</string>
     <string name="pi_crash_t">Absturzberichte sind völlig freiwillig</string>
     <string name="pi_crash">Wenn die App unerwartet beendet wird, kann ein technischer Bericht auf diesem Telefon gespeichert werden. Er wird nur gesendet, wenn du ihn per E-Mail verschickst, enthält niemals deine Daten und lässt sich unter Absturzberichte ausschalten.</string>
     <string name="crash_optional">Absturzberichte sind völlig freiwillig. Ob du einen sendest, entscheidest immer du, und die App sendet nie etwas von selbst.</string>
     <string name="crash_save">Absturzberichte speichern</string>
     <string name="crash_save_desc">Wenn die App unerwartet beendet wird, einen Bericht auf diesem Telefon behalten, damit du entscheiden kannst, ob du ihn sendest. Beim Ausschalten werden gespeicherte Berichte gelöscht.</string>
+    <string name="scam_title">Wir fragen NIEMALS nach deinen Daten</string>
+    <string name="scam_body">Quota Vault wird dich niemals nach deinen persönlichen Daten, den Daten deiner Kunden, deinen Sicherungsdateien oder deinen Passwörtern fragen. Weder per E-Mail, Telefon, SMS noch über soziale Medien, und auch nicht für den Support. Das Einzige, was du uns jemals senden könntest, ist ein Absturzbericht, wenn du das möchtest, und er enthält keine deiner Daten. Wer nach deinen Daten oder den Daten deiner Kunden fragt, ist ein Betrüger. Antworte nicht, teile nichts und blockiere ihn.</string>
+    <string name="scam_backup">Sende deine Sicherungsdatei oder ihr Passwort niemals an jemanden, auch nicht an jemanden, der behauptet, Quota Vault zu sein. Wir werden niemals danach fragen. Wer das tut, ist ein Betrüger.</string>
+    <string name="scam_crash">Füge der E-Mail keine Namen, Telefonnummern oder persönlichen oder Kundendaten hinzu. Wir werden niemals danach fragen, und wer das tut, ist ein Betrüger.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

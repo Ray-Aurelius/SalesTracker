@@ -680,12 +680,16 @@
     <string name="crash_send_note">Votre app de messagerie s\'ouvre avec ce rapport adressé à %1$s, pour que vous puissiez le lire avant de l\'envoyer. Nous verrons l\'adresse e-mail depuis laquelle vous l\'envoyez.</string>
     <string name="crash_delete_all">Tout supprimer</string>
     <string name="crash_email_subject">Rapport de plantage Quota Vault (%1$s)</string>
-    <string name="crash_email_intro">Que faisiez-vous quand l\'app s\'est fermée ? (facultatif)</string>
+    <string name="crash_email_intro">Que faisiez-vous quand l\'app s\'est fermée ? (facultatif ; merci de ne pas inclure de noms, de numéros de téléphone ni d\'autres informations personnelles ou sur vos clients)</string>
     <string name="pi_crash_t">Les rapports de plantage sont entièrement facultatifs</string>
     <string name="pi_crash">Si l\'app se ferme de manière inattendue, un rapport technique peut être enregistré sur ce téléphone. Il n\'est envoyé que si vous choisissez de l\'envoyer par e-mail, il ne contient jamais vos données et vous pouvez le désactiver dans Rapports de plantage.</string>
     <string name="crash_optional">Les rapports de plantage sont entièrement facultatifs. En envoyer un est toujours votre choix, et l\'app n\'envoie jamais rien d\'elle-même.</string>
     <string name="crash_save">Enregistrer les rapports de plantage</string>
     <string name="crash_save_desc">Si l\'app se ferme de manière inattendue, conserver un rapport sur ce téléphone pour que vous décidiez de l\'envoyer ou non. Désactiver cette option supprime les rapports enregistrés.</string>
+    <string name="scam_title">Nous ne vous demanderons JAMAIS vos données</string>
+    <string name="scam_body">Quota Vault ne vous demandera jamais vos informations personnelles, celles de vos clients, vos fichiers de sauvegarde ni vos mots de passe. Ni par e-mail, téléphone, SMS ou réseaux sociaux, et pas même pour l\'assistance. La seule chose que vous pourriez nous envoyer est un rapport de plantage, si vous le souhaitez, et il ne contient aucune de vos données. Toute personne qui vous demande vos données ou celles de vos clients est un escroc. Ne répondez pas, ne partagez rien et bloquez-la.</string>
+    <string name="scam_backup">N\'envoyez jamais votre fichier de sauvegarde ni son mot de passe à qui que ce soit, même à quelqu\'un qui prétend être Quota Vault. Nous ne vous les demanderons jamais. Quiconque le fait est un escroc.</string>
+    <string name="scam_crash">N\'ajoutez pas de noms, de numéros de téléphone ni d\'informations personnelles ou sur vos clients à l\'e-mail. Nous ne vous les demanderons jamais, et quiconque le fait est un escroc.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

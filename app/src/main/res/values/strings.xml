@@ -808,10 +808,14 @@
     <string name="crash_send_note">Your email app opens with this report addressed to %1$s, so you can read it before sending. We\'ll see the email address you send from.</string>
     <string name="crash_delete_all">Delete all</string>
     <string name="crash_email_subject">Quota Vault crash report (%1$s)</string>
-    <string name="crash_email_intro">What were you doing when the app closed? (optional)</string>
+    <string name="crash_email_intro">What were you doing when the app closed? (optional; please don\'t include names, phone numbers or other personal or client details)</string>
     <string name="pi_crash_t">Crash reports are completely optional</string>
     <string name="pi_crash">If the app closes unexpectedly, a technical report can be saved on this phone. It\'s sent only if you choose to email it, it never contains your data, and you can turn it off in Crash reports.</string>
     <string name="crash_optional">Crash reports are completely optional. Sending one is always your choice, and the app never sends anything on its own.</string>
     <string name="crash_save">Save crash reports</string>
     <string name="crash_save_desc">If the app closes unexpectedly, keep a report on this phone so you can decide whether to send it. Turning this off deletes saved reports.</string>
+    <string name="scam_title">We will NEVER ask for your data</string>
+    <string name="scam_body">Quota Vault will never ask for your personal information, your clients\' information, your backup files or your passwords. Not by email, phone, text or social media, and not even for support. The only thing you might ever send us is a crash report, if you choose to, and it contains none of your data. Anyone who asks for your data or your clients\' data is a scammer. Don\'t reply, don\'t share anything, and block them.</string>
+    <string name="scam_backup">Never send your backup file or its password to anyone, even someone claiming to be Quota Vault. We will never ask for them. Anyone who does is a scammer.</string>
+    <string name="scam_crash">Don\'t add names, phone numbers or any personal or client details to the email. We will never ask for them, and anyone who does is a scammer.</string>
 </resources>

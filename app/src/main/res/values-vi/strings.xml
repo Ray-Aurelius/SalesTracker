@@ -680,12 +680,16 @@
     <string name="crash_send_note">Ứng dụng email của bạn sẽ mở với báo cáo này gửi tới %1$s, để bạn có thể đọc trước khi gửi. Chúng tôi sẽ thấy địa chỉ email bạn dùng để gửi.</string>
     <string name="crash_delete_all">Xóa tất cả</string>
     <string name="crash_email_subject">Báo cáo sự cố Quota Vault (%1$s)</string>
-    <string name="crash_email_intro">Bạn đang làm gì khi ứng dụng đóng? (không bắt buộc)</string>
+    <string name="crash_email_intro">Bạn đang làm gì khi ứng dụng đóng? (không bắt buộc; vui lòng không ghi tên, số điện thoại hay thông tin cá nhân hoặc khách hàng khác)</string>
     <string name="pi_crash_t">Báo cáo sự cố hoàn toàn không bắt buộc</string>
     <string name="pi_crash">Nếu ứng dụng đóng đột ngột, một báo cáo kỹ thuật có thể được lưu trên điện thoại này. Báo cáo chỉ được gửi nếu bạn chọn gửi qua email, không bao giờ chứa dữ liệu của bạn, và bạn có thể tắt nó trong Báo cáo sự cố.</string>
     <string name="crash_optional">Báo cáo sự cố hoàn toàn không bắt buộc. Gửi hay không luôn do bạn quyết định, và ứng dụng không bao giờ tự gửi bất cứ thứ gì.</string>
     <string name="crash_save">Lưu báo cáo sự cố</string>
     <string name="crash_save_desc">Nếu ứng dụng đóng đột ngột, giữ một báo cáo trên điện thoại này để bạn quyết định có gửi hay không. Tắt mục này sẽ xóa các báo cáo đã lưu.</string>
+    <string name="scam_title">Chúng tôi sẽ KHÔNG BAO GIỜ yêu cầu dữ liệu của bạn</string>
+    <string name="scam_body">Quota Vault sẽ không bao giờ yêu cầu thông tin cá nhân của bạn, thông tin khách hàng của bạn, tệp sao lưu hay mật khẩu của bạn. Không qua email, điện thoại, tin nhắn hay mạng xã hội, kể cả khi hỗ trợ. Thứ duy nhất bạn có thể gửi cho chúng tôi là báo cáo sự cố, nếu bạn muốn, và báo cáo không chứa dữ liệu nào của bạn. Bất kỳ ai yêu cầu dữ liệu của bạn hoặc của khách hàng bạn đều là kẻ lừa đảo. Đừng trả lời, đừng chia sẻ gì cả và hãy chặn họ.</string>
+    <string name="scam_backup">Đừng bao giờ gửi tệp sao lưu hoặc mật khẩu của tệp cho bất kỳ ai, kể cả người tự xưng là Quota Vault. Chúng tôi sẽ không bao giờ yêu cầu. Ai yêu cầu đều là kẻ lừa đảo.</string>
+    <string name="scam_crash">Đừng thêm tên, số điện thoại hay bất kỳ thông tin cá nhân hoặc khách hàng nào vào email. Chúng tôi sẽ không bao giờ yêu cầu, và ai yêu cầu đều là kẻ lừa đảo.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

@@ -34,6 +34,8 @@ Everything is stored privately on the phone — no account or internet needed.
 
 ## Privacy & security
 
+> **We will NEVER ask users for their data.** The app and its developer never ask for personal information, client information, backup files or passwords, not even for support. The only thing a user might ever send us is an optional crash report, which contains none of their data. Anyone asking for data is a scammer. The app says this on the Security & privacy screen, in Privacy info, when creating a backup and on the crash report screen.
+
 - **No internet permission.** The manifest strips it, and the CI privacy audit fails the build if it ever appears. Nothing can be sent anywhere. Every release lists its permissions.
 - **Minimal permissions:** notifications, exact alarms (SCHEDULE_EXACT_ALARM, which the user allows once; USE_EXACT_ALARM is blocked by the CI audit because Play restricts it), run at startup (re-arm reminders), biometric. Nothing else.
 - **Release build** (not debuggable) signed with the permanent key.

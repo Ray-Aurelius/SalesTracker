@@ -680,12 +680,16 @@
     <string name="crash_send_note">Tu app de correo se abrirá con este informe dirigido a %1$s, para que puedas leerlo antes de enviarlo. Veremos la dirección de correo desde la que lo envíes.</string>
     <string name="crash_delete_all">Eliminar todo</string>
     <string name="crash_email_subject">Informe de error de Quota Vault (%1$s)</string>
-    <string name="crash_email_intro">¿Qué estabas haciendo cuando se cerró la app? (opcional)</string>
+    <string name="crash_email_intro">¿Qué estabas haciendo cuando se cerró la app? (opcional; por favor, no incluyas nombres, números de teléfono ni otros datos personales o de clientes)</string>
     <string name="pi_crash_t">Los informes de errores son totalmente opcionales</string>
     <string name="pi_crash">Si la app se cierra inesperadamente, puede guardarse un informe técnico en este teléfono. Solo se envía si decides enviarlo por correo, nunca contiene tus datos y puedes desactivarlo en Informes de errores.</string>
     <string name="crash_optional">Los informes de errores son totalmente opcionales. Enviar uno siempre es tu decisión, y la app nunca envía nada por sí sola.</string>
     <string name="crash_save">Guardar informes de errores</string>
     <string name="crash_save_desc">Si la app se cierra inesperadamente, guarda un informe en este teléfono para que decidas si enviarlo. Al desactivarlo se eliminan los informes guardados.</string>
+    <string name="scam_title">NUNCA te pediremos tus datos</string>
+    <string name="scam_body">Quota Vault nunca te pedirá tu información personal, la información de tus clientes, tus archivos de copia de seguridad ni tus contraseñas. Ni por correo, teléfono, mensaje de texto o redes sociales, ni siquiera para darte soporte. Lo único que podrías enviarnos es un informe de errores, si así lo decides, y no contiene ninguno de tus datos. Quien te pida tus datos o los de tus clientes es un estafador. No respondas, no compartas nada y bloquéalo.</string>
+    <string name="scam_backup">Nunca envíes tu archivo de copia de seguridad ni su contraseña a nadie, ni siquiera a alguien que diga ser de Quota Vault. Nunca te los pediremos. Quien lo haga es un estafador.</string>
+    <string name="scam_crash">No añadas nombres, números de teléfono ni datos personales o de clientes al correo. Nunca te los pediremos, y quien lo haga es un estafador.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>
