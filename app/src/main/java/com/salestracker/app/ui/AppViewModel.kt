@@ -527,9 +527,10 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
      * rate onto the plan; sales given a different rate of their own keep it.
      */
     fun setCommissionPlan(rate: Double, upsellOnly: Boolean, schedule: TierSchedule?) = repo.update { d ->
-        val oldDefault = d.defaultCommissionPercent
+        // Sales at the default or the usual rate were simply "my rate"; those follow the new plan.
+        val planRates = setOfNotNull(d.defaultCommissionPercent, d.usualRate)
         val sales = if (schedule != null && d.tierSchedule == null) {
-            d.sales.map { if (it.commissionPercent == oldDefault) it.copy(commissionPercent = null) else it }
+            d.sales.map { if (it.commissionPercent in planRates) it.copy(commissionPercent = null) else it }
         } else d.sales
         d.copy(
             defaultCommissionPercent = rate.coerceIn(0.0, 100.0),

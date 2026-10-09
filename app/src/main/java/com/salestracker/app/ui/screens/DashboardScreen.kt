@@ -202,6 +202,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             currentRate = data.defaultCommissionPercent,
             currentUpsellOnly = data.defaultCommissionUpsellOnly,
             currentTiers = data.tierSchedule,
+            suggestedRate = data.usualRate ?: data.defaultCommissionPercent,
             onSave = vm::setCommissionPlan,
             onDismiss = { editingRate = false },
         )

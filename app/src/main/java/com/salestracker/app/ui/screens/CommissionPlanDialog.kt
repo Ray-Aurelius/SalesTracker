@@ -70,6 +70,8 @@ fun CommissionPlanDialog(
     currentRate: Double,
     currentUpsellOnly: Boolean,
     currentTiers: TierSchedule?,
+    /** Starting point for new tiers: the rate the user actually uses. */
+    suggestedRate: Double = currentRate,
     onSave: (rate: Double, upsellOnly: Boolean, tiers: TierSchedule?) -> Unit,
     onDismiss: () -> Unit,
 ) {
@@ -80,7 +82,8 @@ fun CommissionPlanDialog(
     var period by remember { mutableStateOf(currentTiers?.period ?: GoalPeriod.MONTH) }
     val rows = remember {
         mutableStateListOf<TierRow>().apply {
-            val start = currentTiers?.sorted ?: listOf(CommissionTier(0.0, currentRate), CommissionTier(10_000.0, currentRate + 2))
+            val base = suggestedRate.takeIf { it > 0 } ?: 10.0
+            val start = currentTiers?.sorted ?: listOf(CommissionTier(0.0, base), CommissionTier(10_000.0, base + 2))
             start.forEach { add(TierRow(if (it.from == 0.0) "0" else formatAmountInput(it.from), formatRateInput(it.percent))) }
         }
     }

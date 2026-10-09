@@ -214,6 +214,11 @@ data class AppData(
 
     val unit: DistanceUnit get() = distanceUnit ?: DistanceUnit.forRegion()
 
+    /** The rate the salesperson really uses: the default if set, otherwise the most common rate on their sales. */
+    val usualRate: Double?
+        get() = defaultCommissionPercent.takeIf { it > 0 }
+            ?: sales.mapNotNull { it.commissionPercent }.groupingBy { it }.eachCount().maxByOrNull { it.value }?.key
+
     fun toJson(): JSONObject = JSONObject()
         .put("version", 2)
         .put("clients", JSONArray(clients.map { it.toJson() }))

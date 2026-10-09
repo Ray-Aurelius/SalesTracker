@@ -111,6 +111,13 @@ class CommissionPlanTest {
         assertNull(TierSchedule.fromJson(null))
     }
 
+    @Test fun usualRateIsTheDefaultOrTheMostCommonSaleRate() {
+        assertEquals(7.0, AppData(defaultCommissionPercent = 7.0, sales = listOf(sale(oct, 1.0, rate = 10.0))).usualRate!!, 1e-9)
+        val sales = listOf(sale(oct, 1.0, rate = 10.0), sale(oct, 1.0, rate = 10.0), sale(oct, 1.0, rate = 15.0))
+        assertEquals(10.0, AppData(sales = sales).usualRate!!, 1e-9)
+        assertNull(AppData().usualRate)
+    }
+
     @Test fun newSaleFieldsRoundTripAndOldSavesStillLoad() {
         val s = sale(oct, 1234.5, split = 60.0, paid = true)
         val back = Sale.fromJson(JSONObject(s.toJson().toString()))
