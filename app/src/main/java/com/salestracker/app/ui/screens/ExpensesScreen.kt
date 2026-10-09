@@ -483,7 +483,7 @@ fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) 
     var range by remember { mutableStateOf(ReportRange.THIS_YEAR) }
     var csv by remember { mutableStateOf(false) }
     var names by remember { mutableStateOf(false) }
-    var notes by remember { mutableStateOf(true) }
+    var notes by remember { mutableStateOf(false) } // notes are free text and may mention a client, so they stay out unless chosen
     var income by remember { mutableStateOf(false) }
     var protect by remember { mutableStateOf(false) }
     var pw by remember { mutableStateOf("") }

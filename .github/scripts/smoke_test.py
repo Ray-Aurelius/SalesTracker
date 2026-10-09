@@ -418,6 +418,8 @@ def main(apk):
     for name in ["Alex Morgan", "Jordan Lee", "Sam Patel", "Casey Rivera", "@example.com", "555-01"]:
         if name in csv:
             fail(f"client details leaked into the expense spreadsheet: {name}")
+    if "Proposal walkthrough" in csv:
+        fail("notes went into the spreadsheet although Include notes is off by default")
 
     section("Receipt photo: photo picker, encrypted, locked behind the phone's PIN")
     # A receipt-like picture in the emulator's gallery for the picker to offer.
