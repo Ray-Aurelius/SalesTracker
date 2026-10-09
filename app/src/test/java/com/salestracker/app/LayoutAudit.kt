@@ -16,6 +16,7 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeUp
 import androidx.test.core.app.ApplicationProvider
@@ -127,6 +128,14 @@ class LayoutAudit {
                 scrollDown()
                 shot("$config-$name-b")
             }
+            if (name == "1s-sales") {
+                // The Expenses view on the same tab: totals, net earnings, buttons and the log.
+                tap(app.getString(R.string.sales_view_expenses))
+                shot("$config-1s-expenses")
+                scrollDown()
+                shot("$config-1s-expenses-b")
+                tap(app.getString(R.string.sales_view_log))
+            }
         }
     }
 
@@ -226,6 +235,55 @@ class LayoutAudit {
             org.robolectric.shadows.ShadowLooper.idleMainLooper()
         }
         shotWithPopups("m-backup-scam-warning")
+    }
+
+    /** The new dialogs: commission plan (one rate and tiered), expense report, trip, menu tabs. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun n_newDialogs() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); setDefaultCommission(10.0); loadSampleData() }
+        val vm = AppViewModel(app)
+        rule.setContent {
+            CompositionLocalProvider(LocalTerms provides vm.trade.terms) {
+                SalesTrackerTheme(palette = vm.palette, dark = false) { SalesApp(vm, false) }
+            }
+        }
+        // The commission card is further down the Stats page: scroll the list to it first.
+        rule.onAllNodes(androidx.compose.ui.test.hasScrollToNodeAction()).onFirst()
+            .performScrollToNode(hasText(app.getString(R.string.commission_earned)))
+        tap(app.getString(R.string.commission_earned))
+        shotWithPopups("n-plan-one-rate")
+        tap(app.getString(R.string.plan_tiered))
+        shotWithPopups("n-plan-tiered")
+        tap(app.getString(R.string.cancel))
+
+        tap(app.getString(R.string.tab_sales))
+        tap(app.getString(R.string.sales_view_expenses))
+        tap(app.getString(R.string.exp_report_button))
+        shotWithPopups("n-expense-report")
+        tap(app.getString(R.string.exp_format_csv))
+        shotWithPopups("n-expense-report-csv")
+        tap(app.getString(R.string.cancel))
+        tap(app.getString(R.string.exp_log_trip))
+        shotWithPopups("n-log-trip")
+        tap(app.getString(R.string.cancel))
+        tap(app.getString(R.string.exp_add_expense))
+        shotWithPopups("n-add-expense")
+        tap(app.getString(R.string.cancel))
+
+        tap(app.getString(R.string.cd_settings))
+        tap(app.getString(R.string.menu_tabs_title))
+        shotWithPopups("n-menu-tabs")
+        tap(app.getString(R.string.done))
+        tap(app.getString(R.string.done))
+        // Hide two pages and check the menu re-spreads the rest.
+        vm.setTabShown("CALCULATOR", false, Tab.entries.map { it.name })
+        vm.setTabShown("CHARTS", false, Tab.entries.map { it.name })
+        rule.waitForIdle()
+        shot("n-menu-six-tabs")
+        vm.setTabShown("CALCULATOR", true, Tab.entries.map { it.name })
+        vm.setTabShown("CHARTS", true, Tab.entries.map { it.name })
     }
 
     /** Draws the app window plus any open pop-up (menus), without waiting for idle. */

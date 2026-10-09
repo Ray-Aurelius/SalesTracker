@@ -296,6 +296,65 @@ def main(apk):
     back()
     back()
 
+    section("Expenses and mileage")
+    tap(r"^Sales$", wait=1.5)
+    tap(r"^Expenses$", "expenses", wait=1.5)
+    if tap(r"^Add expense$", "add-expense", wait=1.5):
+        tap(r"^Amount$", wait=0.8)
+        type_text("42.50")
+        hide_keyboard()
+        tap(r"^Save$", wait=1.5)
+    if tap(r"^Log a trip$", "log-trip", wait=1.5):
+        tap(r"^Distance", wait=0.8)
+        type_text("25")
+        tap(r"^Rate per", wait=0.8)
+        type_text("0.70")
+        hide_keyboard()
+        tap(r"^Save$", wait=1.5)
+    shot("expenses-after")
+    if not find(r"Trip · 25"):
+        fail("the logged trip did not appear")
+
+    section("Expense report: PDF and spreadsheet")
+    if tap(r"^Expense report$", "expense-report", wait=1.5):
+        tap(r"^Create PDF$", wait=2)
+        save_in_picker("expense-pdf")
+        time.sleep(4)
+    if tap(r"^Expense report$", wait=1.5):
+        tap(r"^Spreadsheet \(CSV\)$", wait=1)
+        tap(r"^Create file$", wait=2)
+        save_in_picker("expense-csv")
+        time.sleep(4)
+    files = adb("shell", "ls", "-l", "/sdcard/Download/")
+    note("  Downloads: " + " | ".join(l for l in files.splitlines() if "Expenses" in l))
+    if not re.search(r"Expenses-.*\.pdf", files):
+        fail("the expense PDF was not created")
+    if not re.search(r"Expenses-.*\.csv", files):
+        fail("the expense spreadsheet was not created")
+    head = adb("shell", "sh", "-c", "head -c 400 /sdcard/Download/Expenses-*.csv")
+    note("  CSV starts: " + head.replace("\r\n", " | ")[:300])
+    if "42.50" not in adb("shell", "sh", "-c", "cat /sdcard/Download/Expenses-*.csv"):
+        fail("the spreadsheet is missing the expense that was added")
+
+    section("Tiered commission plan")
+    tap(r"^Stats$", wait=1.5)
+    if tap(r"^Commission earned$", wait=1.5, scroll=6):
+        tap(r"^Tiered$", "plan-tiered", wait=1.2)
+        tap(r"^Save$", wait=1.5)
+        shot("stats-tiered")
+        if not find(r"Tiered plan"):
+            fail("the tiered plan did not take effect")
+
+    section("Menu tabs: hide Calc")
+    tap(r"^Settings$", wait=1.5)
+    tap(r"^Menu tabs$", "menu-tabs", wait=1.5)
+    toggle_near(r"^Calc$", "menu-tabs-calc-off")
+    tap(r"^Done$", wait=1)
+    tap(r"^Done$", wait=1.5)
+    shot("menu-without-calc")
+    if find(r"^Calc$"):
+        fail("Calc is still in the menu after hiding it")
+
     note("Restart: the app must decrypt and reload everything")
     adb("shell", "am", "force-stop", PKG)
     time.sleep(1)

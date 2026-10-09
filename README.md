@@ -28,6 +28,12 @@ Everything is stored privately on the phone — no account or internet needed.
 
 **Manager report (PDF):** Stats → Report (PDF). Built on the phone; client names and commission are left out unless turned on; optional AES-256 password.
 
+**Commission plans:** one rate, or tiers that rise with the week's, month's, quarter's or year's sales (each portion at its own rate, or the whole period at the level reached). Split a sale with a colleague and only your share counts. Mark commission paid; Stats and the Sales log show paid vs still owed.
+
+**Expenses & mileage:** log costs by category and trips by distance (miles or km by region; the rate is kept with each trip, so changing it later never alters old trips). Net earnings = commission − expenses − mileage. The expense & mileage report exports as a PDF (optional password) or a spreadsheet (CSV, formula-safe) for an accountant or tax software, for this/last month, quarters, this/last year or all time.
+
+**Menu tabs:** Settings → Menu tabs turns off pages someone doesn't use (at least one stays; nothing is deleted).
+
 **Crash reports (completely optional, always the user's choice):** the app never sends one on its own, and saving them can be switched off in Security & privacy → Crash reports (which also deletes saved ones). If the app crashes, a short technical report (app and Android version, phone model, error type and code locations; never error messages or anything typed) is saved on the phone only. The app offers to show it; "Send report" opens the user's email app addressed to quotavaultsupport@gmail.com, and nothing is sent unless they press send. Kept 30 days, at most 5.
 
 **Home-screen widgets:** goals (percentages only), today's tasks, schedule, sales stats (counts only) and "On track for" (amounts only if allowed). "Hide widget contents" in Security & privacy makes them all show "Hidden". The eye icon next to it is **privacy mode** (hides every dollar amount).
