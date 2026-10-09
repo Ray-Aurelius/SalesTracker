@@ -516,7 +516,7 @@
     <string name="report_include_commission">내 수수료 포함</string>
     <string name="report_password">비밀번호로 보호</string>
     <string name="report_password_note">PDF를 열 때 이 비밀번호를 요구합니다. AES-256으로 암호화됩니다.</string>
-    <string name="report_privacy_note">보고서는 이 휴대폰에서만 만들어집니다. 이름과 수수료는 켜지 않는 한 포함되지 않습니다.</string>
+    <string name="report_privacy_note">보고서는 이 휴대전화에서만 만들어집니다. 고객 이름은 절대 포함되지 않습니다. 작업 / 작업 지시 번호와 수수료는 켜는 경우에만 포함됩니다.</string>
     <string name="report_create">PDF 만들기</string>
     <string name="report_working">보고서를 만드는 중…</string>
     <string name="report_saved">보고서가 저장되었습니다</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">영수증 잠금 끄기</string>
     <string name="backup_no_receipts">백업에는 영수증 사진이 포함되지 않습니다. 다른 곳에 보관해야 하는 영수증은 열어서 사본 저장을 사용하세요.</string>
     <string name="exp_include_job">작업 / 작업 지시 번호 포함</string>
-    <string name="exp_report_privacy_note">보고서는 이 휴대전화에서만 만들어집니다. 고객 이름은 절대 포함되지 않습니다. 작업 / 작업 지시 번호, 메모, 수수료는 켜는 경우에만 포함됩니다.</string>
+    <string name="exp_report_privacy_note">보고서는 이 휴대전화에서만 만들어집니다. 고객 이름과 메모는 절대 포함되지 않습니다. 작업 / 작업 지시 번호와 수수료는 켜는 경우에만 포함됩니다.</string>
     <string name="exp_job_hint">보고서에는 고객 이름이 아닌 이 번호가 표시됩니다.</string>
+    <string name="notif_details_in_app">자세한 내용은 앱에서 확인하세요</string>
+    <string name="screenshots_always_blocked">스크린샷, 화면 녹화, 화면 공유는 항상 차단되며 앱에서 아무것도 복사할 수 없으므로 화면에서 고객 정보를 가져갈 수 없습니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

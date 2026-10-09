@@ -250,9 +250,13 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                 }
             }
             item {
-                SwitchSetting(stringResource(R.string.block_screenshots), stringResource(R.string.block_screenshots_desc), vm.blockScreenshots) {
-                    vm.changeBlockScreenshots(it)
-                }
+                // Screenshots, screen recording and screen sharing are always blocked; there's no switch to turn off.
+                Text(
+                    stringResource(R.string.screenshots_always_blocked),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 8.dp),
+                )
             }
             item {
                 // Deleting clients or sales asks for the phone's fingerprint, face or PIN first.

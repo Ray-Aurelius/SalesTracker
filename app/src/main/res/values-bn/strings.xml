@@ -516,7 +516,7 @@
     <string name="report_include_commission">আমার কমিশন রাখুন</string>
     <string name="report_password">পাসওয়ার্ড দিয়ে সুরক্ষিত করুন</string>
     <string name="report_password_note">PDF খোলার সময় এই পাসওয়ার্ড চাওয়া হবে। এটি AES-256 দিয়ে এনক্রিপ্ট করা।</string>
-    <string name="report_privacy_note">রিপোর্ট শুধু এই ফোনেই তৈরি হয়। আপনি চালু না করলে নাম ও কমিশন থাকবে না।</string>
+    <string name="report_privacy_note">রিপোর্ট শুধু এই ফোনেই তৈরি হয়। ক্লায়েন্টের নাম কখনো থাকে না। আপনি চালু না করলে জব / ওয়ার্ক অর্ডার নম্বর ও কমিশন বাদ থাকে।</string>
     <string name="report_create">PDF তৈরি করুন</string>
     <string name="report_working">আপনার রিপোর্ট তৈরি হচ্ছে…</string>
     <string name="report_saved">রিপোর্ট সংরক্ষিত</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">রসিদ লক বন্ধ করুন</string>
     <string name="backup_no_receipts">ব্যাকআপে রসিদের ছবি থাকে না। যেগুলো অন্য কোথাও রাখতে হবে, সেই রসিদ খুলে একটি কপি সেভ করুন ব্যবহার করুন।</string>
     <string name="exp_include_job">জব / ওয়ার্ক অর্ডার নম্বর যোগ করুন</string>
-    <string name="exp_report_privacy_note">রিপোর্ট শুধু এই ফোনেই তৈরি হয়। ক্লায়েন্টের নাম কখনো থাকে না। আপনি চালু না করলে জব / ওয়ার্ক অর্ডার নম্বর, নোট ও কমিশন বাদ থাকে।</string>
+    <string name="exp_report_privacy_note">রিপোর্ট শুধু এই ফোনেই তৈরি হয়। ক্লায়েন্টের নাম ও নোট কখনো থাকে না। আপনি চালু না করলে জব / ওয়ার্ক অর্ডার নম্বর ও কমিশন বাদ থাকে।</string>
     <string name="exp_job_hint">রিপোর্টে এই নম্বর দেখায়, ক্লায়েন্টের নাম কখনো নয়।</string>
+    <string name="notif_details_in_app">বিস্তারিত দেখতে অ্যাপ খুলুন</string>
+    <string name="screenshots_always_blocked">স্ক্রিনশট, স্ক্রিন রেকর্ডিং ও স্ক্রিন শেয়ারিং সবসময় বন্ধ থাকে, আর অ্যাপ থেকে কিছুই কপি করা যায় না, তাই স্ক্রিন থেকে ক্লায়েন্টের তথ্য নেওয়া যায় না।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

@@ -102,7 +102,7 @@ fun ReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) {
                             FilterChip(selected = period == p, onClick = { period = p }, label = { Text(stringResource(p.label)) })
                         }
                     }
-                    ReportSwitch(stringResource(R.string.report_include_names), names) { names = it }
+                    ReportSwitch(stringResource(R.string.exp_include_job), names) { names = it }
                     ReportSwitch(stringResource(R.string.report_include_commission), commission) { commission = it }
                     ReportSwitch(stringResource(R.string.report_password), protect) { protect = it }
                     if (protect) {

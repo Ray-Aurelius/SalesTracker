@@ -516,7 +516,7 @@
     <string name="report_include_commission">मेरा कमीशन शामिल करें</string>
     <string name="report_password">पासवर्ड से सुरक्षित करें</string>
     <string name="report_password_note">PDF खोलते समय यह पासवर्ड माँगा जाएगा। यह AES-256 से एन्क्रिप्टेड है।</string>
-    <string name="report_privacy_note">रिपोर्ट केवल इसी फ़ोन पर बनती है। नाम और कमीशन तभी शामिल होंगे जब आप उन्हें चालू करें।</string>
+    <string name="report_privacy_note">रिपोर्ट सिर्फ़ इसी फ़ोन पर बनती है। क्लाइंट के नाम कभी शामिल नहीं होते। जॉब / वर्क ऑर्डर नंबर और कमीशन तभी शामिल होते हैं जब आप उन्हें चालू करें।</string>
     <string name="report_create">PDF बनाएँ</string>
     <string name="report_working">आपकी रिपोर्ट बन रही है…</string>
     <string name="report_saved">रिपोर्ट सहेजी गई</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">रसीद लॉक बंद करें</string>
     <string name="backup_no_receipts">बैकअप में रसीद की फ़ोटो शामिल नहीं होतीं। जिन्हें कहीं और रखना हो, उनकी रसीद खोलकर कॉपी सेव करें इस्तेमाल करें।</string>
     <string name="exp_include_job">जॉब / वर्क ऑर्डर नंबर शामिल करें</string>
-    <string name="exp_report_privacy_note">रिपोर्ट सिर्फ़ इसी फ़ोन पर बनती है। क्लाइंट के नाम कभी शामिल नहीं होते। जॉब / वर्क ऑर्डर नंबर, नोट्स और कमीशन तभी शामिल होते हैं जब आप उन्हें चालू करें।</string>
+    <string name="exp_report_privacy_note">रिपोर्ट सिर्फ़ इसी फ़ोन पर बनती है। क्लाइंट के नाम और नोट्स कभी शामिल नहीं होते। जॉब / वर्क ऑर्डर नंबर और कमीशन तभी शामिल होते हैं जब आप उन्हें चालू करें।</string>
     <string name="exp_job_hint">रिपोर्ट में यह नंबर दिखता है, क्लाइंट का नाम कभी नहीं।</string>
+    <string name="notif_details_in_app">विवरण के लिए ऐप खोलें</string>
+    <string name="screenshots_always_blocked">स्क्रीनशॉट, स्क्रीन रिकॉर्डिंग और स्क्रीन शेयरिंग हमेशा ब्लॉक रहते हैं, और ऐप से कुछ भी कॉपी नहीं किया जा सकता, इसलिए क्लाइंट की जानकारी स्क्रीन से नहीं ली जा सकती।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

@@ -615,7 +615,7 @@
     <string name="report_include_commission">Include my commission</string>
     <string name="report_password">Protect with a password</string>
     <string name="report_password_note">The PDF will ask for this password when it\'s opened. It\'s encrypted with AES-256.</string>
-    <string name="report_privacy_note">The report is created on this phone only. Names and commission are left out unless you turn them on.</string>
+    <string name="report_privacy_note">The report is created on this phone only. Client names are never included. Job / work order #s and commission are left out unless you turn them on.</string>
     <string name="report_create">Create PDF</string>
     <string name="report_working">Creating your report…</string>
     <string name="report_saved">Report saved</string>
@@ -953,6 +953,8 @@
     <string name="lock_receipts_off_title">Turn off receipt lock</string>
     <string name="backup_no_receipts">Receipt photos aren\'t included in backups. Open a receipt and use Save a copy for any you need to keep elsewhere.</string>
     <string name="exp_include_job">Include job / work order #s</string>
-    <string name="exp_report_privacy_note">The report is created on this phone only. Client names are never included. Job / work order #s, notes and commission are left out unless you turn them on.</string>
+    <string name="exp_report_privacy_note">The report is created on this phone only. Client names and notes are never included. Job / work order #s and commission are left out unless you turn them on.</string>
     <string name="exp_job_hint">Reports show this number, never the client\'s name.</string>
+    <string name="notif_details_in_app">Open the app for details</string>
+    <string name="screenshots_always_blocked">Screenshots, screen recording and screen sharing are always blocked, and nothing can be copied out of the app, so client information can\'t be captured from the screen.</string>
 </resources>

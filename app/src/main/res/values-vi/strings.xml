@@ -516,7 +516,7 @@
     <string name="report_include_commission">Kèm hoa hồng của tôi</string>
     <string name="report_password">Bảo vệ bằng mật khẩu</string>
     <string name="report_password_note">PDF sẽ hỏi mật khẩu này khi mở. Tệp được mã hóa AES-256.</string>
-    <string name="report_privacy_note">Báo cáo chỉ được tạo trên điện thoại này. Tên và hoa hồng không được đưa vào trừ khi bạn bật.</string>
+    <string name="report_privacy_note">Báo cáo chỉ được tạo trên điện thoại này. Không bao giờ có tên khách hàng. Số công việc / lệnh công việc và hoa hồng bị loại trừ trừ khi bạn bật.</string>
     <string name="report_create">Tạo PDF</string>
     <string name="report_working">Đang tạo báo cáo…</string>
     <string name="report_saved">Đã lưu báo cáo</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">Tắt khóa biên lai</string>
     <string name="backup_no_receipts">Bản sao lưu không bao gồm ảnh biên lai. Hãy mở biên lai và dùng Lưu bản sao cho những ảnh bạn cần giữ ở nơi khác.</string>
     <string name="exp_include_job">Bao gồm số công việc / lệnh công việc</string>
-    <string name="exp_report_privacy_note">Báo cáo chỉ được tạo trên điện thoại này. Không bao giờ có tên khách hàng. Số công việc / lệnh công việc, ghi chú và hoa hồng bị loại trừ trừ khi bạn bật.</string>
+    <string name="exp_report_privacy_note">Báo cáo chỉ được tạo trên điện thoại này. Không bao giờ có tên khách hàng và ghi chú. Số công việc / lệnh công việc và hoa hồng bị loại trừ trừ khi bạn bật.</string>
     <string name="exp_job_hint">Báo cáo hiển thị số này, không bao giờ hiển thị tên khách hàng.</string>
+    <string name="notif_details_in_app">Mở ứng dụng để xem chi tiết</string>
+    <string name="screenshots_always_blocked">Chụp màn hình, quay màn hình và chia sẻ màn hình luôn bị chặn, và không thể sao chép gì ra khỏi ứng dụng, nên thông tin khách hàng không thể bị lấy từ màn hình.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

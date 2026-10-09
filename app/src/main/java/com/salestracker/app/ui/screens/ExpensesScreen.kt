@@ -474,7 +474,7 @@ private fun MileageRateDialog(current: Double, unit: DistanceUnit?, onSave: (Dou
 
 /**
  * The expense & mileage report: a PDF (optionally password-protected) or a spreadsheet file (CSV) for an
- * accountant or tax software. Client names, notes and income are left out unless turned on.
+ * accountant or tax software. Client names and notes are never included; job numbers and income only when turned on.
  */
 @Composable
 fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) {
@@ -483,7 +483,6 @@ fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) 
     var range by remember { mutableStateOf(ReportRange.THIS_YEAR) }
     var csv by remember { mutableStateOf(false) }
     var names by remember { mutableStateOf(false) }
-    var notes by remember { mutableStateOf(false) } // notes are free text and may mention a client, so they stay out unless chosen
     var income by remember { mutableStateOf(false) }
     var protect by remember { mutableStateOf(false) }
     var pw by remember { mutableStateOf("") }
@@ -511,7 +510,7 @@ fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) 
     }
 
     val pdfSaver = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
-        val opt = ExpenseReportPdf.Options(range, includeJobRefs = names, includeNotes = notes, includeIncome = income, password = if (protect) pw else null)
+        val opt = ExpenseReportPdf.Options(range, includeJobRefs = names, includeIncome = income, password = if (protect) pw else null)
         write(uri) { ExpenseReportPdf.create(context, data, opt) }
     }
     val csvSaver = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("text/csv")) { uri ->
@@ -522,13 +521,13 @@ fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) 
             val labels = ExpenseCsv.Labels(
                 date = context.getString(R.string.col_date), type = context.getString(R.string.exp_col_type),
                 category = context.getString(R.string.exp_col_category), job = context.getString(R.string.client_ref),
-                note = context.getString(R.string.notes), distance = context.getString(R.string.exp_col_distance),
+                distance = context.getString(R.string.exp_col_distance),
                 unit = context.getString(R.string.exp_col_unit), rate = context.getString(R.string.exp_col_rate),
                 amount = context.getString(R.string.col_amount),
                 expense = context.getString(R.string.exp_type_expense), mileage = context.getString(R.string.exp_type_mileage),
             )
             ExpenseCsv.build(
-                list.map { if (notes) it else it.copy(note = "") },
+                list,
                 labels,
                 categoryName = { context.getString(it.label) },
                 unitName = { context.getString(it.short) },
@@ -565,7 +564,6 @@ fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) 
                         ) { FitText(stringResource(R.string.exp_format_csv)) }
                     }
                     ReportSwitch(stringResource(R.string.exp_include_job), names) { names = it }
-                    ReportSwitch(stringResource(R.string.exp_include_notes), notes) { notes = it }
                     if (!csv) {
                         ReportSwitch(stringResource(R.string.exp_include_income), income) { income = it }
                         ReportSwitch(stringResource(R.string.report_password), protect) { protect = it }

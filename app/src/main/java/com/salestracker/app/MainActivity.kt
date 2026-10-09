@@ -128,6 +128,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Client information can't be captured from the screen: screenshots, screen recording, screen sharing,
+        // the recent-apps preview and on-screen assistants all see a blank window. Always on, no setting.
+        window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        // Nothing typed here is offered to autofill services (password managers and the like) to save.
+        window.decorView.importantForAutofill = android.view.View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS
+        // Nor to Android's "content capture" (on-device intelligence that reads what apps show).
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            getSystemService(android.view.contentcapture.ContentCaptureManager::class.java)?.setContentCaptureEnabled(false)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.decorView.importantForContentCapture = android.view.View.IMPORTANT_FOR_CONTENT_CAPTURE_NO_EXCLUDE_DESCENDANTS
+        }
         enableEdgeToEdge()
         if (savedInstanceState == null) handleIntent(intent)
         setContent {
@@ -142,12 +154,7 @@ class MainActivity : AppCompatActivity() {
             LaunchedEffect(vm.appLock) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) setRecentsScreenshotEnabled(!vm.appLock)
             }
-            // "Block screenshots": Android shows a blank screen in screenshots, recordings and recent apps.
-            LaunchedEffect(vm.blockScreenshots) {
-                if (vm.blockScreenshots) window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
-                else window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
-            }
-            ScaledText(vm.textScale) { CompositionLocalProvider(LocalTerms provides vm.trade.terms) {
+            com.salestracker.app.security.ClientDataGuard { ScaledText(vm.textScale) { CompositionLocalProvider(LocalTerms provides vm.trade.terms) {
                 SalesTrackerTheme(
                     palette = vm.palette, dark = dark,
                     custom = vm.customColors.takeIf { vm.useCustomColors },
@@ -173,7 +180,7 @@ class MainActivity : AppCompatActivity() {
                         else -> SalesApp(vm, dark)
                     }
                 }
-            } }
+            } } }
         }
     }
 

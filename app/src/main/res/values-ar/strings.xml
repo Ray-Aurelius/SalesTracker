@@ -516,7 +516,7 @@
     <string name="report_include_commission">تضمين عمولتي</string>
     <string name="report_password">الحماية بكلمة مرور</string>
     <string name="report_password_note">سيطلب ملف PDF كلمة المرور هذه عند فتحه. وهو مشفّر بمعيار AES-256.</string>
-    <string name="report_privacy_note">يُنشأ التقرير على هذا الهاتف فقط. لا تُضمَّن الأسماء والعمولة إلا إذا فعّلتها.</string>
+    <string name="report_privacy_note">يُنشأ التقرير على هذا الهاتف فقط. لا تُضمَّن أسماء العملاء أبدًا. تُستبعد أرقام المهام / أوامر العمل والعمولة ما لم تفعّلها.</string>
     <string name="report_create">إنشاء PDF</string>
     <string name="report_working">جارٍ إنشاء تقريرك…</string>
     <string name="report_saved">تم حفظ التقرير</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">إيقاف قفل الإيصالات</string>
     <string name="backup_no_receipts">النسخ الاحتياطية لا تتضمن صور الإيصالات. افتح الإيصال واستخدم حفظ نسخة لما تحتاج إلى الاحتفاظ به في مكان آخر.</string>
     <string name="exp_include_job">تضمين أرقام المهام / أوامر العمل</string>
-    <string name="exp_report_privacy_note">يُنشأ التقرير على هذا الهاتف فقط. لا تُضمَّن أسماء العملاء أبدًا. تُستبعد أرقام المهام / أوامر العمل والملاحظات والعمولة ما لم تفعّلها.</string>
+    <string name="exp_report_privacy_note">يُنشأ التقرير على هذا الهاتف فقط. لا تُضمَّن أسماء العملاء والملاحظات أبدًا. تُستبعد أرقام المهام / أوامر العمل والعمولة ما لم تفعّلها.</string>
     <string name="exp_job_hint">تعرض التقارير هذا الرقم، وليس اسم العميل أبدًا.</string>
+    <string name="notif_details_in_app">افتح التطبيق لرؤية التفاصيل</string>
+    <string name="screenshots_always_blocked">لقطات الشاشة وتسجيل الشاشة ومشاركتها محظورة دائمًا، ولا يمكن نسخ أي شيء من التطبيق، لذا لا يمكن التقاط معلومات العملاء من الشاشة.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

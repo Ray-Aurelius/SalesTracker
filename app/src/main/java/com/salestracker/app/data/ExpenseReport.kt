@@ -114,14 +114,13 @@ internal class PdfPages {
 
 /**
  * The expense and mileage report as a PDF, built entirely on the phone. Client names are never included;
- * job / work order numbers, notes and income are left out unless the user turns them on; the file can be locked with an AES-256 password.
+ * notes are never included either. Job / work order numbers and income are left out unless the user turns them on; the file can be locked with an AES-256 password.
  */
 object ExpenseReportPdf {
     data class Options(
         val range: ReportRange,
         /** Show each expense's job / work order #. Client names are never put in this report. */
         val includeJobRefs: Boolean,
-        val includeNotes: Boolean,
         val includeIncome: Boolean,
         val password: String?,
     )
@@ -177,10 +176,11 @@ object ExpenseReportPdf {
             p.text(str(R.string.exp_none_in_range), p.body)
         } else {
             val w = listOf(78f, 70f, 62f, 70f, p.contentWidth - 280f)
-            p.row(listOf(str(R.string.col_date), str(R.string.exp_col_distance), str(R.string.exp_col_rate), str(R.string.col_amount), str(R.string.exp_col_details)), w, p.muted, setOf(1, 2, 3))
+            p.row(listOf(str(R.string.col_date), str(R.string.exp_col_distance), str(R.string.exp_col_rate), str(R.string.col_amount), str(R.string.client_ref)), w, p.muted, setOf(1, 2, 3))
             p.divider()
             trips.forEach { e ->
-                val details = listOf(clientOf(e), if (opt.includeNotes) e.note else "").filter { it.isNotBlank() }.joinToString(" · ")
+                // Notes and trip purposes are free text that could name a client, so they never leave the app.
+                val details = clientOf(e)
                 p.row(
                     listOf(e.day(zone).format(dateFmt), distance(e.distance, e.unit), formatMoneyForFile(e.ratePerUnit), formatMoneyForFile(e.total), details),
                     w, p.body, setOf(1, 2, 3),
@@ -196,10 +196,10 @@ object ExpenseReportPdf {
             p.text(str(R.string.exp_none_in_range), p.body)
         } else {
             val w = listOf(78f, 100f, 70f, p.contentWidth - 248f)
-            p.row(listOf(str(R.string.col_date), str(R.string.exp_col_category), str(R.string.col_amount), str(R.string.exp_col_details)), w, p.muted, setOf(2))
+            p.row(listOf(str(R.string.col_date), str(R.string.exp_col_category), str(R.string.col_amount), str(R.string.client_ref)), w, p.muted, setOf(2))
             p.divider()
             costs.forEach { e ->
-                val details = listOf(clientOf(e), if (opt.includeNotes) e.note else "").filter { it.isNotBlank() }.joinToString(" · ")
+                val details = clientOf(e)
                 p.row(listOf(e.day(zone).format(dateFmt), context.getString(e.category.label), formatMoneyForFile(e.total), details), w, p.body, setOf(2))
             }
         }

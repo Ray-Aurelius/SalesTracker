@@ -516,7 +516,7 @@
     <string name="report_include_commission">Inclure ma commission</string>
     <string name="report_password">Protéger par mot de passe</string>
     <string name="report_password_note">Le PDF demandera ce mot de passe à l\'ouverture. Il est chiffré en AES-256.</string>
-    <string name="report_privacy_note">Le rapport est créé uniquement sur ce téléphone. Les noms et la commission n\'y figurent que si vous les activez.</string>
+    <string name="report_privacy_note">Le rapport est créé uniquement sur ce téléphone. Les noms des clients n’y figurent jamais. Les n° de chantier / bon de travail et la commission sont exclus sauf si vous les activez.</string>
     <string name="report_create">Créer le PDF</string>
     <string name="report_working">Création de votre rapport…</string>
     <string name="report_saved">Rapport enregistré</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">Désactiver le verrouillage des reçus</string>
     <string name="backup_no_receipts">Les sauvegardes n’incluent pas les photos de reçus. Ouvrez un reçu et utilisez Enregistrer une copie pour ceux que vous devez conserver ailleurs.</string>
     <string name="exp_include_job">Inclure les n° de chantier / bon de travail</string>
-    <string name="exp_report_privacy_note">Le rapport est créé uniquement sur ce téléphone. Les noms des clients n’y figurent jamais. Les n° de chantier / bon de travail, les notes et la commission sont exclus sauf si vous les activez.</string>
+    <string name="exp_report_privacy_note">Le rapport est créé uniquement sur ce téléphone. Les noms des clients et les notes n’y figurent jamais. Les n° de chantier / bon de travail et la commission sont exclus sauf si vous les activez.</string>
     <string name="exp_job_hint">Les rapports affichent ce numéro, jamais le nom du client.</string>
+    <string name="notif_details_in_app">Ouvrez l’app pour voir les détails</string>
+    <string name="screenshots_always_blocked">Les captures d’écran, l’enregistrement et le partage d’écran sont toujours bloqués, et rien ne peut être copié hors de l’app : les informations des clients ne peuvent pas être capturées depuis l’écran.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

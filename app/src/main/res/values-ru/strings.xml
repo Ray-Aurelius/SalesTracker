@@ -516,7 +516,7 @@
     <string name="report_include_commission">Включить мою комиссию</string>
     <string name="report_password">Защитить паролем</string>
     <string name="report_password_note">При открытии PDF запросит этот пароль. Файл зашифрован AES-256.</string>
-    <string name="report_privacy_note">Отчёт создаётся только на этом телефоне. Имена и комиссия не включаются, пока вы их не включите.</string>
+    <string name="report_privacy_note">Отчёт создаётся только на этом телефоне. Имена клиентов никогда не включаются. Номера работ / нарядов и комиссия не включаются, пока вы их не включите.</string>
     <string name="report_create">Создать PDF</string>
     <string name="report_working">Создаём отчёт…</string>
     <string name="report_saved">Отчёт сохранён</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">Отключить блокировку чеков</string>
     <string name="backup_no_receipts">Резервные копии не включают фото чеков. Откройте чек и нажмите «Сохранить копию» для тех, что нужно хранить в другом месте.</string>
     <string name="exp_include_job">Включить номера работ / нарядов</string>
-    <string name="exp_report_privacy_note">Отчёт создаётся только на этом телефоне. Имена клиентов никогда не включаются. Номера работ / нарядов, заметки и комиссия не включаются, пока вы их не включите.</string>
+    <string name="exp_report_privacy_note">Отчёт создаётся только на этом телефоне. Имена клиентов и заметки никогда не включаются. Номера работ / нарядов и комиссия не включаются, пока вы их не включите.</string>
     <string name="exp_job_hint">В отчётах указывается этот номер, а не имя клиента.</string>
+    <string name="notif_details_in_app">Подробности — в приложении</string>
+    <string name="screenshots_always_blocked">Скриншоты, запись и трансляция экрана всегда заблокированы, а из приложения ничего нельзя скопировать, поэтому данные клиентов невозможно снять с экрана.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

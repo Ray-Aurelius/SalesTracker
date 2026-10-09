@@ -49,7 +49,8 @@ Everything is stored privately on the phone — no account or internet needed.
 - **Release build** (not debuggable) signed with the permanent key.
 - **Encrypted at rest:** the data file is AES-256-GCM with a non-exportable Android Keystore key; older plain files are migrated and overwritten.
 - **No Google cloud backup or device transfer** of app data (`allowBackup=false`, data extraction rules exclude everything). Users move data only with their own encrypted backup file.
-- **Private lock-screen reminders**, privacy mode, re-lock timing, screenshot blocking, erase-all (destroys the key), delete a client with all their records, backup reminders, password strength meter.
+- **No way to get client data out:** FLAG_SECURE always on (screenshots, recording, screen sharing, recents, assistants), no copy/cut anywhere (paste-only text menu and clipboard), keyboards get IME_FLAG_NO_PERSONALIZED_LEARNING, autofill and content capture are off, reminders never show titles/clients/notes, and reports/CSV never carry client names or notes (job / work order # only, opt-in). Only the password-encrypted backup holds client records; Call/Email hand one number/address to the dialer/mail app.
+- **Private reminders**, privacy mode, re-lock timing, erase-all (destroys the key), delete a client with all their records, backup reminders, password strength meter.
 - **User agreement** must be accepted on first launch (versioned in `SecurityOptions.kt` → `AGREEMENT_VERSION`). *Have an attorney review the English text before distribution.*
 
 **Text:** six font styles (Standard, Easy reading — Atkinson Hyperlegible, Modern — Lexend, Rounded — Nunito, Classic serif, Compact) and text size 85–150%. Bundled fonts are under the SIL Open Font License; license files are in `app/src/main/assets/licenses/`.

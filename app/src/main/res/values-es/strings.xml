@@ -516,7 +516,7 @@
     <string name="report_include_commission">Incluir mi comisión</string>
     <string name="report_password">Proteger con contraseña</string>
     <string name="report_password_note">El PDF pedirá esta contraseña al abrirse. Está cifrado con AES-256.</string>
-    <string name="report_privacy_note">El informe se crea solo en este teléfono. Los nombres y la comisión no se incluyen a menos que los actives.</string>
+    <string name="report_privacy_note">El informe se crea solo en este teléfono. Nunca incluye nombres de clientes. Los n.º de trabajo / orden de trabajo y la comisión se omiten salvo que los actives.</string>
     <string name="report_create">Crear PDF</string>
     <string name="report_working">Creando tu informe…</string>
     <string name="report_saved">Informe guardado</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">Desactivar bloqueo de recibos</string>
     <string name="backup_no_receipts">Las copias de seguridad no incluyen fotos de recibos. Abre un recibo y usa Guardar una copia para los que necesites conservar en otro lugar.</string>
     <string name="exp_include_job">Incluir n.º de trabajo / orden de trabajo</string>
-    <string name="exp_report_privacy_note">El informe se crea solo en este teléfono. Nunca incluye nombres de clientes. Los n.º de trabajo / orden de trabajo, las notas y la comisión se omiten salvo que los actives.</string>
+    <string name="exp_report_privacy_note">El informe se crea solo en este teléfono. Nunca incluye nombres de clientes ni notas. Los n.º de trabajo / orden de trabajo y la comisión se omiten salvo que los actives.</string>
     <string name="exp_job_hint">Los informes muestran este número, nunca el nombre del cliente.</string>
+    <string name="notif_details_in_app">Abre la app para ver los detalles</string>
+    <string name="screenshots_always_blocked">Las capturas de pantalla, la grabación y el uso compartido de pantalla siempre están bloqueados, y no se puede copiar nada fuera de la app, así que la información de los clientes no se puede capturar desde la pantalla.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>

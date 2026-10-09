@@ -516,7 +516,7 @@
     <string name="report_include_commission">Sertakan komisi saya</string>
     <string name="report_password">Lindungi dengan kata sandi</string>
     <string name="report_password_note">PDF akan meminta kata sandi ini saat dibuka. Dienkripsi dengan AES-256.</string>
-    <string name="report_privacy_note">Laporan hanya dibuat di ponsel ini. Nama dan komisi tidak disertakan kecuali Anda mengaktifkannya.</string>
+    <string name="report_privacy_note">Laporan hanya dibuat di ponsel ini. Nama klien tidak pernah disertakan. No. pekerjaan / perintah kerja dan komisi tidak disertakan kecuali Anda mengaktifkannya.</string>
     <string name="report_create">Buat PDF</string>
     <string name="report_working">Membuat laporan Anda…</string>
     <string name="report_saved">Laporan disimpan</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">Matikan kunci struk</string>
     <string name="backup_no_receipts">Cadangan tidak menyertakan foto struk. Buka struk dan gunakan Simpan salinan untuk yang perlu Anda simpan di tempat lain.</string>
     <string name="exp_include_job">Sertakan no. pekerjaan / perintah kerja</string>
-    <string name="exp_report_privacy_note">Laporan hanya dibuat di ponsel ini. Nama klien tidak pernah disertakan. No. pekerjaan / perintah kerja, catatan, dan komisi tidak disertakan kecuali Anda mengaktifkannya.</string>
+    <string name="exp_report_privacy_note">Laporan hanya dibuat di ponsel ini. Nama klien dan catatan tidak pernah disertakan. No. pekerjaan / perintah kerja dan komisi tidak disertakan kecuali Anda mengaktifkannya.</string>
     <string name="exp_job_hint">Laporan menampilkan nomor ini, tidak pernah nama klien.</string>
+    <string name="notif_details_in_app">Buka aplikasi untuk detailnya</string>
+    <string name="screenshots_always_blocked">Tangkapan layar, perekaman layar, dan berbagi layar selalu diblokir, dan tidak ada yang bisa disalin keluar dari aplikasi, jadi informasi klien tidak bisa diambil dari layar.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

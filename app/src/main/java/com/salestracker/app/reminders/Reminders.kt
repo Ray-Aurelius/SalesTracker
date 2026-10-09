@@ -77,12 +77,12 @@ object ReminderScheduler {
         val nmc = NotificationManagerCompat.from(context)
         if (!nmc.areNotificationsEnabled()) return
         ensureChannel(context)
-        val client = task.clientId?.let { id -> data.clients.firstOrNull { it.id == id }?.label(context) }
-        val line = listOfNotNull(
+        // Notifications can be read by other apps, watches, cars and phone-to-PC links, so they never carry the
+        // task's title, client or notes: just that a task is due. The details open in the app.
+        val line = listOf(
             context.getString(if (task.important) R.string.task_important else R.string.task_other),
-            client,
+            context.getString(R.string.notif_details_in_app),
         ).joinToString(" · ")
-        val body = if (task.notes.isBlank()) line else "$line\n${task.notes}"
         val nid = notificationId(task.id)
         val open = PendingIntent.getActivity(
             context, nid, openAppIntent(context, null).putExtra(MainActivity.EXTRA_OPEN_TASKS, true),
@@ -91,12 +91,11 @@ object ReminderScheduler {
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_reminder)
             .setColor(0xFFF26B1D.toInt())
-            .setContentTitle(task.title)
+            .setContentTitle(context.getString(R.string.notif_task_private_title))
             .setContentText(line)
-            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
             .setCategory(NotificationCompat.CATEGORY_REMINDER)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            // On the lock screen only "Task reminder" shows; the task itself needs the phone unlocked.
+            // On the lock screen only "Task reminder" shows.
             .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
             .setPublicVersion(
                 NotificationCompat.Builder(context, CHANNEL_ID)
@@ -181,9 +180,8 @@ object ReminderScheduler {
             date == LocalDate.now().plusDays(1) -> context.getString(R.string.notif_tomorrow_at, time)
             else -> context.getString(R.string.notif_date_at, date.format(localizedFormatter("EEEMMMd")), time)
         }
-        val client = appt.clientId?.let { id -> data.clients.firstOrNull { it.id == id }?.label(context) }
-        val line = listOfNotNull(whenText, client?.let { context.getString(R.string.notif_with, it) }).joinToString(" · ")
-        val body = if (appt.notes.isBlank()) line else "$line\n${appt.notes}"
+        // Never the appointment's title, client or notes (other apps and devices can read notifications): only when.
+        val line = listOf(whenText, context.getString(R.string.notif_details_in_app)).joinToString(" · ")
 
         val nid = notificationId(appt.id)
         val open = PendingIntent.getActivity(
@@ -193,12 +191,11 @@ object ReminderScheduler {
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_reminder)
             .setColor(0xFFF26B1D.toInt()) // brand orange, matching the app icon
-            .setContentTitle(appt.title)
+            .setContentTitle(context.getString(R.string.notif_private_title))
             .setContentText(line)
-            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setPriority(NotificationCompat.PRIORITY_MAX)
-            // On the lock screen show only "Appointment reminder"; title, client and notes need the phone unlocked.
+            // On the lock screen show only "Appointment reminder".
             .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
             .setPublicVersion(
                 NotificationCompat.Builder(context, CHANNEL_ID)

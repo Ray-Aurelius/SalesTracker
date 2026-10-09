@@ -516,7 +516,7 @@
     <string name="report_include_commission">Includi la mia provvigione</string>
     <string name="report_password">Proteggi con password</string>
     <string name="report_password_note">Il PDF chiederà questa password all\'apertura. È cifrato con AES-256.</string>
-    <string name="report_privacy_note">Il report viene creato solo su questo telefono. Nomi e provvigione sono esclusi a meno che tu non li attivi.</string>
+    <string name="report_privacy_note">Il report viene creato solo su questo telefono. I nomi dei clienti non sono mai inclusi. N. lavoro / ordine di lavoro e commissioni sono esclusi se non li attivi.</string>
     <string name="report_create">Crea PDF</string>
     <string name="report_working">Creazione del report…</string>
     <string name="report_saved">Report salvato</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">Disattiva il blocco ricevute</string>
     <string name="backup_no_receipts">I backup non includono le foto delle ricevute. Apri una ricevuta e usa Salva una copia per quelle da conservare altrove.</string>
     <string name="exp_include_job">Includi n. lavoro / ordine di lavoro</string>
-    <string name="exp_report_privacy_note">Il report viene creato solo su questo telefono. I nomi dei clienti non sono mai inclusi. N. lavoro / ordine di lavoro, note e commissioni sono esclusi se non li attivi.</string>
+    <string name="exp_report_privacy_note">Il report viene creato solo su questo telefono. Nomi dei clienti e note non sono mai inclusi. N. lavoro / ordine di lavoro e commissioni sono esclusi se non li attivi.</string>
     <string name="exp_job_hint">I report mostrano questo numero, mai il nome del cliente.</string>
+    <string name="notif_details_in_app">Apri l’app per i dettagli</string>
+    <string name="screenshots_always_blocked">Screenshot, registrazione e condivisione dello schermo sono sempre bloccati e non si può copiare nulla fuori dall’app, quindi le informazioni dei clienti non possono essere catturate dallo schermo.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>

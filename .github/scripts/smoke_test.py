@@ -286,6 +286,29 @@ def main(apk):
         fail("the client added from the Clients page is not in the list")
     shot("clients-new-client-listed")
 
+    section("Nothing can be copied out of the app")
+    tap(r"^Clients$", wait=1.5)
+    if tap(r"^Search name", wait=1):
+        type_text("Alex")
+        hide_keyboard()
+        pos = find(r"^Alex$")
+        if pos:
+            adb("shell", "input", "swipe", str(pos[0]), str(pos[1]), str(pos[0]), str(pos[1]), "900")  # long-press
+            time.sleep(1.5)
+            note("  text menu: " + ("Select all " if find(r"^Select all$") else "") + ("Paste " if find(r"^Paste$") else ""))
+            if find(r"^(Copy|Cut)$"):
+                fail("client text could be copied out of the app")
+            # Clear the search for the steps that follow.
+            if not tap(r"^Select all$", wait=0.8):
+                adb("shell", "input", "swipe", str(pos[0]), str(pos[1]), str(pos[0]), str(pos[1]), "900")
+                time.sleep(1)
+                tap(r"^Select all$", wait=0.8)
+            adb("shell", "input", "keyevent", "KEYCODE_DEL")
+            time.sleep(0.8)
+            hide_keyboard()
+        else:
+            note("  typed search text not found")
+
     section("A client's profile with stats")
     tap(r"^Clients$", wait=1.5)
     tap(r"Alex Morgan", "client-profile", wait=2)

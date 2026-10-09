@@ -17,7 +17,7 @@ class ExpenseTest {
         Expense(1, at(d), ExpenseKind.EXPENSE, ExpenseCategory.FUEL, amount = 48.20),
         Expense(2, at(d), ExpenseKind.EXPENSE, ExpenseCategory.MEALS, amount = 36.50, clientId = 9, note = "Lunch, \"quotes\""),
         Expense(3, at(d.minusDays(1)), ExpenseKind.MILEAGE, distance = 18.4, ratePerUnit = 0.65, unit = DistanceUnit.MILES),
-        Expense(4, at(d.minusDays(2)), ExpenseKind.MILEAGE, distance = 10.0, ratePerUnit = 0.40, unit = DistanceUnit.KILOMETERS, note = "=HYPERLINK(\"x\")"),
+        Expense(4, at(d.minusDays(2)), ExpenseKind.MILEAGE, distance = 10.0, ratePerUnit = 0.40, unit = DistanceUnit.KILOMETERS, note = "Visit Jordan at home", jobRef = "=HYPERLINK(\"x\")"),
     )
 
     @Test fun totals() {
@@ -51,7 +51,7 @@ class ExpenseTest {
     }
 
     @Test fun csvIsSafeAndReadable() {
-        val labels = ExpenseCsv.Labels("Date", "Type", "Category", "Job / work order #", "Note", "Distance", "Unit", "Rate", "Amount", "Expense", "Mileage")
+        val labels = ExpenseCsv.Labels("Date", "Type", "Category", "Job / work order #", "Distance", "Unit", "Rate", "Amount", "Expense", "Mileage")
         val clients = mapOf(9L to Client(id = 9, firstName = "Jordan", lastName = "Lee", phone = "555-0111", email = "jordan@example.com", reference = "WO-1041"))
         val csv = ExpenseCsv.build(
             list, labels,
@@ -60,13 +60,15 @@ class ExpenseTest {
         )
         val lines = csv.trimEnd().split("\r\n")
         assertEquals(5, lines.size)
-        assertEquals("\"Date\",\"Type\",\"Category\",\"Job / work order #\",\"Note\",\"Distance\",\"Unit\",\"Rate (USD)\",\"Amount (USD)\"", lines[0])
+        assertEquals("\"Date\",\"Type\",\"Category\",\"Job / work order #\",\"Distance\",\"Unit\",\"Rate (USD)\",\"Amount (USD)\"", lines[0])
         // oldest first, plain dot decimals
         assertTrue(lines[1].startsWith("\"2026-10-04\",\"Mileage\""))
         assertTrue(lines[1].contains("\"10.00\",\"km\",\"0.400\",\"4.00\""))
         // quotes doubled; formulas neutralised so a spreadsheet can't run them
-        assertTrue(csv.contains("\"Lunch, \"\"quotes\"\"\""))
         assertTrue(csv.contains("\"'=HYPERLINK(\"\"x\"\")\""))
+        // Notes are free text and never exported.
+        assertFalse(csv.contains("Lunch"))
+        assertFalse(csv.contains("Visit"))
         assertFalse(csv.contains(",\"=HYPERLINK"))
         // The job / work order # goes out; the client's name, phone and email never do.
         assertTrue(csv.contains("\"WO-1041\""))

@@ -516,7 +516,7 @@
     <string name="report_include_commission">包含我的佣金</string>
     <string name="report_password">用密码保护</string>
     <string name="report_password_note">打开 PDF 时需要输入此密码。文件使用 AES-256 加密。</string>
-    <string name="report_privacy_note">报告只在这部手机上生成。除非你开启，否则不包含姓名和佣金。</string>
+    <string name="report_privacy_note">报告仅在此手机上生成，绝不包含客户姓名。除非你开启，否则不包含工作 / 工单编号和佣金。</string>
     <string name="report_create">创建 PDF</string>
     <string name="report_working">正在创建报告…</string>
     <string name="report_saved">报告已保存</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">关闭收据锁定</string>
     <string name="backup_no_receipts">备份不包含收据照片。打开收据并使用“保存副本”，保存需要另行保留的照片。</string>
     <string name="exp_include_job">包含工作 / 工单编号</string>
-    <string name="exp_report_privacy_note">报告仅在此手机上生成，绝不包含客户姓名。除非你开启，否则不包含工作 / 工单编号、备注和佣金。</string>
+    <string name="exp_report_privacy_note">报告仅在此手机上生成，绝不包含客户姓名和备注。除非你开启，否则不包含工作 / 工单编号和佣金。</string>
     <string name="exp_job_hint">报告中显示此编号，绝不显示客户姓名。</string>
+    <string name="notif_details_in_app">打开应用查看详情</string>
+    <string name="screenshots_always_blocked">截屏、录屏和屏幕共享始终被阻止，也无法从应用中复制任何内容，因此客户信息无法从屏幕上获取。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

@@ -516,7 +516,7 @@
     <string name="report_include_commission">Komisyonumu ekle</string>
     <string name="report_password">Parolayla koru</string>
     <string name="report_password_note">PDF açılırken bu parolayı ister. AES-256 ile şifrelenir.</string>
-    <string name="report_privacy_note">Rapor yalnızca bu telefonda oluşturulur. Siz açmadıkça adlar ve komisyon eklenmez.</string>
+    <string name="report_privacy_note">Rapor yalnızca bu telefonda oluşturulur. Müşteri adları asla eklenmez. İş / iş emri numaraları ve komisyon, siz açmadıkça eklenmez.</string>
     <string name="report_create">PDF oluştur</string>
     <string name="report_working">Raporunuz oluşturuluyor…</string>
     <string name="report_saved">Rapor kaydedildi</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">Fiş kilidini kapat</string>
     <string name="backup_no_receipts">Yedeklere fiş fotoğrafları dahil edilmez. Başka bir yerde saklamanız gerekenler için fişi açıp Kopya kaydet’i kullanın.</string>
     <string name="exp_include_job">İş / iş emri numaralarını ekle</string>
-    <string name="exp_report_privacy_note">Rapor yalnızca bu telefonda oluşturulur. Müşteri adları asla eklenmez. İş / iş emri numaraları, notlar ve komisyon, siz açmadıkça eklenmez.</string>
+    <string name="exp_report_privacy_note">Rapor yalnızca bu telefonda oluşturulur. Müşteri adları ve notlar asla eklenmez. İş / iş emri numaraları ve komisyon, siz açmadıkça eklenmez.</string>
     <string name="exp_job_hint">Raporlarda müşterinin adı değil, bu numara görünür.</string>
+    <string name="notif_details_in_app">Ayrıntılar için uygulamayı açın</string>
+    <string name="screenshots_always_blocked">Ekran görüntüsü, ekran kaydı ve ekran paylaşımı her zaman engellenir ve uygulamadan hiçbir şey kopyalanamaz; böylece müşteri bilgileri ekrandan alınamaz.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

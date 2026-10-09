@@ -516,7 +516,7 @@
     <string name="report_include_commission">Incluir minha comissão</string>
     <string name="report_password">Proteger com senha</string>
     <string name="report_password_note">O PDF pedirá esta senha ao ser aberto. Ele é criptografado com AES-256.</string>
-    <string name="report_privacy_note">O relatório é criado só neste celular. Nomes e comissão ficam de fora, a menos que você os ative.</string>
+    <string name="report_privacy_note">O relatório é criado apenas neste telefone. Nomes de clientes nunca são incluídos. N.º do trabalho / ordem de serviço e comissão ficam de fora, a menos que você os ative.</string>
     <string name="report_create">Criar PDF</string>
     <string name="report_working">Criando seu relatório…</string>
     <string name="report_saved">Relatório salvo</string>
@@ -819,8 +819,10 @@
     <string name="lock_receipts_off_title">Desativar bloqueio de recibos</string>
     <string name="backup_no_receipts">Os backups não incluem fotos de recibos. Abra um recibo e use Salvar uma cópia para os que precisar guardar em outro lugar.</string>
     <string name="exp_include_job">Incluir n.º do trabalho / ordem de serviço</string>
-    <string name="exp_report_privacy_note">O relatório é criado apenas neste telefone. Nomes de clientes nunca são incluídos. N.º do trabalho / ordem de serviço, notas e comissão ficam de fora, a menos que você os ative.</string>
+    <string name="exp_report_privacy_note">O relatório é criado apenas neste telefone. Nomes de clientes e notas nunca são incluídos. N.º do trabalho / ordem de serviço e comissão ficam de fora, a menos que você os ative.</string>
     <string name="exp_job_hint">Os relatórios mostram este número, nunca o nome do cliente.</string>
+    <string name="notif_details_in_app">Abra o app para ver os detalhes</string>
+    <string name="screenshots_always_blocked">Capturas de tela, gravação e compartilhamento de tela estão sempre bloqueados, e nada pode ser copiado para fora do app, então as informações dos clientes não podem ser capturadas da tela.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>

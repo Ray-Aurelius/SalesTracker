@@ -141,7 +141,7 @@ fun Period.filterExpenses(list: List<Expense>, today: LocalDate = LocalDate.now(
  */
 object ExpenseCsv {
     data class Labels(
-        val date: String, val type: String, val category: String, val job: String, val note: String,
+        val date: String, val type: String, val category: String, val job: String,
         val distance: String, val unit: String, val rate: String, val amount: String,
         val expense: String, val mileage: String,
     )
@@ -158,7 +158,7 @@ object ExpenseCsv {
     ): String {
         val sb = StringBuilder()
         fun row(vararg cells: String) { sb.append(cells.joinToString(",") { cell(it) }).append("\r\n") }
-        row(labels.date, labels.type, labels.category, labels.job, labels.note,
+        row(labels.date, labels.type, labels.category, labels.job,
             labels.distance, labels.unit, "${labels.rate} ($currencyCode)", "${labels.amount} ($currencyCode)")
         list.sortedBy { it.timestamp }.forEach { e ->
             val mileage = e.kind == ExpenseKind.MILEAGE
@@ -167,7 +167,6 @@ object ExpenseCsv {
                 if (mileage) labels.mileage else labels.expense,
                 if (mileage) "" else categoryName(e.category),
                 jobRef(e).orEmpty(),
-                e.note,
                 if (mileage) number(e.distance) else "",
                 if (mileage) unitName(e.unit) else "",
                 if (mileage) number(e.ratePerUnit, 3) else "",

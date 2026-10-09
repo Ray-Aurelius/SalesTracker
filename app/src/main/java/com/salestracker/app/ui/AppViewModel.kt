@@ -264,13 +264,6 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         settings.edit().putString("lockDelay", d.name).apply()
     }
 
-    /** Blocks screenshots and screen recording of the app (and hides it in recent apps). */
-    var blockScreenshots by mutableStateOf(settings.getBoolean("blockScreenshots", false))
-        private set
-    fun changeBlockScreenshots(on: Boolean) {
-        blockScreenshots = on
-        settings.edit().putBoolean("blockScreenshots", on).apply()
-    }
 
     // The fingerprint/PIN prompt itself can briefly take the app off screen; that must not re-lock it.
     private var authInProgress = false
@@ -396,7 +389,6 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         appLock = false
         unlocked = true
         lockDelay = LockDelay.SEC_30
-        blockScreenshots = false
         startInPrivacyMode = false
         PrivacyMode.hideAmounts = false
         agreementAcceptedAt = 0L

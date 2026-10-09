@@ -26,7 +26,8 @@ import java.time.ZoneId
 object ReportPdf {
     data class Options(
         val period: GoalPeriod,
-        val includeNames: Boolean,
+        /** Show each sale's job / work order #. Client names, phones and emails are never put in a report. */
+        val includeJobRefs: Boolean,
         val includeCommission: Boolean,
         val password: String?,
     )
@@ -131,14 +132,14 @@ object ReportPdf {
         if (sales.isEmpty()) {
             text(str(R.string.report_no_sales), body)
         } else {
-            val widths = if (opt.includeNames) listOf(110f, 170f, 110f, W - 2 * M - 390f) else listOf(140f, 0f, 140f, W - 2 * M - 280f)
-            fun cols(a: String, b: String, c: String, d: String) = if (opt.includeNames) listOf(a, b, c, d) else listOf(a, c, d)
-            fun ws() = if (opt.includeNames) widths else widths.filter { it > 0f }
-            row(cols(str(R.string.col_date), context.getString(terms.clients), str(R.string.col_amount), str(R.string.col_status)), ws(), muted)
+            val widths = if (opt.includeJobRefs) listOf(110f, 170f, 110f, W - 2 * M - 390f) else listOf(140f, 0f, 140f, W - 2 * M - 280f)
+            fun cols(a: String, b: String, c: String, d: String) = if (opt.includeJobRefs) listOf(a, b, c, d) else listOf(a, c, d)
+            fun ws() = if (opt.includeJobRefs) widths else widths.filter { it > 0f }
+            row(cols(str(R.string.col_date), str(R.string.client_ref), str(R.string.col_amount), str(R.string.col_status)), ws(), muted)
             divider()
             sales.forEach { sale ->
                 val date = Instant.ofEpochMilli(sale.timestamp).atZone(zone).toLocalDate().format(dateFmt)
-                val name = sale.clientId?.let { clients[it]?.label(context) } ?: "—"
+                val name = sale.clientId?.let { clients[it]?.reference?.trim() }?.ifBlank { null } ?: "—"
                 val status = buildString {
                     append(context.getString(if (sale.closed) R.string.tag_closed else R.string.tag_not_closed))
                     if (sale.upsellAccepted) append(" · ").append(context.getString(R.string.tag_upsell))
