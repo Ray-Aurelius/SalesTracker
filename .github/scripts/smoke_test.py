@@ -27,6 +27,9 @@ def adb(*args, check=False, timeout=120):
 def note(msg):
     print(msg, flush=True)
     log.append(msg)
+    # Written after every step, so a run that dies part-way still says how far it got.
+    with open(f"{OUT}/summary.txt", "w") as f:
+        f.write("\n".join(log) + "\n")
 
 
 def in_app():

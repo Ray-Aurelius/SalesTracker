@@ -159,7 +159,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          [ -d smoke ] || exit 0
+          mkdir -p smoke
+          [ -f smoke/summary.txt ] || echo "The test script did not start (emulator or install problem)." > smoke/summary.txt
+          echo "Run ${{ github.run_number }}, commit ${{ github.sha }}" > smoke/run.txt
           gh release view smoke-test >/dev/null 2>&1 || gh release create smoke-test --title "Emulator smoke test" --notes "Screenshots from the latest emulator run of the release build." --prerelease
-          gh release upload smoke-test smoke/* --clobber
-          [ -f smoke/summary.txt ] && cat smoke/summary.txt
+          # Clear the previous run's files so nothing stale is left behind.
+          for a in $(gh release view smoke-test --json assets --jq '.assets[].name'); do gh release delete-asset smoke-test "$a" -y || true; done
+          gh release upload smoke-test smoke/* --clobber || true
+          cat smoke/summary.txt
