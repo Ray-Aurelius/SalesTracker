@@ -710,7 +710,6 @@
     <string name="exp_cat_travel">Reisen</string>
     <string name="exp_cd_delete">Eintrag löschen</string>
     <string name="exp_col_category">Kategorie</string>
-    <string name="exp_col_client">Kunde</string>
     <string name="exp_col_details">Details</string>
     <string name="exp_col_distance">Strecke</string>
     <string name="exp_col_rate">Satz</string>
@@ -819,6 +818,9 @@
     <string name="lock_receipts_desc">Fragt bei jedem Öffnen eines Belegfotos nach PIN, Passwort oder Fingerabdruck des Telefons. Auch das Ausschalten fragt danach.</string>
     <string name="lock_receipts_off_title">Belegsperre ausschalten</string>
     <string name="backup_no_receipts">Sicherungen enthalten keine Belegfotos. Öffne einen Beleg und tippe auf Kopie speichern für alle, die du woanders aufbewahren musst.</string>
+    <string name="exp_include_job">Auftrags-/Arbeitsauftragsnummern einschließen</string>
+    <string name="exp_report_privacy_note">Der Bericht wird nur auf diesem Telefon erstellt. Kundennamen sind nie enthalten. Auftrags-/Arbeitsauftragsnummern, Notizen und Provision werden nur aufgenommen, wenn du sie einschaltest.</string>
+    <string name="exp_job_hint">Berichte zeigen diese Nummer, nie den Namen des Kunden.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

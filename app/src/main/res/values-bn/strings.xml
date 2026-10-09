@@ -710,7 +710,6 @@
     <string name="exp_cat_travel">ভ্রমণ</string>
     <string name="exp_cd_delete">এন্ট্রি মুছুন</string>
     <string name="exp_col_category">বিভাগ</string>
-    <string name="exp_col_client">ক্লায়েন্ট</string>
     <string name="exp_col_details">বিস্তারিত</string>
     <string name="exp_col_distance">দূরত্ব</string>
     <string name="exp_col_rate">হার</string>
@@ -819,6 +818,9 @@
     <string name="lock_receipts_desc">প্রতিবার রসিদের ছবি খোলার সময় ফোনের PIN, পাসওয়ার্ড বা আঙুলের ছাপ চাওয়া হবে। এটি বন্ধ করতেও চাওয়া হবে।</string>
     <string name="lock_receipts_off_title">রসিদ লক বন্ধ করুন</string>
     <string name="backup_no_receipts">ব্যাকআপে রসিদের ছবি থাকে না। যেগুলো অন্য কোথাও রাখতে হবে, সেই রসিদ খুলে একটি কপি সেভ করুন ব্যবহার করুন।</string>
+    <string name="exp_include_job">জব / ওয়ার্ক অর্ডার নম্বর যোগ করুন</string>
+    <string name="exp_report_privacy_note">রিপোর্ট শুধু এই ফোনেই তৈরি হয়। ক্লায়েন্টের নাম কখনো থাকে না। আপনি চালু না করলে জব / ওয়ার্ক অর্ডার নম্বর, নোট ও কমিশন বাদ থাকে।</string>
+    <string name="exp_job_hint">রিপোর্টে এই নম্বর দেখায়, ক্লায়েন্টের নাম কখনো নয়।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

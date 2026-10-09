@@ -398,6 +398,7 @@ def main(apk):
         time.sleep(4)
     if tap(r"^Expense report$", wait=1.5):
         tap(r"^Spreadsheet \(CSV\)$", wait=1)
+        toggle_near(r"^Include job / work order #s$", "expense-csv-job-numbers")
         tap(r"^Create file$", wait=2)
         save_in_picker("expense-csv")
         time.sleep(4)
@@ -411,6 +412,12 @@ def main(apk):
     note("  CSV starts: " + head.replace("\r\n", " | ")[:300])
     if "42.50" not in adb("shell", "cat /sdcard/Download/Expenses-*.csv"):
         fail("the spreadsheet is missing the expense that was added")
+    csv = adb("shell", "cat /sdcard/Download/Expenses-*.csv")
+    if "Job / work order #" not in csv or not re.search(r"WO-10\d\d", csv):
+        fail("the spreadsheet doesn't carry job / work order numbers")
+    for name in ["Alex Morgan", "Jordan Lee", "Sam Patel", "Casey Rivera", "@example.com", "555-01"]:
+        if name in csv:
+            fail(f"client details leaked into the expense spreadsheet: {name}")
 
     section("Receipt photo: photo picker, encrypted, locked behind the phone's PIN")
     # A receipt-like picture in the emulator's gallery for the picker to offer.

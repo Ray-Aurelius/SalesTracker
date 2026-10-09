@@ -51,15 +51,16 @@ class ExpenseTest {
     }
 
     @Test fun csvIsSafeAndReadable() {
-        val labels = ExpenseCsv.Labels("Date", "Type", "Category", "Client", "Note", "Distance", "Unit", "Rate", "Amount", "Expense", "Mileage")
+        val labels = ExpenseCsv.Labels("Date", "Type", "Category", "Job / work order #", "Note", "Distance", "Unit", "Rate", "Amount", "Expense", "Mileage")
+        val clients = mapOf(9L to Client(id = 9, firstName = "Jordan", lastName = "Lee", phone = "555-0111", email = "jordan@example.com", reference = "WO-1041"))
         val csv = ExpenseCsv.build(
             list, labels,
             categoryName = { it.name.lowercase() }, unitName = { if (it == DistanceUnit.MILES) "mi" else "km" },
-            clientName = { if (it == 9L) "Jordan Lee" else null }, currencyCode = "USD", zone = zone,
+            jobRef = { it.exportJobRef(clients) }, currencyCode = "USD", zone = zone,
         )
         val lines = csv.trimEnd().split("\r\n")
         assertEquals(5, lines.size)
-        assertEquals("\"Date\",\"Type\",\"Category\",\"Client\",\"Note\",\"Distance\",\"Unit\",\"Rate (USD)\",\"Amount (USD)\"", lines[0])
+        assertEquals("\"Date\",\"Type\",\"Category\",\"Job / work order #\",\"Note\",\"Distance\",\"Unit\",\"Rate (USD)\",\"Amount (USD)\"", lines[0])
         // oldest first, plain dot decimals
         assertTrue(lines[1].startsWith("\"2026-10-04\",\"Mileage\""))
         assertTrue(lines[1].contains("\"10.00\",\"km\",\"0.400\",\"4.00\""))
@@ -67,7 +68,18 @@ class ExpenseTest {
         assertTrue(csv.contains("\"Lunch, \"\"quotes\"\"\""))
         assertTrue(csv.contains("\"'=HYPERLINK(\"\"x\"\")\""))
         assertFalse(csv.contains(",\"=HYPERLINK"))
-        assertTrue(csv.contains("\"Jordan Lee\""))
+        // The job / work order # goes out; the client's name, phone and email never do.
+        assertTrue(csv.contains("\"WO-1041\""))
+        listOf("Jordan", "Lee", "555-0111", "jordan@example.com").forEach { assertFalse(it, csv.contains(it)) }
+    }
+
+    @Test fun expenseJobNumberComesFirstThenTheClients() {
+        val clients = mapOf(9L to Client(id = 9, firstName = "Jordan", lastName = "Lee", phone = "", email = "", reference = "WO-1041"))
+        val e = Expense(id = 1, timestamp = 0, kind = ExpenseKind.EXPENSE, amount = 5.0, clientId = 9)
+        assertEquals("WO-1041", e.exportJobRef(clients))
+        assertEquals("JOB-77", e.copy(jobRef = " JOB-77 ").exportJobRef(clients))
+        assertEquals(null, e.copy(clientId = null).exportJobRef(clients))
+        assertEquals("JOB-77", Expense.fromJson(e.copy(jobRef = "JOB-77").toJson()).jobRef)
     }
 
     @Test fun appDataKeepsExpensesAndPlan() {

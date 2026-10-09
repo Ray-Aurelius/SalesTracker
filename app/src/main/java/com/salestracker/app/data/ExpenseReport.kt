@@ -113,13 +113,14 @@ internal class PdfPages {
 }
 
 /**
- * The expense and mileage report as a PDF, built entirely on the phone. Client names, notes and income are
- * left out unless the user turns them on; the file can be locked with an AES-256 password.
+ * The expense and mileage report as a PDF, built entirely on the phone. Client names are never included;
+ * job / work order numbers, notes and income are left out unless the user turns them on; the file can be locked with an AES-256 password.
  */
 object ExpenseReportPdf {
     data class Options(
         val range: ReportRange,
-        val includeNames: Boolean,
+        /** Show each expense's job / work order #. Client names are never put in this report. */
+        val includeJobRefs: Boolean,
         val includeNotes: Boolean,
         val includeIncome: Boolean,
         val password: String?,
@@ -134,7 +135,7 @@ object ExpenseReportPdf {
         fun str(id: Int, vararg args: Any) = context.getString(id, *args)
         fun unitShort(u: DistanceUnit) = context.getString(u.short)
         fun distance(v: Double, u: DistanceUnit) = "${formatAmountInput(v)} ${unitShort(u)}"
-        fun clientOf(e: Expense) = if (opt.includeNames) e.clientId?.let { clients[it]?.label(context) }.orEmpty() else ""
+        fun clientOf(e: Expense) = if (opt.includeJobRefs) e.exportJobRef(clients)?.let { str(R.string.client_ref_display, it) }.orEmpty() else ""
 
         val p = PdfPages()
         p.start()

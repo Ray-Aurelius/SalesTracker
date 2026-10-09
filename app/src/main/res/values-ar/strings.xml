@@ -710,7 +710,6 @@
     <string name="exp_cat_travel">سفر</string>
     <string name="exp_cd_delete">حذف القيد</string>
     <string name="exp_col_category">الفئة</string>
-    <string name="exp_col_client">العميل</string>
     <string name="exp_col_details">التفاصيل</string>
     <string name="exp_col_distance">المسافة</string>
     <string name="exp_col_rate">السعر</string>
@@ -819,6 +818,9 @@
     <string name="lock_receipts_desc">طلب رمز PIN أو كلمة المرور أو بصمة الهاتف في كل مرة تُفتح فيها صورة إيصال. إيقاف ذلك يتطلب التأكيد أيضًا.</string>
     <string name="lock_receipts_off_title">إيقاف قفل الإيصالات</string>
     <string name="backup_no_receipts">النسخ الاحتياطية لا تتضمن صور الإيصالات. افتح الإيصال واستخدم حفظ نسخة لما تحتاج إلى الاحتفاظ به في مكان آخر.</string>
+    <string name="exp_include_job">تضمين أرقام المهام / أوامر العمل</string>
+    <string name="exp_report_privacy_note">يُنشأ التقرير على هذا الهاتف فقط. لا تُضمَّن أسماء العملاء أبدًا. تُستبعد أرقام المهام / أوامر العمل والملاحظات والعمولة ما لم تفعّلها.</string>
+    <string name="exp_job_hint">تعرض التقارير هذا الرقم، وليس اسم العميل أبدًا.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

@@ -710,7 +710,6 @@
     <string name="exp_cat_travel">Seyahat</string>
     <string name="exp_cd_delete">Kaydı sil</string>
     <string name="exp_col_category">Kategori</string>
-    <string name="exp_col_client">Müşteri</string>
     <string name="exp_col_details">Ayrıntılar</string>
     <string name="exp_col_distance">Mesafe</string>
     <string name="exp_col_rate">Birim ücret</string>
@@ -819,6 +818,9 @@
     <string name="lock_receipts_desc">Her fiş fotoğrafı açıldığında telefonun PIN’ini, şifresini veya parmak izini ister. Kapatmak da onay ister.</string>
     <string name="lock_receipts_off_title">Fiş kilidini kapat</string>
     <string name="backup_no_receipts">Yedeklere fiş fotoğrafları dahil edilmez. Başka bir yerde saklamanız gerekenler için fişi açıp Kopya kaydet’i kullanın.</string>
+    <string name="exp_include_job">İş / iş emri numaralarını ekle</string>
+    <string name="exp_report_privacy_note">Rapor yalnızca bu telefonda oluşturulur. Müşteri adları asla eklenmez. İş / iş emri numaraları, notlar ve komisyon, siz açmadıkça eklenmez.</string>
+    <string name="exp_job_hint">Raporlarda müşterinin adı değil, bu numara görünür.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

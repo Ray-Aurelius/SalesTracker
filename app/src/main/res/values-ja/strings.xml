@@ -710,7 +710,6 @@
     <string name="exp_cat_travel">交通・出張</string>
     <string name="exp_cd_delete">記録を削除</string>
     <string name="exp_col_category">カテゴリ</string>
-    <string name="exp_col_client">顧客</string>
     <string name="exp_col_details">詳細</string>
     <string name="exp_col_distance">距離</string>
     <string name="exp_col_rate">単価</string>
@@ -819,6 +818,9 @@
     <string name="lock_receipts_desc">領収書の写真を開くたびに、スマートフォンの PIN、パスワード、または指紋を求めます。オフにするときも確認します。</string>
     <string name="lock_receipts_off_title">領収書のロックをオフにする</string>
     <string name="backup_no_receipts">バックアップには領収書の写真は含まれません。別の場所に保管が必要なものは、領収書を開いて「コピーを保存」を使ってください。</string>
+    <string name="exp_include_job">案件 / 作業指示番号を含める</string>
+    <string name="exp_report_privacy_note">レポートはこのスマートフォン内でのみ作成されます。顧客名は一切含まれません。案件 / 作業指示番号、メモ、コミッションはオンにした場合のみ含まれます。</string>
+    <string name="exp_job_hint">レポートにはこの番号が表示され、顧客名は表示されません。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

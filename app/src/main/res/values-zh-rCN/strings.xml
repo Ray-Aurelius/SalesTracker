@@ -710,7 +710,6 @@
     <string name="exp_cat_travel">差旅</string>
     <string name="exp_cd_delete">删除记录</string>
     <string name="exp_col_category">类别</string>
-    <string name="exp_col_client">客户</string>
     <string name="exp_col_details">详情</string>
     <string name="exp_col_distance">距离</string>
     <string name="exp_col_rate">费率</string>
@@ -819,6 +818,9 @@
     <string name="lock_receipts_desc">每次打开收据照片时都要求输入手机的 PIN 码、密码或验证指纹。关闭此项也需要验证。</string>
     <string name="lock_receipts_off_title">关闭收据锁定</string>
     <string name="backup_no_receipts">备份不包含收据照片。打开收据并使用“保存副本”，保存需要另行保留的照片。</string>
+    <string name="exp_include_job">包含工作 / 工单编号</string>
+    <string name="exp_report_privacy_note">报告仅在此手机上生成，绝不包含客户姓名。除非你开启，否则不包含工作 / 工单编号、备注和佣金。</string>
+    <string name="exp_job_hint">报告中显示此编号，绝不显示客户姓名。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

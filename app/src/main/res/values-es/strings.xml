@@ -710,7 +710,6 @@
     <string name="exp_cat_travel">Viajes</string>
     <string name="exp_cd_delete">Eliminar registro</string>
     <string name="exp_col_category">Categoría</string>
-    <string name="exp_col_client">Cliente</string>
     <string name="exp_col_details">Detalles</string>
     <string name="exp_col_distance">Distancia</string>
     <string name="exp_col_rate">Tarifa</string>
@@ -819,6 +818,9 @@
     <string name="lock_receipts_desc">Pide el PIN, la contraseña o la huella del teléfono cada vez que se abre una foto de recibo. Para desactivarlo también se pide.</string>
     <string name="lock_receipts_off_title">Desactivar bloqueo de recibos</string>
     <string name="backup_no_receipts">Las copias de seguridad no incluyen fotos de recibos. Abre un recibo y usa Guardar una copia para los que necesites conservar en otro lugar.</string>
+    <string name="exp_include_job">Incluir n.º de trabajo / orden de trabajo</string>
+    <string name="exp_report_privacy_note">El informe se crea solo en este teléfono. Nunca incluye nombres de clientes. Los n.º de trabajo / orden de trabajo, las notas y la comisión se omiten salvo que los actives.</string>
+    <string name="exp_job_hint">Los informes muestran este número, nunca el nombre del cliente.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>

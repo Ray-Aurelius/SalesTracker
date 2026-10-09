@@ -710,7 +710,6 @@
     <string name="exp_cat_travel">출장</string>
     <string name="exp_cd_delete">기록 삭제</string>
     <string name="exp_col_category">카테고리</string>
-    <string name="exp_col_client">고객</string>
     <string name="exp_col_details">세부 정보</string>
     <string name="exp_col_distance">거리</string>
     <string name="exp_col_rate">단가</string>
@@ -819,6 +818,9 @@
     <string name="lock_receipts_desc">영수증 사진을 열 때마다 휴대전화의 PIN, 비밀번호 또는 지문을 요구합니다. 끌 때도 확인합니다.</string>
     <string name="lock_receipts_off_title">영수증 잠금 끄기</string>
     <string name="backup_no_receipts">백업에는 영수증 사진이 포함되지 않습니다. 다른 곳에 보관해야 하는 영수증은 열어서 사본 저장을 사용하세요.</string>
+    <string name="exp_include_job">작업 / 작업 지시 번호 포함</string>
+    <string name="exp_report_privacy_note">보고서는 이 휴대전화에서만 만들어집니다. 고객 이름은 절대 포함되지 않습니다. 작업 / 작업 지시 번호, 메모, 수수료는 켜는 경우에만 포함됩니다.</string>
+    <string name="exp_job_hint">보고서에는 고객 이름이 아닌 이 번호가 표시됩니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

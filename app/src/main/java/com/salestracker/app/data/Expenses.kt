@@ -57,6 +57,8 @@ data class Expense(
     val note: String = "",
     /** Receipt photos (ids of encrypted files kept by [ReceiptStore]). */
     val receipts: List<Long> = emptyList(),
+    /** Job ID or work order number this cost belongs to. Reports use this, never client names. */
+    val jobRef: String = "",
 ) {
     /** What this entry is worth: the amount spent, or distance × rate. */
     val total: Double get() = if (kind == ExpenseKind.MILEAGE) distance * ratePerUnit else amount
@@ -75,6 +77,7 @@ data class Expense(
         .put("clientId", clientId ?: JSONObject.NULL)
         .put("note", note)
         .put("receipts", org.json.JSONArray(receipts))
+        .put("jobRef", jobRef)
 
     companion object {
         fun fromJson(o: JSONObject) = Expense(
@@ -88,12 +91,17 @@ data class Expense(
             unit = DistanceUnit.entries.firstOrNull { it.name == o.optString("unit") } ?: DistanceUnit.MILES,
             clientId = if (!o.has("clientId") || o.isNull("clientId")) null else o.getLong("clientId"),
             note = o.optString("note"),
+            jobRef = o.optString("jobRef"),
             receipts = o.optJSONArray("receipts")?.let { a -> (0 until a.length()).mapNotNull { a.optLong(it).takeIf { v -> v != 0L } } }.orEmpty(),
         )
 
         private fun Double.orZero() = if (isNaN() || isInfinite()) 0.0 else this
     }
 }
+
+/** The expense's own job / work order #, or else the linked client's. Null if neither has one. */
+fun Expense.exportJobRef(clients: Map<Long, Client>): String? =
+    jobRef.trim().ifBlank { clientId?.let { clients[it]?.reference?.trim() }.orEmpty() }.ifBlank { null }
 
 /** Totals for a set of expenses and trips. */
 data class ExpenseStats(
@@ -133,7 +141,7 @@ fun Period.filterExpenses(list: List<Expense>, today: LocalDate = LocalDate.now(
  */
 object ExpenseCsv {
     data class Labels(
-        val date: String, val type: String, val category: String, val client: String, val note: String,
+        val date: String, val type: String, val category: String, val job: String, val note: String,
         val distance: String, val unit: String, val rate: String, val amount: String,
         val expense: String, val mileage: String,
     )
@@ -143,13 +151,14 @@ object ExpenseCsv {
         labels: Labels,
         categoryName: (ExpenseCategory) -> String,
         unitName: (DistanceUnit) -> String,
-        clientName: (Long) -> String?,
+        /** The job / work order # to show for an expense, or null to leave it out. Client names are never exported. */
+        jobRef: (Expense) -> String?,
         currencyCode: String,
         zone: ZoneId = ZoneId.systemDefault(),
     ): String {
         val sb = StringBuilder()
         fun row(vararg cells: String) { sb.append(cells.joinToString(",") { cell(it) }).append("\r\n") }
-        row(labels.date, labels.type, labels.category, labels.client, labels.note,
+        row(labels.date, labels.type, labels.category, labels.job, labels.note,
             labels.distance, labels.unit, "${labels.rate} ($currencyCode)", "${labels.amount} ($currencyCode)")
         list.sortedBy { it.timestamp }.forEach { e ->
             val mileage = e.kind == ExpenseKind.MILEAGE
@@ -157,7 +166,7 @@ object ExpenseCsv {
                 DateTimeFormatter.ISO_LOCAL_DATE.format(e.day(zone)),
                 if (mileage) labels.mileage else labels.expense,
                 if (mileage) "" else categoryName(e.category),
-                e.clientId?.let(clientName).orEmpty(),
+                jobRef(e).orEmpty(),
                 e.note,
                 if (mileage) number(e.distance) else "",
                 if (mileage) unitName(e.unit) else "",

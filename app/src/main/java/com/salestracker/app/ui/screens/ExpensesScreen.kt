@@ -71,6 +71,7 @@ import com.salestracker.app.data.Backup
 import com.salestracker.app.data.Client
 import com.salestracker.app.data.DistanceUnit
 import com.salestracker.app.data.Expense
+import com.salestracker.app.data.exportJobRef
 import com.salestracker.app.data.ExpenseCategory
 import com.salestracker.app.data.ExpenseCsv
 import com.salestracker.app.data.ExpenseKind
@@ -273,6 +274,7 @@ private fun ExpenseCard(vm: AppViewModel, e: Expense, clientName: String?, onCli
                 val line = listOfNotNull(
                     e.day().format(localizedFormatter("yMMMd")),
                     clientName,
+                    e.jobRef.takeIf { it.isNotBlank() }?.let { stringResource(R.string.client_ref_display, it) },
                     e.note.takeIf { it.isNotBlank() },
                 ).joinToString(" · ")
                 Text(line, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -307,6 +309,7 @@ fun ExpenseDialog(
     var rate by remember { mutableStateOf((initial?.ratePerUnit ?: defaultRate).takeIf { it > 0 }?.let(::formatAmountInput) ?: "") }
     var clientId by remember { mutableStateOf(initial?.clientId ?: defaultClientId) }
     var note by remember { mutableStateOf(initial?.note ?: "") }
+    var jobRef by remember { mutableStateOf(initial?.jobRef ?: clients.firstOrNull { it.id == defaultClientId }?.reference.orEmpty()) }
     val receipts = remember { androidx.compose.runtime.mutableStateListOf<Long>().apply { addAll(initial?.receipts.orEmpty()) } }
     // Photos stored during this visit: Cancel removes them again so nothing is left behind.
     val added = remember { androidx.compose.runtime.mutableStateListOf<Long>() }
@@ -378,7 +381,19 @@ fun ExpenseDialog(
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
-                ClientPicker(clients, clientId, { clientId = it })
+                ClientPicker(clients, clientId, { id ->
+                    // Picking a client fills in their job / work order # if none is typed yet.
+                    if (jobRef.isBlank()) jobRef = clients.firstOrNull { it.id == id }?.reference.orEmpty()
+                    clientId = id
+                })
+                OutlinedTextField(
+                    value = jobRef, onValueChange = { jobRef = it },
+                    label = { Text(stringResource(R.string.client_ref)) },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters),
+                    supportingText = { Text(stringResource(R.string.exp_job_hint)) },
+                    modifier = Modifier.fillMaxWidth(),
+                )
                 OutlinedTextField(
                     value = note, onValueChange = { note = it },
                     label = { Text(stringResource(if (trip) R.string.exp_trip_purpose else R.string.notes)) },
@@ -407,6 +422,7 @@ fun ExpenseDialog(
                         clientId = clientId,
                         note = note.trim(),
                         receipts = receipts.toList(),
+                        jobRef = jobRef.trim(),
                     )
                 )
                 onDismiss()
@@ -495,7 +511,7 @@ fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) 
     }
 
     val pdfSaver = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
-        val opt = ExpenseReportPdf.Options(range, names, notes, income, if (protect) pw else null)
+        val opt = ExpenseReportPdf.Options(range, includeJobRefs = names, includeNotes = notes, includeIncome = income, password = if (protect) pw else null)
         write(uri) { ExpenseReportPdf.create(context, data, opt) }
     }
     val csvSaver = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("text/csv")) { uri ->
@@ -505,7 +521,7 @@ fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) 
             val clients = data.clients.associateBy { it.id }
             val labels = ExpenseCsv.Labels(
                 date = context.getString(R.string.col_date), type = context.getString(R.string.exp_col_type),
-                category = context.getString(R.string.exp_col_category), client = context.getString(R.string.exp_col_client),
+                category = context.getString(R.string.exp_col_category), job = context.getString(R.string.client_ref),
                 note = context.getString(R.string.notes), distance = context.getString(R.string.exp_col_distance),
                 unit = context.getString(R.string.exp_col_unit), rate = context.getString(R.string.exp_col_rate),
                 amount = context.getString(R.string.col_amount),
@@ -516,7 +532,7 @@ fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) 
                 labels,
                 categoryName = { context.getString(it.label) },
                 unitName = { context.getString(it.short) },
-                clientName = { id -> if (names) clients[id]?.label(context) else null },
+                jobRef = { e -> if (names) e.exportJobRef(clients) else null },
                 currencyCode = moneyCurrency().currencyCode,
             ).toByteArray(Charsets.UTF_8).let { byteArrayOf(0xEF.toByte(), 0xBB.toByte(), 0xBF.toByte()) + it }
         }
@@ -548,7 +564,7 @@ fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) 
                             icon = { Icon(Icons.Filled.TableChart, contentDescription = null, modifier = Modifier.size(18.dp)) },
                         ) { FitText(stringResource(R.string.exp_format_csv)) }
                     }
-                    ReportSwitch(stringResource(R.string.report_include_names), names) { names = it }
+                    ReportSwitch(stringResource(R.string.exp_include_job), names) { names = it }
                     ReportSwitch(stringResource(R.string.exp_include_notes), notes) { notes = it }
                     if (!csv) {
                         ReportSwitch(stringResource(R.string.exp_include_income), income) { income = it }
@@ -561,7 +577,7 @@ fun ExpenseReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) 
                     } else {
                         Text(stringResource(R.string.exp_csv_note), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
-                    Text(stringResource(R.string.report_privacy_note), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(R.string.exp_report_privacy_note), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
         },

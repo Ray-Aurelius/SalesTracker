@@ -710,7 +710,6 @@
     <string name="exp_cat_travel">यात्रा</string>
     <string name="exp_cd_delete">एंट्री हटाएँ</string>
     <string name="exp_col_category">श्रेणी</string>
-    <string name="exp_col_client">क्लाइंट</string>
     <string name="exp_col_details">विवरण</string>
     <string name="exp_col_distance">दूरी</string>
     <string name="exp_col_rate">दर</string>
@@ -819,6 +818,9 @@
     <string name="lock_receipts_desc">हर बार रसीद की फ़ोटो खोलने पर फ़ोन का PIN, पासवर्ड या फ़िंगरप्रिंट माँगें। इसे बंद करने पर भी पूछा जाता है।</string>
     <string name="lock_receipts_off_title">रसीद लॉक बंद करें</string>
     <string name="backup_no_receipts">बैकअप में रसीद की फ़ोटो शामिल नहीं होतीं। जिन्हें कहीं और रखना हो, उनकी रसीद खोलकर कॉपी सेव करें इस्तेमाल करें।</string>
+    <string name="exp_include_job">जॉब / वर्क ऑर्डर नंबर शामिल करें</string>
+    <string name="exp_report_privacy_note">रिपोर्ट सिर्फ़ इसी फ़ोन पर बनती है। क्लाइंट के नाम कभी शामिल नहीं होते। जॉब / वर्क ऑर्डर नंबर, नोट्स और कमीशन तभी शामिल होते हैं जब आप उन्हें चालू करें।</string>
+    <string name="exp_job_hint">रिपोर्ट में यह नंबर दिखता है, क्लाइंट का नाम कभी नहीं।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
