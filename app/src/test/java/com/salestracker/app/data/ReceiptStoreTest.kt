@@ -66,7 +66,7 @@ class ReceiptStoreTest {
     fun photosAreShrunkTurnedUprightAndStrippedOfLocation() {
         val f = cameraPhoto()
         // Sanity check: the original really does carry a location.
-        assertNotNull(ExifInterface(f.absolutePath).latLong)
+        assertTrue(ExifInterface(f.absolutePath).getLatLong(FloatArray(2)))
 
         val out = ReceiptStore.prepare { f.inputStream() }!!
         val (w, h) = ReceiptStore.size(out)
@@ -75,7 +75,7 @@ class ReceiptStoreTest {
         assertEquals(2000, h)
 
         val exif = ExifInterface(ByteArrayInputStream(out))
-        assertNull(exif.latLong)
+        assertFalse(exif.getLatLong(FloatArray(2)))
         assertNull(exif.getAttribute(ExifInterface.TAG_GPS_LATITUDE))
         assertNull(exif.getAttribute(ExifInterface.TAG_MAKE))
         assertNull(exif.getAttribute(ExifInterface.TAG_MODEL))
