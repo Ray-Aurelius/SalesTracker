@@ -177,6 +177,7 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
             defaultClientId = vm.stopwatchClientId,
             defaultDurationSeconds = loggedSeconds,
             defaultCommissionPercent = data.defaultCommissionPercent,
+            plan = data.commissionPlan,
             defaultUpsellOnly = data.defaultCommissionUpsellOnly,
             onDismiss = { logging = false },
             onSave = { sale ->

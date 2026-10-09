@@ -90,7 +90,7 @@ data class GoalProgress(
             val sales = data.sales.filter { it.timestamp in from until to && it.closed }
             val current = when (goal.metric) {
                 GoalMetric.REVENUE -> sales.sumOf { it.revenue }
-                GoalMetric.COMMISSION -> sales.sumOf { it.commission(data.defaultCommissionPercent) }
+                GoalMetric.COMMISSION -> sales.sumOf { data.commissionPlan.of(it) }
                 GoalMetric.UPSELL -> sales.filter { it.upsellAccepted }.sumOf { it.upsellAmount }
                 GoalMetric.MANUAL -> goal.manualProgress
             }

@@ -1,5 +1,8 @@
 package com.salestracker.app.ui.screens
 
+import androidx.compose.ui.semantics.Role
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.material3.Switch
 import androidx.compose.material.icons.filled.Work
 import androidx.compose.material.icons.filled.Accessibility
 import androidx.compose.material.icons.filled.TextFields
@@ -18,6 +21,7 @@ import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Payments
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Shield
+import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -38,7 +42,7 @@ import androidx.compose.ui.unit.dp
 import com.salestracker.app.R
 import com.salestracker.app.ui.AppViewModel
 
-private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY }
+private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY, TABS }
 
 /** Appearance and language, plus the way into the Security & privacy center. */
 @Composable
@@ -60,6 +64,9 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
                     }
                     SettingRow(Icons.Filled.Palette, stringResource(R.string.appearance_title), stringResource(R.string.settings_appearance_desc)) {
                         step = Step.APPEARANCE
+                    }
+                    SettingRow(Icons.Filled.Tune, stringResource(R.string.menu_tabs_title), stringResource(R.string.menu_tabs_desc)) {
+                        step = Step.TABS
                     }
                     SettingRow(Icons.Filled.Accessibility, stringResource(R.string.a11y_title), stringResource(R.string.a11y_desc)) {
                         step = Step.ACCESSIBILITY
@@ -114,6 +121,8 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
         Step.LANGUAGE -> LanguageDialog(onDismiss = { step = Step.MENU })
 
         Step.CURRENCY -> CurrencyDialog(vm.currencyCode, onPick = vm::chooseCurrency, onDismiss = { step = Step.MENU })
+
+        Step.TABS -> MenuTabsDialog(vm, onDismiss = { step = Step.MENU })
     }
 }
 
@@ -150,4 +159,53 @@ internal fun SettingRow(
             Text(subtitle, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
+}
+
+/**
+ * Menu tabs: switch off pages you don't use so the menu shows only what you need.
+ * Nothing is deleted, the + menu still works on every page, and at least one page always stays.
+ */
+@Composable
+private fun MenuTabsDialog(vm: AppViewModel, onDismiss: () -> Unit) {
+    val terms = com.salestracker.app.data.LocalTerms.current
+    val all = com.salestracker.app.Tab.entries
+    val names = all.map { it.name }
+    val shownCount = all.count { it.name !in vm.hiddenTabs }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.menu_tabs_title)) },
+        text = {
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                Text(
+                    stringResource(R.string.menu_tabs_body),
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(bottom = 8.dp),
+                )
+                all.forEach { t ->
+                    val on = t.name !in vm.hiddenTabs
+                    val last = on && shownCount == 1
+                    val label = stringResource(if (t == com.salestracker.app.Tab.CLIENTS) terms.clients else t.label)
+                    Row(
+                        Modifier.fillMaxWidth()
+                            .toggleable(value = on, enabled = !last, role = Role.Switch, onValueChange = { vm.setTabShown(t.name, it, names) })
+                            .padding(vertical = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(t.icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                        Spacer(Modifier.width(16.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text(label, style = MaterialTheme.typography.bodyLarge)
+                            if (last) Text(
+                                stringResource(R.string.menu_tabs_last),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                        Switch(checked = on, onCheckedChange = null, enabled = !last)
+                    }
+                }
+            }
+        },
+        confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.done)) } },
+    )
 }

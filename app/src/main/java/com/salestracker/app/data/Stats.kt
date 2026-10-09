@@ -53,7 +53,11 @@ data class SalesStats(
     val upsellRevenue: Double,
     val totalSeconds: Long,
     val commission: Double = 0.0,
+    /** Commission already paid out, and what is still owed (closed sales not yet marked paid). */
+    val commissionPaid: Double = 0.0,
 ) {
+    val commissionOwed: Double get() = (commission - commissionPaid).coerceAtLeast(0.0)
+
     /** Closed sales ÷ all opportunities. */
     val closeRate: Double get() = ratio(closed, opportunities)
 
@@ -69,7 +73,10 @@ data class SalesStats(
     companion object {
         private fun ratio(a: Int, b: Int) = if (b == 0) 0.0 else a.toDouble() / b
 
-        fun of(sales: List<Sale>, defaultCommissionPercent: Double = 0.0) = SalesStats(
+        /** Stats at a single flat rate (sales with their own rate keep it). */
+        fun of(sales: List<Sale>, defaultCommissionPercent: Double) = of(sales, CommissionPlan.flat(defaultCommissionPercent))
+
+        fun of(sales: List<Sale>, plan: CommissionPlan = CommissionPlan.NONE) = SalesStats(
             opportunities = sales.size,
             closed = sales.count { it.closed },
             upsellsOffered = sales.count { it.upsellOffered },
@@ -77,7 +84,8 @@ data class SalesStats(
             revenue = sales.sumOf { it.revenue },
             upsellRevenue = sales.filter { it.closed && it.upsellAccepted }.sumOf { it.upsellAmount },
             totalSeconds = sales.sumOf { it.durationSeconds },
-            commission = sales.sumOf { it.commission(defaultCommissionPercent) },
+            commission = sales.sumOf { plan.of(it) },
+            commissionPaid = sales.filter { it.commissionPaid }.sumOf { plan.of(it) },
         )
     }
 }

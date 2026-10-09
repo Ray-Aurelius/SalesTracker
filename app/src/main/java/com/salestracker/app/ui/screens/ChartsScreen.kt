@@ -83,7 +83,7 @@ fun ChartsScreen(vm: AppViewModel, data: AppData) {
 
 @Composable
 private fun ChartsContent(data: AppData) {
-    val pct = data.defaultCommissionPercent
+    val pct = data.commissionPlan
     val sales = data.sales
     val today = LocalDate.now()
 

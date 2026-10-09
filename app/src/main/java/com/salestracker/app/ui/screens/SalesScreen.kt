@@ -1,5 +1,16 @@
 package com.salestracker.app.ui.screens
 
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.filled.DoneAll
+import androidx.compose.material3.Icon
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SegmentedButton
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,13 +54,42 @@ import com.salestracker.app.ui.AppViewModel
  */
 @Composable
 fun SalesScreen(vm: AppViewModel, data: AppData) {
+    // The Sales tab holds the sales log and the expense & mileage log, one tap apart.
+    var view by rememberSaveable { mutableStateOf(0) }
+    LaunchedEffect(vm.pendingOpenExpenses) {
+        if (vm.pendingOpenExpenses) { view = 1; vm.pendingOpenExpenses = false }
+    }
+    val narrow = isNarrow()
+    Column(Modifier.fillMaxSize()) {
+        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+            SegmentedButton(
+                selected = view == 0, onClick = { view = 0 },
+                shape = SegmentedButtonDefaults.itemShape(0, 2),
+                icon = { if (!narrow) SegmentedButtonDefaults.Icon(view == 0) },
+            ) { FitText(stringResource(R.string.sales_view_log)) }
+            SegmentedButton(
+                selected = view == 1, onClick = { view = 1 },
+                shape = SegmentedButtonDefaults.itemShape(1, 2),
+                icon = { if (!narrow) SegmentedButtonDefaults.Icon(view == 1) },
+            ) { FitText(stringResource(R.string.sales_view_expenses)) }
+        }
+        Box(Modifier.weight(1f)) {
+            if (view == 0) SalesLog(vm, data) else ExpensesScreen(vm, data)
+        }
+    }
+}
+
+@Composable
+private fun SalesLog(vm: AppViewModel, data: AppData) {
     var period by rememberSaveable { mutableStateOf(Period.WEEK) }
+    var confirmPaid by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Sale?>(null) }
     var deleting by remember { mutableStateOf<Sale?>(null) }
     val ownerCheck = rememberOwnerCheck(vm)
 
     val sales = period.filter(data.sales).sortedByDescending { it.timestamp }
-    val stats = SalesStats.of(sales, data.defaultCommissionPercent)
+    val stats = SalesStats.of(sales, data.commissionPlan)
+    val owedIds = sales.filter { it.closed && !it.commissionPaid && data.commissionPlan.of(it) > 0.0 }.map { it.id }
     val clientsById = data.clients.associateBy { it.id }
 
     Box(Modifier.fillMaxSize()) {
@@ -87,6 +127,23 @@ fun SalesScreen(vm: AppViewModel, data: AppData) {
                                 )
                             },
                         )
+                        // What has actually been paid out, and what the salesperson is still owed.
+                        if (stats.commission > 0.0) {
+                            Text(
+                                stringResource(R.string.commission_paid_owed, formatMoney(stats.commissionPaid), formatMoney(stats.commissionOwed)),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                    }
+                }
+            }
+            if (owedIds.isNotEmpty()) {
+                item {
+                    TextButton(onClick = { confirmPaid = true }) {
+                        Icon(Icons.Filled.DoneAll, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(Modifier.width(6.dp))
+                        Text(stringResource(R.string.mark_all_paid))
                     }
                 }
             }
@@ -111,6 +168,19 @@ fun SalesScreen(vm: AppViewModel, data: AppData) {
         QuickAdd(vm, data)
     }
 
+    if (confirmPaid) {
+        AlertDialog(
+            onDismissRequest = { confirmPaid = false },
+            title = { Text(pluralStringResource(R.plurals.mark_paid_q, owedIds.size, owedIds.size)) },
+            text = { Text(stringResource(R.string.mark_paid_body)) },
+            confirmButton = {
+                TextButton(onClick = { vm.markCommissionPaid(owedIds); confirmPaid = false }) {
+                    Text(stringResource(R.string.mark_paid_confirm))
+                }
+            },
+            dismissButton = { TextButton(onClick = { confirmPaid = false }) { Text(stringResource(R.string.cancel)) } },
+        )
+    }
     if (editing != null) {
         SaleDialog(
             initial = editing,
@@ -119,6 +189,7 @@ fun SalesScreen(vm: AppViewModel, data: AppData) {
             onDismiss = { editing = null },
             onSave = vm::saveSale,
             defaultCommissionPercent = data.defaultCommissionPercent,
+            plan = data.commissionPlan,
             defaultUpsellOnly = data.defaultCommissionUpsellOnly,
         )
     }

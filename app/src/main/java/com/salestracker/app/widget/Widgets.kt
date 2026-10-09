@@ -229,7 +229,7 @@ class PaceWidget : AppWidgetProvider() {
                 return v
             }
             if (Widgets.isLocked(context)) return message(context.getString(R.string.widget_hidden_msg))
-            val pace = com.salestracker.app.data.Pace.of(data.sales, data.defaultCommissionPercent, period)
+            val pace = com.salestracker.app.data.Pace.of(data.sales, data.commissionPlan, period)
             if (pace.isEmpty) return message(context.getString(R.string.on_track_empty))
             v.setViewVisibility(R.id.pace_body, View.VISIBLE)
             v.setViewVisibility(R.id.widget_message, View.GONE)

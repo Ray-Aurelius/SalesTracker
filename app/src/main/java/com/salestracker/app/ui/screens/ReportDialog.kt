@@ -125,7 +125,7 @@ fun ReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) {
 }
 
 @Composable
-private fun ReportSwitch(label: String, checked: Boolean, onChange: (Boolean) -> Unit) {
+internal fun ReportSwitch(label: String, checked: Boolean, onChange: (Boolean) -> Unit) {
     // The whole row is one switch: tapping the words flips it, and TalkBack reads the label with its state.
     Row(
         Modifier.fillMaxWidth()

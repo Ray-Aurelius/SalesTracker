@@ -37,6 +37,11 @@ fun formatDuration(totalSeconds: Long): String {
 
 fun formatMoney(value: Double): String {
     if (PrivacyMode.hideAmounts) return PrivacyMode.MASK
+    return formatMoneyForFile(value)
+}
+
+/** The real amount even in privacy mode: for reports the user chose to create (privacy mode only hides the screen). */
+fun formatMoneyForFile(value: Double): String {
     val currency = moneyCurrency()
     return NumberFormat.getCurrencyInstance(regionLocale()).apply {
         // Set the currency explicitly: a phone whose language has no country (e.g. plain "English")

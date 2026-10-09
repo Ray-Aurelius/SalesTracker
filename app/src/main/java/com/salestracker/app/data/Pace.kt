@@ -39,6 +39,11 @@ data class Pace(
         fun of(
             sales: List<Sale>, defaultPercent: Double, period: GoalPeriod,
             today: LocalDate = LocalDate.now(), zone: ZoneId = ZoneId.systemDefault(),
+        ): Pace = of(sales, CommissionPlan.flat(defaultPercent), period, today, zone)
+
+        fun of(
+            sales: List<Sale>, plan: CommissionPlan, period: GoalPeriod,
+            today: LocalDate = LocalDate.now(), zone: ZoneId = ZoneId.systemDefault(),
         ): Pace {
             val (start, end) = period.range(today)
             val daysTotal = ChronoUnit.DAYS.between(start, end).toInt()
@@ -46,7 +51,7 @@ data class Pace(
             val now = ChartData.between(sales, start, end, zone)
             val (pStart, _) = period.range(start.minusDays(1))
             val before = ChartData.between(sales, pStart, start, zone)
-            val c = now.sumOf { it.commission(defaultPercent) }
+            val c = now.sumOf { plan.of(it) }
             val r = now.sumOf { it.revenue }
             val scale = daysTotal.toDouble() / daysGone
             return Pace(
@@ -54,7 +59,7 @@ data class Pace(
                 commissionSoFar = c, revenueSoFar = r,
                 projectedCommission = c * scale, projectedRevenue = r * scale,
                 daysGone = daysGone, daysTotal = daysTotal,
-                previousCommission = before.sumOf { it.commission(defaultPercent) },
+                previousCommission = before.sumOf { plan.of(it) },
                 previousRevenue = before.sumOf { it.revenue },
             )
         }

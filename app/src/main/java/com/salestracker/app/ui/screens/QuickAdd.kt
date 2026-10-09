@@ -1,5 +1,8 @@
 package com.salestracker.app.ui.screens
 
+import com.salestracker.app.data.ExpenseKind
+import androidx.compose.material.icons.filled.DirectionsCar
+import androidx.compose.material.icons.filled.Receipt
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
@@ -87,6 +90,7 @@ fun BoxScope.QuickAdd(
     var addingClient by remember { mutableStateOf(false) }
     var addingAppointment by remember { mutableStateOf(false) }
     var addingTask by remember { mutableStateOf(false) }
+    var addingExpense by remember { mutableStateOf<ExpenseKind?>(null) }
     val terms = LocalTerms.current
 
     val actions = listOf(
@@ -94,6 +98,8 @@ fun BoxScope.QuickAdd(
         QuickAction(stringResource(terms.addClient), Icons.Filled.PersonAdd) { addingClient = true },
         QuickAction(stringResource(terms.newAppointment), Icons.Filled.Event) { addingAppointment = true },
         QuickAction(stringResource(R.string.add_task), Icons.Filled.AddTask) { addingTask = true },
+        QuickAction(stringResource(R.string.exp_add_expense), Icons.Filled.Receipt) { addingExpense = ExpenseKind.EXPENSE },
+        QuickAction(stringResource(R.string.exp_log_trip), Icons.Filled.DirectionsCar) { addingExpense = ExpenseKind.MILEAGE },
     )
 
     BackHandler(enabled = open) { open = false }
@@ -138,7 +144,7 @@ fun BoxScope.QuickAdd(
                 exit = fadeOut() + shrinkHorizontally(shrinkTowards = if (atTopStart) Alignment.Start else Alignment.End),
                 modifier = Modifier.weight(1f, fill = false),
             ) {
-                // Two rows of two, so all four choices fit beside the button on a landscape screen.
+                // Rows of two, so every choice fits beside the button on a landscape screen.
                 Column(
                     Modifier.horizontalScroll(rememberScrollState()),
                     verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -185,6 +191,7 @@ fun BoxScope.QuickAdd(
             onDismiss = { addingSale = false },
             onSave = vm::saveSale,
             defaultCommissionPercent = data.defaultCommissionPercent,
+            plan = data.commissionPlan,
             defaultUpsellOnly = data.defaultCommissionUpsellOnly,
         )
     }
@@ -208,6 +215,18 @@ fun BoxScope.QuickAdd(
             onSave = vm::saveTask,
             onDelete = { vm.deleteTask(it) },
             onDismiss = { addingTask = false },
+        )
+    }
+    addingExpense?.let { kind ->
+        ExpenseDialog(
+            initial = null,
+            kind = kind,
+            clients = data.clients,
+            defaultRate = data.mileageRate,
+            unit = data.unit,
+            newId = vm::newId,
+            onSave = vm::saveExpense,
+            onDismiss = { addingExpense = null },
         )
     }
     if (addingClient) {

@@ -6,6 +6,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.foundation.selection.toggleable
 import com.salestracker.app.data.LocalTerms
 import com.salestracker.app.R
+import com.salestracker.app.data.CommissionPlan
 import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -166,6 +167,8 @@ fun SaleDialog(
     defaultDurationSeconds: Long = 0,
     defaultCommissionPercent: Double = 0.0,
     defaultUpsellOnly: Boolean = false,
+    /** The commission plan (flat or tiered), so the form can show what this sale will earn. */
+    plan: CommissionPlan = CommissionPlan.flat(defaultCommissionPercent),
 ) {
     var clientId by remember { mutableStateOf(initial?.clientId ?: defaultClientId) }
     var closed by remember { mutableStateOf(initial?.closed ?: true) }
@@ -181,6 +184,32 @@ fun SaleDialog(
         mutableStateOf(formatRateInput(initial?.commissionPercent ?: defaultCommissionPercent))
     }
     var upsellOnly by remember { mutableStateOf(initial?.commissionOnUpsellOnly ?: defaultUpsellOnly) }
+    val tiered = plan.tiers != null
+    // With a tiered plan a sale follows the plan unless it is given its own rate.
+    var ownRate by remember { mutableStateOf(!tiered || initial?.commissionPercent != null) }
+    var split by remember { mutableStateOf(initial?.isSplit ?: false) }
+    var share by remember { mutableStateOf(formatRateInput(initial?.splitPercent?.takeIf { it < 100.0 } ?: 50.0)) }
+    var paidAt by remember { mutableStateOf(initial?.commissionPaidAt) }
+
+    fun build(id: Long): Sale {
+        val duration = (minutes.toLongOrNull() ?: 0) * 60 + (seconds.toLongOrNull() ?: 0)
+        return Sale(
+            id = id,
+            clientId = clientId,
+            timestamp = initial?.timestamp ?: System.currentTimeMillis(),
+            closed = closed,
+            upsellOffered = upsellOffered,
+            upsellAccepted = upsellOffered && closed && upsellAccepted,
+            amount = parseMoney(amount) ?: 0.0,
+            upsellAmount = if (upsellAccepted) parseMoney(upsellAmount) ?: 0.0 else 0.0,
+            durationSeconds = duration,
+            notes = notes.trim(),
+            commissionPercent = if (ownRate) (commission.toDoubleOrNull() ?: 0.0).coerceIn(0.0, 100.0) else null,
+            commissionOnUpsellOnly = upsellOnly,
+            splitPercent = if (split) (share.toDoubleOrNull() ?: 100.0).coerceIn(0.0, 100.0) else 100.0,
+            commissionPaidAt = if (closed) paidAt else null,
+        )
+    }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -224,27 +253,51 @@ fun SaleDialog(
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
-                OutlinedTextField(
-                    value = commission,
-                    onValueChange = { v -> commission = v.filter { it.isDigit() || it == '.' } },
-                    label = { Text(stringResource(R.string.commission_rate)) },
-                    suffix = { Text("%") },
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                    modifier = Modifier.fillMaxWidth(),
-                    supportingText = {
-                        val upsell = if (closed && upsellAccepted) parseMoney(upsellAmount) ?: 0.0 else 0.0
-                        val base = if (!closed) 0.0 else if (upsellOnly) upsell else (parseMoney(amount) ?: 0.0) + upsell
-                        val earned = base * (commission.toDoubleOrNull() ?: 0.0) / 100.0
-                        Text(
-                            when {
-                                !closed -> stringResource(R.string.no_commission_unless_closed)
-                                upsellOnly && !upsellAccepted -> stringResource(R.string.no_commission_without_upsell)
-                                else -> stringResource(R.string.you_earn, formatMoney(earned))
-                            }
-                        )
-                    },
-                )
+                // What this sale earns, worked out exactly as the Stats tab will (tiers and splits included).
+                val earnedText = when {
+                    !closed -> stringResource(R.string.no_commission_unless_closed)
+                    upsellOnly && !upsellAccepted -> stringResource(R.string.no_commission_without_upsell)
+                    else -> stringResource(R.string.you_earn, formatMoney(plan.of(build(initial?.id ?: Long.MIN_VALUE))))
+                }
+                if (tiered) {
+                    Text(
+                        stringResource(R.string.tier_plan_applies, formatRateInput(plan.currentTierRate() ?: 0.0)),
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                    SwitchRow(stringResource(R.string.tier_own_rate), ownRate, { ownRate = it })
+                }
+                if (ownRate) {
+                    OutlinedTextField(
+                        value = commission,
+                        onValueChange = { v -> commission = v.filter { it.isDigit() || it == '.' } },
+                        label = { Text(stringResource(R.string.commission_rate)) },
+                        suffix = { Text("%") },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                        modifier = Modifier.fillMaxWidth(),
+                        supportingText = { Text(earnedText) },
+                    )
+                } else {
+                    Text(earnedText, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                // A sale shared with a colleague: only the salesperson's share counts toward their commission.
+                SwitchRow(stringResource(R.string.split_sale), split, { split = it })
+                if (split) {
+                    OutlinedTextField(
+                        value = share,
+                        onValueChange = { v -> share = v.filter { it.isDigit() || it == '.' } },
+                        label = { Text(stringResource(R.string.split_your_share)) },
+                        suffix = { Text("%") },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+                if (closed) {
+                    SwitchRow(stringResource(R.string.commission_paid), paidAt != null, { on ->
+                        paidAt = if (on) (initial?.commissionPaidAt ?: System.currentTimeMillis()) else null
+                    })
+                }
                 // Some reps are paid only on the add-on, not the main sale.
                 SwitchRow(stringResource(R.string.commission_upsell_only), upsellOnly, { upsellOnly = it })
                 Text(stringResource(R.string.time_spent), style = MaterialTheme.typography.labelLarge)
@@ -277,23 +330,7 @@ fun SaleDialog(
         },
         confirmButton = {
             TextButton(onClick = {
-                val duration = (minutes.toLongOrNull() ?: 0) * 60 + (seconds.toLongOrNull() ?: 0)
-                onSave(
-                    Sale(
-                        id = initial?.id ?: newId(),
-                        clientId = clientId,
-                        timestamp = initial?.timestamp ?: System.currentTimeMillis(),
-                        closed = closed,
-                        upsellOffered = upsellOffered,
-                        upsellAccepted = upsellOffered && closed && upsellAccepted,
-                        amount = parseMoney(amount) ?: 0.0,
-                        upsellAmount = if (upsellAccepted) parseMoney(upsellAmount) ?: 0.0 else 0.0,
-                        durationSeconds = duration,
-                        notes = notes.trim(),
-                        commissionPercent = (commission.toDoubleOrNull() ?: 0.0).coerceIn(0.0, 100.0),
-                        commissionOnUpsellOnly = upsellOnly,
-                    )
-                )
+                onSave(build(initial?.id ?: newId()))
                 onDismiss()
             }) { Text(stringResource(R.string.save)) }
         },
@@ -328,6 +365,8 @@ fun SaleCard(sale: Sale, clientName: String, onClick: () -> Unit, onDelete: () -
                     add(stringResource(if (sale.closed) R.string.tag_closed else R.string.tag_not_closed))
                     if (sale.upsellAccepted) add(stringResource(R.string.tag_upsell))
                     else if (sale.upsellOffered) add(stringResource(R.string.tag_upsell_declined))
+                    if (sale.isSplit) add(stringResource(R.string.tag_split, formatRateInput(sale.splitPercent)))
+                    if (sale.closed && sale.commissionPaid) add(stringResource(R.string.tag_paid))
                 }
                 Text(
                     tags.joinToString(" · "),

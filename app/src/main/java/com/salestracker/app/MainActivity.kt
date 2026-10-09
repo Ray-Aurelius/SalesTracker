@@ -211,7 +211,8 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-private enum class Tab(@StringRes val label: Int, @StringRes val title: Int, val icon: ImageVector) {
+/** The pages in the menu. Any of them can be hidden in Settings → Menu tabs (at least one stays). */
+internal enum class Tab(@StringRes val label: Int, @StringRes val title: Int, val icon: ImageVector) {
     DASHBOARD(R.string.tab_stats, R.string.title_stats, Icons.Filled.Insights),
     SALES(R.string.tab_sales, R.string.title_sales, Icons.AutoMirrored.Filled.ReceiptLong),
     GOALS(R.string.tab_goals, R.string.title_goals, Icons.Filled.Flag),
@@ -279,7 +280,12 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     // The Clients tab follows the chosen trade's wording (Customers, Homeowners, Accounts…).
     fun Tab.labelRes() = if (this == Tab.CLIENTS) terms.clients else label
     fun Tab.titleRes() = if (this == Tab.CLIENTS) terms.clients else title
-    val labels = Tab.entries.map { stringResource(it.labelRes()) }
+    // Only the pages the user keeps in the menu (Settings → Menu tabs); at least one always shows.
+    val shown = Tab.entries.filter { it.name !in vm.hiddenTabs }.ifEmpty { Tab.entries }
+    // A reminder or widget can still open the Schedule page while it's hidden from the menu.
+    var opened by rememberSaveable { mutableStateOf(false) }
+    LaunchedEffect(shown, opened) { if (tab !in shown && !opened) tab = shown.first() }
+    val labels = shown.map { stringResource(it.labelRes()) }
     val config = LocalConfiguration.current
     // In landscape a bottom bar leaves too little room for the page, so the menu goes to the side.
     val side = vm.menuOnLeft || config.screenHeightDp < 480
@@ -295,10 +301,10 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     val sideLabelSize = rememberLabelSize(labels, 68f, 9f)
 
     LaunchedEffect(vm.pendingOpenDay) {
-        if (vm.pendingOpenDay != null) tab = Tab.CALENDAR
+        if (vm.pendingOpenDay != null) { tab = Tab.CALENDAR; opened = true }
     }
     LaunchedEffect(vm.pendingOpenTasks) {
-        if (vm.pendingOpenTasks) tab = Tab.CALENDAR
+        if (vm.pendingOpenTasks) { tab = Tab.CALENDAR; opened = true }
     }
 
     Scaffold(
@@ -326,9 +332,9 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                     MenuToggle(hidden = vm.menuHidden, side = false) { vm.changeMenuHidden(!vm.menuHidden) }
                     AnimatedVisibility(visible = !vm.menuHidden, enter = expandVertically(), exit = shrinkVertically()) {
                         BottomMenu(
-                            labels = labels, selected = tab.ordinal,
+                            tabs = shown, labels = labels, selected = shown.indexOf(tab),
                             labelSize = bottomLabelSize, showAllLabels = bottomAllLabels != null,
-                            onSelect = { tab = Tab.entries[it] },
+                            onSelect = { tab = shown[it]; opened = false },
                         )
                     }
                 }
@@ -343,8 +349,8 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                     MenuToggle(hidden = true, side = true) { vm.changeMenuHidden(false) }
                 } else {
                     SideMenu(
-                        labels = labels, selected = tab.ordinal, labelSize = sideLabelSize,
-                        onSelect = { tab = Tab.entries[it] }, onHide = { vm.changeMenuHidden(true) },
+                        tabs = shown, labels = labels, selected = shown.indexOf(tab), labelSize = sideLabelSize,
+                        onSelect = { tab = shown[it]; opened = false }, onHide = { vm.changeMenuHidden(true) },
                     )
                 }
             }
@@ -403,7 +409,7 @@ private fun MenuToggle(hidden: Boolean, side: Boolean, onToggle: () -> Unit) {
  * Shows labels when they fit ([labelSize] not null), otherwise icons only (each still named for screen readers).
  */
 @Composable
-private fun SideMenu(labels: List<String>, selected: Int, labelSize: TextUnit?, onSelect: (Int) -> Unit, onHide: () -> Unit) {
+private fun SideMenu(tabs: List<Tab>, labels: List<String>, selected: Int, labelSize: TextUnit?, onSelect: (Int) -> Unit, onHide: () -> Unit) {
     Column(
         Modifier.fillMaxHeight().width(if (labelSize != null) 76.dp else 60.dp)
             .background(MaterialTheme.colorScheme.surfaceContainer),
@@ -414,7 +420,7 @@ private fun SideMenu(labels: List<String>, selected: Int, labelSize: TextUnit?, 
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(2.dp),
         ) {
-            Tab.entries.forEachIndexed { i, t ->
+            tabs.forEachIndexed { i, t ->
                 val isSelected = i == selected
                 Column(
                     Modifier.fillMaxWidth()
@@ -459,12 +465,12 @@ private fun SideMenu(labels: List<String>, selected: Int, labelSize: TextUnit?, 
  * with eight tabs on a phone, the standard bar's padding leaves no room for words like "Schedule".
  */
 @Composable
-private fun BottomMenu(labels: List<String>, selected: Int, labelSize: TextUnit, showAllLabels: Boolean, onSelect: (Int) -> Unit) {
+private fun BottomMenu(tabs: List<Tab>, labels: List<String>, selected: Int, labelSize: TextUnit, showAllLabels: Boolean, onSelect: (Int) -> Unit) {
     Row(
         Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surfaceContainer)
             .navigationBarsPadding().padding(top = 8.dp, bottom = 10.dp),
     ) {
-        Tab.entries.forEachIndexed { i, t ->
+        tabs.forEachIndexed { i, t ->
             val isSelected = i == selected
             Column(
                 Modifier.weight(1f).selectable(selected = isSelected, role = Role.Tab, onClick = { onSelect(i) }),

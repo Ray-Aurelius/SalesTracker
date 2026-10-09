@@ -26,14 +26,24 @@ object ChartData {
     fun forPeriod(
         sales: List<Sale>, defaultPercent: Double, period: GoalPeriod,
         today: LocalDate = LocalDate.now(), zone: ZoneId = ZoneId.systemDefault(),
+    ): SalesStats = forPeriod(sales, CommissionPlan.flat(defaultPercent), period, today, zone)
+
+    fun forPeriod(
+        sales: List<Sale>, plan: CommissionPlan, period: GoalPeriod,
+        today: LocalDate = LocalDate.now(), zone: ZoneId = ZoneId.systemDefault(),
     ): SalesStats {
         val (from, to) = period.range(today)
-        return SalesStats.of(between(sales, from, to, zone), defaultPercent)
+        return SalesStats.of(between(sales, from, to, zone), plan)
     }
 
     /** The last [ChartSpan.count] weeks or months, oldest first, ending with the current one. */
     fun buckets(
         sales: List<Sale>, defaultPercent: Double, span: ChartSpan,
+        today: LocalDate = LocalDate.now(), zone: ZoneId = ZoneId.systemDefault(),
+    ): List<ChartBucket> = buckets(sales, CommissionPlan.flat(defaultPercent), span, today, zone)
+
+    fun buckets(
+        sales: List<Sale>, plan: CommissionPlan, span: ChartSpan,
         today: LocalDate = LocalDate.now(), zone: ZoneId = ZoneId.systemDefault(),
     ): List<ChartBucket> {
         val current = when (span) {
@@ -53,7 +63,7 @@ object ChartData {
             val start = step(current, -back.toLong())
             val end = step(start, 1)
             val inRange = byDay.filterKeys { !it.isBefore(start) && it.isBefore(end) }.values.flatten()
-            ChartBucket(start, end, SalesStats.of(inRange, defaultPercent))
+            ChartBucket(start, end, SalesStats.of(inRange, plan))
         }
     }
 
@@ -71,17 +81,25 @@ object ChartData {
     fun monthPace(
         sales: List<Sale>, defaultPercent: Double,
         today: LocalDate = LocalDate.now(), zone: ZoneId = ZoneId.systemDefault(),
+    ): Double? = monthPace(sales, CommissionPlan.flat(defaultPercent), today, zone)
+
+    fun monthPace(
+        sales: List<Sale>, plan: CommissionPlan,
+        today: LocalDate = LocalDate.now(), zone: ZoneId = ZoneId.systemDefault(),
     ): Double? {
-        val soFar = forPeriod(sales, defaultPercent, GoalPeriod.MONTH, today, zone).commission
+        val soFar = forPeriod(sales, plan, GoalPeriod.MONTH, today, zone).commission
         if (soFar <= 0.0) return null
         return soFar / today.dayOfMonth * YearMonth.from(today).lengthOfMonth()
     }
 
     /** The calendar month with the most commission, or null with no commission yet. */
     fun bestMonth(sales: List<Sale>, defaultPercent: Double, zone: ZoneId = ZoneId.systemDefault()): Pair<YearMonth, Double>? =
+        bestMonth(sales, CommissionPlan.flat(defaultPercent), zone)
+
+    fun bestMonth(sales: List<Sale>, plan: CommissionPlan, zone: ZoneId = ZoneId.systemDefault()): Pair<YearMonth, Double>? =
         sales.filter { it.closed }
             .groupBy { YearMonth.from(it.day(zone)) }
-            .mapValues { (_, s) -> s.sumOf { it.commission(defaultPercent) } }
+            .mapValues { (_, s) -> s.sumOf { plan.of(it) } }
             .filterValues { it > 0.0 }
             .maxByOrNull { it.value }
             ?.toPair()

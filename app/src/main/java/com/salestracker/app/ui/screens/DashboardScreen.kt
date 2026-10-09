@@ -73,7 +73,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
     var reporting by remember { mutableStateOf(false) }
 
     val sales = period.filter(data.sales)
-    val stats = SalesStats.of(sales, data.defaultCommissionPercent)
+    val stats = SalesStats.of(sales, data.commissionPlan)
     val clientsById = data.clients.associateBy { it.id }
 
     Box(Modifier.fillMaxSize()) {
@@ -146,11 +146,18 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                     Column(Modifier.padding(16.dp)) {
                         Column {
                             Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.titleMedium)
+                            val tierRate = data.commissionPlan.currentTierRate()
                             Text(
-                                stringResource(
-                                    if (data.defaultCommissionUpsellOnly) R.string.commission_default_rate_upsell else R.string.commission_default_rate,
-                                    if (PrivacyMode.hideAmounts) "••" else formatRateInput(data.defaultCommissionPercent),
-                                ),
+                                when {
+                                    tierRate != null -> stringResource(
+                                        R.string.commission_tiered_now,
+                                        if (PrivacyMode.hideAmounts) "••" else formatRateInput(tierRate),
+                                    )
+                                    else -> stringResource(
+                                        if (data.defaultCommissionUpsellOnly) R.string.commission_default_rate_upsell else R.string.commission_default_rate,
+                                        if (PrivacyMode.hideAmounts) "••" else formatRateInput(data.defaultCommissionPercent),
+                                    )
+                                },
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -163,6 +170,13 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                             color = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
                         )
+                        if (stats.commission > 0.0) {
+                            Text(
+                                stringResource(R.string.commission_paid_owed, formatMoney(stats.commissionPaid), formatMoney(stats.commissionOwed)),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
                     }
                 }
             }
@@ -184,10 +198,11 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
 
     if (reporting) ReportDialog(vm, data, onDismiss = { reporting = false })
     if (editingRate) {
-        CommissionRateDialog(
-            current = data.defaultCommissionPercent,
+        CommissionPlanDialog(
+            currentRate = data.defaultCommissionPercent,
             currentUpsellOnly = data.defaultCommissionUpsellOnly,
-            onSave = vm::setDefaultCommission,
+            currentTiers = data.tierSchedule,
+            onSave = vm::setCommissionPlan,
             onDismiss = { editingRate = false },
         )
     }
@@ -229,42 +244,6 @@ private fun StatCard(label: String, value: String, modifier: Modifier = Modifier
             FitText(value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
         }
     }
-}
-
-@Composable
-private fun CommissionRateDialog(current: Double, currentUpsellOnly: Boolean, onSave: (Double, Boolean) -> Unit, onDismiss: () -> Unit) {
-    var text by remember { mutableStateOf(formatRateInput(current)) }
-    var upsellOnly by remember { mutableStateOf(currentUpsellOnly) }
-    val value = text.toDoubleOrNull()
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text(stringResource(R.string.commission_rate_title)) },
-        text = {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(
-                    stringResource(R.string.commission_rate_body),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-                OutlinedTextField(
-                    value = text,
-                    onValueChange = { v -> text = v.filter { it.isDigit() || it == '.' } },
-                    label = { Text(stringResource(R.string.default_rate)) },
-                    suffix = { Text("%") },
-                    singleLine = true,
-                    isError = value == null || value > 100,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                    modifier = Modifier.fillMaxWidth(),
-                )
-                SwitchRow(stringResource(R.string.commission_upsell_only), upsellOnly, { upsellOnly = it })
-            }
-        },
-        confirmButton = {
-            TextButton(enabled = value != null && value <= 100, onClick = { onSave(value ?: 0.0, upsellOnly); onDismiss() }) {
-                Text(stringResource(R.string.save))
-            }
-        },
-        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
-    )
 }
 
 /** Gentle reminder to make an encrypted backup when the last one is older than the chosen interval. */

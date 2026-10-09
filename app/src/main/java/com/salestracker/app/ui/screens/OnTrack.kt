@@ -62,8 +62,8 @@ fun signedPercent(ratio: Double): String = "%+.0f%%".format(regionLocale(), rati
 @Composable
 fun OnTrackCard(vm: AppViewModel, data: AppData) {
     val today = LocalDate.now()
-    val pace = remember(data.sales, data.defaultCommissionPercent, vm.pacePeriod, today) {
-        Pace.of(data.sales, data.defaultCommissionPercent, vm.pacePeriod, today)
+    val pace = remember(data.sales, data.commissionPlan, vm.pacePeriod, today) {
+        Pace.of(data.sales, data.commissionPlan, vm.pacePeriod, today)
     }
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {

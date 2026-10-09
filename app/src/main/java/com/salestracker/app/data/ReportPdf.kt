@@ -41,7 +41,7 @@ object ReportPdf {
         val from = start.atStartOfDay(zone).toInstant().toEpochMilli()
         val to = end.atStartOfDay(zone).toInstant().toEpochMilli()
         val sales = data.sales.filter { it.timestamp in from until to }.sortedBy { it.timestamp }
-        val stats = SalesStats.of(sales, data.defaultCommissionPercent)
+        val stats = SalesStats.of(sales, data.commissionPlan)
         val clients = data.clients.associateBy { it.id }
         val s = { id: Int, args: Array<out Any> -> context.getString(id, *args) }
         fun str(id: Int, vararg args: Any) = s(id, args)
@@ -93,13 +93,17 @@ object ReportPdf {
         text(str(R.string.report_summary), h2, gapAfter = 6f)
         val summary = mutableListOf(
             context.getString(R.string.close_rate) to "${formatPercent(stats.closeRate)}  (${str(R.string.close_rate_detail, stats.closed, stats.opportunities)})",
-            context.getString(R.string.revenue) to formatMoney(stats.revenue),
-            context.getString(R.string.upsell_revenue) to formatMoney(stats.upsellRevenue),
+            context.getString(R.string.revenue) to formatMoneyForFile(stats.revenue),
+            context.getString(R.string.upsell_revenue) to formatMoneyForFile(stats.upsellRevenue),
             context.getString(R.string.upsell_rate) to formatPercent(stats.upsellRate),
-            context.getString(R.string.avg_sale) to formatMoney(stats.averageSale),
+            context.getString(R.string.avg_sale) to formatMoneyForFile(stats.averageSale),
             context.getString(R.string.avg_time) to formatDuration(stats.averageSeconds),
         )
-        if (opt.includeCommission) summary += context.getString(R.string.commission_earned) to formatMoney(stats.commission)
+        if (opt.includeCommission) {
+            summary += context.getString(R.string.commission_earned) to formatMoneyForFile(stats.commission)
+            summary += context.getString(R.string.commission_paid_label) to formatMoneyForFile(stats.commissionPaid)
+            summary += context.getString(R.string.commission_owed_label) to formatMoneyForFile(stats.commissionOwed)
+        }
         summary.forEach { (k, v) -> row(listOf(k, v), listOf(180f, W - 2 * M - 180f), body) }
         y += 10f
 
@@ -109,7 +113,7 @@ object ReportPdf {
             data.goals.forEach { g ->
                 val p = GoalProgress.of(g, data)
                 row(
-                    listOf(g.name, "${(p.fraction * 100).toInt()}%", str(R.string.goal_progress_of, formatMoney(p.current), formatMoney(p.target))),
+                    listOf(g.name, "${(p.fraction * 100).toInt()}%", str(R.string.goal_progress_of, formatMoneyForFile(p.current), formatMoneyForFile(p.target))),
                     listOf(220f, 60f, W - 2 * M - 280f), body,
                 )
             }
@@ -139,7 +143,7 @@ object ReportPdf {
                     append(context.getString(if (sale.closed) R.string.tag_closed else R.string.tag_not_closed))
                     if (sale.upsellAccepted) append(" · ").append(context.getString(R.string.tag_upsell))
                 }
-                row(cols(date, name, formatMoney(sale.amount + if (sale.upsellAccepted) sale.upsellAmount else 0.0), status), ws(), body)
+                row(cols(date, name, formatMoneyForFile(sale.amount + if (sale.upsellAccepted) sale.upsellAmount else 0.0), status), ws(), body)
             }
         }
         y += 14f
@@ -154,7 +158,7 @@ object ReportPdf {
     }
 
     /** Locks the PDF: AES-256, opening needs the password; the owner password is random and never shown. */
-    private fun protect(context: Context, pdf: ByteArray, password: String): ByteArray {
+    internal fun protect(context: Context, pdf: ByteArray, password: String): ByteArray {
         PDFBoxResourceLoader.init(context.applicationContext)
         PDDocument.load(pdf).use { doc ->
             val owner = ByteArray(24).also(SecureRandom()::nextBytes).joinToString("") { "%02x".format(it) }

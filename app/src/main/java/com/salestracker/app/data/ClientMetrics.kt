@@ -57,7 +57,7 @@ data class ClientMetrics(
                 closed = sales.count { it.closed },
                 revenue = sales.sumOf { it.revenue },
                 largestSale = sales.filter { it.closed }.maxOfOrNull { it.revenue } ?: 0.0,
-                commission = sales.sumOf { it.commission(data.defaultCommissionPercent) },
+                commission = sales.sumOf { data.commissionPlan.of(it) },
                 upsellsAccepted = sales.count { it.closed && it.upsellAccepted },
                 upsellRevenue = sales.filter { it.closed && it.upsellAccepted }.sumOf { it.upsellAmount },
                 firstVisitDay = days.minOrNull(),

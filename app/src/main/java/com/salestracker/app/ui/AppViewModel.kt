@@ -1,5 +1,8 @@
 package com.salestracker.app.ui
 
+import com.salestracker.app.data.TierSchedule
+import com.salestracker.app.data.DistanceUnit
+import com.salestracker.app.data.Expense
 import com.salestracker.app.data.SampleData
 import com.salestracker.app.R
 import com.salestracker.app.data.followUpFor
@@ -103,6 +106,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
                 goals = d.goals + s.goals,
                 tasks = d.tasks + s.tasks,
                 dayHighlights = d.dayHighlights + s.highlightDays.filterKeys { it !in d.dayHighlights },
+                expenses = d.expenses + s.expenses,
             )
         }
         sampleIds = s.ids
@@ -124,6 +128,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
                 goals = d.goals.filterNot { it.id in ids },
                 tasks = d.tasks.filterNot { it.id in ids }.map { if (it.clientId in ids) it.copy(clientId = null) else it },
                 dayHighlights = d.dayHighlights - sampleDays,
+                expenses = d.expenses.filterNot { it.id in ids }.map { if (it.clientId in ids) it.copy(clientId = null) else it },
             )
         }
         sampleIds = emptySet()
@@ -376,6 +381,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         trade = Trade.GENERAL
         onboarded = false
         sampleIds = emptySet()
+        hiddenTabs = emptySet()
         sampleDays = emptySet()
         boldText = false
         largeTouchTargets = false
@@ -421,6 +427,20 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     var pendingOpenDay by mutableStateOf<Long?>(null)
     /** Set when a task reminder is tapped; the Schedule tab opens on Tasks and clears it. */
     var pendingOpenTasks by mutableStateOf(false)
+
+    // ---- Menu tabs (Settings → Menu tabs) ----
+    /** Names of the pages hidden from the menu. Never all of them. */
+    var hiddenTabs by mutableStateOf(settings.getStringSet("hiddenTabs", emptySet())!!.toSet())
+        private set
+
+    fun setTabShown(name: String, shown: Boolean, allNames: List<String>) {
+        val next = if (shown) hiddenTabs - name else hiddenTabs + name
+        if (allNames.all { it in next }) return // at least one page stays in the menu
+        hiddenTabs = next
+        settings.edit().putStringSet("hiddenTabs", next).apply()
+    }
+    /** Opens the Sales tab on its Expenses view (after logging an expense from the + menu). */
+    var pendingOpenExpenses by mutableStateOf(false)
 
     // ---- Tasks ----
     fun saveTask(t: Task) {
@@ -474,6 +494,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
                 sales = d.sales.filterNot { it.clientId == id },
                 appointments = d.appointments.filterNot { it.clientId == id },
                 tasks = d.tasks.filterNot { it.clientId == id },
+                // Expenses are the user's own business records (often needed for taxes): keep them, unlinked.
+                expenses = d.expenses.map { if (it.clientId == id) it.copy(clientId = null) else it },
             )
         }
         appts.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
@@ -487,12 +509,41 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
             sales = d.sales.map { if (it.clientId == id) it.copy(clientId = null) else it },
             appointments = d.appointments.map { if (it.clientId == id) it.copy(clientId = null) else it },
             tasks = d.tasks.map { if (it.clientId == id) it.copy(clientId = null) else it },
+            expenses = d.expenses.map { if (it.clientId == id) it.copy(clientId = null) else it },
         )
     }
 
     // ---- Sales ----
     fun saveSale(sale: Sale) = repo.update { it.copy(sales = it.sales.upsert(sale) { s -> s.id }) }
     fun deleteSale(id: Long) = repo.update { d -> d.copy(sales = d.sales.filterNot { it.id == id }) }
+
+    /** Marks the commission on these sales as paid today (sales already marked keep their date). */
+    fun markCommissionPaid(ids: Collection<Long>, at: Long = System.currentTimeMillis()) = repo.update { d ->
+        d.copy(sales = d.sales.map { if (it.id in ids && it.closed && it.commissionPaidAt == null) it.copy(commissionPaidAt = at) else it })
+    }
+
+    /**
+     * Saves how the salesperson is paid. Switching to tiers moves sales that were logged at the old default
+     * rate onto the plan; sales given a different rate of their own keep it.
+     */
+    fun setCommissionPlan(rate: Double, upsellOnly: Boolean, schedule: TierSchedule?) = repo.update { d ->
+        val oldDefault = d.defaultCommissionPercent
+        val sales = if (schedule != null && d.tierSchedule == null) {
+            d.sales.map { if (it.commissionPercent == oldDefault) it.copy(commissionPercent = null) else it }
+        } else d.sales
+        d.copy(
+            defaultCommissionPercent = rate.coerceIn(0.0, 100.0),
+            defaultCommissionUpsellOnly = upsellOnly,
+            tierSchedule = schedule,
+            sales = sales,
+        )
+    }
+
+    // ---- Expenses and mileage ----
+    fun saveExpense(e: Expense) = repo.update { it.copy(expenses = it.expenses.upsert(e) { x -> x.id }) }
+    fun deleteExpense(id: Long) = repo.update { d -> d.copy(expenses = d.expenses.filterNot { it.id == id }) }
+    fun setMileage(rate: Double, unit: DistanceUnit?) =
+        repo.update { it.copy(mileageRate = rate.coerceAtLeast(0.0), distanceUnit = unit) }
 
     // ---- Appointments ----
     fun saveAppointment(a: Appointment) {

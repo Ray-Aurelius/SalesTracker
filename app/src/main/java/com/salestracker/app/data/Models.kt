@@ -84,6 +84,10 @@ data class Sale(
     val commissionPercent: Double? = null,
     /** True when the salesperson is paid commission only on the upsell / add-on, not the main sale. */
     val commissionOnUpsellOnly: Boolean = false,
+    /** The salesperson's share of a sale split with a colleague, in percent (100 = not split). */
+    val splitPercent: Double = 100.0,
+    /** When the commission on this sale was paid out; null while it is still owed. */
+    val commissionPaidAt: Long? = null,
 ) {
     val revenue: Double
         get() = if (!closed) 0.0 else amount + if (upsellAccepted) upsellAmount else 0.0
@@ -92,8 +96,14 @@ data class Sale(
     val commissionBase: Double
         get() = if (!commissionOnUpsellOnly) revenue else if (closed && upsellAccepted) upsellAmount else 0.0
 
-    /** What the salesperson earns on this sale. */
-    fun commission(defaultPercent: Double): Double = commissionBase * (commissionPercent ?: defaultPercent) / 100.0
+    /** The salesperson's own share of the commission base (all of it unless the sale was split). */
+    val creditedBase: Double get() = commissionBase * splitPercent.coerceIn(0.0, 100.0) / 100.0
+
+    val isSplit: Boolean get() = splitPercent < 100.0
+    val commissionPaid: Boolean get() = commissionPaidAt != null
+
+    /** What the salesperson earns on this sale at a flat rate. Tiered plans go through [CommissionPlan]. */
+    fun commission(defaultPercent: Double): Double = creditedBase * (commissionPercent ?: defaultPercent) / 100.0
 
     fun toJson(): JSONObject = JSONObject()
         .put("id", id)
@@ -108,6 +118,8 @@ data class Sale(
         .put("notes", notes)
         .put("commissionPercent", commissionPercent ?: JSONObject.NULL)
         .put("commissionOnUpsellOnly", commissionOnUpsellOnly)
+        .put("splitPercent", splitPercent)
+        .put("commissionPaidAt", commissionPaidAt ?: JSONObject.NULL)
 
     companion object {
         fun fromJson(o: JSONObject) = Sale(
@@ -124,6 +136,8 @@ data class Sale(
             commissionPercent = if (!o.has("commissionPercent") || o.isNull("commissionPercent")) null
             else o.optDouble("commissionPercent"),
             commissionOnUpsellOnly = o.optBoolean("commissionOnUpsellOnly", false),
+            splitPercent = o.optDouble("splitPercent", 100.0).takeIf { !it.isNaN() }?.coerceIn(0.0, 100.0) ?: 100.0,
+            commissionPaidAt = if (!o.has("commissionPaidAt") || o.isNull("commissionPaidAt")) null else o.optLong("commissionPaidAt"),
         )
     }
 }
@@ -186,7 +200,20 @@ data class AppData(
     val defaultCommissionUpsellOnly: Boolean = false,
     /** Important days marked on the calendar: LocalDate.toEpochDay() → highlight color. */
     val dayHighlights: Map<Long, HighlightColor> = emptyMap(),
+    /** A tiered commission plan; null means every sale earns [defaultCommissionPercent]. */
+    val tierSchedule: TierSchedule? = null,
+    /** Business expenses and trips. */
+    val expenses: List<Expense> = emptyList(),
+    /** Money per mile or kilometre for trips (0 until the user sets it). */
+    val mileageRate: Double = 0.0,
+    /** Miles or kilometres; null follows the phone's region. */
+    val distanceUnit: DistanceUnit? = null,
 ) {
+    /** What each sale earns under the current plan (flat or tiered). Built once per version of the data. */
+    val commissionPlan: CommissionPlan by lazy { CommissionPlan(defaultCommissionPercent, tierSchedule, sales) }
+
+    val unit: DistanceUnit get() = distanceUnit ?: DistanceUnit.forRegion()
+
     fun toJson(): JSONObject = JSONObject()
         .put("version", 2)
         .put("clients", JSONArray(clients.map { it.toJson() }))
@@ -197,6 +224,10 @@ data class AppData(
         .put("defaultCommissionPercent", defaultCommissionPercent)
         .put("defaultCommissionUpsellOnly", defaultCommissionUpsellOnly)
         .put("dayHighlights", JSONObject().apply { dayHighlights.forEach { (day, c) -> put(day.toString(), c.name) } })
+        .put("tierSchedule", tierSchedule?.toJson() ?: JSONObject.NULL)
+        .put("expenses", JSONArray(expenses.map { it.toJson() }))
+        .put("mileageRate", mileageRate)
+        .put("distanceUnit", distanceUnit?.name ?: JSONObject.NULL)
 
     companion object {
         fun fromJson(o: JSONObject) = AppData(
@@ -214,6 +245,10 @@ data class AppData(
                     if (color != null && day != null) day to color else null
                 }.toMap()
             } ?: emptyMap(),
+            tierSchedule = TierSchedule.fromJson(o.optJSONObject("tierSchedule")),
+            expenses = o.optJSONArray("expenses").objects().map(Expense::fromJson),
+            mileageRate = o.optDouble("mileageRate", 0.0).takeIf { !it.isNaN() && it >= 0 } ?: 0.0,
+            distanceUnit = DistanceUnit.entries.firstOrNull { it.name == o.optString("distanceUnit") },
         )
 
         private fun JSONArray?.objects(): List<JSONObject> =

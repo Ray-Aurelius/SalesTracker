@@ -16,8 +16,10 @@ object SampleData {
         val goals: List<Goal>,
         val tasks: List<Task>,
         val highlightDays: Map<Long, HighlightColor>,
+        val expenses: List<Expense> = emptyList(),
     ) {
-        val ids: Set<Long> get() = (clients.map { it.id } + sales.map { it.id } + appointments.map { it.id } + goals.map { it.id } + tasks.map { it.id }).toSet()
+        val ids: Set<Long> get() = (clients.map { it.id } + sales.map { it.id } + appointments.map { it.id } + goals.map { it.id } +
+            tasks.map { it.id } + expenses.map { it.id }).toSet()
     }
 
     fun create(newId: () -> Long, commissionPercent: Double, today: LocalDate = LocalDate.now()): Sample {
@@ -54,8 +56,23 @@ object SampleData {
                 durationSeconds = (12 + (i * 5) % 30) * 60L,
                 notes = "",
                 commissionPercent = commissionPercent,
+                // One sale shared with a teammate, and older commission already paid out.
+                splitPercent = if (i == 6) 50.0 else 100.0,
+                commissionPaidAt = if (closed && i >= 8) day.plusDays(7).atTime(12, 0).atZone(zone).toInstant().toEpochMilli() else null,
             )
         }
+        // A few business costs and trips, in the region's distance unit, at an example rate.
+        val unit = DistanceUnit.forRegion()
+        val rate = if (unit == DistanceUnit.MILES) 0.65 else 0.40
+        fun at(daysAgo: Long, hour: Int) = today.minusDays(daysAgo).atTime(hour, 15).atZone(zone).toInstant().toEpochMilli()
+        val expenses = listOf(
+            Expense(newId(), at(0, 8), ExpenseKind.MILEAGE, distance = 18.4, ratePerUnit = rate, unit = unit, clientId = clients[0].id, note = "Site visit"),
+            Expense(newId(), at(1, 12), ExpenseKind.EXPENSE, ExpenseCategory.MEALS, amount = 36.50, clientId = clients[1].id, note = "Lunch meeting"),
+            Expense(newId(), at(2, 17), ExpenseKind.EXPENSE, ExpenseCategory.FUEL, amount = 48.20),
+            Expense(newId(), at(4, 9), ExpenseKind.MILEAGE, distance = 32.0, ratePerUnit = rate, unit = unit, clientId = clients[2].id, note = "Proposal walkthrough"),
+            Expense(newId(), at(6, 14), ExpenseKind.EXPENSE, ExpenseCategory.SUPPLIES, amount = 22.00, note = "Brochures"),
+            Expense(newId(), at(9, 10), ExpenseKind.MILEAGE, distance = 12.5, ratePerUnit = rate, unit = unit, clientId = clients[5].id),
+        )
         val appointments = listOf(
             Triple(0L, 14 * 60, 1), Triple(1L, 10 * 60 + 30, 2), Triple(2L, 15 * 60, 3), Triple(4L, 11 * 60, 4),
         ).map { (plusDays, minute, clientIdx) ->
@@ -78,6 +95,6 @@ object SampleData {
             Task(newId(), "Thank-you card for ${clients[0].firstName}", todayDay, clientId = clients[0].id, doneDays = setOf(todayDay)),
             Task(newId(), "Update pipeline notes", todayDay),
         )
-        return Sample(clients, sales, appointments, goals, tasks, mapOf(today.plusDays(2).toEpochDay() to HighlightColor.RED))
+        return Sample(clients, sales, appointments, goals, tasks, mapOf(today.plusDays(2).toEpochDay() to HighlightColor.RED), expenses)
     }
 }
