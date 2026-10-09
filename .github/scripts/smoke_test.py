@@ -331,9 +331,9 @@ def main(apk):
         fail("the expense PDF was not created")
     if not re.search(r"Expenses-.*\.csv", files):
         fail("the expense spreadsheet was not created")
-    head = adb("shell", "sh", "-c", "head -c 400 /sdcard/Download/Expenses-*.csv")
+    head = adb("shell", "head -c 400 /sdcard/Download/Expenses-*.csv")
     note("  CSV starts: " + head.replace("\r\n", " | ")[:300])
-    if "42.50" not in adb("shell", "sh", "-c", "cat /sdcard/Download/Expenses-*.csv"):
+    if "42.50" not in adb("shell", "cat /sdcard/Download/Expenses-*.csv"):
         fail("the spreadsheet is missing the expense that was added")
 
     section("Tiered commission plan")

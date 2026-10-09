@@ -237,10 +237,8 @@ class LayoutAudit {
         shotWithPopups("m-backup-scam-warning")
     }
 
-    /** The new dialogs: commission plan (one rate and tiered), expense report, trip, menu tabs. */
-    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
-    fun n_newDialogs() {
-        assumeTrue(System.getProperty("storeShots") == "true")
+    /** Sample data in the app, ready for one of the new-feature renders below. */
+    private fun startApp(): Pair<Application, AppViewModel> {
         val app = ApplicationProvider.getApplicationContext<Application>()
         AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); setDefaultCommission(10.0); loadSampleData() }
         val vm = AppViewModel(app)
@@ -249,39 +247,68 @@ class LayoutAudit {
                 SalesTrackerTheme(palette = vm.palette, dark = false) { SalesApp(vm, false) }
             }
         }
+        return app to vm
+    }
+
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun n1_commissionPlan() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val (app, _) = startApp()
         // The commission card is further down the Stats page: scroll the list to it first.
         rule.onAllNodes(androidx.compose.ui.test.hasScrollToNodeAction()).onFirst()
             .performScrollToNode(hasText(app.getString(R.string.commission_earned)))
         tap(app.getString(R.string.commission_earned))
-        shotWithPopups("n-plan-one-rate")
+        shotWithPopups("n1-plan-one-rate")
         tap(app.getString(R.string.plan_tiered))
-        shotWithPopups("n-plan-tiered")
-        tap(app.getString(R.string.cancel))
+        shotWithPopups("n1-plan-tiered")
+    }
 
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun n2_expenseReport() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val (app, _) = startApp()
         tap(app.getString(R.string.tab_sales))
         tap(app.getString(R.string.sales_view_expenses))
         tap(app.getString(R.string.exp_report_button))
-        shotWithPopups("n-expense-report")
+        shotWithPopups("n2-expense-report")
         tap(app.getString(R.string.exp_format_csv))
-        shotWithPopups("n-expense-report-csv")
-        tap(app.getString(R.string.cancel))
-        tap(app.getString(R.string.exp_log_trip))
-        shotWithPopups("n-log-trip")
-        tap(app.getString(R.string.cancel))
-        tap(app.getString(R.string.exp_add_expense))
-        shotWithPopups("n-add-expense")
-        tap(app.getString(R.string.cancel))
+        shotWithPopups("n2-expense-report-csv")
+    }
 
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun n3_tripForm() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val (app, _) = startApp()
+        tap(app.getString(R.string.tab_sales))
+        tap(app.getString(R.string.sales_view_expenses))
+        tap(app.getString(R.string.exp_log_trip))
+        shotWithPopups("n3-log-trip")
+    }
+
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun n4_expenseForm() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val (app, _) = startApp()
+        tap(app.getString(R.string.tab_sales))
+        tap(app.getString(R.string.sales_view_expenses))
+        tap(app.getString(R.string.exp_add_expense))
+        shotWithPopups("n4-add-expense")
+    }
+
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun n5_menuTabs() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val (app, vm) = startApp()
         tap(app.getString(R.string.cd_settings))
         tap(app.getString(R.string.menu_tabs_title))
-        shotWithPopups("n-menu-tabs")
+        shotWithPopups("n5-menu-tabs")
         tap(app.getString(R.string.done))
         tap(app.getString(R.string.done))
         // Hide two pages and check the menu re-spreads the rest.
         vm.setTabShown("CALCULATOR", false, Tab.entries.map { it.name })
         vm.setTabShown("CHARTS", false, Tab.entries.map { it.name })
         rule.waitForIdle()
-        shot("n-menu-six-tabs")
+        shot("n5-menu-six-tabs")
         vm.setTabShown("CALCULATOR", true, Tab.entries.map { it.name })
         vm.setTabShown("CHARTS", true, Tab.entries.map { it.name })
     }
