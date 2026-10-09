@@ -96,7 +96,9 @@ object ReceiptStore {
      */
     fun prepare(open: () -> InputStream?): ByteArray? {
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        open()?.use { BitmapFactory.decodeStream(it, null, bounds) } ?: return null
+        // (Reading only the size always returns null, so success is judged by the size it finds.)
+        val stream = open() ?: return null
+        stream.use { BitmapFactory.decodeStream(it, null, bounds) }
         val w = bounds.outWidth
         val h = bounds.outHeight
         if (w <= 0 || h <= 0 || w.toLong() * h > MAX_PIXELS) return null
