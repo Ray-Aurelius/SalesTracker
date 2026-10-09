@@ -203,8 +203,10 @@ class LayoutAudit {
         }
         rule.waitForIdle(); rule.mainClock.advanceTimeBy(800); rule.waitForIdle()
         shotWithPopups("l-scam-security")
+        // The password box takes focus and its cursor blinks forever: step the clock by hand from here on.
+        rule.mainClock.autoAdvance = false
         backup = true
-        rule.waitForIdle(); rule.mainClock.advanceTimeBy(800); rule.waitForIdle()
+        rule.mainClock.advanceTimeBy(1200)
         shotWithPopups("l-scam-backup")
     }
 
