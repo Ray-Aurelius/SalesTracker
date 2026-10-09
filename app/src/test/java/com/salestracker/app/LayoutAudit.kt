@@ -320,7 +320,7 @@ class LayoutAudit {
     }
 
     /** Receipt photos: the badge on an expense, the lock (no screen lock in tests), and the form's Receipts part. */
-    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h1000dp-xxhdpi")
     fun n8_receipts() {
         assumeTrue(System.getProperty("storeShots") == "true")
         val (app, vm) = startApp()
@@ -336,8 +336,7 @@ class LayoutAudit {
         rule.mainClock.autoAdvance = false
         rule.onAllNodes(hasText("Lunch with receipt", substring = true)).onFirst().performClick()
         repeat(5) { rule.mainClock.advanceTimeBy(250) }
-        rule.onAllNodesWithText(app.getString(R.string.receipts_title)).onFirst().performScrollTo()
-        repeat(3) { rule.mainClock.advanceTimeBy(250) }
+        // A tall screen so the whole form, Receipts included, shows without scrolling (a focused field never idles here).
         shotWithPopups("n8-expense-form-receipts")
     }
 
