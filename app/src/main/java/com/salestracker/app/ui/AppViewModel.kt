@@ -32,6 +32,9 @@ import com.salestracker.app.reminders.ReminderScheduler
 import com.salestracker.app.ui.theme.AppPalette
 import com.salestracker.app.ui.theme.DarkMode
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import androidx.lifecycle.viewModelScope
 
 class AppViewModel(app: Application) : AndroidViewModel(app) {
     private val repo = Repository(app)
@@ -43,6 +46,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         // Make sure every upcoming reminder is armed (covers alarms lost while the app was closed).
         ReminderScheduler.ensureChannel(app)
         ReminderScheduler.rescheduleAll(app, repo.data.value)
+        // A photo the camera app handed over just before the app was closed is never kept unencrypted.
+        com.salestracker.app.data.ReceiptStore.clearCamera(app)
     }
 
     // ---- Appearance ----
@@ -402,6 +407,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         stopwatchStartedAt = 0L
         stopwatchClientId = null
         calculatorExpression = ""
+        lockReceipts = true
     }
 
     // ---- Backups ----
@@ -420,6 +426,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         old.appointments.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
         old.tasks.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
         ReminderScheduler.rescheduleAll(getApplication(), newData)
+        // Photos the restored data no longer mentions can't be reached any more, so they're removed.
+        com.salestracker.app.data.ReceiptStore.deleteAllExcept(getApplication(), newData.expenses.flatMap { it.receipts }.toSet())
     }
 
     // ---- Opening a day from a reminder notification ----
@@ -542,7 +550,73 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
     // ---- Expenses and mileage ----
     fun saveExpense(e: Expense) = repo.update { it.copy(expenses = it.expenses.upsert(e) { x -> x.id }) }
-    fun deleteExpense(id: Long) = repo.update { d -> d.copy(expenses = d.expenses.filterNot { it.id == id }) }
+    fun deleteExpense(id: Long) {
+        val photos = repo.data.value.expenses.firstOrNull { it.id == id }?.receipts.orEmpty()
+        repo.update { d -> d.copy(expenses = d.expenses.filterNot { it.id == id }) }
+        discardReceipts(photos)
+    }
+
+    // ---- Receipt photos ----
+    /** What happened when a photo was added as a receipt. */
+    enum class ReceiptResult { SAVED, UNREADABLE, NO_SECURE_STORAGE }
+
+    /**
+     * Opening a receipt photo asks for the phone's PIN, password, pattern or fingerprint every time (on by default).
+     * Android does the check; the app never sees or stores any of these.
+     */
+    var lockReceipts by mutableStateOf(settings.getBoolean("lockReceipts", true))
+        private set
+    fun changeLockReceipts(on: Boolean) {
+        lockReceipts = on
+        settings.edit().putBoolean("lockReceipts", on).apply()
+    }
+
+    /**
+     * Shrinks, cleans (no location or other metadata) and encrypts the photo at [uri], off the main thread.
+     * [onDone] gets the new photo's id, or null and the reason it couldn't be kept.
+     * When [deleteAfter] is set (the camera's temporary file), that file is removed whatever happens.
+     */
+    fun importReceipt(uri: android.net.Uri, deleteAfter: java.io.File? = null, onDone: (Long?, ReceiptResult) -> Unit) {
+        val app = getApplication<Application>()
+        val cipher = repo.receiptCipher
+        viewModelScope.launch {
+            val result = withContext(kotlinx.coroutines.Dispatchers.IO) {
+                try {
+                    if (cipher == null) return@withContext null to ReceiptResult.NO_SECURE_STORAGE
+                    val jpeg = com.salestracker.app.data.ReceiptStore.prepare { app.contentResolver.openInputStream(uri) }
+                        ?: return@withContext null to ReceiptResult.UNREADABLE
+                    val id = repo.newId()
+                    com.salestracker.app.data.ReceiptStore.save(app, id, jpeg, cipher)
+                    id to ReceiptResult.SAVED
+                } catch (e: Exception) {
+                    null to ReceiptResult.UNREADABLE
+                } catch (e: OutOfMemoryError) {
+                    null to ReceiptResult.UNREADABLE
+                } finally {
+                    if (deleteAfter != null) com.salestracker.app.data.ReceiptStore.clearCamera(app)
+                }
+            }
+            onDone(result.first, result.second)
+        }
+    }
+
+    /** Decrypts a receipt photo into memory for the viewer. Null if this phone doesn't have it. */
+    fun loadReceipt(id: Long, onDone: (android.graphics.Bitmap?, ByteArray?) -> Unit) {
+        val app = getApplication<Application>()
+        val cipher = repo.receiptCipher ?: return onDone(null, null)
+        viewModelScope.launch {
+            val jpeg = withContext(kotlinx.coroutines.Dispatchers.IO) { com.salestracker.app.data.ReceiptStore.load(app, id, cipher) }
+            val bmp = jpeg?.let { withContext(kotlinx.coroutines.Dispatchers.Default) { android.graphics.BitmapFactory.decodeByteArray(it, 0, it.size) } }
+            onDone(bmp, jpeg)
+        }
+    }
+
+    /** Permanently removes receipt photos (an expense was deleted, a photo removed, or a new expense cancelled). */
+    fun discardReceipts(ids: Collection<Long>) {
+        if (ids.isEmpty()) return
+        val app = getApplication<Application>()
+        viewModelScope.launch(kotlinx.coroutines.Dispatchers.IO) { com.salestracker.app.data.ReceiptStore.delete(app, ids) }
+    }
     fun setMileage(rate: Double, unit: DistanceUnit?) =
         repo.update { it.copy(mileageRate = rate.coerceAtLeast(0.0), distanceUnit = unit) }
 

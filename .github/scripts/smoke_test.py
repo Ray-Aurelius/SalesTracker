@@ -12,6 +12,8 @@ import xml.etree.ElementTree as ET
 
 PKG = "com.quotavault.app"
 OUT = "smoke"
+# A receipt-like photo the walk-through adds through Android's photo picker.
+RECEIPT_JPG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "receipt-test.jpg")
 os.makedirs(OUT, exist_ok=True)
 log = []
 step_no = 0
@@ -160,6 +162,21 @@ def hide_keyboard():
     if "mInputShown=true" in adb("shell", "dumpsys", "input_method"):
         adb("shell", "input", "keyevent", "KEYCODE_BACK")
         time.sleep(1)
+
+
+def tap_first_image():
+    """In Android's photo picker, tap the first photo thumbnail."""
+    root = dump()
+    if root is None:
+        return False
+    for node in root.iter("node"):
+        rid = node.get("resource-id") or ""
+        if "thumbnail" in rid or "icon_thumbnail" in rid or ("photopicker" in rid and node.get("clickable") == "true" and "item" in rid):
+            x1, y1, x2, y2 = map(int, re.findall(r"\d+", node.get("bounds")))
+            adb("shell", "input", "tap", str((x1 + x2) // 2), str((y1 + y2) // 2))
+            note("  tapped the first photo in the picker")
+            return True
+    return False
 
 
 def back(wait=1.0):
@@ -394,6 +411,46 @@ def main(apk):
     note("  CSV starts: " + head.replace("\r\n", " | ")[:300])
     if "42.50" not in adb("shell", "cat /sdcard/Download/Expenses-*.csv"):
         fail("the spreadsheet is missing the expense that was added")
+
+    section("Receipt photo: photo picker, encrypted, locked behind the phone's PIN")
+    # A receipt-like picture in the emulator's gallery for the picker to offer.
+    adb("push", RECEIPT_JPG, "/sdcard/Pictures/receipt-test.jpg")
+    adb("shell", "content call --method scan_volume --uri content://media --arg external_primary")
+    time.sleep(2)
+    tap(r"^Expenses$", wait=1.5)
+    if tap(r"^Add expense$", wait=1.5):
+        tap(r"^Amount$", wait=0.8)
+        type_text("18.75")
+        hide_keyboard()
+        if not tap(r"^Choose photo$", "receipt-picker", wait=3, scroll=3):
+            fail("no Choose photo button for receipts")
+        # Android's photo picker: tap the newest photo.
+        if not (tap(r"^Photo taken on", wait=3) or tap(r"receipt-test", wait=3) or tap_first_image()):
+            fail("could not pick a photo in the photo picker")
+        time.sleep(3)
+        shot("receipt-added")
+        if not find(r"^Receipt 1$"):
+            fail("the picked photo was not added as a receipt")
+        tap(r"^Save$", wait=1.5)
+    # No screen lock on the emulator yet: opening must refuse and explain.
+    if tap(r"^View receipt photos", "receipt-needs-lock", wait=2):
+        if not find(r"^Set a screen lock first$"):
+            fail("a receipt opened without any phone lock")
+        tap(r"^Done$", wait=1)
+    # With a PIN set, opening asks for it every time, then shows the photo.
+    adb("shell", "locksettings set-pin 1357")
+    time.sleep(1)
+    if tap(r"^View receipt photos", wait=2.5):
+        shot("receipt-pin-prompt")
+        adb("shell", "input text 1357")
+        adb("shell", "input keyevent 66")
+        time.sleep(3)
+        shot("receipt-viewer")  # blank in the screenshot if screenshots are blocked, as they should be
+        if not find(r"^Receipt 1 of 1$"):
+            fail("the receipt viewer did not open after the PIN")
+        tap(r"^Close$", wait=1.5)
+    adb("shell", "locksettings clear --old 1357")
+    time.sleep(1)
 
     section("Tiered commission plan")
     tap(r"^Stats$", wait=1.5)

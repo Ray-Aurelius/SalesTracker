@@ -922,4 +922,35 @@
         <item quantity="other">Mark commission on %1$d sales as paid?</item>
     </plurals>
     <string name="add_as_new_client">Add “%1$s” as a new client</string>
+    <!-- Receipt photos -->
+    <string name="receipts_title">Receipts</string>
+    <string name="receipt_take_photo">Take photo</string>
+    <string name="receipt_choose_photo">Choose photo</string>
+    <string name="receipt_n">Receipt %1$d</string>
+    <string name="receipt_view">View</string>
+    <string name="receipt_cd_remove">Remove receipt %1$d</string>
+    <string name="receipt_cd_view">View receipt photos (%1$d)</string>
+    <string name="receipt_saving">Encrypting photo…</string>
+    <string name="receipt_unreadable">Couldn\'t use that photo. Try another one.</string>
+    <string name="receipt_no_secure_storage">Receipt photos can\'t be kept on this phone because its secure key storage isn\'t working.</string>
+    <string name="receipt_no_camera">No camera app was found on this phone.</string>
+    <string name="receipt_limit">Up to %1$d photos per expense.</string>
+    <string name="receipt_privacy_note">Photos are encrypted on this phone, with location and other hidden details removed. Quota Vault only gets the photo you take or choose, never the rest of your photos or files.</string>
+    <string name="receipt_lock_note">Opening one asks for your phone\'s PIN, password or fingerprint.</string>
+    <string name="receipt_unlock_title">View receipt</string>
+    <string name="receipt_unlock_subtitle">Confirm it\'s you to see receipt photos</string>
+    <string name="receipt_needs_lock_title">Set a screen lock first</string>
+    <string name="receipt_needs_lock_body">Receipt photos are protected by your phone\'s screen lock, and this phone doesn\'t have one. Set a PIN, pattern or password in your phone\'s Settings, or turn off Lock receipt photos in the app\'s security settings.</string>
+    <string name="receipt_of">Receipt %1$d of %2$d</string>
+    <string name="receipt_save_copy">Save a copy</string>
+    <string name="receipt_copy_saved">Copy saved</string>
+    <string name="receipt_copy_failed">Couldn\'t save the copy</string>
+    <string name="receipt_missing">This photo isn\'t on this phone. Backups don\'t include receipt photos.</string>
+    <string name="receipt_previous">Previous photo</string>
+    <string name="receipt_next">Next photo</string>
+    <string name="receipt_close">Close</string>
+    <string name="lock_receipts">Lock receipt photos</string>
+    <string name="lock_receipts_desc">Ask for your phone\'s PIN, password or fingerprint every time a receipt photo is opened. Turning this off asks too.</string>
+    <string name="lock_receipts_off_title">Turn off receipt lock</string>
+    <string name="backup_no_receipts">Receipt photos aren\'t included in backups. Open a receipt and use Save a copy for any you need to keep elsewhere.</string>
 </resources>

@@ -220,6 +220,7 @@ fun BoxScope.QuickAdd(
     }
     addingExpense?.let { kind ->
         ExpenseDialog(
+            vm = vm,
             initial = null,
             kind = kind,
             clients = data.clients,

@@ -87,6 +87,7 @@ internal fun NewPasswordDialog(onCancel: () -> Unit, onConfirm: (String) -> Unit
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(stringResource(R.string.backup_password_body), style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(R.string.backup_no_receipts), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 ScamWarning(stringResource(R.string.scam_backup))
                 PasswordField(pw, { pw = it }, stringResource(R.string.password), isError = pw.isNotEmpty() && !longEnough)
                 if (pw.isNotEmpty() && !longEnough) {

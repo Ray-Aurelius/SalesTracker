@@ -263,6 +263,28 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                 ) { vm.changeProtectDeletes(it) }
             }
             item {
+                // Receipt photos ask for the phone's lock every time they're opened. Turning that off needs the owner too.
+                SwitchSetting(
+                    stringResource(R.string.lock_receipts),
+                    stringResource(if (AppAuth.isAvailable(context)) R.string.lock_receipts_desc else R.string.lock_needs_screen_lock),
+                    vm.lockReceipts,
+                ) { on ->
+                    val activity = context.findActivity()
+                    if (!on && activity != null && AppAuth.isAvailable(context)) {
+                        AppAuth.authenticate(
+                            activity,
+                            onSuccess = { vm.changeLockReceipts(false) },
+                            onStart = vm::beginAuth,
+                            onEnd = vm::endAuth,
+                            title = R.string.lock_receipts_off_title,
+                            subtitle = R.string.receipt_unlock_subtitle,
+                        )
+                    } else {
+                        vm.changeLockReceipts(on)
+                    }
+                }
+            }
+            item {
                 // The "On track" widget shows amounts only when allowed here (off by default).
                 SwitchSetting(stringResource(R.string.widget_amounts), stringResource(R.string.widget_amounts_desc), vm.widgetAmounts) {
                     vm.changeWidgetAmounts(it)

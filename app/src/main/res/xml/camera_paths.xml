@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The only place the camera app may write: one temporary photo in Quota Vault's private cache.
+     It is encrypted into the app's storage and deleted straight away. -->
+<paths>
+    <cache-path name="camera" path="camera/" />
+</paths>

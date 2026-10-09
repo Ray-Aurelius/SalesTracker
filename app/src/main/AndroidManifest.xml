@@ -106,6 +106,19 @@
                 android:resource="@xml/pace_widget_info" />
         </receiver>
 
+        <!-- Receipt photos: lets the phone's camera app write ONE new photo into the app's private cache.
+             Not exported; the camera gets a one-time grant for that file only. No camera or storage
+             permission is used: photos come only from the camera app or Android's photo picker. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.camera"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/camera_paths" />
+        </provider>
+
         <!-- Fires when a reminder is due, and handles Snooze / Dismiss. Only this app can trigger it. -->
         <receiver
             android:name=".reminders.ReminderReceiver"

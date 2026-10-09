@@ -60,7 +60,7 @@ deletes any saved reports. To have an email you sent us deleted, ask us at the a
 
 <h2>3. Information you store in the app</h2>
 <p>You may enter information such as sales records, client names, phone numbers, email addresses, job or work order numbers,
-notes, appointments, tasks, goals, commission details, business expenses and mileage. This information:</p>
+notes, appointments, tasks, goals, commission details, business expenses, mileage and photos of receipts. This information:</p>
 <ul>
   <li>is stored only on your device, in the app's private storage;</li>
   <li>is encrypted with AES-256 using a key held in your phone's secure hardware (Android Keystore), which cannot be copied off the device;</li>
@@ -73,6 +73,14 @@ password-protected, so the app tells you so before you create one. Client names,
 unless you turn them on. Once you save or share a file outside the app, how it is handled depends on the place you put it
 (for example, your cloud storage or email provider).</p>
 
+<h3>Receipt photos</h3>
+<p>You can attach photos of receipts to expenses. The app does not ask for permission to use your camera, photos or files.
+A photo reaches the app only when you take one with your phone's camera app or pick one in Android's photo picker, and
+the app receives that one photo and nothing else. Before it is stored, the photo is shrunk and re-saved without its hidden
+details (such as GPS location and phone model), then encrypted like the rest of your data. Opening a receipt asks for your
+phone's PIN, password, pattern or fingerprint every time, unless you turn that off (turning it off asks too). The viewer
+blocks screenshots. Receipt photos are not included in backup files; you can save a copy of any receipt to a place you choose.</p>
+
 <h2>4. Permissions the app uses</h2>
 <table>
   <tr><th>Permission</th><th>Why</th></tr>
@@ -81,7 +89,7 @@ unless you turn them on. Once you save or share a file outside the app, how it i
   <tr><td>Run at startup</td><td>Re-sets your reminders after the phone restarts.</td></tr>
   <tr><td>Biometrics (fingerprint / face)</td><td>Only if you turn on app lock. Android performs the check; the app never receives your fingerprint, face data or PIN.</td></tr>
 </table>
-<p>The app never requests access to the internet, contacts, location, camera, microphone, photos, files, phone calls or SMS.</p>
+<p>The app never requests access to the internet, contacts, location, camera, microphone, photos, files, phone calls or SMS. Receipt photos come only from the camera app or the photo picker, one photo at a time, as described above.</p>
 
 <h2>5. Sharing and selling</h2>
 <p>We do not share, sell, rent or trade any data. Crash reports you email us are never shared with anyone.</p>

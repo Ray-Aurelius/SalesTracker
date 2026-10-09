@@ -198,7 +198,7 @@ fun ExpensesScreen(vm: AppViewModel, data: AppData) {
                 }
             }
             items(list, key = { it.id }) { e ->
-                ExpenseCard(e, e.clientId?.let { clients[it]?.displayName() }, onClick = { editing = e }, onDelete = { deleting = e })
+                ExpenseCard(vm, e, e.clientId?.let { clients[it]?.displayName() }, onClick = { editing = e }, onDelete = { deleting = e })
             }
         }
         QuickAdd(vm, data)
@@ -207,6 +207,7 @@ fun ExpensesScreen(vm: AppViewModel, data: AppData) {
     val kind = editing?.kind ?: adding
     if (kind != null) {
         ExpenseDialog(
+            vm = vm,
             initial = editing,
             kind = kind,
             clients = data.clients,
@@ -250,7 +251,7 @@ private fun SummaryLine(label: String, value: String, detail: String? = null, st
 }
 
 @Composable
-private fun ExpenseCard(e: Expense, clientName: String?, onClick: () -> Unit, onDelete: () -> Unit) {
+private fun ExpenseCard(vm: AppViewModel, e: Expense, clientName: String?, onClick: () -> Unit, onDelete: () -> Unit) {
     val trip = e.kind == ExpenseKind.MILEAGE
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
         Row(Modifier.padding(start = 16.dp, top = 12.dp, bottom = 12.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -276,6 +277,7 @@ private fun ExpenseCard(e: Expense, clientName: String?, onClick: () -> Unit, on
                 ).joinToString(" · ")
                 Text(line, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
+            if (e.receipts.isNotEmpty()) ReceiptBadgeButton(vm, e.receipts)
             IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.exp_cd_delete)) }
         }
     }
@@ -284,6 +286,7 @@ private fun ExpenseCard(e: Expense, clientName: String?, onClick: () -> Unit, on
 /** Add or edit an expense, or a trip by distance. */
 @Composable
 fun ExpenseDialog(
+    vm: AppViewModel,
     initial: Expense?,
     kind: ExpenseKind,
     clients: List<Client>,
@@ -304,6 +307,10 @@ fun ExpenseDialog(
     var rate by remember { mutableStateOf((initial?.ratePerUnit ?: defaultRate).takeIf { it > 0 }?.let(::formatAmountInput) ?: "") }
     var clientId by remember { mutableStateOf(initial?.clientId ?: defaultClientId) }
     var note by remember { mutableStateOf(initial?.note ?: "") }
+    val receipts = remember { androidx.compose.runtime.mutableStateListOf<Long>().apply { addAll(initial?.receipts.orEmpty()) } }
+    // Photos stored during this visit: Cancel removes them again so nothing is left behind.
+    val added = remember { androidx.compose.runtime.mutableStateListOf<Long>() }
+    val cancel = { vm.discardReceipts(added.toList()); onDismiss() }
 
     val amountValue = parseMoney(amount)
     val distanceValue = parseMoney(distance)
@@ -311,7 +318,7 @@ fun ExpenseDialog(
     val valid = if (trip) (distanceValue ?: 0.0) > 0.0 else (amountValue ?: 0.0) > 0.0
 
     AlertDialog(
-        onDismissRequest = onDismiss,
+        onDismissRequest = cancel,
         title = {
             Text(
                 stringResource(
@@ -378,10 +385,13 @@ fun ExpenseDialog(
                     keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
                     modifier = Modifier.fillMaxWidth(), minLines = 2,
                 )
+                ReceiptSection(vm, receipts, added, initial?.receipts.orEmpty())
             }
         },
         confirmButton = {
             TextButton(enabled = valid, onClick = {
+                // Photos removed in the form are deleted for good once the change is saved.
+                vm.discardReceipts((initial?.receipts.orEmpty() + added) - receipts.toSet())
                 // Noon keeps the chosen day the same in every time zone the phone might move to.
                 val at = date.atTime(12, 0).atZone(zone).toInstant().toEpochMilli()
                 onSave(
@@ -396,12 +406,13 @@ fun ExpenseDialog(
                         unit = unit,
                         clientId = clientId,
                         note = note.trim(),
+                        receipts = receipts.toList(),
                     )
                 )
                 onDismiss()
             }) { Text(stringResource(R.string.save)) }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) } },
+        dismissButton = { TextButton(onClick = cancel) { Text(stringResource(R.string.cancel)) } },
     )
 }
 

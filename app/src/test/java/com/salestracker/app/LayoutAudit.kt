@@ -319,6 +319,30 @@ class LayoutAudit {
         shotWithPopups("n7-clients-new-client")
     }
 
+    /** Receipt photos: the badge on an expense, the lock (no screen lock in tests), and the form's Receipts part. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun n8_receipts() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val (app, vm) = startApp()
+        vm.saveExpense(
+            com.salestracker.app.data.Expense(
+                id = vm.newId(), timestamp = System.currentTimeMillis(), kind = com.salestracker.app.data.ExpenseKind.EXPENSE,
+                category = com.salestracker.app.data.ExpenseCategory.MEALS, amount = 64.20, note = "Lunch with receipt", receipts = listOf(11L, 12L),
+            )
+        )
+        tap(app.getString(R.string.tab_expenses))
+        shot("n8-expense-with-receipts")
+        tap(app.getString(R.string.receipt_cd_view, 2))
+        shotWithPopups("n8-receipt-needs-lock")
+        tap(app.getString(R.string.done))
+        rule.mainClock.autoAdvance = false
+        rule.onAllNodes(hasText("Lunch with receipt", substring = true)).onFirst().performClick()
+        repeat(5) { rule.mainClock.advanceTimeBy(250) }
+        rule.onAllNodesWithText(app.getString(R.string.receipts_title)).onFirst().performScrollTo()
+        repeat(3) { rule.mainClock.advanceTimeBy(250) }
+        shotWithPopups("n8-expense-form-receipts")
+    }
+
     @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
     fun n5_menuTabs() {
         assumeTrue(System.getProperty("storeShots") == "true")

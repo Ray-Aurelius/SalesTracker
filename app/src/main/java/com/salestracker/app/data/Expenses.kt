@@ -55,6 +55,8 @@ data class Expense(
     val unit: DistanceUnit = DistanceUnit.MILES,
     val clientId: Long? = null,
     val note: String = "",
+    /** Receipt photos (ids of encrypted files kept by [ReceiptStore]). */
+    val receipts: List<Long> = emptyList(),
 ) {
     /** What this entry is worth: the amount spent, or distance × rate. */
     val total: Double get() = if (kind == ExpenseKind.MILEAGE) distance * ratePerUnit else amount
@@ -72,6 +74,7 @@ data class Expense(
         .put("unit", unit.name)
         .put("clientId", clientId ?: JSONObject.NULL)
         .put("note", note)
+        .put("receipts", org.json.JSONArray(receipts))
 
     companion object {
         fun fromJson(o: JSONObject) = Expense(
@@ -85,6 +88,7 @@ data class Expense(
             unit = DistanceUnit.entries.firstOrNull { it.name == o.optString("unit") } ?: DistanceUnit.MILES,
             clientId = if (!o.has("clientId") || o.isNull("clientId")) null else o.getLong("clientId"),
             note = o.optString("note"),
+            receipts = o.optJSONArray("receipts")?.let { a -> (0 until a.length()).mapNotNull { a.optLong(it).takeIf { v -> v != 0L } } }.orEmpty(),
         )
 
         private fun Double.orZero() = if (isNaN() || isInfinite()) 0.0 else this

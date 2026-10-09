@@ -29,6 +29,9 @@ class Repository(context: Context, private val cipher: DataCipher? = KeystoreCip
     /** Whether data is encrypted on this phone (false only if the phone's Keystore is unavailable). */
     val encryptedAtRest: Boolean get() = cipher != null
 
+    /** The key receipt photos are encrypted with; null if this phone's Keystore isn't working (photos then can't be kept). */
+    internal val receiptCipher: DataCipher? get() = cipher
+
     private val _data = MutableStateFlow(load())
     val data: StateFlow<AppData> = _data.asStateFlow()
 
@@ -86,6 +89,7 @@ class Repository(context: Context, private val cipher: DataCipher? = KeystoreCip
         synchronized(lock) {
             _data.value = AppData()
             dir.listFiles()?.filter { it.name.startsWith("sales_data") }?.forEach(::wipe)
+            ReceiptStore.deleteAll(appContext)
             KeystoreCipher.destroy()
             readOnly = false
         }
