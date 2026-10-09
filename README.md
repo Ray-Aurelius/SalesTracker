@@ -105,10 +105,11 @@ app/src/main/java/com/salestracker/app/
     └── screens/             one file per tab, plus shared dialogs
 ```
 
-Data file location on the phone: the app's private storage (`files/sales_data.json`). Uninstalling the app deletes it; Android's automatic backup includes it if backup is on.
+Data file location on the phone: the app's private storage (`files/sales_data.json`). Uninstalling the app deletes it. Android's automatic backup is turned off for this app, so it never leaves the phone except in a password-protected backup the user makes.
 
 ## Google Play
 
+- **Package name (application ID): `com.quotavault.app`.** Google locks it to the app at the first upload, so it must never change after that. The source folders still say `com.salestracker.app`; that is internal and never shown to anyone.
 - Every build attaches **QuotaVault.aab** (signed with the permanent key, which is the Play *upload key*) next to the APK. Upload the .aab in Play Console.
 - Targets Android 16 (API 36), as Play requires for new apps from Aug 31, 2026.
 - **Privacy policy:** `docs/privacy.html`, served by GitHub Pages at https://ray-aurelius.github.io/SalesTracker/privacy.html once Pages is enabled (Settings → Pages → Deploy from a branch → `main` / `/docs`).
