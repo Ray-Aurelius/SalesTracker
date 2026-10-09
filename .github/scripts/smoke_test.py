@@ -73,8 +73,25 @@ def dump():
     return None
 
 
+def clear_system_dialogs(root):
+    """The emulator's own apps (e.g. its launcher) sometimes freeze on a slow CI machine and Android puts up an
+    "isn't responding" box over everything. That isn't Quota Vault; press Wait and carry on."""
+    for node in root.iter("node"):
+        if "isn't responding" in (node.get("text") or ""):
+            for b in root.iter("node"):
+                if (b.get("text") or "") == "Wait":
+                    x1, y1, x2, y2 = map(int, re.findall(r"\d+", b.get("bounds")))
+                    adb("shell", "input", "tap", str((x1 + x2) // 2), str((y1 + y2) // 2))
+                    note("  (dismissed a system 'isn't responding' box: " + (node.get("text") or "") + ")")
+                    time.sleep(1.5)
+                    return True
+    return False
+
+
 def find(pattern):
     root = dump()
+    if root is not None and clear_system_dialogs(root):
+        root = dump()
     if root is None:
         return None
     rx = re.compile(pattern)
@@ -183,6 +200,8 @@ def main(apk):
     adb("install", "-r", apk, check=True, timeout=300)
     adb("shell", "pm", "grant", PKG, "android.permission.POST_NOTIFICATIONS")
     adb("shell", "settings", "put", "global", "window_animation_scale", "0")
+    # Let a freshly booted emulator finish starting its own apps before ours, so they don't stall it.
+    time.sleep(25)
     adb("logcat", "-c")
     adb("logcat", "-b", "crash", "-c")
 
