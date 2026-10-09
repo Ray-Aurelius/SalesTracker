@@ -210,6 +210,22 @@ class LayoutAudit {
         shotWithPopups("l-scam-backup")
     }
 
+    /** The backup password dialog, which warns never to send a backup or its password to anyone. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun m_backupScamWarning() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        rule.mainClock.autoAdvance = false
+        rule.setContent {
+            SalesTrackerTheme(dark = false) {
+                androidx.compose.material3.Surface(androidx.compose.ui.Modifier.padding(0.dp)) {
+                    com.salestracker.app.ui.screens.NewPasswordDialog(onCancel = {}, onConfirm = {})
+                }
+            }
+        }
+        repeat(6) { rule.mainClock.advanceTimeBy(300) }
+        shotWithPopups("m-backup-scam-warning")
+    }
+
     /** Draws the app window plus any open pop-up (menus), without waiting for idle. */
     private fun shotWithPopups(name: String) {
         val wmg = Class.forName("android.view.WindowManagerGlobal")
