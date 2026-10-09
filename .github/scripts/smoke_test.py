@@ -363,6 +363,8 @@ def main(apk):
         shot("stats-tiered")
         if not find(r"Tiered plan"):
             fail("the tiered plan did not take effect")
+        if find(r"Tiered plan · 0%"):
+            fail("the tiered plan started at 0% instead of the rate in use")
 
     section("Menu tabs: hide Calc")
     tap(r"^Settings$", wait=1.5)
