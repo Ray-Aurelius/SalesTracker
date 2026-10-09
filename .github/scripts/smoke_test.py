@@ -133,8 +133,16 @@ def toggle_near(pattern, name=None):
 
 
 def type_text(text):
+    time.sleep(1.2)  # let the keyboard finish opening, or the first letters can be lost
     adb("shell", "input", "text", text)
-    time.sleep(0.6)
+    time.sleep(0.8)
+
+
+def hide_keyboard():
+    """Close the on-screen keyboard (Back closes only the keyboard while it is showing)."""
+    if "mInputShown=true" in adb("shell", "dumpsys", "input_method"):
+        adb("shell", "input", "keyevent", "KEYCODE_BACK")
+        time.sleep(1)
 
 
 def back(wait=1.0):
@@ -236,6 +244,9 @@ def main(apk):
             type_text("SmokeTest2026x")
             tap(r"^Confirm password$", wait=0.8)
             type_text("SmokeTest2026x")
+        hide_keyboard()
+        if find(r"match"):
+            fail("the two report passwords did not match (typing problem in the test)")
         tap(r"^Create PDF$", wait=2)
         save_in_picker("report")
         time.sleep(4)
@@ -261,6 +272,7 @@ def main(apk):
         type_text("SmokeTest2026x")
         tap(r"^Confirm password$", wait=0.8)
         type_text("SmokeTest2026x")
+        hide_keyboard()
         tap(r"^Choose where to save$", wait=2)
         save_in_picker("backup")
         time.sleep(5)
