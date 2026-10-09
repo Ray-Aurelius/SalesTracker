@@ -237,6 +237,16 @@ class LayoutAudit {
         shotWithPopups("m-backup-scam-warning")
     }
 
+    /**
+     * Opens something that holds a text box. Off-device the dialog window starts in keyboard mode, so its first
+     * text box takes focus and the blinking cursor never lets the screen settle: pause the clock and step it.
+     */
+    private fun clickPaused(label: String) {
+        rule.mainClock.autoAdvance = false
+        rule.onAllNodes(hasText(label) or hasContentDescription(label)).onFirst().performClick()
+        repeat(5) { rule.mainClock.advanceTimeBy(250) }
+    }
+
     /** Sample data in the app, ready for one of the new-feature renders below. */
     private fun startApp(): Pair<Application, AppViewModel> {
         val app = ApplicationProvider.getApplicationContext<Application>()
@@ -257,9 +267,9 @@ class LayoutAudit {
         // The commission card is further down the Stats page: scroll the list to it first.
         rule.onAllNodes(androidx.compose.ui.test.hasScrollToNodeAction()).onFirst()
             .performScrollToNode(hasText(app.getString(R.string.commission_earned)))
-        tap(app.getString(R.string.commission_earned))
+        clickPaused(app.getString(R.string.commission_earned))
         shotWithPopups("n1-plan-one-rate")
-        tap(app.getString(R.string.plan_tiered))
+        clickPaused(app.getString(R.string.plan_tiered))
         shotWithPopups("n1-plan-tiered")
     }
 
@@ -281,7 +291,7 @@ class LayoutAudit {
         val (app, _) = startApp()
         tap(app.getString(R.string.tab_sales))
         tap(app.getString(R.string.sales_view_expenses))
-        tap(app.getString(R.string.exp_log_trip))
+        clickPaused(app.getString(R.string.exp_log_trip))
         shotWithPopups("n3-log-trip")
     }
 
@@ -291,7 +301,7 @@ class LayoutAudit {
         val (app, _) = startApp()
         tap(app.getString(R.string.tab_sales))
         tap(app.getString(R.string.sales_view_expenses))
-        tap(app.getString(R.string.exp_add_expense))
+        clickPaused(app.getString(R.string.exp_add_expense))
         shotWithPopups("n4-add-expense")
     }
 
