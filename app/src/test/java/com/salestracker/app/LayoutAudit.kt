@@ -203,26 +203,28 @@ class LayoutAudit {
         }
         rule.waitForIdle(); rule.mainClock.advanceTimeBy(800); rule.waitForIdle()
         shotWithPopups("l-scam-security")
-        // The password box takes focus and its cursor blinks forever: step the clock by hand from here on.
-        rule.mainClock.autoAdvance = false
-        backup = true
-        rule.mainClock.advanceTimeBy(1200)
-        shotWithPopups("l-scam-backup")
     }
 
     /** The backup password dialog, which warns never to send a backup or its password to anyone. */
     @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
     fun m_backupScamWarning() {
         assumeTrue(System.getProperty("storeShots") == "true")
-        rule.mainClock.autoAdvance = false
+        var show by mutableStateOf(false)
         rule.setContent {
             SalesTrackerTheme(dark = false) {
                 androidx.compose.material3.Surface(androidx.compose.ui.Modifier.padding(0.dp)) {
-                    com.salestracker.app.ui.screens.NewPasswordDialog(onCancel = {}, onConfirm = {})
+                    if (show) com.salestracker.app.ui.screens.NewPasswordDialog(onCancel = {}, onConfirm = {})
                 }
             }
         }
-        repeat(6) { rule.mainClock.advanceTimeBy(300) }
+        // The password box takes focus and blinks forever, so open the dialog only once the clock is paused,
+        // then run the dialog window's pending layout by hand.
+        rule.mainClock.autoAdvance = false
+        show = true
+        repeat(8) {
+            rule.mainClock.advanceTimeBy(200)
+            org.robolectric.shadows.ShadowLooper.idleMainLooper()
+        }
         shotWithPopups("m-backup-scam-warning")
     }
 
