@@ -37,10 +37,13 @@ android {
             if (stableKey.exists()) signingConfig = signingConfigs.getByName("stable")
         }
         // What users install: not debuggable, so no computer can attach to the app or copy its files.
-        // Code shrinking stays off on purpose; it adds little security for an offline app and could
-        // introduce behavior differences that can't be tested on a phone before release.
+        // Shrunk and obfuscated with R8: unused code and icons are removed and names are scrambled, which
+        // makes the app much smaller and harder to take apart. Every build is installed on an emulator and
+        // tapped through (the smoke-test job) to catch anything shrinking breaks.
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             isDebuggable = false
             if (stableKey.exists()) signingConfig = signingConfigs.getByName("stable")
         }

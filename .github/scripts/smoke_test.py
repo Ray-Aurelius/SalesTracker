@@ -1,0 +1,260 @@
+#!/usr/bin/env python3
+"""
+Installs the shrunk release build on an emulator and taps through the app the way a person would:
+agreement, welcome with sample data, every tab, the + menu, a client's profile, the timer, a
+password-protected PDF report, an encrypted backup, Security & privacy, crash reports and a theme change,
+then restarts the app so it has to decrypt and load its saved data again.
+
+Fails if the app crashes at any point. Screenshots of every step go to smoke/ for review.
+"""
+import os, re, subprocess, sys, time
+import xml.etree.ElementTree as ET
+
+PKG = "com.quotavault.app"
+OUT = "smoke"
+os.makedirs(OUT, exist_ok=True)
+log = []
+step_no = 0
+
+
+def adb(*args, check=False, timeout=120):
+    r = subprocess.run(["adb", *args], capture_output=True, text=True, timeout=timeout)
+    if check and r.returncode != 0:
+        raise RuntimeError(f"adb {' '.join(args)} failed: {r.stderr.strip()}")
+    return r.stdout
+
+
+def note(msg):
+    print(msg, flush=True)
+    log.append(msg)
+
+
+def crashed():
+    out = adb("logcat", "-d", "-b", "crash")
+    return PKG in out or "com.salestracker" in out
+
+
+def shot(name):
+    global step_no
+    step_no += 1
+    path = f"{OUT}/{step_no:02d}-{name}.png"
+    with open(path, "wb") as f:
+        f.write(subprocess.run(["adb", "exec-out", "screencap", "-p"], capture_output=True, timeout=60).stdout)
+
+
+def dump():
+    for _ in range(6):
+        adb("shell", "uiautomator", "dump", "/sdcard/ui.xml")
+        xml = adb("shell", "cat", "/sdcard/ui.xml")
+        if xml.strip().startswith("<?xml"):
+            try:
+                return ET.fromstring(xml)
+            except ET.ParseError:
+                pass
+        time.sleep(1)
+    return None
+
+
+def find(pattern):
+    root = dump()
+    if root is None:
+        return None
+    rx = re.compile(pattern)
+    for node in root.iter("node"):
+        for attr in ("text", "content-desc"):
+            if rx.search(node.get(attr) or ""):
+                x1, y1, x2, y2 = map(int, re.findall(r"\d+", node.get("bounds")))
+                return (x1 + x2) // 2, (y1 + y2) // 2
+    return None
+
+
+def tap(pattern, name=None, wait=1.5, scroll=0):
+    pos = find(pattern)
+    tries = 0
+    while pos is None and tries < scroll:
+        adb("shell", "input", "swipe", "540", "1700", "540", "900", "300")
+        time.sleep(0.8)
+        pos = find(pattern)
+        tries += 1
+    if pos is None:
+        note(f"  not found: {pattern}")
+        return False
+    adb("shell", "input", "tap", str(pos[0]), str(pos[1]))
+    time.sleep(wait)
+    note(f"  tapped: {pattern}")
+    if name:
+        shot(name)
+    if crashed():
+        fail(f"crash after tapping {pattern}")
+    return True
+
+
+def type_text(text):
+    adb("shell", "input", "text", text)
+    time.sleep(0.6)
+
+
+def back(wait=1.0):
+    adb("shell", "input", "keyevent", "KEYCODE_BACK")
+    time.sleep(wait)
+
+
+def save_in_picker(name):
+    """The system 'save file' screen: press Save."""
+    time.sleep(2.5)
+    shot(name + "-picker")
+    if not tap(r"^(SAVE|Save)$", wait=3):
+        note("  picker Save button not found")
+    if crashed():
+        fail(f"crash while saving {name}")
+
+
+def fail(why):
+    note(f"FAILED: {why}")
+    shot("failure")
+    with open(f"{OUT}/crash-log.txt", "w") as f:
+        f.write(adb("logcat", "-d", "-b", "crash"))
+    finish(1)
+
+
+def finish(code):
+    with open(f"{OUT}/logcat.txt", "w") as f:
+        f.write(adb("logcat", "-d", "-v", "time", "*:W"))
+    with open(f"{OUT}/summary.txt", "w") as f:
+        f.write("\n".join(log) + "\n")
+    sys.exit(code)
+
+
+def main(apk):
+    adb("wait-for-device", check=True)
+    adb("install", "-r", apk, check=True, timeout=300)
+    adb("shell", "pm", "grant", PKG, "android.permission.POST_NOTIFICATIONS")
+    adb("shell", "settings", "put", "global", "window_animation_scale", "0")
+    adb("logcat", "-c")
+    adb("logcat", "-b", "crash", "-c")
+
+    note("Launch")
+    adb("shell", "monkey", "-p", PKG, "-c", "android.intent.category.LAUNCHER", "1")
+    time.sleep(6)
+    shot("agreement")
+    if crashed():
+        fail("crash on launch")
+
+    note("Agreement and welcome")
+    tap(r"I have read and agree", scroll=6)
+    tap(r"^I agree$", "agreed")
+    for _ in range(4):
+        if find(r"Explore with sample data"):
+            break
+        if not tap(r"^Next$", wait=1.2):
+            break
+    tap(r"Explore with sample data", "sample-data-loaded", wait=3)
+
+    note("Every tab")
+    for label in ["Sales", "Goals", "Clients", "Schedule", "Timer", "Calc", "Charts", "Stats"]:
+        tap(rf"^{label}$", f"tab-{label.lower()}", wait=2)
+
+    note("The + menu")
+    if tap(r"^Log a sale or add a client$", "plus-menu"):
+        tap(r"^Log sale$", "log-sale-form", wait=2)
+        back()
+        back()
+
+    note("A client's profile with stats")
+    tap(r"^Clients$", wait=1.5)
+    tap(r"Alex Morgan", "client-profile", wait=2)
+    adb("shell", "input", "swipe", "540", "1700", "540", "500", "300")
+    time.sleep(1)
+    shot("client-stats")
+    back()
+
+    note("Timer")
+    tap(r"^Timer$", wait=1.5)
+    tap(r"^Start$", wait=2.5)
+    shot("timer-running")
+    tap(r"^Reset$", wait=1.5)
+
+    note("Calculator")
+    tap(r"^Calc$", wait=1.5)
+    for key in ["7", "×", "8"]:
+        tap(rf"^{re.escape(key)}$", wait=0.5)
+    tap(r"^=$", "calculator", wait=1)
+
+    note("Password-protected PDF report (pdfbox and its encryption)")
+    tap(r"^Stats$", wait=1.5)
+    if tap(r"^Report \(PDF\)$", "report-options", wait=2):
+        tap(r"^Protect with a password$", wait=1)
+        if tap(r"^Password$", wait=0.8):
+            type_text("SmokeTest2026x")
+            tap(r"^Confirm password$", wait=0.8)
+            type_text("SmokeTest2026x")
+        tap(r"^Create PDF$", wait=2)
+        save_in_picker("report")
+        time.sleep(4)
+        shot("report-done")
+        files = adb("shell", "ls", "-l", "/sdcard/Download/")
+        note("  Downloads: " + " | ".join(l for l in files.splitlines() if "SalesReport" in l))
+        if "SalesReport" not in files:
+            note("  WARNING: no report file found")
+
+    note("Settings and Security & privacy")
+    tap(r"^Settings$", "settings", wait=1.5)
+    tap(r"^Security & privacy$", "security", wait=2)
+
+    note("Encrypted backup")
+    if tap(r"^Back up to an encrypted file$", "backup-password", wait=2, scroll=4):
+        tap(r"^Password$", wait=0.8)
+        type_text("SmokeTest2026x")
+        tap(r"^Confirm password$", wait=0.8)
+        type_text("SmokeTest2026x")
+        tap(r"^Choose where to save$", wait=2)
+        save_in_picker("backup")
+        time.sleep(5)
+        shot("backup-done")
+        files = adb("shell", "ls", "-l", "/sdcard/Download/")
+        note("  Downloads: " + " | ".join(l for l in files.splitlines() if "backup" in l.lower()))
+        if "stbackup" not in files:
+            note("  WARNING: no backup file found")
+
+    note("Crash reports and privacy info")
+    tap(r"^Crash reports$", "crash-reports", wait=1.5, scroll=6)
+    tap(r"^Done$", wait=1)
+    tap(r"^How your data is handled$", "privacy-info", wait=1.5, scroll=2)
+    back()
+    back(wait=1.5)
+
+    note("A holiday theme")
+    tap(r"^Settings$", wait=1.5)
+    tap(r"^Appearance$", wait=1.5)
+    tap(r"Christmas", "theme-christmas", wait=1.5, scroll=3)
+    back()
+    back()
+
+    note("Restart: the app must decrypt and reload everything")
+    adb("shell", "am", "force-stop", PKG)
+    time.sleep(1)
+    adb("shell", "monkey", "-p", PKG, "-c", "android.intent.category.LAUNCHER", "1")
+    time.sleep(6)
+    shot("after-restart")
+    if crashed():
+        fail("crash after restart")
+    if not find(r"^Stats$"):
+        note("  WARNING: main screen not showing after restart")
+    tap(r"^Clients$", "clients-after-restart", wait=2)
+    if not find(r"Alex Morgan"):
+        note("  WARNING: sample client missing after restart")
+
+    if crashed():
+        fail("crash")
+    note("PASSED: no crashes")
+    finish(0)
+
+
+if __name__ == "__main__":
+    try:
+        main(sys.argv[1])
+    except SystemExit:
+        raise
+    except Exception as e:  # a broken script is not an app crash, but still fails the check
+        note(f"SCRIPT ERROR: {e!r}")
+        finish(2)
