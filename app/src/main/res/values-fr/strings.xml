@@ -761,8 +761,8 @@
     <string name="plan_tiered">Par paliers</string>
     <string name="range_last_month">Le mois dernier</string>
     <string name="range_last_year">L\'an dernier</string>
-    <string name="sales_view_expenses">Dépenses</string>
-    <string name="sales_view_log">Ventes</string>
+    <string name="tab_expenses">Dépenses</string>
+    <string name="title_expenses">Dépenses et kilométrage</string>
     <string name="split_sale">Partagée avec un collègue</string>
     <string name="split_your_share">Votre part</string>
     <string name="tag_paid">Versée</string>

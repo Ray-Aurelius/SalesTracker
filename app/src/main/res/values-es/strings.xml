@@ -761,8 +761,8 @@
     <string name="plan_tiered">Por niveles</string>
     <string name="range_last_month">El mes pasado</string>
     <string name="range_last_year">El año pasado</string>
-    <string name="sales_view_expenses">Gastos</string>
-    <string name="sales_view_log">Ventas</string>
+    <string name="tab_expenses">Gastos</string>
+    <string name="title_expenses">Gastos y kilometraje</string>
     <string name="split_sale">Compartida con un compañero</string>
     <string name="split_your_share">Tu parte</string>
     <string name="tag_paid">Pagada</string>

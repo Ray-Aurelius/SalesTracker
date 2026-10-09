@@ -761,8 +761,8 @@
     <string name="plan_tiered">Kademeli</string>
     <string name="range_last_month">Geçen ay</string>
     <string name="range_last_year">Geçen yıl</string>
-    <string name="sales_view_expenses">Giderler</string>
-    <string name="sales_view_log">Satışlar</string>
+    <string name="tab_expenses">Giderler</string>
+    <string name="title_expenses">Giderler ve kilometre</string>
     <string name="split_sale">Bir iş arkadaşıyla paylaşılan</string>
     <string name="split_your_share">Sizin payınız</string>
     <string name="tag_paid">Ödendi</string>

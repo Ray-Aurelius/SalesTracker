@@ -761,8 +761,8 @@
     <string name="plan_tiered">متدرجة</string>
     <string name="range_last_month">الشهر الماضي</string>
     <string name="range_last_year">العام الماضي</string>
-    <string name="sales_view_expenses">المصروفات</string>
-    <string name="sales_view_log">المبيعات</string>
+    <string name="tab_expenses">المصروفات</string>
+    <string name="title_expenses">المصروفات والمسافات</string>
     <string name="split_sale">مقسّم مع زميل</string>
     <string name="split_your_share">حصتك</string>
     <string name="tag_paid">مدفوعة</string>

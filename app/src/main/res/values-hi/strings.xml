@@ -761,8 +761,8 @@
     <string name="plan_tiered">स्तरीय</string>
     <string name="range_last_month">पिछला महीना</string>
     <string name="range_last_year">पिछला साल</string>
-    <string name="sales_view_expenses">खर्च</string>
-    <string name="sales_view_log">बिक्री</string>
+    <string name="tab_expenses">खर्च</string>
+    <string name="title_expenses">खर्च और माइलेज</string>
     <string name="split_sale">सहकर्मी के साथ बाँटी गई</string>
     <string name="split_your_share">आपका हिस्सा</string>
     <string name="tag_paid">मिला</string>

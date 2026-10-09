@@ -53,31 +53,7 @@ import com.salestracker.app.ui.AppViewModel
  * newest first, with a summary on top. Tap a sale to edit it; deleting asks for the owner's fingerprint or PIN.
  */
 @Composable
-fun SalesScreen(vm: AppViewModel, data: AppData) {
-    // The Sales tab holds the sales log and the expense & mileage log, one tap apart.
-    var view by rememberSaveable { mutableStateOf(0) }
-    LaunchedEffect(vm.pendingOpenExpenses) {
-        if (vm.pendingOpenExpenses) { view = 1; vm.pendingOpenExpenses = false }
-    }
-    val narrow = isNarrow()
-    Column(Modifier.fillMaxSize()) {
-        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
-            SegmentedButton(
-                selected = view == 0, onClick = { view = 0 },
-                shape = SegmentedButtonDefaults.itemShape(0, 2),
-                icon = { if (!narrow) SegmentedButtonDefaults.Icon(view == 0) },
-            ) { FitText(stringResource(R.string.sales_view_log)) }
-            SegmentedButton(
-                selected = view == 1, onClick = { view = 1 },
-                shape = SegmentedButtonDefaults.itemShape(1, 2),
-                icon = { if (!narrow) SegmentedButtonDefaults.Icon(view == 1) },
-            ) { FitText(stringResource(R.string.sales_view_expenses)) }
-        }
-        Box(Modifier.weight(1f)) {
-            if (view == 0) SalesLog(vm, data) else ExpensesScreen(vm, data)
-        }
-    }
-}
+fun SalesScreen(vm: AppViewModel, data: AppData) = SalesLog(vm, data)
 
 @Composable
 private fun SalesLog(vm: AppViewModel, data: AppData) {

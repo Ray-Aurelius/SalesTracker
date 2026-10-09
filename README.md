@@ -30,7 +30,7 @@ Everything is stored privately on the phone — no account or internet needed.
 
 **Commission plans:** one rate, or tiers that rise with the week's, month's, quarter's or year's sales (each portion at its own rate, or the whole period at the level reached). Split a sale with a colleague and only your share counts. Mark commission paid; Stats and the Sales log show paid vs still owed.
 
-**Expenses & mileage:** log costs by category and trips by distance (miles or km by region; the rate is kept with each trip, so changing it later never alters old trips). Net earnings = commission − expenses − mileage. The expense & mileage report exports as a PDF (optional password) or a spreadsheet (CSV, formula-safe) for an accountant or tax software, for this/last month, quarters, this/last year or all time.
+**Expenses & mileage** (its own page in the menu): log costs by category and trips by distance (miles or km by region; the rate is kept with each trip, so changing it later never alters old trips). Net earnings = commission − expenses − mileage. The expense & mileage report exports as a PDF (optional password) or a spreadsheet (CSV, formula-safe) for an accountant or tax software, for this/last month, quarters, this/last year or all time.
 
 **Menu tabs:** Settings → Menu tabs turns off pages someone doesn't use (at least one stays; nothing is deleted).
 

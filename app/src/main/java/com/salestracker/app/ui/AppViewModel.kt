@@ -439,7 +439,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         hiddenTabs = next
         settings.edit().putStringSet("hiddenTabs", next).apply()
     }
-    /** Opens the Sales tab on its Expenses view (after logging an expense from the + menu). */
+    /** Set to open the Expenses page (even when it's hidden from the menu). */
     var pendingOpenExpenses by mutableStateOf(false)
 
     // ---- Tasks ----

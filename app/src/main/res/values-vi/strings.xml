@@ -761,8 +761,8 @@
     <string name="plan_tiered">Bậc thang</string>
     <string name="range_last_month">Tháng trước</string>
     <string name="range_last_year">Năm trước</string>
-    <string name="sales_view_expenses">Chi phí</string>
-    <string name="sales_view_log">Bán hàng</string>
+    <string name="tab_expenses">Chi phí</string>
+    <string name="title_expenses">Chi phí &amp; quãng đường</string>
     <string name="split_sale">Chia với đồng nghiệp</string>
     <string name="split_your_share">Phần của bạn</string>
     <string name="tag_paid">Đã nhận</string>

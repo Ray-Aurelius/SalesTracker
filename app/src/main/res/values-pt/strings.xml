@@ -761,8 +761,8 @@
     <string name="plan_tiered">Por faixas</string>
     <string name="range_last_month">Mês passado</string>
     <string name="range_last_year">Ano passado</string>
-    <string name="sales_view_expenses">Despesas</string>
-    <string name="sales_view_log">Vendas</string>
+    <string name="tab_expenses">Despesas</string>
+    <string name="title_expenses">Despesas e quilometragem</string>
     <string name="split_sale">Dividida com um colega</string>
     <string name="split_your_share">Sua parte</string>
     <string name="tag_paid">Paga</string>

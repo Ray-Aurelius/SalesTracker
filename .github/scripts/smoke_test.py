@@ -223,7 +223,7 @@ def main(apk):
     tap(r"Explore with sample data", "sample-data-loaded", wait=3)
 
     section("Every tab")
-    for label in ["Sales", "Goals", "Clients", "Schedule", "Timer", "Calc", "Charts", "Stats"]:
+    for label in ["Sales", "Expenses", "Goals", "Clients", "Schedule", "Timer", "Calc", "Charts", "Stats"]:
         tap(rf"^{label}$", f"tab-{label.lower()}", wait=2)
 
     section("The + menu")
@@ -356,6 +356,8 @@ def main(apk):
     section("Expenses and mileage")
     tap(r"^Sales$", wait=1.5)
     tap(r"^Expenses$", "expenses", wait=1.5)
+    if not find(r"^Expenses & mileage$"):
+        fail("the Expenses tab did not open its own page")
     if tap(r"^Add expense$", "add-expense", wait=1.5):
         tap(r"^Amount$", wait=0.8)
         type_text("42.50")

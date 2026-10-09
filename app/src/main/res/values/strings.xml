@@ -890,8 +890,8 @@
     <string name="plan_tiered">Tiered</string>
     <string name="range_last_month">Last month</string>
     <string name="range_last_year">Last year</string>
-    <string name="sales_view_expenses">Expenses</string>
-    <string name="sales_view_log">Sales</string>
+    <string name="tab_expenses">Expenses</string>
+    <string name="title_expenses">Expenses &amp; mileage</string>
     <string name="split_sale">Split with a colleague</string>
     <string name="split_your_share">Your share</string>
     <string name="tag_paid">Paid</string>

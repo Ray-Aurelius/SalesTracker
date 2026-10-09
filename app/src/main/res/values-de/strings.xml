@@ -761,8 +761,8 @@
     <string name="plan_tiered">Gestaffelt</string>
     <string name="range_last_month">Letzter Monat</string>
     <string name="range_last_year">Letztes Jahr</string>
-    <string name="sales_view_expenses">Ausgaben</string>
-    <string name="sales_view_log">Verkäufe</string>
+    <string name="tab_expenses">Ausgaben</string>
+    <string name="title_expenses">Ausgaben &amp; Fahrten</string>
     <string name="split_sale">Mit Kollegen geteilt</string>
     <string name="split_your_share">Dein Anteil</string>
     <string name="tag_paid">Ausgezahlt</string>

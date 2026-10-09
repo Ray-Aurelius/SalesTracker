@@ -83,6 +83,7 @@ import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material.icons.filled.Insights
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Timer
@@ -215,6 +216,7 @@ class MainActivity : AppCompatActivity() {
 internal enum class Tab(@StringRes val label: Int, @StringRes val title: Int, val icon: ImageVector) {
     DASHBOARD(R.string.tab_stats, R.string.title_stats, Icons.Filled.Insights),
     SALES(R.string.tab_sales, R.string.title_sales, Icons.AutoMirrored.Filled.ReceiptLong),
+    EXPENSES(R.string.tab_expenses, R.string.title_expenses, Icons.Filled.AccountBalanceWallet),
     GOALS(R.string.tab_goals, R.string.title_goals, Icons.Filled.Flag),
     CLIENTS(R.string.tab_clients, R.string.title_clients, Icons.Filled.People),
     CALENDAR(R.string.tab_calendar, R.string.title_calendar, Icons.Filled.CalendarMonth),
@@ -289,7 +291,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     val config = LocalConfiguration.current
     // In landscape a bottom bar leaves too little room for the page, so the menu goes to the side.
     val side = vm.menuOnLeft || config.screenHeightDp < 480
-    // Bottom bar: 7 items share the width. Side menu: labels when they fit in 68dp, otherwise icons only.
+    // Bottom bar: the shown items share the width. Side menu: labels when they fit in 68dp, otherwise icons only.
     // Each item gets an equal slice of the width, with 2dp breathing room on each side of its label.
     val bottomItemWidth = config.screenWidthDp.toFloat() / labels.size - 4f
     // Every label when they fit at a readable size; otherwise only the current page's name shows.
@@ -302,6 +304,9 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
 
     LaunchedEffect(vm.pendingOpenDay) {
         if (vm.pendingOpenDay != null) { tab = Tab.CALENDAR; opened = true }
+    }
+    LaunchedEffect(vm.pendingOpenExpenses) {
+        if (vm.pendingOpenExpenses) { tab = Tab.EXPENSES; opened = true; vm.pendingOpenExpenses = false }
     }
     LaunchedEffect(vm.pendingOpenTasks) {
         if (vm.pendingOpenTasks) { tab = Tab.CALENDAR; opened = true }
@@ -360,6 +365,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                     when (tab) {
                         Tab.DASHBOARD -> DashboardScreen(vm, data)
                         Tab.SALES -> SalesScreen(vm, data)
+                        Tab.EXPENSES -> com.salestracker.app.ui.screens.ExpensesScreen(vm, data)
                         Tab.GOALS -> GoalsScreen(vm, data)
                         Tab.CLIENTS -> ClientsScreen(vm, data)
                         Tab.CALENDAR -> ScheduleScreen(vm, data)

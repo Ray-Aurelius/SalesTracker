@@ -761,8 +761,8 @@
     <string name="plan_tiered">阶梯</string>
     <string name="range_last_month">上个月</string>
     <string name="range_last_year">去年</string>
-    <string name="sales_view_expenses">费用</string>
-    <string name="sales_view_log">销售</string>
+    <string name="tab_expenses">费用</string>
+    <string name="title_expenses">费用与里程</string>
     <string name="split_sale">与同事分成</string>
     <string name="split_your_share">你的份额</string>
     <string name="tag_paid">已付</string>

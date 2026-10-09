@@ -95,7 +95,7 @@ class LayoutAudit {
             }
         }
         val tabs = listOf(
-            R.string.tab_stats to "1-stats", R.string.tab_sales to "1s-sales", R.string.tab_goals to "2-goals", R.string.tab_clients to "3-clients",
+            R.string.tab_stats to "1-stats", R.string.tab_sales to "1s-sales", R.string.tab_expenses to "1x-expenses", R.string.tab_goals to "2-goals", R.string.tab_clients to "3-clients",
             R.string.tab_calendar to "4-schedule", R.string.tab_timer to "6-timer", R.string.tab_calc to "7-calc",
             R.string.tab_charts to "8-charts",
         )
@@ -125,17 +125,9 @@ class LayoutAudit {
                 shot("$config-7-calc-medium")
                 vm.calculatorExpression = ""
             }
-            if (name in setOf("1-stats", "1s-sales", "2-goals", "8-charts", "6-timer", "4-schedule")) {
+            if (name in setOf("1-stats", "1s-sales", "1x-expenses", "2-goals", "8-charts", "6-timer", "4-schedule")) {
                 scrollDown()
                 shot("$config-$name-b")
-            }
-            if (name == "1s-sales") {
-                // The Expenses view on the same tab: totals, net earnings, buttons and the log.
-                tap(app.getString(R.string.sales_view_expenses))
-                shot("$config-1s-expenses")
-                scrollDown()
-                shot("$config-1s-expenses-b")
-                tap(app.getString(R.string.sales_view_log))
             }
         }
     }
@@ -278,8 +270,7 @@ class LayoutAudit {
     fun n2_expenseReport() {
         assumeTrue(System.getProperty("storeShots") == "true")
         val (app, _) = startApp()
-        tap(app.getString(R.string.tab_sales))
-        tap(app.getString(R.string.sales_view_expenses))
+        tap(app.getString(R.string.tab_expenses))
         tap(app.getString(R.string.exp_report_button))
         shotWithPopups("n2-expense-report")
         tap(app.getString(R.string.exp_format_csv))
@@ -290,8 +281,7 @@ class LayoutAudit {
     fun n3_tripForm() {
         assumeTrue(System.getProperty("storeShots") == "true")
         val (app, _) = startApp()
-        tap(app.getString(R.string.tab_sales))
-        tap(app.getString(R.string.sales_view_expenses))
+        tap(app.getString(R.string.tab_expenses))
         clickPaused(app.getString(R.string.exp_log_trip))
         shotWithPopups("n3-log-trip")
     }
@@ -300,8 +290,7 @@ class LayoutAudit {
     fun n4_expenseForm() {
         assumeTrue(System.getProperty("storeShots") == "true")
         val (app, _) = startApp()
-        tap(app.getString(R.string.tab_sales))
-        tap(app.getString(R.string.sales_view_expenses))
+        tap(app.getString(R.string.tab_expenses))
         clickPaused(app.getString(R.string.exp_add_expense))
         shotWithPopups("n4-add-expense")
     }

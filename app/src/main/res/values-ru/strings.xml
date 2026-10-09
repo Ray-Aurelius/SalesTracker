@@ -761,8 +761,8 @@
     <string name="plan_tiered">Ступенчатый</string>
     <string name="range_last_month">Прошлый месяц</string>
     <string name="range_last_year">Прошлый год</string>
-    <string name="sales_view_expenses">Расходы</string>
-    <string name="sales_view_log">Продажи</string>
+    <string name="tab_expenses">Расходы</string>
+    <string name="title_expenses">Расходы и пробег</string>
     <string name="split_sale">Разделена с коллегой</string>
     <string name="split_your_share">Ваша доля</string>
     <string name="tag_paid">Выплачено</string>

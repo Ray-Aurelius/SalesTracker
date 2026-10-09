@@ -761,8 +761,8 @@
     <string name="plan_tiered">단계별</string>
     <string name="range_last_month">지난달</string>
     <string name="range_last_year">작년</string>
-    <string name="sales_view_expenses">비용</string>
-    <string name="sales_view_log">판매</string>
+    <string name="tab_expenses">비용</string>
+    <string name="title_expenses">비용 및 주행 거리</string>
     <string name="split_sale">동료와 분배</string>
     <string name="split_your_share">내 몫</string>
     <string name="tag_paid">지급됨</string>
