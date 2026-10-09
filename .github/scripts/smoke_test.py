@@ -104,6 +104,31 @@ def tap(pattern, name=None, wait=1.5, scroll=0):
     return True
 
 
+def toggle_near(pattern, name=None):
+    """Flip the switch on the same row as the given label (tapping the label alone may not)."""
+    root = dump()
+    if root is None:
+        return False
+    rx = re.compile(pattern)
+    label = next((n for n in root.iter("node") if rx.search(n.get("text") or "")), None)
+    if label is None:
+        note(f"  not found: {pattern}")
+        return False
+    ly = sum(map(int, re.findall(r"\d+", label.get("bounds"))[1::2])) // 2
+    for n in root.iter("node"):
+        if n.get("checkable") == "true":
+            x1, y1, x2, y2 = map(int, re.findall(r"\d+", n.get("bounds")))
+            if abs((y1 + y2) // 2 - ly) < 80:
+                adb("shell", "input", "tap", str((x1 + x2) // 2), str((y1 + y2) // 2))
+                time.sleep(1.2)
+                note(f"  switched on: {pattern}")
+                if name:
+                    shot(name)
+                return True
+    note(f"  no switch next to: {pattern}")
+    return False
+
+
 def type_text(text):
     adb("shell", "input", "text", text)
     time.sleep(0.6)
@@ -199,7 +224,9 @@ def main(apk):
     if not find(r"^Report \(PDF\)$"):
         fail("could not reach the Report (PDF) button")
     if tap(r"^Report \(PDF\)$", "report-options", wait=2):
-        tap(r"^Protect with a password$", wait=1)
+        toggle_near(r"^Protect with a password$", "report-password-on")
+        if not find(r"^Password$"):
+            fail("could not turn on the report password")
         if tap(r"^Password$", wait=0.8):
             type_text("SmokeTest2026x")
             tap(r"^Confirm password$", wait=0.8)
@@ -212,6 +239,10 @@ def main(apk):
         note("  Downloads: " + " | ".join(l for l in files.splitlines() if "SalesReport" in l))
         if "SalesReport" not in files:
             fail("the PDF report was not created")
+        enc = adb("shell", "grep -a -c /Encrypt /sdcard/Download/SalesReport-*.pdf").strip()
+        note(f"  PDF encryption entries: {enc}")
+        if not enc or enc == "0":
+            fail("the PDF report was saved without its password")
 
     section("Settings and Security & privacy")
     tap(r"^Settings$", "settings", wait=1.5)
