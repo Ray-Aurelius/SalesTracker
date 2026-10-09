@@ -165,5 +165,6 @@ jobs:
           gh release view smoke-test >/dev/null 2>&1 || gh release create smoke-test --title "Emulator smoke test" --notes "Screenshots from the latest emulator run of the release build." --prerelease
           # Clear the previous run's files so nothing stale is left behind.
           for a in $(gh release view smoke-test --json assets --jq '.assets[].name'); do gh release delete-asset smoke-test "$a" -y || true; done
+          find smoke -type f -empty -delete   # GitHub refuses empty files
           gh release upload smoke-test smoke/* --clobber || true
           cat smoke/summary.txt

@@ -155,8 +155,10 @@ def save_in_picker(name):
 def fail(why):
     note(f"FAILED: {why}")
     shot("failure")
-    with open(f"{OUT}/crash-log.txt", "w") as f:
-        f.write(adb("logcat", "-d", "-b", "crash"))
+    crash = adb("logcat", "-d", "-b", "crash")
+    if crash.strip():
+        with open(f"{OUT}/crash-log.txt", "w") as f:
+            f.write(crash)
     finish(1)
 
 
