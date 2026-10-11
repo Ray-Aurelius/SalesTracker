@@ -25,8 +25,12 @@ jobs:
       - name: Use the app's permanent signing key
         env:
           KEY: ${{ secrets.SIGNING_KEYSTORE }}
+          KEY2: ${{ secrets.SIGNING_KEYSTORE_2 }}
+          KEY3: ${{ secrets.SIGNING_KEYSTORE_3 }}
           PW: ${{ secrets.SIGNING_PASSWORD }}
         run: |
+          # Phones copy at most about 2,000 characters at a time, so the key can be saved in up to three parts.
+          KEY="${KEY}${KEY2}${KEY3}"
           if [ -z "$KEY" ]; then
             echo "::warning::SIGNING_KEYSTORE secret is not set - this build can't update an installed copy in place."
             exit 0
