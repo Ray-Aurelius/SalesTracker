@@ -25,22 +25,34 @@ jobs:
       - name: Use the app's permanent signing key
         env:
           KEY: ${{ secrets.SIGNING_KEYSTORE }}
+          PW: ${{ secrets.SIGNING_PASSWORD }}
         run: |
           if [ -z "$KEY" ]; then
             echo "::warning::SIGNING_KEYSTORE secret is not set - this build can't update an installed copy in place."
             exit 0
           fi
+          if [ -z "$PW" ]; then
+            echo "::error::SIGNING_PASSWORD secret is not set. Add it in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
           # Copying a long line on a phone can add spaces or line breaks; drop anything that isn't base64.
           CLEAN=$(printf '%s' "$KEY" | tr -cd 'A-Za-z0-9+/=')
-          echo "Key text: ${#KEY} characters pasted, ${#CLEAN} usable (expected 1388), starts ${CLEAN:0:4}, ends ${CLEAN: -4}"
+          echo "Key text: ${#KEY} characters pasted, ${#CLEAN} usable (expected 5720), starts ${CLEAN:0:4}, ends ${CLEAN: -4}"
           if ! printf '%s' "$CLEAN" | base64 -d > app/stable.keystore 2>/dev/null \
-             || ! keytool -list -keystore app/stable.keystore -storepass salestracker -alias salestracker >/dev/null 2>&1; then
-            echo "::error::SIGNING_KEYSTORE could not be read as the signing key (${#CLEAN} of 1388 characters, starts ${CLEAN:0:4}, ends ${CLEAN: -4}). Re-paste the full text from start to end."
+             || ! keytool -list -keystore app/stable.keystore -storepass "$PW" -alias quotavault >/dev/null 2>&1; then
+            echo "::error::SIGNING_KEYSTORE could not be opened with SIGNING_PASSWORD (${#CLEAN} of 5720 characters, starts ${CLEAN:0:4}, ends ${CLEAN: -4}). Re-paste the full text from start to end."
+            exit 1
+          fi
+          # Google Play only accepts an RSA upload key of 2048 bits or more.
+          if ! keytool -list -v -keystore app/stable.keystore -storepass "$PW" -alias quotavault | grep -Eq "Subject Public Key Algorithm: (2048|3072|4096)-bit RSA"; then
+            echo "::error::The signing key isn't RSA 2048+; Google Play will reject the bundle."
             exit 1
           fi
           echo "Signing with the permanent key."
 
       - name: Run tests and build the APK and Play Store bundle
+        env:
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
         run: |
           chmod +x gradlew
           set -o pipefail

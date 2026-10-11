@@ -18,23 +18,24 @@ android {
         versionName = "1.0.$build"
     }
 
-    // A permanent signing key lets every new build install over the last one, keeping your data.
-    // GitHub writes it from the SIGNING_KEYSTORE secret; it is never stored in the repository.
+    // The upload key (RSA 4096, as Google Play requires RSA 2048+). GitHub writes it from the SIGNING_KEYSTORE
+    // secret and passes its password in SIGNING_PASSWORD; neither is ever stored in the repository.
     val stableKey = file("stable.keystore")
+    val signingPassword = System.getenv("SIGNING_PASSWORD")
     signingConfigs {
         create("stable") {
-            if (stableKey.exists()) {
+            if (stableKey.exists() && !signingPassword.isNullOrEmpty()) {
                 storeFile = stableKey
-                storePassword = "salestracker"
-                keyAlias = "salestracker"
-                keyPassword = "salestracker"
+                storePassword = signingPassword
+                keyAlias = "quotavault"
+                keyPassword = signingPassword
             }
         }
     }
 
     buildTypes {
         debug {
-            if (stableKey.exists()) signingConfig = signingConfigs.getByName("stable")
+            if (stableKey.exists() && !signingPassword.isNullOrEmpty()) signingConfig = signingConfigs.getByName("stable")
         }
         // What users install: not debuggable, so no computer can attach to the app or copy its files.
         // Shrunk and obfuscated with R8: unused code and icons are removed and names are scrambled, which
@@ -45,7 +46,7 @@ android {
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             isDebuggable = false
-            if (stableKey.exists()) signingConfig = signingConfigs.getByName("stable")
+            if (stableKey.exists() && !signingPassword.isNullOrEmpty()) signingConfig = signingConfigs.getByName("stable")
         }
     }
 
