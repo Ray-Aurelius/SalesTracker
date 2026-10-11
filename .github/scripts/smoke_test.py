@@ -10,7 +10,7 @@ Fails if the app crashes at any point. Screenshots of every step go to smoke/ fo
 import os, re, subprocess, sys, time
 import xml.etree.ElementTree as ET
 
-PKG = "com.quotavault.app"
+PKG = "com.quotavault.myapp"
 OUT = "smoke"
 # A receipt-like photo the walk-through adds through Android's photo picker.
 RECEIPT_JPG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "receipt-test.jpg")

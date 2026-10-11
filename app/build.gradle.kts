@@ -9,7 +9,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.quotavault.app"
+        applicationId = "com.quotavault.myapp"
         minSdk = 26
         targetSdk = 36
         // Each GitHub build gets a higher number, so phones accept it as an update.
