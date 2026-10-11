@@ -147,6 +147,7 @@ class StoreScreenshots {
         rule.mainClock.advanceTimeBy(1000)
         rule.mainClock.autoAdvance = true
         rule.waitForIdle()
+        tap(app.getString(R.string.tab_expenses)); shot("1x-expenses")
         tap(app.getString(R.string.tab_goals)); shot("2-goals")
         tap(app.getString(R.string.tab_clients)); shot("3-clients")
         // The stage filter menu, then a client's profile with their stats (for layout review).
