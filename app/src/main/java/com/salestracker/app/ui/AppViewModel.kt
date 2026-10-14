@@ -226,6 +226,14 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
      * Whether the "On track" home-screen widget may show money amounts. Off by default: anyone who sees
      * the home screen could read them. Off, the widget shows only how the pace compares with last period.
      */
+    /** The salesperson's own name for the top of sales reports (blank = left off). Never a client's. */
+    var reportName by mutableStateOf(settings.getString("reportName", "") ?: "")
+        private set
+    fun changeReportName(name: String) {
+        reportName = name.take(80)
+        settings.edit().putString("reportName", reportName).apply()
+    }
+
     var widgetAmounts by mutableStateOf(settings.getBoolean("widgetAmounts", false))
         private set
     fun changeWidgetAmounts(on: Boolean) {
@@ -400,6 +408,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         stopwatchClientId = null
         calculatorExpression = ""
         lockReceipts = true
+        reportName = ""
     }
 
     // ---- Backups ----

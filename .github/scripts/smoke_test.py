@@ -340,11 +340,11 @@ def main(apk):
         tap(rf"^{re.escape(key)}$", wait=0.5)
     tap(r"^=$", "calculator", wait=1)
 
-    section("Password-protected PDF report (pdfbox and its encryption)")
+    section("Password-protected PDF sales report (pdfbox and its encryption)")
     tap(r"^Stats$", wait=1.5)
-    if not find(r"^Report \(PDF\)$"):
-        fail("could not reach the Report (PDF) button")
-    if tap(r"^Report \(PDF\)$", "report-options", wait=2):
+    if not find(r"^Sales report$"):
+        fail("could not reach the Sales report button")
+    if tap(r"^Sales report$", "report-options", wait=2):
         toggle_near(r"^Protect with a password$", "report-password-on")
         if not find(r"^Password$"):
             fail("could not turn on the report password")
@@ -367,6 +367,26 @@ def main(apk):
         note(f"  PDF encryption entries: {enc}")
         if not enc or enc == "0":
             fail("the PDF report was saved without its password")
+
+    section("Sales report spreadsheet: job / work order #s and dates, never client details")
+    tap(r"^Stats$", wait=1.5)
+    if tap(r"^Sales report$", wait=2):
+        tap(r"^Spreadsheet \(CSV\)$", wait=1)
+        shot("sales-report-csv-options")
+        tap(r"^Create file$", wait=2)
+        save_in_picker("sales-csv")
+        time.sleep(4)
+    files = adb("shell", "ls -l /sdcard/Download/")
+    note("  Downloads: " + " | ".join(l for l in files.splitlines() if "SalesReport" in l))
+    if not re.search(r"SalesReport-.*\.csv", files):
+        fail("the sales report spreadsheet was not created")
+    csv = adb("shell", "cat /sdcard/Download/SalesReport-*.csv")
+    note("  CSV starts: " + csv.replace("\r\n", " | ")[:300])
+    if not re.search(r"WO-21\d\d", csv) or not re.search(r"\d{4}-\d{2}-\d{2}", csv):
+        fail("the sales spreadsheet doesn't carry dates and job / work order numbers")
+    for name in ["Alex Morgan", "Morgan", "Jordan Lee", "Sam Patel", "Casey Rivera", "Riley", "@example.com", "555-01"]:
+        if name in csv:
+            fail(f"client details leaked into the sales spreadsheet: {name}")
 
     section("Settings and Security & privacy")
     tap(r"^Settings$", "settings", wait=1.5)

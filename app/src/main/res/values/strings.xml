@@ -605,19 +605,18 @@
     <string name="sample_remove">Remove it</string>
 
     <!-- Manager report -->
-    <string name="report_button">Report (PDF)</string>
-    <string name="report_options_title">Create a report</string>
-    <string name="report_include_names">Include client names</string>
+    <string name="report_button">Sales report</string>
+    <string name="report_options_title">Sales report</string>
     <string name="report_include_commission">Include my commission</string>
     <string name="report_password">Protect with a password</string>
     <string name="report_password_note">The PDF will ask for this password when it\'s opened. It\'s encrypted with AES-256.</string>
-    <string name="report_privacy_note">The report is created on this phone only. Client names are never included. Job / work order #s and commission are left out unless you turn them on.</string>
+    <string name="report_privacy_note">The report is created on this phone only. Client names, contact details and notes are never included. Each sale is shown with its date and job / work order # so it can be checked; commission is left out unless you turn it on.</string>
     <string name="report_create">Create PDF</string>
     <string name="report_working">Creating your report…</string>
     <string name="report_saved">Report saved</string>
     <string name="report_failed">Couldn\'t create the report</string>
-    <string name="report_title">Sales report</string>
-    <string name="report_period">%1$s: %2$s to %3$s</string>
+    <string name="report_title">Sales performance report</string>
+    <string name="report_period">%1$s: %2$s</string>
     <string name="report_generated">Created %1$s</string>
     <string name="report_summary">Summary</string>
     <string name="report_pipeline">Pipeline</string>
@@ -999,4 +998,35 @@
         <item quantity="one">Also delete my backup</item>
         <item quantity="other">Also delete my %1$d backups</item>
     </plurals>
+    <!-- Sales report -->
+    <string name="report_prev_period">Earlier period</string>
+    <string name="report_next_period">Later period</string>
+    <string name="report_quarter">Q%1$d %2$d</string>
+    <string name="report_preview">%1$d closed · %2$s</string>
+    <string name="report_prepared_by">Your name (optional)</string>
+    <string name="report_prepared_by_hint">Printed at the top of the report. Leave it blank to leave it off.</string>
+    <string name="report_prepared_for">Prepared by %1$s</string>
+    <string name="report_total_revenue">Total revenue</string>
+    <string name="report_sale_revenue">Revenue from sales (before upsells)</string>
+    <string name="report_closed_sales">Closed sales</string>
+    <string name="report_upsells">Upsells</string>
+    <string name="report_upsells_detail">%1$d accepted of %2$d offered (%3$s)</string>
+    <string name="report_largest">Largest sale</string>
+    <string name="report_best_day">Best day</string>
+    <string name="report_best_week">Best week</string>
+    <string name="report_best_month">Best month</string>
+    <string name="report_vs_previous">Revenue vs. previous period</string>
+    <string name="report_change">%1$s (previous: %2$s)</string>
+    <string name="report_no_previous">No sales in the previous period</string>
+    <string name="report_breakdown">Breakdown</string>
+    <string name="report_totals">Total</string>
+    <string name="report_upsell_declined">Upsell declined</string>
+    <string name="report_verification">Every sale is listed with its date and job / work order # so it can be checked against company records. Client names, contact details and notes are never included.</string>
+    <string name="report_verification_no_jobs">Client names, contact details and notes are never included.</string>
+    <string name="report_csv_note">A spreadsheet opens in Excel or Google Sheets. It can\'t be password-protected, so keep it somewhere safe.</string>
+    <string name="col_period">Period</string>
+    <string name="col_closed">Closed</string>
+    <string name="col_revenue">Revenue</string>
+    <string name="col_sale">Sale</string>
+    <string name="col_upsell">Upsell</string>
 </resources>

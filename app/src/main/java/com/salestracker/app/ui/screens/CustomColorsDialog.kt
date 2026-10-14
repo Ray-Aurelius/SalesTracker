@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 
 package com.salestracker.app.ui.screens
 
@@ -12,6 +12,7 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -87,7 +88,9 @@ fun CustomColorsDialog(initial: CustomColors, isDark: Boolean, onApply: (CustomC
         title = { Text(stringResource(R.string.custom_colors)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                // The chips wrap onto a second line when they don't fit (narrow phones, large text, long words),
+                // instead of squeezing a label into one letter per line.
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     Target.entries.forEach { t ->
                         val c = when (t) {
                             Target.MAIN -> colors.main
@@ -97,7 +100,7 @@ fun CustomColorsDialog(initial: CustomColors, isDark: Boolean, onApply: (CustomC
                         FilterChip(
                             selected = target == t,
                             onClick = { target = t },
-                            label = { Text(stringResource(t.label)) },
+                            label = { Text(stringResource(t.label), maxLines = 1, softWrap = false) },
                             leadingIcon = {
                                 Box(Modifier.size(14.dp).clip(CircleShape).background(Color(c)).border(1.dp, MaterialTheme.colorScheme.outline, CircleShape))
                             },

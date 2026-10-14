@@ -3,6 +3,7 @@
 package com.salestracker.app.ui.screens
 
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.filled.Assessment
 import androidx.compose.material.icons.filled.PictureAsPdf
 import androidx.compose.material3.AssistChip
 import com.salestracker.app.data.LocalTerms
@@ -108,11 +109,11 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     PeriodPicker(period, { period = it }, modifier = Modifier.align(Alignment.CenterVertically))
-                    // Manager report: a PDF summary, created on the phone only when tapped.
+                    // Sales report (PDF or spreadsheet), created on the phone only when tapped.
                     AssistChip(
                         onClick = { reporting = true },
                         label = { Text(stringResource(R.string.report_button)) },
-                        leadingIcon = { Icon(Icons.Filled.PictureAsPdf, contentDescription = null, modifier = Modifier.size(18.dp)) },
+                        leadingIcon = { Icon(Icons.Filled.Assessment, contentDescription = null, modifier = Modifier.size(18.dp)) },
                         modifier = Modifier.align(Alignment.CenterVertically),
                     )
                 }

@@ -26,7 +26,7 @@ Everything is stored privately on the phone — no account or internet needed.
 
 **Welcome tour & demo mode:** first launch walks through the app, asks for your trade, and offers made-up sample data that can be removed in one tap (only the sample records are removed). Existing users skip the tour.
 
-**Manager report (PDF):** Stats → Report (PDF). Built on the phone; client names and commission are left out unless turned on; optional AES-256 password.
+**Sales report (PDF or spreadsheet):** Stats → Sales report. Week, month, quarter or year, the current one or any earlier one (◀ ▶). Total revenue, revenue from sales vs. upsells, closed sales and close rate, upsells accepted of offered, average and largest sale, best day/week/month, change vs. the previous period, a day/week/month breakdown, goals, pipeline counts, and every sale with its **date and job / work order #** for verification (each sale has its own Job / work order # field, filled in from the client's reference). Optional "Prepared by" name, commission and AES-256 password (PDF). Client names, contact details and notes are never included.
 
 **Commission plans:** one rate, or tiers that rise with the week's, month's, quarter's or year's sales (each portion at its own rate, or the whole period at the level reached). Split a sale with a colleague and only your share counts. Mark commission paid; Stats and the Sales log show paid vs still owed.
 

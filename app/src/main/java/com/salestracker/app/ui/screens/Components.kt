@@ -194,6 +194,10 @@ fun SaleDialog(
     var minutes by remember { mutableStateOf((startSeconds / 60).toString()) }
     var seconds by remember { mutableStateOf((startSeconds % 60).toString()) }
     var notes by remember { mutableStateOf(initial?.notes ?: "") }
+    // Starts from the client's reference (often their work order #) when there's no number of its own yet.
+    var jobRef by remember {
+        mutableStateOf(initial?.jobRef?.ifBlank { null } ?: clients.firstOrNull { it.id == (initial?.clientId ?: defaultClientId) }?.reference.orEmpty())
+    }
     var commission by remember {
         mutableStateOf(formatRateInput(initial?.commissionPercent ?: defaultCommissionPercent))
     }
@@ -224,6 +228,7 @@ fun SaleDialog(
             commissionOnUpsellOnly = upsellOnly,
             splitPercent = if (split) (share.toDoubleOrNull() ?: 100.0).coerceIn(0.0, 100.0) else 100.0,
             commissionPaidAt = if (closed) paidAt else null,
+            jobRef = jobRef.trim(),
         )
     }
 
@@ -243,7 +248,19 @@ fun SaleDialog(
                         Text(stringResource(LocalTerms.current.addClient))
                     }
                 }
-                ClientPicker(clients, clientId, { clientId = it }, onAddNew = onCreateClient?.let { { typed: String -> addingClient = typed } })
+                ClientPicker(clients, clientId, { id ->
+                    // Picking a client fills in their job / work order # if none is typed yet.
+                    if (jobRef.isBlank()) jobRef = clients.firstOrNull { it.id == id }?.reference.orEmpty()
+                    clientId = id
+                }, onAddNew = onCreateClient?.let { { typed: String -> addingClient = typed } })
+                OutlinedTextField(
+                    value = jobRef, onValueChange = { jobRef = it },
+                    label = { Text(stringResource(R.string.client_ref)) },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters),
+                    supportingText = { Text(stringResource(R.string.exp_job_hint)) },
+                    modifier = Modifier.fillMaxWidth(),
+                )
                 SwitchRow(stringResource(LocalTerms.current.saleClosed), closed, { closed = it; if (!it) upsellAccepted = false })
                 OutlinedTextField(
                     value = amount,
@@ -371,6 +388,7 @@ fun SaleDialog(
             onSave = { client, followUp ->
                 onCreateClient(client, followUp)
                 clientId = client.id // the new client is chosen for this sale straight away
+                if (jobRef.isBlank()) jobRef = client.reference
                 addingClient = null
             },
             onDelete = { _, _ -> },

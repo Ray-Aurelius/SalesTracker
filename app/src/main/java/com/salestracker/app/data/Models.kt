@@ -88,6 +88,8 @@ data class Sale(
     val splitPercent: Double = 100.0,
     /** When the commission on this sale was paid out; null while it is still owed. */
     val commissionPaidAt: Long? = null,
+    /** Job / work order # for this sale. Reports show this (never the client's name) so a sale can be verified. */
+    val jobRef: String = "",
 ) {
     val revenue: Double
         get() = if (!closed) 0.0 else amount + if (upsellAccepted) upsellAmount else 0.0
@@ -120,6 +122,7 @@ data class Sale(
         .put("commissionOnUpsellOnly", commissionOnUpsellOnly)
         .put("splitPercent", splitPercent)
         .put("commissionPaidAt", commissionPaidAt ?: JSONObject.NULL)
+        .put("jobRef", jobRef)
 
     companion object {
         fun fromJson(o: JSONObject) = Sale(
@@ -138,9 +141,17 @@ data class Sale(
             commissionOnUpsellOnly = o.optBoolean("commissionOnUpsellOnly", false),
             splitPercent = o.optDouble("splitPercent", 100.0).takeIf { !it.isNaN() }?.coerceIn(0.0, 100.0) ?: 100.0,
             commissionPaidAt = if (!o.has("commissionPaidAt") || o.isNull("commissionPaidAt")) null else o.optLong("commissionPaidAt"),
+            jobRef = o.optString("jobRef"),
         )
     }
 }
+
+/**
+ * The job / work order # a sale is reported under: its own, or else the client's reference. Never the client's
+ * name or contact details. Null when there's none.
+ */
+fun Sale.exportJobRef(clients: Map<Long, Client>): String? =
+    jobRef.trim().ifBlank { clientId?.let { clients[it]?.reference?.trim() }.orEmpty() }.ifBlank { null }
 
 /**
  * A calendar entry. [epochDay] is LocalDate.toEpochDay(); [minuteOfDay] is 0..1439.

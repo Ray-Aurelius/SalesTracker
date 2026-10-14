@@ -233,6 +233,40 @@ class LayoutAudit {
         shotWithPopups("o2-erase-dialog")
     }
 
+    /** The sales report options: period chips, earlier/later stepper, PDF or spreadsheet, name and switches. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun o6_salesReport() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val (app, _) = startApp()
+        // The dialog holds a text box (your name), so open it with the clock paused (see clickPaused).
+        clickPaused(app.getString(R.string.report_button))
+        shotWithPopups("o6-sales-report")
+        rule.onAllNodes(hasText(app.getString(R.string.exp_format_csv))).onFirst().performClick()
+        repeat(4) { rule.mainClock.advanceTimeBy(250) }
+        shotWithPopups("o6-sales-report-csv")
+    }
+
+    /** Custom colors on a small phone: "Background" stays on one line (the chips wrap instead of squeezing it). */
+    @Test @Config(sdk = [34], qualifiers = "w320dp-h568dp-xhdpi")
+    fun o7_customColorChips() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        rule.setContent {
+            SalesTrackerTheme(dark = false) {
+                androidx.compose.material3.Surface {
+                    com.salestracker.app.ui.screens.CustomColorsDialog(
+                        initial = com.salestracker.app.ui.theme.CustomColors.DEFAULT, isDark = false, onApply = {}, onDismiss = {},
+                    )
+                }
+            }
+        }
+        rule.waitForIdle(); rule.mainClock.advanceTimeBy(500); rule.waitForIdle()
+        shotWithPopups("o7-custom-colors")
+        val label = rule.onAllNodes(hasText(app.getString(R.string.custom_target_background)), useUnmergedTree = true).onFirst().fetchSemanticsNode()
+        val oneLine = 30 * app.resources.displayMetrics.density
+        org.junit.Assert.assertTrue("Background label wraps: ${label.size}", label.size.height < oneLine)
+    }
+
     /** First run after a reinstall: the welcome screen's "Have a backup?" opens the restore list. */
     @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
     fun o3_restoreFromWelcome() {

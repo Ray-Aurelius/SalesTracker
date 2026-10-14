@@ -59,6 +59,8 @@ object SampleData {
                 // One sale shared with a teammate, and older commission already paid out.
                 splitPercent = if (i == 6) 50.0 else 100.0,
                 commissionPaidAt = if (closed && i >= 8) day.plusDays(7).atTime(12, 0).atZone(zone).toInstant().toEpochMilli() else null,
+                // Each job has its own work order #.
+                jobRef = "WO-${2100 + i}",
             )
         }
         // A few business costs and trips, in the region's distance unit, at an example rate.
