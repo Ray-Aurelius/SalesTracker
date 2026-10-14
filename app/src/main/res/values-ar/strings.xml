@@ -894,6 +894,9 @@
     <string name="tasks_upcoming_empty">لا شيء مخطط بعد. انقر على إضافة مهمة واختر تاريخًا للتخطيط مسبقًا.</string>
     <string name="tasks_repeating">المتكررة</string>
     <string name="add_appointment">إضافة موعد</string>
+    <string name="task_deleted">تم حذف المهمة</string>
+    <string name="undo">تراجع</string>
+    <string name="cd_delete_task">حذف المهمة %1$s</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

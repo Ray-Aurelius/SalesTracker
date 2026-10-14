@@ -1035,4 +1035,7 @@
     <string name="tasks_upcoming_empty">Nothing planned yet. Tap Add task and choose a date to plan ahead.</string>
     <string name="tasks_repeating">Repeating</string>
     <string name="add_appointment">Add appointment</string>
+    <string name="task_deleted">Task deleted</string>
+    <string name="undo">Undo</string>
+    <string name="cd_delete_task">Delete task %1$s</string>
 </resources>

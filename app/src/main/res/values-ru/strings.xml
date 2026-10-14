@@ -894,6 +894,9 @@
     <string name="tasks_upcoming_empty">Пока ничего не запланировано. Нажмите «Добавить задачу» и выберите дату.</string>
     <string name="tasks_repeating">Повторяющиеся</string>
     <string name="add_appointment">Добавить встречу</string>
+    <string name="task_deleted">Задача удалена</string>
+    <string name="undo">Отменить</string>
+    <string name="cd_delete_task">Удалить задачу %1$s</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

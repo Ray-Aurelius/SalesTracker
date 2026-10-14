@@ -894,6 +894,9 @@
     <string name="tasks_upcoming_empty">아직 계획이 없습니다. 할 일 추가를 누르고 날짜를 골라 미리 계획하세요.</string>
     <string name="tasks_repeating">반복</string>
     <string name="add_appointment">일정 추가</string>
+    <string name="task_deleted">할 일을 삭제했습니다</string>
+    <string name="undo">실행 취소</string>
+    <string name="cd_delete_task">할 일 %1$s 삭제</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

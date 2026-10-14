@@ -894,6 +894,9 @@
     <string name="tasks_upcoming_empty">Chưa có kế hoạch. Chạm Thêm việc và chọn ngày để lên kế hoạch trước.</string>
     <string name="tasks_repeating">Lặp lại</string>
     <string name="add_appointment">Thêm lịch hẹn</string>
+    <string name="task_deleted">Đã xóa việc</string>
+    <string name="undo">Hoàn tác</string>
+    <string name="cd_delete_task">Xóa việc %1$s</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

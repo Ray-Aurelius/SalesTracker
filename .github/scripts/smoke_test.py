@@ -399,6 +399,17 @@ def main(apk):
     if not find_scrolling(r"^Call smoke client$", tries=3):
         fail("a crossed-off task should stay on the list")
     tap(r"^Upcoming$", "tasks-upcoming", wait=1.5)
+    tap(r"^Day$", wait=1.2)
+    if not find(r"^Add task$"):
+        fail("no Add task button on the Tasks page")
+    if not tap(r"^Delete task Call smoke client$", wait=1.2, scroll=2):
+        fail("no trash can next to the task")
+    if find(r"^Call smoke client$"):
+        fail("the trash can didn't delete the task")
+    if not tap(r"^Undo$", wait=1.5):
+        fail("no Undo after deleting a task")
+    if not find_scrolling(r"^Call smoke client$", tries=3):
+        fail("Undo didn't bring the task back")
 
     section("Sales report button on the Sales tab")
     tap(r"^Sales$", wait=1.5)

@@ -894,6 +894,9 @@
     <string name="tasks_upcoming_empty">Belum ada rencana. Ketuk Tambah tugas dan pilih tanggal untuk merencanakan.</string>
     <string name="tasks_repeating">Berulang</string>
     <string name="add_appointment">Tambah janji temu</string>
+    <string name="task_deleted">Tugas dihapus</string>
+    <string name="undo">Urungkan</string>
+    <string name="cd_delete_task">Hapus tugas %1$s</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

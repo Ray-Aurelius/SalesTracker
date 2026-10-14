@@ -894,6 +894,9 @@
     <string name="tasks_upcoming_empty">还没有计划。点按“添加任务”并选择日期，提前安排。</string>
     <string name="tasks_repeating">重复任务</string>
     <string name="add_appointment">添加预约</string>
+    <string name="task_deleted">任务已删除</string>
+    <string name="undo">撤销</string>
+    <string name="cd_delete_task">删除任务 %1$s</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

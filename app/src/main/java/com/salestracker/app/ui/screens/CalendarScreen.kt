@@ -29,6 +29,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.offset
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -135,7 +137,8 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
     }
 
     val zone = ZoneId.systemDefault()
-    val apptDays = data.appointments.map { it.epochDay }.toSet()
+    // Each day's appointments in time order, shown in the month like a phone calendar.
+    val apptsByDay = data.appointments.sortedBy { it.minuteOfDay }.groupBy { it.epochDay }
     val dayAppts = data.appointments.filter { it.epochDay == selected.toEpochDay() }.sortedBy { it.minuteOfDay }
     val daySales = data.sales.filter { Instant.ofEpochMilli(it.timestamp).atZone(zone).toLocalDate() == selected }
     val dayStats = SalesStats.of(daySales)
@@ -151,7 +154,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                     month = month,
                     selected = selected,
                     today = today,
-                    hasEvents = { it.toEpochDay() in apptDays },
+                    eventsOf = { d -> apptsByDay[d.toEpochDay()].orEmpty() },
                     highlightOf = { data.dayHighlights[it.toEpochDay()] },
                     symbols = vm.highlightSymbols,
                     onPrev = { month = month.minusMonths(1) },
@@ -290,7 +293,7 @@ private fun MonthGrid(
     month: YearMonth,
     selected: LocalDate,
     today: LocalDate,
-    hasEvents: (LocalDate) -> Boolean,
+    eventsOf: (LocalDate) -> List<Appointment>,
     highlightOf: (LocalDate) -> HighlightColor?,
     symbols: Boolean,
     onPrev: () -> Unit,
@@ -332,18 +335,18 @@ private fun MonthGrid(
         Spacer(Modifier.height(4.dp))
 
         val offset = month.atDay(1).dayOfWeek.value % 7
-        // Square cells on a phone; on a wide page (landscape, tablet) capped so the whole month fits.
-        val cellHeight = minOf((LocalContentWidth.current - 32.dp) / 7, 52.dp)
+        // Tall cells, like a phone calendar: the date at the top and the day's appointments underneath.
+        val cellHeight = 74.dp
         val days = month.lengthOfMonth()
         val rows = (offset + days + 6) / 7
         for (r in 0 until rows) {
             Row {
                 for (c in 0 until 7) {
                     val dayNum = r * 7 + c - offset + 1
-                    Box(Modifier.weight(1f).height(cellHeight).padding(2.dp), contentAlignment = Alignment.Center) {
+                    Box(Modifier.weight(1f).height(cellHeight).padding(1.dp)) {
                         if (dayNum in 1..days) {
                             val date = month.atDay(dayNum)
-                            DayCell(date, date == selected, date == today, hasEvents(date), highlightOf(date), symbols) { onSelect(date) }
+                            DayCell(date, date == selected, date == today, eventsOf(date), highlightOf(date), symbols) { onSelect(date) }
                         }
                     }
                 }
@@ -357,65 +360,83 @@ private fun DayCell(
     date: LocalDate,
     isSelected: Boolean,
     isToday: Boolean,
-    hasEvents: Boolean,
+    events: List<Appointment>,
     highlight: HighlightColor?,
     symbols: Boolean,
     onClick: () -> Unit,
 ) {
     val colors = MaterialTheme.colorScheme
-    // What a screen reader says for this day, e.g. "Monday, October 5, today, has appointments, Red highlight".
+    // What a screen reader says, e.g. "Monday, October 5, today, 2 appointments: 9:00 AM Site visit, …, Red highlight".
     val spoken = listOfNotNull(
         date.format(dayTitle()),
         if (isToday) stringResource(R.string.period_today) else null,
-        if (hasEvents) stringResource(R.string.cd_has_appointments) else null,
+        if (events.isNotEmpty()) stringResource(R.string.cd_has_appointments) + ": " +
+            events.joinToString(", ") { formatMinuteOfDay(it.minuteOfDay) + " " + it.title } else null,
         highlight?.let { stringResource(R.string.cd_highlight, stringResource(it.label)) },
     ).joinToString(", ")
     val hl = highlight?.let { Color(it.argb) }
-    // Highlighted days are filled with their color; the selected day gets a strong ring on top.
-    val fill = hl ?: if (isSelected) colors.primary else null
-    val textColor = when {
+    // The date sits in a small circle: filled when chosen (or in its highlight color), ringed when it's today.
+    val numberFill = hl ?: if (isSelected) colors.primary else null
+    val numberColor = when {
         hl != null -> readableOn(hl)
         isSelected -> colors.onPrimary
         else -> colors.onSurface
     }
-    var mod = Modifier.fillMaxHeight().aspectRatio(1f, matchHeightConstraintsFirst = true).clip(CircleShape)
-    if (fill != null) mod = mod.background(fill)
-    mod = when {
-        isSelected && hl != null -> mod.border(3.dp, colors.onSurface, CircleShape)
-        isToday && !isSelected -> mod.border(1.5.dp, if (hl != null) readableOn(hl) else colors.primary, CircleShape)
-        else -> mod
-    }
-    BoxWithConstraints(
-        mod.clickable(onClick = onClick).semantics(mergeDescendants = true) {
+    val shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
+    var cell = Modifier.fillMaxSize().clip(shape)
+    if (isSelected) cell = cell.background(colors.primary.copy(alpha = 0.10f)).border(1.5.dp, colors.primary, shape)
+    else if (hl != null) cell = cell.background(hl.copy(alpha = 0.16f))
+    Column(
+        cell.clickable(onClick = onClick).semantics(mergeDescendants = true) {
             contentDescription = spoken
             selected = isSelected
-        },
-        contentAlignment = Alignment.Center,
+        }.padding(top = 3.dp, start = 2.dp, end = 2.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // The number fits its circle: normal size, or smaller in a small cell with large text.
-        val base = MaterialTheme.typography.bodyLarge.fontSize
-        val size = with(LocalDensity.current) { minOf(base.toPx(), maxHeight.toPx() * 0.45f).toSp() }
-        Text(
-            date.dayOfMonth.toString(),
-            color = textColor,
-            fontSize = size,
-            maxLines = 1,
-            softWrap = false,
-            fontWeight = if (isToday || hl != null) FontWeight.Bold else FontWeight.Normal,
-        )
-        if (symbols && highlight != null) {
+        Box(contentAlignment = Alignment.Center) {
+            var num = Modifier.size(24.dp).clip(CircleShape)
+            if (numberFill != null) num = num.background(numberFill)
+            if (isToday && !isSelected) num = num.border(1.5.dp, if (hl != null) readableOn(hl) else colors.primary, CircleShape)
+            Box(num, contentAlignment = Alignment.Center) {
+                Text(
+                    date.dayOfMonth.toString(),
+                    color = numberColor,
+                    fontSize = 12.sp,
+                    maxLines = 1,
+                    softWrap = false,
+                    fontWeight = if (isToday || isSelected || hl != null) FontWeight.Bold else FontWeight.Normal,
+                )
+            }
+            if (symbols && highlight != null) {
+                Text(highlight.symbol, color = colors.onSurface, fontSize = 8.sp, modifier = Modifier.align(Alignment.TopEnd).offset(x = 8.dp))
+            }
+        }
+        // Up to two appointments by name; "+2" when there are more.
+        val shown = if (events.size > 2) events.take(1) else events
+        shown.forEach { a ->
             Text(
-                highlight.symbol,
-                color = textColor,
+                a.title.ifBlank { formatMinuteOfDay(a.minuteOfDay) },
                 fontSize = 9.sp,
-                modifier = Modifier.align(Alignment.TopEnd).padding(top = 3.dp, end = 5.dp),
+                lineHeight = 10.sp,
+                maxLines = 1,
+                softWrap = false,
+                overflow = TextOverflow.Ellipsis,
+                color = colors.onSecondaryContainer,
+                modifier = Modifier.padding(top = 2.dp).fillMaxWidth()
+                    .clip(androidx.compose.foundation.shape.RoundedCornerShape(3.dp))
+                    .background(colors.secondaryContainer)
+                    .padding(horizontal = 2.dp),
             )
         }
-        if (hasEvents) {
-            Box(
-                Modifier.align(Alignment.BottomCenter).padding(bottom = 5.dp).size(5.dp)
-                    .clip(CircleShape)
-                    .background(if (fill != null) textColor else colors.secondary)
+        if (events.size > 2) {
+            Text(
+                "+${events.size - 1}",
+                fontSize = 9.sp,
+                lineHeight = 10.sp,
+                maxLines = 1,
+                fontWeight = FontWeight.SemiBold,
+                color = colors.secondary,
+                modifier = Modifier.padding(top = 2.dp),
             )
         }
     }

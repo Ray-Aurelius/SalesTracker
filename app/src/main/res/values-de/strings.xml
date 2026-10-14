@@ -894,6 +894,9 @@
     <string name="tasks_upcoming_empty">Noch nichts geplant. Tippe auf Aufgabe hinzufügen und wähle ein Datum, um vorauszuplanen.</string>
     <string name="tasks_repeating">Wiederkehrend</string>
     <string name="add_appointment">Termin hinzufügen</string>
+    <string name="task_deleted">Aufgabe gelöscht</string>
+    <string name="undo">Rückgängig</string>
+    <string name="cd_delete_task">Aufgabe %1$s löschen</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

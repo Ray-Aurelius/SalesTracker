@@ -894,6 +894,9 @@
     <string name="tasks_upcoming_empty">Rien de prévu pour l\'instant. Touchez Ajouter une tâche et choisissez une date pour anticiper.</string>
     <string name="tasks_repeating">Récurrentes</string>
     <string name="add_appointment">Ajouter un rendez-vous</string>
+    <string name="task_deleted">Tâche supprimée</string>
+    <string name="undo">Annuler</string>
+    <string name="cd_delete_task">Supprimer la tâche %1$s</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

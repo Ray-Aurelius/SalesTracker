@@ -894,6 +894,9 @@
     <string name="tasks_upcoming_empty">এখনও কিছু পরিকল্পনা নেই। আগে থেকে সাজাতে কাজ যোগ করুন-এ ট্যাপ করে তারিখ বাছুন।</string>
     <string name="tasks_repeating">পুনরাবৃত্ত</string>
     <string name="add_appointment">অ্যাপয়েন্টমেন্ট যোগ করুন</string>
+    <string name="task_deleted">কাজ মুছে ফেলা হয়েছে</string>
+    <string name="undo">আগের মতো করুন</string>
+    <string name="cd_delete_task">কাজ %1$s মুছুন</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

@@ -35,6 +35,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Alarm
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
@@ -84,6 +85,7 @@ import com.salestracker.app.data.TaskRepeat
 import com.salestracker.app.data.formatMinuteOfDay
 import com.salestracker.app.data.localizedFormatter
 import com.salestracker.app.ui.AppViewModel
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -100,6 +102,19 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
     var editing by remember { mutableStateOf<Task?>(null) }
     var adding by remember { mutableStateOf(false) }
     var showDone by rememberSaveable { mutableStateOf(true) }
+    // Deleting is one tap, with Undo for a few seconds afterwards.
+    val snackbar = remember { androidx.compose.material3.SnackbarHostState() }
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
+    val deletedText = stringResource(R.string.task_deleted)
+    val undoText = stringResource(R.string.undo)
+    fun delete(t: Task) {
+        vm.deleteTask(t.id)
+        scope.launch {
+            snackbar.currentSnackbarData?.dismiss()
+            val r = snackbar.showSnackbar(deletedText, actionLabel = undoText, duration = androidx.compose.material3.SnackbarDuration.Short)
+            if (r == androidx.compose.material3.SnackbarResult.ActionPerformed) vm.saveTask(t)
+        }
+    }
     val list = DayTasks.of(data.tasks, day, today)
     val clients = data.clients.associateBy { it.id }
     val context = LocalContext.current
@@ -121,8 +136,15 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
                     }
                 }
             }
+            item {
+                androidx.compose.material3.FilledTonalButton(onClick = { adding = true }, modifier = Modifier.fillMaxWidth()) {
+                    Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(Modifier.width(8.dp))
+                    Text(stringResource(R.string.add_task))
+                }
+            }
             if (upcoming) {
-                upcomingList(data.tasks, today, clients, onCheck = { t, d, on -> vm.setTaskDone(t, d, on) }, onOpen = { editing = it }, onCall = ::call)
+                upcomingList(data.tasks, today, clients, onCheck = { t, d, on -> vm.setTaskDone(t, d, on) }, onOpen = { editing = it }, onCall = ::call, onDelete = ::delete)
             } else {
                 // Day switcher: arrows step a day; the calendar button jumps to any date; tapping the title goes back to today.
                 item {
@@ -186,6 +208,7 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
                             onCheck = { vm.setTaskDone(t, day, it) },
                             onClick = { editing = t },
                             onCall = ::call,
+                            onDelete = { delete(t) },
                         )
                     }
                 }
@@ -212,6 +235,7 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
                             TaskRow(
                                 task = t, day = day, today = today, client = t.clientId?.let(clients::get), overdue = false,
                                 onCheck = { vm.setTaskDone(t, day, it) }, onClick = { editing = t }, onCall = {},
+                                onDelete = { delete(t) },
                             )
                         }
                     }
@@ -219,6 +243,7 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
             }
         }
         QuickAdd(vm, data, taskDay = if (upcoming) today else day)
+        androidx.compose.material3.SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).padding(bottom = 80.dp))
     }
 
     if (adding || editing != null) {
@@ -245,6 +270,7 @@ private fun androidx.compose.foundation.lazy.LazyListScope.upcomingList(
     onCheck: (Task, Long, Boolean) -> Unit,
     onOpen: (Task) -> Unit,
     onCall: (String) -> Unit,
+    onDelete: (Task) -> Unit,
 ) {
     val overdue = tasks.filter { it.isOverdue(today) }.sortedBy { it.epochDay }
     val byDay = tasks.filter { it.repeat == TaskRepeat.NONE && it.epochDay >= today }
@@ -276,20 +302,20 @@ private fun androidx.compose.foundation.lazy.LazyListScope.upcomingList(
     if (overdue.isNotEmpty()) {
         header({ stringResource(R.string.tasks_overdue) }, error = true, key = "h_overdue")
         items(overdue, key = { "up_over_${it.id}" }) { t ->
-            TaskRow(t, t.epochDay, today, t.clientId?.let(clients::get), overdue = true, onCheck = { onCheck(t, t.epochDay, it) }, onClick = { onOpen(t) }, onCall = onCall)
+            TaskRow(t, t.epochDay, today, t.clientId?.let(clients::get), overdue = true, onCheck = { onCheck(t, t.epochDay, it) }, onClick = { onOpen(t) }, onCall = onCall, onDelete = { onDelete(t) })
         }
     }
     byDay.forEach { (d, list) ->
         header({ dayLabel(d, today) }, key = "h_$d")
         items(list, key = { "up_${it.id}" }) { t ->
-            TaskRow(t, d, today, t.clientId?.let(clients::get), overdue = false, onCheck = { onCheck(t, d, it) }, onClick = { onOpen(t) }, onCall = onCall)
+            TaskRow(t, d, today, t.clientId?.let(clients::get), overdue = false, onCheck = { onCheck(t, d, it) }, onClick = { onOpen(t) }, onCall = onCall, onDelete = { onDelete(t) })
         }
     }
     if (repeating.isNotEmpty()) {
         header({ stringResource(R.string.tasks_repeating) }, key = "h_repeat")
         items(repeating, key = { "up_rep_${it.id}" }) { t ->
             // Ticked off for today; each day has its own tick.
-            TaskRow(t, today, today, t.clientId?.let(clients::get), overdue = false, onCheck = { onCheck(t, today, it) }, onClick = { onOpen(t) }, onCall = onCall)
+            TaskRow(t, today, today, t.clientId?.let(clients::get), overdue = false, onCheck = { onCheck(t, today, it) }, onClick = { onOpen(t) }, onCall = onCall, onDelete = { onDelete(t) })
         }
     }
 }
@@ -312,6 +338,8 @@ internal fun TaskRow(
     onCheck: (Boolean) -> Unit,
     onClick: () -> Unit,
     onCall: (String) -> Unit,
+    /** Shows a small trash can that deletes the task straight away (the Tasks tab offers Undo). */
+    onDelete: (() -> Unit)? = null,
 ) {
     val done = task.isDoneOn(day)
     Row(
@@ -351,6 +379,16 @@ internal fun TaskRow(
         if (phone != null && !done) {
             IconButton(onClick = { onCall(phone) }) {
                 Icon(Icons.Filled.Call, contentDescription = stringResource(R.string.cd_call, client.displayName()))
+            }
+        }
+        if (onDelete != null) {
+            IconButton(onClick = onDelete) {
+                Icon(
+                    Icons.Filled.Delete,
+                    contentDescription = stringResource(R.string.cd_delete_task, task.title),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(20.dp),
+                )
             }
         }
     }

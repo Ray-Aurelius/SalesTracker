@@ -894,6 +894,9 @@
     <string name="tasks_upcoming_empty">Aún no hay nada planeado. Toca Añadir tarea y elige una fecha para planificar.</string>
     <string name="tasks_repeating">Repetitivas</string>
     <string name="add_appointment">Añadir cita</string>
+    <string name="task_deleted">Tarea eliminada</string>
+    <string name="undo">Deshacer</string>
+    <string name="cd_delete_task">Eliminar tarea %1$s</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>
