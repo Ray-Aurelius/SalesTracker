@@ -897,6 +897,10 @@
     <string name="task_deleted">任务已删除</string>
     <string name="undo">撤销</string>
     <string name="cd_delete_task">删除任务 %1$s</string>
+    <string name="tasks_clear_list">清空列表</string>
+    <string name="tasks_cleared">列表已清空</string>
+    <string name="tasks_clear_title">清空此列表？</string>
+    <string name="tasks_clear_body">将删除此列表中的所有内容（%1$d 项），包括尚未完成的任务。重复任务将不再重复。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

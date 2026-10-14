@@ -897,6 +897,10 @@
     <string name="task_deleted">Tarefa excluída</string>
     <string name="undo">Desfazer</string>
     <string name="cd_delete_task">Excluir tarefa %1$s</string>
+    <string name="tasks_clear_list">Limpar lista</string>
+    <string name="tasks_cleared">Lista limpa</string>
+    <string name="tasks_clear_title">Limpar esta lista?</string>
+    <string name="tasks_clear_body">Isso remove tudo desta lista (%1$d), inclusive tarefas ainda não concluídas. Tarefas repetidas deixam de se repetir.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>

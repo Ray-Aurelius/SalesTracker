@@ -897,6 +897,10 @@
     <string name="task_deleted">Görev silindi</string>
     <string name="undo">Geri al</string>
     <string name="cd_delete_task">%1$s görevini sil</string>
+    <string name="tasks_clear_list">Listeyi temizle</string>
+    <string name="tasks_cleared">Liste temizlendi</string>
+    <string name="tasks_clear_title">Bu liste temizlensin mi?</string>
+    <string name="tasks_clear_body">Bu listedeki her şey (%1$d) kaldırılır, henüz bitmemiş görevler de dahil. Tekrarlanan görevler artık tekrarlanmaz.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

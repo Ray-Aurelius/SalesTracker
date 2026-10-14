@@ -897,6 +897,10 @@
     <string name="task_deleted">할 일을 삭제했습니다</string>
     <string name="undo">실행 취소</string>
     <string name="cd_delete_task">할 일 %1$s 삭제</string>
+    <string name="tasks_clear_list">목록 비우기</string>
+    <string name="tasks_cleared">목록을 비웠습니다</string>
+    <string name="tasks_clear_title">이 목록을 비울까요?</string>
+    <string name="tasks_clear_body">이 목록의 모든 항목(%1$d개)이 삭제되며, 아직 끝나지 않은 할 일도 포함됩니다. 반복 할 일은 더 이상 반복되지 않습니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

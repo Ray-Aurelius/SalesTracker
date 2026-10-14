@@ -897,6 +897,10 @@
     <string name="task_deleted">Attività eliminata</string>
     <string name="undo">Annulla</string>
     <string name="cd_delete_task">Elimina attività %1$s</string>
+    <string name="tasks_clear_list">Svuota elenco</string>
+    <string name="tasks_cleared">Elenco svuotato</string>
+    <string name="tasks_clear_title">Svuotare questo elenco?</string>
+    <string name="tasks_clear_body">Viene rimosso tutto ciò che è in questo elenco (%1$d), comprese le attività non completate. Le attività ricorrenti smettono di ripetersi.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>

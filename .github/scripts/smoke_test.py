@@ -405,14 +405,31 @@ def main(apk):
         time.sleep(0.6)
     if not find(r"^Add task$"):
         fail("no Add task button on the Tasks page")
-    if not tap(r"^Delete task Call smoke client$", wait=1.2, scroll=2):
+    if not tap(r"^Delete task Call smoke client$", wait=0.8, scroll=2):
         fail("no trash can next to the task")
-    if find(r"^Call smoke client$"):
-        fail("the trash can didn't delete the task")
+    gone = find(r"^Call smoke client$") is None
     if not tap(r"^Undo$", wait=1.5):
         fail("no Undo after deleting a task")
+    if not gone:
+        fail("the trash can didn't delete the task")
     if not find_scrolling(r"^Call smoke client$", tries=3):
         fail("Undo didn't bring the task back")
+    # Clear list: asks first (some tasks aren't done), empties the day, and Undo brings everything back.
+    for _ in range(3):
+        adb("shell", "input", "swipe", "540", "900", "540", "1900", "300")
+        time.sleep(0.6)
+    if not tap(r"^Clear list$", "tasks-clear-confirm", wait=1.2, scroll=2):
+        fail("no Clear list button on the Tasks page")
+    if not find(r"^Clear this list\?$"):
+        fail("Clear list didn't ask first although some tasks aren't done")
+    tap(r"^Clear list$", wait=0.8)   # the dialog's button
+    emptied = find(r"^Nothing planned") is not None
+    if not tap(r"^Undo$", wait=1.5):
+        fail("no Undo after clearing the list")
+    if not emptied:
+        fail("Clear list didn't empty the day's list")
+    if not find_scrolling(r"^Call smoke client$", tries=3):
+        fail("Undo didn't bring the cleared tasks back")
 
     section("Sales report button on the Sales tab")
     tap(r"^Sales$", wait=1.5)

@@ -897,6 +897,10 @@
     <string name="task_deleted">Aufgabe gelöscht</string>
     <string name="undo">Rückgängig</string>
     <string name="cd_delete_task">Aufgabe %1$s löschen</string>
+    <string name="tasks_clear_list">Liste leeren</string>
+    <string name="tasks_cleared">Liste geleert</string>
+    <string name="tasks_clear_title">Diese Liste leeren?</string>
+    <string name="tasks_clear_body">Alles auf dieser Liste (%1$d) wird entfernt, auch noch nicht erledigte Aufgaben. Wiederkehrende Aufgaben wiederholen sich nicht mehr.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

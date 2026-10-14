@@ -897,6 +897,10 @@
     <string name="task_deleted">Tarea eliminada</string>
     <string name="undo">Deshacer</string>
     <string name="cd_delete_task">Eliminar tarea %1$s</string>
+    <string name="tasks_clear_list">Vaciar lista</string>
+    <string name="tasks_cleared">Lista vaciada</string>
+    <string name="tasks_clear_title">¿Vaciar esta lista?</string>
+    <string name="tasks_clear_body">Se quitará todo lo de esta lista (%1$d), incluidas las tareas sin terminar. Las tareas repetitivas dejarán de repetirse.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>

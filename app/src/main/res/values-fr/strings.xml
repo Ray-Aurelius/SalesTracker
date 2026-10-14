@@ -897,6 +897,10 @@
     <string name="task_deleted">Tâche supprimée</string>
     <string name="undo">Annuler</string>
     <string name="cd_delete_task">Supprimer la tâche %1$s</string>
+    <string name="tasks_clear_list">Vider la liste</string>
+    <string name="tasks_cleared">Liste vidée</string>
+    <string name="tasks_clear_title">Vider cette liste ?</string>
+    <string name="tasks_clear_body">Tout ce qui figure sur cette liste (%1$d) sera supprimé, y compris les tâches non terminées. Les tâches récurrentes ne se répéteront plus.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

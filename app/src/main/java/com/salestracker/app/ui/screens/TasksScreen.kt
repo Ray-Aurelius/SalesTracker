@@ -111,8 +111,19 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
         vm.deleteTask(t.id)
         scope.launch {
             snackbar.currentSnackbarData?.dismiss()
-            val r = snackbar.showSnackbar(deletedText, actionLabel = undoText, duration = androidx.compose.material3.SnackbarDuration.Short)
+            val r = snackbar.showSnackbar(deletedText, actionLabel = undoText, duration = androidx.compose.material3.SnackbarDuration.Long)
             if (r == androidx.compose.material3.SnackbarResult.ActionPerformed) vm.saveTask(t)
+        }
+    }
+    // Clear list: removes every task on the day's list at once, with Undo.
+    var confirmClear by remember { mutableStateOf<List<Task>?>(null) }
+    val clearedText = stringResource(R.string.tasks_cleared)
+    fun clearAll(tasks: List<Task>) {
+        tasks.forEach { vm.deleteTask(it.id) }
+        scope.launch {
+            snackbar.currentSnackbarData?.dismiss()
+            val r = snackbar.showSnackbar(clearedText, actionLabel = undoText, duration = androidx.compose.material3.SnackbarDuration.Long)
+            if (r == androidx.compose.material3.SnackbarResult.ActionPerformed) tasks.forEach { vm.saveTask(it) }
         }
     }
     val list = DayTasks.of(data.tasks, day, today)
@@ -179,6 +190,20 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
                             progress = { done.toFloat() / list.total },
                             modifier = Modifier.fillMaxWidth().padding(top = 6.dp, bottom = 4.dp).height(6.dp),
                         )
+                        // Everything on this day's list. When it's all ticked off (and nothing repeats) it clears in one
+                        // tap; otherwise it asks first, so unfinished or repeating tasks aren't wiped by accident.
+                        val everything = (list.overdue + list.important + list.other + list.done).distinctBy { it.id }
+                        androidx.compose.material3.OutlinedButton(
+                            onClick = {
+                                val careful = everything.any { !it.isDoneOn(day) || it.repeat != TaskRepeat.NONE }
+                                if (careful) confirmClear = everything else clearAll(everything)
+                            },
+                            modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+                        ) {
+                            Icon(Icons.Filled.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text(stringResource(R.string.tasks_clear_list))
+                        }
                     }
                 } else {
                     item {
@@ -244,6 +269,20 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
         }
         QuickAdd(vm, data, taskDay = if (upcoming) today else day)
         androidx.compose.material3.SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).padding(bottom = 80.dp))
+    }
+
+    confirmClear?.let { tasks ->
+        AlertDialog(
+            onDismissRequest = { confirmClear = null },
+            title = { Text(stringResource(R.string.tasks_clear_title)) },
+            text = { Text(stringResource(R.string.tasks_clear_body, tasks.size)) },
+            confirmButton = {
+                TextButton(onClick = { confirmClear = null; clearAll(tasks) }) {
+                    Text(stringResource(R.string.tasks_clear_list), color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = { TextButton(onClick = { confirmClear = null }) { Text(stringResource(R.string.cancel)) } },
+        )
     }
 
     if (adding || editing != null) {

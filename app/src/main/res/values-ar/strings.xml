@@ -897,6 +897,10 @@
     <string name="task_deleted">تم حذف المهمة</string>
     <string name="undo">تراجع</string>
     <string name="cd_delete_task">حذف المهمة %1$s</string>
+    <string name="tasks_clear_list">مسح القائمة</string>
+    <string name="tasks_cleared">تم مسح القائمة</string>
+    <string name="tasks_clear_title">مسح هذه القائمة؟</string>
+    <string name="tasks_clear_body">سيُحذف كل ما في هذه القائمة (%1$d)، بما في ذلك المهام غير المنجزة. ولن تتكرر المهام المتكررة بعد ذلك.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

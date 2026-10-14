@@ -897,6 +897,10 @@
     <string name="task_deleted">Đã xóa việc</string>
     <string name="undo">Hoàn tác</string>
     <string name="cd_delete_task">Xóa việc %1$s</string>
+    <string name="tasks_clear_list">Xóa danh sách</string>
+    <string name="tasks_cleared">Đã xóa danh sách</string>
+    <string name="tasks_clear_title">Xóa danh sách này?</string>
+    <string name="tasks_clear_body">Mọi mục trong danh sách này (%1$d) sẽ bị xóa, kể cả việc chưa xong. Việc lặp lại sẽ ngừng lặp lại.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

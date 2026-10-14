@@ -897,6 +897,10 @@
     <string name="task_deleted">काम हटाया गया</string>
     <string name="undo">पहले जैसा करें</string>
     <string name="cd_delete_task">काम %1$s हटाएँ</string>
+    <string name="tasks_clear_list">सूची साफ़ करें</string>
+    <string name="tasks_cleared">सूची साफ़ हुई</string>
+    <string name="tasks_clear_title">यह सूची साफ़ करें?</string>
+    <string name="tasks_clear_body">इस सूची की हर चीज़ (%1$d) हट जाएगी, अधूरे काम भी। दोहराए जाने वाले काम अब नहीं दोहराए जाएँगे।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

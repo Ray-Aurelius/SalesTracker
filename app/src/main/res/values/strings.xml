@@ -1038,4 +1038,8 @@
     <string name="task_deleted">Task deleted</string>
     <string name="undo">Undo</string>
     <string name="cd_delete_task">Delete task %1$s</string>
+    <string name="tasks_clear_list">Clear list</string>
+    <string name="tasks_cleared">List cleared</string>
+    <string name="tasks_clear_title">Clear this list?</string>
+    <string name="tasks_clear_body">This removes everything on this list (%1$d), including tasks that aren\'t done yet. Repeating tasks stop repeating.</string>
 </resources>

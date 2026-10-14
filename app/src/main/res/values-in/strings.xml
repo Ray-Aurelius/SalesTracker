@@ -897,6 +897,10 @@
     <string name="task_deleted">Tugas dihapus</string>
     <string name="undo">Urungkan</string>
     <string name="cd_delete_task">Hapus tugas %1$s</string>
+    <string name="tasks_clear_list">Kosongkan daftar</string>
+    <string name="tasks_cleared">Daftar dikosongkan</string>
+    <string name="tasks_clear_title">Kosongkan daftar ini?</string>
+    <string name="tasks_clear_body">Semua yang ada di daftar ini (%1$d) akan dihapus, termasuk tugas yang belum selesai. Tugas berulang tidak akan berulang lagi.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>
