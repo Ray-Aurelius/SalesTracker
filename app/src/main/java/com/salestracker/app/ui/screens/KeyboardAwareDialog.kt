@@ -1,8 +1,13 @@
+@file:OptIn(ExperimentalFoundationApi::class)
+
 package com.salestracker.app.ui.screens
 
 import android.view.WindowManager
 import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.LocalOverscrollConfiguration
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,7 +48,9 @@ fun AlertDialog(
         dismissButton = dismissButton,
         icon = icon,
         title = title,
-        text = text,
+        // No stretchy "bounce" at the ends of a form: it fought with keeping the field being typed in on screen,
+        // so typing at the bottom (e.g. in Notes) made the form bounce.
+        text = text?.let { t -> { CompositionLocalProvider(LocalOverscrollConfiguration provides null) { t() } } },
         shape = shape,
         containerColor = containerColor,
         iconContentColor = iconContentColor,

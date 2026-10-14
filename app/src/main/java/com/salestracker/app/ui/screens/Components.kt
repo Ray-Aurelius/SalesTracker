@@ -364,7 +364,7 @@ fun SaleDialog(
                     onValueChange = { notes = it },
                     label = { Text(stringResource(R.string.notes)) },
                     modifier = Modifier.fillMaxWidth(),
-                    minLines = 2,
+                    minLines = 2, maxLines = 5,
                 )
             }
         },

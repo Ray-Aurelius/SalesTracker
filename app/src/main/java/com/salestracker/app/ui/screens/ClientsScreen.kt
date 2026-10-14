@@ -434,7 +434,7 @@ internal fun ClientDialog(
                     isError = !emailValid,
                     supportingText = { if (!emailValid) Text(stringResource(R.string.check_email)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth())
-                OutlinedTextField(notes, { notes = it }, label = { Text(stringResource(R.string.notes)) }, minLines = 2, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(notes, { notes = it }, label = { Text(stringResource(R.string.notes)) }, minLines = 2, maxLines = 5, modifier = Modifier.fillMaxWidth())
                 Spacer(Modifier.height(4.dp))
                 if (metrics != null) ClientStatsCard(metrics)
                 if (initial != null) {

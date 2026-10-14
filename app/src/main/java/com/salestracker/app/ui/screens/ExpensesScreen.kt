@@ -397,7 +397,7 @@ fun ExpenseDialog(
                     value = note, onValueChange = { note = it },
                     label = { Text(stringResource(if (trip) R.string.exp_trip_purpose else R.string.notes)) },
                     keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
-                    modifier = Modifier.fillMaxWidth(), minLines = 2,
+                    modifier = Modifier.fillMaxWidth(), minLines = 2, maxLines = 5,
                 )
                 ReceiptSection(vm, receipts, added, initial?.receipts.orEmpty())
             }

@@ -445,7 +445,7 @@ internal fun TaskDialog(
                         Text(formatMinuteOfDay(minute), modifier = Modifier.weight(1f))
                     }
                 }
-                OutlinedTextField(notes, { notes = it }, label = { Text(stringResource(R.string.notes)) }, minLines = 2, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(notes, { notes = it }, label = { Text(stringResource(R.string.notes)) }, minLines = 2, maxLines = 5, modifier = Modifier.fillMaxWidth())
                 if (initial != null) {
                     TextButton(onClick = { confirmDelete = true }) {
                         Text(stringResource(R.string.delete_task), color = MaterialTheme.colorScheme.error)
