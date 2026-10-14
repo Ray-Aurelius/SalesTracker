@@ -901,6 +901,9 @@
     <string name="tasks_cleared">Liste temizlendi</string>
     <string name="tasks_clear_title">Bu liste temizlensin mi?</string>
     <string name="tasks_clear_body">Bu listedeki her şey (%1$d) kaldırılır, henüz bitmemiş görevler de dahil. Tekrarlanan görevler artık tekrarlanmaz.</string>
+    <string name="appointment_deleted">Randevu silindi</string>
+    <string name="cd_delete_appointment">%1$s randevusunu sil</string>
+    <string name="add_on_day">%1$s tarihine ekle</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

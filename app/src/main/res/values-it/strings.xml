@@ -901,6 +901,9 @@
     <string name="tasks_cleared">Elenco svuotato</string>
     <string name="tasks_clear_title">Svuotare questo elenco?</string>
     <string name="tasks_clear_body">Viene rimosso tutto ciò che è in questo elenco (%1$d), comprese le attività non completate. Le attività ricorrenti smettono di ripetersi.</string>
+    <string name="appointment_deleted">Appuntamento eliminato</string>
+    <string name="cd_delete_appointment">Elimina appuntamento %1$s</string>
+    <string name="add_on_day">Aggiungi il %1$s</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>

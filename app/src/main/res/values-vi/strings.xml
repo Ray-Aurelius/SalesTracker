@@ -901,6 +901,9 @@
     <string name="tasks_cleared">Đã xóa danh sách</string>
     <string name="tasks_clear_title">Xóa danh sách này?</string>
     <string name="tasks_clear_body">Mọi mục trong danh sách này (%1$d) sẽ bị xóa, kể cả việc chưa xong. Việc lặp lại sẽ ngừng lặp lại.</string>
+    <string name="appointment_deleted">Đã xóa lịch hẹn</string>
+    <string name="cd_delete_appointment">Xóa lịch hẹn %1$s</string>
+    <string name="add_on_day">Thêm vào %1$s</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

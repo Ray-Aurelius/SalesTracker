@@ -901,6 +901,9 @@
     <string name="tasks_cleared">Daftar dikosongkan</string>
     <string name="tasks_clear_title">Kosongkan daftar ini?</string>
     <string name="tasks_clear_body">Semua yang ada di daftar ini (%1$d) akan dihapus, termasuk tugas yang belum selesai. Tugas berulang tidak akan berulang lagi.</string>
+    <string name="appointment_deleted">Janji temu dihapus</string>
+    <string name="cd_delete_appointment">Hapus janji temu %1$s</string>
+    <string name="add_on_day">Tambah pada %1$s</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

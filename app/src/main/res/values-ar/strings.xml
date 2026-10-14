@@ -901,6 +901,9 @@
     <string name="tasks_cleared">تم مسح القائمة</string>
     <string name="tasks_clear_title">مسح هذه القائمة؟</string>
     <string name="tasks_clear_body">سيُحذف كل ما في هذه القائمة (%1$d)، بما في ذلك المهام غير المنجزة. ولن تتكرر المهام المتكررة بعد ذلك.</string>
+    <string name="appointment_deleted">تم حذف الموعد</string>
+    <string name="cd_delete_appointment">حذف الموعد %1$s</string>
+    <string name="add_on_day">إضافة في %1$s</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

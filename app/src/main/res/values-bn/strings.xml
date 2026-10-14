@@ -901,6 +901,9 @@
     <string name="tasks_cleared">তালিকা খালি করা হয়েছে</string>
     <string name="tasks_clear_title">এই তালিকা খালি করবেন?</string>
     <string name="tasks_clear_body">এই তালিকার সবকিছু (%1$d) মুছে যাবে, অসমাপ্ত কাজও। পুনরাবৃত্ত কাজ আর পুনরাবৃত্তি হবে না।</string>
+    <string name="appointment_deleted">অ্যাপয়েন্টমেন্ট মুছে ফেলা হয়েছে</string>
+    <string name="cd_delete_appointment">অ্যাপয়েন্টমেন্ট %1$s মুছুন</string>
+    <string name="add_on_day">%1$s-এ যোগ করুন</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

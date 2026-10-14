@@ -29,6 +29,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import kotlinx.coroutines.launch
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.foundation.layout.offset
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.foundation.layout.Arrangement
@@ -125,6 +127,23 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
     var addingTask by remember { mutableStateOf(false) }
     var editingTask by remember { mutableStateOf<com.salestracker.app.data.Task?>(null) }
     val context = LocalContext.current
+    // Tapping a date opens its overview: that day's appointments, each with a trash can, and "Add on <date>".
+    var overview by remember { mutableStateOf<LocalDate?>(null) }
+    // Quick delete, with Undo: a bar at the bottom of the page, or a line inside the day overview.
+    var lastDeleted by remember { mutableStateOf<Appointment?>(null) }
+    val snackbar = remember { androidx.compose.material3.SnackbarHostState() }
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
+    val deletedText = stringResource(R.string.appointment_deleted)
+    val undoText = stringResource(R.string.undo)
+    fun deleteAppt(a: Appointment) {
+        vm.deleteAppointment(a.id)
+        lastDeleted = a
+        if (overview == null) scope.launch {
+            snackbar.currentSnackbarData?.dismiss()
+            val r = snackbar.showSnackbar(deletedText, actionLabel = undoText, duration = androidx.compose.material3.SnackbarDuration.Long)
+            if (r == androidx.compose.material3.SnackbarResult.ActionPerformed) { vm.saveAppointment(a); lastDeleted = null }
+        }
+    }
 
     // Tapping a reminder notification lands here on the appointment's day.
     LaunchedEffect(vm.pendingOpenDay) {
@@ -160,7 +179,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                     onPrev = { month = month.minusMonths(1) },
                     onNext = { month = month.plusMonths(1) },
                     // Tapping a day picks it; tapping the picked day again starts an appointment on it.
-                    onSelect = { if (it == selected) adding = true else selected = it },
+                    onSelect = { selected = it; lastDeleted = null; overview = it },
                     onToday = { month = YearMonth.from(today); selected = today },
                 )
             }
@@ -186,11 +205,6 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                             Icon(Icons.Filled.Event, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(Modifier.width(8.dp))
                             Text(stringResource(R.string.add_appointment))
-                        }
-                        androidx.compose.material3.OutlinedButton(onClick = { addingTask = true }) {
-                            Icon(Icons.Filled.AddTask, contentDescription = null, modifier = Modifier.size(18.dp))
-                            Spacer(Modifier.width(8.dp))
-                            Text(stringResource(R.string.add_task))
                         }
                     }
                     HighlightPicker(
@@ -234,6 +248,14 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                                 }
                             }
                         }
+                        IconButton(onClick = { deleteAppt(a) }) {
+                            Icon(
+                                Icons.Filled.Delete,
+                                contentDescription = stringResource(R.string.cd_delete_appointment, a.title),
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.size(20.dp),
+                            )
+                        }
                     }
                 }
             }
@@ -261,6 +283,21 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
             }
         }
         QuickAdd(vm, data, appointmentDate = selected, taskDay = selected.toEpochDay())
+        androidx.compose.material3.SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).padding(bottom = 80.dp))
+    }
+
+    overview?.let { day ->
+        DayOverview(
+            date = day,
+            appointments = apptsByDay[day.toEpochDay()].orEmpty(),
+            clientsById = clientsById,
+            undone = lastDeleted?.takeIf { it.epochDay == day.toEpochDay() },
+            onOpen = { editing = it },
+            onDelete = ::deleteAppt,
+            onUndo = { a -> vm.saveAppointment(a); lastDeleted = null },
+            onAdd = { selected = day; adding = true },
+            onClose = { overview = null; lastDeleted = null },
+        )
     }
 
     if (addingTask || editingTask != null) {
@@ -675,4 +712,102 @@ private fun ReminderPicker(selected: Int?, onSelect: (Int?) -> Unit) {
             }
         }
     }
+}
+
+/**
+ * A day at a glance, like a phone calendar's day pop-up: the date, that day's appointments in time order (tap one
+ * to edit it, or its trash can to delete it, with Undo), and a big "Add on <date>" button for another.
+ */
+@Composable
+private fun DayOverview(
+    date: LocalDate,
+    appointments: List<Appointment>,
+    clientsById: Map<Long, Client>,
+    undone: Appointment?,
+    onOpen: (Appointment) -> Unit,
+    onDelete: (Appointment) -> Unit,
+    onUndo: (Appointment) -> Unit,
+    onAdd: () -> Unit,
+    onClose: () -> Unit,
+) {
+    val colors = MaterialTheme.colorScheme
+    AlertDialog(
+        onDismissRequest = onClose,
+        title = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    Modifier.size(48.dp).clip(androidx.compose.foundation.shape.RoundedCornerShape(12.dp)).background(colors.primary),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(date.dayOfMonth.toString(), color = colors.onPrimary, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                }
+                Spacer(Modifier.width(14.dp))
+                Column {
+                    Text(date.format(localizedFormatter("EEEE")), style = MaterialTheme.typography.headlineSmall)
+                    Text(date.format(localizedFormatter("yMMMMd")), style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
+                }
+            }
+        },
+        text = {
+            Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                if (undone != null) {
+                    Row(
+                        Modifier.fillMaxWidth().clip(androidx.compose.foundation.shape.RoundedCornerShape(8.dp))
+                            .background(colors.surfaceVariant).padding(start = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(stringResource(R.string.appointment_deleted), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
+                        TextButton(onClick = { onUndo(undone) }) { Text(stringResource(R.string.undo)) }
+                    }
+                }
+                if (appointments.isEmpty()) {
+                    Text(
+                        stringResource(R.string.no_appointments),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = colors.onSurfaceVariant,
+                        modifier = Modifier.padding(vertical = 16.dp),
+                    )
+                }
+                appointments.forEach { a ->
+                    Row(
+                        Modifier.fillMaxWidth().clickable { onOpen(a) }.padding(vertical = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(
+                            formatMinuteOfDay(a.minuteOfDay),
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.width(72.dp),
+                        )
+                        Box(Modifier.width(3.dp).height(36.dp).clip(androidx.compose.foundation.shape.RoundedCornerShape(2.dp)).background(colors.primary))
+                        Spacer(Modifier.width(10.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text(a.title, style = MaterialTheme.typography.bodyLarge, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                            a.clientId?.let { clientsById[it]?.displayName() }?.let {
+                                Text(it, style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
+                            }
+                        }
+                        IconButton(onClick = { onDelete(a) }) {
+                            Icon(
+                                Icons.Filled.Delete,
+                                contentDescription = stringResource(R.string.cd_delete_appointment, a.title),
+                                tint = colors.onSurfaceVariant,
+                                modifier = Modifier.size(20.dp),
+                            )
+                        }
+                    }
+                }
+                Spacer(Modifier.height(8.dp))
+                androidx.compose.material3.FilledTonalButton(onClick = onAdd, modifier = Modifier.fillMaxWidth().height(52.dp)) {
+                    Text(
+                        stringResource(R.string.add_on_day, date.format(localizedFormatter("MMMd"))),
+                        modifier = Modifier.weight(1f),
+                        style = MaterialTheme.typography.titleSmall,
+                    )
+                    Icon(Icons.Filled.Add, contentDescription = null)
+                }
+            }
+        },
+        confirmButton = { TextButton(onClick = onClose) { Text(stringResource(R.string.done)) } },
+    )
 }

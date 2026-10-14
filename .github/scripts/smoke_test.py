@@ -370,21 +370,42 @@ def main(apk):
         fail("the sale with the new client is not in the sales log")
     shot("sales-log-new-client")
 
-    section("Schedule: tap a date, add an appointment; plan a task and tick it off")
+    section("Schedule: tap a date for its overview, add an appointment, delete one; plan a task and tick it off")
     tap(r"^Schedule$", wait=1.5)
-    if not tap(r"^Add appointment$", "schedule-add-appointment", wait=1.5):
-        fail("no Add appointment button for the chosen day")
+    # Today's date in the month (its spoken name starts with e.g. "Wednesday, October 14").
+    today_name = adb("shell", "date", "+%A,_%B_%-d").strip().replace("_", " ")
+    if not tap("^" + re.escape(today_name), "schedule-day-overview", wait=1.5):
+        fail("could not tap today's date in the month")
+    if not find(r"^Add on "):
+        fail("tapping a date didn't open the day's overview")
+    tap(r"^Add on ", wait=1.5)
     tap(r"^Title$", wait=0.8)
     type_text("Smoke%sdemo")
     check_above_keyboard(r"^Save$", "Save button on the appointment form")
     hide_keyboard()
     tap(r"^Save$", wait=1.5)
+    if not find(r"^Smoke demo$"):
+        fail("the new appointment isn't in the day's overview")
+    shot("schedule-overview-added")
+    # Quick delete from the overview, then Undo.
+    if not tap(r"^Delete appointment Smoke demo$", wait=1.0):
+        fail("no trash can next to the appointment")
+    gone = find(r"^Smoke demo$") is None
+    if not tap(r"^Undo$", wait=1.2):
+        fail("no Undo after deleting an appointment")
+    if not gone:
+        fail("the trash can didn't delete the appointment")
+    if not find(r"^Smoke demo$"):
+        fail("Undo didn't bring the appointment back")
+    tap(r"^Done$", wait=1.2)
     if not find_scrolling(r"^Smoke demo$", tries=3):
-        fail("the appointment added from the chosen day is not on the schedule")
-    shot("schedule-appointment-added")
-    tap(r"^Schedule$", wait=1.5)
-    if not tap(r"^Add task$", wait=1.5, scroll=2):
-        fail("no Add task button on the Schedule page")
+        fail("the appointment is not on the schedule")
+    if find(r"^Add task$"):
+        fail("Add task should no longer be on the Schedule page")
+    # Plan a task from the Tasks tab.
+    tap(r"^Tasks$", wait=1.5)
+    if not tap(r"^Add task$", wait=1.5):
+        fail("no Add task button on the Tasks page")
     tap(r"^Task$", wait=0.8)
     type_text("Call%ssmoke%sclient")
     hide_keyboard()

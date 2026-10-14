@@ -1042,4 +1042,7 @@
     <string name="tasks_cleared">List cleared</string>
     <string name="tasks_clear_title">Clear this list?</string>
     <string name="tasks_clear_body">This removes everything on this list (%1$d), including tasks that aren\'t done yet. Repeating tasks stop repeating.</string>
+    <string name="appointment_deleted">Appointment deleted</string>
+    <string name="cd_delete_appointment">Delete appointment %1$s</string>
+    <string name="add_on_day">Add on %1$s</string>
 </resources>

@@ -901,6 +901,9 @@
     <string name="tasks_cleared">リストを空にしました</string>
     <string name="tasks_clear_title">このリストを空にしますか？</string>
     <string name="tasks_clear_body">このリストのすべて（%1$d 件）が削除されます。未完了のタスクも含まれます。繰り返しタスクは繰り返されなくなります。</string>
+    <string name="appointment_deleted">予定を削除しました</string>
+    <string name="cd_delete_appointment">予定「%1$s」を削除</string>
+    <string name="add_on_day">%1$s に追加</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

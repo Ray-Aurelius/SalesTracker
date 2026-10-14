@@ -901,6 +901,9 @@
     <string name="tasks_cleared">Список очищен</string>
     <string name="tasks_clear_title">Очистить этот список?</string>
     <string name="tasks_clear_body">Будет удалено всё из этого списка (%1$d), включая невыполненные задачи. Повторяющиеся задачи перестанут повторяться.</string>
+    <string name="appointment_deleted">Встреча удалена</string>
+    <string name="cd_delete_appointment">Удалить встречу %1$s</string>
+    <string name="add_on_day">Добавить на %1$s</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

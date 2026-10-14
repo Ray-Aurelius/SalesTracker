@@ -901,6 +901,9 @@
     <string name="tasks_cleared">Liste geleert</string>
     <string name="tasks_clear_title">Diese Liste leeren?</string>
     <string name="tasks_clear_body">Alles auf dieser Liste (%1$d) wird entfernt, auch noch nicht erledigte Aufgaben. Wiederkehrende Aufgaben wiederholen sich nicht mehr.</string>
+    <string name="appointment_deleted">Termin gelöscht</string>
+    <string name="cd_delete_appointment">Termin %1$s löschen</string>
+    <string name="add_on_day">Am %1$s hinzufügen</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>
