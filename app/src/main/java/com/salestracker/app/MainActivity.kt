@@ -76,8 +76,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Calculate
@@ -362,9 +360,9 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
             }
         },
     ) { padding ->
-        // When the keyboard is open, the page shrinks to the space above it (the menu bar slides under the
-        // keyboard), so search boxes and the bottom of every page stay reachable.
-        Row(Modifier.fillMaxSize().padding(padding).consumeWindowInsets(padding).imePadding()) {
+        // Pages keep their size when a keyboard opens. (Shrinking them made lists drop rows while the phone's PIN
+        // pad was up, e.g. a receipt waiting to open after unlocking. Pop-up forms shrink above the keyboard instead.)
+        Row(Modifier.fillMaxSize().padding(padding)) {
             if (side) {
                 // Menu down the side (left, or right in right-to-left languages). Its own arrow hides it;
                 // when hidden, a slim strip with an arrow brings it back.

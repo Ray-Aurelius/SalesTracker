@@ -59,7 +59,7 @@ Everything is stored privately on the phone — no account or internet needed.
 
 **Security:** turn on **Lock with fingerprint or PIN** to require your fingerprint, face or phone PIN when opening the app (it re-locks after 30 seconds away and hides the app preview in recent apps).
 
-**Keyboard-friendly forms:** every pop-up form shrinks to the space above the keyboard and scrolls, so the field you're typing in and Save / Cancel stay reachable; pages do the same.
+**Keyboard-friendly forms:** every pop-up form shrinks to the space above the keyboard and scrolls, so the field you're typing in and Save / Cancel stay reachable.
 
 **Encrypted backup:** **Back up now** (Settings → Security & privacy) saves all data in a password-protected file (AES-256-GCM, key derived from your password with PBKDF2-SHA256) to **Documents › Quota Vault Backups**: the same folder every time, made when the app is first set up, kept if the app is deleted, and no storage permission needed (Android 10+; on Android 8–9 you pick the folder once). **Save a copy elsewhere** also puts one on Google Drive or a computer. **Restore** (also on the welcome screen after a reinstall or erase) lists the backups in the folder newest first; after a reinstall Android asks once to allow that one folder. Each backup can be deleted from the list, and **Erase all data** keeps the backups unless you tick *Also delete my backups*. The password is never stored; if it's forgotten, the backup can't be opened.
 
