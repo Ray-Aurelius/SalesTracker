@@ -847,26 +847,17 @@
     <string name="restore_find_folder">Ouvrir mon dossier de sauvegardes</string>
     <string name="restore_other_file">Choisir un fichier de sauvegarde ailleurs</string>
     <string name="folder_find_title">Ouvrez votre dossier de sauvegardes</string>
-    <string name="folder_find_body">Android va afficher %1$s. Touchez Utiliser ce dossier, puis Autoriser.
-
-Quota Vault ne voit que ce dossier, et seulement pour vos sauvegardes. Rien d\'autre sur votre téléphone.</string>
+    <string name="folder_find_body">Android va afficher %1$s. Touchez Utiliser ce dossier, puis Autoriser.\n\nQuota Vault ne voit que ce dossier, et seulement pour vos sauvegardes. Rien d\'autre sur votre téléphone.</string>
     <string name="folder_choose_title">Choisissez où ranger vos sauvegardes</string>
-    <string name="folder_choose_body">Android va afficher vos dossiers. Choisissez-en un, par exemple Documents, puis touchez Utiliser ce dossier et Autoriser. Quota Vault y crée un dossier « %1$s » et y enregistre toutes les sauvegardes.
-
-Quota Vault ne voit que ce dossier. Rien d\'autre sur votre téléphone.</string>
+    <string name="folder_choose_body">Android va afficher vos dossiers. Choisissez-en un, par exemple Documents, puis touchez Utiliser ce dossier et Autoriser. Quota Vault y crée un dossier « %1$s » et y enregistre toutes les sauvegardes.\n\nQuota Vault ne voit que ce dossier. Rien d\'autre sur votre téléphone.</string>
     <string name="restore_confirm_new_title">Restaurer cette sauvegarde ?</string>
-    <string name="restore_confirm_new_body">Sauvegarde du %1$s
-Clients : %2$d · Ventes : %3$d · Rendez-vous : %4$d · Objectifs : %5$d</string>
+    <string name="restore_confirm_new_body">Sauvegarde du %1$s\nClients : %2$d · Ventes : %3$d · Rendez-vous : %4$d · Objectifs : %5$d</string>
     <string name="erase_backups_kept">Vos sauvegardes dans %1$s sont conservées : vous pourrez les restaurer à tout moment depuis l\'écran d\'accueil.</string>
     <string name="erase_no_backup">Vous n\'avez encore aucune sauvegarde. Une fois effacées, ces données ne pourront pas être récupérées.</string>
     <string name="erase_backup_first">Sauvegarder d\'abord</string>
     <string name="welcome_restore">Déjà utilisateur de Quota Vault ? Récupérez vos clients, ventes et objectifs depuis une sauvegarde.</string>
     <string name="welcome_have_backup">Vous avez une sauvegarde ? Restaurez-la</string>
-    <string name="backup_folder_readme">Ce dossier contient vos sauvegardes Quota Vault.
-
-Chaque sauvegarde est chiffrée avec le mot de passe que vous avez choisi et ne peut être ouverte que dans l\'app Quota Vault. Gardez ce dossier si vous réinstallez l\'app ou changez de téléphone : Quota Vault regarde ici lors d\'une restauration.
-
-Quota Vault ne vous demandera jamais d\'envoyer ces fichiers ou votre mot de passe à qui que ce soit. Toute personne qui le demande est un escroc.</string>
+    <string name="backup_folder_readme">Ce dossier contient vos sauvegardes Quota Vault.\n\nChaque sauvegarde est chiffrée avec le mot de passe que vous avez choisi et ne peut être ouverte que dans l\'app Quota Vault. Gardez ce dossier si vous réinstallez l\'app ou changez de téléphone : Quota Vault regarde ici lors d\'une restauration.\n\nQuota Vault ne vous demandera jamais d\'envoyer ces fichiers ou votre mot de passe à qui que ce soit. Toute personne qui le demande est un escroc.</string>
     <string name="pi_folder_t">Dossier de sauvegardes</string>
     <string name="pi_folder">Les sauvegardes sont enregistrées dans Documents › Quota Vault Backups sans aucune autorisation de stockage. Quota Vault ne voit que les sauvegardes qu\'il a créées. Après une réinstallation, il ne voit les anciennes que si vous autorisez ce dossier.</string>
     <plurals name="client_summary">

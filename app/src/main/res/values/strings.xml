@@ -982,26 +982,17 @@
     <string name="restore_find_folder">Open my backup folder</string>
     <string name="restore_other_file">Choose a backup file from somewhere else</string>
     <string name="folder_find_title">Open your backup folder</string>
-    <string name="folder_find_body">Android will show %1$s. Tap Use this folder, then Allow.
-
-Quota Vault can only see that one folder, and only uses it for your backups. Nothing else on your phone.</string>
+    <string name="folder_find_body">Android will show %1$s. Tap Use this folder, then Allow.\n\nQuota Vault can only see that one folder, and only uses it for your backups. Nothing else on your phone.</string>
     <string name="folder_choose_title">Choose a home for your backups</string>
-    <string name="folder_choose_body">Android will show your folders. Pick one, such as Documents, then tap Use this folder and Allow. Quota Vault makes a \"%1$s\" folder inside it and saves every backup there.
-
-Quota Vault can only see that one folder. Nothing else on your phone.</string>
+    <string name="folder_choose_body">Android will show your folders. Pick one, such as Documents, then tap Use this folder and Allow. Quota Vault makes a \"%1$s\" folder inside it and saves every backup there.\n\nQuota Vault can only see that one folder. Nothing else on your phone.</string>
     <string name="restore_confirm_new_title">Restore this backup?</string>
-    <string name="restore_confirm_new_body">Backup from %1$s
-Clients: %2$d · Sales: %3$d · Appointments: %4$d · Goals: %5$d</string>
+    <string name="restore_confirm_new_body">Backup from %1$s\nClients: %2$d · Sales: %3$d · Appointments: %4$d · Goals: %5$d</string>
     <string name="erase_backups_kept">Your backups in %1$s are kept, so you can restore them any time from the welcome screen.</string>
     <string name="erase_no_backup">You don\'t have a backup yet. Once erased, this data can\'t be brought back.</string>
     <string name="erase_backup_first">Back up first</string>
     <string name="welcome_restore">Used Quota Vault before? Bring back your clients, sales and goals from a backup.</string>
     <string name="welcome_have_backup">Have a backup? Restore it</string>
-    <string name="backup_folder_readme">This folder holds your Quota Vault backups.
-
-Each backup is encrypted with the password you chose and can only be opened in the Quota Vault app. Keep this folder if you reinstall the app or move to a new phone: Quota Vault looks here when you restore.
-
-Quota Vault will never ask you to send these files or your password to anyone. Anyone who asks is a scammer.</string>
+    <string name="backup_folder_readme">This folder holds your Quota Vault backups.\n\nEach backup is encrypted with the password you chose and can only be opened in the Quota Vault app. Keep this folder if you reinstall the app or move to a new phone: Quota Vault looks here when you restore.\n\nQuota Vault will never ask you to send these files or your password to anyone. Anyone who asks is a scammer.</string>
     <string name="pi_folder_t">Backup folder</string>
     <string name="pi_folder">Backups are saved to Documents › Quota Vault Backups without any storage permission. Quota Vault can only see the backups it made. After a reinstall, it sees older ones only if you allow that one folder.</string>
     <plurals name="erase_also_backups">

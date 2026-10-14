@@ -847,26 +847,17 @@
     <string name="restore_find_folder">Apri la mia cartella di backup</string>
     <string name="restore_other_file">Scegli un file di backup da un altro posto</string>
     <string name="folder_find_title">Apri la cartella dei backup</string>
-    <string name="folder_find_body">Android mostrerà %1$s. Tocca Usa questa cartella, poi Consenti.
-
-Quota Vault vede solo quella cartella e la usa solo per i tuoi backup. Nient\'altro sul telefono.</string>
+    <string name="folder_find_body">Android mostrerà %1$s. Tocca Usa questa cartella, poi Consenti.\n\nQuota Vault vede solo quella cartella e la usa solo per i tuoi backup. Nient\'altro sul telefono.</string>
     <string name="folder_choose_title">Scegli dove tenere i backup</string>
-    <string name="folder_choose_body">Android mostrerà le tue cartelle. Scegline una, ad esempio Documents, poi tocca Usa questa cartella e Consenti. Quota Vault crea al suo interno una cartella \"%1$s\" e ci salva ogni backup.
-
-Quota Vault vede solo quella cartella. Nient\'altro sul telefono.</string>
+    <string name="folder_choose_body">Android mostrerà le tue cartelle. Scegline una, ad esempio Documents, poi tocca Usa questa cartella e Consenti. Quota Vault crea al suo interno una cartella \"%1$s\" e ci salva ogni backup.\n\nQuota Vault vede solo quella cartella. Nient\'altro sul telefono.</string>
     <string name="restore_confirm_new_title">Ripristinare questo backup?</string>
-    <string name="restore_confirm_new_body">Backup del %1$s
-Clienti: %2$d · Vendite: %3$d · Appuntamenti: %4$d · Obiettivi: %5$d</string>
+    <string name="restore_confirm_new_body">Backup del %1$s\nClienti: %2$d · Vendite: %3$d · Appuntamenti: %4$d · Obiettivi: %5$d</string>
     <string name="erase_backups_kept">I tuoi backup in %1$s vengono conservati, così puoi ripristinarli quando vuoi dalla schermata di benvenuto.</string>
     <string name="erase_no_backup">Non hai ancora un backup. Una volta cancellati, questi dati non si possono recuperare.</string>
     <string name="erase_backup_first">Prima fai un backup</string>
     <string name="welcome_restore">Usavi già Quota Vault? Recupera clienti, vendite e obiettivi da un backup.</string>
     <string name="welcome_have_backup">Hai un backup? Ripristinalo</string>
-    <string name="backup_folder_readme">Questa cartella contiene i tuoi backup di Quota Vault.
-
-Ogni backup è cifrato con la password che hai scelto e si può aprire solo nell\'app Quota Vault. Conserva questa cartella se reinstalli l\'app o cambi telefono: Quota Vault cerca qui quando ripristini.
-
-Quota Vault non ti chiederà mai di inviare questi file o la tua password a nessuno. Chi te li chiede è un truffatore.</string>
+    <string name="backup_folder_readme">Questa cartella contiene i tuoi backup di Quota Vault.\n\nOgni backup è cifrato con la password che hai scelto e si può aprire solo nell\'app Quota Vault. Conserva questa cartella se reinstalli l\'app o cambi telefono: Quota Vault cerca qui quando ripristini.\n\nQuota Vault non ti chiederà mai di inviare questi file o la tua password a nessuno. Chi te li chiede è un truffatore.</string>
     <string name="pi_folder_t">Cartella dei backup</string>
     <string name="pi_folder">I backup vengono salvati in Documents › Quota Vault Backups senza alcun permesso di archiviazione. Quota Vault vede solo i backup che ha creato. Dopo una reinstallazione vede quelli precedenti solo se consenti l\'accesso a quella cartella.</string>
     <plurals name="client_summary">

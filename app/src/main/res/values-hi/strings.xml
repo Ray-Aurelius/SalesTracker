@@ -847,26 +847,17 @@
     <string name="restore_find_folder">मेरा बैकअप फ़ोल्डर खोलें</string>
     <string name="restore_other_file">किसी और जगह से बैकअप फ़ाइल चुनें</string>
     <string name="folder_find_title">अपना बैकअप फ़ोल्डर खोलें</string>
-    <string name="folder_find_body">Android %1$s दिखाएगा। इस फ़ोल्डर का इस्तेमाल करें पर टैप करें, फिर अनुमति दें पर।
-
-Quota Vault सिर्फ़ वही एक फ़ोल्डर देख सकता है और उसे सिर्फ़ आपके बैकअप के लिए इस्तेमाल करता है। आपके फ़ोन की और कोई चीज़ नहीं।</string>
+    <string name="folder_find_body">Android %1$s दिखाएगा। इस फ़ोल्डर का इस्तेमाल करें पर टैप करें, फिर अनुमति दें पर।\n\nQuota Vault सिर्फ़ वही एक फ़ोल्डर देख सकता है और उसे सिर्फ़ आपके बैकअप के लिए इस्तेमाल करता है। आपके फ़ोन की और कोई चीज़ नहीं।</string>
     <string name="folder_choose_title">बैकअप रखने की जगह चुनें</string>
-    <string name="folder_choose_body">Android आपके फ़ोल्डर दिखाएगा। Documents जैसा कोई फ़ोल्डर चुनें, फिर इस फ़ोल्डर का इस्तेमाल करें और अनुमति दें पर टैप करें। Quota Vault उसके अंदर \"%1$s\" फ़ोल्डर बनाकर हर बैकअप वहीं सहेजेगा।
-
-Quota Vault सिर्फ़ वही एक फ़ोल्डर देख सकता है। आपके फ़ोन की और कोई चीज़ नहीं।</string>
+    <string name="folder_choose_body">Android आपके फ़ोल्डर दिखाएगा। Documents जैसा कोई फ़ोल्डर चुनें, फिर इस फ़ोल्डर का इस्तेमाल करें और अनुमति दें पर टैप करें। Quota Vault उसके अंदर \"%1$s\" फ़ोल्डर बनाकर हर बैकअप वहीं सहेजेगा।\n\nQuota Vault सिर्फ़ वही एक फ़ोल्डर देख सकता है। आपके फ़ोन की और कोई चीज़ नहीं।</string>
     <string name="restore_confirm_new_title">यह बैकअप बहाल करें?</string>
-    <string name="restore_confirm_new_body">%1$s का बैकअप
-ग्राहक: %2$d · बिक्री: %3$d · अपॉइंटमेंट: %4$d · लक्ष्य: %5$d</string>
+    <string name="restore_confirm_new_body">%1$s का बैकअप\nग्राहक: %2$d · बिक्री: %3$d · अपॉइंटमेंट: %4$d · लक्ष्य: %5$d</string>
     <string name="erase_backups_kept">%1$s में आपके बैकअप बने रहेंगे, ताकि आप स्वागत स्क्रीन से कभी भी उन्हें बहाल कर सकें।</string>
     <string name="erase_no_backup">आपके पास अभी कोई बैकअप नहीं है। मिटाने के बाद यह डेटा वापस नहीं लाया जा सकता।</string>
     <string name="erase_backup_first">पहले बैकअप लें</string>
     <string name="welcome_restore">पहले Quota Vault इस्तेमाल किया है? बैकअप से अपने ग्राहक, बिक्री और लक्ष्य वापस लाएँ।</string>
     <string name="welcome_have_backup">बैकअप है? बहाल करें</string>
-    <string name="backup_folder_readme">इस फ़ोल्डर में आपके Quota Vault बैकअप हैं।
-
-हर बैकअप आपके चुने पासवर्ड से एन्क्रिप्ट है और सिर्फ़ Quota Vault ऐप में खुलता है। ऐप दोबारा इंस्टॉल करें या फ़ोन बदलें तो यह फ़ोल्डर रखें: बहाल करते समय Quota Vault यहीं देखता है।
-
-Quota Vault कभी भी आपसे ये फ़ाइलें या आपका पासवर्ड किसी को भेजने को नहीं कहेगा। जो माँगे, वह धोखेबाज़ है।</string>
+    <string name="backup_folder_readme">इस फ़ोल्डर में आपके Quota Vault बैकअप हैं।\n\nहर बैकअप आपके चुने पासवर्ड से एन्क्रिप्ट है और सिर्फ़ Quota Vault ऐप में खुलता है। ऐप दोबारा इंस्टॉल करें या फ़ोन बदलें तो यह फ़ोल्डर रखें: बहाल करते समय Quota Vault यहीं देखता है।\n\nQuota Vault कभी भी आपसे ये फ़ाइलें या आपका पासवर्ड किसी को भेजने को नहीं कहेगा। जो माँगे, वह धोखेबाज़ है।</string>
     <string name="pi_folder_t">बैकअप फ़ोल्डर</string>
     <string name="pi_folder">बैकअप बिना किसी स्टोरेज अनुमति के Documents › Quota Vault Backups में सहेजे जाते हैं। Quota Vault सिर्फ़ अपने बनाए बैकअप देख सकता है। दोबारा इंस्टॉल करने के बाद वह पुराने बैकअप तभी देखता है जब आप उस एक फ़ोल्डर की अनुमति दें।</string>
     <plurals name="client_summary">

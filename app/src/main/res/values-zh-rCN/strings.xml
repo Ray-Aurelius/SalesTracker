@@ -847,26 +847,17 @@
     <string name="restore_find_folder">打开我的备份文件夹</string>
     <string name="restore_other_file">从其他位置选择备份文件</string>
     <string name="folder_find_title">打开备份文件夹</string>
-    <string name="folder_find_body">Android 将显示 %1$s。点按“使用此文件夹”，然后点按“允许”。
-
-Quota Vault 只能看到这一个文件夹，且只用它存放你的备份。不会访问手机上的其他任何内容。</string>
+    <string name="folder_find_body">Android 将显示 %1$s。点按“使用此文件夹”，然后点按“允许”。\n\nQuota Vault 只能看到这一个文件夹，且只用它存放你的备份。不会访问手机上的其他任何内容。</string>
     <string name="folder_choose_title">选择备份存放位置</string>
-    <string name="folder_choose_body">Android 将显示你的文件夹。选择一个（例如 Documents），然后点按“使用此文件夹”和“允许”。Quota Vault 会在其中创建“%1$s”文件夹，并把每份备份都存在那里。
-
-Quota Vault 只能看到这一个文件夹。不会访问手机上的其他任何内容。</string>
+    <string name="folder_choose_body">Android 将显示你的文件夹。选择一个（例如 Documents），然后点按“使用此文件夹”和“允许”。Quota Vault 会在其中创建“%1$s”文件夹，并把每份备份都存在那里。\n\nQuota Vault 只能看到这一个文件夹。不会访问手机上的其他任何内容。</string>
     <string name="restore_confirm_new_title">恢复此备份？</string>
-    <string name="restore_confirm_new_body">备份时间：%1$s
-客户：%2$d · 销售：%3$d · 预约：%4$d · 目标：%5$d</string>
+    <string name="restore_confirm_new_body">备份时间：%1$s\n客户：%2$d · 销售：%3$d · 预约：%4$d · 目标：%5$d</string>
     <string name="erase_backups_kept">%1$s 中的备份会保留，你随时可以在欢迎界面恢复。</string>
     <string name="erase_no_backup">你还没有备份。一旦清除，这些数据将无法找回。</string>
     <string name="erase_backup_first">先备份</string>
     <string name="welcome_restore">以前用过 Quota Vault？从备份找回你的客户、销售和目标。</string>
     <string name="welcome_have_backup">有备份？立即恢复</string>
-    <string name="backup_folder_readme">此文件夹存放你的 Quota Vault 备份。
-
-每份备份都用你设置的密码加密，只能在 Quota Vault 应用中打开。如果你重新安装应用或更换手机，请保留此文件夹：恢复时 Quota Vault 会在这里查找。
-
-Quota Vault 绝不会要求你把这些文件或密码发给任何人。索要的人都是骗子。</string>
+    <string name="backup_folder_readme">此文件夹存放你的 Quota Vault 备份。\n\n每份备份都用你设置的密码加密，只能在 Quota Vault 应用中打开。如果你重新安装应用或更换手机，请保留此文件夹：恢复时 Quota Vault 会在这里查找。\n\nQuota Vault 绝不会要求你把这些文件或密码发给任何人。索要的人都是骗子。</string>
     <string name="pi_folder_t">备份文件夹</string>
     <string name="pi_folder">备份保存在 Documents › Quota Vault Backups，无需任何存储权限。Quota Vault 只能看到它自己创建的备份。重新安装后，只有在你允许访问该文件夹时，它才能看到以前的备份。</string>
     <plurals name="client_summary">

@@ -847,26 +847,17 @@
     <string name="restore_find_folder">Abrir mi carpeta de copias</string>
     <string name="restore_other_file">Elegir un archivo de copia de otro sitio</string>
     <string name="folder_find_title">Abre tu carpeta de copias</string>
-    <string name="folder_find_body">Android mostrará %1$s. Toca Usar esta carpeta y luego Permitir.
-
-Quota Vault solo puede ver esa carpeta y solo la usa para tus copias. Nada más de tu teléfono.</string>
+    <string name="folder_find_body">Android mostrará %1$s. Toca Usar esta carpeta y luego Permitir.\n\nQuota Vault solo puede ver esa carpeta y solo la usa para tus copias. Nada más de tu teléfono.</string>
     <string name="folder_choose_title">Elige dónde guardar tus copias</string>
-    <string name="folder_choose_body">Android mostrará tus carpetas. Elige una, por ejemplo Documents, y toca Usar esta carpeta y Permitir. Quota Vault crea dentro una carpeta \"%1$s\" y guarda ahí todas las copias.
-
-Quota Vault solo puede ver esa carpeta. Nada más de tu teléfono.</string>
+    <string name="folder_choose_body">Android mostrará tus carpetas. Elige una, por ejemplo Documents, y toca Usar esta carpeta y Permitir. Quota Vault crea dentro una carpeta \"%1$s\" y guarda ahí todas las copias.\n\nQuota Vault solo puede ver esa carpeta. Nada más de tu teléfono.</string>
     <string name="restore_confirm_new_title">¿Restaurar esta copia?</string>
-    <string name="restore_confirm_new_body">Copia del %1$s
-Clientes: %2$d · Ventas: %3$d · Citas: %4$d · Metas: %5$d</string>
+    <string name="restore_confirm_new_body">Copia del %1$s\nClientes: %2$d · Ventas: %3$d · Citas: %4$d · Metas: %5$d</string>
     <string name="erase_backups_kept">Tus copias en %1$s se conservan, así que puedes restaurarlas cuando quieras desde la pantalla de bienvenida.</string>
     <string name="erase_no_backup">Aún no tienes ninguna copia. Una vez borrados, estos datos no se pueden recuperar.</string>
     <string name="erase_backup_first">Hacer copia primero</string>
     <string name="welcome_restore">¿Ya usabas Quota Vault? Recupera tus clientes, ventas y metas desde una copia.</string>
     <string name="welcome_have_backup">¿Tienes una copia? Restáurala</string>
-    <string name="backup_folder_readme">Esta carpeta contiene tus copias de seguridad de Quota Vault.
-
-Cada copia está cifrada con la contraseña que elegiste y solo se puede abrir en la app Quota Vault. Conserva esta carpeta si reinstalas la app o cambias de teléfono: Quota Vault busca aquí al restaurar.
-
-Quota Vault nunca te pedirá que envíes estos archivos ni tu contraseña a nadie. Quien te los pida es un estafador.</string>
+    <string name="backup_folder_readme">Esta carpeta contiene tus copias de seguridad de Quota Vault.\n\nCada copia está cifrada con la contraseña que elegiste y solo se puede abrir en la app Quota Vault. Conserva esta carpeta si reinstalas la app o cambias de teléfono: Quota Vault busca aquí al restaurar.\n\nQuota Vault nunca te pedirá que envíes estos archivos ni tu contraseña a nadie. Quien te los pida es un estafador.</string>
     <string name="pi_folder_t">Carpeta de copias</string>
     <string name="pi_folder">Las copias se guardan en Documents › Quota Vault Backups sin ningún permiso de almacenamiento. Quota Vault solo ve las copias que creó. Tras una reinstalación, solo ve las anteriores si permites el acceso a esa carpeta.</string>
     <plurals name="client_summary">

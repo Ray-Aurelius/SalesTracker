@@ -847,26 +847,17 @@
     <string name="restore_find_folder">Yedek klasörümü aç</string>
     <string name="restore_other_file">Başka bir yerden yedek dosyası seç</string>
     <string name="folder_find_title">Yedek klasörünüzü açın</string>
-    <string name="folder_find_body">Android %1$s klasörünü gösterecek. Bu klasörü kullan\'a, ardından İzin ver\'e dokunun.
-
-Quota Vault yalnızca o klasörü görebilir ve onu yalnızca yedekleriniz için kullanır. Telefonunuzdaki başka hiçbir şeyi değil.</string>
+    <string name="folder_find_body">Android %1$s klasörünü gösterecek. Bu klasörü kullan\'a, ardından İzin ver\'e dokunun.\n\nQuota Vault yalnızca o klasörü görebilir ve onu yalnızca yedekleriniz için kullanır. Telefonunuzdaki başka hiçbir şeyi değil.</string>
     <string name="folder_choose_title">Yedekleriniz için bir yer seçin</string>
-    <string name="folder_choose_body">Android klasörlerinizi gösterecek. Documents gibi birini seçin, sonra Bu klasörü kullan\'a ve İzin ver\'e dokunun. Quota Vault içinde \"%1$s\" klasörü oluşturur ve her yedeği oraya kaydeder.
-
-Quota Vault yalnızca o klasörü görebilir. Telefonunuzdaki başka hiçbir şeyi değil.</string>
+    <string name="folder_choose_body">Android klasörlerinizi gösterecek. Documents gibi birini seçin, sonra Bu klasörü kullan\'a ve İzin ver\'e dokunun. Quota Vault içinde \"%1$s\" klasörü oluşturur ve her yedeği oraya kaydeder.\n\nQuota Vault yalnızca o klasörü görebilir. Telefonunuzdaki başka hiçbir şeyi değil.</string>
     <string name="restore_confirm_new_title">Bu yedek geri yüklensin mi?</string>
-    <string name="restore_confirm_new_body">%1$s tarihli yedek
-Müşteriler: %2$d · Satışlar: %3$d · Randevular: %4$d · Hedefler: %5$d</string>
+    <string name="restore_confirm_new_body">%1$s tarihli yedek\nMüşteriler: %2$d · Satışlar: %3$d · Randevular: %4$d · Hedefler: %5$d</string>
     <string name="erase_backups_kept">%1$s içindeki yedekleriniz korunur; karşılama ekranından istediğiniz zaman geri yükleyebilirsiniz.</string>
     <string name="erase_no_backup">Henüz yedeğiniz yok. Silindikten sonra bu veriler geri getirilemez.</string>
     <string name="erase_backup_first">Önce yedekle</string>
     <string name="welcome_restore">Quota Vault\'u daha önce kullandınız mı? Müşterilerinizi, satışlarınızı ve hedeflerinizi bir yedekten geri getirin.</string>
     <string name="welcome_have_backup">Yedeğiniz var mı? Geri yükleyin</string>
-    <string name="backup_folder_readme">Bu klasör Quota Vault yedeklerinizi içerir.
-
-Her yedek seçtiğiniz parolayla şifrelenir ve yalnızca Quota Vault uygulamasında açılabilir. Uygulamayı yeniden kurarsanız veya telefon değiştirirseniz bu klasörü saklayın: Quota Vault geri yüklerken buraya bakar.
-
-Quota Vault bu dosyaları veya parolanızı hiç kimseye göndermenizi asla istemez. İsteyen kişi dolandırıcıdır.</string>
+    <string name="backup_folder_readme">Bu klasör Quota Vault yedeklerinizi içerir.\n\nHer yedek seçtiğiniz parolayla şifrelenir ve yalnızca Quota Vault uygulamasında açılabilir. Uygulamayı yeniden kurarsanız veya telefon değiştirirseniz bu klasörü saklayın: Quota Vault geri yüklerken buraya bakar.\n\nQuota Vault bu dosyaları veya parolanızı hiç kimseye göndermenizi asla istemez. İsteyen kişi dolandırıcıdır.</string>
     <string name="pi_folder_t">Yedek klasörü</string>
     <string name="pi_folder">Yedekler hiçbir depolama izni olmadan Documents › Quota Vault Backups klasörüne kaydedilir. Quota Vault yalnızca kendi oluşturduğu yedekleri görür. Yeniden kurulumdan sonra eskileri yalnızca o klasöre izin verirseniz görür.</string>
     <plurals name="client_summary">

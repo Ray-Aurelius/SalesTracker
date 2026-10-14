@@ -847,26 +847,17 @@
     <string name="restore_find_folder">فتح مجلد النسخ الاحتياطية</string>
     <string name="restore_other_file">اختيار ملف نسخة احتياطية من مكان آخر</string>
     <string name="folder_find_title">افتح مجلد النسخ الاحتياطية</string>
-    <string name="folder_find_body">سيعرض Android المجلد %1$s. اضغط على استخدام هذا المجلد ثم سماح.
-
-لا يرى Quota Vault إلا هذا المجلد، ولا يستخدمه إلا لنسخك الاحتياطية. لا شيء آخر على هاتفك.</string>
+    <string name="folder_find_body">سيعرض Android المجلد %1$s. اضغط على استخدام هذا المجلد ثم سماح.\n\nلا يرى Quota Vault إلا هذا المجلد، ولا يستخدمه إلا لنسخك الاحتياطية. لا شيء آخر على هاتفك.</string>
     <string name="folder_choose_title">اختر مكانًا لنسخك الاحتياطية</string>
-    <string name="folder_choose_body">سيعرض Android مجلداتك. اختر مجلدًا مثل Documents، ثم اضغط على استخدام هذا المجلد وسماح. ينشئ Quota Vault بداخله مجلد \"%1$s\" ويحفظ فيه كل نسخة.
-
-لا يرى Quota Vault إلا هذا المجلد. لا شيء آخر على هاتفك.</string>
+    <string name="folder_choose_body">سيعرض Android مجلداتك. اختر مجلدًا مثل Documents، ثم اضغط على استخدام هذا المجلد وسماح. ينشئ Quota Vault بداخله مجلد \"%1$s\" ويحفظ فيه كل نسخة.\n\nلا يرى Quota Vault إلا هذا المجلد. لا شيء آخر على هاتفك.</string>
     <string name="restore_confirm_new_title">استعادة هذه النسخة؟</string>
-    <string name="restore_confirm_new_body">نسخة بتاريخ %1$s
-العملاء: %2$d · المبيعات: %3$d · المواعيد: %4$d · الأهداف: %5$d</string>
+    <string name="restore_confirm_new_body">نسخة بتاريخ %1$s\nالعملاء: %2$d · المبيعات: %3$d · المواعيد: %4$d · الأهداف: %5$d</string>
     <string name="erase_backups_kept">ستبقى نسخك الاحتياطية في %1$s، فيمكنك استعادتها في أي وقت من شاشة الترحيب.</string>
     <string name="erase_no_backup">ليست لديك نسخة احتياطية بعد. بعد المسح لا يمكن استرجاع هذه البيانات.</string>
     <string name="erase_backup_first">نسخ احتياطي أولًا</string>
     <string name="welcome_restore">استخدمت Quota Vault من قبل؟ استرجع عملاءك ومبيعاتك وأهدافك من نسخة احتياطية.</string>
     <string name="welcome_have_backup">لديك نسخة احتياطية؟ استعدها</string>
-    <string name="backup_folder_readme">يحتوي هذا المجلد على نسخك الاحتياطية من Quota Vault.
-
-كل نسخة مشفّرة بكلمة المرور التي اخترتها، ولا تُفتح إلا في تطبيق Quota Vault. احتفظ بهذا المجلد إذا أعدت تثبيت التطبيق أو غيّرت هاتفك: يبحث Quota Vault هنا عند الاستعادة.
-
-لن يطلب منك Quota Vault أبدًا إرسال هذه الملفات أو كلمة مرورك إلى أي أحد. من يطلبها محتال.</string>
+    <string name="backup_folder_readme">يحتوي هذا المجلد على نسخك الاحتياطية من Quota Vault.\n\nكل نسخة مشفّرة بكلمة المرور التي اخترتها، ولا تُفتح إلا في تطبيق Quota Vault. احتفظ بهذا المجلد إذا أعدت تثبيت التطبيق أو غيّرت هاتفك: يبحث Quota Vault هنا عند الاستعادة.\n\nلن يطلب منك Quota Vault أبدًا إرسال هذه الملفات أو كلمة مرورك إلى أي أحد. من يطلبها محتال.</string>
     <string name="pi_folder_t">مجلد النسخ الاحتياطية</string>
     <string name="pi_folder">تُحفظ النسخ الاحتياطية في Documents › Quota Vault Backups دون أي إذن للتخزين. لا يرى Quota Vault إلا النسخ التي أنشأها. بعد إعادة التثبيت لا يرى النسخ الأقدم إلا إذا سمحت بذلك المجلد.</string>
     <plurals name="client_summary">

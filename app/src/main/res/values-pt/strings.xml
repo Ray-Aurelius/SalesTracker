@@ -847,26 +847,17 @@
     <string name="restore_find_folder">Abrir minha pasta de backups</string>
     <string name="restore_other_file">Escolher um arquivo de backup de outro lugar</string>
     <string name="folder_find_title">Abra sua pasta de backups</string>
-    <string name="folder_find_body">O Android vai mostrar %1$s. Toque em Usar esta pasta e depois em Permitir.
-
-O Quota Vault só vê essa pasta e só a usa para seus backups. Nada mais no seu celular.</string>
+    <string name="folder_find_body">O Android vai mostrar %1$s. Toque em Usar esta pasta e depois em Permitir.\n\nO Quota Vault só vê essa pasta e só a usa para seus backups. Nada mais no seu celular.</string>
     <string name="folder_choose_title">Escolha onde guardar seus backups</string>
-    <string name="folder_choose_body">O Android vai mostrar suas pastas. Escolha uma, como Documents, e toque em Usar esta pasta e Permitir. O Quota Vault cria dentro dela uma pasta \"%1$s\" e salva todos os backups ali.
-
-O Quota Vault só vê essa pasta. Nada mais no seu celular.</string>
+    <string name="folder_choose_body">O Android vai mostrar suas pastas. Escolha uma, como Documents, e toque em Usar esta pasta e Permitir. O Quota Vault cria dentro dela uma pasta \"%1$s\" e salva todos os backups ali.\n\nO Quota Vault só vê essa pasta. Nada mais no seu celular.</string>
     <string name="restore_confirm_new_title">Restaurar este backup?</string>
-    <string name="restore_confirm_new_body">Backup de %1$s
-Clientes: %2$d · Vendas: %3$d · Compromissos: %4$d · Metas: %5$d</string>
+    <string name="restore_confirm_new_body">Backup de %1$s\nClientes: %2$d · Vendas: %3$d · Compromissos: %4$d · Metas: %5$d</string>
     <string name="erase_backups_kept">Seus backups em %1$s são mantidos, então você pode restaurá-los quando quiser pela tela de boas-vindas.</string>
     <string name="erase_no_backup">Você ainda não tem um backup. Depois de apagados, esses dados não podem ser recuperados.</string>
     <string name="erase_backup_first">Fazer backup antes</string>
     <string name="welcome_restore">Já usava o Quota Vault? Traga de volta seus clientes, vendas e metas de um backup.</string>
     <string name="welcome_have_backup">Tem um backup? Restaure</string>
-    <string name="backup_folder_readme">Esta pasta guarda seus backups do Quota Vault.
-
-Cada backup é criptografado com a senha que você escolheu e só pode ser aberto no app Quota Vault. Mantenha esta pasta se reinstalar o app ou trocar de celular: o Quota Vault procura aqui ao restaurar.
-
-O Quota Vault nunca vai pedir que você envie estes arquivos ou sua senha a ninguém. Quem pedir é golpista.</string>
+    <string name="backup_folder_readme">Esta pasta guarda seus backups do Quota Vault.\n\nCada backup é criptografado com a senha que você escolheu e só pode ser aberto no app Quota Vault. Mantenha esta pasta se reinstalar o app ou trocar de celular: o Quota Vault procura aqui ao restaurar.\n\nO Quota Vault nunca vai pedir que você envie estes arquivos ou sua senha a ninguém. Quem pedir é golpista.</string>
     <string name="pi_folder_t">Pasta de backups</string>
     <string name="pi_folder">Os backups são salvos em Documents › Quota Vault Backups sem nenhuma permissão de armazenamento. O Quota Vault só vê os backups que ele criou. Depois de uma reinstalação, só vê os anteriores se você permitir essa pasta.</string>
     <plurals name="client_summary">

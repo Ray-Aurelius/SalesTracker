@@ -847,26 +847,17 @@
     <string name="restore_find_folder">Meinen Sicherungsordner öffnen</string>
     <string name="restore_other_file">Sicherungsdatei von woanders wählen</string>
     <string name="folder_find_title">Sicherungsordner öffnen</string>
-    <string name="folder_find_body">Android zeigt %1$s an. Tippe auf Diesen Ordner verwenden und dann auf Zulassen.
-
-Quota Vault sieht nur diesen einen Ordner und nutzt ihn nur für deine Sicherungen. Sonst nichts auf deinem Telefon.</string>
+    <string name="folder_find_body">Android zeigt %1$s an. Tippe auf Diesen Ordner verwenden und dann auf Zulassen.\n\nQuota Vault sieht nur diesen einen Ordner und nutzt ihn nur für deine Sicherungen. Sonst nichts auf deinem Telefon.</string>
     <string name="folder_choose_title">Ort für deine Sicherungen wählen</string>
-    <string name="folder_choose_body">Android zeigt deine Ordner an. Wähle einen, zum Beispiel Documents, und tippe auf Diesen Ordner verwenden und Zulassen. Quota Vault legt darin einen Ordner „%1$s“ an und speichert dort jede Sicherung.
-
-Quota Vault sieht nur diesen einen Ordner. Sonst nichts auf deinem Telefon.</string>
+    <string name="folder_choose_body">Android zeigt deine Ordner an. Wähle einen, zum Beispiel Documents, und tippe auf Diesen Ordner verwenden und Zulassen. Quota Vault legt darin einen Ordner „%1$s“ an und speichert dort jede Sicherung.\n\nQuota Vault sieht nur diesen einen Ordner. Sonst nichts auf deinem Telefon.</string>
     <string name="restore_confirm_new_title">Diese Sicherung wiederherstellen?</string>
-    <string name="restore_confirm_new_body">Sicherung vom %1$s
-Kunden: %2$d · Verkäufe: %3$d · Termine: %4$d · Ziele: %5$d</string>
+    <string name="restore_confirm_new_body">Sicherung vom %1$s\nKunden: %2$d · Verkäufe: %3$d · Termine: %4$d · Ziele: %5$d</string>
     <string name="erase_backups_kept">Deine Sicherungen in %1$s bleiben erhalten. Du kannst sie jederzeit über den Willkommensbildschirm wiederherstellen.</string>
     <string name="erase_no_backup">Du hast noch keine Sicherung. Einmal gelöscht, lassen sich diese Daten nicht zurückholen.</string>
     <string name="erase_backup_first">Zuerst sichern</string>
     <string name="welcome_restore">Quota Vault schon genutzt? Hol deine Kunden, Verkäufe und Ziele aus einer Sicherung zurück.</string>
     <string name="welcome_have_backup">Hast du eine Sicherung? Wiederherstellen</string>
-    <string name="backup_folder_readme">Dieser Ordner enthält deine Quota-Vault-Sicherungen.
-
-Jede Sicherung ist mit dem Passwort verschlüsselt, das du gewählt hast, und lässt sich nur in der App Quota Vault öffnen. Behalte diesen Ordner, wenn du die App neu installierst oder das Telefon wechselst: Quota Vault sucht beim Wiederherstellen hier.
-
-Quota Vault wird dich nie bitten, diese Dateien oder dein Passwort an jemanden zu senden. Wer danach fragt, ist ein Betrüger.</string>
+    <string name="backup_folder_readme">Dieser Ordner enthält deine Quota-Vault-Sicherungen.\n\nJede Sicherung ist mit dem Passwort verschlüsselt, das du gewählt hast, und lässt sich nur in der App Quota Vault öffnen. Behalte diesen Ordner, wenn du die App neu installierst oder das Telefon wechselst: Quota Vault sucht beim Wiederherstellen hier.\n\nQuota Vault wird dich nie bitten, diese Dateien oder dein Passwort an jemanden zu senden. Wer danach fragt, ist ein Betrüger.</string>
     <string name="pi_folder_t">Sicherungsordner</string>
     <string name="pi_folder">Sicherungen werden ohne Speicherberechtigung in Documents › Quota Vault Backups gespeichert. Quota Vault sieht nur die Sicherungen, die es selbst erstellt hat. Nach einer Neuinstallation sieht es ältere nur, wenn du diesen einen Ordner freigibst.</string>
     <plurals name="client_summary">

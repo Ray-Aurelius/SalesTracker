@@ -847,26 +847,17 @@
     <string name="restore_find_folder">Mở thư mục sao lưu của tôi</string>
     <string name="restore_other_file">Chọn tệp sao lưu từ nơi khác</string>
     <string name="folder_find_title">Mở thư mục sao lưu</string>
-    <string name="folder_find_body">Android sẽ hiện %1$s. Chạm Sử dụng thư mục này, rồi Cho phép.
-
-Quota Vault chỉ thấy đúng thư mục đó và chỉ dùng nó cho bản sao lưu của bạn. Không gì khác trên điện thoại.</string>
+    <string name="folder_find_body">Android sẽ hiện %1$s. Chạm Sử dụng thư mục này, rồi Cho phép.\n\nQuota Vault chỉ thấy đúng thư mục đó và chỉ dùng nó cho bản sao lưu của bạn. Không gì khác trên điện thoại.</string>
     <string name="folder_choose_title">Chọn nơi lưu bản sao lưu</string>
-    <string name="folder_choose_body">Android sẽ hiện các thư mục của bạn. Chọn một thư mục, ví dụ Documents, rồi chạm Sử dụng thư mục này và Cho phép. Quota Vault tạo thư mục \"%1$s\" bên trong và lưu mọi bản sao lưu ở đó.
-
-Quota Vault chỉ thấy đúng thư mục đó. Không gì khác trên điện thoại.</string>
+    <string name="folder_choose_body">Android sẽ hiện các thư mục của bạn. Chọn một thư mục, ví dụ Documents, rồi chạm Sử dụng thư mục này và Cho phép. Quota Vault tạo thư mục \"%1$s\" bên trong và lưu mọi bản sao lưu ở đó.\n\nQuota Vault chỉ thấy đúng thư mục đó. Không gì khác trên điện thoại.</string>
     <string name="restore_confirm_new_title">Khôi phục bản sao lưu này?</string>
-    <string name="restore_confirm_new_body">Bản sao lưu ngày %1$s
-Khách hàng: %2$d · Giao dịch: %3$d · Lịch hẹn: %4$d · Mục tiêu: %5$d</string>
+    <string name="restore_confirm_new_body">Bản sao lưu ngày %1$s\nKhách hàng: %2$d · Giao dịch: %3$d · Lịch hẹn: %4$d · Mục tiêu: %5$d</string>
     <string name="erase_backups_kept">Các bản sao lưu trong %1$s vẫn được giữ, nên bạn có thể khôi phục bất cứ lúc nào từ màn hình chào mừng.</string>
     <string name="erase_no_backup">Bạn chưa có bản sao lưu nào. Sau khi xóa, dữ liệu này không thể lấy lại.</string>
     <string name="erase_backup_first">Sao lưu trước</string>
     <string name="welcome_restore">Đã dùng Quota Vault trước đây? Lấy lại khách hàng, giao dịch và mục tiêu từ bản sao lưu.</string>
     <string name="welcome_have_backup">Có bản sao lưu? Khôi phục ngay</string>
-    <string name="backup_folder_readme">Thư mục này chứa các bản sao lưu Quota Vault của bạn.
-
-Mỗi bản được mã hóa bằng mật khẩu bạn chọn và chỉ mở được trong ứng dụng Quota Vault. Hãy giữ thư mục này nếu bạn cài lại ứng dụng hoặc đổi điện thoại: Quota Vault tìm ở đây khi khôi phục.
-
-Quota Vault sẽ không bao giờ yêu cầu bạn gửi các tệp này hoặc mật khẩu cho bất kỳ ai. Ai yêu cầu đều là kẻ lừa đảo.</string>
+    <string name="backup_folder_readme">Thư mục này chứa các bản sao lưu Quota Vault của bạn.\n\nMỗi bản được mã hóa bằng mật khẩu bạn chọn và chỉ mở được trong ứng dụng Quota Vault. Hãy giữ thư mục này nếu bạn cài lại ứng dụng hoặc đổi điện thoại: Quota Vault tìm ở đây khi khôi phục.\n\nQuota Vault sẽ không bao giờ yêu cầu bạn gửi các tệp này hoặc mật khẩu cho bất kỳ ai. Ai yêu cầu đều là kẻ lừa đảo.</string>
     <string name="pi_folder_t">Thư mục sao lưu</string>
     <string name="pi_folder">Bản sao lưu được lưu vào Documents › Quota Vault Backups mà không cần quyền bộ nhớ nào. Quota Vault chỉ thấy các bản do nó tạo. Sau khi cài lại, nó chỉ thấy bản cũ nếu bạn cho phép thư mục đó.</string>
     <plurals name="client_summary">

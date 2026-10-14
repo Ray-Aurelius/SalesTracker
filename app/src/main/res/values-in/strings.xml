@@ -847,26 +847,17 @@
     <string name="restore_find_folder">Buka folder cadangan saya</string>
     <string name="restore_other_file">Pilih file cadangan dari tempat lain</string>
     <string name="folder_find_title">Buka folder cadangan Anda</string>
-    <string name="folder_find_body">Android akan menampilkan %1$s. Ketuk Gunakan folder ini, lalu Izinkan.
-
-Quota Vault hanya bisa melihat folder itu dan hanya memakainya untuk cadangan Anda. Tidak ada yang lain di ponsel Anda.</string>
+    <string name="folder_find_body">Android akan menampilkan %1$s. Ketuk Gunakan folder ini, lalu Izinkan.\n\nQuota Vault hanya bisa melihat folder itu dan hanya memakainya untuk cadangan Anda. Tidak ada yang lain di ponsel Anda.</string>
     <string name="folder_choose_title">Pilih tempat untuk cadangan</string>
-    <string name="folder_choose_body">Android akan menampilkan folder Anda. Pilih satu, misalnya Documents, lalu ketuk Gunakan folder ini dan Izinkan. Quota Vault membuat folder \"%1$s\" di dalamnya dan menyimpan setiap cadangan di sana.
-
-Quota Vault hanya bisa melihat folder itu. Tidak ada yang lain di ponsel Anda.</string>
+    <string name="folder_choose_body">Android akan menampilkan folder Anda. Pilih satu, misalnya Documents, lalu ketuk Gunakan folder ini dan Izinkan. Quota Vault membuat folder \"%1$s\" di dalamnya dan menyimpan setiap cadangan di sana.\n\nQuota Vault hanya bisa melihat folder itu. Tidak ada yang lain di ponsel Anda.</string>
     <string name="restore_confirm_new_title">Pulihkan cadangan ini?</string>
-    <string name="restore_confirm_new_body">Cadangan dari %1$s
-Klien: %2$d · Penjualan: %3$d · Janji temu: %4$d · Target: %5$d</string>
+    <string name="restore_confirm_new_body">Cadangan dari %1$s\nKlien: %2$d · Penjualan: %3$d · Janji temu: %4$d · Target: %5$d</string>
     <string name="erase_backups_kept">Cadangan Anda di %1$s tetap disimpan, jadi Anda bisa memulihkannya kapan saja dari layar sambutan.</string>
     <string name="erase_no_backup">Anda belum punya cadangan. Setelah dihapus, data ini tidak bisa dikembalikan.</string>
     <string name="erase_backup_first">Cadangkan dulu</string>
     <string name="welcome_restore">Pernah memakai Quota Vault? Kembalikan klien, penjualan, dan target Anda dari cadangan.</string>
     <string name="welcome_have_backup">Punya cadangan? Pulihkan</string>
-    <string name="backup_folder_readme">Folder ini berisi cadangan Quota Vault Anda.
-
-Setiap cadangan dienkripsi dengan kata sandi yang Anda pilih dan hanya bisa dibuka di aplikasi Quota Vault. Simpan folder ini jika Anda memasang ulang aplikasi atau pindah ponsel: Quota Vault mencari di sini saat memulihkan.
-
-Quota Vault tidak akan pernah meminta Anda mengirim file ini atau kata sandi Anda kepada siapa pun. Siapa pun yang meminta adalah penipu.</string>
+    <string name="backup_folder_readme">Folder ini berisi cadangan Quota Vault Anda.\n\nSetiap cadangan dienkripsi dengan kata sandi yang Anda pilih dan hanya bisa dibuka di aplikasi Quota Vault. Simpan folder ini jika Anda memasang ulang aplikasi atau pindah ponsel: Quota Vault mencari di sini saat memulihkan.\n\nQuota Vault tidak akan pernah meminta Anda mengirim file ini atau kata sandi Anda kepada siapa pun. Siapa pun yang meminta adalah penipu.</string>
     <string name="pi_folder_t">Folder cadangan</string>
     <string name="pi_folder">Cadangan disimpan di Documents › Quota Vault Backups tanpa izin penyimpanan apa pun. Quota Vault hanya melihat cadangan yang dibuatnya. Setelah dipasang ulang, ia hanya melihat cadangan lama jika Anda mengizinkan folder itu.</string>
     <plurals name="client_summary">

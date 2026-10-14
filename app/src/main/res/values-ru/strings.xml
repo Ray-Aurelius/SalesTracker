@@ -847,26 +847,17 @@
     <string name="restore_find_folder">Открыть папку с копиями</string>
     <string name="restore_other_file">Выбрать файл копии из другого места</string>
     <string name="folder_find_title">Откройте папку с копиями</string>
-    <string name="folder_find_body">Android покажет %1$s. Нажмите «Использовать эту папку», затем «Разрешить».
-
-Quota Vault видит только эту папку и использует её только для копий. Больше ничего на телефоне.</string>
+    <string name="folder_find_body">Android покажет %1$s. Нажмите «Использовать эту папку», затем «Разрешить».\n\nQuota Vault видит только эту папку и использует её только для копий. Больше ничего на телефоне.</string>
     <string name="folder_choose_title">Выберите место для копий</string>
-    <string name="folder_choose_body">Android покажет ваши папки. Выберите одну, например Documents, и нажмите «Использовать эту папку» и «Разрешить». Quota Vault создаст в ней папку «%1$s» и будет сохранять туда все копии.
-
-Quota Vault видит только эту папку. Больше ничего на телефоне.</string>
+    <string name="folder_choose_body">Android покажет ваши папки. Выберите одну, например Documents, и нажмите «Использовать эту папку» и «Разрешить». Quota Vault создаст в ней папку «%1$s» и будет сохранять туда все копии.\n\nQuota Vault видит только эту папку. Больше ничего на телефоне.</string>
     <string name="restore_confirm_new_title">Восстановить эту копию?</string>
-    <string name="restore_confirm_new_body">Копия от %1$s
-Клиенты: %2$d · Продажи: %3$d · Встречи: %4$d · Цели: %5$d</string>
+    <string name="restore_confirm_new_body">Копия от %1$s\nКлиенты: %2$d · Продажи: %3$d · Встречи: %4$d · Цели: %5$d</string>
     <string name="erase_backups_kept">Ваши копии в %1$s сохранятся, и их можно восстановить в любой момент с экрана приветствия.</string>
     <string name="erase_no_backup">У вас ещё нет копии. После удаления эти данные нельзя будет вернуть.</string>
     <string name="erase_backup_first">Сначала создать копию</string>
     <string name="welcome_restore">Уже пользовались Quota Vault? Верните клиентов, продажи и цели из копии.</string>
     <string name="welcome_have_backup">Есть копия? Восстановите её</string>
-    <string name="backup_folder_readme">В этой папке хранятся резервные копии Quota Vault.
-
-Каждая копия зашифрована выбранным вами паролем и открывается только в приложении Quota Vault. Сохраните эту папку, если переустановите приложение или смените телефон: при восстановлении Quota Vault ищет здесь.
-
-Quota Vault никогда не попросит отправить кому-либо эти файлы или ваш пароль. Тот, кто просит, мошенник.</string>
+    <string name="backup_folder_readme">В этой папке хранятся резервные копии Quota Vault.\n\nКаждая копия зашифрована выбранным вами паролем и открывается только в приложении Quota Vault. Сохраните эту папку, если переустановите приложение или смените телефон: при восстановлении Quota Vault ищет здесь.\n\nQuota Vault никогда не попросит отправить кому-либо эти файлы или ваш пароль. Тот, кто просит, мошенник.</string>
     <string name="pi_folder_t">Папка с копиями</string>
     <string name="pi_folder">Копии сохраняются в Documents › Quota Vault Backups без каких-либо разрешений на доступ к хранилищу. Quota Vault видит только созданные им копии. После переустановки он видит старые, только если вы разрешите доступ к этой папке.</string>
     <plurals name="client_summary">

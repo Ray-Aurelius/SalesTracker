@@ -847,26 +847,17 @@
     <string name="restore_find_folder">バックアップフォルダを開く</string>
     <string name="restore_other_file">別の場所のバックアップファイルを選ぶ</string>
     <string name="folder_find_title">バックアップフォルダを開く</string>
-    <string name="folder_find_body">Android に %1$s が表示されます。「このフォルダを使用」をタップし、「許可」をタップしてください。
-
-Quota Vault が見られるのはこのフォルダだけで、バックアップにしか使いません。端末のほかのものには触れません。</string>
+    <string name="folder_find_body">Android に %1$s が表示されます。「このフォルダを使用」をタップし、「許可」をタップしてください。\n\nQuota Vault が見られるのはこのフォルダだけで、バックアップにしか使いません。端末のほかのものには触れません。</string>
     <string name="folder_choose_title">バックアップの保存先を選ぶ</string>
-    <string name="folder_choose_body">Android にフォルダが表示されます。Documents などを選び、「このフォルダを使用」と「許可」をタップしてください。Quota Vault がその中に「%1$s」フォルダを作り、すべてのバックアップをそこに保存します。
-
-Quota Vault が見られるのはこのフォルダだけです。端末のほかのものには触れません。</string>
+    <string name="folder_choose_body">Android にフォルダが表示されます。Documents などを選び、「このフォルダを使用」と「許可」をタップしてください。Quota Vault がその中に「%1$s」フォルダを作り、すべてのバックアップをそこに保存します。\n\nQuota Vault が見られるのはこのフォルダだけです。端末のほかのものには触れません。</string>
     <string name="restore_confirm_new_title">このバックアップを復元しますか？</string>
-    <string name="restore_confirm_new_body">バックアップ日時：%1$s
-顧客：%2$d · 販売：%3$d · 予定：%4$d · 目標：%5$d</string>
+    <string name="restore_confirm_new_body">バックアップ日時：%1$s\n顧客：%2$d · 販売：%3$d · 予定：%4$d · 目標：%5$d</string>
     <string name="erase_backups_kept">%1$s のバックアップは残るので、ようこそ画面からいつでも復元できます。</string>
     <string name="erase_no_backup">まだバックアップがありません。消去すると、このデータは元に戻せません。</string>
     <string name="erase_backup_first">先にバックアップ</string>
     <string name="welcome_restore">以前 Quota Vault を使っていましたか？バックアップから顧客・販売・目標を戻せます。</string>
     <string name="welcome_have_backup">バックアップをお持ちですか？復元する</string>
-    <string name="backup_folder_readme">このフォルダには Quota Vault のバックアップが入っています。
-
-各バックアップは設定したパスワードで暗号化され、Quota Vault アプリでしか開けません。アプリを入れ直すときや機種変更のときは、このフォルダを残してください。復元時に Quota Vault がここを探します。
-
-Quota Vault がこれらのファイルやパスワードを誰かに送るよう求めることは決してありません。求めてくる人は詐欺師です。</string>
+    <string name="backup_folder_readme">このフォルダには Quota Vault のバックアップが入っています。\n\n各バックアップは設定したパスワードで暗号化され、Quota Vault アプリでしか開けません。アプリを入れ直すときや機種変更のときは、このフォルダを残してください。復元時に Quota Vault がここを探します。\n\nQuota Vault がこれらのファイルやパスワードを誰かに送るよう求めることは決してありません。求めてくる人は詐欺師です。</string>
     <string name="pi_folder_t">バックアップフォルダ</string>
     <string name="pi_folder">バックアップはストレージの権限なしで Documents › Quota Vault Backups に保存されます。Quota Vault が見られるのは自分で作ったバックアップだけです。入れ直した後は、そのフォルダを許可した場合にのみ以前のバックアップが見えます。</string>
     <plurals name="client_summary">

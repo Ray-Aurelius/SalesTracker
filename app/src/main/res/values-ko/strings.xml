@@ -847,26 +847,17 @@
     <string name="restore_find_folder">내 백업 폴더 열기</string>
     <string name="restore_other_file">다른 곳에서 백업 파일 선택</string>
     <string name="folder_find_title">백업 폴더 열기</string>
-    <string name="folder_find_body">Android에 %1$s이(가) 표시됩니다. 이 폴더 사용을 탭한 다음 허용을 탭하세요.
-
-Quota Vault는 그 폴더 하나만 볼 수 있고 백업에만 사용합니다. 휴대폰의 다른 것은 보지 않습니다.</string>
+    <string name="folder_find_body">Android에 %1$s이(가) 표시됩니다. 이 폴더 사용을 탭한 다음 허용을 탭하세요.\n\nQuota Vault는 그 폴더 하나만 볼 수 있고 백업에만 사용합니다. 휴대폰의 다른 것은 보지 않습니다.</string>
     <string name="folder_choose_title">백업 저장 위치 선택</string>
-    <string name="folder_choose_body">Android에 폴더가 표시됩니다. Documents 같은 폴더를 고른 뒤 이 폴더 사용과 허용을 탭하세요. Quota Vault가 그 안에 \"%1$s\" 폴더를 만들고 모든 백업을 저장합니다.
-
-Quota Vault는 그 폴더 하나만 볼 수 있습니다. 휴대폰의 다른 것은 보지 않습니다.</string>
+    <string name="folder_choose_body">Android에 폴더가 표시됩니다. Documents 같은 폴더를 고른 뒤 이 폴더 사용과 허용을 탭하세요. Quota Vault가 그 안에 \"%1$s\" 폴더를 만들고 모든 백업을 저장합니다.\n\nQuota Vault는 그 폴더 하나만 볼 수 있습니다. 휴대폰의 다른 것은 보지 않습니다.</string>
     <string name="restore_confirm_new_title">이 백업을 복원할까요?</string>
-    <string name="restore_confirm_new_body">%1$s 백업
-고객: %2$d · 판매: %3$d · 일정: %4$d · 목표: %5$d</string>
+    <string name="restore_confirm_new_body">%1$s 백업\n고객: %2$d · 판매: %3$d · 일정: %4$d · 목표: %5$d</string>
     <string name="erase_backups_kept">%1$s의 백업은 그대로 남으므로 시작 화면에서 언제든 복원할 수 있습니다.</string>
     <string name="erase_no_backup">아직 백업이 없습니다. 지우면 이 데이터는 되돌릴 수 없습니다.</string>
     <string name="erase_backup_first">먼저 백업</string>
     <string name="welcome_restore">전에 Quota Vault를 쓰셨나요? 백업에서 고객, 판매, 목표를 되살리세요.</string>
     <string name="welcome_have_backup">백업이 있나요? 복원하기</string>
-    <string name="backup_folder_readme">이 폴더에는 Quota Vault 백업이 들어 있습니다.
-
-각 백업은 직접 정한 비밀번호로 암호화되며 Quota Vault 앱에서만 열 수 있습니다. 앱을 다시 설치하거나 휴대폰을 바꿀 때 이 폴더를 지우지 마세요. 복원할 때 Quota Vault가 여기서 찾습니다.
-
-Quota Vault는 이 파일이나 비밀번호를 누구에게 보내라고 절대 요청하지 않습니다. 요청하는 사람은 사기꾼입니다.</string>
+    <string name="backup_folder_readme">이 폴더에는 Quota Vault 백업이 들어 있습니다.\n\n각 백업은 직접 정한 비밀번호로 암호화되며 Quota Vault 앱에서만 열 수 있습니다. 앱을 다시 설치하거나 휴대폰을 바꿀 때 이 폴더를 지우지 마세요. 복원할 때 Quota Vault가 여기서 찾습니다.\n\nQuota Vault는 이 파일이나 비밀번호를 누구에게 보내라고 절대 요청하지 않습니다. 요청하는 사람은 사기꾼입니다.</string>
     <string name="pi_folder_t">백업 폴더</string>
     <string name="pi_folder">백업은 저장소 권한 없이 Documents › Quota Vault Backups에 저장됩니다. Quota Vault는 자신이 만든 백업만 볼 수 있습니다. 다시 설치한 뒤에는 그 폴더를 허용해야만 이전 백업을 볼 수 있습니다.</string>
     <plurals name="client_summary">
