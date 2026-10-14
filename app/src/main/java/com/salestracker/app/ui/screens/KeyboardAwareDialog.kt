@@ -39,6 +39,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.ui.platform.LocalDensity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
@@ -85,13 +89,19 @@ fun AlertDialog(
         ),
     ) {
         KeepWindowStill()
+        // How much of the screen the keyboard covers, read straight from Android (see rememberKeyboardHeight).
+        val keyboardPx = rememberKeyboardHeight()
+        val density = LocalDensity.current
+        val bottomBars = WindowInsets.safeDrawing.getBottom(density)
+        val extraBottom = with(density) { (keyboardPx - bottomBars).coerceAtLeast(0).toDp() }
         // Fills the screen above the keyboard and the system bars; a tap on the dimmed area outside the card closes it.
         Box(
             Modifier.fillMaxSize()
                 .pointerInput(properties.dismissOnClickOutside) {
                     if (properties.dismissOnClickOutside) detectTapGestures { onDismissRequest() }
                 }
-                .windowInsetsPadding(WindowInsets.safeDrawing.union(WindowInsets.ime))
+                .windowInsetsPadding(WindowInsets.safeDrawing)
+                .padding(bottom = extraBottom)
                 .padding(horizontal = 24.dp, vertical = 24.dp),
             contentAlignment = Alignment.Center,
         ) {
@@ -148,6 +158,50 @@ fun AlertDialog(
             }
         }
     }
+}
+
+/**
+ * The keyboard's height in pixels (0 when it's closed), read from Android's own window measurements every time the
+ * layout changes: from the form's window, or else from the app's main window. Doesn't depend on any one route
+ * for that information (which differs between Android versions and phone makers).
+ */
+@Composable
+private fun rememberKeyboardHeight(): Int {
+    val view = LocalView.current
+    val context = androidx.compose.ui.platform.LocalContext.current
+    var px by remember { mutableIntStateOf(0) }
+    DisposableEffect(view) {
+        val dialogRoot = (view.parent as? DialogWindowProvider)?.window?.decorView ?: view.rootView
+        val appRoot = context.findActivityWindowRoot()
+        fun ime(v: android.view.View?): Int =
+            v?.let { ViewCompat.getRootWindowInsets(it) }?.getInsets(WindowInsetsCompat.Type.ime())?.bottom ?: 0
+        fun update() {
+            val next = maxOf(ime(dialogRoot), ime(view), ime(appRoot))
+            if (next != px) {
+                android.util.Log.w("QVKeyboard", "keyboard ${next}px (form window ${ime(dialogRoot)}, view ${ime(view)}, app ${ime(appRoot)})")
+                px = next
+            }
+        }
+        val layoutListener = android.view.ViewTreeObserver.OnGlobalLayoutListener { update() }
+        dialogRoot.viewTreeObserver.addOnGlobalLayoutListener(layoutListener)
+        // Also hear about window changes directly on the form's window (keeping its normal handling).
+        ViewCompat.setOnApplyWindowInsetsListener(dialogRoot) { v, insets -> v.post { update() }; ViewCompat.onApplyWindowInsets(v, insets) }
+        update()
+        onDispose {
+            dialogRoot.viewTreeObserver.removeOnGlobalLayoutListener(layoutListener)
+            ViewCompat.setOnApplyWindowInsetsListener(dialogRoot, null)
+        }
+    }
+    return px
+}
+
+private fun android.content.Context.findActivityWindowRoot(): android.view.View? {
+    var c: android.content.Context? = this
+    while (c is android.content.ContextWrapper) {
+        if (c is android.app.Activity) return c.window?.decorView
+        c = c.baseContext
+    }
+    return null
 }
 
 /**
