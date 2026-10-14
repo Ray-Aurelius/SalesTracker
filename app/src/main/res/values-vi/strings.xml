@@ -22,10 +22,7 @@
     <string name="app_lock_desc">Yêu cầu vân tay, khuôn mặt hoặc mã PIN điện thoại khi mở ứng dụng</string>
     <string name="lock_needs_screen_lock">Hãy đặt khóa màn hình (PIN, hình vẽ hoặc vân tay) trong cài đặt điện thoại trước.</string>
     <string name="settings_backup">Sao lưu</string>
-    <string name="backup_create">Sao lưu vào tệp mã hóa</string>
-    <string name="backup_create_desc">Lưu toàn bộ dữ liệu vào một tệp được bảo vệ bằng mật khẩu</string>
     <string name="backup_restore">Khôi phục từ bản sao lưu</string>
-    <string name="backup_restore_desc">Thay dữ liệu trên điện thoại này bằng một tệp sao lưu</string>
     <string name="last_backup">Sao lưu gần nhất: %1$s</string>
     <string name="never_backed_up">Chưa từng sao lưu</string>
     <string name="locked_title">Quota Vault đang khóa</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">Mật khẩu không khớp</string>
     <string name="show_password">Hiện mật khẩu</string>
     <string name="hide_password">Ẩn mật khẩu</string>
-    <string name="choose_location">Chọn nơi lưu</string>
     <string name="backup_working">Đang mã hóa dữ liệu…</string>
     <string name="backup_saved">Đã lưu bản sao lưu</string>
     <string name="backup_failed">Không thể lưu bản sao lưu</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">Xóa toàn bộ dữ liệu</string>
     <string name="erase_all_desc">Xóa vĩnh viễn mọi thứ trong ứng dụng khỏi điện thoại này</string>
     <string name="erase_confirm_title">Xóa mọi thứ?</string>
-    <string name="erase_confirm_body">Thao tác này xóa vĩnh viễn mọi khách hàng, giao dịch, lịch hẹn, mục tiêu và cài đặt trên điện thoại này, đồng thời hủy khóa mã hóa. Không thể hoàn tác. Hãy sao lưu trước nếu bạn có thể cần dữ liệu này.</string>
+    <string name="erase_confirm_body">Thao tác này xóa vĩnh viễn mọi khách hàng, giao dịch, lịch hẹn, mục tiêu và cài đặt trên điện thoại này, đồng thời hủy khóa mã hóa. Không thể hoàn tác.</string>
     <string name="erase_button">Xóa mọi thứ</string>
     <string name="erase_done">Đã xóa toàn bộ dữ liệu</string>
     <string name="section_transparency">Minh bạch</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">Bạn cần chấp nhận Thỏa thuận người dùng để dùng ứng dụng.</string>
     <string name="guide_title">Cách sao lưu dữ liệu</string>
     <string name="guide_intro">Dữ liệu của bạn chỉ nằm trên điện thoại này. Bản sao lưu là bản sao đầy đủ, được mã hóa, giúp bạn khôi phục mọi thứ nếu điện thoại bị mất, hỏng, thay mới hoặc đặt lại.</string>
-    <string name="guide_1">Mở Cài đặt (bánh răng ở góc trên bên phải) → Bảo mật và quyền riêng tư → Sao lưu vào tệp mã hóa.</string>
+    <string name="guide_1">Mở Cài đặt (bánh răng ở góc trên bên phải) → Bảo mật và quyền riêng tư → Sao lưu ngay.</string>
     <string name="guide_2">Chọn mật khẩu mạnh và ghi lại ở nơi an toàn, tách khỏi điện thoại. Nếu quên sẽ không thể khôi phục.</string>
-    <string name="guide_3">Chọn nơi lưu tệp. Tốt nhất là nơi ngoài điện thoại này, như Google Drive hoặc máy tính, để bản sao lưu vẫn còn nếu mất điện thoại.</string>
+    <string name="guide_3">Bản sao lưu được lưu vào Documents › Quota Vault Backups trên điện thoại này, luôn cùng một thư mục. Để an toàn hơn, chạm Lưu một bản ở nơi khác để giữ thêm một bản trên Google Drive hoặc máy tính, phòng khi mất điện thoại.</string>
     <string name="guide_4">Sao lưu thường xuyên. Mỗi bản sao lưu là bản sao đầy đủ; hãy giữ bản mới nhất. Ứng dụng sẽ nhắc khi bản sao lưu gần nhất đã cũ.</string>
-    <string name="guide_5">Để khôi phục, trên điện thoại này hoặc điện thoại mới: cài ứng dụng, mở Cài đặt → Bảo mật và quyền riêng tư → Khôi phục từ bản sao lưu, chọn tệp và nhập mật khẩu.</string>
+    <string name="guide_5">Để khôi phục, trên điện thoại này hoặc điện thoại mới: mở ứng dụng và chạm Khôi phục từ bản sao lưu (ở màn hình chào mừng, hoặc Cài đặt → Bảo mật và quyền riêng tư → Khôi phục). Quota Vault tự tìm bản sao lưu. Chọn một bản và nhập mật khẩu.</string>
     <string name="guide_tip">Bản sao lưu được mã hóa AES-256. Không có mật khẩu, không ai mở được tệp, kể cả nhà phát triển ứng dụng.</string>
     <string name="text_settings">Văn bản</string>
     <string name="text_settings_desc">Kiểu phông chữ và cỡ chữ</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">Báo cáo hiển thị số này, không bao giờ hiển thị tên khách hàng.</string>
     <string name="notif_details_in_app">Mở ứng dụng để xem chi tiết</string>
     <string name="screenshots_always_blocked">Chụp màn hình, quay màn hình và chia sẻ màn hình luôn bị chặn, và không thể sao chép gì ra khỏi ứng dụng, nên thông tin khách hàng không thể bị lấy từ màn hình.</string>
+    <string name="backup_now">Sao lưu ngay</string>
+    <string name="backup_restore_short">Khôi phục</string>
+    <string name="backup_encrypt_button">Sao lưu</string>
+    <string name="backup_saved_to">Bản sao lưu được lưu vào %1$s trên điện thoại này, luôn ở cùng một chỗ.</string>
+    <string name="backup_folder_not_set">Lần sao lưu đầu tiên, bạn sẽ chọn một thư mục. Mọi bản sao lưu sau đó đều vào cùng chỗ đó.</string>
+    <string name="backup_list_title">Bản sao lưu của bạn</string>
+    <string name="backup_none_yet">Chưa có bản sao lưu nào.</string>
+    <string name="backup_newest">Mới nhất</string>
+    <string name="backup_show_all">Xem tất cả (%1$d)</string>
+    <string name="backup_show_less">Thu gọn</string>
+    <string name="backup_cd_delete">Xóa bản sao lưu ngày %1$s</string>
+    <string name="backup_delete_title">Xóa bản sao lưu này?</string>
+    <string name="backup_delete_body">Bản sao lưu ngày %1$s sẽ bị xóa khỏi %2$s. Không thể hoàn tác.</string>
+    <string name="backup_deleted">Đã xóa bản sao lưu</string>
+    <string name="backup_delete_failed">Không xóa được bản sao lưu</string>
+    <string name="backup_saved_where">Đã lưu vào %1$s trên điện thoại này. Quota Vault tự tìm ở đó khi khôi phục, và thư mục vẫn còn kể cả khi xóa ứng dụng.</string>
+    <string name="backup_saved_offphone">Nếu điện thoại bị mất, hỏng hoặc đặt lại, thư mục đó cũng mất theo. Để an toàn hơn, hãy lưu thêm một bản vào Google Drive hoặc máy tính.</string>
+    <string name="backup_save_copy">Lưu một bản ở nơi khác</string>
+    <string name="backup_copy_saved">Đã lưu bản sao</string>
+    <string name="restore_title">Khôi phục bản sao lưu</string>
+    <string name="restore_looking">Đang tìm trong %1$s…</string>
+    <string name="restore_found_in">Tìm thấy trong %1$s. Chạm vào một bản để khôi phục.</string>
+    <string name="restore_none_found">Chưa có bản sao lưu nào trong %1$s.</string>
+    <string name="restore_find_hint">Đã cài lại ứng dụng hoặc đổi điện thoại? Các bản cũ sẽ hiện ra khi bạn mở thư mục.</string>
+    <string name="restore_find_hint_empty">Nếu bạn đã cài lại ứng dụng hoặc đổi điện thoại, bản sao lưu vẫn nằm trong thư mục đó. Mở nó một lần và Quota Vault sẽ liệt kê chúng.</string>
+    <string name="restore_find_folder">Mở thư mục sao lưu của tôi</string>
+    <string name="restore_other_file">Chọn tệp sao lưu từ nơi khác</string>
+    <string name="folder_find_title">Mở thư mục sao lưu</string>
+    <string name="folder_find_body">Android sẽ hiện %1$s. Chạm Sử dụng thư mục này, rồi Cho phép.
+
+Quota Vault chỉ thấy đúng thư mục đó và chỉ dùng nó cho bản sao lưu của bạn. Không gì khác trên điện thoại.</string>
+    <string name="folder_choose_title">Chọn nơi lưu bản sao lưu</string>
+    <string name="folder_choose_body">Android sẽ hiện các thư mục của bạn. Chọn một thư mục, ví dụ Documents, rồi chạm Sử dụng thư mục này và Cho phép. Quota Vault tạo thư mục \"%1$s\" bên trong và lưu mọi bản sao lưu ở đó.
+
+Quota Vault chỉ thấy đúng thư mục đó. Không gì khác trên điện thoại.</string>
+    <string name="restore_confirm_new_title">Khôi phục bản sao lưu này?</string>
+    <string name="restore_confirm_new_body">Bản sao lưu ngày %1$s
+Khách hàng: %2$d · Giao dịch: %3$d · Lịch hẹn: %4$d · Mục tiêu: %5$d</string>
+    <string name="erase_backups_kept">Các bản sao lưu trong %1$s vẫn được giữ, nên bạn có thể khôi phục bất cứ lúc nào từ màn hình chào mừng.</string>
+    <string name="erase_no_backup">Bạn chưa có bản sao lưu nào. Sau khi xóa, dữ liệu này không thể lấy lại.</string>
+    <string name="erase_backup_first">Sao lưu trước</string>
+    <string name="welcome_restore">Đã dùng Quota Vault trước đây? Lấy lại khách hàng, giao dịch và mục tiêu từ bản sao lưu.</string>
+    <string name="welcome_have_backup">Có bản sao lưu? Khôi phục ngay</string>
+    <string name="backup_folder_readme">Thư mục này chứa các bản sao lưu Quota Vault của bạn.
+
+Mỗi bản được mã hóa bằng mật khẩu bạn chọn và chỉ mở được trong ứng dụng Quota Vault. Hãy giữ thư mục này nếu bạn cài lại ứng dụng hoặc đổi điện thoại: Quota Vault tìm ở đây khi khôi phục.
+
+Quota Vault sẽ không bao giờ yêu cầu bạn gửi các tệp này hoặc mật khẩu cho bất kỳ ai. Ai yêu cầu đều là kẻ lừa đảo.</string>
+    <string name="pi_folder_t">Thư mục sao lưu</string>
+    <string name="pi_folder">Bản sao lưu được lưu vào Documents › Quota Vault Backups mà không cần quyền bộ nhớ nào. Quota Vault chỉ thấy các bản do nó tạo. Sau khi cài lại, nó chỉ thấy bản cũ nếu bạn cho phép thư mục đó.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>
@@ -861,5 +907,8 @@
     </plurals>
     <plurals name="mark_paid_q">
         <item quantity="other">Đánh dấu hoa hồng của %1$d giao dịch là đã nhận?</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="other">Xóa luôn %1$d bản sao lưu của tôi</item>
     </plurals>
 </resources>

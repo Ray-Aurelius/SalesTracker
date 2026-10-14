@@ -22,10 +22,7 @@
     <string name="app_lock_desc">打开应用时要求指纹、面容或手机 PIN</string>
     <string name="lock_needs_screen_lock">请先在手机设置中设置屏幕锁（PIN、图案或指纹）。</string>
     <string name="settings_backup">备份</string>
-    <string name="backup_create">备份到加密文件</string>
-    <string name="backup_create_desc">将所有数据保存到受密码保护的文件中</string>
     <string name="backup_restore">从备份恢复</string>
-    <string name="backup_restore_desc">用备份文件替换此手机上的数据</string>
     <string name="last_backup">上次备份：%1$s</string>
     <string name="never_backed_up">尚未备份</string>
     <string name="locked_title">Quota Vault 已锁定</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">两次输入的密码不一致</string>
     <string name="show_password">显示密码</string>
     <string name="hide_password">隐藏密码</string>
-    <string name="choose_location">选择保存位置</string>
     <string name="backup_working">正在加密你的数据…</string>
     <string name="backup_saved">备份已保存</string>
     <string name="backup_failed">无法保存备份</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">清除所有数据</string>
     <string name="erase_all_desc">从本机永久删除应用中的所有内容</string>
     <string name="erase_confirm_title">清除全部内容？</string>
-    <string name="erase_confirm_body">这将从本机永久删除所有客户、销售、预约、目标和设置，并销毁加密密钥。此操作无法撤销。如果以后可能需要这些数据，请先备份。</string>
+    <string name="erase_confirm_body">这将从本机永久删除所有客户、销售、预约、目标和设置，并销毁加密密钥。此操作无法撤销。</string>
     <string name="erase_button">全部清除</string>
     <string name="erase_done">所有数据已清除</string>
     <string name="section_transparency">透明度</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">你需要接受用户协议才能使用本应用。</string>
     <string name="guide_title">如何备份你的数据</string>
     <string name="guide_intro">你的数据只存在于这部手机上。备份是一份完整的加密副本，在手机丢失、损坏、更换或被重置时可用来恢复全部内容。</string>
-    <string name="guide_1">打开设置（右上角的齿轮）→ 安全与隐私 → 备份到加密文件。</string>
+    <string name="guide_1">打开设置（右上角的齿轮）→ 安全与隐私 → 立即备份。</string>
     <string name="guide_2">设置一个强密码，并写下来存放在远离手机的安全地方。忘记后无法找回。</string>
-    <string name="guide_3">选择文件的保存位置。最好保存在这部手机以外的地方，例如 Google 云端硬盘或电脑，这样即使手机丢失，备份也还在。</string>
+    <string name="guide_3">备份保存在本机的 Documents › Quota Vault Backups，每次都在同一文件夹。为更安全，点按“另存一份到其他位置”，在 Google 云端硬盘或电脑上也留一份，以防手机丢失。</string>
     <string name="guide_4">定期备份。每次备份都是完整副本，保留最新的一份即可。上次备份过久时应用会提醒你。</string>
-    <string name="guide_5">恢复时（在本机或新手机上）：安装应用，打开设置 → 安全与隐私 → 从备份恢复，选择文件并输入密码。</string>
+    <string name="guide_5">恢复时（在本机或新手机上）：打开应用，点按“从备份恢复”（在欢迎界面，或设置 → 安全与隐私 → 恢复）。Quota Vault 会自动找到你的备份。选择一份并输入密码。</string>
     <string name="guide_tip">备份使用 AES-256 加密。没有密码，任何人都无法打开文件，包括应用的开发者。</string>
     <string name="text_settings">文字</string>
     <string name="text_settings_desc">字体样式和文字大小</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">报告中显示此编号，绝不显示客户姓名。</string>
     <string name="notif_details_in_app">打开应用查看详情</string>
     <string name="screenshots_always_blocked">截屏、录屏和屏幕共享始终被阻止，也无法从应用中复制任何内容，因此客户信息无法从屏幕上获取。</string>
+    <string name="backup_now">立即备份</string>
+    <string name="backup_restore_short">恢复</string>
+    <string name="backup_encrypt_button">备份</string>
+    <string name="backup_saved_to">备份保存在本机的 %1$s，每次都在同一位置。</string>
+    <string name="backup_folder_not_set">第一次备份时你会选择一个文件夹，之后的每份备份都会存到同一位置。</string>
+    <string name="backup_list_title">你的备份</string>
+    <string name="backup_none_yet">还没有备份。</string>
+    <string name="backup_newest">最新</string>
+    <string name="backup_show_all">显示全部（%1$d）</string>
+    <string name="backup_show_less">收起</string>
+    <string name="backup_cd_delete">删除 %1$s 的备份</string>
+    <string name="backup_delete_title">删除此备份？</string>
+    <string name="backup_delete_body">%1$s 的备份将从 %2$s 中删除，无法撤销。</string>
+    <string name="backup_deleted">备份已删除</string>
+    <string name="backup_delete_failed">无法删除备份</string>
+    <string name="backup_saved_where">已保存到本机的 %1$s。恢复时 Quota Vault 会自动在那里查找，即使删除应用，文件夹也会保留。</string>
+    <string name="backup_saved_offphone">如果手机丢失、损坏或被重置，该文件夹也会随之丢失。为更安全，请再保存一份到 Google 云端硬盘或电脑。</string>
+    <string name="backup_save_copy">另存一份到其他位置</string>
+    <string name="backup_copy_saved">副本已保存</string>
+    <string name="restore_title">恢复备份</string>
+    <string name="restore_looking">正在 %1$s 中查找…</string>
+    <string name="restore_found_in">在 %1$s 中找到。点按一份备份即可恢复。</string>
+    <string name="restore_none_found">%1$s 中还没有备份。</string>
+    <string name="restore_find_hint">重新安装了应用或换了新手机？打开文件夹后，以前的备份就会显示。</string>
+    <string name="restore_find_hint_empty">如果你重新安装了应用或换了新手机，备份仍在那个文件夹里。打开一次，Quota Vault 就会列出它们。</string>
+    <string name="restore_find_folder">打开我的备份文件夹</string>
+    <string name="restore_other_file">从其他位置选择备份文件</string>
+    <string name="folder_find_title">打开备份文件夹</string>
+    <string name="folder_find_body">Android 将显示 %1$s。点按“使用此文件夹”，然后点按“允许”。
+
+Quota Vault 只能看到这一个文件夹，且只用它存放你的备份。不会访问手机上的其他任何内容。</string>
+    <string name="folder_choose_title">选择备份存放位置</string>
+    <string name="folder_choose_body">Android 将显示你的文件夹。选择一个（例如 Documents），然后点按“使用此文件夹”和“允许”。Quota Vault 会在其中创建“%1$s”文件夹，并把每份备份都存在那里。
+
+Quota Vault 只能看到这一个文件夹。不会访问手机上的其他任何内容。</string>
+    <string name="restore_confirm_new_title">恢复此备份？</string>
+    <string name="restore_confirm_new_body">备份时间：%1$s
+客户：%2$d · 销售：%3$d · 预约：%4$d · 目标：%5$d</string>
+    <string name="erase_backups_kept">%1$s 中的备份会保留，你随时可以在欢迎界面恢复。</string>
+    <string name="erase_no_backup">你还没有备份。一旦清除，这些数据将无法找回。</string>
+    <string name="erase_backup_first">先备份</string>
+    <string name="welcome_restore">以前用过 Quota Vault？从备份找回你的客户、销售和目标。</string>
+    <string name="welcome_have_backup">有备份？立即恢复</string>
+    <string name="backup_folder_readme">此文件夹存放你的 Quota Vault 备份。
+
+每份备份都用你设置的密码加密，只能在 Quota Vault 应用中打开。如果你重新安装应用或更换手机，请保留此文件夹：恢复时 Quota Vault 会在这里查找。
+
+Quota Vault 绝不会要求你把这些文件或密码发给任何人。索要的人都是骗子。</string>
+    <string name="pi_folder_t">备份文件夹</string>
+    <string name="pi_folder">备份保存在 Documents › Quota Vault Backups，无需任何存储权限。Quota Vault 只能看到它自己创建的备份。重新安装后，只有在你允许访问该文件夹时，它才能看到以前的备份。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>
@@ -861,5 +907,8 @@
     </plurals>
     <plurals name="mark_paid_q">
         <item quantity="other">将 %1$d 笔销售的佣金标记为已付？</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="other">同时删除我的 %1$d 份备份</item>
     </plurals>
 </resources>

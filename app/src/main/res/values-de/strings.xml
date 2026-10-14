@@ -22,10 +22,7 @@
     <string name="app_lock_desc">Beim Öffnen nach Fingerabdruck, Gesicht oder Telefon-PIN fragen</string>
     <string name="lock_needs_screen_lock">Richte zuerst eine Displaysperre (PIN, Muster oder Fingerabdruck) in den Telefoneinstellungen ein.</string>
     <string name="settings_backup">Sicherung</string>
-    <string name="backup_create">In verschlüsselter Datei sichern</string>
-    <string name="backup_create_desc">Alle Daten in einer passwortgeschützten Datei speichern</string>
     <string name="backup_restore">Aus Sicherung wiederherstellen</string>
-    <string name="backup_restore_desc">Die Daten auf diesem Telefon durch eine Sicherungsdatei ersetzen</string>
     <string name="last_backup">Letzte Sicherung: %1$s</string>
     <string name="never_backed_up">Noch nicht gesichert</string>
     <string name="locked_title">Quota Vault ist gesperrt</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">Passwörter stimmen nicht überein</string>
     <string name="show_password">Passwort anzeigen</string>
     <string name="hide_password">Passwort verbergen</string>
-    <string name="choose_location">Speicherort wählen</string>
     <string name="backup_working">Daten werden verschlüsselt…</string>
     <string name="backup_saved">Sicherung gespeichert</string>
     <string name="backup_failed">Sicherung konnte nicht gespeichert werden</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">Alle Daten löschen</string>
     <string name="erase_all_desc">Alles in der App dauerhaft von diesem Telefon löschen</string>
     <string name="erase_confirm_title">Alles löschen?</string>
-    <string name="erase_confirm_body">Dadurch werden alle Kunden, Verkäufe, Termine, Ziele und Einstellungen dauerhaft von diesem Telefon gelöscht und der Verschlüsselungsschlüssel vernichtet. Das kann nicht rückgängig gemacht werden. Erstelle vorher eine Sicherung, falls du die Daten noch brauchst.</string>
+    <string name="erase_confirm_body">Dadurch werden alle Kunden, Verkäufe, Termine, Ziele und Einstellungen dauerhaft von diesem Telefon gelöscht und der Verschlüsselungsschlüssel vernichtet. Das kann nicht rückgängig gemacht werden.</string>
     <string name="erase_button">Alles löschen</string>
     <string name="erase_done">Alle Daten gelöscht</string>
     <string name="section_transparency">Transparenz</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">Du musst die Nutzungsvereinbarung akzeptieren, um die App zu nutzen.</string>
     <string name="guide_title">So sicherst du deine Daten</string>
     <string name="guide_intro">Deine Daten befinden sich nur auf diesem Telefon. Eine Sicherung ist eine vollständige, verschlüsselte Kopie, mit der du alles wiederherstellen kannst, wenn das Telefon verloren geht, kaputtgeht, ersetzt oder zurückgesetzt wird.</string>
-    <string name="guide_1">Öffne Einstellungen (das Zahnrad oben rechts) → Sicherheit &amp; Datenschutz → In verschlüsselter Datei sichern.</string>
+    <string name="guide_1">Öffne Einstellungen (das Zahnrad oben rechts) → Sicherheit &amp; Datenschutz → Jetzt sichern.</string>
     <string name="guide_2">Wähle ein starkes Sicherungspasswort und notiere es an einem sicheren Ort, getrennt vom Telefon. Vergessen kann es nicht wiederhergestellt werden.</string>
-    <string name="guide_3">Wähle, wo die Datei gespeichert wird. Am besten außerhalb dieses Telefons, etwa in Google Drive oder auf einem Computer, damit die Sicherung einen Telefonverlust übersteht.</string>
+    <string name="guide_3">Die Sicherung wird in Documents › Quota Vault Backups auf diesem Telefon gespeichert, immer im selben Ordner. Tippe zur Sicherheit auf Kopie woanders speichern, um auch eine in Google Drive oder auf einem Computer zu haben, falls das Telefon verloren geht.</string>
     <string name="guide_4">Sichere regelmäßig. Jede Sicherung ist eine vollständige Kopie, behalte also die neueste. Die App erinnert dich, wenn deine letzte Sicherung zu alt wird.</string>
-    <string name="guide_5">Zum Wiederherstellen, auf diesem oder einem neuen Telefon: App installieren, Einstellungen → Sicherheit &amp; Datenschutz → Aus Sicherung wiederherstellen öffnen, Datei wählen und Passwort eingeben.</string>
+    <string name="guide_5">Zum Wiederherstellen, auf diesem oder einem neuen Telefon: App öffnen und auf Aus Sicherung wiederherstellen tippen (auf dem Willkommensbildschirm oder unter Einstellungen → Sicherheit &amp; Datenschutz → Wiederherstellen). Quota Vault findet deine Sicherungen selbst. Eine wählen und das Passwort eingeben.</string>
     <string name="guide_tip">Sicherungen sind mit AES-256 verschlüsselt. Ohne das Passwort kann niemand die Datei öffnen, auch nicht die Macher der App.</string>
     <string name="text_settings">Text</string>
     <string name="text_settings_desc">Schriftart und Textgröße</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">Berichte zeigen diese Nummer, nie den Namen des Kunden.</string>
     <string name="notif_details_in_app">Details in der App öffnen</string>
     <string name="screenshots_always_blocked">Screenshots, Bildschirmaufnahmen und Bildschirmfreigabe sind immer blockiert, und nichts kann aus der App kopiert werden. So lassen sich Kundendaten nicht vom Bildschirm abgreifen.</string>
+    <string name="backup_now">Jetzt sichern</string>
+    <string name="backup_restore_short">Wiederherstellen</string>
+    <string name="backup_encrypt_button">Sichern</string>
+    <string name="backup_saved_to">Deine Sicherungen werden in %1$s auf diesem Telefon gespeichert, immer am selben Ort.</string>
+    <string name="backup_folder_not_set">Bei der ersten Sicherung wählst du einen Ordner. Alle weiteren Sicherungen landen am selben Ort.</string>
+    <string name="backup_list_title">Deine Sicherungen</string>
+    <string name="backup_none_yet">Noch keine Sicherungen.</string>
+    <string name="backup_newest">Neueste</string>
+    <string name="backup_show_all">Alle %1$d anzeigen</string>
+    <string name="backup_show_less">Weniger anzeigen</string>
+    <string name="backup_cd_delete">Sicherung vom %1$s löschen</string>
+    <string name="backup_delete_title">Diese Sicherung löschen?</string>
+    <string name="backup_delete_body">Die Sicherung vom %1$s wird aus %2$s gelöscht. Das kann nicht rückgängig gemacht werden.</string>
+    <string name="backup_deleted">Sicherung gelöscht</string>
+    <string name="backup_delete_failed">Sicherung konnte nicht gelöscht werden</string>
+    <string name="backup_saved_where">Gespeichert in %1$s auf diesem Telefon. Quota Vault sucht beim Wiederherstellen automatisch dort, und der Ordner bleibt erhalten, auch wenn die App gelöscht wird.</string>
+    <string name="backup_saved_offphone">Geht das Telefon verloren, kaputt oder wird es zurückgesetzt, ist auch dieser Ordner weg. Speichere zur Sicherheit zusätzlich eine Kopie in Google Drive oder auf einem Computer.</string>
+    <string name="backup_save_copy">Kopie woanders speichern</string>
+    <string name="backup_copy_saved">Kopie gespeichert</string>
+    <string name="restore_title">Sicherung wiederherstellen</string>
+    <string name="restore_looking">Suche in %1$s…</string>
+    <string name="restore_found_in">Gefunden in %1$s. Tippe auf eine Sicherung, um sie wiederherzustellen.</string>
+    <string name="restore_none_found">Noch keine Sicherungen in %1$s.</string>
+    <string name="restore_find_hint">App neu installiert oder neues Telefon? Ältere Sicherungen erscheinen, sobald du den Ordner öffnest.</string>
+    <string name="restore_find_hint_empty">Wenn du die App neu installiert hast oder ein neues Telefon nutzt, liegen deine Sicherungen noch in diesem Ordner. Öffne ihn einmal, dann zeigt Quota Vault sie an.</string>
+    <string name="restore_find_folder">Meinen Sicherungsordner öffnen</string>
+    <string name="restore_other_file">Sicherungsdatei von woanders wählen</string>
+    <string name="folder_find_title">Sicherungsordner öffnen</string>
+    <string name="folder_find_body">Android zeigt %1$s an. Tippe auf Diesen Ordner verwenden und dann auf Zulassen.
+
+Quota Vault sieht nur diesen einen Ordner und nutzt ihn nur für deine Sicherungen. Sonst nichts auf deinem Telefon.</string>
+    <string name="folder_choose_title">Ort für deine Sicherungen wählen</string>
+    <string name="folder_choose_body">Android zeigt deine Ordner an. Wähle einen, zum Beispiel Documents, und tippe auf Diesen Ordner verwenden und Zulassen. Quota Vault legt darin einen Ordner „%1$s“ an und speichert dort jede Sicherung.
+
+Quota Vault sieht nur diesen einen Ordner. Sonst nichts auf deinem Telefon.</string>
+    <string name="restore_confirm_new_title">Diese Sicherung wiederherstellen?</string>
+    <string name="restore_confirm_new_body">Sicherung vom %1$s
+Kunden: %2$d · Verkäufe: %3$d · Termine: %4$d · Ziele: %5$d</string>
+    <string name="erase_backups_kept">Deine Sicherungen in %1$s bleiben erhalten. Du kannst sie jederzeit über den Willkommensbildschirm wiederherstellen.</string>
+    <string name="erase_no_backup">Du hast noch keine Sicherung. Einmal gelöscht, lassen sich diese Daten nicht zurückholen.</string>
+    <string name="erase_backup_first">Zuerst sichern</string>
+    <string name="welcome_restore">Quota Vault schon genutzt? Hol deine Kunden, Verkäufe und Ziele aus einer Sicherung zurück.</string>
+    <string name="welcome_have_backup">Hast du eine Sicherung? Wiederherstellen</string>
+    <string name="backup_folder_readme">Dieser Ordner enthält deine Quota-Vault-Sicherungen.
+
+Jede Sicherung ist mit dem Passwort verschlüsselt, das du gewählt hast, und lässt sich nur in der App Quota Vault öffnen. Behalte diesen Ordner, wenn du die App neu installierst oder das Telefon wechselst: Quota Vault sucht beim Wiederherstellen hier.
+
+Quota Vault wird dich nie bitten, diese Dateien oder dein Passwort an jemanden zu senden. Wer danach fragt, ist ein Betrüger.</string>
+    <string name="pi_folder_t">Sicherungsordner</string>
+    <string name="pi_folder">Sicherungen werden ohne Speicherberechtigung in Documents › Quota Vault Backups gespeichert. Quota Vault sieht nur die Sicherungen, die es selbst erstellt hat. Nach einer Neuinstallation sieht es ältere nur, wenn du diesen einen Ordner freigibst.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>
@@ -874,5 +920,9 @@
     <plurals name="mark_paid_q">
         <item quantity="one">Provision für %1$d Verkauf als ausgezahlt markieren?</item>
         <item quantity="other">Provision für %1$d Verkäufe als ausgezahlt markieren?</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="one">Auch meine Sicherung löschen</item>
+        <item quantity="other">Auch meine %1$d Sicherungen löschen</item>
     </plurals>
 </resources>

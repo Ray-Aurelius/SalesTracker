@@ -264,6 +264,12 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     var showSecurity by rememberSaveable { mutableStateOf(false) }
     val data by vm.data.collectAsState()
     val context = androidx.compose.ui.platform.LocalContext.current
+    // The backup folder (Documents › Quota Vault Backups) is made once, when the app is first set up, so backups
+    // always have the same home and restoring knows where to look. No permission is needed for this.
+    LaunchedEffect(Unit) {
+        val readme = context.getString(R.string.backup_folder_readme)
+        kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { com.salestracker.app.data.BackupFolder.create(context, readme) }
+    }
     // After a crash: offer, once, to show the saved report. Nothing is sent unless the user chooses to.
     var crashPrompt by rememberSaveable { mutableStateOf(com.salestracker.app.data.CrashLog.hasUnseen(context)) }
     var showCrashReports by rememberSaveable { mutableStateOf(false) }

@@ -22,10 +22,7 @@
     <string name="app_lock_desc">ऐप खोलते समय फ़िंगरप्रिंट, चेहरा या फ़ोन PIN माँगें</string>
     <string name="lock_needs_screen_lock">पहले फ़ोन की सेटिंग्स में स्क्रीन लॉक (PIN, पैटर्न या फ़िंगरप्रिंट) सेट करें।</string>
     <string name="settings_backup">बैकअप</string>
-    <string name="backup_create">एन्क्रिप्टेड फ़ाइल में बैकअप लें</string>
-    <string name="backup_create_desc">अपना सारा डेटा पासवर्ड से सुरक्षित फ़ाइल में सहेजें</string>
     <string name="backup_restore">बैकअप से बहाल करें</string>
-    <string name="backup_restore_desc">इस फ़ोन का डेटा बैकअप फ़ाइल से बदलें</string>
     <string name="last_backup">पिछला बैकअप: %1$s</string>
     <string name="never_backed_up">अभी तक बैकअप नहीं लिया गया</string>
     <string name="locked_title">Quota Vault लॉक है</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">पासवर्ड मेल नहीं खाते</string>
     <string name="show_password">पासवर्ड दिखाएँ</string>
     <string name="hide_password">पासवर्ड छिपाएँ</string>
-    <string name="choose_location">सहेजने की जगह चुनें</string>
     <string name="backup_working">आपका डेटा एन्क्रिप्ट हो रहा है…</string>
     <string name="backup_saved">बैकअप सहेजा गया</string>
     <string name="backup_failed">बैकअप सहेजा नहीं जा सका</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">सारा डेटा मिटाएँ</string>
     <string name="erase_all_desc">इस फ़ोन से ऐप की हर चीज़ स्थायी रूप से हटाएँ</string>
     <string name="erase_confirm_title">सब कुछ मिटाएँ?</string>
-    <string name="erase_confirm_body">इससे इस फ़ोन से सभी ग्राहक, बिक्री, अपॉइंटमेंट, लक्ष्य और सेटिंग्स स्थायी रूप से हट जाएँगी और एन्क्रिप्शन कुंजी नष्ट हो जाएगी। इसे वापस नहीं किया जा सकता। अगर यह डेटा फिर चाहिए हो सकता है, तो पहले बैकअप लें।</string>
+    <string name="erase_confirm_body">इससे इस फ़ोन से सभी ग्राहक, बिक्री, अपॉइंटमेंट, लक्ष्य और सेटिंग्स स्थायी रूप से हट जाएँगी और एन्क्रिप्शन कुंजी नष्ट हो जाएगी। इसे वापस नहीं किया जा सकता।</string>
     <string name="erase_button">सब मिटाएँ</string>
     <string name="erase_done">सारा डेटा मिटा दिया गया</string>
     <string name="section_transparency">पारदर्शिता</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">ऐप इस्तेमाल करने के लिए आपको उपयोगकर्ता अनुबंध स्वीकार करना होगा।</string>
     <string name="guide_title">अपने डेटा का बैकअप कैसे लें</string>
     <string name="guide_intro">आपका डेटा केवल इसी फ़ोन पर है। बैकअप एक पूरी, एन्क्रिप्टेड प्रति है जिससे फ़ोन खोने, टूटने, बदलने या रीसेट होने पर सब कुछ वापस लाया जा सकता है।</string>
-    <string name="guide_1">सेटिंग्स (ऊपर दाईं ओर गियर) → सुरक्षा और गोपनीयता → एन्क्रिप्टेड फ़ाइल में बैकअप लें खोलें।</string>
+    <string name="guide_1">सेटिंग्स (ऊपर दाईं ओर गियर) → सुरक्षा और गोपनीयता → अभी बैकअप लें खोलें।</string>
     <string name="guide_2">एक मज़बूत बैकअप पासवर्ड चुनें और उसे फ़ोन से अलग किसी सुरक्षित जगह लिख लें। भूल जाने पर यह वापस नहीं मिल सकता।</string>
-    <string name="guide_3">फ़ाइल सहेजने की जगह चुनें। सबसे अच्छा है इस फ़ोन से बाहर, जैसे Google Drive या कंप्यूटर, ताकि फ़ोन खोने पर भी बैकअप बचा रहे।</string>
+    <string name="guide_3">बैकअप इस फ़ोन पर Documents › Quota Vault Backups में सहेजा जाता है, हर बार उसी फ़ोल्डर में। ज़्यादा सुरक्षा के लिए कहीं और कॉपी सहेजें पर टैप करके एक कॉपी Google Drive या कंप्यूटर पर भी रखें, ताकि फ़ोन खोने पर भी बची रहे।</string>
     <string name="guide_4">नियमित रूप से बैकअप लें। हर बैकअप पूरी प्रति है, इसलिए सबसे नया रखें। पिछला बैकअप पुराना होने पर ऐप याद दिलाता है।</string>
-    <string name="guide_5">बहाल करने के लिए, इसी फ़ोन पर या नए पर: ऐप इंस्टॉल करें, सेटिंग्स → सुरक्षा और गोपनीयता → बैकअप से बहाल करें खोलें, फ़ाइल चुनें और पासवर्ड डालें।</string>
+    <string name="guide_5">बहाल करने के लिए, इसी फ़ोन पर या नए पर: ऐप खोलें और बैकअप से बहाल करें पर टैप करें (स्वागत स्क्रीन पर, या सेटिंग्स → सुरक्षा और गोपनीयता → बहाल करें)। Quota Vault आपके बैकअप खुद ढूँढ लेता है। एक चुनें और पासवर्ड डालें।</string>
     <string name="guide_tip">बैकअप AES-256 से एन्क्रिप्टेड होते हैं। पासवर्ड के बिना कोई भी फ़ाइल नहीं खोल सकता, ऐप बनाने वाले भी नहीं।</string>
     <string name="text_settings">टेक्स्ट</string>
     <string name="text_settings_desc">फ़ॉन्ट शैली और टेक्स्ट का आकार</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">रिपोर्ट में यह नंबर दिखता है, क्लाइंट का नाम कभी नहीं।</string>
     <string name="notif_details_in_app">विवरण के लिए ऐप खोलें</string>
     <string name="screenshots_always_blocked">स्क्रीनशॉट, स्क्रीन रिकॉर्डिंग और स्क्रीन शेयरिंग हमेशा ब्लॉक रहते हैं, और ऐप से कुछ भी कॉपी नहीं किया जा सकता, इसलिए क्लाइंट की जानकारी स्क्रीन से नहीं ली जा सकती।</string>
+    <string name="backup_now">अभी बैकअप लें</string>
+    <string name="backup_restore_short">बहाल करें</string>
+    <string name="backup_encrypt_button">बैकअप लें</string>
+    <string name="backup_saved_to">आपके बैकअप इस फ़ोन पर %1$s में सहेजे जाते हैं, हर बार एक ही जगह।</string>
+    <string name="backup_folder_not_set">पहली बार बैकअप लेते समय आप एक फ़ोल्डर चुनेंगे। उसके बाद हर बैकअप उसी जगह जाएगा।</string>
+    <string name="backup_list_title">आपके बैकअप</string>
+    <string name="backup_none_yet">अभी कोई बैकअप नहीं।</string>
+    <string name="backup_newest">सबसे नया</string>
+    <string name="backup_show_all">सभी दिखाएँ (%1$d)</string>
+    <string name="backup_show_less">कम दिखाएँ</string>
+    <string name="backup_cd_delete">%1$s का बैकअप हटाएँ</string>
+    <string name="backup_delete_title">यह बैकअप हटाएँ?</string>
+    <string name="backup_delete_body">%1$s का बैकअप %2$s से हटा दिया जाएगा। इसे वापस नहीं किया जा सकता।</string>
+    <string name="backup_deleted">बैकअप हटाया गया</string>
+    <string name="backup_delete_failed">बैकअप हटाया नहीं जा सका</string>
+    <string name="backup_saved_where">इस फ़ोन पर %1$s में सहेजा गया। बहाल करते समय Quota Vault अपने-आप वहीं देखता है, और ऐप हटाने पर भी फ़ोल्डर बना रहता है।</string>
+    <string name="backup_saved_offphone">अगर फ़ोन खो जाए, टूट जाए या रीसेट हो जाए, तो वह फ़ोल्डर भी चला जाएगा। ज़्यादा सुरक्षा के लिए एक कॉपी Google Drive या कंप्यूटर पर भी सहेजें।</string>
+    <string name="backup_save_copy">कहीं और कॉपी सहेजें</string>
+    <string name="backup_copy_saved">कॉपी सहेजी गई</string>
+    <string name="restore_title">बैकअप बहाल करें</string>
+    <string name="restore_looking">%1$s में खोज रहे हैं…</string>
+    <string name="restore_found_in">%1$s में मिले। बहाल करने के लिए किसी बैकअप पर टैप करें।</string>
+    <string name="restore_none_found">%1$s में अभी कोई बैकअप नहीं मिला।</string>
+    <string name="restore_find_hint">ऐप दोबारा इंस्टॉल किया या नया फ़ोन लिया? फ़ोल्डर खोलते ही पुराने बैकअप दिखेंगे।</string>
+    <string name="restore_find_hint_empty">अगर आपने ऐप दोबारा इंस्टॉल किया है या नया फ़ोन लिया है, तो आपके बैकअप अब भी उसी फ़ोल्डर में हैं। उसे एक बार खोलें और Quota Vault उन्हें दिखा देगा।</string>
+    <string name="restore_find_folder">मेरा बैकअप फ़ोल्डर खोलें</string>
+    <string name="restore_other_file">किसी और जगह से बैकअप फ़ाइल चुनें</string>
+    <string name="folder_find_title">अपना बैकअप फ़ोल्डर खोलें</string>
+    <string name="folder_find_body">Android %1$s दिखाएगा। इस फ़ोल्डर का इस्तेमाल करें पर टैप करें, फिर अनुमति दें पर।
+
+Quota Vault सिर्फ़ वही एक फ़ोल्डर देख सकता है और उसे सिर्फ़ आपके बैकअप के लिए इस्तेमाल करता है। आपके फ़ोन की और कोई चीज़ नहीं।</string>
+    <string name="folder_choose_title">बैकअप रखने की जगह चुनें</string>
+    <string name="folder_choose_body">Android आपके फ़ोल्डर दिखाएगा। Documents जैसा कोई फ़ोल्डर चुनें, फिर इस फ़ोल्डर का इस्तेमाल करें और अनुमति दें पर टैप करें। Quota Vault उसके अंदर \"%1$s\" फ़ोल्डर बनाकर हर बैकअप वहीं सहेजेगा।
+
+Quota Vault सिर्फ़ वही एक फ़ोल्डर देख सकता है। आपके फ़ोन की और कोई चीज़ नहीं।</string>
+    <string name="restore_confirm_new_title">यह बैकअप बहाल करें?</string>
+    <string name="restore_confirm_new_body">%1$s का बैकअप
+ग्राहक: %2$d · बिक्री: %3$d · अपॉइंटमेंट: %4$d · लक्ष्य: %5$d</string>
+    <string name="erase_backups_kept">%1$s में आपके बैकअप बने रहेंगे, ताकि आप स्वागत स्क्रीन से कभी भी उन्हें बहाल कर सकें।</string>
+    <string name="erase_no_backup">आपके पास अभी कोई बैकअप नहीं है। मिटाने के बाद यह डेटा वापस नहीं लाया जा सकता।</string>
+    <string name="erase_backup_first">पहले बैकअप लें</string>
+    <string name="welcome_restore">पहले Quota Vault इस्तेमाल किया है? बैकअप से अपने ग्राहक, बिक्री और लक्ष्य वापस लाएँ।</string>
+    <string name="welcome_have_backup">बैकअप है? बहाल करें</string>
+    <string name="backup_folder_readme">इस फ़ोल्डर में आपके Quota Vault बैकअप हैं।
+
+हर बैकअप आपके चुने पासवर्ड से एन्क्रिप्ट है और सिर्फ़ Quota Vault ऐप में खुलता है। ऐप दोबारा इंस्टॉल करें या फ़ोन बदलें तो यह फ़ोल्डर रखें: बहाल करते समय Quota Vault यहीं देखता है।
+
+Quota Vault कभी भी आपसे ये फ़ाइलें या आपका पासवर्ड किसी को भेजने को नहीं कहेगा। जो माँगे, वह धोखेबाज़ है।</string>
+    <string name="pi_folder_t">बैकअप फ़ोल्डर</string>
+    <string name="pi_folder">बैकअप बिना किसी स्टोरेज अनुमति के Documents › Quota Vault Backups में सहेजे जाते हैं। Quota Vault सिर्फ़ अपने बनाए बैकअप देख सकता है। दोबारा इंस्टॉल करने के बाद वह पुराने बैकअप तभी देखता है जब आप उस एक फ़ोल्डर की अनुमति दें।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
@@ -874,5 +920,9 @@
     <plurals name="mark_paid_q">
         <item quantity="one">%1$d बिक्री का कमीशन मिला हुआ चिह्नित करें?</item>
         <item quantity="other">%1$d बिक्रियों का कमीशन मिला हुआ चिह्नित करें?</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="one">मेरा बैकअप भी हटाएँ</item>
+        <item quantity="other">मेरे %1$d बैकअप भी हटाएँ</item>
     </plurals>
 </resources>

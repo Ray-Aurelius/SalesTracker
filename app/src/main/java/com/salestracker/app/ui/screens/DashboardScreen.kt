@@ -276,7 +276,7 @@ private fun BackupNudge(vm: AppViewModel) {
             )
             Row(Modifier.fillMaxWidth().padding(top = 8.dp), horizontalArrangement = Arrangement.End) {
                 TextButton(onClick = { vm.snoozeBackupNudge() }) { Text(stringResource(R.string.later)) }
-                Button(onClick = { vm.backupRequested = true }) { Text(stringResource(R.string.backup_create)) }
+                Button(onClick = { vm.backupRequested = true }) { Text(stringResource(R.string.backup_now)) }
             }
         }
     }

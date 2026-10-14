@@ -22,10 +22,7 @@
     <string name="app_lock_desc">Pede sua digital, rosto ou PIN do celular ao abrir o app</string>
     <string name="lock_needs_screen_lock">Primeiro configure um bloqueio de tela (PIN, padrão ou digital) nas configurações do celular.</string>
     <string name="settings_backup">Backup</string>
-    <string name="backup_create">Fazer backup em arquivo criptografado</string>
-    <string name="backup_create_desc">Salva todos os seus dados em um arquivo protegido por senha</string>
     <string name="backup_restore">Restaurar um backup</string>
-    <string name="backup_restore_desc">Substitui os dados deste celular por um arquivo de backup</string>
     <string name="last_backup">Último backup: %1$s</string>
     <string name="never_backed_up">Ainda sem backup</string>
     <string name="locked_title">Quota Vault está bloqueado</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">As senhas não coincidem</string>
     <string name="show_password">Mostrar senha</string>
     <string name="hide_password">Ocultar senha</string>
-    <string name="choose_location">Escolher onde salvar</string>
     <string name="backup_working">Criptografando seus dados…</string>
     <string name="backup_saved">Backup salvo</string>
     <string name="backup_failed">Não foi possível salvar o backup</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">Apagar todos os dados</string>
     <string name="erase_all_desc">Exclui permanentemente tudo o que há no app deste celular</string>
     <string name="erase_confirm_title">Apagar tudo?</string>
-    <string name="erase_confirm_body">Isso exclui permanentemente todos os clientes, vendas, compromissos, metas e configurações deste celular e destrói a chave de criptografia. Não pode ser desfeito. Faça um backup antes se puder precisar desses dados.</string>
+    <string name="erase_confirm_body">Isso exclui permanentemente todos os clientes, vendas, compromissos, metas e configurações deste celular e destrói a chave de criptografia. Não pode ser desfeito.</string>
     <string name="erase_button">Apagar tudo</string>
     <string name="erase_done">Todos os dados foram apagados</string>
     <string name="section_transparency">Transparência</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">Você precisa aceitar o Contrato de usuário para usar o app.</string>
     <string name="guide_title">Como fazer backup dos seus dados</string>
     <string name="guide_intro">Seus dados ficam só neste celular. Um backup é uma cópia completa e criptografada que permite restaurar tudo se o celular for perdido, quebrar, for trocado ou redefinido.</string>
-    <string name="guide_1">Abra Configurações (a engrenagem no canto superior direito) → Segurança e privacidade → Fazer backup em arquivo criptografado.</string>
+    <string name="guide_1">Abra Configurações (a engrenagem no canto superior direito) → Segurança e privacidade → Fazer backup agora.</string>
     <string name="guide_2">Escolha uma senha forte e anote-a em um lugar seguro, longe do celular. Ela não pode ser recuperada se for esquecida.</string>
-    <string name="guide_3">Escolha onde salvar o arquivo. O ideal é fora deste celular, como no Google Drive ou em um computador, para que o backup sobreviva se o celular for perdido.</string>
+    <string name="guide_3">O backup é salvo em Documents › Quota Vault Backups neste celular, sempre na mesma pasta. Para mais segurança, toque em Salvar uma cópia em outro lugar para ter outra no Google Drive ou em um computador, caso perca o celular.</string>
     <string name="guide_4">Faça backups com frequência. Cada backup é uma cópia completa, então guarde o mais recente. O app avisa quando seu último backup está ficando antigo.</string>
-    <string name="guide_5">Para restaurar, neste celular ou em um novo: instale o app, abra Configurações → Segurança e privacidade → Restaurar um backup, escolha o arquivo e digite a senha.</string>
+    <string name="guide_5">Para restaurar, neste celular ou em um novo: abra o app e toque em Restaurar um backup (na tela de boas-vindas ou em Configurações → Segurança e privacidade → Restaurar). O Quota Vault encontra seus backups sozinho. Escolha um e digite a senha.</string>
     <string name="guide_tip">Os backups são criptografados com AES-256. Sem a senha ninguém consegue abrir o arquivo, nem os criadores do app.</string>
     <string name="text_settings">Texto</string>
     <string name="text_settings_desc">Estilo da fonte e tamanho do texto</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">Os relatórios mostram este número, nunca o nome do cliente.</string>
     <string name="notif_details_in_app">Abra o app para ver os detalhes</string>
     <string name="screenshots_always_blocked">Capturas de tela, gravação e compartilhamento de tela estão sempre bloqueados, e nada pode ser copiado para fora do app, então as informações dos clientes não podem ser capturadas da tela.</string>
+    <string name="backup_now">Fazer backup agora</string>
+    <string name="backup_restore_short">Restaurar</string>
+    <string name="backup_encrypt_button">Fazer backup</string>
+    <string name="backup_saved_to">Seus backups são salvos em %1$s neste celular, sempre no mesmo lugar.</string>
+    <string name="backup_folder_not_set">Na primeira vez que fizer backup, você vai escolher uma pasta. Todos os backups seguintes vão para o mesmo lugar.</string>
+    <string name="backup_list_title">Seus backups</string>
+    <string name="backup_none_yet">Nenhum backup ainda.</string>
+    <string name="backup_newest">Mais recente</string>
+    <string name="backup_show_all">Mostrar todos (%1$d)</string>
+    <string name="backup_show_less">Mostrar menos</string>
+    <string name="backup_cd_delete">Excluir o backup de %1$s</string>
+    <string name="backup_delete_title">Excluir este backup?</string>
+    <string name="backup_delete_body">O backup de %1$s será excluído de %2$s. Não pode ser desfeito.</string>
+    <string name="backup_deleted">Backup excluído</string>
+    <string name="backup_delete_failed">Não foi possível excluir o backup</string>
+    <string name="backup_saved_where">Salvo em %1$s neste celular. O Quota Vault procura lá automaticamente ao restaurar, e a pasta continua mesmo se o app for excluído.</string>
+    <string name="backup_saved_offphone">Se este celular for perdido, quebrar ou for redefinido, essa pasta vai junto. Para mais segurança, salve também uma cópia no Google Drive ou em um computador.</string>
+    <string name="backup_save_copy">Salvar uma cópia em outro lugar</string>
+    <string name="backup_copy_saved">Cópia salva</string>
+    <string name="restore_title">Restaurar um backup</string>
+    <string name="restore_looking">Procurando em %1$s…</string>
+    <string name="restore_found_in">Encontrados em %1$s. Toque em um backup para restaurá-lo.</string>
+    <string name="restore_none_found">Nenhum backup em %1$s ainda.</string>
+    <string name="restore_find_hint">Reinstalou o app ou trocou de celular? Os backups anteriores aparecem assim que você abrir a pasta.</string>
+    <string name="restore_find_hint_empty">Se você reinstalou o app ou trocou de celular, seus backups ainda estão nessa pasta. Abra-a uma vez e o Quota Vault vai listá-los.</string>
+    <string name="restore_find_folder">Abrir minha pasta de backups</string>
+    <string name="restore_other_file">Escolher um arquivo de backup de outro lugar</string>
+    <string name="folder_find_title">Abra sua pasta de backups</string>
+    <string name="folder_find_body">O Android vai mostrar %1$s. Toque em Usar esta pasta e depois em Permitir.
+
+O Quota Vault só vê essa pasta e só a usa para seus backups. Nada mais no seu celular.</string>
+    <string name="folder_choose_title">Escolha onde guardar seus backups</string>
+    <string name="folder_choose_body">O Android vai mostrar suas pastas. Escolha uma, como Documents, e toque em Usar esta pasta e Permitir. O Quota Vault cria dentro dela uma pasta \"%1$s\" e salva todos os backups ali.
+
+O Quota Vault só vê essa pasta. Nada mais no seu celular.</string>
+    <string name="restore_confirm_new_title">Restaurar este backup?</string>
+    <string name="restore_confirm_new_body">Backup de %1$s
+Clientes: %2$d · Vendas: %3$d · Compromissos: %4$d · Metas: %5$d</string>
+    <string name="erase_backups_kept">Seus backups em %1$s são mantidos, então você pode restaurá-los quando quiser pela tela de boas-vindas.</string>
+    <string name="erase_no_backup">Você ainda não tem um backup. Depois de apagados, esses dados não podem ser recuperados.</string>
+    <string name="erase_backup_first">Fazer backup antes</string>
+    <string name="welcome_restore">Já usava o Quota Vault? Traga de volta seus clientes, vendas e metas de um backup.</string>
+    <string name="welcome_have_backup">Tem um backup? Restaure</string>
+    <string name="backup_folder_readme">Esta pasta guarda seus backups do Quota Vault.
+
+Cada backup é criptografado com a senha que você escolheu e só pode ser aberto no app Quota Vault. Mantenha esta pasta se reinstalar o app ou trocar de celular: o Quota Vault procura aqui ao restaurar.
+
+O Quota Vault nunca vai pedir que você envie estes arquivos ou sua senha a ninguém. Quem pedir é golpista.</string>
+    <string name="pi_folder_t">Pasta de backups</string>
+    <string name="pi_folder">Os backups são salvos em Documents › Quota Vault Backups sem nenhuma permissão de armazenamento. O Quota Vault só vê os backups que ele criou. Depois de uma reinstalação, só vê os anteriores se você permitir essa pasta.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>
@@ -887,5 +933,10 @@
         <item quantity="one">Marcar a comissão de %1$d venda como paga?</item>
         <item quantity="many">Marcar a comissão de %1$d vendas como paga?</item>
         <item quantity="other">Marcar a comissão de %1$d vendas como paga?</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="one">Excluir também meu backup</item>
+        <item quantity="many">Excluir também meus %1$d backups</item>
+        <item quantity="other">Excluir também meus %1$d backups</item>
     </plurals>
 </resources>

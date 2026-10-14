@@ -22,10 +22,7 @@
     <string name="app_lock_desc">Demande votre empreinte, votre visage ou le code du téléphone à l\'ouverture</string>
     <string name="lock_needs_screen_lock">Configurez d\'abord un verrouillage d\'écran (code, schéma ou empreinte) dans les paramètres du téléphone.</string>
     <string name="settings_backup">Sauvegarde</string>
-    <string name="backup_create">Sauvegarder dans un fichier chiffré</string>
-    <string name="backup_create_desc">Enregistre toutes vos données dans un fichier protégé par mot de passe</string>
     <string name="backup_restore">Restaurer une sauvegarde</string>
-    <string name="backup_restore_desc">Remplace les données de ce téléphone par un fichier de sauvegarde</string>
     <string name="last_backup">Dernière sauvegarde : %1$s</string>
     <string name="never_backed_up">Pas encore sauvegardé</string>
     <string name="locked_title">Quota Vault est verrouillée</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">Les mots de passe ne correspondent pas</string>
     <string name="show_password">Afficher le mot de passe</string>
     <string name="hide_password">Masquer le mot de passe</string>
-    <string name="choose_location">Choisir l\'emplacement</string>
     <string name="backup_working">Chiffrement de vos données…</string>
     <string name="backup_saved">Sauvegarde enregistrée</string>
     <string name="backup_failed">Impossible d\'enregistrer la sauvegarde</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">Effacer toutes les données</string>
     <string name="erase_all_desc">Supprime définitivement tout le contenu de l\'app de ce téléphone</string>
     <string name="erase_confirm_title">Tout effacer ?</string>
-    <string name="erase_confirm_body">Cela supprime définitivement tous les clients, ventes, rendez-vous, objectifs et réglages de ce téléphone, et détruit la clé de chiffrement. C\'est irréversible. Faites d\'abord une sauvegarde si vous pourriez avoir besoin de ces données.</string>
+    <string name="erase_confirm_body">Cela supprime définitivement tous les clients, ventes, rendez-vous, objectifs et réglages de ce téléphone, et détruit la clé de chiffrement. C\'est irréversible.</string>
     <string name="erase_button">Tout effacer</string>
     <string name="erase_done">Toutes les données ont été effacées</string>
     <string name="section_transparency">Transparence</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">Vous devez accepter le Contrat d\'utilisation pour utiliser l\'app.</string>
     <string name="guide_title">Comment sauvegarder vos données</string>
     <string name="guide_intro">Vos données se trouvent uniquement sur ce téléphone. Une sauvegarde est une copie complète et chiffrée qui permet de tout restaurer si le téléphone est perdu, cassé, remplacé ou réinitialisé.</string>
-    <string name="guide_1">Ouvrez Paramètres (la roue dentée en haut à droite) → Sécurité et confidentialité → Sauvegarder dans un fichier chiffré.</string>
+    <string name="guide_1">Ouvrez Paramètres (la roue dentée en haut à droite) → Sécurité et confidentialité → Sauvegarder maintenant.</string>
     <string name="guide_2">Choisissez un mot de passe solide et notez-le en lieu sûr, loin du téléphone. Il est impossible de le récupérer en cas d\'oubli.</string>
-    <string name="guide_3">Choisissez où enregistrer le fichier. Idéalement ailleurs que sur ce téléphone, par exemple Google Drive ou un ordinateur, pour que la sauvegarde survive à la perte du téléphone.</string>
+    <string name="guide_3">La sauvegarde est enregistrée dans Documents › Quota Vault Backups sur ce téléphone, toujours dans le même dossier. Par sécurité, touchez Enregistrer une copie ailleurs pour en garder une aussi sur Google Drive ou un ordinateur, au cas où vous perdriez le téléphone.</string>
     <string name="guide_4">Sauvegardez régulièrement. Chaque sauvegarde est une copie complète : gardez la plus récente. L\'app vous prévient quand votre dernière sauvegarde devient ancienne.</string>
-    <string name="guide_5">Pour restaurer, sur ce téléphone ou un nouveau : installez l\'app, ouvrez Paramètres → Sécurité et confidentialité → Restaurer une sauvegarde, choisissez le fichier et saisissez le mot de passe.</string>
+    <string name="guide_5">Pour restaurer, sur ce téléphone ou un nouveau : ouvrez l\'app et touchez Restaurer une sauvegarde (sur l\'écran d\'accueil, ou Paramètres → Sécurité et confidentialité → Restaurer). Quota Vault trouve vos sauvegardes tout seul. Choisissez-en une et saisissez le mot de passe.</string>
     <string name="guide_tip">Les sauvegardes sont chiffrées en AES-256. Sans le mot de passe, personne ne peut ouvrir le fichier, pas même les créateurs de l\'app.</string>
     <string name="text_settings">Texte</string>
     <string name="text_settings_desc">Style de police et taille du texte</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">Les rapports affichent ce numéro, jamais le nom du client.</string>
     <string name="notif_details_in_app">Ouvrez l’app pour voir les détails</string>
     <string name="screenshots_always_blocked">Les captures d’écran, l’enregistrement et le partage d’écran sont toujours bloqués, et rien ne peut être copié hors de l’app : les informations des clients ne peuvent pas être capturées depuis l’écran.</string>
+    <string name="backup_now">Sauvegarder maintenant</string>
+    <string name="backup_restore_short">Restaurer</string>
+    <string name="backup_encrypt_button">Sauvegarder</string>
+    <string name="backup_saved_to">Vos sauvegardes sont enregistrées dans %1$s sur ce téléphone, toujours au même endroit.</string>
+    <string name="backup_folder_not_set">Lors de votre première sauvegarde, vous choisirez un dossier. Toutes les suivantes iront au même endroit.</string>
+    <string name="backup_list_title">Vos sauvegardes</string>
+    <string name="backup_none_yet">Aucune sauvegarde pour l\'instant.</string>
+    <string name="backup_newest">La plus récente</string>
+    <string name="backup_show_all">Tout afficher (%1$d)</string>
+    <string name="backup_show_less">Afficher moins</string>
+    <string name="backup_cd_delete">Supprimer la sauvegarde du %1$s</string>
+    <string name="backup_delete_title">Supprimer cette sauvegarde ?</string>
+    <string name="backup_delete_body">La sauvegarde du %1$s sera supprimée de %2$s. C\'est irréversible.</string>
+    <string name="backup_deleted">Sauvegarde supprimée</string>
+    <string name="backup_delete_failed">Impossible de supprimer la sauvegarde</string>
+    <string name="backup_saved_where">Enregistrée dans %1$s sur ce téléphone. Quota Vault y regarde automatiquement lors d\'une restauration, et le dossier reste même si l\'app est supprimée.</string>
+    <string name="backup_saved_offphone">Si ce téléphone est perdu, cassé ou réinitialisé, ce dossier disparaît avec lui. Par sécurité, enregistrez aussi une copie sur Google Drive ou un ordinateur.</string>
+    <string name="backup_save_copy">Enregistrer une copie ailleurs</string>
+    <string name="backup_copy_saved">Copie enregistrée</string>
+    <string name="restore_title">Restaurer une sauvegarde</string>
+    <string name="restore_looking">Recherche dans %1$s…</string>
+    <string name="restore_found_in">Trouvées dans %1$s. Touchez une sauvegarde pour la restaurer.</string>
+    <string name="restore_none_found">Aucune sauvegarde dans %1$s pour l\'instant.</string>
+    <string name="restore_find_hint">Vous avez réinstallé l\'app ou changé de téléphone ? Les sauvegardes plus anciennes apparaissent dès que vous ouvrez le dossier.</string>
+    <string name="restore_find_hint_empty">Si vous avez réinstallé l\'app ou changé de téléphone, vos sauvegardes sont toujours dans ce dossier. Ouvrez-le une fois et Quota Vault les affichera.</string>
+    <string name="restore_find_folder">Ouvrir mon dossier de sauvegardes</string>
+    <string name="restore_other_file">Choisir un fichier de sauvegarde ailleurs</string>
+    <string name="folder_find_title">Ouvrez votre dossier de sauvegardes</string>
+    <string name="folder_find_body">Android va afficher %1$s. Touchez Utiliser ce dossier, puis Autoriser.
+
+Quota Vault ne voit que ce dossier, et seulement pour vos sauvegardes. Rien d\'autre sur votre téléphone.</string>
+    <string name="folder_choose_title">Choisissez où ranger vos sauvegardes</string>
+    <string name="folder_choose_body">Android va afficher vos dossiers. Choisissez-en un, par exemple Documents, puis touchez Utiliser ce dossier et Autoriser. Quota Vault y crée un dossier « %1$s » et y enregistre toutes les sauvegardes.
+
+Quota Vault ne voit que ce dossier. Rien d\'autre sur votre téléphone.</string>
+    <string name="restore_confirm_new_title">Restaurer cette sauvegarde ?</string>
+    <string name="restore_confirm_new_body">Sauvegarde du %1$s
+Clients : %2$d · Ventes : %3$d · Rendez-vous : %4$d · Objectifs : %5$d</string>
+    <string name="erase_backups_kept">Vos sauvegardes dans %1$s sont conservées : vous pourrez les restaurer à tout moment depuis l\'écran d\'accueil.</string>
+    <string name="erase_no_backup">Vous n\'avez encore aucune sauvegarde. Une fois effacées, ces données ne pourront pas être récupérées.</string>
+    <string name="erase_backup_first">Sauvegarder d\'abord</string>
+    <string name="welcome_restore">Déjà utilisateur de Quota Vault ? Récupérez vos clients, ventes et objectifs depuis une sauvegarde.</string>
+    <string name="welcome_have_backup">Vous avez une sauvegarde ? Restaurez-la</string>
+    <string name="backup_folder_readme">Ce dossier contient vos sauvegardes Quota Vault.
+
+Chaque sauvegarde est chiffrée avec le mot de passe que vous avez choisi et ne peut être ouverte que dans l\'app Quota Vault. Gardez ce dossier si vous réinstallez l\'app ou changez de téléphone : Quota Vault regarde ici lors d\'une restauration.
+
+Quota Vault ne vous demandera jamais d\'envoyer ces fichiers ou votre mot de passe à qui que ce soit. Toute personne qui le demande est un escroc.</string>
+    <string name="pi_folder_t">Dossier de sauvegardes</string>
+    <string name="pi_folder">Les sauvegardes sont enregistrées dans Documents › Quota Vault Backups sans aucune autorisation de stockage. Quota Vault ne voit que les sauvegardes qu\'il a créées. Après une réinstallation, il ne voit les anciennes que si vous autorisez ce dossier.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>
@@ -887,5 +933,10 @@
         <item quantity="one">Marquer la commission de %1$d vente comme versée ?</item>
         <item quantity="many">Marquer la commission de %1$d ventes comme versée ?</item>
         <item quantity="other">Marquer la commission de %1$d ventes comme versée ?</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="one">Supprimer aussi ma sauvegarde</item>
+        <item quantity="many">Supprimer aussi mes %1$d sauvegardes</item>
+        <item quantity="other">Supprimer aussi mes %1$d sauvegardes</item>
     </plurals>
 </resources>

@@ -22,10 +22,7 @@
     <string name="app_lock_desc">Meminta sidik jari, wajah, atau PIN ponsel saat aplikasi dibuka</string>
     <string name="lock_needs_screen_lock">Atur dulu kunci layar (PIN, pola, atau sidik jari) di pengaturan ponsel.</string>
     <string name="settings_backup">Cadangan</string>
-    <string name="backup_create">Cadangkan ke file terenkripsi</string>
-    <string name="backup_create_desc">Simpan semua data ke file yang dilindungi kata sandi</string>
     <string name="backup_restore">Pulihkan dari cadangan</string>
-    <string name="backup_restore_desc">Ganti data di ponsel ini dengan file cadangan</string>
     <string name="last_backup">Cadangan terakhir: %1$s</string>
     <string name="never_backed_up">Belum pernah dicadangkan</string>
     <string name="locked_title">Quota Vault terkunci</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">Kata sandi tidak cocok</string>
     <string name="show_password">Tampilkan kata sandi</string>
     <string name="hide_password">Sembunyikan kata sandi</string>
-    <string name="choose_location">Pilih lokasi penyimpanan</string>
     <string name="backup_working">Mengenkripsi data Anda…</string>
     <string name="backup_saved">Cadangan disimpan</string>
     <string name="backup_failed">Cadangan tidak dapat disimpan</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">Hapus semua data</string>
     <string name="erase_all_desc">Hapus permanen semua isi aplikasi dari ponsel ini</string>
     <string name="erase_confirm_title">Hapus semuanya?</string>
-    <string name="erase_confirm_body">Ini menghapus permanen semua klien, penjualan, janji temu, target, dan pengaturan di ponsel ini serta menghancurkan kunci enkripsinya. Tidak dapat dibatalkan. Buat cadangan dulu jika Anda mungkin memerlukan data ini.</string>
+    <string name="erase_confirm_body">Ini menghapus permanen semua klien, penjualan, janji temu, target, dan pengaturan di ponsel ini serta menghancurkan kunci enkripsinya. Tidak dapat dibatalkan.</string>
     <string name="erase_button">Hapus semuanya</string>
     <string name="erase_done">Semua data dihapus</string>
     <string name="section_transparency">Transparansi</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">Anda perlu menyetujui Perjanjian Pengguna untuk menggunakan aplikasi.</string>
     <string name="guide_title">Cara mencadangkan data</string>
     <string name="guide_intro">Data Anda hanya ada di ponsel ini. Cadangan adalah salinan lengkap terenkripsi yang memungkinkan Anda memulihkan semuanya jika ponsel hilang, rusak, diganti, atau direset.</string>
-    <string name="guide_1">Buka Pengaturan (roda gigi di kanan atas) → Keamanan dan privasi → Cadangkan ke file terenkripsi.</string>
+    <string name="guide_1">Buka Pengaturan (roda gigi di kanan atas) → Keamanan dan privasi → Cadangkan sekarang.</string>
     <string name="guide_2">Pilih kata sandi yang kuat dan tulis di tempat aman yang terpisah dari ponsel. Jika lupa, tidak dapat dipulihkan.</string>
-    <string name="guide_3">Pilih lokasi penyimpanan file. Lokasi di luar ponsel ini, seperti Google Drive atau komputer, adalah yang terbaik agar cadangan tetap ada meski ponsel hilang.</string>
+    <string name="guide_3">Cadangan disimpan di Documents › Quota Vault Backups di ponsel ini, selalu di folder yang sama. Agar lebih aman, ketuk Simpan salinan di tempat lain untuk menyimpan satu lagi di Google Drive atau komputer, kalau-kalau ponsel hilang.</string>
     <string name="guide_4">Cadangkan secara rutin. Setiap cadangan adalah salinan lengkap; simpan yang terbaru. Aplikasi akan mengingatkan saat cadangan terakhir sudah lama.</string>
-    <string name="guide_5">Untuk memulihkan, di ponsel ini atau ponsel baru: pasang aplikasi, buka Pengaturan → Keamanan dan privasi → Pulihkan dari cadangan, pilih file, dan masukkan kata sandi.</string>
+    <string name="guide_5">Untuk memulihkan, di ponsel ini atau ponsel baru: buka aplikasi dan ketuk Pulihkan dari cadangan (di layar sambutan, atau Pengaturan → Keamanan dan privasi → Pulihkan). Quota Vault menemukan cadangan Anda sendiri. Pilih satu dan masukkan kata sandi.</string>
     <string name="guide_tip">Cadangan dienkripsi dengan AES-256. Tanpa kata sandi, tidak ada yang bisa membuka file, termasuk pembuat aplikasi.</string>
     <string name="text_settings">Teks</string>
     <string name="text_settings_desc">Gaya font dan ukuran teks</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">Laporan menampilkan nomor ini, tidak pernah nama klien.</string>
     <string name="notif_details_in_app">Buka aplikasi untuk detailnya</string>
     <string name="screenshots_always_blocked">Tangkapan layar, perekaman layar, dan berbagi layar selalu diblokir, dan tidak ada yang bisa disalin keluar dari aplikasi, jadi informasi klien tidak bisa diambil dari layar.</string>
+    <string name="backup_now">Cadangkan sekarang</string>
+    <string name="backup_restore_short">Pulihkan</string>
+    <string name="backup_encrypt_button">Cadangkan</string>
+    <string name="backup_saved_to">Cadangan Anda disimpan di %1$s di ponsel ini, selalu di tempat yang sama.</string>
+    <string name="backup_folder_not_set">Saat pertama kali mencadangkan, Anda akan memilih folder. Semua cadangan berikutnya masuk ke tempat yang sama.</string>
+    <string name="backup_list_title">Cadangan Anda</string>
+    <string name="backup_none_yet">Belum ada cadangan.</string>
+    <string name="backup_newest">Terbaru</string>
+    <string name="backup_show_all">Tampilkan semua (%1$d)</string>
+    <string name="backup_show_less">Tampilkan lebih sedikit</string>
+    <string name="backup_cd_delete">Hapus cadangan dari %1$s</string>
+    <string name="backup_delete_title">Hapus cadangan ini?</string>
+    <string name="backup_delete_body">Cadangan dari %1$s akan dihapus dari %2$s. Tidak dapat dibatalkan.</string>
+    <string name="backup_deleted">Cadangan dihapus</string>
+    <string name="backup_delete_failed">Tidak dapat menghapus cadangan</string>
+    <string name="backup_saved_where">Disimpan di %1$s di ponsel ini. Quota Vault otomatis mencari di sana saat memulihkan, dan folder tetap ada meski aplikasi dihapus.</string>
+    <string name="backup_saved_offphone">Jika ponsel hilang, rusak, atau direset, folder itu ikut hilang. Agar lebih aman, simpan juga salinan ke Google Drive atau komputer.</string>
+    <string name="backup_save_copy">Simpan salinan di tempat lain</string>
+    <string name="backup_copy_saved">Salinan disimpan</string>
+    <string name="restore_title">Pulihkan cadangan</string>
+    <string name="restore_looking">Mencari di %1$s…</string>
+    <string name="restore_found_in">Ditemukan di %1$s. Ketuk cadangan untuk memulihkannya.</string>
+    <string name="restore_none_found">Belum ada cadangan di %1$s.</string>
+    <string name="restore_find_hint">Memasang ulang aplikasi atau pindah ke ponsel baru? Cadangan lama muncul setelah Anda membuka foldernya.</string>
+    <string name="restore_find_hint_empty">Jika Anda memasang ulang aplikasi atau pindah ke ponsel baru, cadangan Anda masih ada di folder itu. Buka sekali dan Quota Vault akan menampilkannya.</string>
+    <string name="restore_find_folder">Buka folder cadangan saya</string>
+    <string name="restore_other_file">Pilih file cadangan dari tempat lain</string>
+    <string name="folder_find_title">Buka folder cadangan Anda</string>
+    <string name="folder_find_body">Android akan menampilkan %1$s. Ketuk Gunakan folder ini, lalu Izinkan.
+
+Quota Vault hanya bisa melihat folder itu dan hanya memakainya untuk cadangan Anda. Tidak ada yang lain di ponsel Anda.</string>
+    <string name="folder_choose_title">Pilih tempat untuk cadangan</string>
+    <string name="folder_choose_body">Android akan menampilkan folder Anda. Pilih satu, misalnya Documents, lalu ketuk Gunakan folder ini dan Izinkan. Quota Vault membuat folder \"%1$s\" di dalamnya dan menyimpan setiap cadangan di sana.
+
+Quota Vault hanya bisa melihat folder itu. Tidak ada yang lain di ponsel Anda.</string>
+    <string name="restore_confirm_new_title">Pulihkan cadangan ini?</string>
+    <string name="restore_confirm_new_body">Cadangan dari %1$s
+Klien: %2$d · Penjualan: %3$d · Janji temu: %4$d · Target: %5$d</string>
+    <string name="erase_backups_kept">Cadangan Anda di %1$s tetap disimpan, jadi Anda bisa memulihkannya kapan saja dari layar sambutan.</string>
+    <string name="erase_no_backup">Anda belum punya cadangan. Setelah dihapus, data ini tidak bisa dikembalikan.</string>
+    <string name="erase_backup_first">Cadangkan dulu</string>
+    <string name="welcome_restore">Pernah memakai Quota Vault? Kembalikan klien, penjualan, dan target Anda dari cadangan.</string>
+    <string name="welcome_have_backup">Punya cadangan? Pulihkan</string>
+    <string name="backup_folder_readme">Folder ini berisi cadangan Quota Vault Anda.
+
+Setiap cadangan dienkripsi dengan kata sandi yang Anda pilih dan hanya bisa dibuka di aplikasi Quota Vault. Simpan folder ini jika Anda memasang ulang aplikasi atau pindah ponsel: Quota Vault mencari di sini saat memulihkan.
+
+Quota Vault tidak akan pernah meminta Anda mengirim file ini atau kata sandi Anda kepada siapa pun. Siapa pun yang meminta adalah penipu.</string>
+    <string name="pi_folder_t">Folder cadangan</string>
+    <string name="pi_folder">Cadangan disimpan di Documents › Quota Vault Backups tanpa izin penyimpanan apa pun. Quota Vault hanya melihat cadangan yang dibuatnya. Setelah dipasang ulang, ia hanya melihat cadangan lama jika Anda mengizinkan folder itu.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>
@@ -861,5 +907,8 @@
     </plurals>
     <plurals name="mark_paid_q">
         <item quantity="other">Tandai komisi %1$d penjualan sebagai sudah dibayar?</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="other">Hapus juga %1$d cadangan saya</item>
     </plurals>
 </resources>

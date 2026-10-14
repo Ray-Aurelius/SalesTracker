@@ -124,7 +124,7 @@ internal fun NewPasswordDialog(onCancel: () -> Unit, onConfirm: (String) -> Unit
         },
         confirmButton = {
             TextButton(enabled = longEnough && matches, onClick = { onConfirm(pw) }) {
-                Text(stringResource(R.string.choose_location))
+                Text(stringResource(R.string.backup_encrypt_button))
             }
         },
         dismissButton = { TextButton(onClick = onCancel) { Text(stringResource(R.string.cancel)) } },

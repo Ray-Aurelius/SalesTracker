@@ -207,6 +207,53 @@ class LayoutAudit {
         shotWithPopups("l-scam-security")
     }
 
+    /** Security & privacy scrolled to Backups (where they go, Back up now / Restore) and Your data. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h1400dp-xxhdpi")
+    fun o1_backupPanel() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); loadSampleData() }
+        val vm = AppViewModel(app)
+        rule.setContent {
+            SalesTrackerTheme(palette = vm.palette, dark = false) {
+                val data = com.salestracker.app.data.Repository.readSnapshot(app)
+                com.salestracker.app.ui.screens.SecurityScreen(vm = vm, data = data, startBackup = false, onClose = {})
+            }
+        }
+        rule.waitForIdle()
+        rule.onAllNodes(androidx.compose.ui.test.hasScrollToNodeAction()).onFirst()
+            .performScrollToNode(hasText(app.getString(R.string.backup_now)))
+        rule.waitForIdle(); rule.mainClock.advanceTimeBy(500); rule.waitForIdle()
+        shotWithPopups("o1-backup-panel")
+        // Erase all data: says the backups are kept and offers to back up first.
+        rule.onAllNodes(androidx.compose.ui.test.hasScrollToNodeAction()).onFirst()
+            .performScrollToNode(hasText(app.getString(R.string.erase_all)))
+        rule.onAllNodes(hasText(app.getString(R.string.erase_all))).onFirst().performClick()
+        rule.waitForIdle(); rule.mainClock.advanceTimeBy(500); rule.waitForIdle()
+        shotWithPopups("o2-erase-dialog")
+    }
+
+    /** First run after a reinstall: the welcome screen's "Have a backup?" opens the restore list. */
+    @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
+    fun o3_restoreFromWelcome() {
+        assumeTrue(System.getProperty("storeShots") == "true")
+        val app = ApplicationProvider.getApplicationContext<Application>()
+        AppViewModel(app).acceptAgreement()
+        val vm = AppViewModel(app)
+        rule.setContent {
+            SalesTrackerTheme(palette = vm.palette, dark = false) {
+                androidx.compose.material3.Surface { com.salestracker.app.ui.screens.WelcomeScreen(vm) }
+            }
+        }
+        rule.waitForIdle()
+        rule.onAllNodes(hasText(app.getString(R.string.welcome_have_backup))).onFirst().performClick()
+        rule.waitForIdle(); rule.mainClock.advanceTimeBy(800); rule.waitForIdle()
+        shotWithPopups("o3-restore-from-welcome")
+        rule.onAllNodes(hasText(app.getString(R.string.restore_find_folder))).onFirst().performClick()
+        rule.waitForIdle(); rule.mainClock.advanceTimeBy(500); rule.waitForIdle()
+        shotWithPopups("o4-open-backup-folder")
+    }
+
     /** The backup password dialog, which warns never to send a backup or its password to anyone. */
     @Test @Config(sdk = [34], qualifiers = "w360dp-h640dp-xxhdpi")
     fun m_backupScamWarning() {

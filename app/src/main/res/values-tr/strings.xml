@@ -22,10 +22,7 @@
     <string name="app_lock_desc">Uygulama açılırken parmak izi, yüz veya telefon PIN\'i ister</string>
     <string name="lock_needs_screen_lock">Önce telefon ayarlarından bir ekran kilidi (PIN, desen veya parmak izi) ayarlayın.</string>
     <string name="settings_backup">Yedekleme</string>
-    <string name="backup_create">Şifreli dosyaya yedekle</string>
-    <string name="backup_create_desc">Tüm verilerinizi parola korumalı bir dosyaya kaydedin</string>
     <string name="backup_restore">Yedekten geri yükle</string>
-    <string name="backup_restore_desc">Bu telefondaki verileri bir yedek dosyasıyla değiştirin</string>
     <string name="last_backup">Son yedek: %1$s</string>
     <string name="never_backed_up">Henüz yedeklenmedi</string>
     <string name="locked_title">Quota Vault kilitli</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">Parolalar eşleşmiyor</string>
     <string name="show_password">Parolayı göster</string>
     <string name="hide_password">Parolayı gizle</string>
-    <string name="choose_location">Kaydedileceği yeri seçin</string>
     <string name="backup_working">Verileriniz şifreleniyor…</string>
     <string name="backup_saved">Yedek kaydedildi</string>
     <string name="backup_failed">Yedek kaydedilemedi</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">Tüm verileri sil</string>
     <string name="erase_all_desc">Uygulamadaki her şeyi bu telefondan kalıcı olarak sil</string>
     <string name="erase_confirm_title">Her şey silinsin mi?</string>
-    <string name="erase_confirm_body">Bu işlem bu telefondaki tüm müşterileri, satışları, randevuları, hedefleri ve ayarları kalıcı olarak siler ve şifreleme anahtarını yok eder. Geri alınamaz. Bu verilere ihtiyacınız olabilirse önce yedek alın.</string>
+    <string name="erase_confirm_body">Bu işlem bu telefondaki tüm müşterileri, satışları, randevuları, hedefleri ve ayarları kalıcı olarak siler ve şifreleme anahtarını yok eder. Geri alınamaz.</string>
     <string name="erase_button">Her şeyi sil</string>
     <string name="erase_done">Tüm veriler silindi</string>
     <string name="section_transparency">Şeffaflık</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">Uygulamayı kullanmak için Kullanıcı Sözleşmesini kabul etmeniz gerekir.</string>
     <string name="guide_title">Verilerinizi nasıl yedeklersiniz</string>
     <string name="guide_intro">Verileriniz yalnızca bu telefonda. Yedek, telefon kaybolur, bozulur, değişir veya sıfırlanırsa her şeyi geri yüklemenizi sağlayan eksiksiz, şifreli bir kopyadır.</string>
-    <string name="guide_1">Ayarlar\'ı (sağ üstteki dişli) açın → Güvenlik ve gizlilik → Şifreli dosyaya yedekle.</string>
+    <string name="guide_1">Ayarlar\'ı (sağ üstteki dişli) açın → Güvenlik ve gizlilik → Şimdi yedekle.</string>
     <string name="guide_2">Güçlü bir parola seçin ve telefondan uzak, güvenli bir yere yazın. Unutursanız kurtarılamaz.</string>
-    <string name="guide_3">Dosyanın kaydedileceği yeri seçin. Telefon kaybolsa bile yedeğin kalması için Google Drive veya bir bilgisayar gibi bu telefonun dışında bir yer en iyisidir.</string>
+    <string name="guide_3">Yedek bu telefonda Documents › Quota Vault Backups klasörüne, her seferinde aynı yere kaydedilir. Ekstra güvenlik için Başka yere kopya kaydet\'e dokunarak Google Drive\'da veya bilgisayarda da bir tane tutun; telefon kaybolursa diye.</string>
     <string name="guide_4">Düzenli yedek alın. Her yedek eksiksiz bir kopyadır, en yenisini saklayın. Son yedeğiniz eskidiğinde uygulama size hatırlatır.</string>
-    <string name="guide_5">Geri yüklemek için, bu telefonda veya yeni bir telefonda: uygulamayı kurun, Ayarlar → Güvenlik ve gizlilik → Yedekten geri yükle\'yi açın, dosyayı seçin ve parolayı girin.</string>
+    <string name="guide_5">Geri yüklemek için, bu telefonda veya yeni bir telefonda: uygulamayı açıp Yedekten geri yükle\'ye dokunun (karşılama ekranında veya Ayarlar → Güvenlik ve gizlilik → Geri yükle). Quota Vault yedeklerinizi kendisi bulur. Birini seçip parolayı girin.</string>
     <string name="guide_tip">Yedekler AES-256 ile şifrelenir. Parola olmadan dosyayı uygulamanın yapımcıları dahil kimse açamaz.</string>
     <string name="text_settings">Metin</string>
     <string name="text_settings_desc">Yazı tipi stili ve metin boyutu</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">Raporlarda müşterinin adı değil, bu numara görünür.</string>
     <string name="notif_details_in_app">Ayrıntılar için uygulamayı açın</string>
     <string name="screenshots_always_blocked">Ekran görüntüsü, ekran kaydı ve ekran paylaşımı her zaman engellenir ve uygulamadan hiçbir şey kopyalanamaz; böylece müşteri bilgileri ekrandan alınamaz.</string>
+    <string name="backup_now">Şimdi yedekle</string>
+    <string name="backup_restore_short">Geri yükle</string>
+    <string name="backup_encrypt_button">Yedekle</string>
+    <string name="backup_saved_to">Yedekleriniz bu telefonda %1$s klasörüne, her seferinde aynı yere kaydedilir.</string>
+    <string name="backup_folder_not_set">İlk yedeklemede bir klasör seçeceksiniz. Sonraki tüm yedekler aynı yere gider.</string>
+    <string name="backup_list_title">Yedekleriniz</string>
+    <string name="backup_none_yet">Henüz yedek yok.</string>
+    <string name="backup_newest">En yeni</string>
+    <string name="backup_show_all">Tümünü göster (%1$d)</string>
+    <string name="backup_show_less">Daha az göster</string>
+    <string name="backup_cd_delete">%1$s tarihli yedeği sil</string>
+    <string name="backup_delete_title">Bu yedek silinsin mi?</string>
+    <string name="backup_delete_body">%1$s tarihli yedek %2$s klasöründen silinecek. Geri alınamaz.</string>
+    <string name="backup_deleted">Yedek silindi</string>
+    <string name="backup_delete_failed">Yedek silinemedi</string>
+    <string name="backup_saved_where">Bu telefonda %1$s klasörüne kaydedildi. Quota Vault geri yüklerken otomatik olarak oraya bakar ve uygulama silinse bile klasör kalır.</string>
+    <string name="backup_saved_offphone">Telefon kaybolur, bozulur veya sıfırlanırsa bu klasör de gider. Ekstra güvenlik için bir kopyasını Google Drive\'a veya bilgisayara da kaydedin.</string>
+    <string name="backup_save_copy">Başka yere kopya kaydet</string>
+    <string name="backup_copy_saved">Kopya kaydedildi</string>
+    <string name="restore_title">Yedeği geri yükle</string>
+    <string name="restore_looking">%1$s içinde aranıyor…</string>
+    <string name="restore_found_in">%1$s içinde bulundu. Geri yüklemek için bir yedeğe dokunun.</string>
+    <string name="restore_none_found">%1$s içinde henüz yedek yok.</string>
+    <string name="restore_find_hint">Uygulamayı yeniden mi kurdunuz veya telefon mu değiştirdiniz? Eski yedekler klasörü açtığınızda görünür.</string>
+    <string name="restore_find_hint_empty">Uygulamayı yeniden kurduysanız veya telefon değiştirdiyseniz yedekleriniz hâlâ o klasörde. Bir kez açın, Quota Vault onları listelesin.</string>
+    <string name="restore_find_folder">Yedek klasörümü aç</string>
+    <string name="restore_other_file">Başka bir yerden yedek dosyası seç</string>
+    <string name="folder_find_title">Yedek klasörünüzü açın</string>
+    <string name="folder_find_body">Android %1$s klasörünü gösterecek. Bu klasörü kullan\'a, ardından İzin ver\'e dokunun.
+
+Quota Vault yalnızca o klasörü görebilir ve onu yalnızca yedekleriniz için kullanır. Telefonunuzdaki başka hiçbir şeyi değil.</string>
+    <string name="folder_choose_title">Yedekleriniz için bir yer seçin</string>
+    <string name="folder_choose_body">Android klasörlerinizi gösterecek. Documents gibi birini seçin, sonra Bu klasörü kullan\'a ve İzin ver\'e dokunun. Quota Vault içinde \"%1$s\" klasörü oluşturur ve her yedeği oraya kaydeder.
+
+Quota Vault yalnızca o klasörü görebilir. Telefonunuzdaki başka hiçbir şeyi değil.</string>
+    <string name="restore_confirm_new_title">Bu yedek geri yüklensin mi?</string>
+    <string name="restore_confirm_new_body">%1$s tarihli yedek
+Müşteriler: %2$d · Satışlar: %3$d · Randevular: %4$d · Hedefler: %5$d</string>
+    <string name="erase_backups_kept">%1$s içindeki yedekleriniz korunur; karşılama ekranından istediğiniz zaman geri yükleyebilirsiniz.</string>
+    <string name="erase_no_backup">Henüz yedeğiniz yok. Silindikten sonra bu veriler geri getirilemez.</string>
+    <string name="erase_backup_first">Önce yedekle</string>
+    <string name="welcome_restore">Quota Vault\'u daha önce kullandınız mı? Müşterilerinizi, satışlarınızı ve hedeflerinizi bir yedekten geri getirin.</string>
+    <string name="welcome_have_backup">Yedeğiniz var mı? Geri yükleyin</string>
+    <string name="backup_folder_readme">Bu klasör Quota Vault yedeklerinizi içerir.
+
+Her yedek seçtiğiniz parolayla şifrelenir ve yalnızca Quota Vault uygulamasında açılabilir. Uygulamayı yeniden kurarsanız veya telefon değiştirirseniz bu klasörü saklayın: Quota Vault geri yüklerken buraya bakar.
+
+Quota Vault bu dosyaları veya parolanızı hiç kimseye göndermenizi asla istemez. İsteyen kişi dolandırıcıdır.</string>
+    <string name="pi_folder_t">Yedek klasörü</string>
+    <string name="pi_folder">Yedekler hiçbir depolama izni olmadan Documents › Quota Vault Backups klasörüne kaydedilir. Quota Vault yalnızca kendi oluşturduğu yedekleri görür. Yeniden kurulumdan sonra eskileri yalnızca o klasöre izin verirseniz görür.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>
@@ -874,5 +920,9 @@
     <plurals name="mark_paid_q">
         <item quantity="one">%1$d satışın komisyonu ödendi olarak işaretlensin mi?</item>
         <item quantity="other">%1$d satışın komisyonu ödendi olarak işaretlensin mi?</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="one">Yedeğimi de sil</item>
+        <item quantity="other">%1$d yedeğimi de sil</item>
     </plurals>
 </resources>

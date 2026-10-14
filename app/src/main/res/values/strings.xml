@@ -27,10 +27,7 @@
     <string name="app_lock_desc">Ask for your fingerprint, face or phone PIN when opening the app</string>
     <string name="lock_needs_screen_lock">Set up a screen lock (PIN, pattern or fingerprint) in your phone\'s settings first.</string>
     <string name="settings_backup">Backup</string>
-    <string name="backup_create">Back up to an encrypted file</string>
-    <string name="backup_create_desc">Save all your data in a password-protected file</string>
     <string name="backup_restore">Restore from a backup</string>
-    <string name="backup_restore_desc">Replace the data on this phone with a backup file</string>
     <string name="last_backup">Last backup: %1$s</string>
     <string name="never_backed_up">Not backed up yet</string>
 
@@ -50,7 +47,6 @@
     <string name="passwords_dont_match">Passwords don\'t match</string>
     <string name="show_password">Show password</string>
     <string name="hide_password">Hide password</string>
-    <string name="choose_location">Choose where to save</string>
     <string name="backup_working">Encrypting your data…</string>
     <string name="backup_saved">Backup saved</string>
     <string name="backup_failed">Couldn\'t save the backup</string>
@@ -353,7 +349,7 @@
     <string name="erase_all">Erase all data</string>
     <string name="erase_all_desc">Permanently delete everything in the app from this phone</string>
     <string name="erase_confirm_title">Erase everything?</string>
-    <string name="erase_confirm_body">This permanently deletes all clients, sales, appointments, goals and settings from this phone, and destroys the encryption key. It can\'t be undone. Make a backup first if you might need this data again.</string>
+    <string name="erase_confirm_body">This permanently deletes all clients, sales, appointments, goals and settings from this phone, and destroys the encryption key. It can\'t be undone.</string>
     <string name="erase_button">Erase everything</string>
     <string name="erase_done">All data erased</string>
     <string name="section_transparency">Transparency</string>
@@ -418,11 +414,11 @@
     <!-- How to back up -->
     <string name="guide_title">How to back up your data</string>
     <string name="guide_intro">Your data lives only on this phone. A backup is a complete, encrypted copy you can use to restore everything if the phone is lost, broken, replaced or reset.</string>
-    <string name="guide_1">Open Settings (the gear at the top right) → Security &amp; privacy → Back up to an encrypted file.</string>
+    <string name="guide_1">Open Settings (the gear at the top right) → Security &amp; privacy → Back up now.</string>
     <string name="guide_2">Choose a strong backup password and write it down somewhere safe, away from your phone. It can\'t be recovered if forgotten.</string>
-    <string name="guide_3">Choose where to save the file. Best is somewhere off this phone, such as Google Drive or a computer, so the backup survives if the phone is lost.</string>
+    <string name="guide_3">The backup is saved to Documents › Quota Vault Backups on this phone, the same folder every time. For extra safety, tap Save a copy elsewhere to also keep one on Google Drive or a computer, in case the phone is lost.</string>
     <string name="guide_4">Back up regularly. Each backup is a complete copy, so keep the newest one. The app reminds you when your last backup is getting old.</string>
-    <string name="guide_5">To restore, on this phone or a new one: install the app, open Settings → Security &amp; privacy → Restore from a backup, pick the file and enter the password.</string>
+    <string name="guide_5">To restore, on this phone or a new one: open the app and tap Restore from a backup (on the welcome screen, or Settings → Security &amp; privacy → Restore). Quota Vault finds your backups by itself. Pick one and enter the password.</string>
     <string name="guide_tip">Backups are encrypted with AES-256. Without the password the file can\'t be opened by anyone, including the makers of the app.</string>
 
     <!-- Text: font style and size -->
@@ -957,4 +953,59 @@
     <string name="exp_job_hint">Reports show this number, never the client\'s name.</string>
     <string name="notif_details_in_app">Open the app for details</string>
     <string name="screenshots_always_blocked">Screenshots, screen recording and screen sharing are always blocked, and nothing can be copied out of the app, so client information can\'t be captured from the screen.</string>
+    <!-- Backup folder: Documents › Quota Vault Backups -->
+    <string name="backup_now">Back up now</string>
+    <string name="backup_restore_short">Restore</string>
+    <string name="backup_encrypt_button">Back up</string>
+    <string name="backup_saved_to">Your backups are saved to %1$s on this phone, the same place every time.</string>
+    <string name="backup_folder_not_set">The first time you back up, you\'ll choose a folder. Every backup after that goes to the same place.</string>
+    <string name="backup_list_title">Your backups</string>
+    <string name="backup_none_yet">No backups yet.</string>
+    <string name="backup_newest">Newest</string>
+    <string name="backup_show_all">Show all %1$d</string>
+    <string name="backup_show_less">Show fewer</string>
+    <string name="backup_cd_delete">Delete the backup from %1$s</string>
+    <string name="backup_delete_title">Delete this backup?</string>
+    <string name="backup_delete_body">The backup from %1$s will be deleted from %2$s. This can\'t be undone.</string>
+    <string name="backup_deleted">Backup deleted</string>
+    <string name="backup_delete_failed">Couldn\'t delete the backup</string>
+    <string name="backup_saved_where">Saved to %1$s on this phone. Quota Vault looks there automatically when you restore, and the folder stays even if the app is deleted.</string>
+    <string name="backup_saved_offphone">If this phone is lost, broken or reset, that folder goes with it. For extra safety, also save a copy to Google Drive or a computer.</string>
+    <string name="backup_save_copy">Save a copy elsewhere</string>
+    <string name="backup_copy_saved">Copy saved</string>
+    <string name="restore_title">Restore a backup</string>
+    <string name="restore_looking">Looking in %1$s…</string>
+    <string name="restore_found_in">Found in %1$s. Tap a backup to restore it.</string>
+    <string name="restore_none_found">No backups found in %1$s yet.</string>
+    <string name="restore_find_hint">Reinstalled the app or moved to a new phone? Older backups appear once you open the folder.</string>
+    <string name="restore_find_hint_empty">If you reinstalled the app or moved to a new phone, your backups are still in that folder. Open it once and Quota Vault will list them.</string>
+    <string name="restore_find_folder">Open my backup folder</string>
+    <string name="restore_other_file">Choose a backup file from somewhere else</string>
+    <string name="folder_find_title">Open your backup folder</string>
+    <string name="folder_find_body">Android will show %1$s. Tap Use this folder, then Allow.
+
+Quota Vault can only see that one folder, and only uses it for your backups. Nothing else on your phone.</string>
+    <string name="folder_choose_title">Choose a home for your backups</string>
+    <string name="folder_choose_body">Android will show your folders. Pick one, such as Documents, then tap Use this folder and Allow. Quota Vault makes a \"%1$s\" folder inside it and saves every backup there.
+
+Quota Vault can only see that one folder. Nothing else on your phone.</string>
+    <string name="restore_confirm_new_title">Restore this backup?</string>
+    <string name="restore_confirm_new_body">Backup from %1$s
+Clients: %2$d · Sales: %3$d · Appointments: %4$d · Goals: %5$d</string>
+    <string name="erase_backups_kept">Your backups in %1$s are kept, so you can restore them any time from the welcome screen.</string>
+    <string name="erase_no_backup">You don\'t have a backup yet. Once erased, this data can\'t be brought back.</string>
+    <string name="erase_backup_first">Back up first</string>
+    <string name="welcome_restore">Used Quota Vault before? Bring back your clients, sales and goals from a backup.</string>
+    <string name="welcome_have_backup">Have a backup? Restore it</string>
+    <string name="backup_folder_readme">This folder holds your Quota Vault backups.
+
+Each backup is encrypted with the password you chose and can only be opened in the Quota Vault app. Keep this folder if you reinstall the app or move to a new phone: Quota Vault looks here when you restore.
+
+Quota Vault will never ask you to send these files or your password to anyone. Anyone who asks is a scammer.</string>
+    <string name="pi_folder_t">Backup folder</string>
+    <string name="pi_folder">Backups are saved to Documents › Quota Vault Backups without any storage permission. Quota Vault can only see the backups it made. After a reinstall, it sees older ones only if you allow that one folder.</string>
+    <plurals name="erase_also_backups">
+        <item quantity="one">Also delete my backup</item>
+        <item quantity="other">Also delete my %1$d backups</item>
+    </plurals>
 </resources>

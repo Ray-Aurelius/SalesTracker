@@ -6,8 +6,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
-import android.net.Uri
-import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,18 +27,15 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Backup
 import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Help
 import androidx.compose.material.icons.filled.Policy
-import androidx.compose.material.icons.filled.Restore
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
@@ -57,7 +52,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -68,7 +62,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.salestracker.app.R
 import com.salestracker.app.data.AppData
-import com.salestracker.app.data.Backup
 import com.salestracker.app.data.BackupReminder
 import com.salestracker.app.data.LockDelay
 import com.salestracker.app.data.PrivacyMode
@@ -76,14 +69,10 @@ import com.salestracker.app.data.localizedFormatter
 import com.salestracker.app.security.AppAuth
 import com.salestracker.app.security.findActivity
 import com.salestracker.app.ui.AppViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.time.Instant
-import java.time.LocalDate
 import java.time.ZoneId
 
-private enum class Flow { NONE, BACKUP_PASSWORD, RESTORE_PASSWORD, RESTORE_CONFIRM, WORKING, ERASE_CONFIRM, PRIVACY_INFO, AGREEMENT, GUIDE, CRASH_REPORTS }
+private enum class Flow { NONE, PRIVACY_INFO, AGREEMENT, GUIDE, CRASH_REPORTS }
 
 private fun formatDay(millis: Long) = localizedFormatter("yMMMd").format(Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()))
 
@@ -94,88 +83,11 @@ private fun formatDay(millis: Long) = localizedFormatter("yMMMd").format(Instant
 @Composable
 fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClose: () -> Unit) {
     val context = LocalContext.current
-    val scope = rememberCoroutineScope()
-    var flow by remember { mutableStateOf(if (startBackup) Flow.BACKUP_PASSWORD else Flow.NONE) }
-    var workingText by remember { mutableStateOf("") }
-    var backupPassword by remember { mutableStateOf("") }
-    var restoreUri by remember { mutableStateOf<Uri?>(null) }
-    var restoreError by remember { mutableStateOf<String?>(null) }
-    var restored by remember { mutableStateOf<Backup.Contents?>(null) }
+    var flow by remember { mutableStateOf(Flow.NONE) }
+    val backups = rememberBackupController()
     var lockMessage by remember { mutableStateOf<String?>(null) }
 
     BackHandler(onBack = onClose)
-    fun toast(id: Int) = Toast.makeText(context, context.getString(id), Toast.LENGTH_SHORT).show()
-
-    /** Ask for fingerprint / PIN before sensitive changes; skipped only if the phone has no screen lock at all. */
-    fun confirmOwner(onOk: () -> Unit) {
-        val activity = context.findActivity()
-        if (activity == null || !AppAuth.isAvailable(context)) onOk()
-        else AppAuth.authenticate(activity, onSuccess = onOk, onStart = vm::beginAuth, onEnd = vm::endAuth)
-    }
-
-    // ---- Back up: password → choose where to save → encrypt and write ----
-    val saveLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/octet-stream")) { uri ->
-        if (uri == null) {
-            backupPassword = ""
-            flow = Flow.NONE
-            return@rememberLauncherForActivityResult
-        }
-        workingText = context.getString(R.string.backup_working)
-        flow = Flow.WORKING
-        val password = backupPassword.toCharArray()
-        backupPassword = ""
-        scope.launch {
-            val ok = try {
-                val bytes = withContext(Dispatchers.Default) { Backup.encrypt(data, password) }
-                withContext(Dispatchers.IO) {
-                    context.contentResolver.openOutputStream(uri, "wt")?.use { it.write(bytes) } ?: error("no stream")
-                }
-                true
-            } catch (e: Exception) {
-                false
-            } finally {
-                password.fill(' ')
-            }
-            if (ok) vm.markBackedUp()
-            toast(if (ok) R.string.backup_saved else R.string.backup_failed)
-            flow = Flow.NONE
-        }
-    }
-
-    // ---- Restore: choose file → password → confirm → replace ----
-    val openLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
-        if (uri == null) {
-            flow = Flow.NONE
-        } else {
-            restoreUri = uri
-            restoreError = null
-            flow = Flow.RESTORE_PASSWORD
-        }
-    }
-
-    fun tryRestore(password: String) {
-        val uri = restoreUri ?: return
-        workingText = context.getString(R.string.restore_working)
-        flow = Flow.WORKING
-        val pw = password.toCharArray()
-        scope.launch {
-            try {
-                val bytes = withContext(Dispatchers.IO) {
-                    context.contentResolver.openInputStream(uri)?.use { it.readBytes() } ?: error("no stream")
-                }
-                restored = withContext(Dispatchers.Default) { Backup.decrypt(bytes, pw) }
-                flow = Flow.RESTORE_CONFIRM
-            } catch (e: Backup.WrongPasswordException) {
-                restoreError = context.getString(R.string.restore_wrong_password)
-                flow = Flow.RESTORE_PASSWORD
-            } catch (e: Exception) {
-                restoreError = context.getString(R.string.restore_not_backup)
-                flow = Flow.RESTORE_PASSWORD
-            } finally {
-                pw.fill(' ')
-            }
-        }
-    }
 
     Scaffold(
         topBar = {
@@ -324,13 +236,7 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
             // ---- Backups ----
             item { Section(stringResource(R.string.settings_backup)) }
             item {
-                SettingRow(Icons.Filled.Backup, stringResource(R.string.backup_create), stringResource(R.string.backup_create_desc)) {
-                    flow = Flow.BACKUP_PASSWORD
-                }
-                SettingRow(Icons.Filled.Restore, stringResource(R.string.backup_restore), stringResource(R.string.backup_restore_desc)) {
-                    vm.openedOwnScreen = true
-                    openLauncher.launch(arrayOf("*/*"))
-                }
+                BackupPanel(vm, backups)
                 SettingRow(Icons.Filled.Help, stringResource(R.string.backup_guide), stringResource(R.string.guide_title)) {
                     flow = Flow.GUIDE
                 }
@@ -351,7 +257,7 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                     modifier = Modifier.padding(vertical = 4.dp),
                 )
                 SettingRow(Icons.Filled.DeleteForever, stringResource(R.string.erase_all), stringResource(R.string.erase_all_desc), danger = true) {
-                    flow = Flow.ERASE_CONFIRM
+                    backups.erase()
                 }
             }
 
@@ -374,79 +280,16 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
 
     when (flow) {
         Flow.NONE -> Unit
-        Flow.BACKUP_PASSWORD -> NewPasswordDialog(
-            onCancel = { flow = Flow.NONE },
-            onConfirm = { pw ->
-                backupPassword = pw
-                vm.openedOwnScreen = true
-                saveLauncher.launch("QuotaVault-backup-${LocalDate.now()}.stbackup")
-            },
-        )
-        Flow.RESTORE_PASSWORD -> EnterPasswordDialog(error = restoreError, onCancel = { flow = Flow.NONE }, onConfirm = ::tryRestore)
-        Flow.RESTORE_CONFIRM -> restored?.let { r ->
-            val created = if (r.createdAt > 0) {
-                localizedFormatter("yMMMdjmm").format(Instant.ofEpochMilli(r.createdAt).atZone(ZoneId.systemDefault()))
-            } else "?"
-            AlertDialog(
-                onDismissRequest = { flow = Flow.NONE },
-                title = { Text(stringResource(R.string.restore_confirm_title)) },
-                text = {
-                    Text(
-                        stringResource(
-                            R.string.restore_confirm_body, created,
-                            r.data.clients.size, r.data.sales.size, r.data.appointments.size, r.data.goals.size,
-                        )
-                    )
-                },
-                confirmButton = {
-                    TextButton(onClick = {
-                        confirmOwner {
-                            vm.replaceAllData(r.data)
-                            restored = null
-                            toast(R.string.restore_done)
-                            flow = Flow.NONE
-                        }
-                    }) { Text(stringResource(R.string.restore_replace), color = MaterialTheme.colorScheme.error) }
-                },
-                dismissButton = { TextButton(onClick = { restored = null; flow = Flow.NONE }) { Text(stringResource(R.string.cancel)) } },
-            )
-        }
-        Flow.WORKING -> AlertDialog(
-            onDismissRequest = {},
-            text = {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    CircularProgressIndicator(Modifier.size(28.dp))
-                    Spacer(Modifier.width(16.dp))
-                    Text(workingText)
-                }
-            },
-            confirmButton = {},
-        )
-        Flow.ERASE_CONFIRM -> AlertDialog(
-            onDismissRequest = { flow = Flow.NONE },
-            icon = { Icon(Icons.Filled.Warning, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
-            title = { Text(stringResource(R.string.erase_confirm_title)) },
-            text = { Text(stringResource(R.string.erase_confirm_body)) },
-            confirmButton = {
-                TextButton(onClick = {
-                    confirmOwner {
-                        vm.eraseEverything()
-                        toast(R.string.erase_done)
-                        flow = Flow.NONE
-                        onClose()
-                    }
-                }) { Text(stringResource(R.string.erase_button), color = MaterialTheme.colorScheme.error) }
-            },
-            dismissButton = { TextButton(onClick = { flow = Flow.NONE }) { Text(stringResource(R.string.cancel)) } },
-        )
         Flow.PRIVACY_INFO -> PrivacyInfoDialog(encrypted = vm.encryptedAtRest, onDismiss = { flow = Flow.NONE })
         Flow.AGREEMENT -> InfoDialog(stringResource(R.string.agreement_title), onDismiss = { flow = Flow.NONE }) { AgreementText() }
         Flow.CRASH_REPORTS -> CrashReportsDialog(openNewest = false, onDismiss = { flow = Flow.NONE })
         Flow.GUIDE -> InfoDialog(stringResource(R.string.guide_title), onDismiss = { flow = Flow.NONE }) { BackupGuideText() }
     }
 
+    BackupDialogs(vm, data, backups, onErased = onClose)
+
     // Opened from the "Back up now" reminder: go straight to choosing a password.
-    LaunchedEffect(startBackup) { if (startBackup) flow = Flow.BACKUP_PASSWORD }
+    LaunchedEffect(startBackup) { if (startBackup) backups.backUp() }
 }
 
 @Composable
@@ -509,6 +352,7 @@ private fun PrivacyInfoDialog(encrypted: Boolean, onDismiss: () -> Unit) {
         InfoBlock(R.string.pi_nothing_t, R.string.pi_nothing)
         InfoBlock(R.string.pi_encrypted_t, if (encrypted) R.string.pi_encrypted else R.string.sec_status_not_encrypted)
         InfoBlock(R.string.pi_nobackup_t, R.string.pi_nobackup)
+        InfoBlock(R.string.pi_folder_t, R.string.pi_folder)
         Text(stringResource(R.string.pi_permissions_t), style = MaterialTheme.typography.titleSmall)
         listOf(R.string.perm_notifications, R.string.perm_alarms, R.string.perm_boot, R.string.perm_biometric).forEach {
             Text("• " + stringResource(it), style = MaterialTheme.typography.bodyMedium)

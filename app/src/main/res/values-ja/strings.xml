@@ -22,10 +22,7 @@
     <string name="app_lock_desc">アプリを開くときに指紋・顔・端末の PIN を求めます</string>
     <string name="lock_needs_screen_lock">先に端末の設定で画面ロック（PIN、パターン、指紋）を設定してください。</string>
     <string name="settings_backup">バックアップ</string>
-    <string name="backup_create">暗号化ファイルにバックアップ</string>
-    <string name="backup_create_desc">すべてのデータをパスワード付きファイルに保存</string>
     <string name="backup_restore">バックアップから復元</string>
-    <string name="backup_restore_desc">この端末のデータをバックアップファイルの内容で置き換えます</string>
     <string name="last_backup">前回のバックアップ：%1$s</string>
     <string name="never_backed_up">まだバックアップしていません</string>
     <string name="locked_title">Quota Vault はロック中です</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">パスワードが一致しません</string>
     <string name="show_password">パスワードを表示</string>
     <string name="hide_password">パスワードを隠す</string>
-    <string name="choose_location">保存先を選ぶ</string>
     <string name="backup_working">データを暗号化しています…</string>
     <string name="backup_saved">バックアップを保存しました</string>
     <string name="backup_failed">バックアップを保存できませんでした</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">すべてのデータを消去</string>
     <string name="erase_all_desc">アプリ内のすべてをこの端末から完全に削除します</string>
     <string name="erase_confirm_title">すべて消去しますか？</string>
-    <string name="erase_confirm_body">この端末からすべての顧客・販売・予定・目標・設定を完全に削除し、暗号化の鍵を破棄します。元に戻せません。後で必要になりそうなら先にバックアップしてください。</string>
+    <string name="erase_confirm_body">この端末からすべての顧客・販売・予定・目標・設定を完全に削除し、暗号化の鍵を破棄します。元に戻せません。</string>
     <string name="erase_button">すべて消去</string>
     <string name="erase_done">すべてのデータを消去しました</string>
     <string name="section_transparency">透明性</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">アプリを使うには利用規約への同意が必要です。</string>
     <string name="guide_title">データのバックアップ方法</string>
     <string name="guide_intro">データはこの端末にしかありません。バックアップは完全な暗号化コピーで、端末の紛失・故障・買い替え・初期化のときにすべてを復元できます。</string>
-    <string name="guide_1">設定（右上の歯車）→ セキュリティとプライバシー → 暗号化ファイルにバックアップ を開きます。</string>
+    <string name="guide_1">設定（右上の歯車）→ セキュリティとプライバシー → 今すぐバックアップ を開きます。</string>
     <string name="guide_2">強いパスワードを決め、端末から離れた安全な場所に書き留めてください。忘れると復元できません。</string>
-    <string name="guide_3">ファイルの保存先を選びます。端末を紛失してもバックアップが残るよう、Google ドライブやパソコンなど端末以外の場所がおすすめです。</string>
+    <string name="guide_3">バックアップはこの端末の Documents › Quota Vault Backups に保存されます。いつも同じフォルダです。念のため「別の場所にコピーを保存」で Google ドライブやパソコンにも保存しておくと、端末をなくしても安心です。</string>
     <string name="guide_4">定期的にバックアップしましょう。各バックアップは完全なコピーなので、最新のものを保管してください。前回のバックアップが古くなるとアプリがお知らせします。</string>
-    <string name="guide_5">復元するには（この端末でも新しい端末でも）：アプリをインストールし、設定 → セキュリティとプライバシー → バックアップから復元 を開き、ファイルを選んでパスワードを入力します。</string>
+    <string name="guide_5">復元するには（この端末でも新しい端末でも）：アプリを開き「バックアップから復元」をタップします（ようこそ画面、または設定 → セキュリティとプライバシー → 復元）。Quota Vault がバックアップを自動で見つけます。1つ選んでパスワードを入力してください。</string>
     <string name="guide_tip">バックアップは AES-256 で暗号化されます。パスワードがなければ、アプリの開発者を含め誰もファイルを開けません。</string>
     <string name="text_settings">文字</string>
     <string name="text_settings_desc">フォントと文字サイズ</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">レポートにはこの番号が表示され、顧客名は表示されません。</string>
     <string name="notif_details_in_app">詳細はアプリで確認してください</string>
     <string name="screenshots_always_blocked">スクリーンショット、画面録画、画面共有は常にブロックされ、アプリから何もコピーできないため、顧客情報を画面から取得することはできません。</string>
+    <string name="backup_now">今すぐバックアップ</string>
+    <string name="backup_restore_short">復元</string>
+    <string name="backup_encrypt_button">バックアップ</string>
+    <string name="backup_saved_to">バックアップはこの端末の %1$s に保存されます。いつも同じ場所です。</string>
+    <string name="backup_folder_not_set">初回のバックアップ時にフォルダを選びます。以降のバックアップはすべて同じ場所に保存されます。</string>
+    <string name="backup_list_title">バックアップ一覧</string>
+    <string name="backup_none_yet">まだバックアップはありません。</string>
+    <string name="backup_newest">最新</string>
+    <string name="backup_show_all">すべて表示（%1$d）</string>
+    <string name="backup_show_less">表示を減らす</string>
+    <string name="backup_cd_delete">%1$s のバックアップを削除</string>
+    <string name="backup_delete_title">このバックアップを削除しますか？</string>
+    <string name="backup_delete_body">%1$s のバックアップが %2$s から削除されます。元に戻せません。</string>
+    <string name="backup_deleted">バックアップを削除しました</string>
+    <string name="backup_delete_failed">バックアップを削除できませんでした</string>
+    <string name="backup_saved_where">この端末の %1$s に保存しました。復元時は Quota Vault が自動でここを探します。アプリを削除してもフォルダは残ります。</string>
+    <string name="backup_saved_offphone">端末の紛失・故障・初期化のときは、このフォルダも失われます。念のため Google ドライブやパソコンにもコピーを保存してください。</string>
+    <string name="backup_save_copy">別の場所にコピーを保存</string>
+    <string name="backup_copy_saved">コピーを保存しました</string>
+    <string name="restore_title">バックアップを復元</string>
+    <string name="restore_looking">%1$s を探しています…</string>
+    <string name="restore_found_in">%1$s で見つかりました。復元するバックアップをタップしてください。</string>
+    <string name="restore_none_found">%1$s にはまだバックアップがありません。</string>
+    <string name="restore_find_hint">アプリを入れ直した、または機種変更した場合は、フォルダを開くと以前のバックアップが表示されます。</string>
+    <string name="restore_find_hint_empty">アプリを入れ直した、または機種変更した場合も、バックアップはそのフォルダに残っています。一度開けば Quota Vault が一覧表示します。</string>
+    <string name="restore_find_folder">バックアップフォルダを開く</string>
+    <string name="restore_other_file">別の場所のバックアップファイルを選ぶ</string>
+    <string name="folder_find_title">バックアップフォルダを開く</string>
+    <string name="folder_find_body">Android に %1$s が表示されます。「このフォルダを使用」をタップし、「許可」をタップしてください。
+
+Quota Vault が見られるのはこのフォルダだけで、バックアップにしか使いません。端末のほかのものには触れません。</string>
+    <string name="folder_choose_title">バックアップの保存先を選ぶ</string>
+    <string name="folder_choose_body">Android にフォルダが表示されます。Documents などを選び、「このフォルダを使用」と「許可」をタップしてください。Quota Vault がその中に「%1$s」フォルダを作り、すべてのバックアップをそこに保存します。
+
+Quota Vault が見られるのはこのフォルダだけです。端末のほかのものには触れません。</string>
+    <string name="restore_confirm_new_title">このバックアップを復元しますか？</string>
+    <string name="restore_confirm_new_body">バックアップ日時：%1$s
+顧客：%2$d · 販売：%3$d · 予定：%4$d · 目標：%5$d</string>
+    <string name="erase_backups_kept">%1$s のバックアップは残るので、ようこそ画面からいつでも復元できます。</string>
+    <string name="erase_no_backup">まだバックアップがありません。消去すると、このデータは元に戻せません。</string>
+    <string name="erase_backup_first">先にバックアップ</string>
+    <string name="welcome_restore">以前 Quota Vault を使っていましたか？バックアップから顧客・販売・目標を戻せます。</string>
+    <string name="welcome_have_backup">バックアップをお持ちですか？復元する</string>
+    <string name="backup_folder_readme">このフォルダには Quota Vault のバックアップが入っています。
+
+各バックアップは設定したパスワードで暗号化され、Quota Vault アプリでしか開けません。アプリを入れ直すときや機種変更のときは、このフォルダを残してください。復元時に Quota Vault がここを探します。
+
+Quota Vault がこれらのファイルやパスワードを誰かに送るよう求めることは決してありません。求めてくる人は詐欺師です。</string>
+    <string name="pi_folder_t">バックアップフォルダ</string>
+    <string name="pi_folder">バックアップはストレージの権限なしで Documents › Quota Vault Backups に保存されます。Quota Vault が見られるのは自分で作ったバックアップだけです。入れ直した後は、そのフォルダを許可した場合にのみ以前のバックアップが見えます。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>
@@ -861,5 +907,8 @@
     </plurals>
     <plurals name="mark_paid_q">
         <item quantity="other">%1$d 件の販売のコミッションを支払い済みにしますか？</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="other">%1$d 件のバックアップも削除する</item>
     </plurals>
 </resources>

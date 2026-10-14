@@ -361,23 +361,32 @@ def main(apk):
     tap(r"^Settings$", "settings", wait=1.5)
     tap(r"^Security & privacy$", "security", wait=2)
 
-    section("Encrypted backup")
-    if not tap(r"^Back up to an encrypted file$", "backup-password", wait=2, scroll=4):
-        fail("could not reach the backup button")
+    section("Encrypted backup: saved to Documents/Quota Vault Backups with no file picker")
+    folder = "'/sdcard/Documents/Quota Vault Backups/'"
+    files = adb("shell", f"ls -l {folder}")
+    note("  backup folder at first run: " + " | ".join(files.splitlines()))
+    if "About this folder" not in files:
+        fail("the backup folder was not made when the app was first set up")
+    if not tap(r"^Back up now$", "backup-password", wait=2, scroll=4):
+        fail("could not reach the Back up now button")
     else:
         tap(r"^Password$", wait=0.8)
         type_text("SmokeTest2026x")
         tap(r"^Confirm password$", wait=0.8)
         type_text("SmokeTest2026x")
         hide_keyboard()
-        tap(r"^Choose where to save$", wait=2)
-        save_in_picker("backup")
-        time.sleep(5)
-        shot("backup-done")
-        files = adb("shell", "ls", "-l", "/sdcard/Download/")
-        note("  Downloads: " + " | ".join(l for l in files.splitlines() if "backup" in l.lower()))
-        if "stbackup" not in files:
-            fail("the encrypted backup was not created")
+        tap(r"^Back up$", wait=6)
+        shot("backup-saved")
+        if not find(r"^Backup saved$"):
+            fail("no 'Backup saved' message after backing up")
+        files = adb("shell", f"ls -l {folder}")
+        note("  backup folder: " + " | ".join(l for l in files.splitlines() if "stbackup" in l))
+        if not re.search(r"QuotaVault-backup-.*\.stbackup", files):
+            fail("the encrypted backup is not in Documents/Quota Vault Backups")
+        tap(r"^Done$", wait=1.5)
+        shot("backup-listed")
+        if not find(r"^Newest$"):
+            fail("the new backup is not listed under Your backups")
 
     section("Crash reports and privacy info")
     tap(r"^Crash reports$", "crash-reports", wait=1.5, scroll=6)
@@ -518,6 +527,40 @@ def main(apk):
     tap(r"^Clients$", "clients-after-restart", wait=2)
     if not find(r"Alex Morgan"):
         fail("saved data did not load after restart")
+
+    section("Erase everything, then restore the backup from the welcome screen")
+    tap(r"^Settings$", wait=1.5)
+    tap(r"^Security & privacy$", wait=2)
+    if not tap(r"^Erase all data$", "erase-dialog", wait=2, scroll=10):
+        fail("could not reach Erase all data")
+    if not find(r"are kept"):
+        fail("the erase dialog doesn't say the backups are kept")
+    tap(r"^Erase everything$", wait=4)
+    shot("after-erase")
+    if crashed():
+        fail("crash while erasing")
+    tap(r"I have read and agree", scroll=6)
+    tap(r"^I agree$", wait=2)
+    if not tap(r"^Have a backup\? Restore it$", "restore-list", wait=3):
+        fail("no restore option on the welcome screen")
+    if not find(r"^Newest$"):
+        fail("the restore list didn't find the backup in the backup folder by itself")
+    tap(r"^Newest$", wait=1.5)
+    tap(r"^Password$", wait=0.8)
+    type_text("SmokeTest2026x")
+    hide_keyboard()
+    tap(r"^Open$", wait=6)
+    shot("restore-confirm")
+    if not find(r"^Restore this backup\?$"):
+        fail("the backup didn't open with its password")
+    tap(r"^Restore$", wait=4)
+    shot("restored")
+    if crashed():
+        fail("crash while restoring")
+    tap(r"^Clients$", "clients-after-restore", wait=2)
+    for name in ["Alex Morgan", "Riley Quinn", "Jordan Ellis"]:
+        if not find(name):
+            fail(f"{name} is missing after restoring the backup")
 
     if crashed():
         fail("crash")

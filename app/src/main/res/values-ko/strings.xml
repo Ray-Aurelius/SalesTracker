@@ -22,10 +22,7 @@
     <string name="app_lock_desc">앱을 열 때 지문, 얼굴 또는 휴대폰 PIN을 요청합니다</string>
     <string name="lock_needs_screen_lock">먼저 휴대폰 설정에서 화면 잠금(PIN, 패턴 또는 지문)을 설정하세요.</string>
     <string name="settings_backup">백업</string>
-    <string name="backup_create">암호화된 파일로 백업</string>
-    <string name="backup_create_desc">모든 데이터를 비밀번호로 보호된 파일에 저장</string>
     <string name="backup_restore">백업에서 복원</string>
-    <string name="backup_restore_desc">이 휴대폰의 데이터를 백업 파일로 바꿉니다</string>
     <string name="last_backup">마지막 백업: %1$s</string>
     <string name="never_backed_up">아직 백업하지 않음</string>
     <string name="locked_title">Quota Vault가 잠겨 있습니다</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">비밀번호가 일치하지 않습니다</string>
     <string name="show_password">비밀번호 표시</string>
     <string name="hide_password">비밀번호 숨기기</string>
-    <string name="choose_location">저장 위치 선택</string>
     <string name="backup_working">데이터를 암호화하는 중…</string>
     <string name="backup_saved">백업이 저장되었습니다</string>
     <string name="backup_failed">백업을 저장할 수 없습니다</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">모든 데이터 지우기</string>
     <string name="erase_all_desc">이 휴대폰에서 앱의 모든 내용을 영구 삭제합니다</string>
     <string name="erase_confirm_title">모두 지울까요?</string>
-    <string name="erase_confirm_body">이 휴대폰에서 모든 고객, 판매, 일정, 목표, 설정이 영구 삭제되고 암호화 키가 폐기됩니다. 되돌릴 수 없습니다. 나중에 필요할 수 있다면 먼저 백업하세요.</string>
+    <string name="erase_confirm_body">이 휴대폰에서 모든 고객, 판매, 일정, 목표, 설정이 영구 삭제되고 암호화 키가 폐기됩니다. 되돌릴 수 없습니다.</string>
     <string name="erase_button">모두 지우기</string>
     <string name="erase_done">모든 데이터가 지워졌습니다</string>
     <string name="section_transparency">투명성</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">앱을 사용하려면 사용자 계약에 동의해야 합니다.</string>
     <string name="guide_title">데이터 백업 방법</string>
     <string name="guide_intro">데이터는 이 휴대폰에만 있습니다. 백업은 휴대폰을 잃어버리거나 고장 나거나 교체하거나 초기화할 때 모든 것을 복원할 수 있는 완전한 암호화 사본입니다.</string>
-    <string name="guide_1">설정(오른쪽 위 톱니바퀴) → 보안 및 개인정보 → 암호화된 파일로 백업을 엽니다.</string>
+    <string name="guide_1">설정(오른쪽 위 톱니바퀴) → 보안 및 개인정보 → 지금 백업을 엽니다.</string>
     <string name="guide_2">강력한 비밀번호를 정하고 휴대폰과 떨어진 안전한 곳에 적어 두세요. 잊어버리면 복구할 수 없습니다.</string>
-    <string name="guide_3">파일을 저장할 위치를 고르세요. 휴대폰을 잃어버려도 백업이 남도록 Google 드라이브나 컴퓨터처럼 이 휴대폰 밖이 가장 좋습니다.</string>
+    <string name="guide_3">백업은 이 휴대폰의 Documents › Quota Vault Backups에 저장됩니다. 항상 같은 폴더입니다. 더 안전하게 하려면 다른 곳에 사본 저장을 탭해 Google 드라이브나 컴퓨터에도 하나 보관하세요. 휴대폰을 잃어버릴 때를 대비해서요.</string>
     <string name="guide_4">정기적으로 백업하세요. 각 백업은 완전한 사본이므로 최신 것을 보관하면 됩니다. 마지막 백업이 오래되면 앱이 알려 줍니다.</string>
-    <string name="guide_5">복원하려면(이 휴대폰 또는 새 휴대폰에서): 앱을 설치하고 설정 → 보안 및 개인정보 → 백업에서 복원을 열어 파일을 선택하고 비밀번호를 입력합니다.</string>
+    <string name="guide_5">복원하려면(이 휴대폰 또는 새 휴대폰에서): 앱을 열고 백업에서 복원을 탭합니다(시작 화면 또는 설정 → 보안 및 개인정보 → 복원). Quota Vault가 백업을 알아서 찾습니다. 하나를 골라 비밀번호를 입력하세요.</string>
     <string name="guide_tip">백업은 AES-256으로 암호화됩니다. 비밀번호 없이는 앱 제작자를 포함해 누구도 파일을 열 수 없습니다.</string>
     <string name="text_settings">텍스트</string>
     <string name="text_settings_desc">글꼴 스타일과 텍스트 크기</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">보고서에는 고객 이름이 아닌 이 번호가 표시됩니다.</string>
     <string name="notif_details_in_app">자세한 내용은 앱에서 확인하세요</string>
     <string name="screenshots_always_blocked">스크린샷, 화면 녹화, 화면 공유는 항상 차단되며 앱에서 아무것도 복사할 수 없으므로 화면에서 고객 정보를 가져갈 수 없습니다.</string>
+    <string name="backup_now">지금 백업</string>
+    <string name="backup_restore_short">복원</string>
+    <string name="backup_encrypt_button">백업</string>
+    <string name="backup_saved_to">백업은 이 휴대폰의 %1$s에 저장됩니다. 항상 같은 곳입니다.</string>
+    <string name="backup_folder_not_set">처음 백업할 때 폴더를 고릅니다. 이후 모든 백업은 같은 곳에 저장됩니다.</string>
+    <string name="backup_list_title">내 백업</string>
+    <string name="backup_none_yet">아직 백업이 없습니다.</string>
+    <string name="backup_newest">최신</string>
+    <string name="backup_show_all">모두 보기(%1$d)</string>
+    <string name="backup_show_less">간단히 보기</string>
+    <string name="backup_cd_delete">%1$s 백업 삭제</string>
+    <string name="backup_delete_title">이 백업을 삭제할까요?</string>
+    <string name="backup_delete_body">%1$s 백업이 %2$s에서 삭제됩니다. 되돌릴 수 없습니다.</string>
+    <string name="backup_deleted">백업을 삭제했습니다</string>
+    <string name="backup_delete_failed">백업을 삭제할 수 없습니다</string>
+    <string name="backup_saved_where">이 휴대폰의 %1$s에 저장했습니다. 복원할 때 Quota Vault가 자동으로 여기서 찾으며, 앱을 삭제해도 폴더는 남습니다.</string>
+    <string name="backup_saved_offphone">휴대폰을 잃어버리거나 고장 나거나 초기화하면 이 폴더도 함께 사라집니다. 더 안전하게 Google 드라이브나 컴퓨터에도 사본을 저장하세요.</string>
+    <string name="backup_save_copy">다른 곳에 사본 저장</string>
+    <string name="backup_copy_saved">사본을 저장했습니다</string>
+    <string name="restore_title">백업 복원</string>
+    <string name="restore_looking">%1$s에서 찾는 중…</string>
+    <string name="restore_found_in">%1$s에서 찾았습니다. 복원할 백업을 탭하세요.</string>
+    <string name="restore_none_found">%1$s에 아직 백업이 없습니다.</string>
+    <string name="restore_find_hint">앱을 다시 설치했거나 새 휴대폰으로 옮겼나요? 폴더를 열면 이전 백업이 나타납니다.</string>
+    <string name="restore_find_hint_empty">앱을 다시 설치했거나 새 휴대폰으로 옮겼다면 백업은 그 폴더에 그대로 있습니다. 한 번 열면 Quota Vault가 목록을 보여 줍니다.</string>
+    <string name="restore_find_folder">내 백업 폴더 열기</string>
+    <string name="restore_other_file">다른 곳에서 백업 파일 선택</string>
+    <string name="folder_find_title">백업 폴더 열기</string>
+    <string name="folder_find_body">Android에 %1$s이(가) 표시됩니다. 이 폴더 사용을 탭한 다음 허용을 탭하세요.
+
+Quota Vault는 그 폴더 하나만 볼 수 있고 백업에만 사용합니다. 휴대폰의 다른 것은 보지 않습니다.</string>
+    <string name="folder_choose_title">백업 저장 위치 선택</string>
+    <string name="folder_choose_body">Android에 폴더가 표시됩니다. Documents 같은 폴더를 고른 뒤 이 폴더 사용과 허용을 탭하세요. Quota Vault가 그 안에 \"%1$s\" 폴더를 만들고 모든 백업을 저장합니다.
+
+Quota Vault는 그 폴더 하나만 볼 수 있습니다. 휴대폰의 다른 것은 보지 않습니다.</string>
+    <string name="restore_confirm_new_title">이 백업을 복원할까요?</string>
+    <string name="restore_confirm_new_body">%1$s 백업
+고객: %2$d · 판매: %3$d · 일정: %4$d · 목표: %5$d</string>
+    <string name="erase_backups_kept">%1$s의 백업은 그대로 남으므로 시작 화면에서 언제든 복원할 수 있습니다.</string>
+    <string name="erase_no_backup">아직 백업이 없습니다. 지우면 이 데이터는 되돌릴 수 없습니다.</string>
+    <string name="erase_backup_first">먼저 백업</string>
+    <string name="welcome_restore">전에 Quota Vault를 쓰셨나요? 백업에서 고객, 판매, 목표를 되살리세요.</string>
+    <string name="welcome_have_backup">백업이 있나요? 복원하기</string>
+    <string name="backup_folder_readme">이 폴더에는 Quota Vault 백업이 들어 있습니다.
+
+각 백업은 직접 정한 비밀번호로 암호화되며 Quota Vault 앱에서만 열 수 있습니다. 앱을 다시 설치하거나 휴대폰을 바꿀 때 이 폴더를 지우지 마세요. 복원할 때 Quota Vault가 여기서 찾습니다.
+
+Quota Vault는 이 파일이나 비밀번호를 누구에게 보내라고 절대 요청하지 않습니다. 요청하는 사람은 사기꾼입니다.</string>
+    <string name="pi_folder_t">백업 폴더</string>
+    <string name="pi_folder">백업은 저장소 권한 없이 Documents › Quota Vault Backups에 저장됩니다. Quota Vault는 자신이 만든 백업만 볼 수 있습니다. 다시 설치한 뒤에는 그 폴더를 허용해야만 이전 백업을 볼 수 있습니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>
@@ -861,5 +907,8 @@
     </plurals>
     <plurals name="mark_paid_q">
         <item quantity="other">판매 %1$d건의 수수료를 지급됨으로 표시할까요?</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="other">내 백업 %1$d개도 삭제</item>
     </plurals>
 </resources>

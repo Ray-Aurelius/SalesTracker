@@ -30,6 +30,8 @@ import androidx.compose.material.icons.filled.Insights
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Science
 import androidx.compose.material.icons.filled.RocketLaunch
+import androidx.compose.material.icons.filled.Restore
+import androidx.compose.runtime.collectAsState
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -58,11 +60,17 @@ import androidx.compose.ui.unit.dp
 import com.salestracker.app.R
 import com.salestracker.app.ui.AppViewModel
 
-/** First-run tour: what the app does, pick a trade, then start fresh or explore sample data. */
+/**
+ * First-run tour: what the app does, pick a trade, then start fresh, explore sample data, or restore a backup.
+ * Restoring is offered on the first page too, for anyone reinstalling or moving to a new phone.
+ */
 @Composable
 fun WelcomeScreen(vm: AppViewModel) {
     var page by rememberSaveable { mutableIntStateOf(0) }
     val last = 2
+    val data by vm.data.collectAsState()
+    val backups = rememberBackupController()
+    BackupDialogs(vm, data, backups, onRestored = vm::finishOnboarding)
 
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Column(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding().padding(24.dp)) {
@@ -102,6 +110,11 @@ fun WelcomeScreen(vm: AppViewModel) {
                         Feature(Icons.Filled.Insights, R.string.welcome_f1_t, R.string.welcome_f1)
                         Feature(Icons.Filled.Flag, R.string.welcome_f2_t, R.string.welcome_f2)
                         Feature(Icons.Filled.Lock, R.string.welcome_f3_t, R.string.welcome_f3)
+                        TextButton(onClick = backups::restore, modifier = Modifier.align(Alignment.CenterHorizontally)) {
+                            Icon(Icons.Filled.Restore, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text(stringResource(R.string.welcome_have_backup))
+                        }
                     }
                     1 -> {
                         Text(stringResource(R.string.trade_title), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.semantics { heading() })
@@ -118,6 +131,9 @@ fun WelcomeScreen(vm: AppViewModel) {
                         ChoiceCard(Icons.Filled.Science, R.string.welcome_sample_t, R.string.welcome_sample) {
                             vm.loadSampleData()
                             vm.finishOnboarding()
+                        }
+                        ChoiceCard(Icons.Filled.Restore, R.string.backup_restore, R.string.welcome_restore) {
+                            backups.restore()
                         }
                     }
                 }

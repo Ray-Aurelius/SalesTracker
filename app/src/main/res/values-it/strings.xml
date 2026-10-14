@@ -22,10 +22,7 @@
     <string name="app_lock_desc">Chiede impronta, volto o PIN del telefono all\'apertura dell\'app</string>
     <string name="lock_needs_screen_lock">Imposta prima un blocco schermo (PIN, sequenza o impronta) nelle impostazioni del telefono.</string>
     <string name="settings_backup">Backup</string>
-    <string name="backup_create">Backup in un file cifrato</string>
-    <string name="backup_create_desc">Salva tutti i dati in un file protetto da password</string>
     <string name="backup_restore">Ripristina da backup</string>
-    <string name="backup_restore_desc">Sostituisci i dati di questo telefono con un file di backup</string>
     <string name="last_backup">Ultimo backup: %1$s</string>
     <string name="never_backed_up">Nessun backup ancora</string>
     <string name="locked_title">Quota Vault è bloccata</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">Le password non coincidono</string>
     <string name="show_password">Mostra password</string>
     <string name="hide_password">Nascondi password</string>
-    <string name="choose_location">Scegli dove salvare</string>
     <string name="backup_working">Cifratura dei dati…</string>
     <string name="backup_saved">Backup salvato</string>
     <string name="backup_failed">Impossibile salvare il backup</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">Cancella tutti i dati</string>
     <string name="erase_all_desc">Elimina definitivamente tutto il contenuto dell\'app da questo telefono</string>
     <string name="erase_confirm_title">Cancellare tutto?</string>
-    <string name="erase_confirm_body">Vengono eliminati definitivamente da questo telefono tutti i clienti, le vendite, gli appuntamenti, gli obiettivi e le impostazioni, e la chiave di cifratura viene distrutta. Non si può annullare. Fai prima un backup se potresti averne bisogno.</string>
+    <string name="erase_confirm_body">Vengono eliminati definitivamente da questo telefono tutti i clienti, le vendite, gli appuntamenti, gli obiettivi e le impostazioni, e la chiave di cifratura viene distrutta. Non si può annullare.</string>
     <string name="erase_button">Cancella tutto</string>
     <string name="erase_done">Tutti i dati sono stati cancellati</string>
     <string name="section_transparency">Trasparenza</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">Per usare l\'app devi accettare il Contratto utente.</string>
     <string name="guide_title">Come fare il backup dei dati</string>
     <string name="guide_intro">I tuoi dati sono solo su questo telefono. Un backup è una copia completa e cifrata con cui ripristinare tutto se il telefono viene perso, si rompe, viene sostituito o ripristinato.</string>
-    <string name="guide_1">Apri Impostazioni (l\'ingranaggio in alto a destra) → Sicurezza e privacy → Backup in un file cifrato.</string>
+    <string name="guide_1">Apri Impostazioni (l\'ingranaggio in alto a destra) → Sicurezza e privacy → Esegui backup ora.</string>
     <string name="guide_2">Scegli una password robusta e annotala in un luogo sicuro, lontano dal telefono. Se la dimentichi non è recuperabile.</string>
-    <string name="guide_3">Scegli dove salvare il file. Meglio fuori da questo telefono, ad esempio Google Drive o un computer, così il backup sopravvive alla perdita del telefono.</string>
+    <string name="guide_3">Il backup viene salvato in Documents › Quota Vault Backups su questo telefono, sempre nella stessa cartella. Per sicurezza, tocca Salva una copia altrove per tenerne una anche su Google Drive o su un computer, nel caso perdessi il telefono.</string>
     <string name="guide_4">Fai backup regolarmente. Ogni backup è una copia completa: conserva il più recente. L\'app ti avvisa quando l\'ultimo backup sta invecchiando.</string>
-    <string name="guide_5">Per ripristinare, su questo telefono o su uno nuovo: installa l\'app, apri Impostazioni → Sicurezza e privacy → Ripristina da backup, scegli il file e inserisci la password.</string>
+    <string name="guide_5">Per ripristinare, su questo telefono o su uno nuovo: apri l\'app e tocca Ripristina da backup (nella schermata di benvenuto o in Impostazioni → Sicurezza e privacy → Ripristina). Quota Vault trova i backup da solo. Scegline uno e inserisci la password.</string>
     <string name="guide_tip">I backup sono cifrati con AES-256. Senza la password nessuno può aprire il file, nemmeno i creatori dell\'app.</string>
     <string name="text_settings">Testo</string>
     <string name="text_settings_desc">Stile del carattere e dimensione del testo</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">I report mostrano questo numero, mai il nome del cliente.</string>
     <string name="notif_details_in_app">Apri l’app per i dettagli</string>
     <string name="screenshots_always_blocked">Screenshot, registrazione e condivisione dello schermo sono sempre bloccati e non si può copiare nulla fuori dall’app, quindi le informazioni dei clienti non possono essere catturate dallo schermo.</string>
+    <string name="backup_now">Esegui backup ora</string>
+    <string name="backup_restore_short">Ripristina</string>
+    <string name="backup_encrypt_button">Esegui backup</string>
+    <string name="backup_saved_to">I tuoi backup vengono salvati in %1$s su questo telefono, sempre nello stesso posto.</string>
+    <string name="backup_folder_not_set">La prima volta che fai un backup scegli una cartella. Tutti i backup successivi andranno nello stesso posto.</string>
+    <string name="backup_list_title">I tuoi backup</string>
+    <string name="backup_none_yet">Ancora nessun backup.</string>
+    <string name="backup_newest">Più recente</string>
+    <string name="backup_show_all">Mostra tutti (%1$d)</string>
+    <string name="backup_show_less">Mostra meno</string>
+    <string name="backup_cd_delete">Elimina il backup del %1$s</string>
+    <string name="backup_delete_title">Eliminare questo backup?</string>
+    <string name="backup_delete_body">Il backup del %1$s verrà eliminato da %2$s. Non si può annullare.</string>
+    <string name="backup_deleted">Backup eliminato</string>
+    <string name="backup_delete_failed">Impossibile eliminare il backup</string>
+    <string name="backup_saved_where">Salvato in %1$s su questo telefono. Quota Vault cerca lì automaticamente quando ripristini, e la cartella resta anche se l\'app viene eliminata.</string>
+    <string name="backup_saved_offphone">Se il telefono viene perso, si rompe o viene ripristinato, quella cartella va persa con lui. Per sicurezza, salva anche una copia su Google Drive o su un computer.</string>
+    <string name="backup_save_copy">Salva una copia altrove</string>
+    <string name="backup_copy_saved">Copia salvata</string>
+    <string name="restore_title">Ripristina un backup</string>
+    <string name="restore_looking">Ricerca in %1$s…</string>
+    <string name="restore_found_in">Trovati in %1$s. Tocca un backup per ripristinarlo.</string>
+    <string name="restore_none_found">Ancora nessun backup in %1$s.</string>
+    <string name="restore_find_hint">Hai reinstallato l\'app o cambiato telefono? I backup precedenti compaiono appena apri la cartella.</string>
+    <string name="restore_find_hint_empty">Se hai reinstallato l\'app o cambiato telefono, i tuoi backup sono ancora in quella cartella. Aprila una volta e Quota Vault li mostrerà.</string>
+    <string name="restore_find_folder">Apri la mia cartella di backup</string>
+    <string name="restore_other_file">Scegli un file di backup da un altro posto</string>
+    <string name="folder_find_title">Apri la cartella dei backup</string>
+    <string name="folder_find_body">Android mostrerà %1$s. Tocca Usa questa cartella, poi Consenti.
+
+Quota Vault vede solo quella cartella e la usa solo per i tuoi backup. Nient\'altro sul telefono.</string>
+    <string name="folder_choose_title">Scegli dove tenere i backup</string>
+    <string name="folder_choose_body">Android mostrerà le tue cartelle. Scegline una, ad esempio Documents, poi tocca Usa questa cartella e Consenti. Quota Vault crea al suo interno una cartella \"%1$s\" e ci salva ogni backup.
+
+Quota Vault vede solo quella cartella. Nient\'altro sul telefono.</string>
+    <string name="restore_confirm_new_title">Ripristinare questo backup?</string>
+    <string name="restore_confirm_new_body">Backup del %1$s
+Clienti: %2$d · Vendite: %3$d · Appuntamenti: %4$d · Obiettivi: %5$d</string>
+    <string name="erase_backups_kept">I tuoi backup in %1$s vengono conservati, così puoi ripristinarli quando vuoi dalla schermata di benvenuto.</string>
+    <string name="erase_no_backup">Non hai ancora un backup. Una volta cancellati, questi dati non si possono recuperare.</string>
+    <string name="erase_backup_first">Prima fai un backup</string>
+    <string name="welcome_restore">Usavi già Quota Vault? Recupera clienti, vendite e obiettivi da un backup.</string>
+    <string name="welcome_have_backup">Hai un backup? Ripristinalo</string>
+    <string name="backup_folder_readme">Questa cartella contiene i tuoi backup di Quota Vault.
+
+Ogni backup è cifrato con la password che hai scelto e si può aprire solo nell\'app Quota Vault. Conserva questa cartella se reinstalli l\'app o cambi telefono: Quota Vault cerca qui quando ripristini.
+
+Quota Vault non ti chiederà mai di inviare questi file o la tua password a nessuno. Chi te li chiede è un truffatore.</string>
+    <string name="pi_folder_t">Cartella dei backup</string>
+    <string name="pi_folder">I backup vengono salvati in Documents › Quota Vault Backups senza alcun permesso di archiviazione. Quota Vault vede solo i backup che ha creato. Dopo una reinstallazione vede quelli precedenti solo se consenti l\'accesso a quella cartella.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>
@@ -887,5 +933,10 @@
         <item quantity="one">Segnare come pagata la provvigione di %1$d vendita?</item>
         <item quantity="many">Segnare come pagata la provvigione di %1$d vendite?</item>
         <item quantity="other">Segnare come pagata la provvigione di %1$d vendite?</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="one">Elimina anche il mio backup</item>
+        <item quantity="many">Elimina anche i miei %1$d backup</item>
+        <item quantity="other">Elimina anche i miei %1$d backup</item>
     </plurals>
 </resources>

@@ -22,10 +22,7 @@
     <string name="app_lock_desc">Pide tu huella, rostro o PIN del teléfono al abrir la app</string>
     <string name="lock_needs_screen_lock">Primero configura un bloqueo de pantalla (PIN, patrón o huella) en los ajustes del teléfono.</string>
     <string name="settings_backup">Copia de seguridad</string>
-    <string name="backup_create">Crear copia cifrada</string>
-    <string name="backup_create_desc">Guarda todos tus datos en un archivo protegido con contraseña</string>
     <string name="backup_restore">Restaurar copia</string>
-    <string name="backup_restore_desc">Reemplaza los datos de este teléfono con un archivo de copia</string>
     <string name="last_backup">Última copia: %1$s</string>
     <string name="never_backed_up">Aún sin copia de seguridad</string>
     <string name="locked_title">Quota Vault está bloqueada</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">Las contraseñas no coinciden</string>
     <string name="show_password">Mostrar contraseña</string>
     <string name="hide_password">Ocultar contraseña</string>
-    <string name="choose_location">Elegir dónde guardar</string>
     <string name="backup_working">Cifrando tus datos…</string>
     <string name="backup_saved">Copia guardada</string>
     <string name="backup_failed">No se pudo guardar la copia</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">Borrar todos los datos</string>
     <string name="erase_all_desc">Elimina de forma permanente todo el contenido de la app de este teléfono</string>
     <string name="erase_confirm_title">¿Borrarlo todo?</string>
-    <string name="erase_confirm_body">Esto elimina para siempre todos los clientes, ventas, citas, metas y ajustes de este teléfono, y destruye la clave de cifrado. No se puede deshacer. Haz antes una copia si podrías necesitar estos datos.</string>
+    <string name="erase_confirm_body">Esto elimina para siempre todos los clientes, ventas, citas, metas y ajustes de este teléfono, y destruye la clave de cifrado. No se puede deshacer.</string>
     <string name="erase_button">Borrar todo</string>
     <string name="erase_done">Se borraron todos los datos</string>
     <string name="section_transparency">Transparencia</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">Debes aceptar el Acuerdo de usuario para usar la app.</string>
     <string name="guide_title">Cómo hacer una copia de tus datos</string>
     <string name="guide_intro">Tus datos solo están en este teléfono. Una copia es un duplicado completo y cifrado que puedes usar para restaurarlo todo si el teléfono se pierde, se rompe, se cambia o se restablece.</string>
-    <string name="guide_1">Abre Ajustes (el engranaje arriba a la derecha) → Seguridad y privacidad → Crear copia cifrada.</string>
+    <string name="guide_1">Abre Ajustes (el engranaje arriba a la derecha) → Seguridad y privacidad → Hacer copia ahora.</string>
     <string name="guide_2">Elige una contraseña segura y anótala en un lugar seguro, lejos del teléfono. No se puede recuperar si la olvidas.</string>
-    <string name="guide_3">Elige dónde guardar el archivo. Lo mejor es fuera de este teléfono, por ejemplo en Google Drive o en un ordenador, para que la copia sobreviva si pierdes el teléfono.</string>
+    <string name="guide_3">La copia se guarda en Documents › Quota Vault Backups en este teléfono, siempre en la misma carpeta. Para más seguridad, toca Guardar una copia en otro sitio para tener otra en Google Drive o en un ordenador, por si pierdes el teléfono.</string>
     <string name="guide_4">Haz copias con regularidad. Cada copia es completa, así que guarda la más reciente. La app te avisa cuando tu última copia se queda antigua.</string>
-    <string name="guide_5">Para restaurar, en este teléfono o en uno nuevo: instala la app, abre Ajustes → Seguridad y privacidad → Restaurar copia, elige el archivo e introduce la contraseña.</string>
+    <string name="guide_5">Para restaurar, en este teléfono o en uno nuevo: abre la app y toca Restaurar copia (en la pantalla de bienvenida o en Ajustes → Seguridad y privacidad → Restaurar). Quota Vault encuentra tus copias solo. Elige una e introduce la contraseña.</string>
     <string name="guide_tip">Las copias se cifran con AES-256. Sin la contraseña nadie puede abrir el archivo, ni siquiera los creadores de la app.</string>
     <string name="text_settings">Texto</string>
     <string name="text_settings_desc">Estilo de letra y tamaño del texto</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">Los informes muestran este número, nunca el nombre del cliente.</string>
     <string name="notif_details_in_app">Abre la app para ver los detalles</string>
     <string name="screenshots_always_blocked">Las capturas de pantalla, la grabación y el uso compartido de pantalla siempre están bloqueados, y no se puede copiar nada fuera de la app, así que la información de los clientes no se puede capturar desde la pantalla.</string>
+    <string name="backup_now">Hacer copia ahora</string>
+    <string name="backup_restore_short">Restaurar</string>
+    <string name="backup_encrypt_button">Hacer copia</string>
+    <string name="backup_saved_to">Tus copias se guardan en %1$s en este teléfono, siempre en el mismo lugar.</string>
+    <string name="backup_folder_not_set">La primera vez que hagas una copia elegirás una carpeta. Todas las copias siguientes irán al mismo lugar.</string>
+    <string name="backup_list_title">Tus copias</string>
+    <string name="backup_none_yet">Aún no hay copias.</string>
+    <string name="backup_newest">Más reciente</string>
+    <string name="backup_show_all">Ver las %1$d</string>
+    <string name="backup_show_less">Ver menos</string>
+    <string name="backup_cd_delete">Eliminar la copia del %1$s</string>
+    <string name="backup_delete_title">¿Eliminar esta copia?</string>
+    <string name="backup_delete_body">La copia del %1$s se eliminará de %2$s. No se puede deshacer.</string>
+    <string name="backup_deleted">Copia eliminada</string>
+    <string name="backup_delete_failed">No se pudo eliminar la copia</string>
+    <string name="backup_saved_where">Guardada en %1$s en este teléfono. Quota Vault busca ahí automáticamente al restaurar, y la carpeta se conserva aunque se elimine la app.</string>
+    <string name="backup_saved_offphone">Si este teléfono se pierde, se rompe o se restablece, esa carpeta se pierde con él. Para más seguridad, guarda también una copia en Google Drive o en un ordenador.</string>
+    <string name="backup_save_copy">Guardar una copia en otro sitio</string>
+    <string name="backup_copy_saved">Copia guardada</string>
+    <string name="restore_title">Restaurar una copia</string>
+    <string name="restore_looking">Buscando en %1$s…</string>
+    <string name="restore_found_in">Encontradas en %1$s. Toca una copia para restaurarla.</string>
+    <string name="restore_none_found">Aún no hay copias en %1$s.</string>
+    <string name="restore_find_hint">¿Reinstalaste la app o cambiaste de teléfono? Las copias anteriores aparecen en cuanto abres la carpeta.</string>
+    <string name="restore_find_hint_empty">Si reinstalaste la app o cambiaste de teléfono, tus copias siguen en esa carpeta. Ábrela una vez y Quota Vault las mostrará.</string>
+    <string name="restore_find_folder">Abrir mi carpeta de copias</string>
+    <string name="restore_other_file">Elegir un archivo de copia de otro sitio</string>
+    <string name="folder_find_title">Abre tu carpeta de copias</string>
+    <string name="folder_find_body">Android mostrará %1$s. Toca Usar esta carpeta y luego Permitir.
+
+Quota Vault solo puede ver esa carpeta y solo la usa para tus copias. Nada más de tu teléfono.</string>
+    <string name="folder_choose_title">Elige dónde guardar tus copias</string>
+    <string name="folder_choose_body">Android mostrará tus carpetas. Elige una, por ejemplo Documents, y toca Usar esta carpeta y Permitir. Quota Vault crea dentro una carpeta \"%1$s\" y guarda ahí todas las copias.
+
+Quota Vault solo puede ver esa carpeta. Nada más de tu teléfono.</string>
+    <string name="restore_confirm_new_title">¿Restaurar esta copia?</string>
+    <string name="restore_confirm_new_body">Copia del %1$s
+Clientes: %2$d · Ventas: %3$d · Citas: %4$d · Metas: %5$d</string>
+    <string name="erase_backups_kept">Tus copias en %1$s se conservan, así que puedes restaurarlas cuando quieras desde la pantalla de bienvenida.</string>
+    <string name="erase_no_backup">Aún no tienes ninguna copia. Una vez borrados, estos datos no se pueden recuperar.</string>
+    <string name="erase_backup_first">Hacer copia primero</string>
+    <string name="welcome_restore">¿Ya usabas Quota Vault? Recupera tus clientes, ventas y metas desde una copia.</string>
+    <string name="welcome_have_backup">¿Tienes una copia? Restáurala</string>
+    <string name="backup_folder_readme">Esta carpeta contiene tus copias de seguridad de Quota Vault.
+
+Cada copia está cifrada con la contraseña que elegiste y solo se puede abrir en la app Quota Vault. Conserva esta carpeta si reinstalas la app o cambias de teléfono: Quota Vault busca aquí al restaurar.
+
+Quota Vault nunca te pedirá que envíes estos archivos ni tu contraseña a nadie. Quien te los pida es un estafador.</string>
+    <string name="pi_folder_t">Carpeta de copias</string>
+    <string name="pi_folder">Las copias se guardan en Documents › Quota Vault Backups sin ningún permiso de almacenamiento. Quota Vault solo ve las copias que creó. Tras una reinstalación, solo ve las anteriores si permites el acceso a esa carpeta.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>
@@ -887,5 +933,10 @@
         <item quantity="one">¿Marcar como pagada la comisión de %1$d venta?</item>
         <item quantity="many">¿Marcar como pagada la comisión de %1$d ventas?</item>
         <item quantity="other">¿Marcar como pagada la comisión de %1$d ventas?</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="one">Eliminar también mi copia</item>
+        <item quantity="many">Eliminar también mis %1$d copias</item>
+        <item quantity="other">Eliminar también mis %1$d copias</item>
     </plurals>
 </resources>

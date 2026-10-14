@@ -22,10 +22,7 @@
     <string name="app_lock_desc">طلب البصمة أو الوجه أو رمز الهاتف عند فتح التطبيق</string>
     <string name="lock_needs_screen_lock">اضبط قفل الشاشة (رمز أو نمط أو بصمة) في إعدادات الهاتف أولًا.</string>
     <string name="settings_backup">النسخ الاحتياطي</string>
-    <string name="backup_create">نسخ احتياطي إلى ملف مشفّر</string>
-    <string name="backup_create_desc">احفظ كل بياناتك في ملف محمي بكلمة مرور</string>
     <string name="backup_restore">الاستعادة من نسخة احتياطية</string>
-    <string name="backup_restore_desc">استبدال البيانات على هذا الهاتف بملف نسخة احتياطية</string>
     <string name="last_backup">آخر نسخة احتياطية: %1$s</string>
     <string name="never_backed_up">لم يتم النسخ الاحتياطي بعد</string>
     <string name="locked_title">Quota Vault مقفل</string>
@@ -41,7 +38,6 @@
     <string name="passwords_dont_match">كلمتا المرور غير متطابقتين</string>
     <string name="show_password">إظهار كلمة المرور</string>
     <string name="hide_password">إخفاء كلمة المرور</string>
-    <string name="choose_location">اختر مكان الحفظ</string>
     <string name="backup_working">جارٍ تشفير بياناتك…</string>
     <string name="backup_saved">تم حفظ النسخة الاحتياطية</string>
     <string name="backup_failed">تعذّر حفظ النسخة الاحتياطية</string>
@@ -286,7 +282,7 @@
     <string name="erase_all">مسح كل البيانات</string>
     <string name="erase_all_desc">حذف كل ما في التطبيق من هذا الهاتف نهائيًا</string>
     <string name="erase_confirm_title">مسح كل شيء؟</string>
-    <string name="erase_confirm_body">سيؤدي هذا إلى حذف كل العملاء والمبيعات والمواعيد والأهداف والإعدادات من هذا الهاتف نهائيًا، وإتلاف مفتاح التشفير. لا يمكن التراجع عن ذلك. أنشئ نسخة احتياطية أولًا إن كنت قد تحتاج إلى هذه البيانات.</string>
+    <string name="erase_confirm_body">سيؤدي هذا إلى حذف كل العملاء والمبيعات والمواعيد والأهداف والإعدادات من هذا الهاتف نهائيًا، وإتلاف مفتاح التشفير. لا يمكن التراجع عن ذلك.</string>
     <string name="erase_button">مسح كل شيء</string>
     <string name="erase_done">تم مسح كل البيانات</string>
     <string name="section_transparency">الشفافية</string>
@@ -341,11 +337,11 @@
     <string name="agreement_declined">عليك قبول اتفاقية المستخدم لاستخدام التطبيق.</string>
     <string name="guide_title">كيفية النسخ الاحتياطي لبياناتك</string>
     <string name="guide_intro">بياناتك موجودة على هذا الهاتف فقط. النسخة الاحتياطية نسخة كاملة ومشفرة يمكنك بها استعادة كل شيء إذا فُقد الهاتف أو تعطل أو استُبدل أو أُعيد ضبطه.</string>
-    <string name="guide_1">افتح الإعدادات (الترس أعلى اليمين) ← الأمان والخصوصية ← نسخ احتياطي إلى ملف مشفّر.</string>
+    <string name="guide_1">افتح الإعدادات (الترس أعلى اليمين) ← الأمان والخصوصية ← نسخ احتياطي الآن.</string>
     <string name="guide_2">اختر كلمة مرور قوية واكتبها في مكان آمن بعيدًا عن هاتفك. لا يمكن استعادتها إذا نسيتها.</string>
-    <string name="guide_3">اختر مكان حفظ الملف. الأفضل خارج هذا الهاتف، مثل Google Drive أو جهاز كمبيوتر، لتبقى النسخة إذا فُقد الهاتف.</string>
+    <string name="guide_3">تُحفظ النسخة في Documents › Quota Vault Backups على هذا الهاتف، في المجلد نفسه دائمًا. لمزيد من الأمان، اضغط على حفظ نسخة في مكان آخر لتحتفظ بنسخة على Google Drive أو كمبيوتر أيضًا، تحسّبًا لفقدان الهاتف.</string>
     <string name="guide_4">أنشئ نسخًا بانتظام. كل نسخة كاملة، فاحتفظ بأحدثها. يذكّرك التطبيق عندما تصبح آخر نسخة قديمة.</string>
-    <string name="guide_5">للاستعادة، على هذا الهاتف أو هاتف جديد: ثبّت التطبيق، وافتح الإعدادات ← الأمان والخصوصية ← الاستعادة من نسخة احتياطية، واختر الملف وأدخل كلمة المرور.</string>
+    <string name="guide_5">للاستعادة، على هذا الهاتف أو هاتف جديد: افتح التطبيق واضغط على الاستعادة من نسخة احتياطية (في شاشة الترحيب، أو الإعدادات ← الأمان والخصوصية ← استعادة). يعثر Quota Vault على نسخك بنفسه. اختر واحدة وأدخل كلمة المرور.</string>
     <string name="guide_tip">النسخ الاحتياطية مشفرة بمعيار AES-256. بدون كلمة المرور لا يستطيع أحد فتح الملف، ولا حتى صانعو التطبيق.</string>
     <string name="text_settings">النص</string>
     <string name="text_settings_desc">نمط الخط وحجم النص</string>
@@ -823,6 +819,56 @@
     <string name="exp_job_hint">تعرض التقارير هذا الرقم، وليس اسم العميل أبدًا.</string>
     <string name="notif_details_in_app">افتح التطبيق لرؤية التفاصيل</string>
     <string name="screenshots_always_blocked">لقطات الشاشة وتسجيل الشاشة ومشاركتها محظورة دائمًا، ولا يمكن نسخ أي شيء من التطبيق، لذا لا يمكن التقاط معلومات العملاء من الشاشة.</string>
+    <string name="backup_now">نسخ احتياطي الآن</string>
+    <string name="backup_restore_short">استعادة</string>
+    <string name="backup_encrypt_button">نسخ احتياطي</string>
+    <string name="backup_saved_to">تُحفظ نسخك الاحتياطية في %1$s على هذا الهاتف، في المكان نفسه دائمًا.</string>
+    <string name="backup_folder_not_set">في أول نسخة احتياطية ستختار مجلدًا، وبعدها تُحفظ كل النسخ في المكان نفسه.</string>
+    <string name="backup_list_title">نسخك الاحتياطية</string>
+    <string name="backup_none_yet">لا توجد نسخ احتياطية بعد.</string>
+    <string name="backup_newest">الأحدث</string>
+    <string name="backup_show_all">عرض الكل (%1$d)</string>
+    <string name="backup_show_less">عرض أقل</string>
+    <string name="backup_cd_delete">حذف النسخة الاحتياطية بتاريخ %1$s</string>
+    <string name="backup_delete_title">حذف هذه النسخة؟</string>
+    <string name="backup_delete_body">ستُحذف النسخة بتاريخ %1$s من %2$s. لا يمكن التراجع عن ذلك.</string>
+    <string name="backup_deleted">تم حذف النسخة الاحتياطية</string>
+    <string name="backup_delete_failed">تعذّر حذف النسخة الاحتياطية</string>
+    <string name="backup_saved_where">حُفظت في %1$s على هذا الهاتف. يبحث Quota Vault هناك تلقائيًا عند الاستعادة، ويبقى المجلد حتى لو حُذف التطبيق.</string>
+    <string name="backup_saved_offphone">إذا فُقد الهاتف أو تعطّل أو أُعيد ضبطه فسيضيع هذا المجلد معه. لمزيد من الأمان، احفظ نسخة أيضًا على Google Drive أو على كمبيوتر.</string>
+    <string name="backup_save_copy">حفظ نسخة في مكان آخر</string>
+    <string name="backup_copy_saved">تم حفظ النسخة</string>
+    <string name="restore_title">استعادة نسخة احتياطية</string>
+    <string name="restore_looking">جارٍ البحث في %1$s…</string>
+    <string name="restore_found_in">وُجدت في %1$s. اضغط على نسخة لاستعادتها.</string>
+    <string name="restore_none_found">لا توجد نسخ احتياطية في %1$s بعد.</string>
+    <string name="restore_find_hint">أعدت تثبيت التطبيق أو انتقلت إلى هاتف جديد؟ تظهر النسخ الأقدم بمجرد فتح المجلد.</string>
+    <string name="restore_find_hint_empty">إذا أعدت تثبيت التطبيق أو انتقلت إلى هاتف جديد، فنسخك ما زالت في ذلك المجلد. افتحه مرة واحدة وسيعرضها Quota Vault.</string>
+    <string name="restore_find_folder">فتح مجلد النسخ الاحتياطية</string>
+    <string name="restore_other_file">اختيار ملف نسخة احتياطية من مكان آخر</string>
+    <string name="folder_find_title">افتح مجلد النسخ الاحتياطية</string>
+    <string name="folder_find_body">سيعرض Android المجلد %1$s. اضغط على استخدام هذا المجلد ثم سماح.
+
+لا يرى Quota Vault إلا هذا المجلد، ولا يستخدمه إلا لنسخك الاحتياطية. لا شيء آخر على هاتفك.</string>
+    <string name="folder_choose_title">اختر مكانًا لنسخك الاحتياطية</string>
+    <string name="folder_choose_body">سيعرض Android مجلداتك. اختر مجلدًا مثل Documents، ثم اضغط على استخدام هذا المجلد وسماح. ينشئ Quota Vault بداخله مجلد \"%1$s\" ويحفظ فيه كل نسخة.
+
+لا يرى Quota Vault إلا هذا المجلد. لا شيء آخر على هاتفك.</string>
+    <string name="restore_confirm_new_title">استعادة هذه النسخة؟</string>
+    <string name="restore_confirm_new_body">نسخة بتاريخ %1$s
+العملاء: %2$d · المبيعات: %3$d · المواعيد: %4$d · الأهداف: %5$d</string>
+    <string name="erase_backups_kept">ستبقى نسخك الاحتياطية في %1$s، فيمكنك استعادتها في أي وقت من شاشة الترحيب.</string>
+    <string name="erase_no_backup">ليست لديك نسخة احتياطية بعد. بعد المسح لا يمكن استرجاع هذه البيانات.</string>
+    <string name="erase_backup_first">نسخ احتياطي أولًا</string>
+    <string name="welcome_restore">استخدمت Quota Vault من قبل؟ استرجع عملاءك ومبيعاتك وأهدافك من نسخة احتياطية.</string>
+    <string name="welcome_have_backup">لديك نسخة احتياطية؟ استعدها</string>
+    <string name="backup_folder_readme">يحتوي هذا المجلد على نسخك الاحتياطية من Quota Vault.
+
+كل نسخة مشفّرة بكلمة المرور التي اخترتها، ولا تُفتح إلا في تطبيق Quota Vault. احتفظ بهذا المجلد إذا أعدت تثبيت التطبيق أو غيّرت هاتفك: يبحث Quota Vault هنا عند الاستعادة.
+
+لن يطلب منك Quota Vault أبدًا إرسال هذه الملفات أو كلمة مرورك إلى أي أحد. من يطلبها محتال.</string>
+    <string name="pi_folder_t">مجلد النسخ الاحتياطية</string>
+    <string name="pi_folder">تُحفظ النسخ الاحتياطية في Documents › Quota Vault Backups دون أي إذن للتخزين. لا يرى Quota Vault إلا النسخ التي أنشأها. بعد إعادة التثبيت لا يرى النسخ الأقدم إلا إذا سمحت بذلك المجلد.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>
@@ -926,5 +972,13 @@
         <item quantity="few">تحديد عمولة %1$d عمليات بيع كمدفوعة؟</item>
         <item quantity="many">تحديد عمولة %1$d عملية بيع كمدفوعة؟</item>
         <item quantity="other">تحديد عمولة %1$d عملية بيع كمدفوعة؟</item>
+    </plurals>
+    <plurals name="erase_also_backups">
+        <item quantity="zero">حذف نسخي الاحتياطية أيضًا (%1$d)</item>
+        <item quantity="one">حذف نسختي الاحتياطية أيضًا</item>
+        <item quantity="two">حذف نسختيّ الاحتياطيتين أيضًا</item>
+        <item quantity="few">حذف نسخي الاحتياطية الـ%1$d أيضًا</item>
+        <item quantity="many">حذف نسخي الاحتياطية الـ%1$d أيضًا</item>
+        <item quantity="other">حذف نسخي الاحتياطية الـ%1$d أيضًا</item>
     </plurals>
 </resources>
