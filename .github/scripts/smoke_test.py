@@ -350,7 +350,10 @@ def main(apk):
             fail("could not turn on the report password")
         if tap(r"^Password$", wait=0.8):
             type_text("SmokeTest2026x")
-            tap(r"^Confirm password$", wait=0.8)
+            # The keyboard can cover the second box on this taller form: close it before moving on.
+            hide_keyboard()
+            if not tap(r"^Confirm password$", wait=0.8, scroll=2):
+                fail("could not reach the report's Confirm password box")
             type_text("SmokeTest2026x")
         hide_keyboard()
         if find(r"match"):
