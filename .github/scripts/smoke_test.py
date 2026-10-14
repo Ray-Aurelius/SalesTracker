@@ -107,6 +107,12 @@ def find(pattern):
 
 def tap(pattern, name=None, wait=1.5, scroll=0):
     pos = find(pattern)
+    if pos is None and "mInputShown=true" in adb("shell", "dumpsys", "input_method"):
+        # Forms shrink above the keyboard, so a field further down can be scrolled out of view: close the
+        # keyboard (as a person would scroll) and look again.
+        adb("shell", "input", "keyevent", "KEYCODE_BACK")
+        time.sleep(1)
+        pos = find(pattern)
     tries = 0
     while pos is None and tries < scroll:
         adb("shell", "input", "swipe", "540", "1700", "540", "900", "300")
