@@ -510,11 +510,21 @@ def main(apk):
     else:
         tap(r"^Password$", wait=0.8)
         type_text("SmokeTest2026x")
+        hide_keyboard()
         tap(r"^Confirm password$", wait=0.8)
         type_text("SmokeTest2026x")
         hide_keyboard()
-        tap(r"^Back up$", wait=6)
+        if find(r"match"):
+            fail("the two backup passwords did not match (typing problem in the test)")
+        tap(r"^Back up$", wait=2)
+        for _ in range(8):   # the password is stretched on purpose (slow to guess), so give it time
+            if find(r"^Backup saved$"):
+                break
+            time.sleep(2)
         shot("backup-saved")
+        if not find(r"^Backup saved$"):
+            root = dump()
+            note("  on screen: " + " | ".join(n.get("text") for n in (root.iter("node") if root is not None else []) if n.get("text"))[:600])
         if not find(r"^Backup saved$"):
             fail("no 'Backup saved' message after backing up")
         files = adb("shell", f"ls -l {folder}")
