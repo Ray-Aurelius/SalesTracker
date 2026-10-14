@@ -228,6 +228,9 @@ def main(apk):
     adb("install", "-r", apk, check=True, timeout=300)
     adb("shell", "pm", "grant", PKG, "android.permission.POST_NOTIFICATIONS")
     adb("shell", "settings", "put", "global", "window_animation_scale", "0")
+    # The emulator's own home screen (Pixel Launcher) often freezes on slow CI machines and covers the app with
+    # "isn't responding" boxes. The walk-through opens the app directly, so the launcher is switched off.
+    adb("shell", "pm", "disable-user", "--user", "0", "com.google.android.apps.nexuslauncher")
     # Let a freshly booted emulator finish starting its own apps before ours, so they don't stall it.
     time.sleep(25)
     adb("logcat", "-c")
