@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalFoundationApi::class)
+@file:OptIn(ExperimentalFoundationApi::class, ExperimentalLayoutApi::class)
 
 package com.salestracker.app.ui.screens
 
@@ -17,6 +17,27 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.IntSize
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.ime
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.union
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
@@ -30,9 +51,10 @@ import androidx.compose.ui.window.DialogWindowProvider
 
 /**
  * Every pop-up form in the app (add a client, log a sale, an appointment, a task…) goes through this instead of
- * Material's AlertDialog directly. It's the same dialog, with one change: when the keyboard opens, the dialog
- * shrinks to the space above it instead of sliding under it. The form then scrolls, the field being typed in
- * stays in view, and Save / Cancel are always reachable.
+ * Material's AlertDialog. It looks and behaves the same, with one difference: it measures the keyboard itself and
+ * sits in the space above it. Android 15 and later no longer resize pop-ups for the keyboard (they slid the window
+ * around on every key press instead, a "bounce"), so the app does it, the same way on every version: the form
+ * fits above the keyboard, scrolls, keeps the field being typed in on screen, and Save / Cancel stay reachable.
  */
 @Composable
 fun AlertDialog(
@@ -51,39 +73,97 @@ fun AlertDialog(
     tonalElevation: Dp = AlertDialogDefaults.TonalElevation,
     properties: DialogProperties = DialogProperties(),
 ) {
-    androidx.compose.material3.AlertDialog(
+    Dialog(
         onDismissRequest = onDismissRequest,
-        // The buttons are always there, so the resize hook rides along with them.
-        confirmButton = { ResizeAboveKeyboard(); confirmButton() },
-        modifier = modifier,
-        dismissButton = dismissButton,
-        icon = icon,
-        title = title,
-        // No stretchy "bounce" at the ends of a form: it fought with keeping the field being typed in on screen,
-        // so typing at the bottom (e.g. in Notes) made the form bounce.
-        text = text?.let { t ->
-            {
-                CompositionLocalProvider(LocalOverscrollConfiguration provides null) {
-                    Box(Modifier.keepScrollingInsideForm()) { t() }
+        // A full-screen, see-through window that leaves the keyboard to us: the card below is placed by the app.
+        properties = DialogProperties(
+            dismissOnBackPress = properties.dismissOnBackPress,
+            dismissOnClickOutside = properties.dismissOnClickOutside,
+            securePolicy = properties.securePolicy,
+            usePlatformDefaultWidth = false,
+            decorFitsSystemWindows = false,
+        ),
+    ) {
+        KeepWindowStill()
+        // Fills the screen above the keyboard and the system bars; a tap on the dimmed area outside the card closes it.
+        Box(
+            Modifier.fillMaxSize()
+                .pointerInput(properties.dismissOnClickOutside) {
+                    if (properties.dismissOnClickOutside) detectTapGestures { onDismissRequest() }
+                }
+                .windowInsetsPadding(WindowInsets.safeDrawing.union(WindowInsets.ime))
+                .padding(horizontal = 24.dp, vertical = 24.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            Surface(
+                modifier = modifier
+                    .sizeIn(minWidth = 280.dp, maxWidth = 560.dp)
+                    // Taps on the card itself (not on its buttons) don't close the dialog.
+                    .pointerInput(Unit) { detectTapGestures { } },
+                shape = shape,
+                color = containerColor,
+                tonalElevation = tonalElevation,
+            ) {
+                Column(Modifier.padding(24.dp)) {
+                    icon?.let {
+                        CompositionLocalProvider(LocalContentColor provides iconContentColor) {
+                            Box(Modifier.padding(bottom = 16.dp).align(Alignment.CenterHorizontally)) { it() }
+                        }
+                    }
+                    title?.let {
+                        CompositionLocalProvider(
+                            LocalContentColor provides titleContentColor,
+                            LocalTextStyle provides MaterialTheme.typography.headlineSmall,
+                        ) {
+                            Box(
+                                Modifier.padding(bottom = 16.dp)
+                                    .align(if (icon == null) Alignment.Start else Alignment.CenterHorizontally),
+                            ) { it() }
+                        }
+                    }
+                    text?.let {
+                        CompositionLocalProvider(
+                            LocalContentColor provides textContentColor,
+                            LocalTextStyle provides MaterialTheme.typography.bodyMedium,
+                            // No stretchy end-of-form effect: it fought with keeping the typed-in field on screen.
+                            LocalOverscrollConfiguration provides null,
+                        ) {
+                            // Takes the room left after the title and buttons; the form inside scrolls.
+                            Box(Modifier.weight(1f, fill = false).padding(bottom = 24.dp).keepScrollingInsideForm()) { it() }
+                        }
+                    }
+                    CompositionLocalProvider(
+                        LocalContentColor provides MaterialTheme.colorScheme.primary,
+                        LocalTextStyle provides MaterialTheme.typography.labelLarge,
+                    ) {
+                        FlowRow(
+                            Modifier.align(Alignment.End),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
+                        ) {
+                            dismissButton?.invoke()
+                            confirmButton()
+                        }
+                    }
                 }
             }
-        },
-        shape = shape,
-        containerColor = containerColor,
-        iconContentColor = iconContentColor,
-        titleContentColor = titleContentColor,
-        textContentColor = textContentColor,
-        tonalElevation = tonalElevation,
-        properties = properties,
-    )
+        }
+    }
 }
 
-/** Makes the dialog's own window resize to the space above the keyboard (Android's default slides it under). */
+/**
+ * The window never slides for the keyboard (the card moves instead). Older Android versions need "resize" set for
+ * the app to be told where the keyboard is.
+ */
 @Composable
-internal fun ResizeAboveKeyboard() {
+private fun KeepWindowStill() {
     val view = LocalView.current
     DisposableEffect(view) {
-        (view.parent as? DialogWindowProvider)?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        (view.parent as? DialogWindowProvider)?.window?.let { w ->
+            w.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+            w.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+            w.setDimAmount(0.32f)
+            w.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        }
         onDispose {}
     }
 }
