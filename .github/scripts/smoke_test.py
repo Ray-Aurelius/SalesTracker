@@ -179,6 +179,17 @@ def tap_first_image():
     return False
 
 
+def find_scrolling(pattern, tries=5):
+    """Like find, but scrolls down the list until the text shows up (long lists don't fit on one screen)."""
+    pos = find(pattern)
+    while pos is None and tries > 0:
+        adb("shell", "input", "swipe", "540", "1700", "540", "1000", "300")
+        time.sleep(0.8)
+        pos = find(pattern)
+        tries -= 1
+    return pos
+
+
 def back(wait=1.0):
     adb("shell", "input", "keyevent", "KEYCODE_BACK")
     time.sleep(wait)
@@ -553,14 +564,17 @@ def main(apk):
     shot("restore-confirm")
     if not find(r"^Restore this backup\?$"):
         fail("the backup didn't open with its password")
+    if not find(r"Clients: 8 "):
+        fail("the backup doesn't hold all 8 clients")
     tap(r"^Restore$", wait=4)
     shot("restored")
     if crashed():
         fail("crash while restoring")
     tap(r"^Clients$", "clients-after-restore", wait=2)
-    for name in ["Alex Morgan", "Riley Quinn", "Jordan Ellis"]:
-        if not find(name):
+    for name in ["Alex Morgan", "Jordan Ellis", "Riley Quinn"]:
+        if not find_scrolling(name):
             fail(f"{name} is missing after restoring the backup")
+    shot("clients-after-restore-scrolled")
 
     if crashed():
         fail("crash")
