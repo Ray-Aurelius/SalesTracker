@@ -548,9 +548,6 @@
     <string name="charts_yearly">Jährlich</string>
     <string name="charts_week_of">Woche ab %1$s</string>
     <string name="charts_best_days">Abschlüsse nach Wochentag</string>
-    <string name="schedule_calendar">Kalender</string>
-    <string name="schedule_tasks">Aufgaben</string>
-    <string name="schedule_tasks_count">Aufgaben · %1$d</string>
     <string name="tasks_today">Heute</string>
     <string name="tasks_tomorrow">Morgen</string>
     <string name="tasks_yesterday">Gestern</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">Umsatz</string>
     <string name="col_sale">Verkauf</string>
     <string name="col_upsell">Upsell</string>
+    <string name="tab_tasks">Aufgaben</string>
+    <string name="title_tasks">Aufgaben</string>
+    <string name="tasks_view_day">Tag</string>
+    <string name="tasks_view_upcoming">Demnächst</string>
+    <string name="tasks_pick_date">Datum wählen</string>
+    <string name="tasks_upcoming_empty">Noch nichts geplant. Tippe auf Aufgabe hinzufügen und wähle ein Datum, um vorauszuplanen.</string>
+    <string name="tasks_repeating">Wiederkehrend</string>
+    <string name="add_appointment">Termin hinzufügen</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

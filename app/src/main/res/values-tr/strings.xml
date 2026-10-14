@@ -548,9 +548,6 @@
     <string name="charts_yearly">Yıllık</string>
     <string name="charts_week_of">%1$s haftası</string>
     <string name="charts_best_days">Haftanın günlerine göre kapanan satışlar</string>
-    <string name="schedule_calendar">Takvim</string>
-    <string name="schedule_tasks">Görevler</string>
-    <string name="schedule_tasks_count">Görevler · %1$d</string>
     <string name="tasks_today">Bugün</string>
     <string name="tasks_tomorrow">Yarın</string>
     <string name="tasks_yesterday">Dün</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">Gelir</string>
     <string name="col_sale">Satış</string>
     <string name="col_upsell">Ek satış</string>
+    <string name="tab_tasks">Görevler</string>
+    <string name="title_tasks">Görevler</string>
+    <string name="tasks_view_day">Gün</string>
+    <string name="tasks_view_upcoming">Yaklaşan</string>
+    <string name="tasks_pick_date">Tarih seç</string>
+    <string name="tasks_upcoming_empty">Henüz plan yok. İleriyi planlamak için Görev ekle\'ye dokunup bir tarih seçin.</string>
+    <string name="tasks_repeating">Tekrarlanan</string>
+    <string name="add_appointment">Randevu ekle</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

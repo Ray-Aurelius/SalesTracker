@@ -548,9 +548,6 @@
     <string name="charts_yearly">年ごと</string>
     <string name="charts_week_of">%1$s の週</string>
     <string name="charts_best_days">曜日別の成約数</string>
-    <string name="schedule_calendar">カレンダー</string>
-    <string name="schedule_tasks">タスク</string>
-    <string name="schedule_tasks_count">タスク · %1$d</string>
     <string name="tasks_today">今日</string>
     <string name="tasks_tomorrow">明日</string>
     <string name="tasks_yesterday">昨日</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">売上</string>
     <string name="col_sale">販売</string>
     <string name="col_upsell">アップセル</string>
+    <string name="tab_tasks">タスク</string>
+    <string name="title_tasks">タスク</string>
+    <string name="tasks_view_day">日</string>
+    <string name="tasks_view_upcoming">今後</string>
+    <string name="tasks_pick_date">日付を選ぶ</string>
+    <string name="tasks_upcoming_empty">まだ予定はありません。「タスクを追加」で日付を選んで先の予定を立てましょう。</string>
+    <string name="tasks_repeating">繰り返し</string>
+    <string name="add_appointment">予定を追加</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

@@ -548,9 +548,6 @@
     <string name="charts_yearly">Per tahun</string>
     <string name="charts_week_of">Minggu %1$s</string>
     <string name="charts_best_days">Penjualan closing per hari dalam seminggu</string>
-    <string name="schedule_calendar">Kalender</string>
-    <string name="schedule_tasks">Tugas</string>
-    <string name="schedule_tasks_count">Tugas · %1$d</string>
     <string name="tasks_today">Hari ini</string>
     <string name="tasks_tomorrow">Besok</string>
     <string name="tasks_yesterday">Kemarin</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">Pendapatan</string>
     <string name="col_sale">Penjualan</string>
     <string name="col_upsell">Upsell</string>
+    <string name="tab_tasks">Tugas</string>
+    <string name="title_tasks">Tugas</string>
+    <string name="tasks_view_day">Hari</string>
+    <string name="tasks_view_upcoming">Mendatang</string>
+    <string name="tasks_pick_date">Pilih tanggal</string>
+    <string name="tasks_upcoming_empty">Belum ada rencana. Ketuk Tambah tugas dan pilih tanggal untuk merencanakan.</string>
+    <string name="tasks_repeating">Berulang</string>
+    <string name="add_appointment">Tambah janji temu</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

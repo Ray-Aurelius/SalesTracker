@@ -548,9 +548,6 @@
     <string name="charts_yearly">按年</string>
     <string name="charts_week_of">%1$s 当周</string>
     <string name="charts_best_days">按星期统计的成交数</string>
-    <string name="schedule_calendar">日历</string>
-    <string name="schedule_tasks">任务</string>
-    <string name="schedule_tasks_count">任务 · %1$d</string>
     <string name="tasks_today">今天</string>
     <string name="tasks_tomorrow">明天</string>
     <string name="tasks_yesterday">昨天</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">收入</string>
     <string name="col_sale">销售</string>
     <string name="col_upsell">追加销售</string>
+    <string name="tab_tasks">任务</string>
+    <string name="title_tasks">任务</string>
+    <string name="tasks_view_day">当天</string>
+    <string name="tasks_view_upcoming">即将到来</string>
+    <string name="tasks_pick_date">选择日期</string>
+    <string name="tasks_upcoming_empty">还没有计划。点按“添加任务”并选择日期，提前安排。</string>
+    <string name="tasks_repeating">重复任务</string>
+    <string name="add_appointment">添加预约</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

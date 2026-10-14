@@ -548,9 +548,6 @@
     <string name="charts_yearly">वार्षिक</string>
     <string name="charts_week_of">%1$s वाला सप्ताह</string>
     <string name="charts_best_days">सप्ताह के दिन के अनुसार बंद बिक्री</string>
-    <string name="schedule_calendar">कैलेंडर</string>
-    <string name="schedule_tasks">काम</string>
-    <string name="schedule_tasks_count">काम · %1$d</string>
     <string name="tasks_today">आज</string>
     <string name="tasks_tomorrow">कल</string>
     <string name="tasks_yesterday">बीता कल</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">राजस्व</string>
     <string name="col_sale">बिक्री</string>
     <string name="col_upsell">अपसेल</string>
+    <string name="tab_tasks">काम</string>
+    <string name="title_tasks">काम</string>
+    <string name="tasks_view_day">दिन</string>
+    <string name="tasks_view_upcoming">आगामी</string>
+    <string name="tasks_pick_date">तारीख चुनें</string>
+    <string name="tasks_upcoming_empty">अभी कुछ तय नहीं। आगे की योजना के लिए काम जोड़ें पर टैप करें और तारीख चुनें।</string>
+    <string name="tasks_repeating">दोहराए जाने वाले</string>
+    <string name="add_appointment">अपॉइंटमेंट जोड़ें</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

@@ -548,9 +548,6 @@
     <string name="charts_yearly">Anual</string>
     <string name="charts_week_of">Semana de %1$s</string>
     <string name="charts_best_days">Vendas fechadas por dia da semana</string>
-    <string name="schedule_calendar">Calendário</string>
-    <string name="schedule_tasks">Tarefas</string>
-    <string name="schedule_tasks_count">Tarefas · %1$d</string>
     <string name="tasks_today">Hoje</string>
     <string name="tasks_tomorrow">Amanhã</string>
     <string name="tasks_yesterday">Ontem</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">Receita</string>
     <string name="col_sale">Venda</string>
     <string name="col_upsell">Adicional</string>
+    <string name="tab_tasks">Tarefas</string>
+    <string name="title_tasks">Tarefas</string>
+    <string name="tasks_view_day">Dia</string>
+    <string name="tasks_view_upcoming">Próximas</string>
+    <string name="tasks_pick_date">Escolher uma data</string>
+    <string name="tasks_upcoming_empty">Nada planejado ainda. Toque em Adicionar tarefa e escolha uma data para se planejar.</string>
+    <string name="tasks_repeating">Repetidas</string>
+    <string name="add_appointment">Adicionar compromisso</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>

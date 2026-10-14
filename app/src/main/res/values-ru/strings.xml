@@ -548,9 +548,6 @@
     <string name="charts_yearly">По годам</string>
     <string name="charts_week_of">Неделя с %1$s</string>
     <string name="charts_best_days">Закрытые продажи по дням недели</string>
-    <string name="schedule_calendar">Календарь</string>
-    <string name="schedule_tasks">Задачи</string>
-    <string name="schedule_tasks_count">Задачи · %1$d</string>
     <string name="tasks_today">Сегодня</string>
     <string name="tasks_tomorrow">Завтра</string>
     <string name="tasks_yesterday">Вчера</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">Выручка</string>
     <string name="col_sale">Продажа</string>
     <string name="col_upsell">Допродажа</string>
+    <string name="tab_tasks">Задачи</string>
+    <string name="title_tasks">Задачи</string>
+    <string name="tasks_view_day">День</string>
+    <string name="tasks_view_upcoming">Предстоящие</string>
+    <string name="tasks_pick_date">Выбрать дату</string>
+    <string name="tasks_upcoming_empty">Пока ничего не запланировано. Нажмите «Добавить задачу» и выберите дату.</string>
+    <string name="tasks_repeating">Повторяющиеся</string>
+    <string name="add_appointment">Добавить встречу</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

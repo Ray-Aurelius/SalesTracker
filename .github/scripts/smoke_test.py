@@ -190,6 +190,33 @@ def find_scrolling(pattern, tries=5):
     return pos
 
 
+def keyboard_top():
+    """Where the on-screen keyboard starts (pixels from the top), or None if it isn't showing or can't be read."""
+    if "mInputShown=true" not in adb("shell", "dumpsys", "input_method"):
+        return None
+    out = adb("shell", "dumpsys", "window", "windows")
+    for block in re.split(r"\n\s*Window #", out):
+        if "InputMethod}" not in block.split("\n", 1)[0]:
+            continue
+        m = re.search(r"[mF]?[fF]rame=\[(-?\d+),(-?\d+)\]\[(-?\d+),(-?\d+)\]", block)
+        if m and int(m.group(2)) > 0:
+            return int(m.group(2))
+    return None
+
+
+def check_above_keyboard(pattern, what):
+    """With the keyboard open, the form's button must sit above it (the form shrinks and scrolls)."""
+    top = keyboard_top()
+    pos = find(pattern)
+    note(f"  keyboard starts at y={top}; {what} at {pos}")
+    if top is None:
+        note("  (keyboard position not readable here; skipped)")
+        return
+    if pos is None or pos[1] >= top:
+        shot("keyboard-covers-" + what.replace(" ", "-"))
+        fail(f"the keyboard covers the {what}")
+
+
 def back(wait=1.0):
     adb("shell", "input", "keyevent", "KEYCODE_BACK")
     time.sleep(wait)
@@ -254,7 +281,7 @@ def main(apk):
     tap(r"Explore with sample data", "sample-data-loaded", wait=3)
 
     section("Every tab")
-    for label in ["Sales", "Expenses", "Goals", "Clients", "Schedule", "Timer", "Calc", "Charts", "Stats"]:
+    for label in ["Sales", "Expenses", "Goals", "Clients", "Schedule", "Tasks", "Timer", "Calc", "Charts", "Stats"]:
         tap(rf"^{label}$", f"tab-{label.lower()}", wait=2)
 
     section("The + menu")
@@ -269,6 +296,7 @@ def main(apk):
             fail("no Add client button on the sale form")
         tap(r"^First name$", wait=0.8)
         type_text("Riley")
+        check_above_keyboard(r"^Save$", "Save button on the new client form")
         tap(r"^Last name$", wait=0.8)
         type_text("Quinn")
         hide_keyboard()
@@ -284,6 +312,36 @@ def main(apk):
     if not find(r"Riley Quinn"):
         fail("the sale with the new client is not in the sales log")
     shot("sales-log-new-client")
+
+    section("Schedule: tap a date, add an appointment; plan a task and tick it off")
+    tap(r"^Schedule$", wait=1.5)
+    if not tap(r"^Add appointment$", "schedule-add-appointment", wait=1.5):
+        fail("no Add appointment button for the chosen day")
+    tap(r"^Title$", wait=0.8)
+    type_text("Smoke%sdemo")
+    check_above_keyboard(r"^Save$", "Save button on the appointment form")
+    hide_keyboard()
+    tap(r"^Save$", wait=1.5)
+    if not find_scrolling(r"^Smoke demo$", tries=3):
+        fail("the appointment added from the chosen day is not on the schedule")
+    shot("schedule-appointment-added")
+    tap(r"^Schedule$", wait=1.5)
+    if not tap(r"^Add task$", wait=1.5, scroll=2):
+        fail("no Add task button on the Schedule page")
+    tap(r"^Task$", wait=0.8)
+    type_text("Call%ssmoke%sclient")
+    hide_keyboard()
+    tap(r"^Save$", wait=1.5)
+    tap(r"^Tasks$", "tasks-tab", wait=1.5)
+    if not find_scrolling(r"^Call smoke client$", tries=3):
+        fail("the new task is not on the Tasks tab")
+    if not toggle_near(r"^Call smoke client$", "task-ticked"):
+        fail("no check box next to the task")
+    if not find(r"^Done \(\d+\)$") and not find_scrolling(r"^Done \(\d+\)$", tries=3):
+        fail("ticking the box didn't cross the task off")
+    if not find_scrolling(r"^Call smoke client$", tries=3):
+        fail("a crossed-off task should stay on the list")
+    tap(r"^Upcoming$", "tasks-upcoming", wait=1.5)
 
     section("Add client button on the Clients page")
     tap(r"^Clients$", wait=1.5)

@@ -40,7 +40,6 @@ import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material.icons.filled.Repeat
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FilterChip
@@ -88,47 +87,23 @@ import com.salestracker.app.ui.AppViewModel
 import java.time.LocalDate
 import java.time.LocalTime
 
-/** The Schedule tab: the calendar, or the day's task list. */
-@Composable
-fun ScheduleScreen(vm: AppViewModel, data: AppData) {
-    var view by rememberSaveable { mutableIntStateOf(0) }
-    LaunchedEffect(vm.pendingOpenTasks) {
-        if (vm.pendingOpenTasks) { view = 1; vm.pendingOpenTasks = false }
-    }
-    LaunchedEffect(vm.pendingOpenDay) { if (vm.pendingOpenDay != null) view = 0 }
-    val today = LocalDate.now().toEpochDay()
-    val remaining = DayTasks.of(data.tasks, today, today).remaining
-
-    val narrow = isNarrow()
-    Column(Modifier.fillMaxSize()) {
-        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
-            SegmentedButton(
-                selected = view == 0, onClick = { view = 0 },
-                shape = SegmentedButtonDefaults.itemShape(0, 2),
-                icon = { if (!narrow) SegmentedButtonDefaults.Icon(view == 0) },
-            ) { FitText(stringResource(R.string.schedule_calendar)) }
-            SegmentedButton(
-                selected = view == 1, onClick = { view = 1 },
-                shape = SegmentedButtonDefaults.itemShape(1, 2),
-                icon = { if (!narrow) SegmentedButtonDefaults.Icon(view == 1) },
-            ) { FitText(if (remaining > 0) stringResource(R.string.schedule_tasks_count, remaining) else stringResource(R.string.schedule_tasks)) }
-        }
-        Box(Modifier.weight(1f)) {
-            if (view == 0) CalendarScreen(vm, data) else TasksScreen(vm, data)
-        }
-    }
-}
-
+/**
+ * The Tasks tab: one day's to-do list (any date: arrows, or tap the calendar button to pick one), or everything
+ * coming up. Each task has a check box; ticking it crosses the task off, and it stays on the list, crossed off.
+ * Tasks are saved in the app with everything else (encrypted, and included in backups).
+ */
 @Composable
 fun TasksScreen(vm: AppViewModel, data: AppData) {
     val today = LocalDate.now().toEpochDay()
     var day by rememberSaveable { mutableLongStateOf(today) }
+    var upcoming by rememberSaveable { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Task?>(null) }
     var adding by remember { mutableStateOf(false) }
-    var showDone by rememberSaveable { mutableStateOf(false) }
+    var showDone by rememberSaveable { mutableStateOf(true) }
     val list = DayTasks.of(data.tasks, day, today)
     val clients = data.clients.associateBy { it.id }
     val context = LocalContext.current
+    fun call(phone: String) = context.startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone")))
 
     Box(Modifier.fillMaxSize()) {
         LazyColumn(
@@ -136,96 +111,114 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(6.dp),
         ) {
-            // Day switcher: tap the title to jump back to today.
             item {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    IconButton(onClick = { day-- }) {
-                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = stringResource(R.string.cd_prev_day))
+                SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+                    SegmentedButton(selected = !upcoming, onClick = { upcoming = false }, shape = SegmentedButtonDefaults.itemShape(0, 2)) {
+                        FitText(stringResource(R.string.tasks_view_day))
                     }
-                    FitText(
-                        dayLabel(day, today),
-                        style = MaterialTheme.typography.titleLarge,
-                        modifier = Modifier.weight(1f).clickable { day = today }.semantics { heading() },
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-                    )
-                    IconButton(onClick = { day++ }) {
-                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = stringResource(R.string.cd_next_day))
+                    SegmentedButton(selected = upcoming, onClick = { upcoming = true }, shape = SegmentedButtonDefaults.itemShape(1, 2)) {
+                        FitText(stringResource(R.string.tasks_view_upcoming))
                     }
                 }
             }
-            if (list.total > 0) {
-                item {
-                    val done = list.done.size
-                    Text(
-                        stringResource(R.string.tasks_progress, done, list.total),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    LinearProgressIndicator(
-                        progress = { done.toFloat() / list.total },
-                        modifier = Modifier.fillMaxWidth().padding(top = 6.dp, bottom = 4.dp).height(6.dp),
-                    )
-                }
+            if (upcoming) {
+                upcomingList(data.tasks, today, clients, onCheck = { t, d, on -> vm.setTaskDone(t, d, on) }, onOpen = { editing = it }, onCall = ::call)
             } else {
+                // Day switcher: arrows step a day; the calendar button jumps to any date; tapping the title goes back to today.
                 item {
-                    Text(
-                        stringResource(R.string.tasks_empty),
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(vertical = 24.dp),
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        IconButton(onClick = { day-- }) {
+                            Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = stringResource(R.string.cd_prev_day))
+                        }
+                        FitText(
+                            dayLabel(day, today),
+                            style = MaterialTheme.typography.titleLarge,
+                            modifier = Modifier.weight(1f).clickable { day = today }.semantics { heading() },
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                        )
+                        IconButton(onClick = {
+                            val d = LocalDate.ofEpochDay(day)
+                            DatePickerDialog(context, { _, y, m, dd -> day = LocalDate.of(y, m + 1, dd).toEpochDay() }, d.year, d.monthValue - 1, d.dayOfMonth).show()
+                        }) { Icon(Icons.Filled.Event, contentDescription = stringResource(R.string.tasks_pick_date)) }
+                        IconButton(onClick = { day++ }) {
+                            Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = stringResource(R.string.cd_next_day))
+                        }
+                    }
                 }
-            }
-
-            fun section(title: Int, tasks: List<Task>, overdue: Boolean = false) {
-                if (tasks.isEmpty()) return
-                item {
-                    Text(
-                        stringResource(title),
-                        style = MaterialTheme.typography.titleSmall,
-                        fontWeight = FontWeight.SemiBold,
-                        color = if (overdue) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.padding(top = 10.dp).semantics { heading() },
-                    )
-                }
-                items(tasks, key = { "${title}_${it.id}" }) { t ->
-                    TaskRow(
-                        task = t, day = day, today = today, client = t.clientId?.let(clients::get), overdue = overdue,
-                        onCheck = { vm.setTaskDone(t, day, it) },
-                        onClick = { editing = t },
-                        onCall = { phone -> context.startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone"))) },
-                    )
-                }
-            }
-            section(R.string.tasks_overdue, list.overdue, overdue = true)
-            section(R.string.task_important, list.important)
-            section(R.string.tasks_other, list.other)
-            if (list.done.isNotEmpty()) {
-                item {
-                    Row(
-                        Modifier.fillMaxWidth().clickable { showDone = !showDone }.padding(top = 10.dp, bottom = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
+                if (list.total > 0) {
+                    item {
+                        val done = list.done.size
                         Text(
-                            stringResource(R.string.tasks_done_section, list.done.size),
+                            stringResource(R.string.tasks_progress, done, list.total),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        LinearProgressIndicator(
+                            progress = { done.toFloat() / list.total },
+                            modifier = Modifier.fillMaxWidth().padding(top = 6.dp, bottom = 4.dp).height(6.dp),
+                        )
+                    }
+                } else {
+                    item {
+                        Text(
+                            stringResource(R.string.tasks_empty),
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(vertical = 24.dp),
+                        )
+                    }
+                }
+
+                fun section(title: Int, tasks: List<Task>, overdue: Boolean = false) {
+                    if (tasks.isEmpty()) return
+                    item {
+                        Text(
+                            stringResource(title),
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.SemiBold,
-                            modifier = Modifier.weight(1f),
+                            color = if (overdue) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.padding(top = 10.dp).semantics { heading() },
                         )
-                        Icon(if (showDone) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore, contentDescription = null)
+                    }
+                    items(tasks, key = { "${title}_${it.id}" }) { t ->
+                        TaskRow(
+                            task = t, day = day, today = today, client = t.clientId?.let(clients::get), overdue = overdue,
+                            onCheck = { vm.setTaskDone(t, day, it) },
+                            onClick = { editing = t },
+                            onCall = ::call,
+                        )
                     }
                 }
-                if (showDone) {
-                    items(list.done, key = { "done_${it.id}" }) { t ->
-                        TaskRow(
-                            task = t, day = day, today = today, client = t.clientId?.let(clients::get), overdue = false,
-                            onCheck = { vm.setTaskDone(t, day, it) }, onClick = { editing = t }, onCall = {},
-                        )
+                section(R.string.tasks_overdue, list.overdue, overdue = true)
+                section(R.string.task_important, list.important)
+                section(R.string.tasks_other, list.other)
+                if (list.done.isNotEmpty()) {
+                    item {
+                        Row(
+                            Modifier.fillMaxWidth().clickable { showDone = !showDone }.padding(top = 10.dp, bottom = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(
+                                stringResource(R.string.tasks_done_section, list.done.size),
+                                style = MaterialTheme.typography.titleSmall,
+                                fontWeight = FontWeight.SemiBold,
+                                modifier = Modifier.weight(1f),
+                            )
+                            Icon(if (showDone) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore, contentDescription = null)
+                        }
+                    }
+                    if (showDone) {
+                        items(list.done, key = { "done_${it.id}" }) { t ->
+                            TaskRow(
+                                task = t, day = day, today = today, client = t.clientId?.let(clients::get), overdue = false,
+                                onCheck = { vm.setTaskDone(t, day, it) }, onClick = { editing = t }, onCall = {},
+                            )
+                        }
                     }
                 }
             }
         }
-        QuickAdd(vm, data, taskDay = day)
+        QuickAdd(vm, data, taskDay = if (upcoming) today else day)
     }
 
     if (adding || editing != null) {
@@ -241,8 +234,68 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
     }
 }
 
+/**
+ * Everything planned from today on, grouped by date (overdue first): one-off tasks under their day (crossed off
+ * once done), then repeating tasks once each with how often they repeat.
+ */
+private fun androidx.compose.foundation.lazy.LazyListScope.upcomingList(
+    tasks: List<Task>,
+    today: Long,
+    clients: Map<Long, Client>,
+    onCheck: (Task, Long, Boolean) -> Unit,
+    onOpen: (Task) -> Unit,
+    onCall: (String) -> Unit,
+) {
+    val overdue = tasks.filter { it.isOverdue(today) }.sortedBy { it.epochDay }
+    val byDay = tasks.filter { it.repeat == TaskRepeat.NONE && it.epochDay >= today }
+        .sortedWith(compareBy({ it.epochDay }, { !it.important }, { it.reminderMinute ?: Int.MAX_VALUE }))
+        .groupBy { it.epochDay }
+    val repeating = tasks.filter { it.repeat != TaskRepeat.NONE }.sortedBy { it.title.lowercase() }
+    if (overdue.isEmpty() && byDay.isEmpty() && repeating.isEmpty()) {
+        item {
+            Text(
+                stringResource(R.string.tasks_upcoming_empty),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(vertical = 24.dp),
+            )
+        }
+        return
+    }
+    fun header(text: @Composable () -> String, error: Boolean = false, key: String) {
+        item(key = key) {
+            Text(
+                text(),
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                color = if (error) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.padding(top = 10.dp).semantics { heading() },
+            )
+        }
+    }
+    if (overdue.isNotEmpty()) {
+        header({ stringResource(R.string.tasks_overdue) }, error = true, key = "h_overdue")
+        items(overdue, key = { "up_over_${it.id}" }) { t ->
+            TaskRow(t, t.epochDay, today, t.clientId?.let(clients::get), overdue = true, onCheck = { onCheck(t, t.epochDay, it) }, onClick = { onOpen(t) }, onCall = onCall)
+        }
+    }
+    byDay.forEach { (d, list) ->
+        header({ dayLabel(d, today) }, key = "h_$d")
+        items(list, key = { "up_${it.id}" }) { t ->
+            TaskRow(t, d, today, t.clientId?.let(clients::get), overdue = false, onCheck = { onCheck(t, d, it) }, onClick = { onOpen(t) }, onCall = onCall)
+        }
+    }
+    if (repeating.isNotEmpty()) {
+        header({ stringResource(R.string.tasks_repeating) }, key = "h_repeat")
+        items(repeating, key = { "up_rep_${it.id}" }) { t ->
+            // Ticked off for today; each day has its own tick.
+            TaskRow(t, today, today, t.clientId?.let(clients::get), overdue = false, onCheck = { onCheck(t, today, it) }, onClick = { onOpen(t) }, onCall = onCall)
+        }
+    }
+}
+
 @Composable
-private fun dayLabel(day: Long, today: Long): String = when (day - today) {
+internal fun dayLabel(day: Long, today: Long): String = when (day - today) {
     0L -> stringResource(R.string.tasks_today)
     1L -> stringResource(R.string.tasks_tomorrow)
     -1L -> stringResource(R.string.tasks_yesterday)
@@ -250,7 +303,7 @@ private fun dayLabel(day: Long, today: Long): String = when (day - today) {
 }
 
 @Composable
-private fun TaskRow(
+internal fun TaskRow(
     task: Task,
     day: Long,
     today: Long,

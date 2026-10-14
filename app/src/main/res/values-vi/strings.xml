@@ -548,9 +548,6 @@
     <string name="charts_yearly">Theo năm</string>
     <string name="charts_week_of">Tuần %1$s</string>
     <string name="charts_best_days">Giao dịch đã chốt theo ngày trong tuần</string>
-    <string name="schedule_calendar">Lịch</string>
-    <string name="schedule_tasks">Việc cần làm</string>
-    <string name="schedule_tasks_count">Việc cần làm · %1$d</string>
     <string name="tasks_today">Hôm nay</string>
     <string name="tasks_tomorrow">Ngày mai</string>
     <string name="tasks_yesterday">Hôm qua</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">Doanh thu</string>
     <string name="col_sale">Bán</string>
     <string name="col_upsell">Bán thêm</string>
+    <string name="tab_tasks">Việc cần làm</string>
+    <string name="title_tasks">Việc cần làm</string>
+    <string name="tasks_view_day">Ngày</string>
+    <string name="tasks_view_upcoming">Sắp tới</string>
+    <string name="tasks_pick_date">Chọn ngày</string>
+    <string name="tasks_upcoming_empty">Chưa có kế hoạch. Chạm Thêm việc và chọn ngày để lên kế hoạch trước.</string>
+    <string name="tasks_repeating">Lặp lại</string>
+    <string name="add_appointment">Thêm lịch hẹn</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

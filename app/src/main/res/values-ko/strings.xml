@@ -548,9 +548,6 @@
     <string name="charts_yearly">연도별</string>
     <string name="charts_week_of">%1$s 주</string>
     <string name="charts_best_days">요일별 성사 건수</string>
-    <string name="schedule_calendar">캘린더</string>
-    <string name="schedule_tasks">할 일</string>
-    <string name="schedule_tasks_count">할 일 · %1$d</string>
     <string name="tasks_today">오늘</string>
     <string name="tasks_tomorrow">내일</string>
     <string name="tasks_yesterday">어제</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">매출</string>
     <string name="col_sale">판매</string>
     <string name="col_upsell">추가 판매</string>
+    <string name="tab_tasks">할 일</string>
+    <string name="title_tasks">할 일</string>
+    <string name="tasks_view_day">하루</string>
+    <string name="tasks_view_upcoming">예정</string>
+    <string name="tasks_pick_date">날짜 선택</string>
+    <string name="tasks_upcoming_empty">아직 계획이 없습니다. 할 일 추가를 누르고 날짜를 골라 미리 계획하세요.</string>
+    <string name="tasks_repeating">반복</string>
+    <string name="add_appointment">일정 추가</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

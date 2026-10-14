@@ -55,12 +55,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.NotificationsActive
+import androidx.compose.material.icons.filled.AddTask
 import androidx.compose.material.icons.filled.NotificationsOff
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.Schedule
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -120,6 +120,9 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
     var selected by rememberSaveable { mutableStateOf(today) }
     var adding by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Appointment?>(null) }
+    var addingTask by remember { mutableStateOf(false) }
+    var editingTask by remember { mutableStateOf<com.salestracker.app.data.Task?>(null) }
+    val context = LocalContext.current
 
     // Tapping a reminder notification lands here on the appointment's day.
     LaunchedEffect(vm.pendingOpenDay) {
@@ -153,7 +156,8 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                     symbols = vm.highlightSymbols,
                     onPrev = { month = month.minusMonths(1) },
                     onNext = { month = month.plusMonths(1) },
-                    onSelect = { selected = it },
+                    // Tapping a day picks it; tapping the picked day again starts an appointment on it.
+                    onSelect = { if (it == selected) adding = true else selected = it },
                     onToday = { month = YearMonth.from(today); selected = today },
                 )
             }
@@ -175,6 +179,22 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                         current = data.dayHighlights[selected.toEpochDay()],
                         onPick = { vm.setDayHighlight(selected.toEpochDay(), it) },
                     )
+                    // Plan something on the chosen day.
+                    androidx.compose.foundation.layout.FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.padding(top = 6.dp),
+                    ) {
+                        androidx.compose.material3.FilledTonalButton(onClick = { adding = true }) {
+                            Icon(Icons.Filled.Event, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text(stringResource(R.string.add_appointment))
+                        }
+                        androidx.compose.material3.OutlinedButton(onClick = { addingTask = true }) {
+                            Icon(Icons.Filled.AddTask, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text(stringResource(R.string.add_task))
+                        }
+                    }
                 }
             }
             if (dayAppts.isEmpty()) {
@@ -214,8 +234,42 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                     }
                 }
             }
+            // The day's to-do list, with the same check boxes as the Tasks tab.
+            val dayNo = selected.toEpochDay()
+            val dayTasks = com.salestracker.app.data.DayTasks.of(data.tasks, dayNo, today.toEpochDay())
+            val shownTasks = dayTasks.important + dayTasks.other + dayTasks.done
+            if (shownTasks.isNotEmpty()) {
+                item {
+                    Text(
+                        stringResource(R.string.tasks_progress, dayTasks.done.size, dayTasks.total),
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.padding(top = 8.dp),
+                    )
+                }
+                items(shownTasks, key = { "task_${it.id}" }) { t ->
+                    TaskRow(
+                        task = t, day = dayNo, today = today.toEpochDay(), client = t.clientId?.let { clientsById[it] }, overdue = false,
+                        onCheck = { vm.setTaskDone(t, dayNo, it) },
+                        onClick = { editingTask = t },
+                        onCall = { phone -> context.startActivity(android.content.Intent(android.content.Intent.ACTION_DIAL, android.net.Uri.parse("tel:$phone"))) },
+                    )
+                }
+            }
         }
-        QuickAdd(vm, data, appointmentDate = selected)
+        QuickAdd(vm, data, appointmentDate = selected, taskDay = selected.toEpochDay())
+    }
+
+    if (addingTask || editingTask != null) {
+        TaskDialog(
+            initial = editingTask,
+            defaultDay = selected.toEpochDay(),
+            clients = data.clients,
+            newId = vm::newId,
+            onSave = vm::saveTask,
+            onDelete = { vm.deleteTask(it) },
+            onDismiss = { addingTask = false; editingTask = null },
+        )
     }
 
     if (adding || editing != null) {

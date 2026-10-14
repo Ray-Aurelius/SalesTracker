@@ -548,9 +548,6 @@
     <string name="charts_yearly">سنوي</string>
     <string name="charts_week_of">أسبوع %1$s</string>
     <string name="charts_best_days">المبيعات المغلقة حسب يوم الأسبوع</string>
-    <string name="schedule_calendar">التقويم</string>
-    <string name="schedule_tasks">المهام</string>
-    <string name="schedule_tasks_count">المهام · %1$d</string>
     <string name="tasks_today">اليوم</string>
     <string name="tasks_tomorrow">غدًا</string>
     <string name="tasks_yesterday">أمس</string>
@@ -889,6 +886,14 @@
     <string name="col_revenue">الإيرادات</string>
     <string name="col_sale">البيع</string>
     <string name="col_upsell">بيع إضافي</string>
+    <string name="tab_tasks">المهام</string>
+    <string name="title_tasks">المهام</string>
+    <string name="tasks_view_day">اليوم</string>
+    <string name="tasks_view_upcoming">القادمة</string>
+    <string name="tasks_pick_date">اختر تاريخًا</string>
+    <string name="tasks_upcoming_empty">لا شيء مخطط بعد. انقر على إضافة مهمة واختر تاريخًا للتخطيط مسبقًا.</string>
+    <string name="tasks_repeating">المتكررة</string>
+    <string name="add_appointment">إضافة موعد</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

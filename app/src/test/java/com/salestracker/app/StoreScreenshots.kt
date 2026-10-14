@@ -165,10 +165,7 @@ class StoreScreenshots {
         rule.mainClock.autoAdvance = true
         rule.waitForIdle()
         tap(app.getString(R.string.tab_calendar)); shot("4-calendar")
-        rule.onAllNodesWithText(app.getString(R.string.schedule_tasks), substring = true).onFirst().performClick()
-        rule.waitForIdle(); shot("4b-tasks")
-        rule.onAllNodesWithText(app.getString(R.string.schedule_calendar)).onFirst().performClick()
-        rule.waitForIdle()
+        tap(app.getString(R.string.tab_tasks)); shot("4b-tasks")
         tap(app.getString(R.string.tab_timer)); shot("5-timer")
         tap(app.getString(R.string.tab_charts)); shot("7-charts")
         // Bring the commission and revenue bar charts into view (the second "Close rate" is the trend chart below them).

@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 
 package com.salestracker.app
 
@@ -76,11 +76,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Calculate
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.Checklist
 import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material.icons.filled.Insights
 import androidx.compose.material.icons.filled.AccountBalanceWallet
@@ -113,7 +116,8 @@ import com.salestracker.app.ui.screens.CalculatorScreen
 import com.salestracker.app.ui.screens.ChartsScreen
 import androidx.compose.material.icons.automirrored.filled.ReceiptLong
 import com.salestracker.app.ui.screens.SalesScreen
-import com.salestracker.app.ui.screens.ScheduleScreen
+import com.salestracker.app.ui.screens.CalendarScreen
+import com.salestracker.app.ui.screens.TasksScreen
 import com.salestracker.app.ui.screens.CalendarScreen
 import com.salestracker.app.ui.screens.ClientsScreen
 import com.salestracker.app.ui.screens.DashboardScreen
@@ -227,6 +231,7 @@ internal enum class Tab(@StringRes val label: Int, @StringRes val title: Int, va
     GOALS(R.string.tab_goals, R.string.title_goals, Icons.Filled.Flag),
     CLIENTS(R.string.tab_clients, R.string.title_clients, Icons.Filled.People),
     CALENDAR(R.string.tab_calendar, R.string.title_calendar, Icons.Filled.CalendarMonth),
+    TASKS(R.string.tab_tasks, R.string.title_tasks, Icons.Filled.Checklist),
     TIMER(R.string.tab_timer, R.string.title_timer, Icons.Filled.Timer),
     CALCULATOR(R.string.tab_calc, R.string.title_calc, Icons.Filled.Calculate),
     CHARTS(R.string.tab_charts, R.string.title_charts, Icons.Filled.BarChart),
@@ -322,7 +327,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
         if (vm.pendingOpenExpenses) { tab = Tab.EXPENSES; opened = true; vm.pendingOpenExpenses = false }
     }
     LaunchedEffect(vm.pendingOpenTasks) {
-        if (vm.pendingOpenTasks) { tab = Tab.CALENDAR; opened = true }
+        if (vm.pendingOpenTasks) { tab = Tab.TASKS; opened = true; vm.pendingOpenTasks = false }
     }
 
     Scaffold(
@@ -359,7 +364,9 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
             }
         },
     ) { padding ->
-        Row(Modifier.fillMaxSize().padding(padding)) {
+        // When the keyboard is open, the page shrinks to the space above it (the menu bar slides under the
+        // keyboard), so search boxes and the bottom of every page stay reachable.
+        Row(Modifier.fillMaxSize().padding(padding).consumeWindowInsets(padding).imePadding()) {
             if (side) {
                 // Menu down the side (left, or right in right-to-left languages). Its own arrow hides it;
                 // when hidden, a slim strip with an arrow brings it back.
@@ -381,7 +388,8 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                         Tab.EXPENSES -> com.salestracker.app.ui.screens.ExpensesScreen(vm, data)
                         Tab.GOALS -> GoalsScreen(vm, data)
                         Tab.CLIENTS -> ClientsScreen(vm, data)
-                        Tab.CALENDAR -> ScheduleScreen(vm, data)
+                        Tab.CALENDAR -> CalendarScreen(vm, data)
+                        Tab.TASKS -> TasksScreen(vm, data)
                         Tab.TIMER -> StopwatchScreen(vm, data)
                         Tab.CALCULATOR -> CalculatorScreen(vm, data)
                         Tab.CHARTS -> ChartsScreen(vm, data)

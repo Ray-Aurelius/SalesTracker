@@ -96,7 +96,7 @@ class LayoutAudit {
         }
         val tabs = listOf(
             R.string.tab_stats to "1-stats", R.string.tab_sales to "1s-sales", R.string.tab_expenses to "1x-expenses", R.string.tab_goals to "2-goals", R.string.tab_clients to "3-clients",
-            R.string.tab_calendar to "4-schedule", R.string.tab_timer to "6-timer", R.string.tab_calc to "7-calc",
+            R.string.tab_calendar to "4-schedule", R.string.tab_tasks to "5-tasks", R.string.tab_timer to "6-timer", R.string.tab_calc to "7-calc",
             R.string.tab_charts to "8-charts",
         )
         for ((label, name) in tabs) {
@@ -107,9 +107,6 @@ class LayoutAudit {
                 tap(app.getString(R.string.quick_add))
                 shot("$config-4-schedule-plus")
                 tap(app.getString(R.string.quick_add_close))
-                tap(app.getString(R.string.schedule_tasks), substring = true)
-                shot("$config-5-tasks")
-                tap(app.getString(R.string.schedule_calendar))
             }
             if (name == "6-timer") {
                 // Paused, so the start button reads "Resume" (the longest of its labels).
