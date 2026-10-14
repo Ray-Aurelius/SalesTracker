@@ -184,3 +184,47 @@ jobs:
           find smoke -type f -empty -delete   # GitHub refuses empty files
           gh release upload smoke-test smoke/* --clobber || true
           cat smoke/summary.txt
+
+  # Android 15+ no longer resizes pop-ups for the keyboard; the app places its forms itself. This types notes
+  # at the bottom of the client and sale forms on Android 15 and fails if a form bounces or hides Save.
+  keyboard-android-15:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: QuotaVault-build
+
+      - name: Let the emulator use hardware acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Type notes in forms on Android 15
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: python3 .github/scripts/keyboard_test.py QuotaVault.apk
+
+      - name: Publish the result (keyboard-test release)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p keyboard
+          [ -f keyboard/summary.txt ] || echo "The test script did not start (emulator or install problem)." > keyboard/summary.txt
+          echo "Run ${{ github.run_number }}, commit ${{ github.sha }}" > keyboard/run.txt
+          gh release view keyboard-test >/dev/null 2>&1 || gh release create keyboard-test --title "Keyboard test (Android 15)" --notes "Typing in forms on Android 15." --prerelease
+          for a in $(gh release view keyboard-test --json assets --jq '.assets[].name'); do gh release delete-asset keyboard-test "$a" -y || true; done
+          find keyboard -type f -empty -delete
+          gh release upload keyboard-test keyboard/summary.txt keyboard/run.txt keyboard/logcat.txt --clobber || true
+          cat keyboard/summary.txt

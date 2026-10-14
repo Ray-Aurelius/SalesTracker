@@ -226,6 +226,30 @@ def check_above_keyboard(pattern, what):
         fail(f"the keyboard covers the {what}")
 
 
+def check_typing_notes(form):
+    """In an open form: scroll to Notes and type word by word, as a person would. The form must not move
+    (no bounce) and its Save button must stay above the keyboard after every word."""
+    hide_keyboard()
+    if not find_scrolling(r"^Notes$", tries=6):
+        fail(f"no Notes box on the {form}")
+    tap(r"^Notes$", wait=1.2)
+    ys = []
+    for w in ["Prefers", "morning", "calls", "about", "the", "new", "roof", "quote", "and", "financing", "options"]:
+        adb("shell", "input", "text", w + "%s")
+        time.sleep(0.7)
+        pos = find(r"^Save$")
+        ys.append(pos[1] if pos else None)
+    top = keyboard_top()
+    note(f"  {form}: Save button y while typing notes: {ys}; keyboard starts at y={top}")
+    shot("notes-typing-" + form.replace(" ", "-"))
+    if None in ys:
+        fail(f"the Save button went out of view while typing notes on the {form}")
+    if max(ys) - min(ys) > 12:
+        fail(f"the {form} moved while typing notes (bounce): Save went from y={min(ys)} to y={max(ys)}")
+    if top is not None and max(ys) >= top:
+        fail(f"the keyboard covers the Save button while typing notes on the {form}")
+
+
 def back(wait=1.0):
     adb("shell", "input", "keyevent", "KEYCODE_BACK")
     time.sleep(wait)
@@ -367,6 +391,7 @@ def main(apk):
     type_text("Jordan")
     tap(r"^Last name$", wait=0.8)
     type_text("Ellis")
+    check_typing_notes("new client form")
     hide_keyboard()
     tap(r"^Save$", wait=1.5)
     if not find(r"Jordan Ellis"):
