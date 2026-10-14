@@ -250,6 +250,21 @@ def check_typing_notes(form):
         fail(f"the keyboard covers the Save button while typing notes on the {form}")
 
 
+def check_clear_of_bottom_bar(pattern, what):
+    """With the keyboard closed, the form's button must sit above the phone's bottom bar (not behind it)."""
+    sizes = re.findall(r"(\d+)x(\d+)", adb("shell", "wm", "size"))
+    dens = re.findall(r"(\d+)", adb("shell", "wm", "density"))
+    if not sizes or not dens:
+        note("  (screen size not readable; skipped)")
+        return
+    height, dpi = int(sizes[-1][1]), int(dens[-1])
+    limit = height - 48 * dpi // 160   # the bottom bar is about 48dp tall
+    pos = find(pattern)
+    note(f"  {what} at {pos}; bottom bar starts about y={limit}")
+    if pos is None or pos[1] >= limit:
+        fail(f"the {what} is behind the phone's bottom bar")
+
+
 def back(wait=1.0):
     adb("shell", "input", "keyevent", "KEYCODE_BACK")
     time.sleep(wait)

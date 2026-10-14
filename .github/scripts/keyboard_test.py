@@ -41,6 +41,8 @@ def main(apk):
     t.check_typing_notes("new client form")
     t.section("Log a sale: type notes at the bottom of the form")
     t.hide_keyboard()
+    time.sleep(1)
+    t.check_clear_of_bottom_bar(r"^Save$", "Save button on the new client form (keyboard closed)")
     t.tap(r"^Cancel$", wait=1.2)
     if t.tap(r"^Log a sale or add a client$", wait=1.2):
         t.tap(r"^Log sale$", wait=2)

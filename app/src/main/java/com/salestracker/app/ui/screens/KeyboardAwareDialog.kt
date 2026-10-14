@@ -89,19 +89,23 @@ fun AlertDialog(
         ),
     ) {
         KeepWindowStill()
-        // How much of the screen the keyboard covers, read straight from Android (see rememberKeyboardHeight).
-        val keyboardPx = rememberKeyboardHeight()
+        // Where the status bar, the phone's bottom bar and the keyboard are, read straight from Android.
+        val clearance = rememberClearance()
         val density = LocalDensity.current
-        val bottomBars = WindowInsets.safeDrawing.getBottom(density)
-        val extraBottom = with(density) { (keyboardPx - bottomBars).coerceAtLeast(0).toDp() }
-        // Fills the screen above the keyboard and the system bars; a tap on the dimmed area outside the card closes it.
+        val pad = with(density) {
+            androidx.compose.foundation.layout.PaddingValues(
+                start = clearance.left.toDp(), top = clearance.top.toDp(),
+                end = clearance.right.toDp(), bottom = clearance.bottom.toDp(),
+            )
+        }
+        // Fills the screen between the status bar and the phone's bottom bar (or the keyboard when it's open); a tap
+        // on the dimmed area outside the card closes it.
         Box(
             Modifier.fillMaxSize()
                 .pointerInput(properties.dismissOnClickOutside) {
                     if (properties.dismissOnClickOutside) detectTapGestures { onDismissRequest() }
                 }
-                .windowInsetsPadding(WindowInsets.safeDrawing)
-                .padding(bottom = extraBottom)
+                .padding(pad)
                 .padding(horizontal = 24.dp, vertical = 24.dp),
             contentAlignment = Alignment.Center,
         ) {
@@ -160,24 +164,37 @@ fun AlertDialog(
     }
 }
 
+/** Space the form must keep clear of, in pixels: the status bar at the top, and the phone's bottom bar or the keyboard. */
+private data class Clearance(val top: Int = 0, val bottom: Int = 0, val left: Int = 0, val right: Int = 0)
+
 /**
- * The keyboard's height in pixels (0 when it's closed), read from Android's own window measurements every time the
- * layout changes: from the form's window, or else from the app's main window. Doesn't depend on any one route
- * for that information (which differs between Android versions and phone makers).
+ * Where the system bars and the keyboard are, in pixels, read from Android's own window measurements: from the
+ * form's window, or else from the app's main window. Doesn't depend on any one route for that information (which
+ * differs between Android versions and phone makers).
  */
 @Composable
-private fun rememberKeyboardHeight(): Int {
+private fun rememberClearance(): Clearance {
     val view = LocalView.current
     val context = androidx.compose.ui.platform.LocalContext.current
-    var px by remember { mutableIntStateOf(0) }
+    var clearance by remember { mutableStateOf(Clearance()) }
     DisposableEffect(view) {
         val dialogRoot = (view.parent as? DialogWindowProvider)?.window?.decorView ?: view.rootView
         val appRoot = context.findActivityWindowRoot()
-        fun ime(v: android.view.View?): Int =
-            v?.let { ViewCompat.getRootWindowInsets(it) }?.getInsets(WindowInsetsCompat.Type.ime())?.bottom ?: 0
+        val roots = listOf(dialogRoot, view, appRoot)
+        fun measure(type: Int): androidx.core.graphics.Insets {
+            var top = 0; var bottom = 0; var left = 0; var right = 0
+            roots.forEach { v ->
+                val i = v?.let { ViewCompat.getRootWindowInsets(it) }?.getInsets(type) ?: return@forEach
+                top = maxOf(top, i.top); bottom = maxOf(bottom, i.bottom); left = maxOf(left, i.left); right = maxOf(right, i.right)
+            }
+            return androidx.core.graphics.Insets.of(left, top, right, bottom)
+        }
         fun update() {
-            val next = maxOf(ime(dialogRoot), ime(view), ime(appRoot))
-            if (next != px) px = next
+            // The status bar, the phone's bottom bar (buttons or gesture line) and any camera cutout.
+            val bars = measure(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
+            val keyboard = measure(WindowInsetsCompat.Type.ime())
+            val next = Clearance(top = bars.top, bottom = maxOf(bars.bottom, keyboard.bottom), left = bars.left, right = bars.right)
+            if (next != clearance) clearance = next
         }
         val layoutListener = android.view.ViewTreeObserver.OnGlobalLayoutListener { update() }
         dialogRoot.viewTreeObserver.addOnGlobalLayoutListener(layoutListener)
@@ -196,7 +213,7 @@ private fun rememberKeyboardHeight(): Int {
             ViewCompat.setOnApplyWindowInsetsListener(dialogRoot, null)
         }
     }
-    return px
+    return clearance
 }
 
 private fun android.content.Context.findActivityWindowRoot(): android.view.View? {
