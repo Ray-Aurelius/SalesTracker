@@ -226,5 +226,5 @@ jobs:
           gh release view keyboard-test >/dev/null 2>&1 || gh release create keyboard-test --title "Keyboard test (Android 15)" --notes "Typing in forms on Android 15." --prerelease
           for a in $(gh release view keyboard-test --json assets --jq '.assets[].name'); do gh release delete-asset keyboard-test "$a" -y || true; done
           find keyboard -type f -empty -delete
-          gh release upload keyboard-test keyboard/summary.txt keyboard/run.txt keyboard/logcat.txt --clobber || true
+          for f in keyboard/*.txt; do gh release upload keyboard-test "$f" --clobber || true; done
           cat keyboard/summary.txt
