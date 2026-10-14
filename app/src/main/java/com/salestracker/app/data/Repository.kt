@@ -12,7 +12,9 @@ import java.security.SecureRandom
  * Stores everything in one file in the app's private storage, encrypted with a hardware-backed key
  * (see [KeystoreCipher]). The data set for one salesperson is small, so a single file is simple and fast.
  */
-class Repository(context: Context, private val cipher: DataCipher? = KeystoreCipher.getOrNull()) {
+class Repository(context: Context, initialCipher: DataCipher? = KeystoreCipher.getOrNull()) {
+    /** Replaced with a brand-new key after "Erase all data" destroys the old one. */
+    private var cipher: DataCipher? = initialCipher
     private val appContext = context.applicationContext
     private val dir = context.filesDir
     private val sealedFile = File(dir, SEALED_NAME)
@@ -72,7 +74,8 @@ class Repository(context: Context, private val cipher: DataCipher? = KeystoreCip
 
     private fun write(data: AppData) {
         val json = data.toJson().toString().toByteArray(Charsets.UTF_8)
-        val (target, bytes) = if (cipher != null) sealedFile to SealedData.seal(json, cipher) else legacyFile to json
+        val c = cipher
+        val (target, bytes) = if (c != null) sealedFile to SealedData.seal(json, c) else legacyFile to json
         val tmp = File(dir, target.name + ".tmp")
         tmp.writeBytes(bytes)
         tmp.renameTo(target)
@@ -91,6 +94,8 @@ class Repository(context: Context, private val cipher: DataCipher? = KeystoreCip
             dir.listFiles()?.filter { it.name.startsWith("sales_data") }?.forEach(::wipe)
             ReceiptStore.deleteAll(appContext)
             KeystoreCipher.destroy()
+            // The old key is gone, so the handle to it is useless: make a new key for whatever is saved next.
+            if (cipher is KeystoreCipher) cipher = KeystoreCipher.getOrNull()
             readOnly = false
         }
     }
