@@ -250,20 +250,27 @@ def check_typing_notes(form):
         fail(f"the keyboard covers the Save button while typing notes on the {form}")
 
 
+def bottom_bar_top():
+    """Where the phone's bottom bar (navigation buttons / gesture line) starts, or None if this phone has none."""
+    out = adb("shell", "dumpsys", "window", "windows")
+    for block in re.split(r"\n\s*Window #", out):
+        if "NavigationBar" not in block.split("\n", 1)[0]:
+            continue
+        m = re.search(r"[mF]?[fF]rame=\[(-?\d+),(-?\d+)\]\[(-?\d+),(-?\d+)\]", block)
+        if m and int(m.group(4)) > int(m.group(2)):
+            return int(m.group(2))
+    return None
+
+
 def check_clear_of_bottom_bar(pattern, what):
     """With the keyboard closed, the form's button must sit above the phone's bottom bar (not behind it)."""
-    sizes = re.findall(r"(\d+)x(\d+)", adb("shell", "wm", "size"))
-    dens = re.findall(r"(\d+)", adb("shell", "wm", "density"))
-    if not sizes or not dens:
-        note("  (screen size not readable; skipped)")
-        return
-    height, dpi = int(sizes[-1][1]), int(dens[-1])
-    limit = height - 48 * dpi // 160   # the bottom bar is about 48dp tall
+    limit = bottom_bar_top()
     pos = find(pattern)
-    note(f"  {what} at {pos}; bottom bar starts about y={limit}")
-    if pos is None or pos[1] >= limit:
-        note("  insets seen by the app: " + " | ".join(adb("logcat", "-d", "-s", "QVInsets:I").strip().splitlines()[-6:]))
-        note("  window: " + " ".join(adb("shell", "dumpsys", "window", "displays").split("mCurrentFocus", 1)[-1].split("\n")[:1]))
+    note(f"  {what} at {pos}; bottom bar starts at y={limit}")
+    note("  insets seen by the app: " + " | ".join(l.split("QVInsets: ")[-1] for l in adb("logcat", "-d", "-s", "QVInsets:I").strip().splitlines()[-2:]))
+    if pos is None:
+        fail(f"the {what} is not on screen")
+    if limit is not None and pos[1] >= limit:
         fail(f"the {what} is behind the phone's bottom bar")
 
 

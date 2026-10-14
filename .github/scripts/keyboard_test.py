@@ -17,6 +17,8 @@ def main(apk):
     t.adb("install", "-r", apk, check=True, timeout=300)
     t.adb("shell", "settings", "put", "global", "window_animation_scale", "0")
     t.adb("shell", "pm", "disable-user", "--user", "0", "com.google.android.apps.nexuslauncher")
+    # A bottom bar with Back / Home / Recents buttons, as on many Samsung phones, so forms are checked against it.
+    t.adb("shell", "cmd", "overlay", "enable", "com.android.internal.systemui.navbar.threebutton")
     time.sleep(25)
     t.adb("logcat", "-c")
     t.adb("logcat", "-b", "crash", "-c")
