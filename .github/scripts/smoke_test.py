@@ -637,7 +637,7 @@ def main(apk):
     if not find(r"^Stats$"):
         note("  WARNING: main screen not showing after restart")
     tap(r"^Clients$", "clients-after-restart", wait=2)
-    if not find(r"Alex Morgan"):
+    if not find_scrolling(r"Alex Morgan"):
         fail("saved data did not load after restart")
 
     section("Erase everything, then restore the backup from the welcome screen")
