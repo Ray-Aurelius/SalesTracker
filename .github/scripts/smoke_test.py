@@ -642,7 +642,9 @@ def main(apk):
             fail("could not pick a photo in the photo picker")
         time.sleep(3)
         shot("receipt-added")
-        if not find(r"^Receipt 1$"):
+        # Back in the form the keyboard may reopen and shrink it: close it and scroll to the photo row.
+        hide_keyboard()
+        if not find(r"^Receipt 1$") and not find_scrolling(r"^Receipt 1$", tries=3):
             fail("the picked photo was not added as a receipt")
         tap(r"^Save$", wait=1.5)
     # No screen lock on the emulator yet: opening must refuse and explain.
