@@ -174,15 +174,10 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                             color = MaterialTheme.colorScheme.primary,
                         )
                     }
-                    HighlightPicker(
-                        symbols = vm.highlightSymbols,
-                        current = data.dayHighlights[selected.toEpochDay()],
-                        onPick = { vm.setDayHighlight(selected.toEpochDay(), it) },
-                    )
                     // Plan something on the chosen day.
                     androidx.compose.foundation.layout.FlowRow(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        modifier = Modifier.padding(top = 6.dp),
+                        modifier = Modifier.padding(top = 6.dp, bottom = 4.dp),
                     ) {
                         androidx.compose.material3.FilledTonalButton(onClick = { adding = true }) {
                             Icon(Icons.Filled.Event, contentDescription = null, modifier = Modifier.size(18.dp))
@@ -195,6 +190,11 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                             Text(stringResource(R.string.add_task))
                         }
                     }
+                    HighlightPicker(
+                        symbols = vm.highlightSymbols,
+                        current = data.dayHighlights[selected.toEpochDay()],
+                        onPick = { vm.setDayHighlight(selected.toEpochDay(), it) },
+                    )
                 }
             }
             if (dayAppts.isEmpty()) {

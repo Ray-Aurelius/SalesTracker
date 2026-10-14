@@ -191,16 +191,19 @@ def find_scrolling(pattern, tries=5):
 
 
 def keyboard_top():
-    """Where the on-screen keyboard starts (pixels from the top), or None if it isn't showing or can't be read."""
+    """Where the visible keys start (pixels from the top), or None if the keyboard isn't showing or can't be read.
+    The keyboard's window covers most of the screen; its "given content insets" say where the keys begin."""
     if "mInputShown=true" not in adb("shell", "dumpsys", "input_method"):
         return None
     out = adb("shell", "dumpsys", "window", "windows")
     for block in re.split(r"\n\s*Window #", out):
         if "InputMethod}" not in block.split("\n", 1)[0]:
             continue
-        m = re.search(r"[mF]?[fF]rame=\[(-?\d+),(-?\d+)\]\[(-?\d+),(-?\d+)\]", block)
-        if m and int(m.group(2)) > 0:
-            return int(m.group(2))
+        frame = re.search(r"[mF]?[fF]rame=\[(-?\d+),(-?\d+)\]\[(-?\d+),(-?\d+)\]", block)
+        inset = re.search(r"mGivenContentInsets=\[(-?\d+),(-?\d+)\]\[(-?\d+),(-?\d+)\]", block) or \
+            re.search(r"mGivenContentInsets=Rect\((-?\d+), (-?\d+) - (-?\d+), (-?\d+)\)", block)
+        if frame and inset and int(inset.group(2)) > 0:
+            return int(frame.group(2)) + int(inset.group(2))
     return None
 
 
