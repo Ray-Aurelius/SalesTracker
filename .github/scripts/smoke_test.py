@@ -400,6 +400,9 @@ def main(apk):
         fail("a crossed-off task should stay on the list")
     tap(r"^Upcoming$", "tasks-upcoming", wait=1.5)
     tap(r"^Day$", wait=1.2)
+    for _ in range(3):   # back to the top of the list
+        adb("shell", "input", "swipe", "540", "900", "540", "1900", "300")
+        time.sleep(0.6)
     if not find(r"^Add task$"):
         fail("no Add task button on the Tasks page")
     if not tap(r"^Delete task Call smoke client$", wait=1.2, scroll=2):
