@@ -262,6 +262,8 @@ def check_clear_of_bottom_bar(pattern, what):
     pos = find(pattern)
     note(f"  {what} at {pos}; bottom bar starts about y={limit}")
     if pos is None or pos[1] >= limit:
+        note("  insets seen by the app: " + " | ".join(adb("logcat", "-d", "-s", "QVInsets:I").strip().splitlines()[-6:]))
+        note("  window: " + " ".join(adb("shell", "dumpsys", "window", "displays").split("mCurrentFocus", 1)[-1].split("\n")[:1]))
         fail(f"the {what} is behind the phone's bottom bar")
 
 

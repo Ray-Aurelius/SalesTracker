@@ -194,7 +194,11 @@ private fun rememberClearance(): Clearance {
             val bars = measure(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
             val keyboard = measure(WindowInsetsCompat.Type.ime())
             val next = Clearance(top = bars.top, bottom = maxOf(bars.bottom, keyboard.bottom), left = bars.left, right = bars.right)
-            if (next != clearance) clearance = next
+            if (next != clearance) {
+                // Positions only (no content): helps check layouts on test phones.
+                android.util.Log.i("QVInsets", "bars=$bars keyboard=$keyboard -> $next")
+                clearance = next
+            }
         }
         val layoutListener = android.view.ViewTreeObserver.OnGlobalLayoutListener { update() }
         dialogRoot.viewTreeObserver.addOnGlobalLayoutListener(layoutListener)
