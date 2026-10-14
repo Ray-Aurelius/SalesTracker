@@ -177,17 +177,21 @@ private fun rememberKeyboardHeight(): Int {
             v?.let { ViewCompat.getRootWindowInsets(it) }?.getInsets(WindowInsetsCompat.Type.ime())?.bottom ?: 0
         fun update() {
             val next = maxOf(ime(dialogRoot), ime(view), ime(appRoot))
-            if (next != px) {
-                android.util.Log.w("QVKeyboard", "keyboard ${next}px (form window ${ime(dialogRoot)}, view ${ime(view)}, app ${ime(appRoot)})")
-                px = next
-            }
+            if (next != px) px = next
         }
         val layoutListener = android.view.ViewTreeObserver.OnGlobalLayoutListener { update() }
         dialogRoot.viewTreeObserver.addOnGlobalLayoutListener(layoutListener)
         // Also hear about window changes directly on the form's window (keeping its normal handling).
         ViewCompat.setOnApplyWindowInsetsListener(dialogRoot) { v, insets -> v.post { update() }; ViewCompat.onApplyWindowInsets(v, insets) }
         update()
+        // Android doesn't always send a notice when the keyboard finishes opening or closing (the window itself
+        // doesn't change size), so also look again a few times a second while the form is open. It's a quick read.
+        val poll = object : Runnable {
+            override fun run() { update(); dialogRoot.postDelayed(this, 150) }
+        }
+        dialogRoot.postDelayed(poll, 150)
         onDispose {
+            dialogRoot.removeCallbacks(poll)
             dialogRoot.viewTreeObserver.removeOnGlobalLayoutListener(layoutListener)
             ViewCompat.setOnApplyWindowInsetsListener(dialogRoot, null)
         }
