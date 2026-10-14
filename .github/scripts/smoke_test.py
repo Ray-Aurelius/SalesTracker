@@ -410,6 +410,7 @@ def main(apk):
         fail("no Timer on the Clients tab")
     tap(r"^Start$", wait=2.5)
     shot("timer-running")
+    tap(r"^Pause$", wait=1.2)   # Reset only works once the timer is paused
     tap(r"^Reset$", wait=1.5)
 
     section("Calculator")
