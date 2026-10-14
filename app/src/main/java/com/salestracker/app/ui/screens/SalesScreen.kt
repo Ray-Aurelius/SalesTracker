@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Assessment
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -60,6 +61,7 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
     var confirmPaid by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Sale?>(null) }
     var deleting by remember { mutableStateOf<Sale?>(null) }
+    var reporting by remember { mutableStateOf(false) }
     val ownerCheck = rememberOwnerCheck(vm)
 
     val sales = period.filter(data.sales).sortedByDescending { it.timestamp }
@@ -75,6 +77,14 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
             item {
                 // Today isn't offered here: the log is for looking back over a stretch of time.
                 PeriodPicker(period, { period = it }, options = Period.entries.filter { it != Period.TODAY })
+            }
+            item {
+                // The same sales report as on Stats, starting on the period shown here.
+                androidx.compose.material3.OutlinedButton(onClick = { reporting = true }, modifier = Modifier.fillMaxWidth()) {
+                    Icon(Icons.Filled.Assessment, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(Modifier.width(8.dp))
+                    Text(stringResource(R.string.report_button))
+                }
             }
             item {
                 Card(Modifier.fillMaxWidth().semantics(mergeDescendants = true) {}) {
@@ -143,6 +153,10 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
         QuickAdd(vm, data)
     }
 
+    if (reporting) {
+        val (rp, back) = reportStart(period)
+        ReportDialog(vm, data, onDismiss = { reporting = false }, initialPeriod = rp, initialBack = back)
+    }
     if (confirmPaid) {
         AlertDialog(
             onDismissRequest = { confirmPaid = false },
@@ -177,4 +191,16 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
             onDismiss = { deleting = null },
         )
     }
+}
+
+/** Which report period matches the period the Sales tab shows (Q1–Q4 are this year's quarters). */
+private fun reportStart(p: Period, today: java.time.LocalDate = java.time.LocalDate.now()): Pair<com.salestracker.app.data.GoalPeriod, Int> = when (p) {
+    Period.WEEK -> com.salestracker.app.data.GoalPeriod.WEEK to 0
+    Period.Q1, Period.Q2, Period.Q3, Period.Q4 -> {
+        val current = (today.monthValue - 1) / 3
+        val chosen = listOf(Period.Q1, Period.Q2, Period.Q3, Period.Q4).indexOf(p)
+        com.salestracker.app.data.GoalPeriod.QUARTER to (current - chosen).coerceAtLeast(0)
+    }
+    Period.YEAR -> com.salestracker.app.data.GoalPeriod.YEAR to 0
+    else -> com.salestracker.app.data.GoalPeriod.MONTH to 0
 }

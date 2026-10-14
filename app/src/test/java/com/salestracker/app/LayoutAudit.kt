@@ -96,7 +96,9 @@ class LayoutAudit {
         }
         val tabs = listOf(
             R.string.tab_stats to "1-stats", R.string.tab_sales to "1s-sales", R.string.tab_expenses to "1x-expenses", R.string.tab_goals to "2-goals", R.string.tab_clients to "3-clients",
-            R.string.tab_calendar to "4-schedule", R.string.tab_tasks to "5-tasks", R.string.tab_timer to "6-timer", R.string.tab_calc to "7-calc",
+            // The timer lives on the Clients tab (its second view), so it's tapped right after Clients.
+            R.string.tab_timer to "6-timer",
+            R.string.tab_calendar to "4-schedule", R.string.tab_tasks to "5-tasks", R.string.tab_calc to "7-calc",
             R.string.tab_charts to "8-charts",
         )
         for ((label, name) in tabs) {
@@ -141,6 +143,7 @@ class LayoutAudit {
                 SalesTrackerTheme(palette = vm.palette, dark = false) { SalesApp(vm, false) }
             }
         }
+        tap(app.getString(R.string.tab_clients))
         tap(app.getString(R.string.tab_timer))
         // A focused text box blinks its cursor forever: step the clock by hand from here on.
         rule.mainClock.autoAdvance = false

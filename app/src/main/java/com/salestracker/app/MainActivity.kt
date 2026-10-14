@@ -122,7 +122,6 @@ import com.salestracker.app.ui.screens.CalendarScreen
 import com.salestracker.app.ui.screens.ClientsScreen
 import com.salestracker.app.ui.screens.DashboardScreen
 import com.salestracker.app.ui.screens.GoalsScreen
-import com.salestracker.app.ui.screens.StopwatchScreen
 import com.salestracker.app.ui.theme.SalesTrackerTheme
 import com.salestracker.app.ui.theme.isDarkTheme
 
@@ -232,7 +231,6 @@ internal enum class Tab(@StringRes val label: Int, @StringRes val title: Int, va
     CLIENTS(R.string.tab_clients, R.string.title_clients, Icons.Filled.People),
     CALENDAR(R.string.tab_calendar, R.string.title_calendar, Icons.Filled.CalendarMonth),
     TASKS(R.string.tab_tasks, R.string.title_tasks, Icons.Filled.Checklist),
-    TIMER(R.string.tab_timer, R.string.title_timer, Icons.Filled.Timer),
     CALCULATOR(R.string.tab_calc, R.string.title_calc, Icons.Filled.Calculate),
     CHARTS(R.string.tab_charts, R.string.title_charts, Icons.Filled.BarChart),
 }
@@ -390,7 +388,6 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                         Tab.CLIENTS -> ClientsScreen(vm, data)
                         Tab.CALENDAR -> CalendarScreen(vm, data)
                         Tab.TASKS -> TasksScreen(vm, data)
-                        Tab.TIMER -> StopwatchScreen(vm, data)
                         Tab.CALCULATOR -> CalculatorScreen(vm, data)
                         Tab.CHARTS -> ChartsScreen(vm, data)
                     }

@@ -74,12 +74,19 @@ import java.time.LocalDate
  * contact details and notes are never included.
  */
 @Composable
-fun ReportDialog(vm: AppViewModel, data: AppData, onDismiss: () -> Unit) {
+fun ReportDialog(
+    vm: AppViewModel,
+    data: AppData,
+    onDismiss: () -> Unit,
+    /** Starts on this period (e.g. the one the Sales tab is showing); [initialBack] steps back from the current one. */
+    initialPeriod: GoalPeriod = GoalPeriod.MONTH,
+    initialBack: Int = 0,
+) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val terms = LocalTerms.current
-    var period by remember { mutableStateOf(GoalPeriod.MONTH) }
-    var back by remember { mutableIntStateOf(0) }
+    var period by remember { mutableStateOf(initialPeriod) }
+    var back by remember { mutableIntStateOf(initialBack) }
     var csv by remember { mutableStateOf(false) }
     var jobs by remember { mutableStateOf(true) }
     var commission by remember { mutableStateOf(false) }

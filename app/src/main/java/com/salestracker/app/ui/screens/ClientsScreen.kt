@@ -40,6 +40,10 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.Box
+import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SegmentedButton
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -87,8 +91,42 @@ import com.salestracker.app.data.formatMoney
 import com.salestracker.app.data.formatPercent
 import com.salestracker.app.ui.AppViewModel
 
+/**
+ * The Clients tab: the client list, or the meeting timer (time a meeting with a client, then log it as a sale).
+ * Opens on the list, or straight on the timer while it's running.
+ */
 @Composable
 fun ClientsScreen(vm: AppViewModel, data: AppData) {
+    var timer by remember { mutableStateOf(vm.stopwatchRunning) }
+    val narrow = isNarrow()
+    Column(Modifier.fillMaxSize()) {
+        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+            SegmentedButton(
+                selected = !timer, onClick = { timer = false },
+                shape = SegmentedButtonDefaults.itemShape(0, 2),
+                icon = { if (!narrow) SegmentedButtonDefaults.Icon(!timer) },
+            ) { FitText(stringResource(LocalTerms.current.clients)) }
+            SegmentedButton(
+                selected = timer, onClick = { timer = true },
+                shape = SegmentedButtonDefaults.itemShape(1, 2),
+                icon = {
+                    if (!narrow) SegmentedButtonDefaults.Icon(timer) {
+                        Icon(Icons.Filled.Timer, contentDescription = null, modifier = Modifier.size(SegmentedButtonDefaults.IconSize))
+                    }
+                },
+            ) {
+                // A dot while the timer is running, so a meeting in progress is never forgotten.
+                FitText(stringResource(R.string.tab_timer) + if (vm.stopwatchRunning && !timer) " ●" else "")
+            }
+        }
+        Box(Modifier.weight(1f)) {
+            if (timer) StopwatchScreen(vm, data) else ClientList(vm, data)
+        }
+    }
+}
+
+@Composable
+private fun ClientList(vm: AppViewModel, data: AppData) {
     val ownerCheck = rememberOwnerCheck(vm)
     var query by rememberSaveable { mutableStateOf("") }
     var editing by remember { mutableStateOf<Client?>(null) }

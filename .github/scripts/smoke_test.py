@@ -281,7 +281,7 @@ def main(apk):
     tap(r"Explore with sample data", "sample-data-loaded", wait=3)
 
     section("Every tab")
-    for label in ["Sales", "Expenses", "Goals", "Clients", "Schedule", "Tasks", "Timer", "Calc", "Charts", "Stats"]:
+    for label in ["Sales", "Expenses", "Goals", "Clients", "Schedule", "Tasks", "Calc", "Charts", "Stats"]:
         tap(rf"^{label}$", f"tab-{label.lower()}", wait=2)
 
     section("The + menu")
@@ -343,6 +343,12 @@ def main(apk):
         fail("a crossed-off task should stay on the list")
     tap(r"^Upcoming$", "tasks-upcoming", wait=1.5)
 
+    section("Sales report button on the Sales tab")
+    tap(r"^Sales$", wait=1.5)
+    if not tap(r"^Sales report$", "sales-tab-report", wait=2, scroll=1):
+        fail("no Sales report button on the Sales tab")
+    tap(r"^Cancel$", wait=1.2)
+
     section("Add client button on the Clients page")
     tap(r"^Clients$", wait=1.5)
     shot("clients-add-button")
@@ -389,8 +395,10 @@ def main(apk):
     shot("client-stats")
     back()
 
-    section("Timer")
-    tap(r"^Timer$", wait=1.5)
+    section("Timer (on the Clients tab)")
+    tap(r"^Clients$", wait=1.5)
+    if not tap(r"^Timer$", "clients-timer", wait=1.5):
+        fail("no Timer on the Clients tab")
     tap(r"^Start$", wait=2.5)
     shot("timer-running")
     tap(r"^Reset$", wait=1.5)
