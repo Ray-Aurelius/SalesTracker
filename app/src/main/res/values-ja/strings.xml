@@ -558,7 +558,7 @@
     <string name="tasks_overdue">期限切れ</string>
     <string name="task_important">重要</string>
     <string name="task_other">タスク</string>
-    <string name="tasks_other">その他のタスク</string>
+    <string name="tasks_other">タスクリスト</string>
     <string name="tasks_done_section">完了 (%1$d)</string>
     <string name="task_due_on">期限 %1$s</string>
     <string name="add_task">タスクを追加</string>

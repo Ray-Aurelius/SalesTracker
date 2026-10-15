@@ -558,7 +558,7 @@
     <string name="tasks_overdue">Просрочено</string>
     <string name="task_important">Важное</string>
     <string name="task_other">Задача</string>
-    <string name="tasks_other">Другие задачи</string>
+    <string name="tasks_other">Список задач</string>
     <string name="tasks_done_section">Выполнено (%1$d)</string>
     <string name="task_due_on">Срок: %1$s</string>
     <string name="add_task">Добавить задачу</string>

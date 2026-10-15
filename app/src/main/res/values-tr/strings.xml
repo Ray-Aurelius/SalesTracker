@@ -558,7 +558,7 @@
     <string name="tasks_overdue">Gecikmiş</string>
     <string name="task_important">Önemli</string>
     <string name="task_other">Görev</string>
-    <string name="tasks_other">Diğer görevler</string>
+    <string name="tasks_other">Görev listesi</string>
     <string name="tasks_done_section">Tamamlanan (%1$d)</string>
     <string name="task_due_on">Son tarih %1$s</string>
     <string name="add_task">Görev ekle</string>

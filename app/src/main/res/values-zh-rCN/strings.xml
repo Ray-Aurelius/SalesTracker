@@ -558,7 +558,7 @@
     <string name="tasks_overdue">已逾期</string>
     <string name="task_important">重要</string>
     <string name="task_other">任务</string>
-    <string name="tasks_other">其他任务</string>
+    <string name="tasks_other">任务列表</string>
     <string name="tasks_done_section">已完成 (%1$d)</string>
     <string name="task_due_on">截止 %1$s</string>
     <string name="add_task">添加任务</string>

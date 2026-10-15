@@ -558,7 +558,7 @@
     <string name="tasks_overdue">기한 지남</string>
     <string name="task_important">중요</string>
     <string name="task_other">할 일</string>
-    <string name="tasks_other">기타 할 일</string>
+    <string name="tasks_other">할 일 목록</string>
     <string name="tasks_done_section">완료 (%1$d)</string>
     <string name="task_due_on">마감 %1$s</string>
     <string name="add_task">할 일 추가</string>

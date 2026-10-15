@@ -558,7 +558,7 @@
     <string name="tasks_overdue">In ritardo</string>
     <string name="task_important">Importante</string>
     <string name="task_other">Attività</string>
-    <string name="tasks_other">Altre attività</string>
+    <string name="tasks_other">Elenco attività</string>
     <string name="tasks_done_section">Fatte (%1$d)</string>
     <string name="task_due_on">Scadeva il %1$s</string>
     <string name="add_task">Aggiungi attività</string>

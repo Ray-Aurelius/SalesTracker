@@ -558,7 +558,7 @@
     <string name="tasks_overdue">متأخرة</string>
     <string name="task_important">مهم</string>
     <string name="task_other">مهمة</string>
-    <string name="tasks_other">مهام أخرى</string>
+    <string name="tasks_other">قائمة المهام</string>
     <string name="tasks_done_section">منجزة (%1$d)</string>
     <string name="task_due_on">مستحقة في %1$s</string>
     <string name="add_task">إضافة مهمة</string>

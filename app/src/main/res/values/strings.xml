@@ -667,7 +667,7 @@
     <string name="tasks_overdue">Overdue</string>
     <string name="task_important">Important</string>
     <string name="task_other">Task</string>
-    <string name="tasks_other">Other tasks</string>
+    <string name="tasks_other">Task List</string>
     <string name="tasks_done_section">Done (%1$d)</string>
     <string name="task_due_on">Due %1$s</string>
     <string name="add_task">Add task</string>

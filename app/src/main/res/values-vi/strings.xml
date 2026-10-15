@@ -558,7 +558,7 @@
     <string name="tasks_overdue">Quá hạn</string>
     <string name="task_important">Quan trọng</string>
     <string name="task_other">Việc</string>
-    <string name="tasks_other">Việc khác</string>
+    <string name="tasks_other">Danh sách việc</string>
     <string name="tasks_done_section">Đã xong (%1$d)</string>
     <string name="task_due_on">Hạn %1$s</string>
     <string name="add_task">Thêm việc</string>

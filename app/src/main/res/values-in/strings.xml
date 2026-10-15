@@ -558,7 +558,7 @@
     <string name="tasks_overdue">Terlambat</string>
     <string name="task_important">Penting</string>
     <string name="task_other">Tugas</string>
-    <string name="tasks_other">Tugas lainnya</string>
+    <string name="tasks_other">Daftar tugas</string>
     <string name="tasks_done_section">Selesai (%1$d)</string>
     <string name="task_due_on">Jatuh tempo %1$s</string>
     <string name="add_task">Tambah tugas</string>

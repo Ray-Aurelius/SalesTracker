@@ -558,7 +558,7 @@
     <string name="tasks_overdue">সময় পেরিয়েছে</string>
     <string name="task_important">জরুরি</string>
     <string name="task_other">কাজ</string>
-    <string name="tasks_other">অন্যান্য কাজ</string>
+    <string name="tasks_other">কাজের তালিকা</string>
     <string name="tasks_done_section">শেষ (%1$d)</string>
     <string name="task_due_on">নির্ধারিত %1$s</string>
     <string name="add_task">কাজ যোগ করুন</string>
