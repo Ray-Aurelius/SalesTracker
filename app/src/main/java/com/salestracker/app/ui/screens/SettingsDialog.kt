@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.Payments
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material.icons.filled.Tune
+import androidx.compose.material.icons.filled.UploadFile
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -41,7 +42,7 @@ import androidx.compose.ui.unit.dp
 import com.salestracker.app.R
 import com.salestracker.app.ui.AppViewModel
 
-private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY, TABS }
+private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY, TABS, IMPORT }
 
 /** Appearance and language, plus the way into the Security & privacy center. */
 @Composable
@@ -78,6 +79,9 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
                     }
                     SettingRow(Icons.Filled.Payments, stringResource(R.string.currency_title), currencyRowLabel(vm.currencyCode)) {
                         step = Step.CURRENCY
+                    }
+                    SettingRow(Icons.Filled.UploadFile, stringResource(R.string.import_title), stringResource(R.string.import_desc)) {
+                        step = Step.IMPORT
                     }
                 }
             },
@@ -122,6 +126,8 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
         Step.CURRENCY -> CurrencyDialog(vm.currencyCode, onPick = vm::chooseCurrency, onDismiss = { step = Step.MENU })
 
         Step.TABS -> MenuTabsDialog(vm, onDismiss = { step = Step.MENU })
+
+        Step.IMPORT -> ImportDialog(vm, onDismiss = { step = Step.MENU })
     }
 }
 

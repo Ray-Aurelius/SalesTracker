@@ -546,6 +546,16 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     // ---- Sales ----
+    /** Adds what a spreadsheet import produced, in one step. */
+    fun addImported(clients: List<Client>, sales: List<Sale>) = repo.update { d ->
+        d.copy(clients = d.clients + clients, sales = d.sales + sales)
+    }
+
+    /** Takes back an import: removes exactly the records it added. */
+    fun undoImport(clientIds: Set<Long>, saleIds: Set<Long>) = repo.update { d ->
+        d.copy(clients = d.clients.filterNot { it.id in clientIds }, sales = d.sales.filterNot { it.id in saleIds })
+    }
+
     fun saveSale(sale: Sale) = repo.update { it.copy(sales = it.sales.upsert(sale) { s -> s.id }) }
     fun deleteSale(id: Long) = repo.update { d -> d.copy(sales = d.sales.filterNot { it.id == id }) }
 

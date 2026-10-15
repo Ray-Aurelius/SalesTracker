@@ -817,6 +817,37 @@ def main(apk):
     adb("shell", "locksettings clear --old 1357")
     time.sleep(1)
 
+    section("Import clients from a spreadsheet (CSV) the user picks")
+    adb("shell", "printf 'Name,Mobile,E-mail,Work order #\\nTaylor Brooks,555-010-0900,taylor@example.com,WO-2001\\nAlex Morgan,,,\\n' > /sdcard/Download/import-test.csv")
+    adb("shell", "content call --method scan_volume --uri content://media --arg external_primary")
+    time.sleep(2)
+    tap(r"^Settings$", wait=1.5)
+    if not tap(r"^Import from a spreadsheet$", "import-dialog", wait=1.5, scroll=6):
+        fail("no Import from a spreadsheet in Settings")
+    tap(r"^Choose CSV file$", "import-picker", wait=3)
+    if not tap(r"import-test", wait=3):
+        # The picker may open somewhere else: go to Downloads.
+        tap(r"Show roots", wait=1.5) or tap(r"^Downloads?$", wait=1.5)
+        tap(r"^Downloads?$", wait=2)
+        if not tap(r"import-test", wait=3, scroll=4):
+            fail("could not pick the CSV file in Android's file picker")
+    shot("import-match")
+    if not find(r"^Match your columns$"):
+        fail("the CSV file did not open for matching")
+    if not find(r"^Rows found: 2$"):
+        fail("the importer didn't read both rows")
+    tap(r"^Import$", wait=3)
+    shot("import-done")
+    if not find(r"^Clients added: 1$"):
+        fail("the new client from the CSV was not added")
+    if not find(r"skipped: 1$"):
+        fail("the client already in the app was not skipped")
+    tap(r"^Done$", wait=1.5)
+    tap(r"^Done$", wait=1.5)
+    tap(r"^Clients$", wait=2)
+    if not find_scrolling(r"Taylor Brooks"):
+        fail("the imported client is not in the client list")
+
     if crashed():
         fail("crash")
     note("PASSED: no crashes")
