@@ -936,14 +936,14 @@
     <string name="receipt_save_copy">Save a copy</string>
     <string name="receipt_copy_saved">Copy saved</string>
     <string name="receipt_copy_failed">Couldn\'t save the copy</string>
-    <string name="receipt_missing">This photo isn\'t on this phone. Backups don\'t include receipt photos.</string>
+    <string name="receipt_missing">This photo isn\'t on this phone. Restoring a backup made after it was added brings it back.</string>
     <string name="receipt_previous">Previous photo</string>
     <string name="receipt_next">Next photo</string>
     <string name="receipt_close">Close</string>
     <string name="lock_receipts">Lock receipt photos</string>
     <string name="lock_receipts_desc">Ask for your phone\'s PIN, password or fingerprint every time a receipt photo is opened. Turning this off asks too.</string>
     <string name="lock_receipts_off_title">Turn off receipt lock</string>
-    <string name="backup_no_receipts">Receipt photos aren\'t included in backups. Open a receipt and use Save a copy for any you need to keep elsewhere.</string>
+    <string name="backup_no_receipts">Receipt photos are included in the backup, encrypted with this password too.</string>
     <string name="exp_include_job">Include job / work order #s</string>
     <string name="exp_report_privacy_note">The report is created on this phone only. Client names and notes are never included. Job / work order #s and commission are left out unless you turn them on.</string>
     <string name="exp_job_hint">Reports show this number, never the client\'s name.</string>
@@ -982,6 +982,7 @@
     <string name="folder_choose_title">Choose a home for your backups</string>
     <string name="folder_choose_body">Android will show your folders. Pick one, such as Documents, then tap Use this folder and Allow. Quota Vault makes a \"%1$s\" folder inside it and saves every backup there.\n\nQuota Vault can only see that one folder. Nothing else on your phone.</string>
     <string name="restore_confirm_new_title">Restore this backup?</string>
+    <string name="restore_receipts">Receipt photos: %1$d (restored with it)</string>
     <string name="restore_confirm_new_body">Backup from %1$s\nClients: %2$d · Sales: %3$d · Appointments: %4$d · Goals: %5$d</string>
     <string name="erase_backups_kept">Your backups in %1$s are kept, so you can restore them any time from the welcome screen.</string>
     <string name="erase_no_backup">You don\'t have a backup yet. Once erased, this data can\'t be brought back.</string>

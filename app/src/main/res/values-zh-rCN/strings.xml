@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">保存副本</string>
     <string name="receipt_copy_saved">副本已保存</string>
     <string name="receipt_copy_failed">无法保存副本</string>
-    <string name="receipt_missing">此手机上没有这张照片。备份不包含收据照片。</string>
+    <string name="receipt_missing">此照片不在本机上。恢复在添加照片之后创建的备份即可找回。</string>
     <string name="receipt_previous">上一张</string>
     <string name="receipt_next">下一张</string>
     <string name="receipt_close">关闭</string>
     <string name="lock_receipts">锁定收据照片</string>
     <string name="lock_receipts_desc">每次打开收据照片时都要求输入手机的 PIN 码、密码或验证指纹。关闭此项也需要验证。</string>
     <string name="lock_receipts_off_title">关闭收据锁定</string>
-    <string name="backup_no_receipts">备份不包含收据照片。打开收据并使用“保存副本”，保存需要另行保留的照片。</string>
+    <string name="backup_no_receipts">收据照片会包含在备份中，并同样用此密码加密。</string>
     <string name="exp_include_job">包含工作 / 工单编号</string>
     <string name="exp_report_privacy_note">报告仅在此手机上生成，绝不包含客户姓名和备注。除非你开启，否则不包含工作 / 工单编号和佣金。</string>
     <string name="exp_job_hint">报告中显示此编号，绝不显示客户姓名。</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">选择备份存放位置</string>
     <string name="folder_choose_body">Android 将显示你的文件夹。选择一个（例如 Documents），然后点按“使用此文件夹”和“允许”。Quota Vault 会在其中创建“%1$s”文件夹，并把每份备份都存在那里。\n\nQuota Vault 只能看到这一个文件夹。不会访问手机上的其他任何内容。</string>
     <string name="restore_confirm_new_title">恢复此备份？</string>
+    <string name="restore_receipts">收据照片：%1$d（一并恢复）</string>
     <string name="restore_confirm_new_body">备份时间：%1$s\n客户：%2$d · 销售：%3$d · 预约：%4$d · 目标：%5$d</string>
     <string name="erase_backups_kept">%1$s 中的备份会保留，你随时可以在欢迎界面恢复。</string>
     <string name="erase_no_backup">你还没有备份。一旦清除，这些数据将无法找回。</string>

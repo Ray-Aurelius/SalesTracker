@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">사본 저장</string>
     <string name="receipt_copy_saved">사본을 저장했습니다</string>
     <string name="receipt_copy_failed">사본을 저장할 수 없습니다</string>
-    <string name="receipt_missing">이 사진은 이 휴대전화에 없습니다. 백업에는 영수증 사진이 포함되지 않습니다.</string>
+    <string name="receipt_missing">이 사진은 이 휴대폰에 없습니다. 사진을 추가한 뒤 만든 백업을 복원하면 돌아옵니다.</string>
     <string name="receipt_previous">이전 사진</string>
     <string name="receipt_next">다음 사진</string>
     <string name="receipt_close">닫기</string>
     <string name="lock_receipts">영수증 사진 잠금</string>
     <string name="lock_receipts_desc">영수증 사진을 열 때마다 휴대전화의 PIN, 비밀번호 또는 지문을 요구합니다. 끌 때도 확인합니다.</string>
     <string name="lock_receipts_off_title">영수증 잠금 끄기</string>
-    <string name="backup_no_receipts">백업에는 영수증 사진이 포함되지 않습니다. 다른 곳에 보관해야 하는 영수증은 열어서 사본 저장을 사용하세요.</string>
+    <string name="backup_no_receipts">영수증 사진도 백업에 포함되며 이 비밀번호로 함께 암호화됩니다.</string>
     <string name="exp_include_job">작업 / 작업 지시 번호 포함</string>
     <string name="exp_report_privacy_note">보고서는 이 휴대전화에서만 만들어집니다. 고객 이름과 메모는 절대 포함되지 않습니다. 작업 / 작업 지시 번호와 수수료는 켜는 경우에만 포함됩니다.</string>
     <string name="exp_job_hint">보고서에는 고객 이름이 아닌 이 번호가 표시됩니다.</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">백업 저장 위치 선택</string>
     <string name="folder_choose_body">Android에 폴더가 표시됩니다. Documents 같은 폴더를 고른 뒤 이 폴더 사용과 허용을 탭하세요. Quota Vault가 그 안에 \"%1$s\" 폴더를 만들고 모든 백업을 저장합니다.\n\nQuota Vault는 그 폴더 하나만 볼 수 있습니다. 휴대폰의 다른 것은 보지 않습니다.</string>
     <string name="restore_confirm_new_title">이 백업을 복원할까요?</string>
+    <string name="restore_receipts">영수증 사진: %1$d (함께 복원됨)</string>
     <string name="restore_confirm_new_body">%1$s 백업\n고객: %2$d · 판매: %3$d · 일정: %4$d · 목표: %5$d</string>
     <string name="erase_backups_kept">%1$s의 백업은 그대로 남으므로 시작 화면에서 언제든 복원할 수 있습니다.</string>
     <string name="erase_no_backup">아직 백업이 없습니다. 지우면 이 데이터는 되돌릴 수 없습니다.</string>

@@ -2,6 +2,7 @@
 
 package com.salestracker.app.ui.screens
 
+import androidx.compose.foundation.layout.height
 import android.net.Uri
 import android.text.format.Formatter
 import android.widget.Toast
@@ -157,12 +158,16 @@ fun BackupDialogs(
         c.step = BackupStep.Working(R.string.backup_working)
         scope.launch {
             val name = try {
-                val bytes = withContext(Dispatchers.Default) { Backup.encrypt(currentData, password) }
+                // Receipt photos go in the backup too, encrypted with the same password.
+                val receipts = withContext(Dispatchers.IO) { vm.receiptsForBackup(currentData) }
+                val bytes = withContext(Dispatchers.Default) { Backup.encrypt(currentData, password, receipts) }
                 val name = BackupFolder.fileName()
                 withContext(Dispatchers.IO) { BackupFolder.write(context, name, bytes) }
                 savedBytes = bytes
                 name
             } catch (e: Exception) {
+                null
+            } catch (e: OutOfMemoryError) { // a very large photo collection: fail politely, never crash
                 null
             } finally {
                 password.fill(' ')
@@ -354,20 +359,26 @@ fun BackupDialogs(
                 onDismissRequest = { c.step = BackupStep.None },
                 title = { Text(stringResource(if (fresh) R.string.restore_confirm_new_title else R.string.restore_confirm_title)) },
                 text = {
-                    Text(
-                        if (fresh) stringResource(
-                            R.string.restore_confirm_new_body, created,
-                            r.data.clients.size, r.data.sales.size, r.data.appointments.size, r.data.goals.size,
-                        ) else stringResource(
-                            R.string.restore_confirm_body, created,
-                            r.data.clients.size, r.data.sales.size, r.data.appointments.size, r.data.goals.size,
+                    Column {
+                        Text(
+                            if (fresh) stringResource(
+                                R.string.restore_confirm_new_body, created,
+                                r.data.clients.size, r.data.sales.size, r.data.appointments.size, r.data.goals.size,
+                            ) else stringResource(
+                                R.string.restore_confirm_body, created,
+                                r.data.clients.size, r.data.sales.size, r.data.appointments.size, r.data.goals.size,
+                            )
                         )
-                    )
+                        if (r.receipts.isNotEmpty()) {
+                            Spacer(Modifier.height(8.dp))
+                            Text(stringResource(R.string.restore_receipts, r.receipts.size))
+                        }
+                    }
                 },
                 confirmButton = {
                     TextButton(onClick = {
                         confirmOwner {
-                            vm.replaceAllData(r.data)
+                            vm.replaceAllData(r.data, r.receipts)
                             c.step = BackupStep.None
                             toast(R.string.restore_done)
                             onRestored()

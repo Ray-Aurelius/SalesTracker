@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">Kopie speichern</string>
     <string name="receipt_copy_saved">Kopie gespeichert</string>
     <string name="receipt_copy_failed">Kopie konnte nicht gespeichert werden</string>
-    <string name="receipt_missing">Dieses Foto ist nicht auf diesem Telefon. Sicherungen enthalten keine Belegfotos.</string>
+    <string name="receipt_missing">Dieses Foto ist nicht auf diesem Telefon. Eine Sicherung, die nach dem Hinzufügen erstellt wurde, bringt es zurück.</string>
     <string name="receipt_previous">Vorheriges Foto</string>
     <string name="receipt_next">Nächstes Foto</string>
     <string name="receipt_close">Schließen</string>
     <string name="lock_receipts">Belegfotos sperren</string>
     <string name="lock_receipts_desc">Fragt bei jedem Öffnen eines Belegfotos nach PIN, Passwort oder Fingerabdruck des Telefons. Auch das Ausschalten fragt danach.</string>
     <string name="lock_receipts_off_title">Belegsperre ausschalten</string>
-    <string name="backup_no_receipts">Sicherungen enthalten keine Belegfotos. Öffne einen Beleg und tippe auf Kopie speichern für alle, die du woanders aufbewahren musst.</string>
+    <string name="backup_no_receipts">Belegfotos sind in der Sicherung enthalten und ebenfalls mit diesem Passwort verschlüsselt.</string>
     <string name="exp_include_job">Auftrags-/Arbeitsauftragsnummern einschließen</string>
     <string name="exp_report_privacy_note">Der Bericht wird nur auf diesem Telefon erstellt. Kundennamen und Notizen sind nie enthalten. Auftrags-/Arbeitsauftragsnummern und Provision werden nur aufgenommen, wenn du sie einschaltest.</string>
     <string name="exp_job_hint">Berichte zeigen diese Nummer, nie den Namen des Kunden.</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">Ort für deine Sicherungen wählen</string>
     <string name="folder_choose_body">Android zeigt deine Ordner an. Wähle einen, zum Beispiel Documents, und tippe auf Diesen Ordner verwenden und Zulassen. Quota Vault legt darin einen Ordner „%1$s“ an und speichert dort jede Sicherung.\n\nQuota Vault sieht nur diesen einen Ordner. Sonst nichts auf deinem Telefon.</string>
     <string name="restore_confirm_new_title">Diese Sicherung wiederherstellen?</string>
+    <string name="restore_receipts">Belegfotos: %1$d (werden mit wiederhergestellt)</string>
     <string name="restore_confirm_new_body">Sicherung vom %1$s\nKunden: %2$d · Verkäufe: %3$d · Termine: %4$d · Ziele: %5$d</string>
     <string name="erase_backups_kept">Deine Sicherungen in %1$s bleiben erhalten. Du kannst sie jederzeit über den Willkommensbildschirm wiederherstellen.</string>
     <string name="erase_no_backup">Du hast noch keine Sicherung. Einmal gelöscht, lassen sich diese Daten nicht zurückholen.</string>

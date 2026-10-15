@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">Guardar una copia</string>
     <string name="receipt_copy_saved">Copia guardada</string>
     <string name="receipt_copy_failed">No se pudo guardar la copia</string>
-    <string name="receipt_missing">Esta foto no está en este teléfono. Las copias de seguridad no incluyen fotos de recibos.</string>
+    <string name="receipt_missing">Esta foto no está en este teléfono. Al restaurar una copia hecha después de añadirla, vuelve.</string>
     <string name="receipt_previous">Foto anterior</string>
     <string name="receipt_next">Foto siguiente</string>
     <string name="receipt_close">Cerrar</string>
     <string name="lock_receipts">Bloquear fotos de recibos</string>
     <string name="lock_receipts_desc">Pide el PIN, la contraseña o la huella del teléfono cada vez que se abre una foto de recibo. Para desactivarlo también se pide.</string>
     <string name="lock_receipts_off_title">Desactivar bloqueo de recibos</string>
-    <string name="backup_no_receipts">Las copias de seguridad no incluyen fotos de recibos. Abre un recibo y usa Guardar una copia para los que necesites conservar en otro lugar.</string>
+    <string name="backup_no_receipts">Las fotos de recibos se incluyen en la copia, cifradas también con esta contraseña.</string>
     <string name="exp_include_job">Incluir n.º de trabajo / orden de trabajo</string>
     <string name="exp_report_privacy_note">El informe se crea solo en este teléfono. Nunca incluye nombres de clientes ni notas. Los n.º de trabajo / orden de trabajo y la comisión se omiten salvo que los actives.</string>
     <string name="exp_job_hint">Los informes muestran este número, nunca el nombre del cliente.</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">Elige dónde guardar tus copias</string>
     <string name="folder_choose_body">Android mostrará tus carpetas. Elige una, por ejemplo Documents, y toca Usar esta carpeta y Permitir. Quota Vault crea dentro una carpeta \"%1$s\" y guarda ahí todas las copias.\n\nQuota Vault solo puede ver esa carpeta. Nada más de tu teléfono.</string>
     <string name="restore_confirm_new_title">¿Restaurar esta copia?</string>
+    <string name="restore_receipts">Fotos de recibos: %1$d (se restauran con ella)</string>
     <string name="restore_confirm_new_body">Copia del %1$s\nClientes: %2$d · Ventas: %3$d · Citas: %4$d · Metas: %5$d</string>
     <string name="erase_backups_kept">Tus copias en %1$s se conservan, así que puedes restaurarlas cuando quieras desde la pantalla de bienvenida.</string>
     <string name="erase_no_backup">Aún no tienes ninguna copia. Una vez borrados, estos datos no se pueden recuperar.</string>

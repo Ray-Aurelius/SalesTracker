@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">コピーを保存</string>
     <string name="receipt_copy_saved">コピーを保存しました</string>
     <string name="receipt_copy_failed">コピーを保存できませんでした</string>
-    <string name="receipt_missing">この写真はこのスマートフォンにありません。バックアップには領収書の写真は含まれません。</string>
+    <string name="receipt_missing">この写真はこの端末にありません。写真を追加した後のバックアップを復元すると戻ります。</string>
     <string name="receipt_previous">前の写真</string>
     <string name="receipt_next">次の写真</string>
     <string name="receipt_close">閉じる</string>
     <string name="lock_receipts">領収書の写真をロック</string>
     <string name="lock_receipts_desc">領収書の写真を開くたびに、スマートフォンの PIN、パスワード、または指紋を求めます。オフにするときも確認します。</string>
     <string name="lock_receipts_off_title">領収書のロックをオフにする</string>
-    <string name="backup_no_receipts">バックアップには領収書の写真は含まれません。別の場所に保管が必要なものは、領収書を開いて「コピーを保存」を使ってください。</string>
+    <string name="backup_no_receipts">レシートの写真もバックアップに含まれ、このパスワードで暗号化されます。</string>
     <string name="exp_include_job">案件 / 作業指示番号を含める</string>
     <string name="exp_report_privacy_note">レポートはこのスマートフォン内でのみ作成されます。顧客名とメモは一切含まれません。案件 / 作業指示番号とコミッションはオンにした場合のみ含まれます。</string>
     <string name="exp_job_hint">レポートにはこの番号が表示され、顧客名は表示されません。</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">バックアップの保存先を選ぶ</string>
     <string name="folder_choose_body">Android にフォルダが表示されます。Documents などを選び、「このフォルダを使用」と「許可」をタップしてください。Quota Vault がその中に「%1$s」フォルダを作り、すべてのバックアップをそこに保存します。\n\nQuota Vault が見られるのはこのフォルダだけです。端末のほかのものには触れません。</string>
     <string name="restore_confirm_new_title">このバックアップを復元しますか？</string>
+    <string name="restore_receipts">レシート写真：%1$d（一緒に復元されます）</string>
     <string name="restore_confirm_new_body">バックアップ日時：%1$s\n顧客：%2$d · 販売：%3$d · 予定：%4$d · 目標：%5$d</string>
     <string name="erase_backups_kept">%1$s のバックアップは残るので、ようこそ画面からいつでも復元できます。</string>
     <string name="erase_no_backup">まだバックアップがありません。消去すると、このデータは元に戻せません。</string>

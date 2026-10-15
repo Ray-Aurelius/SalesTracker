@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">Enregistrer une copie</string>
     <string name="receipt_copy_saved">Copie enregistrée</string>
     <string name="receipt_copy_failed">Impossible d’enregistrer la copie</string>
-    <string name="receipt_missing">Cette photo n’est pas sur ce téléphone. Les sauvegardes n’incluent pas les photos de reçus.</string>
+    <string name="receipt_missing">Cette photo n\'est pas sur ce téléphone. Restaurer une sauvegarde faite après son ajout la récupère.</string>
     <string name="receipt_previous">Photo précédente</string>
     <string name="receipt_next">Photo suivante</string>
     <string name="receipt_close">Fermer</string>
     <string name="lock_receipts">Verrouiller les photos de reçus</string>
     <string name="lock_receipts_desc">Demande le code, le mot de passe ou l’empreinte du téléphone à chaque ouverture d’une photo de reçu. Le désactiver le demande aussi.</string>
     <string name="lock_receipts_off_title">Désactiver le verrouillage des reçus</string>
-    <string name="backup_no_receipts">Les sauvegardes n’incluent pas les photos de reçus. Ouvrez un reçu et utilisez Enregistrer une copie pour ceux que vous devez conserver ailleurs.</string>
+    <string name="backup_no_receipts">Les photos de reçus sont incluses dans la sauvegarde, chiffrées elles aussi avec ce mot de passe.</string>
     <string name="exp_include_job">Inclure les n° de chantier / bon de travail</string>
     <string name="exp_report_privacy_note">Le rapport est créé uniquement sur ce téléphone. Les noms des clients et les notes n’y figurent jamais. Les n° de chantier / bon de travail et la commission sont exclus sauf si vous les activez.</string>
     <string name="exp_job_hint">Les rapports affichent ce numéro, jamais le nom du client.</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">Choisissez où ranger vos sauvegardes</string>
     <string name="folder_choose_body">Android va afficher vos dossiers. Choisissez-en un, par exemple Documents, puis touchez Utiliser ce dossier et Autoriser. Quota Vault y crée un dossier « %1$s » et y enregistre toutes les sauvegardes.\n\nQuota Vault ne voit que ce dossier. Rien d\'autre sur votre téléphone.</string>
     <string name="restore_confirm_new_title">Restaurer cette sauvegarde ?</string>
+    <string name="restore_receipts">Photos de reçus : %1$d (restaurées avec elle)</string>
     <string name="restore_confirm_new_body">Sauvegarde du %1$s\nClients : %2$d · Ventes : %3$d · Rendez-vous : %4$d · Objectifs : %5$d</string>
     <string name="erase_backups_kept">Vos sauvegardes dans %1$s sont conservées : vous pourrez les restaurer à tout moment depuis l\'écran d\'accueil.</string>
     <string name="erase_no_backup">Vous n\'avez encore aucune sauvegarde. Une fois effacées, ces données ne pourront pas être récupérées.</string>

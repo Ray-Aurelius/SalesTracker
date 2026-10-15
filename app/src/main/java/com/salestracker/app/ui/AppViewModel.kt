@@ -420,15 +420,38 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         settings.edit().putLong("lastBackupAt", at).apply()
     }
 
-    /** Replaces everything with a restored backup and re-arms reminders to match. */
-    fun replaceAllData(newData: AppData) {
+    /**
+     * The receipt photos to put in a backup (decrypted here, then encrypted again with the backup's password).
+     * Run off the main thread.
+     */
+    fun receiptsForBackup(data: AppData): Map<Long, ByteArray> {
+        val cipher = repo.receiptCipher ?: return emptyMap()
+        val app = getApplication<Application>()
+        return data.expenses.flatMap { it.receipts }.distinct()
+            .mapNotNull { id -> com.salestracker.app.data.ReceiptStore.load(app, id, cipher)?.let { id to it } }
+            .toMap()
+    }
+
+    /**
+     * Replaces everything with a restored backup and re-arms reminders to match. Receipt photos from the backup are
+     * stored again, locked with this phone's own key.
+     */
+    fun replaceAllData(newData: AppData, receipts: Map<Long, ByteArray> = emptyMap()) {
         val old = repo.data.value
         repo.update { newData }
         old.appointments.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
         old.tasks.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
         ReminderScheduler.rescheduleAll(getApplication(), newData)
-        // Photos the restored data no longer mentions can't be reached any more, so they're removed.
-        com.salestracker.app.data.ReceiptStore.deleteAllExcept(getApplication(), newData.expenses.flatMap { it.receipts }.toSet())
+        val keep = newData.expenses.flatMap { it.receipts }.toSet()
+        val app = getApplication<Application>()
+        val cipher = repo.receiptCipher
+        viewModelScope.launch(kotlinx.coroutines.Dispatchers.IO) {
+            // Photos the restored data no longer mentions can't be reached any more, so they're removed.
+            com.salestracker.app.data.ReceiptStore.deleteAllExcept(app, keep)
+            if (cipher != null) receipts.forEach { (id, jpeg) ->
+                if (id in keep) runCatching { com.salestracker.app.data.ReceiptStore.save(app, id, jpeg, cipher) }
+            }
+        }
     }
 
     // ---- Opening a day from a reminder notification ----

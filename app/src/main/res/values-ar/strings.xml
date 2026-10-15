@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">حفظ نسخة</string>
     <string name="receipt_copy_saved">تم حفظ النسخة</string>
     <string name="receipt_copy_failed">تعذّر حفظ النسخة</string>
-    <string name="receipt_missing">هذه الصورة غير موجودة على هذا الهاتف. النسخ الاحتياطية لا تتضمن صور الإيصالات.</string>
+    <string name="receipt_missing">هذه الصورة غير موجودة على هذا الهاتف. استعادة نسخة احتياطية أُنشئت بعد إضافتها تعيدها.</string>
     <string name="receipt_previous">الصورة السابقة</string>
     <string name="receipt_next">الصورة التالية</string>
     <string name="receipt_close">إغلاق</string>
     <string name="lock_receipts">قفل صور الإيصالات</string>
     <string name="lock_receipts_desc">طلب رمز PIN أو كلمة المرور أو بصمة الهاتف في كل مرة تُفتح فيها صورة إيصال. إيقاف ذلك يتطلب التأكيد أيضًا.</string>
     <string name="lock_receipts_off_title">إيقاف قفل الإيصالات</string>
-    <string name="backup_no_receipts">النسخ الاحتياطية لا تتضمن صور الإيصالات. افتح الإيصال واستخدم حفظ نسخة لما تحتاج إلى الاحتفاظ به في مكان آخر.</string>
+    <string name="backup_no_receipts">تُضمَّن صور الإيصالات في النسخة الاحتياطية، مشفّرة أيضًا بكلمة المرور هذه.</string>
     <string name="exp_include_job">تضمين أرقام المهام / أوامر العمل</string>
     <string name="exp_report_privacy_note">يُنشأ التقرير على هذا الهاتف فقط. لا تُضمَّن أسماء العملاء والملاحظات أبدًا. تُستبعد أرقام المهام / أوامر العمل والعمولة ما لم تفعّلها.</string>
     <string name="exp_job_hint">تعرض التقارير هذا الرقم، وليس اسم العميل أبدًا.</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">اختر مكانًا لنسخك الاحتياطية</string>
     <string name="folder_choose_body">سيعرض Android مجلداتك. اختر مجلدًا مثل Documents، ثم اضغط على استخدام هذا المجلد وسماح. ينشئ Quota Vault بداخله مجلد \"%1$s\" ويحفظ فيه كل نسخة.\n\nلا يرى Quota Vault إلا هذا المجلد. لا شيء آخر على هاتفك.</string>
     <string name="restore_confirm_new_title">استعادة هذه النسخة؟</string>
+    <string name="restore_receipts">صور الإيصالات: %1$d (تُستعاد معها)</string>
     <string name="restore_confirm_new_body">نسخة بتاريخ %1$s\nالعملاء: %2$d · المبيعات: %3$d · المواعيد: %4$d · الأهداف: %5$d</string>
     <string name="erase_backups_kept">ستبقى نسخك الاحتياطية في %1$s، فيمكنك استعادتها في أي وقت من شاشة الترحيب.</string>
     <string name="erase_no_backup">ليست لديك نسخة احتياطية بعد. بعد المسح لا يمكن استرجاع هذه البيانات.</string>

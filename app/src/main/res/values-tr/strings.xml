@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">Kopya kaydet</string>
     <string name="receipt_copy_saved">Kopya kaydedildi</string>
     <string name="receipt_copy_failed">Kopya kaydedilemedi</string>
-    <string name="receipt_missing">Bu fotoğraf bu telefonda yok. Yedeklere fiş fotoğrafları dahil edilmez.</string>
+    <string name="receipt_missing">Bu fotoğraf bu telefonda yok. Eklendikten sonra alınmış bir yedeği geri yüklemek onu geri getirir.</string>
     <string name="receipt_previous">Önceki fotoğraf</string>
     <string name="receipt_next">Sonraki fotoğraf</string>
     <string name="receipt_close">Kapat</string>
     <string name="lock_receipts">Fiş fotoğraflarını kilitle</string>
     <string name="lock_receipts_desc">Her fiş fotoğrafı açıldığında telefonun PIN’ini, şifresini veya parmak izini ister. Kapatmak da onay ister.</string>
     <string name="lock_receipts_off_title">Fiş kilidini kapat</string>
-    <string name="backup_no_receipts">Yedeklere fiş fotoğrafları dahil edilmez. Başka bir yerde saklamanız gerekenler için fişi açıp Kopya kaydet’i kullanın.</string>
+    <string name="backup_no_receipts">Fiş fotoğrafları yedeğe dahildir ve bu parolayla şifrelenir.</string>
     <string name="exp_include_job">İş / iş emri numaralarını ekle</string>
     <string name="exp_report_privacy_note">Rapor yalnızca bu telefonda oluşturulur. Müşteri adları ve notlar asla eklenmez. İş / iş emri numaraları ve komisyon, siz açmadıkça eklenmez.</string>
     <string name="exp_job_hint">Raporlarda müşterinin adı değil, bu numara görünür.</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">Yedekleriniz için bir yer seçin</string>
     <string name="folder_choose_body">Android klasörlerinizi gösterecek. Documents gibi birini seçin, sonra Bu klasörü kullan\'a ve İzin ver\'e dokunun. Quota Vault içinde \"%1$s\" klasörü oluşturur ve her yedeği oraya kaydeder.\n\nQuota Vault yalnızca o klasörü görebilir. Telefonunuzdaki başka hiçbir şeyi değil.</string>
     <string name="restore_confirm_new_title">Bu yedek geri yüklensin mi?</string>
+    <string name="restore_receipts">Fiş fotoğrafları: %1$d (birlikte geri yüklenir)</string>
     <string name="restore_confirm_new_body">%1$s tarihli yedek\nMüşteriler: %2$d · Satışlar: %3$d · Randevular: %4$d · Hedefler: %5$d</string>
     <string name="erase_backups_kept">%1$s içindeki yedekleriniz korunur; karşılama ekranından istediğiniz zaman geri yükleyebilirsiniz.</string>
     <string name="erase_no_backup">Henüz yedeğiniz yok. Silindikten sonra bu veriler geri getirilemez.</string>

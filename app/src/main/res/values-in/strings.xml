@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">Simpan salinan</string>
     <string name="receipt_copy_saved">Salinan disimpan</string>
     <string name="receipt_copy_failed">Tidak bisa menyimpan salinan</string>
-    <string name="receipt_missing">Foto ini tidak ada di ponsel ini. Cadangan tidak menyertakan foto struk.</string>
+    <string name="receipt_missing">Foto ini tidak ada di ponsel ini. Memulihkan cadangan yang dibuat setelah foto ditambahkan akan mengembalikannya.</string>
     <string name="receipt_previous">Foto sebelumnya</string>
     <string name="receipt_next">Foto berikutnya</string>
     <string name="receipt_close">Tutup</string>
     <string name="lock_receipts">Kunci foto struk</string>
     <string name="lock_receipts_desc">Minta PIN, sandi, atau sidik jari ponsel setiap kali foto struk dibuka. Mematikannya juga memerlukan konfirmasi.</string>
     <string name="lock_receipts_off_title">Matikan kunci struk</string>
-    <string name="backup_no_receipts">Cadangan tidak menyertakan foto struk. Buka struk dan gunakan Simpan salinan untuk yang perlu Anda simpan di tempat lain.</string>
+    <string name="backup_no_receipts">Foto struk ikut dalam cadangan dan juga dienkripsi dengan kata sandi ini.</string>
     <string name="exp_include_job">Sertakan no. pekerjaan / perintah kerja</string>
     <string name="exp_report_privacy_note">Laporan hanya dibuat di ponsel ini. Nama klien dan catatan tidak pernah disertakan. No. pekerjaan / perintah kerja dan komisi tidak disertakan kecuali Anda mengaktifkannya.</string>
     <string name="exp_job_hint">Laporan menampilkan nomor ini, tidak pernah nama klien.</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">Pilih tempat untuk cadangan</string>
     <string name="folder_choose_body">Android akan menampilkan folder Anda. Pilih satu, misalnya Documents, lalu ketuk Gunakan folder ini dan Izinkan. Quota Vault membuat folder \"%1$s\" di dalamnya dan menyimpan setiap cadangan di sana.\n\nQuota Vault hanya bisa melihat folder itu. Tidak ada yang lain di ponsel Anda.</string>
     <string name="restore_confirm_new_title">Pulihkan cadangan ini?</string>
+    <string name="restore_receipts">Foto struk: %1$d (ikut dipulihkan)</string>
     <string name="restore_confirm_new_body">Cadangan dari %1$s\nKlien: %2$d · Penjualan: %3$d · Janji temu: %4$d · Target: %5$d</string>
     <string name="erase_backups_kept">Cadangan Anda di %1$s tetap disimpan, jadi Anda bisa memulihkannya kapan saja dari layar sambutan.</string>
     <string name="erase_no_backup">Anda belum punya cadangan. Setelah dihapus, data ini tidak bisa dikembalikan.</string>

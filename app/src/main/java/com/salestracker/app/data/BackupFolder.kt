@@ -41,7 +41,7 @@ object BackupFolder {
     private val RELATIVE_PATH = "${Environment.DIRECTORY_DOCUMENTS}/$FOLDER/"
     /** Kept apart from the app's settings so "Erase all data" doesn't forget the folder was already made. */
     private const val PREFS = "backup_folder"
-    private const val MAX_BYTES = 64L * 1024 * 1024
+    private const val MAX_BYTES = 400L * 1024 * 1024
 
     class NoFolderException : Exception("No backup folder chosen yet")
 

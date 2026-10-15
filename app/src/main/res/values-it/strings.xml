@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">Salva una copia</string>
     <string name="receipt_copy_saved">Copia salvata</string>
     <string name="receipt_copy_failed">Impossibile salvare la copia</string>
-    <string name="receipt_missing">Questa foto non è su questo telefono. I backup non includono le foto delle ricevute.</string>
+    <string name="receipt_missing">Questa foto non è su questo telefono. Ripristinando un backup fatto dopo averla aggiunta torna disponibile.</string>
     <string name="receipt_previous">Foto precedente</string>
     <string name="receipt_next">Foto successiva</string>
     <string name="receipt_close">Chiudi</string>
     <string name="lock_receipts">Blocca foto delle ricevute</string>
     <string name="lock_receipts_desc">Chiede PIN, password o impronta del telefono ogni volta che si apre una foto di ricevuta. Anche per disattivarlo viene chiesto.</string>
     <string name="lock_receipts_off_title">Disattiva il blocco ricevute</string>
-    <string name="backup_no_receipts">I backup non includono le foto delle ricevute. Apri una ricevuta e usa Salva una copia per quelle da conservare altrove.</string>
+    <string name="backup_no_receipts">Le foto delle ricevute sono incluse nel backup, cifrate anch\'esse con questa password.</string>
     <string name="exp_include_job">Includi n. lavoro / ordine di lavoro</string>
     <string name="exp_report_privacy_note">Il report viene creato solo su questo telefono. Nomi dei clienti e note non sono mai inclusi. N. lavoro / ordine di lavoro e commissioni sono esclusi se non li attivi.</string>
     <string name="exp_job_hint">I report mostrano questo numero, mai il nome del cliente.</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">Scegli dove tenere i backup</string>
     <string name="folder_choose_body">Android mostrerà le tue cartelle. Scegline una, ad esempio Documents, poi tocca Usa questa cartella e Consenti. Quota Vault crea al suo interno una cartella \"%1$s\" e ci salva ogni backup.\n\nQuota Vault vede solo quella cartella. Nient\'altro sul telefono.</string>
     <string name="restore_confirm_new_title">Ripristinare questo backup?</string>
+    <string name="restore_receipts">Foto delle ricevute: %1$d (ripristinate insieme)</string>
     <string name="restore_confirm_new_body">Backup del %1$s\nClienti: %2$d · Vendite: %3$d · Appuntamenti: %4$d · Obiettivi: %5$d</string>
     <string name="erase_backups_kept">I tuoi backup in %1$s vengono conservati, così puoi ripristinarli quando vuoi dalla schermata di benvenuto.</string>
     <string name="erase_no_backup">Non hai ancora un backup. Una volta cancellati, questi dati non si possono recuperare.</string>

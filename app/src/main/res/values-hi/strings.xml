@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">कॉपी सेव करें</string>
     <string name="receipt_copy_saved">कॉपी सेव हो गई</string>
     <string name="receipt_copy_failed">कॉपी सेव नहीं हो सकी</string>
-    <string name="receipt_missing">यह फ़ोटो इस फ़ोन पर नहीं है। बैकअप में रसीद की फ़ोटो शामिल नहीं होतीं।</string>
+    <string name="receipt_missing">यह फ़ोटो इस फ़ोन पर नहीं है। इसे जोड़ने के बाद बना बैकअप बहाल करने पर यह वापस आ जाएगी।</string>
     <string name="receipt_previous">पिछली फ़ोटो</string>
     <string name="receipt_next">अगली फ़ोटो</string>
     <string name="receipt_close">बंद करें</string>
     <string name="lock_receipts">रसीद की फ़ोटो लॉक करें</string>
     <string name="lock_receipts_desc">हर बार रसीद की फ़ोटो खोलने पर फ़ोन का PIN, पासवर्ड या फ़िंगरप्रिंट माँगें। इसे बंद करने पर भी पूछा जाता है।</string>
     <string name="lock_receipts_off_title">रसीद लॉक बंद करें</string>
-    <string name="backup_no_receipts">बैकअप में रसीद की फ़ोटो शामिल नहीं होतीं। जिन्हें कहीं और रखना हो, उनकी रसीद खोलकर कॉपी सेव करें इस्तेमाल करें।</string>
+    <string name="backup_no_receipts">रसीद की फ़ोटो भी बैकअप में शामिल होती हैं, इसी पासवर्ड से एन्क्रिप्ट होकर।</string>
     <string name="exp_include_job">जॉब / वर्क ऑर्डर नंबर शामिल करें</string>
     <string name="exp_report_privacy_note">रिपोर्ट सिर्फ़ इसी फ़ोन पर बनती है। क्लाइंट के नाम और नोट्स कभी शामिल नहीं होते। जॉब / वर्क ऑर्डर नंबर और कमीशन तभी शामिल होते हैं जब आप उन्हें चालू करें।</string>
     <string name="exp_job_hint">रिपोर्ट में यह नंबर दिखता है, क्लाइंट का नाम कभी नहीं।</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">बैकअप रखने की जगह चुनें</string>
     <string name="folder_choose_body">Android आपके फ़ोल्डर दिखाएगा। Documents जैसा कोई फ़ोल्डर चुनें, फिर इस फ़ोल्डर का इस्तेमाल करें और अनुमति दें पर टैप करें। Quota Vault उसके अंदर \"%1$s\" फ़ोल्डर बनाकर हर बैकअप वहीं सहेजेगा।\n\nQuota Vault सिर्फ़ वही एक फ़ोल्डर देख सकता है। आपके फ़ोन की और कोई चीज़ नहीं।</string>
     <string name="restore_confirm_new_title">यह बैकअप बहाल करें?</string>
+    <string name="restore_receipts">रसीद की फ़ोटो: %1$d (साथ में बहाल होंगी)</string>
     <string name="restore_confirm_new_body">%1$s का बैकअप\nग्राहक: %2$d · बिक्री: %3$d · अपॉइंटमेंट: %4$d · लक्ष्य: %5$d</string>
     <string name="erase_backups_kept">%1$s में आपके बैकअप बने रहेंगे, ताकि आप स्वागत स्क्रीन से कभी भी उन्हें बहाल कर सकें।</string>
     <string name="erase_no_backup">आपके पास अभी कोई बैकअप नहीं है। मिटाने के बाद यह डेटा वापस नहीं लाया जा सकता।</string>

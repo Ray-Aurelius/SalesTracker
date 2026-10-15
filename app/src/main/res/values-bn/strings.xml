@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">একটি কপি সেভ করুন</string>
     <string name="receipt_copy_saved">কপি সেভ হয়েছে</string>
     <string name="receipt_copy_failed">কপি সেভ করা যায়নি</string>
-    <string name="receipt_missing">এই ছবিটি এই ফোনে নেই। ব্যাকআপে রসিদের ছবি থাকে না।</string>
+    <string name="receipt_missing">এই ছবিটি এই ফোনে নেই। ছবি যোগ করার পরে তৈরি ব্যাকআপ পুনরুদ্ধার করলে এটি ফিরে আসবে।</string>
     <string name="receipt_previous">আগের ছবি</string>
     <string name="receipt_next">পরের ছবি</string>
     <string name="receipt_close">বন্ধ করুন</string>
     <string name="lock_receipts">রসিদের ছবি লক করুন</string>
     <string name="lock_receipts_desc">প্রতিবার রসিদের ছবি খোলার সময় ফোনের PIN, পাসওয়ার্ড বা আঙুলের ছাপ চাওয়া হবে। এটি বন্ধ করতেও চাওয়া হবে।</string>
     <string name="lock_receipts_off_title">রসিদ লক বন্ধ করুন</string>
-    <string name="backup_no_receipts">ব্যাকআপে রসিদের ছবি থাকে না। যেগুলো অন্য কোথাও রাখতে হবে, সেই রসিদ খুলে একটি কপি সেভ করুন ব্যবহার করুন।</string>
+    <string name="backup_no_receipts">রসিদের ছবিও ব্যাকআপে থাকে, এই পাসওয়ার্ড দিয়ে এনক্রিপ্ট করা।</string>
     <string name="exp_include_job">জব / ওয়ার্ক অর্ডার নম্বর যোগ করুন</string>
     <string name="exp_report_privacy_note">রিপোর্ট শুধু এই ফোনেই তৈরি হয়। ক্লায়েন্টের নাম ও নোট কখনো থাকে না। আপনি চালু না করলে জব / ওয়ার্ক অর্ডার নম্বর ও কমিশন বাদ থাকে।</string>
     <string name="exp_job_hint">রিপোর্টে এই নম্বর দেখায়, ক্লায়েন্টের নাম কখনো নয়।</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">ব্যাকআপ রাখার জায়গা বেছে নিন</string>
     <string name="folder_choose_body">Android আপনার ফোল্ডারগুলো দেখাবে। Documents-এর মতো একটি বেছে নিন, তারপর এই ফোল্ডারটি ব্যবহার করুন ও অনুমতি দিন-এ ট্যাপ করুন। Quota Vault তার ভেতরে \"%1$s\" ফোল্ডার বানিয়ে প্রতিটি ব্যাকআপ সেখানে রাখবে।\n\nQuota Vault শুধু ওই একটি ফোল্ডার দেখতে পায়। ফোনের আর কিছু নয়।</string>
     <string name="restore_confirm_new_title">এই ব্যাকআপ পুনরুদ্ধার করবেন?</string>
+    <string name="restore_receipts">রসিদের ছবি: %1$d (সাথে পুনরুদ্ধার হবে)</string>
     <string name="restore_confirm_new_body">%1$s তারিখের ব্যাকআপ\nগ্রাহক: %2$d · বিক্রয়: %3$d · অ্যাপয়েন্টমেন্ট: %4$d · লক্ষ্য: %5$d</string>
     <string name="erase_backups_kept">%1$s-এ থাকা আপনার ব্যাকআপ রেখে দেওয়া হবে, তাই স্বাগত স্ক্রিন থেকে যেকোনো সময় পুনরুদ্ধার করতে পারবেন।</string>
     <string name="erase_no_backup">আপনার এখনও কোনো ব্যাকআপ নেই। মুছে ফেলার পর এই ডেটা আর ফেরানো যাবে না।</string>

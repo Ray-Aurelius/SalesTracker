@@ -802,14 +802,14 @@
     <string name="receipt_save_copy">Сохранить копию</string>
     <string name="receipt_copy_saved">Копия сохранена</string>
     <string name="receipt_copy_failed">Не удалось сохранить копию</string>
-    <string name="receipt_missing">Этого фото нет на этом телефоне. Резервные копии не включают фото чеков.</string>
+    <string name="receipt_missing">Этого фото нет на телефоне. Восстановление копии, сделанной после его добавления, вернёт его.</string>
     <string name="receipt_previous">Предыдущее фото</string>
     <string name="receipt_next">Следующее фото</string>
     <string name="receipt_close">Закрыть</string>
     <string name="lock_receipts">Блокировать фото чеков</string>
     <string name="lock_receipts_desc">Запрашивать PIN-код, пароль или отпечаток пальца при каждом открытии фото чека. Для отключения тоже нужно подтверждение.</string>
     <string name="lock_receipts_off_title">Отключить блокировку чеков</string>
-    <string name="backup_no_receipts">Резервные копии не включают фото чеков. Откройте чек и нажмите «Сохранить копию» для тех, что нужно хранить в другом месте.</string>
+    <string name="backup_no_receipts">Фото чеков входят в копию и тоже шифруются этим паролем.</string>
     <string name="exp_include_job">Включить номера работ / нарядов</string>
     <string name="exp_report_privacy_note">Отчёт создаётся только на этом телефоне. Имена клиентов и заметки никогда не включаются. Номера работ / нарядов и комиссия не включаются, пока вы их не включите.</string>
     <string name="exp_job_hint">В отчётах указывается этот номер, а не имя клиента.</string>
@@ -847,6 +847,7 @@
     <string name="folder_choose_title">Выберите место для копий</string>
     <string name="folder_choose_body">Android покажет ваши папки. Выберите одну, например Documents, и нажмите «Использовать эту папку» и «Разрешить». Quota Vault создаст в ней папку «%1$s» и будет сохранять туда все копии.\n\nQuota Vault видит только эту папку. Больше ничего на телефоне.</string>
     <string name="restore_confirm_new_title">Восстановить эту копию?</string>
+    <string name="restore_receipts">Фото чеков: %1$d (восстановятся вместе с копией)</string>
     <string name="restore_confirm_new_body">Копия от %1$s\nКлиенты: %2$d · Продажи: %3$d · Встречи: %4$d · Цели: %5$d</string>
     <string name="erase_backups_kept">Ваши копии в %1$s сохранятся, и их можно восстановить в любой момент с экрана приветствия.</string>
     <string name="erase_no_backup">У вас ещё нет копии. После удаления эти данные нельзя будет вернуть.</string>

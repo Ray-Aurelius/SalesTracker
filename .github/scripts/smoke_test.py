@@ -581,36 +581,39 @@ def main(apk):
     note("  backup folder at first run: " + " | ".join(files.splitlines()))
     if "About this folder" not in files:
         fail("the backup folder was not made when the app was first set up")
-    if not tap(r"^Back up now$", "backup-password", wait=2, scroll=4):
-        fail("could not reach the Back up now button")
-    else:
-        tap(r"^Password$", wait=0.8)
-        type_text("SmokeTest2026x")
-        hide_keyboard()
-        tap(r"^Confirm password$", wait=0.8)
-        type_text("SmokeTest2026x")
-        hide_keyboard()
-        if find(r"match"):
-            fail("the two backup passwords did not match (typing problem in the test)")
-        tap(r"^Back up$", wait=2)
-        for _ in range(8):   # the password is stretched on purpose (slow to guess), so give it time
-            if find(r"^Backup saved$"):
-                break
-            time.sleep(2)
-        shot("backup-saved")
-        if not find(r"^Backup saved$"):
-            root = dump()
-            note("  on screen: " + " | ".join(n.get("text") for n in (root.iter("node") if root is not None else []) if n.get("text"))[:600])
-        if not find(r"^Backup saved$"):
-            fail("no 'Backup saved' message after backing up")
-        files = adb("shell", f"ls -l {folder}")
-        note("  backup folder: " + " | ".join(l for l in files.splitlines() if "stbackup" in l))
-        if not re.search(r"QuotaVault-backup-.*\.stbackup", files):
-            fail("the encrypted backup is not in Documents/Quota Vault Backups")
-        tap(r"^Done$", wait=1.5)
-        shot("backup-listed")
-        if not find(r"^Newest$"):
-            fail("the new backup is not listed under Your backups")
+    def back_up():
+        if not tap(r"^Back up now$", "backup-password", wait=2, scroll=4):
+            fail("could not reach the Back up now button")
+        else:
+            tap(r"^Password$", wait=0.8)
+            type_text("SmokeTest2026x")
+            hide_keyboard()
+            tap(r"^Confirm password$", wait=0.8)
+            type_text("SmokeTest2026x")
+            hide_keyboard()
+            if find(r"match"):
+                fail("the two backup passwords did not match (typing problem in the test)")
+            tap(r"^Back up$", wait=2)
+            for _ in range(8):   # the password is stretched on purpose (slow to guess), so give it time
+                if find(r"^Backup saved$"):
+                    break
+                time.sleep(2)
+            shot("backup-saved")
+            if not find(r"^Backup saved$"):
+                root = dump()
+                note("  on screen: " + " | ".join(n.get("text") for n in (root.iter("node") if root is not None else []) if n.get("text"))[:600])
+            if not find(r"^Backup saved$"):
+                fail("no 'Backup saved' message after backing up")
+            files = adb("shell", f"ls -l {folder}")
+            note("  backup folder: " + " | ".join(l for l in files.splitlines() if "stbackup" in l))
+            if not re.search(r"QuotaVault-backup-.*\.stbackup", files):
+                fail("the encrypted backup is not in Documents/Quota Vault Backups")
+            tap(r"^Done$", wait=1.5)
+            shot("backup-listed")
+            if not find(r"^Newest$"):
+                fail("the new backup is not listed under Your backups")
+
+    back_up()
 
     section("Crash reports and privacy info")
     tap(r"^Crash reports$", "crash-reports", wait=1.5, scroll=6)
@@ -757,6 +760,10 @@ def main(apk):
     section("Erase everything, then restore the backup from the welcome screen")
     tap(r"^Settings$", wait=1.5)
     tap(r"^Security & privacy$", wait=2)
+    # A fresh backup now that an expense has a receipt photo: the photo must travel inside it.
+    back_up()
+    files = adb("shell", f"ls -l {folder}")
+    note("  backups before erasing: " + " | ".join(l for l in files.splitlines() if "stbackup" in l))
     if not tap(r"^Erase all data$", "erase-dialog", wait=2, scroll=10):
         fail("could not reach Erase all data")
     if not find(r"are kept"):
@@ -790,6 +797,25 @@ def main(apk):
         if not find_scrolling(name):
             fail(f"{name} is missing after restoring the backup")
     shot("clients-after-restore-scrolled")
+
+    section("The receipt photo came back with the backup")
+    tap(r"^Expenses$", "expenses-after-restore", wait=2)
+    adb("shell", "locksettings set-pin 1357")
+    time.sleep(1)
+    if not tap(r"^View receipt photos", wait=2.5, scroll=4):
+        fail("the expense with a receipt has no photos after restoring")
+    else:
+        adb("shell", "input text 1357")
+        adb("shell", "input keyevent 66")
+        time.sleep(3)
+        shot("receipt-after-restore")
+        if find(r"isn't on this phone"):
+            fail("the receipt photo was not restored from the backup")
+        if not find(r"^Receipt 1 of 1$"):
+            fail("the restored receipt photo did not open")
+        tap(r"^Close$", wait=1.5)
+    adb("shell", "locksettings clear --old 1357")
+    time.sleep(1)
 
     if crashed():
         fail("crash")

@@ -62,4 +62,42 @@ class BackupTest {
         val restored = Backup.decrypt(encrypt(AppData()), password.copyOf())
         assertTrue(restored.data.clients.isEmpty() && restored.data.sales.isEmpty())
     }
+
+    @Test fun receiptPhotosRoundTrip() {
+        val photos = mapOf(2L to ByteArray(50_000) { (it * 7).toByte() }, 9L to byteArrayOf(-1, -40, -1, -39))
+        val file = Backup.encrypt(sample, password.copyOf(), photos, rounds = 2_000, now = 42L)
+        val restored = Backup.decrypt(file, password.copyOf())
+        assertEquals(sample, restored.data)
+        assertEquals(photos.keys, restored.receipts.keys)
+        photos.forEach { (id, bytes) -> assertTrue(bytes.contentEquals(restored.receipts[id])) }
+    }
+
+    @Test fun receiptPhotosAreEncrypted() {
+        val marker = "JPEG-MARKER-PLAINTEXT".toByteArray()
+        val file = Backup.encrypt(sample, password.copyOf(), mapOf(2L to marker), rounds = 2_000, now = 42L)
+        assertFalse(String(file, Charsets.ISO_8859_1).contains("JPEG-MARKER-PLAINTEXT"))
+    }
+
+    @Test fun backupWithoutPhotosRestoresNone() {
+        assertTrue(Backup.decrypt(encrypt(), password.copyOf()).receipts.isEmpty())
+    }
+
+    /** Files made by earlier versions of the app (format 1: gzip JSON only) must still restore. */
+    @Test fun versionOneBackupStillRestores() {
+        val salt = ByteArray(16) { it.toByte() }
+        val iv = ByteArray(12) { (it + 3).toByte() }
+        val rounds = 2_000
+        val header = java.nio.ByteBuffer.allocate(37).put("STBK".toByteArray()).put(1.toByte()).putInt(rounds).put(salt).put(iv).array()
+        val json = org.json.JSONObject().put("createdAt", 7L).put("data", sample.toJson()).toString().toByteArray()
+        val gz = java.io.ByteArrayOutputStream().also { o -> java.util.zip.GZIPOutputStream(o).use { it.write(json) } }.toByteArray()
+        val keyBytes = javax.crypto.SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+            .generateSecret(javax.crypto.spec.PBEKeySpec(password.copyOf(), salt, rounds, 256)).encoded
+        val cipher = javax.crypto.Cipher.getInstance("AES/GCM/NoPadding")
+        cipher.init(javax.crypto.Cipher.ENCRYPT_MODE, javax.crypto.spec.SecretKeySpec(keyBytes, "AES"), javax.crypto.spec.GCMParameterSpec(128, iv))
+        cipher.updateAAD(header)
+        val restored = Backup.decrypt(header + cipher.doFinal(gz), password.copyOf())
+        assertEquals(sample, restored.data)
+        assertEquals(7L, restored.createdAt)
+        assertTrue(restored.receipts.isEmpty())
+    }
 }
