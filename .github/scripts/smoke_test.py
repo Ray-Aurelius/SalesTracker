@@ -825,10 +825,34 @@ def main(apk):
     if not tap(r"^Import from a spreadsheet$", "import-dialog", wait=1.5, scroll=6):
         fail("no Import from a spreadsheet in Settings")
     tap(r"^Choose CSV file$", "import-picker", wait=3)
-    tap(r"import-test", wait=3)
-    if not find(r"^Match your columns$"):
-        # The emulator's Downloads view can refuse a file pushed by adb ("Can't open file"); the same file
-        # opened from the phone's storage root works, as it would for a file a user saved.
+
+    def wait_for_match(seconds=12):
+        for _ in range(int(seconds / 1.5)):
+            if find(r"^Match your columns$"):
+                return True
+            time.sleep(1.5)
+        return False
+
+    def pick(name):
+        """Picks a file in Android's file picker: a tap, then a long press and Select if the tap didn't take."""
+        pos = find(name)
+        if pos is None:
+            return False
+        adb("shell", f"input tap {pos[0]} {pos[1]}")
+        note(f"  tapped file {name}")
+        if wait_for_match():
+            return True
+        pos = find(name)
+        if pos is None:
+            return wait_for_match(4)
+        adb("shell", f"input swipe {pos[0]} {pos[1]} {pos[0]} {pos[1]} 900")
+        time.sleep(1.5)
+        shot("import-picker-selected")
+        tap(r"^Select$|^SELECT$|^Open$|^OPEN$", wait=2)
+        return wait_for_match()
+
+    if not pick(r"import-test"):
+        # Try the same file from the phone's storage root.
         shot("import-picker-retry")
         if find(r"^Choose CSV file$"):  # the picker closed: open it again
             tap(r"^Choose CSV file$", wait=3)
@@ -836,7 +860,7 @@ def main(apk):
         if not tap(r"sdk_gphone|Android SDK|^SDK|Internal storage|^Phone$", wait=2):
             note("  storage root not found in the picker's menu")
         tap(r"^Download$", wait=2, scroll=4)
-        tap(r"import-test", wait=3, scroll=4)
+        pick(r"import-test")
     shot("import-match")
     if not find(r"^Match your columns$"):
         fail("the CSV file did not open for matching")
