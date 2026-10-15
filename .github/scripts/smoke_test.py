@@ -825,12 +825,18 @@ def main(apk):
     if not tap(r"^Import from a spreadsheet$", "import-dialog", wait=1.5, scroll=6):
         fail("no Import from a spreadsheet in Settings")
     tap(r"^Choose CSV file$", "import-picker", wait=3)
-    if not tap(r"import-test", wait=3):
-        # The picker may open somewhere else: go to Downloads.
-        tap(r"Show roots", wait=1.5) or tap(r"^Downloads?$", wait=1.5)
-        tap(r"^Downloads?$", wait=2)
-        if not tap(r"import-test", wait=3, scroll=4):
-            fail("could not pick the CSV file in Android's file picker")
+    tap(r"import-test", wait=3)
+    if not find(r"^Match your columns$"):
+        # The emulator's Downloads view can refuse a file pushed by adb ("Can't open file"); the same file
+        # opened from the phone's storage root works, as it would for a file a user saved.
+        shot("import-picker-retry")
+        if find(r"^Choose CSV file$"):  # the picker closed: open it again
+            tap(r"^Choose CSV file$", wait=3)
+        tap(r"Show roots", wait=1.5)
+        if not tap(r"sdk_gphone|Android SDK|^SDK|Internal storage|^Phone$", wait=2):
+            note("  storage root not found in the picker's menu")
+        tap(r"^Download$", wait=2, scroll=4)
+        tap(r"import-test", wait=3, scroll=4)
     shot("import-match")
     if not find(r"^Match your columns$"):
         fail("the CSV file did not open for matching")
