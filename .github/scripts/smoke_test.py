@@ -818,7 +818,7 @@ def main(apk):
     time.sleep(1)
 
     section("Import clients from a spreadsheet (CSV) the user picks")
-    adb("shell", "printf 'Name,Mobile,E-mail,Work order #\\nTaylor Brooks,555-010-0900,taylor@example.com,WO-2001\\nAlex Morgan,,,\\n' > /sdcard/Download/import-test.csv")
+    adb("shell", "printf 'Name,Mobile,E-mail,Work order #\\nDakota Lindqvist,555-010-0977,dakota@example.com,WO-2001\\nAlex Morgan,,,\\n' > /sdcard/Download/import-test.csv")
     adb("shell", "content call --method scan_volume --uri content://media --arg external_primary")
     time.sleep(2)
     tap(r"^Settings$", wait=1.5)
@@ -875,7 +875,7 @@ def main(apk):
     tap(r"^Done$", wait=1.5)
     tap(r"^Done$", wait=1.5)
     tap(r"^Clients$", wait=2)
-    if not find_scrolling(r"Taylor Brooks"):
+    if not find_scrolling(r"Dakota Lindqvist"):
         fail("the imported client is not in the client list")
 
     section("Home-screen widgets: Quick add buttons and Follow-ups open the right place")
@@ -912,7 +912,7 @@ def main(apk):
     adb("shell", f"am start -n {act} --ez openClients true")
     time.sleep(3)
     shot("widget-followups-open")
-    if not find_scrolling(r"Taylor Brooks|Alex Morgan|Follow-ups due"):
+    if not find_scrolling(r"Dakota Lindqvist|Alex Morgan|Follow-ups due"):
         fail("the Follow-ups widget did not open the client list")
 
     if crashed():
