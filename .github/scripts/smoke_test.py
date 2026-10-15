@@ -848,6 +848,43 @@ def main(apk):
     if not find_scrolling(r"Taylor Brooks"):
         fail("the imported client is not in the client list")
 
+    section("Home-screen widgets: Quick add buttons and Follow-ups open the right place")
+    act = f"{PKG}/com.salestracker.app.MainActivity"
+    widgets = adb("shell", "dumpsys package " + PKG)
+    for cls in ["QuickAddWidget", "FollowUpsWidget", "CommissionWidget"]:
+        if cls not in widgets:
+            fail(f"the {cls} home-screen widget is not registered")
+    adb("shell", f"am start -n {act} --es quickAdd sale")
+    time.sleep(3)
+    shot("widget-quick-sale")
+    if not find(r"^Sale amount$"):
+        fail("Quick add > Log sale did not open the sale form")
+    tap(r"^Cancel$", wait=1.5)
+    adb("shell", f"am start -n {act} --es quickAdd client")
+    time.sleep(3)
+    shot("widget-quick-client")
+    if not find(r"^First name$"):
+        fail("Quick add > Add client did not open the client form")
+    tap(r"^Cancel$", wait=1.5)
+    adb("shell", f"am start -n {act} --es quickAdd expense")
+    time.sleep(3)
+    shot("widget-quick-expense")
+    if not find(r"^Amount$"):
+        fail("Quick add > Expense did not open the expense form")
+    tap(r"^Cancel$", wait=1.5)
+    adb("shell", f"am start -n {act} --es quickAdd timer")
+    time.sleep(3)
+    shot("widget-quick-timer")
+    if not find(r"^Pause$"):
+        fail("Quick add > Timer did not start the timer")
+    tap(r"^Pause$", wait=1.2)
+    tap(r"^Reset$", wait=1.5)
+    adb("shell", f"am start -n {act} --ez openClients true")
+    time.sleep(3)
+    shot("widget-followups-open")
+    if not find_scrolling(r"Taylor Brooks|Alex Morgan|Follow-ups due"):
+        fail("the Follow-ups widget did not open the client list")
+
     if crashed():
         fail("crash")
     note("PASSED: no crashes")

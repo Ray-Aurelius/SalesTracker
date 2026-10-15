@@ -272,3 +272,41 @@ private fun QuickActionButton(action: QuickAction, iconFirst: Boolean = false, o
         }
     }
 }
+
+/** A form opened from the Quick add home-screen widget: log a sale, add a client, or add an expense. */
+@Composable
+fun WidgetQuickForm(vm: AppViewModel, data: AppData, kind: String, onDone: () -> Unit) {
+    when (kind) {
+        "sale" -> SaleDialog(
+            initial = null,
+            clients = data.clients,
+            newId = vm::newId,
+            onDismiss = onDone,
+            onSave = vm::saveSale,
+            defaultCommissionPercent = data.defaultCommissionPercent,
+            plan = data.commissionPlan,
+            onCreateClient = vm::saveClientWithFollowUp,
+            defaultUpsellOnly = data.defaultCommissionUpsellOnly,
+        )
+        "client" -> ClientDialog(
+            initial = null,
+            existingFollowUp = null,
+            newId = vm::newId,
+            onDismiss = onDone,
+            onSave = vm::saveClientWithFollowUp,
+            onDelete = { _, _ -> },
+        )
+        "expense" -> ExpenseDialog(
+            vm = vm,
+            initial = null,
+            kind = ExpenseKind.EXPENSE,
+            clients = data.clients,
+            defaultRate = data.mileageRate,
+            unit = data.unit,
+            newId = vm::newId,
+            onSave = vm::saveExpense,
+            onDismiss = onDone,
+        )
+        else -> androidx.compose.runtime.LaunchedEffect(kind) { onDone() }
+    }
+}

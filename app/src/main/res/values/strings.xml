@@ -773,8 +773,8 @@
     <string name="on_track_empty">Log a sale this period to see where you\'re headed.</string>
     <string name="widget_pace_description">Where your week, month, quarter or year is headed (pick which on the Stats tab). Amounts show only if you allow them in Security &amp; privacy. Can be hidden in Security &amp; privacy.</string>
     <string name="widget_pace_hidden">Amounts are hidden on your home screen. You can allow them in Security &amp; privacy.</string>
-    <string name="widget_amounts">Show amounts on the On-track widget</string>
-    <string name="widget_amounts_desc">Anyone who sees your home screen could read your projected earnings. Off by default.</string>
+    <string name="widget_amounts">Show amounts on widgets</string>
+    <string name="widget_amounts_desc">Anyone who sees your home screen could read your projected earnings and commission (On track and Commission widgets). Off by default.</string>
     <plurals name="on_track_days_left">
         <item quantity="one">%d day left</item>
         <item quantity="other">%d days left</item>
@@ -1079,4 +1079,20 @@
     <string name="import_f_full_name">Full name</string>
     <string name="import_f_closed">Closed (yes / no)</string>
     <string name="import_f_client">Client name</string>
+    <string name="widget_quick_title">Quick add</string>
+    <string name="widget_quick_sale">Log sale</string>
+    <string name="widget_quick_client">Add client</string>
+    <string name="widget_quick_expense">Expense</string>
+    <string name="widget_quick_timer">Timer</string>
+    <string name="widget_quick_description">One tap to log a sale, add a client or an expense, or start the timer. Shows no data.</string>
+    <string name="widget_followups_description">Clients to follow up with over the next week, by job # or first name only. Can be hidden in Security &amp; privacy.</string>
+    <string name="widget_followups_empty">No follow-ups in the next 7 days.</string>
+    <string name="widget_commission_title">Commission</string>
+    <string name="widget_commission_description">Commission earned this month and what\'s still owed. Amounts show only if you allow them in Security &amp; privacy. Can be hidden in Security &amp; privacy.</string>
+    <string name="widget_commission_preview_big">+12% vs. this point last month</string>
+    <string name="widget_commission_preview_line">Closed this month: 9</string>
+    <string name="widget_commission_owed">Still owed: %1$s</string>
+    <string name="widget_commission_vs">%1$s vs. this point last month</string>
+    <string name="widget_commission_closed">Closed this month: %1$d</string>
+    <string name="widget_commission_empty">Log a sale to see your commission here.</string>
 </resources>

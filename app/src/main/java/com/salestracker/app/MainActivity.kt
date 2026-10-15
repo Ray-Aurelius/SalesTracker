@@ -212,11 +212,23 @@ class MainActivity : AppCompatActivity() {
             vm.pendingOpenTasks = true
             intent.removeExtra(EXTRA_OPEN_TASKS)
         }
+        intent?.getStringExtra(EXTRA_QUICK)?.let { q ->
+            if (q in QUICK_ACTIONS) vm.pendingQuick = q
+            intent.removeExtra(EXTRA_QUICK)
+        }
+        if (intent?.getBooleanExtra(EXTRA_OPEN_CLIENTS, false) == true) {
+            vm.pendingOpenClients = true
+            vm.pendingShowDue = true
+            intent.removeExtra(EXTRA_OPEN_CLIENTS)
+        }
     }
 
     companion object {
         const val EXTRA_OPEN_DAY = "openEpochDay"
         const val EXTRA_OPEN_TASKS = "openTasks"
+        const val EXTRA_QUICK = "quickAdd"
+        const val EXTRA_OPEN_CLIENTS = "openClients"
+        val QUICK_ACTIONS = setOf("sale", "client", "expense", "timer")
     }
 }
 
@@ -324,6 +336,20 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     }
     LaunchedEffect(vm.pendingOpenTasks) {
         if (vm.pendingOpenTasks) { tab = Tab.TASKS; opened = true; vm.pendingOpenTasks = false }
+    }
+    LaunchedEffect(vm.pendingOpenClients) {
+        if (vm.pendingOpenClients) { tab = Tab.CLIENTS; opened = true; vm.pendingOpenClients = false }
+    }
+    // The Quick add widget: open the form it asked for over whatever page is showing, or start the timer.
+    when (val q = vm.pendingQuick) {
+        null -> {}
+        "timer" -> LaunchedEffect(q) {
+            if (!vm.stopwatchRunning) vm.startStopwatch()
+            tab = Tab.CLIENTS; opened = true
+            vm.pendingShowTimer = true
+            vm.pendingQuick = null
+        }
+        else -> com.salestracker.app.ui.screens.WidgetQuickForm(vm, data, q, onDone = { vm.pendingQuick = null })
     }
 
     Scaffold(

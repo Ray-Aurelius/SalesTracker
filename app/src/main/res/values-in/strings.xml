@@ -650,8 +650,8 @@
     <string name="on_track_empty">Catat penjualan di periode ini untuk melihat ke mana arah Anda.</string>
     <string name="widget_pace_description">Ke mana arah minggu, bulan, kuartal, atau tahun Anda (pilih di tab Statistik). Jumlah uang hanya tampil jika Anda izinkan di Keamanan &amp; privasi. Bisa disembunyikan di Keamanan &amp; privasi.</string>
     <string name="widget_pace_hidden">Jumlah uang disembunyikan di layar utama. Anda bisa mengizinkannya di Keamanan &amp; privasi.</string>
-    <string name="widget_amounts">Tampilkan jumlah di widget Menuju</string>
-    <string name="widget_amounts_desc">Siapa pun yang melihat layar utama Anda bisa membaca perkiraan penghasilan Anda. Nonaktif secara default.</string>
+    <string name="widget_amounts">Tampilkan jumlah di widget</string>
+    <string name="widget_amounts_desc">Siapa pun yang melihat layar utama Anda bisa membaca perkiraan penghasilan dan komisi Anda (widget Sesuai target dan Komisi). Nonaktif secara default.</string>
     <string name="widget_pace_ahead">Anda lebih cepat dari laju periode sebelumnya. Pertahankan!</string>
     <string name="widget_pace_behind">Anda tertinggal dari laju periode sebelumnya. Masih ada waktu untuk mengejar.</string>
     <string name="widget_pace_keep_going">Terus catat penjualan untuk menetapkan laju Anda.</string>
@@ -938,6 +938,22 @@
     <string name="import_f_full_name">Nama lengkap</string>
     <string name="import_f_closed">Closing (ya / tidak)</string>
     <string name="import_f_client">Nama klien</string>
+    <string name="widget_quick_title">Tambah cepat</string>
+    <string name="widget_quick_sale">Penjualan</string>
+    <string name="widget_quick_client">Klien</string>
+    <string name="widget_quick_expense">Pengeluaran</string>
+    <string name="widget_quick_timer">Timer</string>
+    <string name="widget_quick_description">Sekali ketuk untuk mencatat penjualan, menambah klien atau pengeluaran, atau memulai timer. Tidak menampilkan data.</string>
+    <string name="widget_followups_description">Klien yang perlu ditindaklanjuti minggu ini, hanya dengan no. pekerjaan atau nama depan. Bisa disembunyikan di Keamanan &amp; privasi.</string>
+    <string name="widget_followups_empty">Tidak ada tindak lanjut dalam 7 hari ke depan.</string>
+    <string name="widget_commission_title">Komisi</string>
+    <string name="widget_commission_description">Komisi bulan ini dan yang masih terutang. Jumlah hanya tampil jika Anda izinkan di Keamanan &amp; privasi. Bisa disembunyikan di sana.</string>
+    <string name="widget_commission_preview_big">+12% vs. titik yang sama bulan lalu</string>
+    <string name="widget_commission_preview_line">Closing bulan ini: 9</string>
+    <string name="widget_commission_owed">Masih terutang: %1$s</string>
+    <string name="widget_commission_vs">%1$s vs. titik yang sama bulan lalu</string>
+    <string name="widget_commission_closed">Closing bulan ini: %1$d</string>
+    <string name="widget_commission_empty">Catat penjualan untuk melihat komisi Anda di sini.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

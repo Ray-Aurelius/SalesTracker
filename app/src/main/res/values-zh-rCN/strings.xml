@@ -650,8 +650,8 @@
     <string name="on_track_empty">在本期记录一笔销售，即可看到你的走势。</string>
     <string name="widget_pace_description">你的本周、本月、本季度或本年的走势（在“统计”标签中选择）。只有在“安全与隐私”中允许后才会显示金额。可在“安全与隐私”中隐藏。</string>
     <string name="widget_pace_hidden">主屏幕上的金额已隐藏。你可以在“安全与隐私”中允许显示。</string>
-    <string name="widget_amounts">在“预计达成”小组件中显示金额</string>
-    <string name="widget_amounts_desc">任何看到你主屏幕的人都可能看到你的预计收入。默认关闭。</string>
+    <string name="widget_amounts">在小组件上显示金额</string>
+    <string name="widget_amounts_desc">看到您主屏幕的任何人都可能读到您的预计收入和佣金（“进度”和“佣金”小组件）。默认关闭。</string>
     <string name="widget_pace_ahead">领先上一期的进度，继续加油！</string>
     <string name="widget_pace_behind">落后于上一期的进度，还有时间追上。</string>
     <string name="widget_pace_keep_going">继续记录销售，确立你的节奏。</string>
@@ -938,6 +938,22 @@
     <string name="import_f_full_name">全名</string>
     <string name="import_f_closed">已成交（是 / 否）</string>
     <string name="import_f_client">客户姓名</string>
+    <string name="widget_quick_title">快速添加</string>
+    <string name="widget_quick_sale">记录销售</string>
+    <string name="widget_quick_client">添加客户</string>
+    <string name="widget_quick_expense">支出</string>
+    <string name="widget_quick_timer">计时器</string>
+    <string name="widget_quick_description">一键记录销售、添加客户或支出，或开始计时。不显示任何数据。</string>
+    <string name="widget_followups_description">本周需要跟进的客户，仅显示工单号或名字。可在“安全与隐私”中隐藏。</string>
+    <string name="widget_followups_empty">未来 7 天没有跟进。</string>
+    <string name="widget_commission_title">佣金</string>
+    <string name="widget_commission_description">本月已赚佣金和尚未支付的部分。只有在“安全与隐私”中允许后才显示金额。可在该处隐藏。</string>
+    <string name="widget_commission_preview_big">比上月同期 +12%</string>
+    <string name="widget_commission_preview_line">本月成交：9</string>
+    <string name="widget_commission_owed">尚未支付：%1$s</string>
+    <string name="widget_commission_vs">比上月同期 %1$s</string>
+    <string name="widget_commission_closed">本月成交：%1$d</string>
+    <string name="widget_commission_empty">记录一笔销售即可在此查看佣金。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

@@ -358,7 +358,8 @@ object CsvImport {
                 newClients += client
                 index.add(client)
             }
-            val key = "$day|${"%.2f".format(Locale.ROOT, amount)}|${client?.id ?: ""}|${norm(job)}"
+            val jobRef = job.ifEmpty { client?.reference.orEmpty() }
+            val key = "$day|${"%.2f".format(Locale.ROOT, amount)}|${client?.id ?: ""}|${norm(jobRef)}"
             if (!seen.add(key)) { dupes++; return@forEachIndexed }
             sales += Sale(
                 id = newId(),
@@ -374,7 +375,7 @@ object CsvImport {
                 commissionPercent = percent(t.cell(row, m[Field.COMMISSION]))
                     ?: if (data.tierSchedule != null) null else data.defaultCommissionPercent, // tiered plans rate it
                 commissionOnUpsellOnly = data.defaultCommissionUpsellOnly,
-                jobRef = job.ifEmpty { client?.reference.orEmpty() },
+                jobRef = jobRef,
             )
         }
         return Outcome(newClients, sales, dupes, bad)

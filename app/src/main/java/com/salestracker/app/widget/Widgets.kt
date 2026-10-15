@@ -24,7 +24,8 @@ import java.time.LocalDate
 /**
  * Home-screen widgets. The same privacy rules apply to every one of them:
  *  - with "Hide widget contents" on (Security & privacy), a widget shows only "Hidden";
- *  - never a dollar amount, and never a client's name (only the titles the user typed for tasks and appointments);
+ *  - a dollar amount only on On track and Commission, and only when allowed in Security & privacy (off by default);
+ *  - never a client's full name, phone or email (Follow-ups shows a job # or first name);
  *  - nothing is fetched from or sent anywhere: widgets are drawn from the same encrypted data on the phone.
  */
 object Widgets {
@@ -37,6 +38,9 @@ object Widgets {
         update(context, ScheduleWidget::class.java) { ScheduleWidget.build(context, snapshot) }
         update(context, StatsWidget::class.java) { StatsWidget.build(context, snapshot) }
         update(context, PaceWidget::class.java) { PaceWidget.build(context, snapshot) }
+        update(context, FollowUpsWidget::class.java) { FollowUpsWidget.build(context, snapshot) }
+        update(context, CommissionWidget::class.java) { CommissionWidget.build(context, snapshot) }
+        update(context, QuickAddWidget::class.java) { QuickAddWidget.build(context) }
     }
 
     internal fun update(context: Context, cls: Class<out AppWidgetProvider>, build: () -> RemoteViews) {

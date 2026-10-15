@@ -71,6 +71,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -98,6 +99,8 @@ import com.salestracker.app.ui.AppViewModel
 @Composable
 fun ClientsScreen(vm: AppViewModel, data: AppData) {
     var timer by remember { mutableStateOf(vm.stopwatchRunning) }
+    LaunchedEffect(vm.pendingShowTimer) { if (vm.pendingShowTimer) { timer = true; vm.pendingShowTimer = false } }
+    LaunchedEffect(vm.pendingShowDue) { if (vm.pendingShowDue) timer = false }
     val narrow = isNarrow()
     Column(Modifier.fillMaxSize()) {
         SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
@@ -138,6 +141,9 @@ private fun ClientList(vm: AppViewModel, data: AppData) {
 
     val q = query.trim().lowercase()
     val dueIds = data.clients.filter { c -> data.followUpFor(c)?.isDue() == true }.map { it.id }.toSet()
+    LaunchedEffect(vm.pendingShowDue) {
+        if (vm.pendingShowDue) { dueOnly = dueIds.isNotEmpty(); stageFilter = null; vm.pendingShowDue = false }
+    }
     val clients = data.clients
         .filter { q.isEmpty() || "${it.fullName} ${it.occupation} ${it.phone} ${it.email} ${it.reference} ${it.notes}".lowercase().contains(q) }
         .filter { stageFilter == null || it.stage == stageFilter }

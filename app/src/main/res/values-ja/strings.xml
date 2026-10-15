@@ -650,8 +650,8 @@
     <string name="on_track_empty">この期間に販売を記録すると、見込みが表示されます。</string>
     <string name="widget_pace_description">今週・今月・今四半期・今年の見込み（統計タブで選択）。金額は「セキュリティとプライバシー」で許可した場合のみ表示されます。「セキュリティとプライバシー」で非表示にできます。</string>
     <string name="widget_pace_hidden">ホーム画面では金額を非表示にしています。「セキュリティとプライバシー」で表示を許可できます。</string>
-    <string name="widget_amounts">見込みウィジェットに金額を表示</string>
-    <string name="widget_amounts_desc">ホーム画面を見た人が見込み収入を読めるようになります。初期設定はオフです。</string>
+    <string name="widget_amounts">ウィジェットに金額を表示</string>
+    <string name="widget_amounts_desc">ホーム画面を見た人に予想収入とコミッションが見えてしまいます（「ペース」と「コミッション」ウィジェット）。初期設定はオフ。</string>
     <string name="widget_pace_ahead">前の期間のペースを上回っています。この調子で！</string>
     <string name="widget_pace_behind">前の期間のペースを下回っています。まだ挽回できます。</string>
     <string name="widget_pace_keep_going">販売の記録を続けてペースをつかみましょう。</string>
@@ -938,6 +938,22 @@
     <string name="import_f_full_name">氏名</string>
     <string name="import_f_closed">成約（はい / いいえ）</string>
     <string name="import_f_client">顧客名</string>
+    <string name="widget_quick_title">クイック追加</string>
+    <string name="widget_quick_sale">売上</string>
+    <string name="widget_quick_client">顧客</string>
+    <string name="widget_quick_expense">経費</string>
+    <string name="widget_quick_timer">タイマー</string>
+    <string name="widget_quick_description">ワンタップで売上を記録、顧客や経費を追加、またはタイマーを開始。データは表示しません。</string>
+    <string name="widget_followups_description">今週フォローする顧客を案件番号か名前だけで表示。「セキュリティとプライバシー」で非表示にできます。</string>
+    <string name="widget_followups_empty">今後 7 日間のフォローはありません。</string>
+    <string name="widget_commission_title">コミッション</string>
+    <string name="widget_commission_description">今月のコミッションと未払い分。金額は「セキュリティとプライバシー」で許可した場合のみ表示。そこで非表示にもできます。</string>
+    <string name="widget_commission_preview_big">先月の同時点比 +12%</string>
+    <string name="widget_commission_preview_line">今月の成約：9</string>
+    <string name="widget_commission_owed">未払い：%1$s</string>
+    <string name="widget_commission_vs">先月の同時点比 %1$s</string>
+    <string name="widget_commission_closed">今月の成約：%1$d</string>
+    <string name="widget_commission_empty">売上を記録するとここにコミッションが表示されます。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

@@ -650,8 +650,8 @@
     <string name="on_track_empty">Hãy ghi một giao dịch trong kỳ này để xem bạn đang hướng tới đâu.</string>
     <string name="widget_pace_description">Tuần, tháng, quý hoặc năm của bạn đang hướng tới đâu (chọn ở thẻ Thống kê). Số tiền chỉ hiện nếu bạn cho phép trong Bảo mật và quyền riêng tư. Có thể ẩn trong Bảo mật và quyền riêng tư.</string>
     <string name="widget_pace_hidden">Số tiền đang được ẩn trên màn hình chính. Bạn có thể cho phép trong Bảo mật và quyền riêng tư.</string>
-    <string name="widget_amounts">Hiện số tiền trên tiện ích Dự kiến đạt</string>
-    <string name="widget_amounts_desc">Bất kỳ ai thấy màn hình chính đều có thể đọc thu nhập dự kiến của bạn. Mặc định tắt.</string>
+    <string name="widget_amounts">Hiện số tiền trên tiện ích</string>
+    <string name="widget_amounts_desc">Ai thấy màn hình chính của bạn cũng có thể đọc thu nhập dự kiến và hoa hồng (tiện ích Đúng tiến độ và Hoa hồng). Mặc định tắt.</string>
     <string name="widget_pace_ahead">Bạn đang nhanh hơn nhịp của kỳ trước. Cứ thế tiếp tục!</string>
     <string name="widget_pace_behind">Bạn đang chậm hơn nhịp của kỳ trước. Vẫn còn thời gian để bắt kịp.</string>
     <string name="widget_pace_keep_going">Hãy tiếp tục ghi giao dịch để tạo nhịp cho mình.</string>
@@ -938,6 +938,22 @@
     <string name="import_f_full_name">Họ tên đầy đủ</string>
     <string name="import_f_closed">Đã chốt (có / không)</string>
     <string name="import_f_client">Tên khách hàng</string>
+    <string name="widget_quick_title">Thêm nhanh</string>
+    <string name="widget_quick_sale">Bán hàng</string>
+    <string name="widget_quick_client">Khách hàng</string>
+    <string name="widget_quick_expense">Chi phí</string>
+    <string name="widget_quick_timer">Hẹn giờ</string>
+    <string name="widget_quick_description">Một chạm để ghi giao dịch, thêm khách hàng hoặc chi phí, hay bật hẹn giờ. Không hiển thị dữ liệu.</string>
+    <string name="widget_followups_description">Khách hàng cần liên hệ lại trong tuần, chỉ theo số công việc hoặc tên. Có thể ẩn trong Bảo mật và quyền riêng tư.</string>
+    <string name="widget_followups_empty">Không có lịch liên hệ lại trong 7 ngày tới.</string>
+    <string name="widget_commission_title">Hoa hồng</string>
+    <string name="widget_commission_description">Hoa hồng tháng này và khoản còn chưa nhận. Chỉ hiện số tiền nếu bạn cho phép trong Bảo mật và quyền riêng tư. Có thể ẩn ở đó.</string>
+    <string name="widget_commission_preview_big">+12% so với cùng thời điểm tháng trước</string>
+    <string name="widget_commission_preview_line">Đã chốt tháng này: 9</string>
+    <string name="widget_commission_owed">Còn chưa nhận: %1$s</string>
+    <string name="widget_commission_vs">%1$s so với cùng thời điểm tháng trước</string>
+    <string name="widget_commission_closed">Đã chốt tháng này: %1$d</string>
+    <string name="widget_commission_empty">Ghi một giao dịch để xem hoa hồng tại đây.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

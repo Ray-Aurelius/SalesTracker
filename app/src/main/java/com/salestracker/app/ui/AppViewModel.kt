@@ -459,6 +459,14 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     var pendingOpenDay by mutableStateOf<Long?>(null)
     /** Set when a task reminder is tapped; the Schedule tab opens on Tasks and clears it. */
     var pendingOpenTasks by mutableStateOf(false)
+    /** A Quick add widget button: "sale", "client", "expense" or "timer". Acted on once the app is unlocked. */
+    var pendingQuick by mutableStateOf<String?>(null)
+    /** The Follow-ups widget opens the client list. */
+    var pendingOpenClients by mutableStateOf(false)
+    /** Show the timer side of the Clients tab (set when the Quick add widget starts the timer). */
+    var pendingShowTimer by mutableStateOf(false)
+    /** Filter the client list to follow-ups due (set by the Follow-ups widget). */
+    var pendingShowDue by mutableStateOf(false)
 
     // ---- Menu tabs (Settings → Menu tabs) ----
     /** Names of the pages hidden from the menu. Never all of them. */

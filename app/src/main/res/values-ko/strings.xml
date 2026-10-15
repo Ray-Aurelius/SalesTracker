@@ -650,8 +650,8 @@
     <string name="on_track_empty">이 기간에 판매를 기록하면 예상 흐름이 보입니다.</string>
     <string name="widget_pace_description">이번 주·달·분기·연도의 예상 흐름(통계 탭에서 선택). 금액은 보안 및 개인정보에서 허용한 경우에만 표시됩니다. 보안 및 개인정보에서 숨길 수 있습니다.</string>
     <string name="widget_pace_hidden">홈 화면에서는 금액이 숨겨져 있습니다. 보안 및 개인정보에서 허용할 수 있습니다.</string>
-    <string name="widget_amounts">예상 달성 위젯에 금액 표시</string>
-    <string name="widget_amounts_desc">홈 화면을 보는 누구나 예상 수입을 볼 수 있습니다. 기본값은 꺼짐입니다.</string>
+    <string name="widget_amounts">위젯에 금액 표시</string>
+    <string name="widget_amounts_desc">홈 화면을 보는 누구나 예상 수입과 수수료를 볼 수 있습니다(목표 페이스 및 수수료 위젯). 기본값은 꺼짐.</string>
     <string name="widget_pace_ahead">지난 기간보다 빠른 속도입니다. 계속 이대로!</string>
     <string name="widget_pace_behind">지난 기간보다 느린 속도입니다. 아직 따라잡을 시간이 있어요.</string>
     <string name="widget_pace_keep_going">판매를 계속 기록해 속도를 만들어 보세요.</string>
@@ -938,6 +938,22 @@
     <string name="import_f_full_name">전체 이름</string>
     <string name="import_f_closed">성사(예 / 아니요)</string>
     <string name="import_f_client">고객 이름</string>
+    <string name="widget_quick_title">빠른 추가</string>
+    <string name="widget_quick_sale">판매</string>
+    <string name="widget_quick_client">고객</string>
+    <string name="widget_quick_expense">경비</string>
+    <string name="widget_quick_timer">타이머</string>
+    <string name="widget_quick_description">한 번 탭으로 판매 기록, 고객이나 경비 추가, 타이머 시작. 데이터는 표시하지 않습니다.</string>
+    <string name="widget_followups_description">이번 주 후속 연락할 고객을 작업 번호나 이름만으로 표시. 보안 및 개인정보에서 숨길 수 있습니다.</string>
+    <string name="widget_followups_empty">앞으로 7일간 후속 연락이 없습니다.</string>
+    <string name="widget_commission_title">수수료</string>
+    <string name="widget_commission_description">이번 달 수수료와 아직 받지 못한 금액. 보안 및 개인정보에서 허용한 경우에만 금액이 표시됩니다. 그곳에서 숨길 수 있습니다.</string>
+    <string name="widget_commission_preview_big">지난달 같은 시점 대비 +12%</string>
+    <string name="widget_commission_preview_line">이번 달 성사: 9</string>
+    <string name="widget_commission_owed">미지급: %1$s</string>
+    <string name="widget_commission_vs">지난달 같은 시점 대비 %1$s</string>
+    <string name="widget_commission_closed">이번 달 성사: %1$d</string>
+    <string name="widget_commission_empty">판매를 기록하면 여기에 수수료가 표시됩니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

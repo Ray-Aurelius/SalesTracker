@@ -6,4 +6,5 @@
     <color name="widget_text">#FF2A2E33</color>
     <color name="widget_accent">#FFB84A08</color>
     <color name="widget_track">#FFE6E7EA</color>
+    <color name="widget_button">#1FB84A08</color>
 </resources>
