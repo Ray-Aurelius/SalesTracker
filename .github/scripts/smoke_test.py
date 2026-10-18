@@ -991,7 +991,10 @@ def main(apk):
     tap(r"^Clients$", wait=1.5)
     if find(r"^Clients$") and find(r"^Timer$"):
         tap(r"^Clients$", wait=1.0)
-    pos = find_scrolling(r"^Zed Fairweather$")
+    for _ in range(4):  # back to the top of the list (Dakota sorts before Zed)
+        adb("shell", "input swipe 540 700 540 1900 250")
+        time.sleep(0.4)
+    pos = find_scrolling(r"^Dakota Lindqvist$")
     if not pos:
         fail("can't find a client to choose")
     else:
@@ -1000,7 +1003,7 @@ def main(apk):
         shot("clients-choosing")
         if not find(r"^1 selected$"):
             fail("long-pressing a client didn't start choosing clients")
-        if not tap(r"^Dakota Lindqvist$", wait=1.0, scroll=6):
+        if not tap(r"^Zed Fairweather$", wait=1.0, scroll=8):
             fail("couldn't add a second client to the selection")
         if not find(r"^2 selected$"):
             fail("tapping another client didn't add it to the selection")
