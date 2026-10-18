@@ -18,6 +18,10 @@ data class Client(
     val stage: ClientStage = ClientStage.LEAD,
     /** The calendar appointment holding this client's next follow-up, if one is scheduled. */
     val followUpId: Long? = null,
+    /** True when that follow-up was scheduled by a follow-up rule (rules may move it; never one the user set). */
+    val followUpAuto: Boolean = false,
+    /** When a follow-up with this client was last marked done. */
+    val lastContactAt: Long? = null,
 ) {
     val fullName: String
         get() = listOf(firstName, lastName).filter { it.isNotBlank() }.joinToString(" ")
@@ -48,6 +52,8 @@ data class Client(
         .put("occupation", occupation)
         .put("stage", stage.name)
         .put("followUpId", followUpId ?: JSONObject.NULL)
+        .put("followUpAuto", followUpAuto)
+        .put("lastContactAt", lastContactAt ?: JSONObject.NULL)
 
     companion object {
         fun fromJson(o: JSONObject) = Client(
@@ -61,6 +67,8 @@ data class Client(
             occupation = o.optString("occupation"),
             stage = ClientStage.entries.firstOrNull { it.name == o.optString("stage") } ?: ClientStage.LEAD,
             followUpId = if (!o.has("followUpId") || o.isNull("followUpId")) null else o.optLong("followUpId"),
+            followUpAuto = o.optBoolean("followUpAuto", false),
+            lastContactAt = if (!o.has("lastContactAt") || o.isNull("lastContactAt")) null else o.optLong("lastContactAt"),
         )
     }
 }
@@ -219,6 +227,8 @@ data class AppData(
     val mileageRate: Double = 0.0,
     /** Miles or kilometres; null follows the phone's region. */
     val distanceUnit: DistanceUnit? = null,
+    /** Automatic follow-up rules (off until the user turns them on). */
+    val followUps: FollowUpSettings = FollowUpSettings(),
 ) {
     /** What each sale earns under the current plan (flat or tiered). Built once per version of the data. */
     val commissionPlan: CommissionPlan by lazy { CommissionPlan(defaultCommissionPercent, tierSchedule, sales) }
@@ -244,6 +254,7 @@ data class AppData(
         .put("expenses", JSONArray(expenses.map { it.toJson() }))
         .put("mileageRate", mileageRate)
         .put("distanceUnit", distanceUnit?.name ?: JSONObject.NULL)
+        .put("followUps", followUps.toJson())
 
     companion object {
         fun fromJson(o: JSONObject) = AppData(
@@ -265,6 +276,7 @@ data class AppData(
             expenses = o.optJSONArray("expenses").objects().map(Expense::fromJson),
             mileageRate = o.optDouble("mileageRate", 0.0).takeIf { !it.isNaN() && it >= 0 } ?: 0.0,
             distanceUnit = DistanceUnit.entries.firstOrNull { it.name == o.optString("distanceUnit") },
+            followUps = FollowUpSettings.fromJson(o.optJSONObject("followUps")),
         )
 
         private fun JSONArray?.objects(): List<JSONObject> =

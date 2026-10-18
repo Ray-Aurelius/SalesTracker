@@ -226,6 +226,7 @@ private fun ClientList(vm: AppViewModel, data: AppData) {
                     onClick = { editing = client },
                     onCall = { dial(context, client.phone) },
                     onEmail = { email(context, client.email) },
+                    onFollowUpDone = { vm.completeFollowUp(client.id) },
                 )
             }
         }
@@ -282,6 +283,7 @@ private fun ClientCard(
     onClick: () -> Unit,
     onCall: () -> Unit,
     onEmail: () -> Unit,
+    onFollowUpDone: () -> Unit = {},
 ) {
     // On a narrow page the call / email buttons sit under the details instead of beside them,
     // so names and addresses get the full width.
@@ -331,7 +333,11 @@ private fun ClientCard(
                             stringResource(R.string.follow_up_on, whenText),
                             style = MaterialTheme.typography.labelLarge,
                             color = if (due) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.secondary,
+                            modifier = Modifier.weight(1f, fill = false),
                         )
+                        TextButton(onClick = onFollowUpDone, contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 8.dp)) {
+                            Text(stringResource(R.string.fu_done))
+                        }
                     }
                 }
                 if (client.reference.isNotBlank() && titledBy != 1) {

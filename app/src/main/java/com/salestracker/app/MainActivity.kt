@@ -337,6 +337,12 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     LaunchedEffect(vm.pendingOpenTasks) {
         if (vm.pendingOpenTasks) { tab = Tab.TASKS; opened = true; vm.pendingOpenTasks = false }
     }
+    // Follow-ups for clients nobody has contacted in a while (only when that rule is on), once a day.
+    LaunchedEffect(Unit) { vm.checkQuietClients() }
+    // After a follow-up is marked done: offer the next one (Settings → Follow-ups can turn this off).
+    vm.followUpOffer?.let { offer ->
+        com.salestracker.app.ui.screens.NextFollowUpDialog(offer, onSchedule = vm::scheduleOfferedFollowUp, onDismiss = { vm.followUpOffer = null })
+    }
     LaunchedEffect(vm.pendingOpenClients) {
         if (vm.pendingOpenClients) { tab = Tab.CLIENTS; opened = true; vm.pendingOpenClients = false }
     }

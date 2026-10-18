@@ -25,6 +25,11 @@ import com.salestracker.app.data.AppData
 import com.salestracker.app.data.Task
 import com.salestracker.app.data.Appointment
 import com.salestracker.app.data.Client
+import java.time.LocalDate
+import com.salestracker.app.data.ClientStage
+import com.salestracker.app.data.FollowUpSettings
+import com.salestracker.app.data.FollowUps
+import com.salestracker.app.data.FollowUpTrigger
 import com.salestracker.app.data.Goal
 import com.salestracker.app.data.Repository
 import com.salestracker.app.data.Sale
@@ -301,6 +306,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         }
         if (authInProgress || now - authEndedAt < 3_000L) return
         if (appLock && backgroundedAt != 0L && now - backgroundedAt >= lockDelay.ms) unlocked = false
+        checkQuietClients()
     }
 
     /** Set just before the app opens another screen on purpose (e.g. the file picker). */
@@ -496,32 +502,126 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     // ---- Clients ----
-    fun saveClient(client: Client) = repo.update { it.copy(clients = it.clients.upsert(client) { c -> c.id }) }
+    /** Saves a client. The follow-up bookkeeping (automatic flag, last contact) is kept from the stored client. */
+    fun saveClient(client: Client) = repo.update { d ->
+        val old = d.clients.firstOrNull { it.id == client.id }
+        val merged = if (old != null && !client.followUpAuto && client.lastContactAt == null)
+            client.copy(followUpAuto = old.followUpAuto && client.followUpId == old.followUpId, lastContactAt = old.lastContactAt)
+        else client
+        d.copy(clients = d.clients.upsert(merged) { c -> c.id })
+    }
+
+    /** Puts (or moves) a client's follow-up on the calendar. [auto] marks one a rule scheduled. */
+    private fun putFollowUp(client: Client, day: Long, minute: Int, auto: Boolean): Client {
+        val app = getApplication<Application>()
+        val existing = repo.data.value.followUpFor(client)
+        val appt = Appointment(
+            id = existing?.id ?: newId(),
+            title = app.getString(R.string.follow_up_title, client.label(app)),
+            epochDay = day,
+            minuteOfDay = minute,
+            clientId = client.id,
+            notes = existing?.notes ?: "",
+            reminderMinutes = existing?.reminderMinutes ?: 15,
+        )
+        saveAppointment(appt)
+        val saved = client.copy(followUpId = appt.id, followUpAuto = auto)
+        repo.update { d -> d.copy(clients = d.clients.upsert(saved) { c -> c.id }) }
+        return saved
+    }
 
     /**
      * Saves a client and their follow-up together. [followUp] = (day, minute of day) puts a follow-up on the
-     * calendar with a 15-minute reminder (or moves the existing one); null removes it.
+     * calendar with a 15-minute reminder (or moves the existing one); null removes it. When the user left the
+     * follow-up as it was, the follow-up rules may schedule one: a new client, or a move to a new stage.
      */
     fun saveClientWithFollowUp(client: Client, followUp: Pair<Long, Int>?) {
-        val existing = repo.data.value.followUpFor(client)
-        var saved = client
-        if (followUp != null) {
-            val appt = Appointment(
-                id = existing?.id ?: newId(),
-                title = getApplication<Application>().getString(R.string.follow_up_title, client.label(getApplication<Application>())),
-                epochDay = followUp.first,
-                minuteOfDay = followUp.second,
-                clientId = client.id,
-                notes = existing?.notes ?: "",
-                reminderMinutes = existing?.reminderMinutes ?: 15,
-            )
-            saveAppointment(appt)
-            saved = client.copy(followUpId = appt.id)
+        val before = repo.data.value
+        val old = before.clients.firstOrNull { it.id == client.id }
+        val existing = before.followUpFor(client)
+        val untouched = followUp == existing?.let { it.epochDay to it.minuteOfDay }
+        if (untouched) {
+            saveClient(client)
+        } else if (followUp != null) {
+            putFollowUp(client.copy(lastContactAt = old?.lastContactAt), followUp.first, followUp.second, auto = false)
         } else {
             existing?.let { deleteAppointment(it.id) }
-            saved = client.copy(followUpId = null)
+            saveClient(client.copy(followUpId = null))
         }
-        saveClient(saved)
+        if (!untouched) return
+        when {
+            old == null -> autoFollowUp(client.id, FollowUpTrigger.forStage(client.stage) ?: FollowUpTrigger.NEW_CLIENT)
+            old.stage != client.stage && client.stage == ClientStage.LOST -> cancelAutoFollowUp(client.id)
+            old.stage != client.stage -> FollowUpTrigger.forStage(client.stage)?.let { autoFollowUp(client.id, it) }
+        }
+    }
+
+    /** Schedules a rule's follow-up for a client, if the rules call for one, and says so briefly. */
+    private fun autoFollowUp(clientId: Long, trigger: FollowUpTrigger, announce: Boolean = true) {
+        val d = repo.data.value
+        val day = FollowUps.dayFor(d, clientId, trigger, LocalDate.now()) ?: return
+        val client = d.clients.firstOrNull { it.id == clientId } ?: return
+        putFollowUp(client, day.toEpochDay(), d.followUps.minuteOfDay, auto = true)
+        if (announce) announceFollowUp(day, d.followUps.minuteOfDay)
+    }
+
+    private fun cancelAutoFollowUp(clientId: Long) {
+        val d = repo.data.value
+        val client = d.clients.firstOrNull { it.id == clientId } ?: return
+        if (!client.followUpAuto) return
+        d.followUpFor(client)?.let { deleteAppointment(it.id) }
+        repo.update { x -> x.copy(clients = x.clients.map { if (it.id == clientId) it.copy(followUpId = null, followUpAuto = false) else it }) }
+    }
+
+    private val toastHandler = android.os.Handler(android.os.Looper.getMainLooper())
+    private var pendingToast: Runnable? = null
+
+    /** One short note per save, even when two rules fire in a row (a new client and their first sale). */
+    private fun announceFollowUp(day: LocalDate, minute: Int) {
+        val app = getApplication<Application>()
+        val text = app.getString(R.string.fu_scheduled, day.format(com.salestracker.app.data.localizedFormatter("EEEMMMd")), com.salestracker.app.data.formatMinuteOfDay(minute))
+        pendingToast?.let(toastHandler::removeCallbacks)
+        pendingToast = Runnable { android.widget.Toast.makeText(app, text, android.widget.Toast.LENGTH_SHORT).show() }.also { toastHandler.postDelayed(it, 300) }
+    }
+
+    /** A follow-up to offer after one is marked done: the client, and the suggested (day, minute). */
+    data class FollowUpOffer(val clientId: Long, val name: String, val day: Long, val minute: Int)
+    var followUpOffer by mutableStateOf<FollowUpOffer?>(null)
+
+    /** Marks a client's follow-up done: it leaves the calendar, and the next one is offered if that setting is on. */
+    fun completeFollowUp(clientId: Long) {
+        val d = repo.data.value
+        val client = d.clients.firstOrNull { it.id == clientId } ?: return
+        d.followUpFor(client)?.let { deleteAppointment(it.id) }
+        val done = client.copy(followUpId = null, followUpAuto = false, lastContactAt = System.currentTimeMillis())
+        repo.update { x -> x.copy(clients = x.clients.upsert(done) { c -> c.id }) }
+        val s = d.followUps
+        if (s.offerNext) {
+            FollowUps.nextSuggestion(s, done, LocalDate.now())?.let { day ->
+                followUpOffer = FollowUpOffer(clientId, done.label(getApplication<Application>()), day.toEpochDay(), s.minuteOfDay)
+            }
+        }
+    }
+
+    /** The user accepted (or adjusted) the offered next follow-up. */
+    fun scheduleOfferedFollowUp(offer: FollowUpOffer) {
+        followUpOffer = null
+        val client = repo.data.value.clients.firstOrNull { it.id == offer.clientId } ?: return
+        putFollowUp(client, offer.day, offer.minute, auto = false)
+    }
+
+    fun setFollowUpSettings(s: FollowUpSettings) {
+        val wasOn = repo.data.value.followUps.auto
+        repo.update { it.copy(followUps = s) }
+        if (s.auto && !wasOn) checkQuietClients(force = true)
+    }
+
+    /** Once a day: follow-ups for clients nobody has contacted for longer than the "no contact" rule. */
+    fun checkQuietClients(force: Boolean = false) {
+        val today = LocalDate.now()
+        if (!force && settings.getLong("quietCheckDay", -1L) == today.toEpochDay()) return
+        settings.edit().putLong("quietCheckDay", today.toEpochDay()).apply()
+        FollowUps.quietClients(repo.data.value, today).forEach { autoFollowUp(it.id, FollowUpTrigger.NO_CONTACT, announce = false) }
     }
 
     /** Deletes a client and, if asked, every sale and appointment linked to them (e.g. a client's request to be forgotten). */
@@ -564,7 +664,13 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         d.copy(clients = d.clients.filterNot { it.id in clientIds }, sales = d.sales.filterNot { it.id in saleIds })
     }
 
-    fun saveSale(sale: Sale) = repo.update { it.copy(sales = it.sales.upsert(sale) { s -> s.id }) }
+    fun saveSale(sale: Sale) {
+        val isNew = repo.data.value.sales.none { it.id == sale.id }
+        repo.update { it.copy(sales = it.sales.upsert(sale) { s -> s.id }) }
+        if (isNew && sale.clientId != null) {
+            autoFollowUp(sale.clientId, if (sale.closed) FollowUpTrigger.SALE_CLOSED else FollowUpTrigger.SALE_NOT_CLOSED)
+        }
+    }
     fun deleteSale(id: Long) = repo.update { d -> d.copy(sales = d.sales.filterNot { it.id == id }) }
 
     /** Marks the commission on these sales as paid today (sales already marked keep their date). */

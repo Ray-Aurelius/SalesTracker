@@ -22,6 +22,8 @@ import androidx.compose.material.icons.filled.Payments
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material.icons.filled.Tune
+import androidx.compose.material.icons.filled.EventRepeat
+import androidx.compose.runtime.collectAsState
 import androidx.compose.material.icons.filled.UploadFile
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -42,7 +44,7 @@ import androidx.compose.ui.unit.dp
 import com.salestracker.app.R
 import com.salestracker.app.ui.AppViewModel
 
-private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY, TABS, IMPORT }
+private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY, TABS, IMPORT, FOLLOW_UPS }
 
 /** Appearance and language, plus the way into the Security & privacy center. */
 @Composable
@@ -58,6 +60,10 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
                     SettingRow(Icons.Filled.Shield, stringResource(R.string.security_title), stringResource(R.string.security_desc)) {
                         onDismiss()
                         onOpenSecurity()
+                    }
+                    SettingRow(Icons.Filled.EventRepeat, stringResource(R.string.fu_title),
+                        stringResource(if (vm.data.collectAsState().value.followUps.auto) R.string.fu_row_on else R.string.fu_row_off)) {
+                        step = Step.FOLLOW_UPS
                     }
                     SettingRow(Icons.Filled.Work, stringResource(R.string.trade_title), stringResource(vm.trade.label)) {
                         step = Step.TRADE
@@ -128,6 +134,8 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
         Step.TABS -> MenuTabsDialog(vm, onDismiss = { step = Step.MENU })
 
         Step.IMPORT -> ImportDialog(vm, onDismiss = { step = Step.MENU })
+
+        Step.FOLLOW_UPS -> FollowUpSettingsDialog(vm, onDismiss = { step = Step.MENU })
     }
 }
 

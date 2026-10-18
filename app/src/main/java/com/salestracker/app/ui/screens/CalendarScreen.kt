@@ -31,6 +31,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import kotlinx.coroutines.launch
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.TaskAlt
 import androidx.compose.foundation.layout.offset
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.foundation.layout.Arrangement
@@ -246,6 +247,18 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                                         color = MaterialTheme.colorScheme.secondary,
                                     )
                                 }
+                            }
+                        }
+                        // A client's follow-up can be marked done right here (and the next one offered).
+                        val followUpOf = data.clients.firstOrNull { it.followUpId == a.id }
+                        if (followUpOf != null) {
+                            IconButton(onClick = { vm.completeFollowUp(followUpOf.id) }) {
+                                Icon(
+                                    Icons.Filled.TaskAlt,
+                                    contentDescription = stringResource(R.string.fu_cd_done, a.title),
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(20.dp),
+                                )
                             }
                         }
                         IconButton(onClick = { deleteAppt(a) }) {

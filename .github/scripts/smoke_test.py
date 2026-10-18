@@ -915,6 +915,66 @@ def main(apk):
     if not find_scrolling(r"Dakota Lindqvist|Alex Morgan|Follow-ups due"):
         fail("the Follow-ups widget did not open the client list")
 
+    section("Automatic follow-ups: off by default, turned on in Settings > Follow-ups")
+    tap(r"^Settings$", wait=1.5)
+    if not tap(r"^Follow-ups$", "followups-settings", wait=1.5, scroll=6):
+        fail("no Follow-ups page in Settings")
+    if not find(r"^Automatic follow-ups off$|^Schedule follow-ups automatically$"):
+        fail("the Follow-ups page didn't open")
+    tap(r"^Schedule follow-ups automatically$", wait=1.2)
+    shot("followups-on")
+    if not find_scrolling(r"^Stage changes to Proposal$"):
+        fail("the follow-up rules don't include pipeline stages")
+    tap(r"^Done$", wait=1.2)
+    if not find(r"^Automatic follow-ups on$"):
+        fail("automatic follow-ups did not turn on")
+    tap(r"^Done$", wait=1.5)
+    tap(r"^Clients$", wait=1.5)
+    adb("shell", "input swipe 540 600 540 1800 300")  # back to the top of the list
+    tap(r"^Add client$", wait=1.5)
+    tap(r"^First name$", wait=0.8)
+    type_text("Zed")
+    tap(r"^Last name$", wait=0.8)
+    type_text("Fairweather")
+    hide_keyboard()
+    tap(r"^Save$", wait=2)
+    shot("followups-new-client")
+    if not find_scrolling(r"Zed Fairweather"):
+        fail("the new client is not in the list")
+
+    def done_under(name):
+        """The follow-up's Done button on the card of the client called [name]."""
+        root = dump()
+        if root is None:
+            return None
+        nodes = list(root.iter("node"))
+        top = None
+        for n in nodes:
+            if re.search(name, n.get("text") or ""):
+                top = int(re.findall(r"\d+", n.get("bounds"))[1])
+        if top is None:
+            return None
+        best = None
+        for n in nodes:
+            if (n.get("text") or "") == "Done":
+                x1, y1, x2, y2 = map(int, re.findall(r"\d+", n.get("bounds")))
+                if y1 > top and (best is None or y1 < best[1]):
+                    best = ((x1 + x2) // 2, y1, (y1 + y2) // 2)
+        return best
+
+    pos = done_under(r"^Zed Fairweather$")
+    if pos is None:
+        fail("adding a client didn't schedule its first follow-up")
+    else:
+        adb("shell", f"input tap {pos[0]} {pos[2]}")
+        time.sleep(2)
+        shot("followups-offer-next")
+        if not find(r"^Schedule the next follow-up\?$"):
+            fail("marking the follow-up done didn't offer the next one")
+        tap(r"^Schedule$", wait=2)
+        if done_under(r"^Zed Fairweather$") is None:
+            fail("the offered follow-up was not scheduled")
+
     if crashed():
         fail("crash")
     note("PASSED: no crashes")
