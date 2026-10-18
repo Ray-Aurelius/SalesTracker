@@ -2,6 +2,8 @@ package com.salestracker.app.ui.screens
 
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.filled.DoneAll
@@ -78,22 +80,23 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             item {
-                // Log a sale right from the top of the log (the + button below does the same).
-                androidx.compose.material3.Button(
-                    onClick = { adding = true },
-                    modifier = Modifier.fillMaxWidth().testTag(SALES_LOG_ADD_TAG),
-                ) {
-                    Icon(Icons.Filled.PointOfSale, contentDescription = null, modifier = Modifier.size(18.dp))
-                    Spacer(Modifier.width(8.dp))
-                    Text(stringResource(LocalTerms.current.logSale))
+                // The period and Log sale side by side (the + button below logs a sale too).
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    // Today isn't offered here: the log is for looking back over a stretch of time.
+                    PeriodPicker(period, { period = it }, modifier = Modifier.weight(1f), options = Period.entries.filter { it != Period.TODAY })
+                    androidx.compose.material3.Button(
+                        onClick = { adding = true },
+                        modifier = Modifier.weight(1f).height(48.dp).testTag(SALES_LOG_ADD_TAG),
+                        contentPadding = PaddingValues(horizontal = 12.dp),
+                    ) {
+                        Icon(Icons.Filled.PointOfSale, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text(stringResource(LocalTerms.current.logSale), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                    }
                 }
             }
             item {
-                // Today isn't offered here: the log is for looking back over a stretch of time.
-                PeriodPicker(period, { period = it }, options = Period.entries.filter { it != Period.TODAY })
-            }
-            item {
-                // The same sales report as on Stats, starting on the period shown here.
+                // The sales report, starting on the period shown here.
                 androidx.compose.material3.OutlinedButton(onClick = { reporting = true }, modifier = Modifier.fillMaxWidth()) {
                     Icon(Icons.Filled.Assessment, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.width(8.dp))

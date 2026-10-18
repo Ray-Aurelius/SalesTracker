@@ -24,6 +24,8 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -70,7 +72,6 @@ import com.salestracker.app.ui.AppViewModel
 fun DashboardScreen(vm: AppViewModel, data: AppData) {
     var period by rememberSaveable { mutableStateOf(Period.WEEK) }
     var editingRate by remember { mutableStateOf(false) }
-    var reporting by remember { mutableStateOf(false) }
 
     val sales = period.filter(data.sales)
     val stats = SalesStats.of(sales, data.commissionPlan)
@@ -104,90 +105,71 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             }
             item { OnTrackCard(vm, data) }
             item {
-                FlowRow(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    PeriodPicker(period, { period = it }, modifier = Modifier.align(Alignment.CenterVertically))
-                    // Sales report (PDF or spreadsheet), created on the phone only when tapped.
-                    AssistChip(
-                        onClick = { reporting = true },
-                        label = { Text(stringResource(R.string.report_button)) },
-                        leadingIcon = { Icon(Icons.Filled.Assessment, contentDescription = null, modifier = Modifier.size(18.dp)) },
-                        modifier = Modifier.align(Alignment.CenterVertically),
-                    )
-                }
+                // The full sales report lives on the Sales tab.
+                PeriodPicker(period, { period = it })
             }
+            // Two compact tiles per row keep the whole page short.
             item {
-                RateCard(
-                    title = stringResource(R.string.close_rate),
-                    rate = stats.closeRate,
-                    detail = stringResource(R.string.close_rate_detail, stats.closed, stats.opportunities),
-                    color = MaterialTheme.colorScheme.primary,
+                TilePair(
+                    { RateTile(stringResource(R.string.close_rate), stats.closeRate,
+                        stringResource(R.string.close_rate_detail, stats.closed, stats.opportunities), MaterialTheme.colorScheme.primary, it) },
+                    { RateTile(stringResource(R.string.upsell_rate), stats.upsellRate,
+                        stringResource(R.string.upsell_rate_detail, stats.upsellsAccepted, stats.closed), MaterialTheme.colorScheme.secondary, it) },
                 )
             }
             item {
-                RateCard(
-                    title = stringResource(R.string.upsell_rate),
-                    rate = stats.upsellRate,
-                    detail = stringResource(R.string.upsell_rate_detail, stats.upsellsAccepted, stats.closed),
-                    color = MaterialTheme.colorScheme.secondary,
-                )
-            }
-            item {
-                RateCard(
-                    title = stringResource(R.string.upsell_acceptance),
-                    rate = stats.upsellAcceptance,
-                    detail = stringResource(R.string.upsell_acceptance_detail, stats.upsellsAccepted, stats.upsellsOffered),
-                    color = MaterialTheme.colorScheme.tertiary,
-                )
-            }
-            item {
-                Card(onClick = { editingRate = true }, modifier = Modifier.fillMaxWidth()) {
-                    Column(Modifier.padding(16.dp)) {
-                        Column {
-                            Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.titleMedium)
-                            val tierRate = data.commissionPlan.currentTierRate()
-                            Text(
-                                when {
-                                    tierRate != null -> stringResource(
-                                        R.string.commission_tiered_now,
-                                        if (PrivacyMode.hideAmounts) "••" else formatRateInput(tierRate),
+                TilePair(
+                    { RateTile(stringResource(R.string.upsell_acceptance), stats.upsellAcceptance,
+                        stringResource(R.string.upsell_acceptance_detail, stats.upsellsAccepted, stats.upsellsOffered), MaterialTheme.colorScheme.tertiary, it) },
+                    { m ->
+                        Card(onClick = { editingRate = true }, modifier = m) {
+                            Column(Modifier.padding(14.dp)) {
+                                Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2)
+                                FitText(
+                                    formatMoney(stats.commission),
+                                    style = MaterialTheme.typography.titleLarge,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+                                )
+                                val tierRate = data.commissionPlan.currentTierRate()
+                                Text(
+                                    when {
+                                        tierRate != null -> stringResource(
+                                            R.string.commission_tiered_now,
+                                            if (PrivacyMode.hideAmounts) "••" else formatRateInput(tierRate),
+                                        )
+                                        else -> stringResource(
+                                            if (data.defaultCommissionUpsellOnly) R.string.commission_default_rate_upsell else R.string.commission_default_rate,
+                                            if (PrivacyMode.hideAmounts) "••" else formatRateInput(data.defaultCommissionPercent),
+                                        )
+                                    },
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    maxLines = 3,
+                                )
+                                if (stats.commission > 0.0) {
+                                    Text(
+                                        stringResource(R.string.commission_paid_owed, formatMoney(stats.commissionPaid), formatMoney(stats.commissionOwed)),
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        maxLines = 2,
                                     )
-                                    else -> stringResource(
-                                        if (data.defaultCommissionUpsellOnly) R.string.commission_default_rate_upsell else R.string.commission_default_rate,
-                                        if (PrivacyMode.hideAmounts) "••" else formatRateInput(data.defaultCommissionPercent),
-                                    )
-                                },
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
+                                }
+                            }
                         }
-                        // Below the title, so a big number never squeezes the words.
-                        FitText(
-                            formatMoney(stats.commission),
-                            style = MaterialTheme.typography.headlineMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
-                        )
-                        if (stats.commission > 0.0) {
-                            Text(
-                                stringResource(R.string.commission_paid_owed, formatMoney(stats.commissionPaid), formatMoney(stats.commissionOwed)),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                    }
-                }
+                    },
+                )
             }
             item {
-                PairRow(
+                TilePair(
                     { StatCard(stringResource(R.string.revenue), formatMoney(stats.revenue), it) },
                     { StatCard(stringResource(R.string.upsell_revenue), formatMoney(stats.upsellRevenue), it) },
                 )
             }
             item {
-                PairRow(
+                TilePair(
                     { StatCard(stringResource(R.string.avg_sale), formatMoney(stats.averageSale), it) },
                     { StatCard(stringResource(R.string.avg_time), formatDuration(stats.averageSeconds), it) },
                 )
@@ -196,7 +178,6 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
         QuickAdd(vm, data)
     }
 
-    if (reporting) ReportDialog(vm, data, onDismiss = { reporting = false })
     if (editingRate) {
         CommissionPlanDialog(
             currentRate = data.defaultCommissionPercent,
@@ -209,30 +190,42 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
     }
 }
 
+/** Two tiles side by side at the same height (stacked on a very narrow screen). */
 @Composable
-private fun RateCard(title: String, rate: Double, detail: String, color: Color) {
+private fun TilePair(first: @Composable (Modifier) -> Unit, second: @Composable (Modifier) -> Unit) {
+    if (isNarrow()) {
+        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            first(Modifier.fillMaxWidth())
+            second(Modifier.fillMaxWidth())
+        }
+    } else {
+        Row(Modifier.height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            first(Modifier.weight(1f).fillMaxHeight())
+            second(Modifier.weight(1f).fillMaxHeight())
+        }
+    }
+}
+
+/** A rate as a compact tile: name, the percentage, a thin bar, and the counts behind it. */
+@Composable
+private fun RateTile(title: String, rate: Double, detail: String, color: Color, modifier: Modifier = Modifier) {
     // Read as one item by screen readers: "Close rate, 42.0%, 5 closed of 12 opportunities".
-    Card(Modifier.fillMaxWidth().semantics(mergeDescendants = true) {}) {
-        Column(Modifier.padding(16.dp)) {
-            TitleValueRow(
-                title = { Text(title, style = MaterialTheme.typography.titleMedium) },
-                value = {
-                    Text(
-                        formatPercent(rate),
-                        style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = color,
-                        maxLines = 1,
-                        softWrap = false,
-                    )
-                },
+    Card(modifier.semantics(mergeDescendants = true) {}) {
+        Column(Modifier.padding(14.dp)) {
+            Text(title, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2)
+            FitText(
+                formatPercent(rate),
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                color = color,
+                modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
             )
             LinearProgressIndicator(
                 progress = { rate.toFloat().coerceIn(0f, 1f) },
                 color = color,
-                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp).height(8.dp),
+                modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp).height(6.dp),
             )
-            Text(detail, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(detail, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 3)
         }
     }
 }

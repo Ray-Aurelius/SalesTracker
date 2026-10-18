@@ -533,7 +533,10 @@ def main(apk):
     tap(r"^=$", "calculator", wait=1)
 
     section("Password-protected PDF sales report (pdfbox and its encryption)")
-    tap(r"^Stats$", wait=1.5)
+    tap(r"^Sales$", wait=1.5)  # the report is on the Sales tab (no longer on Stats)
+    if find(r"^Stats$") and tap(r"^Stats$", wait=1.5) and find(r"^Sales report$"):
+        fail("the Sales report button is still on the Stats page")
+    tap(r"^Sales$", wait=1.5)
     if not find(r"^Sales report$"):
         fail("could not reach the Sales report button")
     if tap(r"^Sales report$", "report-options", wait=2):
@@ -564,7 +567,7 @@ def main(apk):
             fail("the PDF report was saved without its password")
 
     section("Sales report spreadsheet: job / work order #s and dates, never client details")
-    tap(r"^Stats$", wait=1.5)
+    tap(r"^Sales$", wait=1.5)
     if tap(r"^Sales report$", wait=2):
         tap(r"^Spreadsheet \(CSV\)$", wait=1)
         shot("sales-report-csv-options")

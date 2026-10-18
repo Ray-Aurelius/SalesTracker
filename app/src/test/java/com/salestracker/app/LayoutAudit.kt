@@ -238,6 +238,9 @@ class LayoutAudit {
     fun o6_salesReport() {
         assumeTrue(System.getProperty("storeShots") == "true")
         val (app, _) = startApp()
+        // The report is on the Sales tab.
+        rule.onAllNodes(hasText(app.getString(R.string.tab_sales))).onFirst().performClick()
+        rule.waitForIdle()
         // The dialog holds a text box (your name), so open it with the clock paused (see clickPaused).
         clickPaused(app.getString(R.string.report_button))
         shotWithPopups("o6-sales-report")
