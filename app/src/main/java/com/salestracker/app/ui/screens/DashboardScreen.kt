@@ -125,8 +125,19 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                     { m ->
                         Card(onClick = { editingRate = true }, modifier = m) {
                             Column(Modifier.padding(14.dp)) {
-                                Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.labelMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2)
+                                Row(verticalAlignment = Alignment.Top) {
+                                    Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.labelMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, modifier = Modifier.weight(1f))
+                                    // The rate in use (the current tier's on a tiered plan), small in the corner.
+                                    val rate = data.commissionPlan.currentTierRate() ?: data.defaultCommissionPercent
+                                    Text(
+                                        (if (PrivacyMode.hideAmounts) "••" else formatRateInput(rate)) + "%",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.primary,
+                                        maxLines = 1,
+                                        modifier = Modifier.padding(start = 6.dp),
+                                    )
+                                }
                                 FitText(
                                     formatMoney(stats.commission),
                                     style = MaterialTheme.typography.titleLarge,
