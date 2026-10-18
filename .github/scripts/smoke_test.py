@@ -962,7 +962,7 @@ def main(apk):
         nodes = list(root.iter("node"))
         top = None
         for n in nodes:
-            if re.search(name, n.get("text") or ""):
+            if re.search(name, (n.get("text") or "") + " " + (n.get("content-desc") or "")):
                 top = int(re.findall(r"\d+", n.get("bounds"))[1])
         if top is None:
             return None
@@ -974,8 +974,10 @@ def main(apk):
                     best = ((x1 + x2) // 2, y1, (y1 + y2) // 2)
         return best
 
-    pos = done_under(r"^Zed Fairweather$")
+    pos = done_under(r"Zed Fairweather")
     if pos is None:
+        root = dump()
+        note("  on screen: " + " | ".join(((n.get("text") or "") + "/" + (n.get("content-desc") or "")) for n in (root.iter("node") if root is not None else []) if n.get("text") or n.get("content-desc"))[:900])
         fail("adding a client didn't schedule its first follow-up")
     else:
         adb("shell", f"input tap {pos[0]} {pos[2]}")
@@ -984,7 +986,7 @@ def main(apk):
         if not find(r"^Schedule the next follow-up\?$"):
             fail("marking the follow-up done didn't offer the next one")
         tap(r"^Schedule$", wait=2)
-        if done_under(r"^Zed Fairweather$") is None:
+        if done_under(r"Zed Fairweather") is None:
             fail("the offered follow-up was not scheduled")
 
     section("Clients: long-press to choose several, then delete them together after confirming")
@@ -994,7 +996,7 @@ def main(apk):
     for _ in range(4):  # back to the top of the list (Dakota sorts before Zed)
         adb("shell", "input swipe 540 700 540 1900 250")
         time.sleep(0.4)
-    pos = find_scrolling(r"^Dakota Lindqvist$")
+    pos = find_scrolling(r"Dakota Lindqvist")
     if not pos:
         fail("can't find a client to choose")
     else:
@@ -1003,7 +1005,7 @@ def main(apk):
         shot("clients-choosing")
         if not find(r"^1 selected$"):
             fail("long-pressing a client didn't start choosing clients")
-        if not tap(r"^Zed Fairweather$", wait=1.0, scroll=8):
+        if not tap(r"Zed Fairweather", wait=1.0, scroll=8):
             fail("couldn't add a second client to the selection")
         if not find(r"^2 selected$"):
             fail("tapping another client didn't add it to the selection")
@@ -1012,7 +1014,7 @@ def main(apk):
             fail("deleting several clients didn't ask first")
         tap(r"^Delete$", wait=2)
         shot("clients-deleted-many")
-        if find_scrolling(r"^Zed Fairweather$|^Dakota Lindqvist$", tries=3):
+        if find_scrolling(r"Zed Fairweather|Dakota Lindqvist", tries=3):
             fail("the chosen clients were not deleted")
 
     if crashed():
