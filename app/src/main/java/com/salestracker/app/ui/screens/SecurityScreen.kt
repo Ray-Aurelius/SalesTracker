@@ -161,13 +161,30 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                 }
             }
             item {
-                // Screenshots, screen recording and screen sharing are always blocked; there's no switch to turn off.
-                Text(
-                    stringResource(R.string.screenshots_always_blocked),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(vertical = 8.dp),
-                )
+                // Screenshots, screen recording and screen sharing are blocked by default. Allowing them needs the owner.
+                SwitchSetting(
+                    stringResource(R.string.block_screenshots),
+                    stringResource(R.string.block_screenshots_desc),
+                    !vm.allowScreenshots,
+                ) { block ->
+                    val activity = context.findActivity()
+                    fun apply(allow: Boolean) {
+                        vm.changeAllowScreenshots(allow)
+                        (activity as? com.salestracker.app.MainActivity)?.applyScreenshotPolicy(allow)
+                    }
+                    if (!block && activity != null && AppAuth.isAvailable(context)) {
+                        AppAuth.authenticate(
+                            activity,
+                            onSuccess = { apply(true) },
+                            onStart = vm::beginAuth,
+                            onEnd = vm::endAuth,
+                            title = R.string.allow_screenshots_title,
+                            subtitle = R.string.receipt_unlock_subtitle,
+                        )
+                    } else {
+                        apply(!block)
+                    }
+                }
             }
             item {
                 // Deleting clients or sales asks for the phone's fingerprint, face or PIN first.

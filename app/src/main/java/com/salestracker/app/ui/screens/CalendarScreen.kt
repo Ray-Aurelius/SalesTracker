@@ -31,6 +31,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import kotlinx.coroutines.launch
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.ui.platform.testTag
 import androidx.compose.material.icons.filled.TaskAlt
 import androidx.compose.foundation.layout.offset
 import androidx.compose.ui.text.style.TextOverflow
@@ -208,11 +209,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                             Text(stringResource(R.string.add_appointment))
                         }
                     }
-                    HighlightPicker(
-                        symbols = vm.highlightSymbols,
-                        current = data.dayHighlights[selected.toEpochDay()],
-                        onPick = { vm.setDayHighlight(selected.toEpochDay(), it) },
-                    )
+
                 }
             }
             if (dayAppts.isEmpty()) {
@@ -310,6 +307,9 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
             onUndo = { a -> vm.saveAppointment(a); lastDeleted = null },
             onAdd = { selected = day; adding = true },
             onClose = { overview = null; lastDeleted = null },
+            highlight = data.dayHighlights[day.toEpochDay()],
+            symbols = vm.highlightSymbols,
+            onHighlight = { vm.setDayHighlight(day.toEpochDay(), it) },
         )
     }
 
@@ -495,46 +495,55 @@ private fun DayCell(
 /** Black or white, whichever reads better on [bg]. */
 private fun readableOn(bg: Color): Color = if (bg.luminance() > 0.45f) Color.Black else Color.White
 
-/** A row of color dots to mark the selected day as important. Tap the same color again to clear it. */
+/** A small colored dot for a highlight (with its symbol when color-blind-friendly highlights are on). */
 @Composable
-private fun HighlightPicker(symbols: Boolean, current: HighlightColor?, onPick: (HighlightColor?) -> Unit) {
+private fun HighlightDot(h: HighlightColor?, symbols: Boolean) {
     val colors = MaterialTheme.colorScheme
-    Column(Modifier.padding(top = 10.dp)) {
-        Text(stringResource(R.string.highlight_day), style = MaterialTheme.typography.labelLarge)
-        // Wraps onto a second line on narrow pages, so every color stays visible.
-        androidx.compose.foundation.layout.FlowRow(
-            Modifier.padding(top = 6.dp),
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
+    if (h == null) {
+        Box(Modifier.size(22.dp).clip(CircleShape).border(1.5.dp, colors.outline, CircleShape), contentAlignment = Alignment.Center) {
+            Icon(Icons.Filled.Block, contentDescription = null, tint = colors.onSurfaceVariant, modifier = Modifier.size(14.dp))
+        }
+    } else {
+        val c = Color(h.argb)
+        Box(Modifier.size(22.dp).clip(CircleShape).background(c), contentAlignment = Alignment.Center) {
+            if (symbols) Text(h.symbol, color = readableOn(c), fontWeight = FontWeight.Bold, style = MaterialTheme.typography.labelSmall)
+        }
+    }
+}
+
+/** "Highlight this day" as one drop-down inside the day pop-up: None or a color (each with its own symbol). */
+@Composable
+private fun HighlightMenu(symbols: Boolean, current: HighlightColor?, onPick: (HighlightColor?) -> Unit) {
+    var open by remember { mutableStateOf(false) }
+    val label = stringResource(R.string.highlight_day)
+    Box {
+        androidx.compose.material3.OutlinedButton(
+            onClick = { open = true },
+            modifier = Modifier.fillMaxWidth().testTag(HIGHLIGHT_MENU_TAG),
         ) {
-            // "None" choice: an outlined circle with a slash.
-            val noneLabel = stringResource(R.string.highlight_none)
-            Box(
-                Modifier.size(34.dp).clip(CircleShape)
-                    .border(if (current == null) 3.dp else 1.5.dp, if (current == null) colors.primary else colors.outline, CircleShape)
-                    .clickable { onPick(null) }
-                    .semantics { contentDescription = noneLabel },
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(Icons.Filled.Block, contentDescription = null, tint = colors.onSurfaceVariant, modifier = Modifier.size(18.dp))
+            HighlightDot(current, symbols)
+            Spacer(Modifier.width(10.dp))
+            Column(Modifier.weight(1f)) {
+                Text(label, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(current?.label ?: R.string.highlight_none), style = MaterialTheme.typography.bodyMedium)
             }
-            HighlightColor.entries.forEach { h ->
-                val c = Color(h.argb)
-                val label = stringResource(h.label)
-                Box(
-                    Modifier.size(34.dp).clip(CircleShape).background(c)
-                        .border(if (current == h) 3.dp else 0.dp, if (current == h) colors.onSurface else c, CircleShape)
-                        .clickable { onPick(if (current == h) null else h) }
-                        .semantics { contentDescription = label; selected = current == h },
-                    contentAlignment = Alignment.Center,
-                ) {
-                    if (symbols) Text(h.symbol, color = readableOn(c), fontWeight = FontWeight.Bold)
-                    else if (current == h) Icon(Icons.Filled.Check, contentDescription = null, tint = readableOn(c), modifier = Modifier.size(18.dp))
-                }
+            Icon(Icons.Filled.ArrowDropDown, contentDescription = null)
+        }
+        DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
+            (listOf<HighlightColor?>(null) + HighlightColor.entries).forEach { h ->
+                DropdownMenuItem(
+                    text = { Text(stringResource(h?.label ?: R.string.highlight_none)) },
+                    leadingIcon = { HighlightDot(h, symbols) },
+                    trailingIcon = { if (h == current) Icon(Icons.Filled.Check, contentDescription = null) },
+                    onClick = { onPick(h); open = false },
+                )
             }
         }
     }
 }
+
+/** Tag for the day pop-up's highlight menu. */
+const val HIGHLIGHT_MENU_TAG = "highlightMenu"
 
 @Composable
 internal fun AppointmentDialog(
@@ -742,6 +751,9 @@ private fun DayOverview(
     onUndo: (Appointment) -> Unit,
     onAdd: () -> Unit,
     onClose: () -> Unit,
+    highlight: HighlightColor? = null,
+    symbols: Boolean = false,
+    onHighlight: (HighlightColor?) -> Unit = {},
 ) {
     val colors = MaterialTheme.colorScheme
     AlertDialog(
@@ -810,6 +822,8 @@ private fun DayOverview(
                         }
                     }
                 }
+                Spacer(Modifier.height(8.dp))
+                HighlightMenu(symbols, highlight, onHighlight)
                 Spacer(Modifier.height(8.dp))
                 androidx.compose.material3.FilledTonalButton(onClick = onAdd, modifier = Modifier.fillMaxWidth().height(52.dp)) {
                     Text(

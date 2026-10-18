@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class, androidx.compose.foundation.ExperimentalFoundationApi::class)
 
 package com.salestracker.app.ui.screens
 
@@ -70,6 +70,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.combinedClickable
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -138,6 +144,14 @@ private fun ClientList(vm: AppViewModel, data: AppData) {
     var stageFilter by rememberSaveable { mutableStateOf<ClientStage?>(null) }
     var dueOnly by rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current
+    // Long-press a client to start choosing several (to delete them together); tap others to add or remove them.
+    var chosen by rememberSaveable { mutableStateOf(listOf<Long>()) }
+    val liveIds = data.clients.map { it.id }.toSet()
+    val picked = chosen.filter { it in liveIds }.toSet()
+    val choosing = picked.isNotEmpty()
+    var confirmDeleteMany by remember { mutableStateOf(false) }
+    fun toggle(id: Long) { chosen = if (id in picked) picked.toList() - id else picked.toList() + id }
+    BackHandler(enabled = choosing) { chosen = emptyList() }
 
     val q = query.trim().lowercase()
     val dueIds = data.clients.filter { c -> data.followUpFor(c)?.isDue() == true }.map { it.id }.toSet()
@@ -156,6 +170,17 @@ private fun ClientList(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
+            // While choosing clients: how many, select all, delete, or cancel. Stays at the top while scrolling.
+            if (choosing) {
+                stickyHeader(key = "selection") {
+                    SelectionBar(
+                        count = picked.size,
+                        onCancel = { chosen = emptyList() },
+                        onSelectAll = { chosen = clients.map { it.id } },
+                        onDelete = { confirmDeleteMany = true },
+                    )
+                }
+            }
             // Always one tap away, separate from the + menu, so a new client never waits.
             item {
                 androidx.compose.material3.FilledTonalButton(
@@ -223,14 +248,46 @@ private fun ClientList(vm: AppViewModel, data: AppData) {
                         R.plurals.client_summary, stats.opportunities,
                         stats.opportunities, formatPercent(stats.closeRate), formatMoney(stats.revenue),
                     ),
-                    onClick = { editing = client },
+                    onClick = { if (choosing) toggle(client.id) else editing = client },
                     onCall = { dial(context, client.phone) },
                     onEmail = { email(context, client.email) },
                     onFollowUpDone = { vm.completeFollowUp(client.id) },
+                    choosing = choosing,
+                    chosen = client.id in picked,
+                    onLongClick = { toggle(client.id) },
                 )
             }
         }
         QuickAdd(vm, data)
+    }
+
+    if (confirmDeleteMany && choosing) {
+        var withRecords by remember { mutableStateOf(false) }
+        AlertDialog(
+            onDismissRequest = { confirmDeleteMany = false },
+            title = { Text(stringResource(R.string.delete_clients_q, picked.size)) },
+            text = {
+                Column {
+                    Text(stringResource(R.string.delete_cannot_undo))
+                    Row(
+                        Modifier.fillMaxWidth().clickable { withRecords = !withRecords }.padding(top = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Checkbox(checked = withRecords, onCheckedChange = { withRecords = it })
+                        Text(stringResource(R.string.delete_clients_records), style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    val ids = picked.toList()
+                    confirmDeleteMany = false
+                    // The phone's fingerprint / PIN check (when that protection is on) comes before anything is removed.
+                    ownerCheck { vm.deleteClients(ids, withRecords); chosen = emptyList() }
+                }) { Text(stringResource(R.string.delete), color = MaterialTheme.colorScheme.error) }
+            },
+            dismissButton = { TextButton(onClick = { confirmDeleteMany = false }) { Text(stringResource(R.string.cancel)) } },
+        )
     }
 
     adding?.let { start ->
@@ -263,6 +320,29 @@ private fun ClientList(vm: AppViewModel, data: AppData) {
     }
 }
 
+/** The bar shown while choosing clients: cancel, how many are chosen, select all, and delete. */
+@Composable
+private fun SelectionBar(count: Int, onCancel: () -> Unit, onSelectAll: () -> Unit, onDelete: () -> Unit) {
+    androidx.compose.material3.Surface(
+        color = MaterialTheme.colorScheme.secondaryContainer,
+        shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
+        shadowElevation = 3.dp,
+        modifier = Modifier.fillMaxWidth().padding(bottom = 4.dp).testTag(CLIENTS_SELECTION_TAG),
+    ) {
+        Row(Modifier.padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+            IconButton(onClick = onCancel) { Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.cd_cancel_selection)) }
+            Text(stringResource(R.string.clients_selected, count), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+            TextButton(onClick = onSelectAll) { Text(stringResource(R.string.select_all)) }
+            IconButton(onClick = onDelete) {
+                Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.cd_delete_selected), tint = MaterialTheme.colorScheme.error)
+            }
+        }
+    }
+}
+
+/** Tag for the bar shown while choosing several clients. */
+const val CLIENTS_SELECTION_TAG = "clientsSelection"
+
 /** One choice in the Clients filter menu: everyone, follow-ups due, or one pipeline stage. */
 private data class ClientFilter(val stage: ClientStage?, val dueOnly: Boolean)
 
@@ -284,6 +364,9 @@ private fun ClientCard(
     onCall: () -> Unit,
     onEmail: () -> Unit,
     onFollowUpDone: () -> Unit = {},
+    choosing: Boolean = false,
+    chosen: Boolean = false,
+    onLongClick: () -> Unit = {},
 ) {
     // On a narrow page the call / email buttons sit under the details instead of beside them,
     // so names and addresses get the full width.
@@ -304,8 +387,16 @@ private fun ClientCard(
             IconButton(onClick = onEmail) { Icon(Icons.Filled.Email, contentDescription = stringResource(R.string.cd_email, name)) }
         }
     }
-    Card(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
-        Row(Modifier.padding(start = 16.dp, top = 12.dp, bottom = 12.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+    val selectLabel = stringResource(R.string.select)
+    Card(
+        modifier = Modifier.fillMaxWidth()
+            .clip(CardDefaults.shape)
+            .combinedClickable(onClick = onClick, onLongClick = onLongClick, onLongClickLabel = selectLabel)
+            .then(if (choosing) Modifier.semantics { selected = chosen } else Modifier),
+        colors = if (chosen) CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer) else CardDefaults.cardColors(),
+    ) {
+        Row(Modifier.padding(start = if (choosing) 4.dp else 16.dp, top = 12.dp, bottom = 12.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+            if (choosing) Checkbox(checked = chosen, onCheckedChange = { onClick() })
             Column(Modifier.weight(1f)) {
                 // The stage badge wraps under the name when both don't fit.
                 androidx.compose.foundation.layout.FlowRow(

@@ -22,6 +22,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Assessment
+import androidx.compose.ui.platform.testTag
+import androidx.compose.material.icons.filled.PointOfSale
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -62,6 +64,7 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
     var editing by remember { mutableStateOf<Sale?>(null) }
     var deleting by remember { mutableStateOf<Sale?>(null) }
     var reporting by remember { mutableStateOf(false) }
+    var adding by remember { mutableStateOf(false) }
     val ownerCheck = rememberOwnerCheck(vm)
 
     val sales = period.filter(data.sales).sortedByDescending { it.timestamp }
@@ -74,6 +77,17 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
+            item {
+                // Log a sale right from the top of the log (the + button below does the same).
+                androidx.compose.material3.Button(
+                    onClick = { adding = true },
+                    modifier = Modifier.fillMaxWidth().testTag(SALES_LOG_ADD_TAG),
+                ) {
+                    Icon(Icons.Filled.PointOfSale, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(Modifier.width(8.dp))
+                    Text(stringResource(LocalTerms.current.logSale))
+                }
+            }
             item {
                 // Today isn't offered here: the log is for looking back over a stretch of time.
                 PeriodPicker(period, { period = it }, options = Period.entries.filter { it != Period.TODAY })
@@ -170,12 +184,12 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
             dismissButton = { TextButton(onClick = { confirmPaid = false }) { Text(stringResource(R.string.cancel)) } },
         )
     }
-    if (editing != null) {
+    if (editing != null || adding) {
         SaleDialog(
             initial = editing,
             clients = data.clients,
             newId = vm::newId,
-            onDismiss = { editing = null },
+            onDismiss = { editing = null; adding = false },
             onSave = vm::saveSale,
             defaultCommissionPercent = data.defaultCommissionPercent,
             plan = data.commissionPlan,
@@ -192,6 +206,9 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
         )
     }
 }
+
+/** Tag for the Log sale button at the top of the Sales log. */
+const val SALES_LOG_ADD_TAG = "salesLogAdd"
 
 /** Which report period matches the period the Sales tab shows (Q1–Q4 are this year's quarters). */
 private fun reportStart(p: Period, today: java.time.LocalDate = java.time.LocalDate.now()): Pair<com.salestracker.app.data.GoalPeriod, Int> = when (p) {

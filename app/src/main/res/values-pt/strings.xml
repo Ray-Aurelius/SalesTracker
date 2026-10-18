@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">Após 1 minuto</string>
     <string name="lock_delay_5m">Após 5 minutos</string>
     <string name="block_screenshots">Bloquear capturas e gravação de tela</string>
-    <string name="block_screenshots_desc">Também oculta o conteúdo do app na tela de apps recentes</string>
+    <string name="block_screenshots_desc">Ativado por padrão. Desativando, você pode tirar capturas e gravar a tela; as fotos de recibos continuam protegidas.</string>
     <string name="section_privacy">Privacidade</string>
     <string name="privacy_mode">Modo privado</string>
     <string name="privacy_mode_desc">Oculta todos os valores para você mostrar a tela a um cliente</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">Agora não</string>
     <string name="fu_done">Feito</string>
     <string name="fu_cd_done">Marcar %1$s como feito</string>
+    <string name="select">Selecionar</string>
+    <string name="select_all">Selecionar tudo</string>
+    <string name="clients_selected">%1$d selecionados</string>
+    <string name="cd_cancel_selection">Cancelar seleção</string>
+    <string name="cd_delete_selected">Excluir selecionados</string>
+    <string name="delete_clients_q">Excluir os clientes selecionados (%1$d)?</string>
+    <string name="delete_clients_records">Excluir também as vendas e compromissos deles</string>
+    <string name="allow_screenshots_title">Permitir capturas de tela</string>
+    <string name="allow_screenshots_subtitle">Confirme que é você para permitir capturas de tela</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>

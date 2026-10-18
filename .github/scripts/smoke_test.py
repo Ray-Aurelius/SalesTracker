@@ -397,6 +397,13 @@ def main(apk):
         fail("the trash can didn't delete the appointment")
     if not find(r"^Smoke demo$"):
         fail("Undo didn't bring the appointment back")
+    # Highlighting the day is a drop-down inside the overview now.
+    if not tap(r"^Highlight this day$", "schedule-highlight-menu", wait=1.0, scroll=3):
+        fail("no Highlight this day menu in the day's overview")
+    else:
+        tap(r"^Red$", wait=1.0)
+        if not find(r"^Red$"):
+            fail("picking a highlight color in the overview didn't stick")
     tap(r"^Done$", wait=1.2)
     if not find_scrolling(r"^Smoke demo$", tries=3):
         fail("the appointment is not on the schedule")
@@ -456,6 +463,11 @@ def main(apk):
     tap(r"^Sales$", wait=1.5)
     if not tap(r"^Sales report$", "sales-tab-report", wait=2, scroll=1):
         fail("no Sales report button on the Sales tab")
+    tap(r"^Cancel$", wait=1.2)
+    if not tap(r"^Log sale$", "sales-log-add", wait=1.5):
+        fail("no Log sale button at the top of the Sales log")
+    elif not find(r"^Sale amount$"):
+        fail("the Log sale button didn't open the sale form")
     tap(r"^Cancel$", wait=1.2)
 
     section("Add client button on the Clients page")
@@ -974,6 +986,31 @@ def main(apk):
         tap(r"^Schedule$", wait=2)
         if done_under(r"^Zed Fairweather$") is None:
             fail("the offered follow-up was not scheduled")
+
+    section("Clients: long-press to choose several, then delete them together after confirming")
+    tap(r"^Clients$", wait=1.5)
+    if find(r"^Clients$") and find(r"^Timer$"):
+        tap(r"^Clients$", wait=1.0)
+    pos = find_scrolling(r"^Zed Fairweather$")
+    if not pos:
+        fail("can't find a client to choose")
+    else:
+        adb("shell", f"input swipe {pos[0]} {pos[1]} {pos[0]} {pos[1]} 900")
+        time.sleep(1.5)
+        shot("clients-choosing")
+        if not find(r"^1 selected$"):
+            fail("long-pressing a client didn't start choosing clients")
+        if not tap(r"^Dakota Lindqvist$", wait=1.0, scroll=6):
+            fail("couldn't add a second client to the selection")
+        if not find(r"^2 selected$"):
+            fail("tapping another client didn't add it to the selection")
+        tap(r"^Delete selected$", "clients-delete-many", wait=1.5)
+        if not find(r"^Delete the selected clients \(2\)\?$"):
+            fail("deleting several clients didn't ask first")
+        tap(r"^Delete$", wait=2)
+        shot("clients-deleted-many")
+        if find_scrolling(r"^Zed Fairweather$|^Dakota Lindqvist$", tries=3):
+            fail("the chosen clients were not deleted")
 
     if crashed():
         fail("crash")

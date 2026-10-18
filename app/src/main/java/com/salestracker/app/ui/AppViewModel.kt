@@ -312,6 +312,15 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     /** Set just before the app opens another screen on purpose (e.g. the file picker). */
     var openedOwnScreen = false
 
+    // ---- Screenshots ----
+    /** Screenshots, screen recording and screen sharing are blocked unless the user allows them (Security & privacy). */
+    var allowScreenshots by mutableStateOf(settings.getBoolean("allowScreenshots", false))
+        private set
+    fun changeAllowScreenshots(on: Boolean) {
+        allowScreenshots = on
+        settings.edit().putBoolean("allowScreenshots", on).apply()
+    }
+
     // ---- Privacy mode ----
     var startInPrivacyMode by mutableStateOf(settings.getBoolean("startPrivate", false))
         private set
@@ -640,6 +649,11 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         }
         appts.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
         tasks.forEach { ReminderScheduler.cancel(getApplication(), it.id) }
+    }
+
+    /** Deletes several clients at once (chosen on the Clients page), with or without their records. */
+    fun deleteClients(ids: Collection<Long>, withRecords: Boolean) {
+        ids.forEach { if (withRecords) deleteClientAndRecords(it) else deleteClient(it) }
     }
 
     fun deleteClient(id: Long) = repo.update { d ->

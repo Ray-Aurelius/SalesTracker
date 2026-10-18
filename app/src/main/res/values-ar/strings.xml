@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">بعد دقيقة</string>
     <string name="lock_delay_5m">بعد 5 دقائق</string>
     <string name="block_screenshots">منع لقطات الشاشة وتسجيلها</string>
-    <string name="block_screenshots_desc">يخفي أيضًا محتوى التطبيق في قائمة التطبيقات الحديثة</string>
+    <string name="block_screenshots_desc">مفعّل افتراضيًا. عند إيقافه يمكنك التقاط الشاشة وتسجيلها؛ وتبقى صور الإيصالات محمية.</string>
     <string name="section_privacy">الخصوصية</string>
     <string name="privacy_mode">وضع الخصوصية</string>
     <string name="privacy_mode_desc">إخفاء كل المبالغ لتتمكن من عرض شاشتك على عميل</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">ليس الآن</string>
     <string name="fu_done">تم</string>
     <string name="fu_cd_done">وضع علامة «تم» على %1$s</string>
+    <string name="select">تحديد</string>
+    <string name="select_all">تحديد الكل</string>
+    <string name="clients_selected">تم تحديد %1$d</string>
+    <string name="cd_cancel_selection">إلغاء التحديد</string>
+    <string name="cd_delete_selected">حذف المحدد</string>
+    <string name="delete_clients_q">حذف العملاء المحددين (%1$d)؟</string>
+    <string name="delete_clients_records">حذف مبيعاتهم ومواعيدهم أيضًا</string>
+    <string name="allow_screenshots_title">السماح بلقطات الشاشة</string>
+    <string name="allow_screenshots_subtitle">أكّد هويتك للسماح بلقطات الشاشة</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

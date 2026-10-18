@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">Nach 1 Minute</string>
     <string name="lock_delay_5m">Nach 5 Minuten</string>
     <string name="block_screenshots">Screenshots und Bildschirmaufnahmen blockieren</string>
-    <string name="block_screenshots_desc">Verbirgt den App-Inhalt auch in der Übersicht der letzten Apps</string>
+    <string name="block_screenshots_desc">Standardmäßig an. Ausgeschaltet sind Screenshots und Bildschirmaufnahmen möglich; Belegfotos bleiben geschützt.</string>
     <string name="section_privacy">Datenschutz</string>
     <string name="privacy_mode">Privatmodus</string>
     <string name="privacy_mode_desc">Alle Geldbeträge ausblenden, um den Bildschirm einem Kunden zu zeigen</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">Nicht jetzt</string>
     <string name="fu_done">Erledigt</string>
     <string name="fu_cd_done">%1$s als erledigt markieren</string>
+    <string name="select">Auswählen</string>
+    <string name="select_all">Alle auswählen</string>
+    <string name="clients_selected">%1$d ausgewählt</string>
+    <string name="cd_cancel_selection">Auswahl aufheben</string>
+    <string name="cd_delete_selected">Auswahl löschen</string>
+    <string name="delete_clients_q">Ausgewählte Kunden löschen (%1$d)?</string>
+    <string name="delete_clients_records">Auch ihre Verkäufe und Termine löschen</string>
+    <string name="allow_screenshots_title">Screenshots erlauben</string>
+    <string name="allow_screenshots_subtitle">Bestätigen Sie, dass Sie es sind, um Screenshots zu erlauben</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

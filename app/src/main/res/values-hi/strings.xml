@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">1 मिनट बाद</string>
     <string name="lock_delay_5m">5 मिनट बाद</string>
     <string name="block_screenshots">स्क्रीनशॉट और स्क्रीन रिकॉर्डिंग रोकें</string>
-    <string name="block_screenshots_desc">हाल के ऐप्स में भी ऐप की सामग्री छिपाता है</string>
+    <string name="block_screenshots_desc">डिफ़ॉल्ट रूप से चालू। बंद करने पर आप स्क्रीनशॉट और स्क्रीन रिकॉर्डिंग कर सकते हैं; रसीद की फ़ोटो सुरक्षित रहती हैं।</string>
     <string name="section_privacy">गोपनीयता</string>
     <string name="privacy_mode">निजी मोड</string>
     <string name="privacy_mode_desc">सभी राशियाँ छिपाएँ ताकि आप ग्राहक को स्क्रीन दिखा सकें</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">अभी नहीं</string>
     <string name="fu_done">पूरा</string>
     <string name="fu_cd_done">%1$s पूरा चिह्नित करें</string>
+    <string name="select">चुनें</string>
+    <string name="select_all">सभी चुनें</string>
+    <string name="clients_selected">%1$d चुने गए</string>
+    <string name="cd_cancel_selection">चयन रद्द करें</string>
+    <string name="cd_delete_selected">चुने हुए हटाएँ</string>
+    <string name="delete_clients_q">चुने हुए ग्राहक (%1$d) हटाएँ?</string>
+    <string name="delete_clients_records">उनकी बिक्री और अपॉइंटमेंट भी हटाएँ</string>
+    <string name="allow_screenshots_title">स्क्रीनशॉट की अनुमति दें</string>
+    <string name="allow_screenshots_subtitle">स्क्रीनशॉट की अनुमति के लिए पुष्टि करें कि यह आप हैं</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

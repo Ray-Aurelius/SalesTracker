@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">Setelah 1 menit</string>
     <string name="lock_delay_5m">Setelah 5 menit</string>
     <string name="block_screenshots">Blokir tangkapan dan rekaman layar</string>
-    <string name="block_screenshots_desc">Juga menyembunyikan isi di tampilan aplikasi terbaru</string>
+    <string name="block_screenshots_desc">Aktif secara default. Jika dimatikan, Anda bisa mengambil tangkapan dan merekam layar; foto struk tetap terlindungi.</string>
     <string name="section_privacy">Privasi</string>
     <string name="privacy_mode">Mode privasi</string>
     <string name="privacy_mode_desc">Sembunyikan semua nominal agar layar bisa ditunjukkan ke klien</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">Nanti</string>
     <string name="fu_done">Selesai</string>
     <string name="fu_cd_done">Tandai %1$s selesai</string>
+    <string name="select">Pilih</string>
+    <string name="select_all">Pilih semua</string>
+    <string name="clients_selected">%1$d dipilih</string>
+    <string name="cd_cancel_selection">Batalkan pilihan</string>
+    <string name="cd_delete_selected">Hapus yang dipilih</string>
+    <string name="delete_clients_q">Hapus klien yang dipilih (%1$d)?</string>
+    <string name="delete_clients_records">Hapus juga penjualan dan janji temu mereka</string>
+    <string name="allow_screenshots_title">Izinkan tangkapan layar</string>
+    <string name="allow_screenshots_subtitle">Konfirmasi bahwa ini Anda untuk mengizinkan tangkapan layar</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

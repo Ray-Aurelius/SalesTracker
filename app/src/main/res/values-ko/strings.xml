@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">1분 후</string>
     <string name="lock_delay_5m">5분 후</string>
     <string name="block_screenshots">스크린샷 및 화면 녹화 차단</string>
-    <string name="block_screenshots_desc">최근 앱 화면에서도 앱 내용을 숨깁니다</string>
+    <string name="block_screenshots_desc">기본값은 켜짐. 끄면 스크린샷과 화면 녹화가 가능하며 영수증 사진은 계속 보호됩니다.</string>
     <string name="section_privacy">개인정보</string>
     <string name="privacy_mode">프라이버시 모드</string>
     <string name="privacy_mode_desc">모든 금액을 숨겨 고객에게 화면을 보여줄 수 있게 합니다</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">나중에</string>
     <string name="fu_done">완료</string>
     <string name="fu_cd_done">%1$s 완료로 표시</string>
+    <string name="select">선택</string>
+    <string name="select_all">모두 선택</string>
+    <string name="clients_selected">%1$d개 선택됨</string>
+    <string name="cd_cancel_selection">선택 취소</string>
+    <string name="cd_delete_selected">선택 항목 삭제</string>
+    <string name="delete_clients_q">선택한 고객(%1$d명)을 삭제할까요?</string>
+    <string name="delete_clients_records">판매와 약속도 함께 삭제</string>
+    <string name="allow_screenshots_title">스크린샷 허용</string>
+    <string name="allow_screenshots_subtitle">스크린샷을 허용하려면 본인임을 확인하세요</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

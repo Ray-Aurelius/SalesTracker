@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">1 dakika sonra</string>
     <string name="lock_delay_5m">5 dakika sonra</string>
     <string name="block_screenshots">Ekran görüntüsünü ve kaydını engelle</string>
-    <string name="block_screenshots_desc">Son uygulamalar görünümünde de içeriği gizler</string>
+    <string name="block_screenshots_desc">Varsayılan olarak açık. Kapatırsanız ekran görüntüsü alabilir ve ekranı kaydedebilirsiniz; fiş fotoğrafları korunmaya devam eder.</string>
     <string name="section_privacy">Gizlilik</string>
     <string name="privacy_mode">Gizlilik modu</string>
     <string name="privacy_mode_desc">Ekranı bir müşteriye gösterebilmek için tüm tutarları gizle</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">Şimdi değil</string>
     <string name="fu_done">Tamam</string>
     <string name="fu_cd_done">%1$s tamamlandı olarak işaretle</string>
+    <string name="select">Seç</string>
+    <string name="select_all">Tümünü seç</string>
+    <string name="clients_selected">%1$d seçildi</string>
+    <string name="cd_cancel_selection">Seçimi iptal et</string>
+    <string name="cd_delete_selected">Seçilenleri sil</string>
+    <string name="delete_clients_q">Seçilen müşteriler (%1$d) silinsin mi?</string>
+    <string name="delete_clients_records">Satışlarını ve randevularını da sil</string>
+    <string name="allow_screenshots_title">Ekran görüntüsüne izin ver</string>
+    <string name="allow_screenshots_subtitle">Ekran görüntüsüne izin vermek için kimliğinizi doğrulayın</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

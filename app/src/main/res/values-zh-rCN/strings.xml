@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">1 分钟后</string>
     <string name="lock_delay_5m">5 分钟后</string>
     <string name="block_screenshots">禁止截屏和录屏</string>
-    <string name="block_screenshots_desc">同时在最近使用的应用中隐藏应用内容</string>
+    <string name="block_screenshots_desc">默认开启。关闭后可以截屏和录屏；收据照片仍受保护。</string>
     <string name="section_privacy">隐私</string>
     <string name="privacy_mode">隐私模式</string>
     <string name="privacy_mode_desc">隐藏所有金额，方便你向客户展示屏幕</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">以后再说</string>
     <string name="fu_done">完成</string>
     <string name="fu_cd_done">将 %1$s 标为完成</string>
+    <string name="select">选择</string>
+    <string name="select_all">全选</string>
+    <string name="clients_selected">已选择 %1$d 个</string>
+    <string name="cd_cancel_selection">取消选择</string>
+    <string name="cd_delete_selected">删除所选</string>
+    <string name="delete_clients_q">删除所选客户（%1$d 个）？</string>
+    <string name="delete_clients_records">同时删除他们的销售和预约</string>
+    <string name="allow_screenshots_title">允许截屏</string>
+    <string name="allow_screenshots_subtitle">确认是您本人以允许截屏</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

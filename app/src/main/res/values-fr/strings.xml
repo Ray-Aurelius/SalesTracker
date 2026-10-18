@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">Après 1 minute</string>
     <string name="lock_delay_5m">Après 5 minutes</string>
     <string name="block_screenshots">Bloquer les captures et l\'enregistrement d\'écran</string>
-    <string name="block_screenshots_desc">Masque aussi le contenu de l\'app dans les applis récentes</string>
+    <string name="block_screenshots_desc">Activé par défaut. Le désactiver permet les captures et l\'enregistrement d\'écran ; les photos de reçus restent protégées.</string>
     <string name="section_privacy">Confidentialité</string>
     <string name="privacy_mode">Mode confidentiel</string>
     <string name="privacy_mode_desc">Masque tous les montants pour montrer l\'écran à un client</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">Plus tard</string>
     <string name="fu_done">Fait</string>
     <string name="fu_cd_done">Marquer %1$s comme fait</string>
+    <string name="select">Sélectionner</string>
+    <string name="select_all">Tout sélectionner</string>
+    <string name="clients_selected">%1$d sélectionné(s)</string>
+    <string name="cd_cancel_selection">Annuler la sélection</string>
+    <string name="cd_delete_selected">Supprimer la sélection</string>
+    <string name="delete_clients_q">Supprimer les clients sélectionnés (%1$d) ?</string>
+    <string name="delete_clients_records">Supprimer aussi leurs ventes et rendez-vous</string>
+    <string name="allow_screenshots_title">Autoriser les captures d\'écran</string>
+    <string name="allow_screenshots_subtitle">Confirmez votre identité pour autoriser les captures</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">Через 1 минуту</string>
     <string name="lock_delay_5m">Через 5 минут</string>
     <string name="block_screenshots">Запретить скриншоты и запись экрана</string>
-    <string name="block_screenshots_desc">Также скрывает содержимое приложения в списке недавних</string>
+    <string name="block_screenshots_desc">Включено по умолчанию. Если выключить, можно делать скриншоты и запись экрана; фото чеков остаются защищены.</string>
     <string name="section_privacy">Конфиденциальность</string>
     <string name="privacy_mode">Режим приватности</string>
     <string name="privacy_mode_desc">Скрыть все суммы, чтобы показать экран клиенту</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">Не сейчас</string>
     <string name="fu_done">Готово</string>
     <string name="fu_cd_done">Отметить «%1$s» выполненным</string>
+    <string name="select">Выбрать</string>
+    <string name="select_all">Выбрать все</string>
+    <string name="clients_selected">Выбрано: %1$d</string>
+    <string name="cd_cancel_selection">Отменить выбор</string>
+    <string name="cd_delete_selected">Удалить выбранных</string>
+    <string name="delete_clients_q">Удалить выбранных клиентов (%1$d)?</string>
+    <string name="delete_clients_records">Удалить также их продажи и встречи</string>
+    <string name="allow_screenshots_title">Разрешить скриншоты</string>
+    <string name="allow_screenshots_subtitle">Подтвердите, что это вы, чтобы разрешить скриншоты</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

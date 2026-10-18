@@ -329,7 +329,7 @@
     <string name="lock_delay_1m">After 1 minute</string>
     <string name="lock_delay_5m">After 5 minutes</string>
     <string name="block_screenshots">Block screenshots and screen recording</string>
-    <string name="block_screenshots_desc">Also hides the app\'s contents in the recent-apps view</string>
+    <string name="block_screenshots_desc">On by default. Turning it off lets you take screenshots and record the screen; receipt photos stay protected.</string>
     <string name="section_privacy">Privacy</string>
     <string name="privacy_mode">Privacy mode</string>
     <string name="privacy_mode_desc">Hide all dollar amounts so you can show your screen to a customer</string>
@@ -1124,4 +1124,13 @@
     <string name="fu_not_now">Not now</string>
     <string name="fu_done">Done</string>
     <string name="fu_cd_done">Mark %1$s done</string>
+    <string name="select">Select</string>
+    <string name="select_all">Select all</string>
+    <string name="clients_selected">%1$d selected</string>
+    <string name="cd_cancel_selection">Cancel selection</string>
+    <string name="cd_delete_selected">Delete selected</string>
+    <string name="delete_clients_q">Delete the selected clients (%1$d)?</string>
+    <string name="delete_clients_records">Also delete their sales and appointments</string>
+    <string name="allow_screenshots_title">Allow screenshots</string>
+    <string name="allow_screenshots_subtitle">Confirm it\'s you to allow screenshots</string>
 </resources>

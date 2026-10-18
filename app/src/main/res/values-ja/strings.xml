@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">1 分後</string>
     <string name="lock_delay_5m">5 分後</string>
     <string name="block_screenshots">スクリーンショットと画面録画をブロック</string>
-    <string name="block_screenshots_desc">最近使ったアプリの画面でも内容を隠します</string>
+    <string name="block_screenshots_desc">初期設定はオン。オフにするとスクリーンショットや画面録画ができます。レシート写真は引き続き保護されます。</string>
     <string name="section_privacy">プライバシー</string>
     <string name="privacy_mode">プライバシーモード</string>
     <string name="privacy_mode_desc">金額をすべて隠して、お客様に画面を見せられるようにします</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">今はしない</string>
     <string name="fu_done">完了</string>
     <string name="fu_cd_done">%1$s を完了にする</string>
+    <string name="select">選択</string>
+    <string name="select_all">すべて選択</string>
+    <string name="clients_selected">%1$d 件選択</string>
+    <string name="cd_cancel_selection">選択を解除</string>
+    <string name="cd_delete_selected">選択した項目を削除</string>
+    <string name="delete_clients_q">選択した顧客（%1$d 件）を削除しますか？</string>
+    <string name="delete_clients_records">売上と予定も削除する</string>
+    <string name="allow_screenshots_title">スクリーンショットを許可</string>
+    <string name="allow_screenshots_subtitle">スクリーンショットを許可するには本人確認をしてください</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

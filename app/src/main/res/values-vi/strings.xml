@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">Sau 1 phút</string>
     <string name="lock_delay_5m">Sau 5 phút</string>
     <string name="block_screenshots">Chặn chụp và quay màn hình</string>
-    <string name="block_screenshots_desc">Cũng ẩn nội dung trong màn hình ứng dụng gần đây</string>
+    <string name="block_screenshots_desc">Mặc định bật. Tắt đi thì có thể chụp và quay màn hình; ảnh hóa đơn vẫn được bảo vệ.</string>
     <string name="section_privacy">Quyền riêng tư</string>
     <string name="privacy_mode">Chế độ riêng tư</string>
     <string name="privacy_mode_desc">Ẩn mọi số tiền để có thể cho khách hàng xem màn hình</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">Để sau</string>
     <string name="fu_done">Xong</string>
     <string name="fu_cd_done">Đánh dấu %1$s là xong</string>
+    <string name="select">Chọn</string>
+    <string name="select_all">Chọn tất cả</string>
+    <string name="clients_selected">Đã chọn %1$d</string>
+    <string name="cd_cancel_selection">Hủy chọn</string>
+    <string name="cd_delete_selected">Xóa mục đã chọn</string>
+    <string name="delete_clients_q">Xóa các khách hàng đã chọn (%1$d)?</string>
+    <string name="delete_clients_records">Xóa cả giao dịch và lịch hẹn của họ</string>
+    <string name="allow_screenshots_title">Cho phép chụp màn hình</string>
+    <string name="allow_screenshots_subtitle">Xác nhận là bạn để cho phép chụp màn hình</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

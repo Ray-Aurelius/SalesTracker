@@ -130,8 +130,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Client information can't be captured from the screen: screenshots, screen recording, screen sharing,
-        // the recent-apps preview and on-screen assistants all see a blank window. Always on, no setting.
-        window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        // the recent-apps preview and on-screen assistants all see a blank window. On unless the user allows
+        // screenshots in Security & privacy (then receipt photos stay protected, and on Android 13+ the
+        // recent-apps preview stays hidden).
+        applyScreenshotPolicy(vm.allowScreenshots)
         // Nothing typed here is offered to autofill services (password managers and the like) to save.
         window.decorView.importantForAutofill = android.view.View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS
         // Nor to Android's "content capture" (on-device intelligence that reads what apps show).
@@ -194,6 +196,13 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
         // Rotating or switching language restarts the screen; that isn't leaving the app.
         if (!isChangingConfigurations) vm.backgroundedAt = System.currentTimeMillis()
+    }
+
+    /** Blocks or allows screenshots for the whole app window. */
+    fun applyScreenshotPolicy(allow: Boolean) {
+        if (allow) window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        else window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        if (Build.VERSION.SDK_INT >= 33) setRecentsScreenshotEnabled(false)
     }
 
     override fun onNewIntent(intent: Intent) {

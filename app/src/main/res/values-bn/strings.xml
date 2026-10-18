@@ -262,7 +262,7 @@
     <string name="lock_delay_1m">১ মিনিট পরে</string>
     <string name="lock_delay_5m">৫ মিনিট পরে</string>
     <string name="block_screenshots">স্ক্রিনশট ও স্ক্রিন রেকর্ডিং বন্ধ</string>
-    <string name="block_screenshots_desc">সাম্প্রতিক অ্যাপের তালিকাতেও অ্যাপের বিষয়বস্তু লুকায়</string>
+    <string name="block_screenshots_desc">ডিফল্টে চালু। বন্ধ করলে স্ক্রিনশট ও স্ক্রিন রেকর্ড করা যায়; রসিদের ছবি সুরক্ষিত থাকে।</string>
     <string name="section_privacy">গোপনীয়তা</string>
     <string name="privacy_mode">প্রাইভেসি মোড</string>
     <string name="privacy_mode_desc">সব টাকার পরিমাণ লুকান, যাতে গ্রাহককে স্ক্রিন দেখাতে পারেন</string>
@@ -983,6 +983,15 @@
     <string name="fu_not_now">এখন না</string>
     <string name="fu_done">সম্পন্ন</string>
     <string name="fu_cd_done">%1$s সম্পন্ন চিহ্নিত করুন</string>
+    <string name="select">নির্বাচন</string>
+    <string name="select_all">সব নির্বাচন</string>
+    <string name="clients_selected">%1$dটি নির্বাচিত</string>
+    <string name="cd_cancel_selection">নির্বাচন বাতিল</string>
+    <string name="cd_delete_selected">নির্বাচিতগুলো মুছুন</string>
+    <string name="delete_clients_q">নির্বাচিত ক্লায়েন্টদের (%1$d) মুছবেন?</string>
+    <string name="delete_clients_records">তাদের বিক্রয় ও অ্যাপয়েন্টমেন্টও মুছুন</string>
+    <string name="allow_screenshots_title">স্ক্রিনশট অনুমতি দিন</string>
+    <string name="allow_screenshots_subtitle">স্ক্রিনশট অনুমতি দিতে নিশ্চিত করুন এটি আপনি</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
