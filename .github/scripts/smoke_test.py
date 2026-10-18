@@ -767,10 +767,11 @@ def main(apk):
         tap(r"^Tiered$", "plan-tiered", wait=1.2)
         tap(r"^Save$", wait=1.5)
         shot("stats-tiered")
-        if not find(r"Tiered plan"):
+        # The Stats tile shows only the amount now; reopen the plan to check it was saved as tiered.
+        tap(r"^Commission earned$", wait=1.5, scroll=6)
+        if not find_scrolling(r"^Add a tier$", tries=3):
             fail("the tiered plan did not take effect")
-        if find(r"Tiered plan · 0%"):
-            fail("the tiered plan started at 0% instead of the rate in use")
+        tap(r"^Cancel$", wait=1.2)
 
     section("Menu tabs: hide Calc")
     tap(r"^Settings$", wait=1.5)
