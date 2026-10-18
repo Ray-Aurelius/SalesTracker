@@ -190,10 +190,13 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
     }
 }
 
-/** Two tiles side by side at the same height (stacked on a very narrow screen). */
+/**
+ * Two tiles side by side at the same height. They stay side by side with large text too (labels wrap and numbers
+ * shrink to fit); only a genuinely tiny page, under 280dp across, stacks them.
+ */
 @Composable
 private fun TilePair(first: @Composable (Modifier) -> Unit, second: @Composable (Modifier) -> Unit) {
-    if (isNarrow()) {
+    if (LocalContentWidth.current < 280.dp) {
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             first(Modifier.fillMaxWidth())
             second(Modifier.fillMaxWidth())
@@ -233,9 +236,9 @@ private fun RateTile(title: String, rate: Double, detail: String, color: Color, 
 @Composable
 private fun StatCard(label: String, value: String, modifier: Modifier = Modifier) {
     Card(modifier.semantics(mergeDescendants = true) {}) {
-        Column(Modifier.padding(16.dp)) {
-            Text(label, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            FitText(value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
+        Column(Modifier.padding(14.dp)) {
+            Text(label, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2)
+            FitText(value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.fillMaxWidth())
         }
     }
 }
