@@ -992,6 +992,14 @@
     <string name="delete_clients_records">Eliminar también sus ventas y citas</string>
     <string name="allow_screenshots_title">Permitir capturas</string>
     <string name="allow_screenshots_subtitle">Confirma que eres tú para permitir capturas</string>
+    <string name="auto_backup">Copia automática</string>
+    <string name="auto_backup_desc">Guarda sola una copia cifrada en la carpeta de copias y conserva las %1$d más recientes. La contraseña se guarda bloqueada en el hardware seguro del teléfono para que las copias se hagan sin preguntar; la seguirás necesitando para restaurar.</string>
+    <string name="auto_backup_daily">Diaria</string>
+    <string name="auto_backup_weekly">Semanal</string>
+    <string name="auto_backup_monthly">Mensual</string>
+    <string name="auto_backup_last">Última copia automática: %1$s</string>
+    <string name="auto_backup_failed">No se pudo guardar la última copia automática. Usa Hacer copia ahora para revisar la carpeta.</string>
+    <string name="auto_backup_pending">Aún no hay copia automática.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>

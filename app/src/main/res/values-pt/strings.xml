@@ -992,6 +992,14 @@
     <string name="delete_clients_records">Excluir também as vendas e compromissos deles</string>
     <string name="allow_screenshots_title">Permitir capturas de tela</string>
     <string name="allow_screenshots_subtitle">Confirme que é você para permitir capturas de tela</string>
+    <string name="auto_backup">Backup automático</string>
+    <string name="auto_backup_desc">Salva sozinho um backup criptografado na pasta de backups e mantém os %1$d mais recentes. Sua senha fica trancada no hardware seguro do celular para os backups acontecerem sem perguntar; você ainda vai precisar dela para restaurar.</string>
+    <string name="auto_backup_daily">Diário</string>
+    <string name="auto_backup_weekly">Semanal</string>
+    <string name="auto_backup_monthly">Mensal</string>
+    <string name="auto_backup_last">Último backup automático: %1$s</string>
+    <string name="auto_backup_failed">Não foi possível salvar o último backup automático. Use Fazer backup agora para verificar a pasta.</string>
+    <string name="auto_backup_pending">Ainda não há backup automático.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venda · %2$s fechadas · %3$s</item>
         <item quantity="many">%1$d vendas · %2$s fechadas · %3$s</item>

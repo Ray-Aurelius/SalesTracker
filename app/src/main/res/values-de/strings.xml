@@ -992,6 +992,14 @@
     <string name="delete_clients_records">Auch ihre Verkäufe und Termine löschen</string>
     <string name="allow_screenshots_title">Screenshots erlauben</string>
     <string name="allow_screenshots_subtitle">Bestätigen Sie, dass Sie es sind, um Screenshots zu erlauben</string>
+    <string name="auto_backup">Automatisch sichern</string>
+    <string name="auto_backup_desc">Speichert selbstständig eine verschlüsselte Sicherung im Sicherungsordner und behält die neuesten %1$d. Ihr Sicherungspasswort bleibt in der sicheren Hardware des Telefons verschlossen, damit ohne Nachfrage gesichert wird; zum Wiederherstellen brauchen Sie es weiterhin.</string>
+    <string name="auto_backup_daily">Täglich</string>
+    <string name="auto_backup_weekly">Wöchentlich</string>
+    <string name="auto_backup_monthly">Monatlich</string>
+    <string name="auto_backup_last">Letzte automatische Sicherung: %1$s</string>
+    <string name="auto_backup_failed">Die letzte automatische Sicherung konnte nicht gespeichert werden. Prüfen Sie den Ordner mit Jetzt sichern.</string>
+    <string name="auto_backup_pending">Noch keine automatische Sicherung.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

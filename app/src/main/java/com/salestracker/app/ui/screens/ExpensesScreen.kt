@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -121,7 +122,21 @@ fun ExpensesScreen(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            item { PeriodPicker(period, { period = it }, options = Period.entries.filter { it != Period.TODAY }) }
+            item {
+                // The period and the expense report side by side.
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    PeriodPicker(period, { period = it }, modifier = Modifier.weight(1f), options = Period.entries.filter { it != Period.TODAY })
+                    OutlinedButton(
+                        onClick = { report = true },
+                        modifier = Modifier.weight(1f).height(48.dp),
+                        contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 12.dp),
+                    ) {
+                        Icon(Icons.Filled.PictureAsPdf, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(Modifier.width(6.dp))
+                        Text(stringResource(R.string.exp_report_button), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                    }
+                }
+            }
             item {
                 Card(Modifier.fillMaxWidth().semantics(mergeDescendants = true) {}) {
                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -170,10 +185,6 @@ fun ExpensesScreen(vm: AppViewModel, data: AppData) {
                     OutlinedButton(onClick = { adding = ExpenseKind.MILEAGE }) {
                         Icon(Icons.Filled.DirectionsCar, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(Modifier.width(6.dp)); Text(stringResource(R.string.exp_log_trip))
-                    }
-                    OutlinedButton(onClick = { report = true }) {
-                        Icon(Icons.Filled.PictureAsPdf, contentDescription = null, modifier = Modifier.size(18.dp))
-                        Spacer(Modifier.width(6.dp)); Text(stringResource(R.string.exp_report_button))
                     }
                 }
             }

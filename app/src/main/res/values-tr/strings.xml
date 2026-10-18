@@ -992,6 +992,14 @@
     <string name="delete_clients_records">Satışlarını ve randevularını da sil</string>
     <string name="allow_screenshots_title">Ekran görüntüsüne izin ver</string>
     <string name="allow_screenshots_subtitle">Ekran görüntüsüne izin vermek için kimliğinizi doğrulayın</string>
+    <string name="auto_backup">Otomatik yedekle</string>
+    <string name="auto_backup_desc">Yedek klasörüne kendiliğinden şifreli bir yedek kaydeder ve en yeni %1$d tanesini tutar. Parolanız telefonun güvenli donanımında kilitli tutulur, böylece sormadan yedeklenir; geri yüklemek için yine gerekecek.</string>
+    <string name="auto_backup_daily">Günlük</string>
+    <string name="auto_backup_weekly">Haftalık</string>
+    <string name="auto_backup_monthly">Aylık</string>
+    <string name="auto_backup_last">Son otomatik yedek: %1$s</string>
+    <string name="auto_backup_failed">Son otomatik yedek kaydedilemedi. Klasörü kontrol etmek için Şimdi yedekle\'yi kullanın.</string>
+    <string name="auto_backup_pending">Henüz otomatik yedek yok.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

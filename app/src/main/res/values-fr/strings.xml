@@ -992,6 +992,14 @@
     <string name="delete_clients_records">Supprimer aussi leurs ventes et rendez-vous</string>
     <string name="allow_screenshots_title">Autoriser les captures d\'écran</string>
     <string name="allow_screenshots_subtitle">Confirmez votre identité pour autoriser les captures</string>
+    <string name="auto_backup">Sauvegarde automatique</string>
+    <string name="auto_backup_desc">Enregistre seule une sauvegarde chiffrée dans le dossier de sauvegardes et garde les %1$d plus récentes. Votre mot de passe reste verrouillé dans le matériel sécurisé du téléphone pour sauvegarder sans rien demander ; il vous faudra toujours pour restaurer.</string>
+    <string name="auto_backup_daily">Quotidienne</string>
+    <string name="auto_backup_weekly">Hebdomadaire</string>
+    <string name="auto_backup_monthly">Mensuelle</string>
+    <string name="auto_backup_last">Dernière sauvegarde automatique : %1$s</string>
+    <string name="auto_backup_failed">La dernière sauvegarde automatique n\'a pas pu être enregistrée. Utilisez Sauvegarder maintenant pour vérifier le dossier.</string>
+    <string name="auto_backup_pending">Pas encore de sauvegarde automatique.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

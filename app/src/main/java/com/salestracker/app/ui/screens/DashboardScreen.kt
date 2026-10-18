@@ -9,6 +9,7 @@ import androidx.compose.material3.AssistChip
 import com.salestracker.app.data.LocalTerms
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import java.time.ZoneId
 import java.time.Instant
 import com.salestracker.app.data.localizedFormatter
@@ -133,30 +134,6 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                                     color = MaterialTheme.colorScheme.primary,
                                     modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
                                 )
-                                val tierRate = data.commissionPlan.currentTierRate()
-                                Text(
-                                    when {
-                                        tierRate != null -> stringResource(
-                                            R.string.commission_tiered_now,
-                                            if (PrivacyMode.hideAmounts) "••" else formatRateInput(tierRate),
-                                        )
-                                        else -> stringResource(
-                                            if (data.defaultCommissionUpsellOnly) R.string.commission_default_rate_upsell else R.string.commission_default_rate,
-                                            if (PrivacyMode.hideAmounts) "••" else formatRateInput(data.defaultCommissionPercent),
-                                        )
-                                    },
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    maxLines = 3,
-                                )
-                                if (stats.commission > 0.0) {
-                                    Text(
-                                        stringResource(R.string.commission_paid_owed, formatMoney(stats.commissionPaid), formatMoney(stats.commissionOwed)),
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        maxLines = 2,
-                                    )
-                                }
                             }
                         }
                     },
@@ -212,8 +189,8 @@ private fun TilePair(first: @Composable (Modifier) -> Unit, second: @Composable 
 /** A rate as a compact tile: name, the percentage, a thin bar, and the counts behind it. */
 @Composable
 private fun RateTile(title: String, rate: Double, detail: String, color: Color, modifier: Modifier = Modifier) {
-    // Read as one item by screen readers: "Close rate, 42.0%, 5 closed of 12 opportunities".
-    Card(modifier.semantics(mergeDescendants = true) {}) {
+    // Read as one item by screen readers: "Close rate, 42.0%, 5 closed of 12 opportunities" (the counts are spoken only).
+    Card(modifier.semantics(mergeDescendants = true) { stateDescription = detail }) {
         Column(Modifier.padding(14.dp)) {
             Text(title, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2)
             FitText(
@@ -226,9 +203,8 @@ private fun RateTile(title: String, rate: Double, detail: String, color: Color, 
             LinearProgressIndicator(
                 progress = { rate.toFloat().coerceIn(0f, 1f) },
                 color = color,
-                modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp).height(6.dp),
+                modifier = Modifier.fillMaxWidth().padding(top = 6.dp).height(6.dp),
             )
-            Text(detail, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 3)
         }
     }
 }

@@ -630,6 +630,30 @@ def main(apk):
 
     back_up()
 
+    # Automatic backups: off until turned on; turning on asks for the password and saves the first one right away.
+    if not tap(r"^Back up automatically$", "auto-backup-password", wait=2, scroll=4):
+        fail("no Back up automatically switch in Security & privacy")
+    else:
+        tap(r"^Password$", wait=0.8)
+        type_text("SmokeTest2026x")
+        hide_keyboard()
+        tap(r"^Confirm password$", wait=0.8)
+        type_text("SmokeTest2026x")
+        hide_keyboard()
+        tap(r"^Back up$", wait=2)
+        made = ""
+        for _ in range(10):  # the password is stretched on purpose, so the first one takes a few seconds
+            made = adb("shell", f"ls {folder}")
+            if "QuotaVault-auto-" in made:
+                break
+            time.sleep(2)
+        shot("auto-backup-on")
+        note("  backup folder: " + " | ".join(l for l in made.splitlines() if "stbackup" in l))
+        if "QuotaVault-auto-" not in made:
+            fail("turning on automatic backups didn't save the first one")
+        if not find_scrolling(r"^Last automatic backup", tries=3):
+            fail("the automatic backup setting doesn't say when the last one was made")
+
     section("Crash reports and privacy info")
     tap(r"^Crash reports$", "crash-reports", wait=1.5, scroll=6)
     tap(r"^Done$", wait=1)

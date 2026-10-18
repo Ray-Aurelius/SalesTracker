@@ -168,10 +168,7 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                     !vm.allowScreenshots,
                 ) { block ->
                     val activity = context.findActivity()
-                    fun apply(allow: Boolean) {
-                        vm.changeAllowScreenshots(allow)
-                        (activity as? com.salestracker.app.MainActivity)?.applyScreenshotPolicy(allow)
-                    }
+                    fun apply(allow: Boolean) = vm.changeAllowScreenshots(allow)
                     if (!block && activity != null && AppAuth.isAvailable(context)) {
                         AppAuth.authenticate(
                             activity,
@@ -256,6 +253,7 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                 SettingRow(Icons.Filled.Help, stringResource(R.string.backup_guide), stringResource(R.string.guide_title)) {
                     flow = Flow.GUIDE
                 }
+                AutoBackupSetting(vm)
                 Text(stringResource(R.string.backup_reminder), style = MaterialTheme.typography.labelLarge, modifier = Modifier.padding(top = 4.dp))
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     BackupReminder.entries.forEach { r ->
@@ -409,4 +407,53 @@ internal fun BackupGuideText() {
         }
     }
     Text(stringResource(R.string.guide_tip), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+}
+
+
+/**
+ * Automatic backups: off until turned on. Turning on asks for the backup password (kept sealed by the phone's
+ * Keystore so backups can be made without asking), then how often. Shows when the last one was made, or a problem.
+ */
+@androidx.compose.runtime.Composable
+private fun AutoBackupSetting(vm: AppViewModel) {
+    var askPassword by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+    val on = vm.autoBackup != null
+    Column(Modifier.padding(top = 8.dp)) {
+        SwitchSetting(
+            stringResource(R.string.auto_backup),
+            stringResource(R.string.auto_backup_desc, com.salestracker.app.data.AutoBackup.KEEP),
+            on,
+        ) { turnOn -> if (turnOn) askPassword = true else vm.disableAutoBackup() }
+        if (on) {
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                com.salestracker.app.data.AutoBackupFrequency.entries.forEach { f ->
+                    FilterChip(selected = vm.autoBackup == f, onClick = { vm.chooseAutoBackupFrequency(f) }, label = { Text(stringResource(f.label)) })
+                }
+            }
+            val status = when {
+                vm.autoBackupFailed -> stringResource(R.string.auto_backup_failed)
+                vm.lastAutoBackupAt > 0L -> stringResource(
+                    R.string.auto_backup_last,
+                    java.time.Instant.ofEpochMilli(vm.lastAutoBackupAt).atZone(java.time.ZoneId.systemDefault()).toLocalDateTime()
+                        .format(com.salestracker.app.data.localizedFormatter("yMMMdjmm")),
+                )
+                else -> stringResource(R.string.auto_backup_pending)
+            }
+            Text(
+                status,
+                style = MaterialTheme.typography.bodySmall,
+                color = if (vm.autoBackupFailed) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
+            )
+        }
+    }
+    if (askPassword) {
+        NewPasswordDialog(
+            onCancel = { askPassword = false },
+            onConfirm = { pw ->
+                askPassword = false
+                vm.enableAutoBackup(pw, com.salestracker.app.data.AutoBackupFrequency.WEEKLY)
+            },
+        )
+    }
 }

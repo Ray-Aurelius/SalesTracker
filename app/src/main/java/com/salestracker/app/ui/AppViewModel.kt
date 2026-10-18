@@ -307,6 +307,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         if (authInProgress || now - authEndedAt < 3_000L) return
         if (appLock && backgroundedAt != 0L && now - backgroundedAt >= lockDelay.ms) unlocked = false
         checkQuietClients()
+        maybeAutoBackup()
     }
 
     /** Set just before the app opens another screen on purpose (e.g. the file picker). */
@@ -424,6 +425,11 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         calculatorExpression = ""
         lockReceipts = true
         reportName = ""
+        com.salestracker.app.data.AutoBackup.forgetPassword(getApplication())
+        autoBackup = null
+        lastAutoBackupAt = 0L
+        autoBackupFailed = false
+        allowScreenshots = false
     }
 
     // ---- Backups ----
@@ -433,6 +439,96 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun markBackedUp(at: Long = System.currentTimeMillis()) {
         lastBackupAt = at
         settings.edit().putLong("lastBackupAt", at).apply()
+    }
+
+    // ---- Automatic backups ----
+    var autoBackup by mutableStateOf(
+        com.salestracker.app.data.AutoBackupFrequency.entries.firstOrNull { it.name == settings.getString("autoBackup", null) }
+            ?.takeIf { com.salestracker.app.data.AutoBackup.hasPassword(app) }
+    )
+        private set
+    var lastAutoBackupAt by mutableLongStateOf(settings.getLong("lastAutoBackupAt", 0L))
+        private set
+    /** True when the last automatic backup couldn't be saved (no folder, no space, or the key was reset). */
+    var autoBackupFailed by mutableStateOf(settings.getBoolean("autoBackupFailed", false))
+        private set
+    private var autoBackupRunning = false
+
+    /** Turns automatic backups on with this password (kept sealed by the phone's Keystore) and makes the first one now. */
+    fun enableAutoBackup(password: String, frequency: com.salestracker.app.data.AutoBackupFrequency) {
+        val app = getApplication<Application>()
+        val cipher = com.salestracker.app.data.KeystoreCipher.getOrNull() ?: run { autoBackupFailed = true; return }
+        val pw = password.toCharArray()
+        try {
+            com.salestracker.app.data.AutoBackup.savePassword(app, pw, cipher)
+        } finally {
+            pw.fill(' ')
+        }
+        autoBackup = frequency
+        settings.edit().putString("autoBackup", frequency.name).putLong("lastAutoBackupAt", 0L).remove("autoBackupHash").apply()
+        lastAutoBackupAt = 0L
+        maybeAutoBackup(force = true)
+    }
+
+    fun chooseAutoBackupFrequency(frequency: com.salestracker.app.data.AutoBackupFrequency) {
+        autoBackup = frequency
+        settings.edit().putString("autoBackup", frequency.name).apply()
+    }
+
+    /** Turns automatic backups off and wipes the saved password. Backups already made stay in the folder. */
+    fun disableAutoBackup() {
+        com.salestracker.app.data.AutoBackup.forgetPassword(getApplication())
+        autoBackup = null
+        autoBackupFailed = false
+        settings.edit().remove("autoBackup").remove("autoBackupHash").putBoolean("autoBackupFailed", false).apply()
+    }
+
+    /**
+     * Makes an automatic backup when one is due (on opening the app and when it's put away). Nothing changed since
+     * the last one? Then no new file is written. Keeps the newest few automatic backups; never touches manual ones.
+     */
+    fun maybeAutoBackup(force: Boolean = false) {
+        val frequency = autoBackup ?: return
+        val now = System.currentTimeMillis()
+        if (autoBackupRunning || (!force && !com.salestracker.app.data.AutoBackup.isDue(lastAutoBackupAt, frequency, now))) return
+        val app = getApplication<Application>()
+        val data = repo.data.value
+        autoBackupRunning = true
+        viewModelScope.launch(kotlinx.coroutines.Dispatchers.Default) {
+            val ok = try {
+                val hash = data.toJson().toString().let { java.security.MessageDigest.getInstance("SHA-256").digest(it.toByteArray()).joinToString("") { b -> "%02x".format(b) } }
+                if (!force && settings.getString("autoBackupHash", null) == hash) {
+                    true // nothing new to save
+                } else {
+                    val cipher = com.salestracker.app.data.KeystoreCipher.getOrNull() ?: error("no key")
+                    val pw = com.salestracker.app.data.AutoBackup.readPassword(app, cipher) ?: error("no password")
+                    try {
+                        val receipts = receiptsForBackup(data)
+                        val bytes = com.salestracker.app.data.Backup.encrypt(data, pw, receipts)
+                        com.salestracker.app.data.BackupFolder.write(app, com.salestracker.app.data.AutoBackup.fileName(), bytes)
+                    } finally {
+                        pw.fill(' ')
+                    }
+                    val all = com.salestracker.app.data.BackupFolder.list(app)
+                    com.salestracker.app.data.AutoBackup.toPrune(all, { it.name }, { it.modified })
+                        .forEach { com.salestracker.app.data.BackupFolder.delete(app, it) }
+                    settings.edit().putString("autoBackupHash", hash).apply()
+                    true
+                }
+            } catch (e: Exception) {
+                false
+            }
+            withContext(kotlinx.coroutines.Dispatchers.Main) {
+                autoBackupRunning = false
+                autoBackupFailed = !ok
+                settings.edit().putBoolean("autoBackupFailed", !ok).apply()
+                if (ok) {
+                    lastAutoBackupAt = now
+                    settings.edit().putLong("lastAutoBackupAt", now).apply()
+                    markBackedUp(now)
+                }
+            }
+        }
     }
 
     /**

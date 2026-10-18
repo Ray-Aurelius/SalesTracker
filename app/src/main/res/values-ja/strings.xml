@@ -992,6 +992,14 @@
     <string name="delete_clients_records">売上と予定も削除する</string>
     <string name="allow_screenshots_title">スクリーンショットを許可</string>
     <string name="allow_screenshots_subtitle">スクリーンショットを許可するには本人確認をしてください</string>
+    <string name="auto_backup">自動バックアップ</string>
+    <string name="auto_backup_desc">暗号化したバックアップをバックアップフォルダーに自動で保存し、最新の %1$d 件を残します。パスワードは端末の安全なハードウェアに保管され、確認なしでバックアップできます。復元にはパスワードが必要です。</string>
+    <string name="auto_backup_daily">毎日</string>
+    <string name="auto_backup_weekly">毎週</string>
+    <string name="auto_backup_monthly">毎月</string>
+    <string name="auto_backup_last">前回の自動バックアップ：%1$s</string>
+    <string name="auto_backup_failed">前回の自動バックアップを保存できませんでした。「今すぐバックアップ」でフォルダーを確認してください。</string>
+    <string name="auto_backup_pending">自動バックアップはまだありません。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

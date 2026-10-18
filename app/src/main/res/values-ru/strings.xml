@@ -992,6 +992,14 @@
     <string name="delete_clients_records">Удалить также их продажи и встречи</string>
     <string name="allow_screenshots_title">Разрешить скриншоты</string>
     <string name="allow_screenshots_subtitle">Подтвердите, что это вы, чтобы разрешить скриншоты</string>
+    <string name="auto_backup">Автоматическое копирование</string>
+    <string name="auto_backup_desc">Само сохраняет зашифрованную копию в папку копий и хранит %1$d последних. Пароль хранится запертым в защищённом модуле телефона, чтобы копии делались без вопросов; для восстановления он всё равно понадобится.</string>
+    <string name="auto_backup_daily">Ежедневно</string>
+    <string name="auto_backup_weekly">Еженедельно</string>
+    <string name="auto_backup_monthly">Ежемесячно</string>
+    <string name="auto_backup_last">Последняя автокопия: %1$s</string>
+    <string name="auto_backup_failed">Не удалось сохранить последнюю автокопию. Нажмите «Создать копию сейчас», чтобы проверить папку.</string>
+    <string name="auto_backup_pending">Автокопий пока нет.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d продажа · %2$s закрыто · %3$s</item>
         <item quantity="few">%1$d продажи · %2$s закрыто · %3$s</item>

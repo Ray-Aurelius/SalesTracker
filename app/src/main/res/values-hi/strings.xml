@@ -992,6 +992,14 @@
     <string name="delete_clients_records">उनकी बिक्री और अपॉइंटमेंट भी हटाएँ</string>
     <string name="allow_screenshots_title">स्क्रीनशॉट की अनुमति दें</string>
     <string name="allow_screenshots_subtitle">स्क्रीनशॉट की अनुमति के लिए पुष्टि करें कि यह आप हैं</string>
+    <string name="auto_backup">अपने आप बैकअप</string>
+    <string name="auto_backup_desc">बैकअप फ़ोल्डर में अपने आप एन्क्रिप्टेड बैकअप सहेजता है और नवीनतम %1$d रखता है। आपका बैकअप पासवर्ड फ़ोन के सुरक्षित हार्डवेयर में बंद रहता है ताकि बिना पूछे बैकअप हो; बहाल करने के लिए यह फिर भी चाहिए।</string>
+    <string name="auto_backup_daily">रोज़</string>
+    <string name="auto_backup_weekly">हर सप्ताह</string>
+    <string name="auto_backup_monthly">हर महीने</string>
+    <string name="auto_backup_last">पिछला स्वचालित बैकअप: %1$s</string>
+    <string name="auto_backup_failed">पिछला स्वचालित बैकअप सहेजा नहीं जा सका। फ़ोल्डर जाँचने के लिए अभी बैकअप लें का उपयोग करें।</string>
+    <string name="auto_backup_pending">अभी कोई स्वचालित बैकअप नहीं।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>
         <item quantity="other">%1$d बिक्री · %2$s क्लोज़ · %3$s</item>

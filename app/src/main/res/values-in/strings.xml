@@ -992,6 +992,14 @@
     <string name="delete_clients_records">Hapus juga penjualan dan janji temu mereka</string>
     <string name="allow_screenshots_title">Izinkan tangkapan layar</string>
     <string name="allow_screenshots_subtitle">Konfirmasi bahwa ini Anda untuk mengizinkan tangkapan layar</string>
+    <string name="auto_backup">Cadangkan otomatis</string>
+    <string name="auto_backup_desc">Menyimpan cadangan terenkripsi ke folder cadangan secara otomatis dan menyimpan %1$d terbaru. Kata sandi dikunci di perangkat keras aman ponsel agar pencadangan berjalan tanpa bertanya; Anda tetap memerlukannya untuk memulihkan.</string>
+    <string name="auto_backup_daily">Harian</string>
+    <string name="auto_backup_weekly">Mingguan</string>
+    <string name="auto_backup_monthly">Bulanan</string>
+    <string name="auto_backup_last">Cadangan otomatis terakhir: %1$s</string>
+    <string name="auto_backup_failed">Cadangan otomatis terakhir tidak bisa disimpan. Gunakan Cadangkan sekarang untuk memeriksa folder.</string>
+    <string name="auto_backup_pending">Belum ada cadangan otomatis.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

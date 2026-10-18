@@ -992,6 +992,14 @@
     <string name="delete_clients_records">তাদের বিক্রয় ও অ্যাপয়েন্টমেন্টও মুছুন</string>
     <string name="allow_screenshots_title">স্ক্রিনশট অনুমতি দিন</string>
     <string name="allow_screenshots_subtitle">স্ক্রিনশট অনুমতি দিতে নিশ্চিত করুন এটি আপনি</string>
+    <string name="auto_backup">স্বয়ংক্রিয় ব্যাকআপ</string>
+    <string name="auto_backup_desc">ব্যাকআপ ফোল্ডারে নিজে থেকে এনক্রিপ্টেড ব্যাকআপ সংরক্ষণ করে এবং সর্বশেষ %1$dটি রাখে। আপনার পাসওয়ার্ড ফোনের সুরক্ষিত হার্ডওয়্যারে তালাবদ্ধ থাকে, তাই জিজ্ঞেস না করেই ব্যাকআপ হয়; পুনরুদ্ধারে এটি এখনও লাগবে।</string>
+    <string name="auto_backup_daily">প্রতিদিন</string>
+    <string name="auto_backup_weekly">প্রতি সপ্তাহ</string>
+    <string name="auto_backup_monthly">প্রতি মাস</string>
+    <string name="auto_backup_last">শেষ স্বয়ংক্রিয় ব্যাকআপ: %1$s</string>
+    <string name="auto_backup_failed">শেষ স্বয়ংক্রিয় ব্যাকআপ সংরক্ষণ করা যায়নি। ফোল্ডার দেখতে এখনই ব্যাকআপ ব্যবহার করুন।</string>
+    <string name="auto_backup_pending">এখনও কোনো স্বয়ংক্রিয় ব্যাকআপ নেই।</string>
     <plurals name="client_summary">
         <item quantity="one">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>
         <item quantity="other">%1$dটি বিক্রয় · %2$s ক্লোজ · %3$s</item>

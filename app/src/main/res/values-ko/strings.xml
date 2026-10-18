@@ -992,6 +992,14 @@
     <string name="delete_clients_records">판매와 약속도 함께 삭제</string>
     <string name="allow_screenshots_title">스크린샷 허용</string>
     <string name="allow_screenshots_subtitle">스크린샷을 허용하려면 본인임을 확인하세요</string>
+    <string name="auto_backup">자동 백업</string>
+    <string name="auto_backup_desc">암호화된 백업을 백업 폴더에 자동으로 저장하고 최신 %1$d개를 보관합니다. 비밀번호는 휴대폰의 보안 하드웨어에 잠겨 있어 묻지 않고 백업하며, 복원할 때는 여전히 필요합니다.</string>
+    <string name="auto_backup_daily">매일</string>
+    <string name="auto_backup_weekly">매주</string>
+    <string name="auto_backup_monthly">매월</string>
+    <string name="auto_backup_last">마지막 자동 백업: %1$s</string>
+    <string name="auto_backup_failed">마지막 자동 백업을 저장하지 못했습니다. 지금 백업으로 폴더를 확인하세요.</string>
+    <string name="auto_backup_pending">아직 자동 백업이 없습니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

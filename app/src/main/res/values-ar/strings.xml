@@ -992,6 +992,14 @@
     <string name="delete_clients_records">حذف مبيعاتهم ومواعيدهم أيضًا</string>
     <string name="allow_screenshots_title">السماح بلقطات الشاشة</string>
     <string name="allow_screenshots_subtitle">أكّد هويتك للسماح بلقطات الشاشة</string>
+    <string name="auto_backup">نسخ احتياطي تلقائي</string>
+    <string name="auto_backup_desc">يحفظ نسخة احتياطية مشفّرة في مجلد النسخ تلقائيًا ويحتفظ بأحدث %1$d. تُحفظ كلمة المرور مقفلة في العتاد الآمن للهاتف حتى يتم النسخ دون سؤال؛ وستظل بحاجة إليها للاستعادة.</string>
+    <string name="auto_backup_daily">يوميًا</string>
+    <string name="auto_backup_weekly">أسبوعيًا</string>
+    <string name="auto_backup_monthly">شهريًا</string>
+    <string name="auto_backup_last">آخر نسخة تلقائية: %1$s</string>
+    <string name="auto_backup_failed">تعذّر حفظ آخر نسخة تلقائية. استخدم «نسخ احتياطي الآن» للتحقق من المجلد.</string>
+    <string name="auto_backup_pending">لا توجد نسخة تلقائية بعد.</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

@@ -992,6 +992,14 @@
     <string name="delete_clients_records">同时删除他们的销售和预约</string>
     <string name="allow_screenshots_title">允许截屏</string>
     <string name="allow_screenshots_subtitle">确认是您本人以允许截屏</string>
+    <string name="auto_backup">自动备份</string>
+    <string name="auto_backup_desc">自动将加密备份保存到备份文件夹，并保留最新的 %1$d 份。备份密码锁在手机的安全硬件中，因此无需询问即可备份；恢复时仍需要该密码。</string>
+    <string name="auto_backup_daily">每天</string>
+    <string name="auto_backup_weekly">每周</string>
+    <string name="auto_backup_monthly">每月</string>
+    <string name="auto_backup_last">上次自动备份：%1$s</string>
+    <string name="auto_backup_failed">上次自动备份未能保存。请使用“立即备份”检查备份文件夹。</string>
+    <string name="auto_backup_pending">还没有自动备份。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

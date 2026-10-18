@@ -992,6 +992,14 @@
     <string name="delete_clients_records">Elimina anche le loro vendite e appuntamenti</string>
     <string name="allow_screenshots_title">Consenti screenshot</string>
     <string name="allow_screenshots_subtitle">Conferma la tua identità per consentire gli screenshot</string>
+    <string name="auto_backup">Backup automatico</string>
+    <string name="auto_backup_desc">Salva da solo un backup cifrato nella cartella dei backup e conserva i %1$d più recenti. La password resta bloccata nell\'hardware sicuro del telefono così i backup si fanno senza chiedere; ti servirà comunque per il ripristino.</string>
+    <string name="auto_backup_daily">Giornaliero</string>
+    <string name="auto_backup_weekly">Settimanale</string>
+    <string name="auto_backup_monthly">Mensile</string>
+    <string name="auto_backup_last">Ultimo backup automatico: %1$s</string>
+    <string name="auto_backup_failed">Non è stato possibile salvare l\'ultimo backup automatico. Usa Esegui backup ora per controllare la cartella.</string>
+    <string name="auto_backup_pending">Ancora nessun backup automatico.</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vendita · %2$s chiuse · %3$s</item>
         <item quantity="many">%1$d vendite · %2$s chiuse · %3$s</item>

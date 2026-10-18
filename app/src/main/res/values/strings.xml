@@ -1133,4 +1133,12 @@
     <string name="delete_clients_records">Also delete their sales and appointments</string>
     <string name="allow_screenshots_title">Allow screenshots</string>
     <string name="allow_screenshots_subtitle">Confirm it\'s you to allow screenshots</string>
+    <string name="auto_backup">Back up automatically</string>
+    <string name="auto_backup_desc">Saves an encrypted backup to the backup folder on its own and keeps the latest %1$d. Your backup password is kept locked in this phone\'s secure hardware so backups happen without asking; you\'ll still need it to restore.</string>
+    <string name="auto_backup_daily">Daily</string>
+    <string name="auto_backup_weekly">Weekly</string>
+    <string name="auto_backup_monthly">Monthly</string>
+    <string name="auto_backup_last">Last automatic backup: %1$s</string>
+    <string name="auto_backup_failed">The last automatic backup couldn\'t be saved. Use Back up now to check the backup folder.</string>
+    <string name="auto_backup_pending">No automatic backup yet.</string>
 </resources>

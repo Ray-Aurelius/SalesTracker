@@ -2,6 +2,7 @@
 
 package com.salestracker.app
 
+import com.salestracker.app.security.findActivity
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
@@ -195,7 +196,11 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         // Rotating or switching language restarts the screen; that isn't leaving the app.
-        if (!isChangingConfigurations) vm.backgroundedAt = System.currentTimeMillis()
+        if (!isChangingConfigurations) {
+            vm.backgroundedAt = System.currentTimeMillis()
+            // Put away: a good moment for an automatic backup, if one is due.
+            vm.maybeAutoBackup()
+        }
     }
 
     /** Blocks or allows screenshots for the whole app window. */
@@ -346,6 +351,10 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     LaunchedEffect(vm.pendingOpenTasks) {
         if (vm.pendingOpenTasks) { tab = Tab.TASKS; opened = true; vm.pendingOpenTasks = false }
     }
+    // The window's screenshot blocking follows the Security & privacy setting.
+    LaunchedEffect(vm.allowScreenshots) { (context.findActivity() as? MainActivity)?.applyScreenshotPolicy(vm.allowScreenshots) }
+    // An automatic backup, if one is due, when the app opens.
+    LaunchedEffect(Unit) { vm.maybeAutoBackup() }
     // Follow-ups for clients nobody has contacted in a while (only when that rule is on), once a day.
     LaunchedEffect(Unit) { vm.checkQuietClients() }
     // After a follow-up is marked done: offer the next one (Settings → Follow-ups can turn this off).

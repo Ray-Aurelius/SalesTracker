@@ -992,6 +992,14 @@
     <string name="delete_clients_records">Xóa cả giao dịch và lịch hẹn của họ</string>
     <string name="allow_screenshots_title">Cho phép chụp màn hình</string>
     <string name="allow_screenshots_subtitle">Xác nhận là bạn để cho phép chụp màn hình</string>
+    <string name="auto_backup">Tự động sao lưu</string>
+    <string name="auto_backup_desc">Tự lưu bản sao lưu đã mã hóa vào thư mục sao lưu và giữ %1$d bản mới nhất. Mật khẩu được khóa trong phần cứng bảo mật của điện thoại để sao lưu không cần hỏi; bạn vẫn cần nó để khôi phục.</string>
+    <string name="auto_backup_daily">Hằng ngày</string>
+    <string name="auto_backup_weekly">Hằng tuần</string>
+    <string name="auto_backup_monthly">Hằng tháng</string>
+    <string name="auto_backup_last">Lần tự động sao lưu gần nhất: %1$s</string>
+    <string name="auto_backup_failed">Không lưu được lần tự động sao lưu gần nhất. Dùng Sao lưu ngay để kiểm tra thư mục.</string>
+    <string name="auto_backup_pending">Chưa có bản tự động sao lưu.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>
