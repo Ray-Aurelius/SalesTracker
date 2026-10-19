@@ -763,7 +763,9 @@ def main(apk):
 
     section("Tiered commission plan")
     tap(r"^Stats$", wait=1.5)
-    if tap(r"^Commission earned$", wait=1.5, scroll=6):
+    if not find(r"^Commission plan$"):
+        fail("no Commission plan button beside the period menu on Stats")
+    if tap(r"^Commission plan$", wait=1.5) or tap(r"^Commission earned$", wait=1.5, scroll=6):
         tap(r"^Tiered$", "plan-tiered", wait=1.2)
         tap(r"^Save$", wait=1.5)
         shot("stats-tiered")

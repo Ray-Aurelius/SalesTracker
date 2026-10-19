@@ -25,6 +25,8 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.ui.platform.testTag
+import androidx.compose.material.icons.filled.Percent
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
@@ -106,8 +108,19 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             }
             item { OnTrackCard(vm, data) }
             item {
-                // The full sales report lives on the Sales tab.
-                PeriodPicker(period, { period = it })
+                // The period, and a clear way in to the commission rate (the full sales report lives on the Sales tab).
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    PeriodPicker(period, { period = it }, modifier = Modifier.weight(1f))
+                    androidx.compose.material3.OutlinedButton(
+                        onClick = { editingRate = true },
+                        modifier = Modifier.weight(1f).height(48.dp).testTag(COMMISSION_PLAN_TAG),
+                        contentPadding = PaddingValues(horizontal = 12.dp),
+                    ) {
+                        Icon(Icons.Filled.Percent, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(Modifier.width(6.dp))
+                        Text(stringResource(R.string.commission_plan_title), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                    }
+                }
             }
             // Two compact tiles per row keep the whole page short.
             item {
