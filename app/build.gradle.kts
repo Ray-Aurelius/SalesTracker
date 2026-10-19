@@ -47,9 +47,6 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             isDebuggable = false
             if (stableKey.exists() && !signingPassword.isNullOrEmpty()) signingConfig = signingConfigs.getByName("stable")
-            // The only native code is Compose's small graphics library. Put its symbol table in the bundle so
-            // Play Console can read native crash reports (and stops warning about missing debug symbols).
-            ndk { debugSymbolLevel = "SYMBOL_TABLE" }
         }
     }
 
