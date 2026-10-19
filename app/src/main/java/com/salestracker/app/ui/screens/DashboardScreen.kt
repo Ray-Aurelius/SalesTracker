@@ -277,3 +277,6 @@ private fun BackupNudge(vm: AppViewModel) {
         }
     }
 }
+
+/** Tag for the Commission plan button on the Stats page. */
+const val COMMISSION_PLAN_TAG = "commissionPlan"
