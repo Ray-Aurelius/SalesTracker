@@ -625,7 +625,11 @@ def main(apk):
                 fail("the encrypted backup is not in Documents/Quota Vault Backups")
             tap(r"^Done$", wait=1.5)
             shot("backup-listed")
-            if not find(r"^Newest$"):
+            for _ in range(5):  # the list refreshes from the folder in the background
+                if find(r"^Newest$"):
+                    break
+                time.sleep(1.5)
+            if not find_scrolling(r"^Newest$", tries=2):
                 fail("the new backup is not listed under Your backups")
 
     back_up()
