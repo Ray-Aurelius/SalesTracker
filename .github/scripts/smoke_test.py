@@ -512,6 +512,8 @@ def main(apk):
     section("A client's profile with stats")
     tap(r"^Clients$", wait=1.5)
     tap(r"Alex Morgan", "client-profile", wait=2)
+    if not find(r"^Save$"):
+        fail("tapping a client didn't open their profile")
     adb("shell", "input", "swipe", "540", "1700", "540", "500", "300")
     time.sleep(1)
     shot("client-stats")
