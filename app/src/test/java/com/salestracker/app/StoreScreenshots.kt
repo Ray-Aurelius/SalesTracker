@@ -11,6 +11,7 @@ import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onLast
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.performTouchInput
@@ -158,8 +159,10 @@ class StoreScreenshots {
         rule.waitForIdle()
         // Client cards also take a long press (to choose several), so tap with the clock running: with it paused,
         // the press would last until the next frame and read as a long press.
-        // Tap the name itself: the middle of the card can be its follow-up's Done button.
-        rule.onAllNodesWithText("Alex Morgan", useUnmergedTree = true).onFirst().performClick()
+        // Open the card through its click action (no simulated finger: the card also takes long presses, and the
+        // middle of it can be its follow-up's Done button).
+        rule.onAllNodesWithText("Alex Morgan").onFirst()
+            .performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.OnClick)
         rule.mainClock.autoAdvance = false
         rule.mainClock.advanceTimeBy(1000)
         shotWithPopups("dialog-client-profile", waitIdle = false)
