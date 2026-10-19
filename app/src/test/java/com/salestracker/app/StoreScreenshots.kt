@@ -158,7 +158,8 @@ class StoreScreenshots {
         rule.waitForIdle()
         // Client cards also take a long press (to choose several), so tap with the clock running: with it paused,
         // the press would last until the next frame and read as a long press.
-        rule.onAllNodesWithText("Alex Morgan").onFirst().performClick()
+        // Tap the name itself: the middle of the card can be its follow-up's Done button.
+        rule.onAllNodesWithText("Alex Morgan", useUnmergedTree = true).onFirst().performClick()
         rule.mainClock.autoAdvance = false
         rule.mainClock.advanceTimeBy(1000)
         shotWithPopups("dialog-client-profile", waitIdle = false)
