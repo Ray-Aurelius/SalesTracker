@@ -81,19 +81,21 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
         ) {
             item {
                 // The period and Log sale side by side (the + button below logs a sale too).
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                ControlPair(
                     // Today isn't offered here: the log is for looking back over a stretch of time.
-                    PeriodPicker(period, { period = it }, modifier = Modifier.weight(1f), options = Period.entries.filter { it != Period.TODAY })
-                    androidx.compose.material3.Button(
-                        onClick = { adding = true },
-                        modifier = Modifier.weight(1f).height(48.dp).testTag(SALES_LOG_ADD_TAG),
-                        contentPadding = PaddingValues(horizontal = 12.dp),
-                    ) {
-                        Icon(Icons.Filled.PointOfSale, contentDescription = null, modifier = Modifier.size(18.dp))
-                        Spacer(Modifier.width(8.dp))
-                        Text(stringResource(LocalTerms.current.logSale), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
-                    }
-                }
+                    { m -> PeriodPicker(period, { period = it }, modifier = m, options = Period.entries.filter { it != Period.TODAY }) },
+                    { m ->
+                        androidx.compose.material3.Button(
+                            onClick = { adding = true },
+                            modifier = m.height(48.dp).testTag(SALES_LOG_ADD_TAG),
+                            contentPadding = PaddingValues(horizontal = 12.dp),
+                        ) {
+                            Icon(Icons.Filled.PointOfSale, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text(stringResource(LocalTerms.current.logSale), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                        }
+                    },
+                )
             }
             item {
                 // The sales report, starting on the period shown here.

@@ -176,3 +176,22 @@ fun rememberOwnerCheck(vm: com.salestracker.app.ui.AppViewModel): ((() -> Unit) 
         }
     }
 }
+
+/**
+ * A pair of controls in one row (each half the width), or one above the other, full width, when the page is
+ * narrow (side menu, small phone or large text) so neither label gets cut off.
+ */
+@Composable
+fun ControlPair(first: @Composable (Modifier) -> Unit, second: @Composable (Modifier) -> Unit) {
+    if (isNarrow()) {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            first(Modifier.fillMaxWidth())
+            second(Modifier.fillMaxWidth())
+        }
+    } else {
+        Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            first(Modifier.weight(1f))
+            second(Modifier.weight(1f))
+        }
+    }
+}

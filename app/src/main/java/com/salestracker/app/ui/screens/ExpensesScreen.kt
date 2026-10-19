@@ -124,18 +124,20 @@ fun ExpensesScreen(vm: AppViewModel, data: AppData) {
         ) {
             item {
                 // The period and the expense report side by side.
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    PeriodPicker(period, { period = it }, modifier = Modifier.weight(1f), options = Period.entries.filter { it != Period.TODAY })
-                    OutlinedButton(
-                        onClick = { report = true },
-                        modifier = Modifier.weight(1f).height(48.dp),
-                        contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 12.dp),
-                    ) {
-                        Icon(Icons.Filled.PictureAsPdf, contentDescription = null, modifier = Modifier.size(18.dp))
-                        Spacer(Modifier.width(6.dp))
-                        Text(stringResource(R.string.exp_report_button), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
-                    }
-                }
+                ControlPair(
+                    { m -> PeriodPicker(period, { period = it }, modifier = m, options = Period.entries.filter { it != Period.TODAY }) },
+                    { m ->
+                        OutlinedButton(
+                            onClick = { report = true },
+                            modifier = m.height(48.dp),
+                            contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 12.dp),
+                        ) {
+                            Icon(Icons.Filled.PictureAsPdf, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(6.dp))
+                            Text(stringResource(R.string.exp_report_button), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                        }
+                    },
+                )
             }
             item {
                 Card(Modifier.fillMaxWidth().semantics(mergeDescendants = true) {}) {

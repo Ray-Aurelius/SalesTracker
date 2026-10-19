@@ -579,4 +579,11 @@ class LayoutAudit {
 
     @Test @Config(sdk = [34], qualifiers = "w720dp-h360dp-land-xxhdpi")
     fun e_landscapeSide() = run("e-land-side", side = true, textScale = 1.0f)
+
+    /** A large phone (Galaxy S24 Ultra size) with larger text, menu down the side and along the bottom. */
+    @Test @Config(sdk = [34], qualifiers = "w384dp-h832dp-xxhdpi")
+    fun f_phoneSideLargeText() = run("f-phone-side-130", side = true, textScale = 1.3f)
+
+    @Test @Config(sdk = [34], qualifiers = "w384dp-h832dp-xxhdpi")
+    fun g_phoneBottomLargeText() = run("g-phone-bottom-130", side = false, textScale = 1.3f)
 }

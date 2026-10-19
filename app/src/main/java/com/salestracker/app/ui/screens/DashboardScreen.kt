@@ -109,18 +109,20 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             item { OnTrackCard(vm, data) }
             item {
                 // The period, and a clear way in to the commission rate (the full sales report lives on the Sales tab).
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    PeriodPicker(period, { period = it }, modifier = Modifier.weight(1f))
-                    androidx.compose.material3.OutlinedButton(
-                        onClick = { editingRate = true },
-                        modifier = Modifier.weight(1f).height(48.dp).testTag(COMMISSION_PLAN_TAG),
-                        contentPadding = PaddingValues(horizontal = 12.dp),
-                    ) {
-                        Icon(Icons.Filled.Percent, contentDescription = null, modifier = Modifier.size(18.dp))
-                        Spacer(Modifier.width(6.dp))
-                        Text(stringResource(R.string.commission_plan_title), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
-                    }
-                }
+                ControlPair(
+                    { m -> PeriodPicker(period, { period = it }, modifier = m) },
+                    { m ->
+                        androidx.compose.material3.OutlinedButton(
+                            onClick = { editingRate = true },
+                            modifier = m.height(48.dp).testTag(COMMISSION_PLAN_TAG),
+                            contentPadding = PaddingValues(horizontal = 12.dp),
+                        ) {
+                            Icon(Icons.Filled.Percent, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(6.dp))
+                            Text(stringResource(R.string.commission_plan_title), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                        }
+                    },
+                )
             }
             // Two compact tiles per row keep the whole page short.
             item {
@@ -138,26 +140,49 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                     { m ->
                         Card(onClick = { editingRate = true }, modifier = m) {
                             Column(Modifier.padding(14.dp)) {
-                                Row(verticalAlignment = Alignment.Top) {
-                                    Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.labelMedium,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, modifier = Modifier.weight(1f))
-                                    // The rate in use (the current tier's on a tiered plan), small in the corner.
-                                    val rate = data.commissionPlan.currentTierRate() ?: data.defaultCommissionPercent
-                                    Text(
-                                        (if (PrivacyMode.hideAmounts) "••" else formatRateInput(rate)) + "%",
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.primary,
-                                        maxLines = 1,
-                                        modifier = Modifier.padding(start = 6.dp),
-                                    )
+                                // The rate in use (the current tier's on a tiered plan), small in the top-right corner.
+                                // When the tile is too narrow for that (side menu, large text), it sits beside the amount
+                                // instead, so "Commission earned" never breaks in the middle of a word.
+                                val rate = data.commissionPlan.currentTierRate() ?: data.defaultCommissionPercent
+                                val rateText = (if (PrivacyMode.hideAmounts) "••" else formatRateInput(rate)) + "%"
+                                val rateLabel: @Composable () -> Unit = {
+                                    Text(rateText, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary,
+                                        maxLines = 1, softWrap = false, modifier = Modifier.padding(start = 6.dp))
                                 }
-                                FitText(
-                                    formatMoney(stats.commission),
-                                    style = MaterialTheme.typography.titleLarge,
-                                    fontWeight = FontWeight.Bold,
-                                    color = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
-                                )
+                                // Room in the corner? The tile's inner width (half the page, less gaps and padding) must hold
+                                // the title's longest word plus the rate, measured at the size the text really is.
+                                val measurer = androidx.compose.ui.text.rememberTextMeasurer()
+                                val density = androidx.compose.ui.platform.LocalDensity.current
+                                val title = stringResource(R.string.commission_earned)
+                                val longestWord = title.split(' ').maxByOrNull { it.length }.orEmpty()
+                                val labelStyle = MaterialTheme.typography.labelMedium
+                                val rateStyle = MaterialTheme.typography.labelSmall
+                                val roomy = with(density) {
+                                    val inner = (LocalContentWidth.current - 32.dp - 12.dp) / 2 - 28.dp
+                                    val need = measurer.measure(longestWord, labelStyle).size.width.toDp() +
+                                        measurer.measure(rateText, rateStyle).size.width.toDp() + 10.dp
+                                    need <= inner
+                                }
+                                if (roomy) {
+                                    Row(verticalAlignment = Alignment.Top) {
+                                        Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.labelMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, modifier = Modifier.weight(1f))
+                                        rateLabel()
+                                    }
+                                } else {
+                                    Text(stringResource(R.string.commission_earned), style = MaterialTheme.typography.labelMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2)
+                                }
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    FitText(
+                                        formatMoney(stats.commission),
+                                        style = MaterialTheme.typography.titleLarge,
+                                        fontWeight = FontWeight.Bold,
+                                        color = MaterialTheme.colorScheme.primary,
+                                        modifier = Modifier.weight(1f).padding(vertical = 2.dp),
+                                    )
+                                    if (!roomy) rateLabel()
+                                }
                             }
                         }
                     },
