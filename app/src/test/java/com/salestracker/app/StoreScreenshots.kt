@@ -156,8 +156,10 @@ class StoreScreenshots {
         shotWithPopups("menu-client-filter")
         rule.onAllNodesWithText(app.getString(R.string.pipeline_all), substring = true).onLast().performClick()
         rule.waitForIdle()
-        rule.mainClock.autoAdvance = false
+        // Client cards also take a long press (to choose several), so tap with the clock running: with it paused,
+        // the press would last until the next frame and read as a long press.
         rule.onAllNodesWithText("Alex Morgan").onFirst().performClick()
+        rule.mainClock.autoAdvance = false
         rule.mainClock.advanceTimeBy(1000)
         shotWithPopups("dialog-client-profile", waitIdle = false)
         rule.onAllNodesWithText(app.getString(R.string.cancel)).onLast().performClick()
