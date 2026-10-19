@@ -166,6 +166,11 @@ class StoreScreenshots {
         rule.mainClock.autoAdvance = false
         rule.mainClock.advanceTimeBy(1000)
         shotWithPopups("dialog-client-profile", waitIdle = false)
+        if (rule.onAllNodesWithText(app.getString(R.string.cancel)).fetchSemanticsNodes().isEmpty()) {
+            val texts = rule.onAllNodes(androidx.compose.ui.test.hasText("", substring = true)).fetchSemanticsNodes()
+                .flatMap { n -> n.config.getOrElseNullable(androidx.compose.ui.semantics.SemanticsProperties.Text) { null }.orEmpty().map { it.text } }
+            throw AssertionError("client profile did not open; on screen: " + texts.joinToString(" | ").take(1500))
+        }
         rule.onAllNodesWithText(app.getString(R.string.cancel)).onLast().performClick()
         rule.mainClock.advanceTimeBy(1000)
         rule.mainClock.autoAdvance = true
