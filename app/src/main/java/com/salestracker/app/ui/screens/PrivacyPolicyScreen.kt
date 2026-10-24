@@ -110,6 +110,8 @@ fun PrivacyPolicyScreen(onClose: () -> Unit) {
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.semantics { heading() },
                             )
+                            // Feedback by email comes first in the section on what users can send us.
+                            if (h == R.string.pp_h8) Text(stringResource(R.string.pp_fb), style = MaterialTheme.typography.bodyMedium)
                             Text(stringResource(b), style = MaterialTheme.typography.bodyMedium)
                         }
                     }

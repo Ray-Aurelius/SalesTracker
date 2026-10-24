@@ -679,7 +679,7 @@
     <string name="crash_save">Lưu báo cáo sự cố</string>
     <string name="crash_save_desc">Nếu ứng dụng đóng đột ngột, giữ một báo cáo trên điện thoại này để bạn quyết định có gửi hay không. Tắt mục này sẽ xóa các báo cáo đã lưu.</string>
     <string name="scam_title">Chúng tôi sẽ KHÔNG BAO GIỜ yêu cầu dữ liệu của bạn</string>
-    <string name="scam_body">Quota Vault sẽ không bao giờ yêu cầu thông tin cá nhân của bạn, thông tin khách hàng của bạn, tệp sao lưu hay mật khẩu của bạn. Không qua email, điện thoại, tin nhắn hay mạng xã hội, kể cả khi hỗ trợ. Thứ duy nhất bạn có thể gửi cho chúng tôi là báo cáo sự cố, nếu bạn muốn, và báo cáo không chứa dữ liệu nào của bạn. Bất kỳ ai yêu cầu dữ liệu của bạn hoặc của khách hàng bạn đều là kẻ lừa đảo. Đừng trả lời, đừng chia sẻ gì cả và hãy chặn họ.</string>
+    <string name="scam_body">Quota Vault sẽ không bao giờ hỏi thông tin cá nhân của bạn, thông tin khách hàng, tệp sao lưu hay mật khẩu của bạn. Không qua email, điện thoại, tin nhắn hay mạng xã hội, kể cả khi hỗ trợ. Thứ duy nhất bạn có thể gửi cho chúng tôi là góp ý của chính bạn hoặc báo cáo sự cố, nếu bạn muốn, và chúng tôi không cần dữ liệu nào của bạn cho cả hai. Bất kỳ ai hỏi dữ liệu của bạn hay của khách hàng đều là kẻ lừa đảo. Đừng trả lời, đừng chia sẻ gì và hãy chặn họ.</string>
     <string name="scam_backup">Đừng bao giờ gửi tệp sao lưu hoặc mật khẩu của tệp cho bất kỳ ai, kể cả người tự xưng là Quota Vault. Chúng tôi sẽ không bao giờ yêu cầu. Ai yêu cầu đều là kẻ lừa đảo.</string>
     <string name="scam_crash">Đừng thêm tên, số điện thoại hay bất kỳ thông tin cá nhân hoặc khách hàng nào vào email. Chúng tôi sẽ không bao giờ yêu cầu, và ai yêu cầu đều là kẻ lừa đảo.</string>
     <string name="commission_owed_label">Hoa hồng chưa nhận</string>
@@ -1038,7 +1038,7 @@
     <string name="pp_row_desc">Toàn bộ chính sách: ứng dụng làm gì với dữ liệu của bạn và những gì nó không bao giờ làm</string>
     <string name="pp_title">Chính sách quyền riêng tư</string>
     <string name="pp_effective">Có hiệu lực từ ngày 24 tháng 10 năm 2026 · Quota Vault cho Android</string>
-    <string name="pp_summary">Tóm lại: Quota Vault không thu thập, gửi đi, bán hay chia sẻ bất kỳ dữ liệu nào của bạn. Ứng dụng không có quyền truy cập internet, không có tài khoản, quảng cáo, phân tích hay theo dõi. Mọi thứ bạn nhập đều nằm trên điện thoại này, đã được mã hóa. Thứ duy nhất chúng tôi có thể nhận từ bạn là báo cáo sự cố mà bạn tự chọn gửi qua email, và nó không chứa dữ liệu nào của bạn.</string>
+    <string name="pp_summary">Tóm lại: Quota Vault không thu thập, gửi đi, bán hay chia sẻ bất kỳ dữ liệu nào của bạn. Ứng dụng không có quyền truy cập internet, không có tài khoản, quảng cáo, phân tích hay theo dõi. Mọi thứ bạn nhập đều nằm trên điện thoại này, đã được mã hóa. Chúng tôi chỉ nhận những gì bạn tự chọn gửi qua email: góp ý của bạn, hoặc báo cáo sự cố không chứa dữ liệu nào của bạn.</string>
     <string name="pp_translation">Đây là bản dịch. Nếu có khác biệt với bản tiếng Anh, bản tiếng Anh được áp dụng.</string>
     <string name="pp_h1">Chúng tôi là ai</string>
     <string name="pp_b1">Quota Vault (\"ứng dụng\") là ứng dụng theo dõi bán hàng do một nhà phát triển độc lập phát hành trên Google Play. Trong chính sách này, \"chúng tôi\" là nhà phát triển ứng dụng.</string>
@@ -1054,7 +1054,7 @@
     <string name="pp_b6">• Chụp màn hình, quay màn hình và bản xem trước trong ứng dụng gần đây bị chặn, trừ khi bạn cho phép chụp màn hình; ảnh hóa đơn luôn được bảo vệ.\n• Không thể sao chép gì từ ứng dụng ra bộ nhớ tạm.\n• Bàn phím được yêu cầu không học những gì bạn gõ, và tính năng tự động điền cũng như thu thập nội dung của Android bị tắt cho ứng dụng.\n• Thông báo nhắc nhở không bao giờ hiện tên khách hàng, tiêu đề hay ghi chú, chỉ cho biết sắp đến hạn.\n• Tiện ích màn hình chính không bao giờ hiện họ tên đầy đủ, số điện thoại hay email của khách hàng, và chỉ hiện số tiền nếu bạn cho phép.\n• Chạm Gọi hoặc Email ở một khách hàng sẽ chuyển đúng số hoặc địa chỉ đó sang ứng dụng điện thoại hoặc email của bạn.</string>
     <string name="pp_h7">Quyền</string>
     <string name="pp_b7">• Thông báo: hiển thị lời nhắc bạn đặt.\n• Báo thức và lời nhắc: giúp lời nhắc kêu đúng giờ.\n• Chạy khi khởi động: đặt lại lời nhắc sau khi điện thoại khởi động lại.\n• Sinh trắc học: chỉ khi bạn bật khóa ứng dụng. Android tự kiểm tra; ứng dụng không bao giờ nhận vân tay, khuôn mặt hay mã PIN của bạn.\n\nỨng dụng không bao giờ xin quyền internet, danh bạ, vị trí, máy ảnh, micrô, ảnh, tệp, cuộc gọi hay tin nhắn. Nhập bảng tính dùng trình chọn tệp của Android: ứng dụng chỉ đọc đúng một tệp bạn chọn, một lần.</string>
-    <string name="pp_h8">Báo cáo sự cố</string>
+    <string name="pp_h8">Góp ý và báo cáo sự cố</string>
     <string name="pp_b8">Báo cáo sự cố là tùy chọn và ứng dụng không bao giờ tự gửi. Nếu ứng dụng đóng đột ngột, nó có thể lưu trên điện thoại này một báo cáo kỹ thuật ngắn: phiên bản ứng dụng và Android, mẫu điện thoại, thời gian và vị trí lỗi trong mã. Báo cáo không bao giờ chứa giao dịch, khách hàng, ghi chú hay bất cứ gì bạn đã gõ. Bạn quyết định có gửi email cho chúng tôi hay không; nếu gửi, chúng tôi nhận báo cáo và địa chỉ email của bạn, và chỉ dùng chúng để sửa lỗi và trả lời bạn. Bạn có thể xem, xóa hoặc tắt báo cáo sự cố trong Bảo mật và quyền riêng tư.</string>
     <string name="pp_h9">Google Play, xếp hạng và đánh giá</string>
     <string name="pp_b9">Google xử lý giao dịch mua của bạn theo chính sách quyền riêng tư của Google. Chúng tôi chỉ thấy các số liệu tổng mà Google Play cung cấp cho mọi nhà phát triển (như số lượt cài đặt) và thông tin đơn hàng mà Google cung cấp cho người bán.\n\nThỉnh thoảng, sau khi bạn ghi một giao dịch, ứng dụng có thể yêu cầu Google Play hiển thị cửa sổ đánh giá. Cửa sổ này thuộc về ứng dụng Cửa hàng Play, nơi xử lý mọi xếp hạng hoặc nhận xét bạn để lại; ứng dụng không gửi gì và không bao giờ biết bạn có đánh giá hay đánh giá thế nào. Google Play giới hạn tần suất cửa sổ có thể xuất hiện. Bạn có thể tắt tính năng này bất cứ lúc nào trong Cài đặt → Đánh giá Quota Vault.</string>
@@ -1082,6 +1082,25 @@
     <string name="ag_buy">Giao dịch mua được thực hiện qua Google Play; thanh toán và hoàn tiền do Google xử lý theo chính sách của Google Play. Chúng tôi không bao giờ thấy thông tin thanh toán của bạn.</string>
     <string name="ag_contact_t">Liên hệ</string>
     <string name="ag_contact">Câu hỏi về các điều khoản này: gửi email đến quotavaultsupport@gmail.com.</string>
+    <string name="fb_row">Gửi góp ý</string>
+    <string name="fb_row_desc">Ý tưởng, sự cố hay câu hỏi: chúng tôi đọc mọi tin nhắn</string>
+    <string name="fb_title">Chúng tôi rất muốn nghe ý kiến của bạn</string>
+    <string name="fb_intro">Quota Vault tồn tại là nhờ bạn. Mọi ý tưởng, sự cố và câu hỏi đều đến thẳng người làm ra ứng dụng, và mọi tin nhắn đều được đọc. Ý tưởng của bạn quyết định những gì sẽ được làm tiếp theo.</string>
+    <string name="fb_kind_label">Bạn muốn nói về điều gì?</string>
+    <string name="fb_kind_idea">Ý tưởng hoặc mong muốn</string>
+    <string name="fb_kind_problem">Có gì đó không hoạt động</string>
+    <string name="fb_kind_question">Câu hỏi</string>
+    <string name="fb_kind_love">Điều tôi yêu thích</string>
+    <string name="fb_message">Tin nhắn của bạn (tùy chọn)</string>
+    <string name="fb_include">Gửi kèm phiên bản ứng dụng và mẫu điện thoại</string>
+    <string name="fb_include_desc">Giúp chúng tôi sửa lỗi nhanh hơn: %1$s</string>
+    <string name="fb_how">Ứng dụng email sẽ mở với nội dung này gửi đến %1$s. Không có gì được gửi cho đến khi bạn nhấn Gửi ở đó. Vui lòng không ghi tên hay thông tin khách hàng.</string>
+    <string name="fb_open">Mở email</string>
+    <string name="fb_subject">Góp ý về Quota Vault: %1$s</string>
+    <string name="fb_thanks_title">Cảm ơn bạn!</string>
+    <string name="fb_thanks">Cảm ơn bạn đã giúp Quota Vault tốt hơn. Khi bạn nhấn Gửi, tin nhắn sẽ đến thẳng chỗ chúng tôi, và chúng tôi sẽ trả lời đến địa chỉ bạn dùng để gửi.</string>
+    <string name="rate_feedback">Có ý tưởng hay gặp sự cố? Gửi góp ý</string>
+    <string name="pp_fb">Bạn có thể gửi email cho chúng tôi về ý tưởng, sự cố hay câu hỏi bất cứ lúc nào từ Cài đặt → Gửi góp ý. Ứng dụng email sẽ mở với tin nhắn gửi đến chúng tôi, và không có gì được gửi cho đến khi bạn nhấn Gửi. Chúng tôi nhận nội dung bạn viết và địa chỉ email của bạn, cùng phiên bản ứng dụng và mẫu điện thoại chỉ khi bạn để ô đó được chọn. Chúng tôi chỉ dùng chúng để đọc, trả lời và cải thiện ứng dụng, và không bao giờ chia sẻ. Vui lòng không ghi thông tin khách hàng.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

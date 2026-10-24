@@ -679,7 +679,7 @@
     <string name="crash_save">Simpan laporan error</string>
     <string name="crash_save_desc">Jika aplikasi tertutup tiba-tiba, simpan laporan di ponsel ini agar Anda bisa memutuskan apakah akan mengirimnya. Mematikan opsi ini akan menghapus laporan yang tersimpan.</string>
     <string name="scam_title">Kami TIDAK AKAN PERNAH meminta data Anda</string>
-    <string name="scam_body">Quota Vault tidak akan pernah meminta informasi pribadi Anda, informasi klien Anda, file cadangan, atau kata sandi Anda. Tidak lewat email, telepon, SMS, atau media sosial, bahkan untuk dukungan sekalipun. Satu-satunya yang mungkin Anda kirim kepada kami adalah laporan error, jika Anda mau, dan laporan itu tidak berisi data Anda. Siapa pun yang meminta data Anda atau data klien Anda adalah penipu. Jangan balas, jangan bagikan apa pun, dan blokir mereka.</string>
+    <string name="scam_body">Quota Vault tidak akan pernah meminta informasi pribadi Anda, informasi klien, file cadangan, atau kata sandi Anda. Tidak lewat email, telepon, SMS, atau media sosial, bahkan tidak untuk dukungan. Satu-satunya yang mungkin Anda kirim ke kami adalah masukan Anda sendiri atau laporan crash, jika Anda mau, dan kami tidak memerlukan data Anda untuk keduanya. Siapa pun yang meminta data Anda atau data klien Anda adalah penipu. Jangan membalas, jangan berbagi apa pun, dan blokir mereka.</string>
     <string name="scam_backup">Jangan pernah mengirim file cadangan atau kata sandinya kepada siapa pun, bahkan kepada orang yang mengaku dari Quota Vault. Kami tidak akan pernah memintanya. Siapa pun yang meminta adalah penipu.</string>
     <string name="scam_crash">Jangan menambahkan nama, nomor telepon, atau informasi pribadi atau klien apa pun ke email. Kami tidak akan pernah memintanya, dan siapa pun yang meminta adalah penipu.</string>
     <string name="commission_owed_label">Komisi yang belum dibayar</string>
@@ -1038,7 +1038,7 @@
     <string name="pp_row_desc">Kebijakan lengkap: apa yang dilakukan aplikasi dengan data Anda, dan apa yang tidak pernah dilakukannya</string>
     <string name="pp_title">Kebijakan privasi</string>
     <string name="pp_effective">Berlaku sejak 24 Oktober 2026 · Quota Vault untuk Android</string>
-    <string name="pp_summary">Singkatnya: Quota Vault tidak mengumpulkan, mengirim, menjual, atau membagikan data Anda. Aplikasi ini tidak punya akses internet, akun, iklan, analitik, maupun pelacakan. Semua yang Anda masukkan tetap di ponsel ini, terenkripsi. Satu-satunya hal yang mungkin kami terima dari Anda adalah laporan crash yang Anda pilih sendiri untuk dikirim lewat email, dan laporan itu tidak berisi data Anda.</string>
+    <string name="pp_summary">Singkatnya: Quota Vault tidak mengumpulkan, mengirim, menjual, atau membagikan data Anda. Aplikasi ini tidak punya akses internet, akun, iklan, analitik, maupun pelacakan. Semua yang Anda masukkan tetap di ponsel ini, terenkripsi. Kami hanya menerima apa yang Anda sendiri pilih untuk dikirim lewat email: masukan Anda, atau laporan crash yang tidak berisi data Anda.</string>
     <string name="pp_translation">Ini adalah terjemahan. Jika berbeda dengan versi bahasa Inggris, yang berlaku adalah versi bahasa Inggris.</string>
     <string name="pp_h1">Siapa kami</string>
     <string name="pp_b1">Quota Vault (\"aplikasi\") adalah aplikasi pelacak penjualan yang diterbitkan di Google Play oleh pengembang independen. Dalam kebijakan ini, \"kami\" berarti pengembang aplikasi.</string>
@@ -1054,7 +1054,7 @@
     <string name="pp_b6">• Screenshot, perekaman layar, dan pratinjau aplikasi terbaru diblokir kecuali Anda mengizinkan screenshot; foto struk tetap terlindungi dalam kondisi apa pun.\n• Tidak ada yang bisa disalin dari aplikasi ke papan klip.\n• Keyboard diminta untuk tidak mempelajari ketikan Anda, dan isi otomatis serta pengambilan konten Android dimatikan untuk aplikasi ini.\n• Notifikasi pengingat tidak pernah menampilkan nama klien, judul, atau catatan, hanya bahwa sesuatu sudah waktunya.\n• Widget tidak pernah menampilkan nama lengkap, telepon, atau email klien, dan hanya menampilkan nominal jika Anda izinkan.\n• Mengetuk Telepon atau Email pada klien hanya meneruskan nomor atau alamat itu ke aplikasi telepon atau email Anda.</string>
     <string name="pp_h7">Izin</string>
     <string name="pp_b7">• Notifikasi: menampilkan pengingat yang Anda atur.\n• Alarm &amp; pengingat: membuat pengingat berbunyi tepat waktu.\n• Berjalan saat ponsel menyala: mengatur ulang pengingat setelah ponsel dimulai ulang.\n• Biometrik: hanya jika Anda menyalakan kunci aplikasi. Android yang memeriksa; aplikasi tidak pernah menerima sidik jari, wajah, atau PIN Anda.\n\nAplikasi tidak pernah meminta akses internet, kontak, lokasi, kamera, mikrofon, foto, file, panggilan telepon, atau SMS. Impor spreadsheet memakai pemilih file Android: aplikasi hanya membaca satu file yang Anda pilih, sekali.</string>
-    <string name="pp_h8">Laporan crash</string>
+    <string name="pp_h8">Masukan dan laporan crash</string>
     <string name="pp_b8">Laporan crash bersifat opsional, dan aplikasi tidak pernah mengirimnya sendiri. Jika aplikasi tertutup tiba-tiba, aplikasi bisa menyimpan laporan teknis singkat di ponsel ini: versi aplikasi dan Android, model ponsel, waktu, dan bagian kode tempat error terjadi. Laporan itu tidak pernah berisi penjualan, klien, catatan, atau apa pun yang Anda ketik. Anda yang memutuskan apakah akan mengirimnya ke kami lewat email; jika ya, kami menerima laporan dan alamat email Anda dan hanya memakainya untuk memperbaiki masalah dan membalas. Anda bisa melihat, menghapus, atau mematikan laporan crash di Keamanan dan privasi.</string>
     <string name="pp_h9">Google Play, rating, dan ulasan</string>
     <string name="pp_b9">Google memproses pembelian Anda berdasarkan kebijakan privasi Google. Kami hanya melihat angka total yang diberikan Google Play kepada semua pengembang (seperti jumlah pemasangan) dan detail pesanan yang diberikan Google kepada penjual.\n\nSesekali, setelah Anda mencatat penjualan, aplikasi dapat meminta Google Play menampilkan jendela rating-nya. Jendela itu milik aplikasi Play Store, yang menangani rating atau ulasan apa pun yang Anda berikan; aplikasi tidak mengirim apa pun dan tidak pernah tahu apakah atau bagaimana Anda memberi nilai. Google Play membatasi seberapa sering jendela itu bisa muncul. Anda bisa mematikannya kapan saja di Pengaturan → Beri nilai Quota Vault.</string>
@@ -1082,6 +1082,25 @@
     <string name="ag_buy">Pembelian dilakukan melalui Google Play, dan pembayaran serta pengembalian dana ditangani Google sesuai kebijakan Google Play. Kami tidak pernah melihat detail pembayaran Anda.</string>
     <string name="ag_contact_t">Kontak</string>
     <string name="ag_contact">Pertanyaan tentang ketentuan ini: kirim email ke quotavaultsupport@gmail.com.</string>
+    <string name="fb_row">Kirim masukan</string>
+    <string name="fb_row_desc">Ide, masalah, atau pertanyaan: kami membaca setiap pesan</string>
+    <string name="fb_title">Kami ingin mendengar dari Anda</string>
+    <string name="fb_intro">Quota Vault ada karena Anda. Setiap ide, masalah, dan pertanyaan langsung sampai ke orang yang membuat aplikasi ini, dan setiap pesan dibaca. Ide Anda menentukan apa yang dibuat berikutnya.</string>
+    <string name="fb_kind_label">Tentang apa?</string>
+    <string name="fb_kind_idea">Ide atau keinginan</string>
+    <string name="fb_kind_problem">Ada yang tidak berfungsi</string>
+    <string name="fb_kind_question">Pertanyaan</string>
+    <string name="fb_kind_love">Hal yang saya suka</string>
+    <string name="fb_message">Pesan Anda (opsional)</string>
+    <string name="fb_include">Sertakan versi aplikasi dan model ponsel</string>
+    <string name="fb_include_desc">Membantu kami memperbaiki masalah lebih cepat: %1$s</string>
+    <string name="fb_how">Aplikasi email Anda terbuka dengan pesan ini untuk %1$s. Tidak ada yang terkirim sampai Anda mengetuk Kirim di sana. Jangan sertakan nama atau detail klien.</string>
+    <string name="fb_open">Buka email</string>
+    <string name="fb_subject">Masukan Quota Vault: %1$s</string>
+    <string name="fb_thanks_title">Terima kasih!</string>
+    <string name="fb_thanks">Terima kasih telah membantu membuat Quota Vault lebih baik. Setelah Anda mengetuk Kirim, pesan Anda langsung sampai ke kami, dan kami akan membalas ke alamat yang Anda gunakan.</string>
+    <string name="rate_feedback">Punya ide atau masalah? Kirim masukan</string>
+    <string name="pp_fb">Anda bisa mengirim ide, masalah, atau pertanyaan kapan saja lewat Pengaturan → Kirim masukan. Aplikasi email Anda terbuka dengan pesan yang ditujukan kepada kami, dan tidak ada yang terkirim sampai Anda mengetuk Kirim. Kami menerima apa yang Anda tulis dan alamat email Anda, serta versi aplikasi dan model ponsel hanya jika kotak itu tetap dicentang. Kami memakainya hanya untuk membaca pesan, membalas, dan memperbaiki aplikasi, dan tidak pernah membagikannya. Jangan sertakan detail klien.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

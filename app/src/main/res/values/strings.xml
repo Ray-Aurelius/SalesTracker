@@ -807,7 +807,7 @@
     <string name="crash_save">Save crash reports</string>
     <string name="crash_save_desc">If the app closes unexpectedly, keep a report on this phone so you can decide whether to send it. Turning this off deletes saved reports.</string>
     <string name="scam_title">We will NEVER ask for your data</string>
-    <string name="scam_body">Quota Vault will never ask for your personal information, your clients\' information, your backup files or your passwords. Not by email, phone, text or social media, and not even for support. The only thing you might ever send us is a crash report, if you choose to, and it contains none of your data. Anyone who asks for your data or your clients\' data is a scammer. Don\'t reply, don\'t share anything, and block them.</string>
+    <string name="scam_body">Quota Vault will never ask for your personal information, your clients\' information, your backup files or your passwords. Not by email, phone, text or social media, and not even for support. The only things you might ever send us are your own feedback or a crash report, if you choose to, and we never need any of your data for either. Anyone who asks for your data or your clients\' data is a scammer. Don\'t reply, don\'t share anything, and block them.</string>
     <string name="scam_backup">Never send your backup file or its password to anyone, even someone claiming to be Quota Vault. We will never ask for them. Anyone who does is a scammer.</string>
     <string name="scam_crash">Don\'t add names, phone numbers or any personal or client details to the email. We will never ask for them, and anyone who does is a scammer.</string>
     <!-- Commission plans, expenses and mileage, menu tabs -->
@@ -1179,7 +1179,7 @@
     <string name="pp_row_desc">The full policy: what the app does with your data, and what it never does</string>
     <string name="pp_title">Privacy policy</string>
     <string name="pp_effective">Effective October 24, 2026 · Quota Vault for Android</string>
-    <string name="pp_summary">In short: Quota Vault doesn\'t collect, send, sell or share any of your data. The app has no internet access, no accounts, no ads, no analytics and no tracking. Everything you enter stays on this phone, encrypted. The only thing we could ever receive from you is a crash report you choose to email us, and it contains none of your data.</string>
+    <string name="pp_summary">In short: Quota Vault doesn\'t collect, send, sell or share any of your data. The app has no internet access, no accounts, no ads, no analytics and no tracking. Everything you enter stays on this phone, encrypted. We only ever receive what you choose to email us yourself: your feedback, or a crash report that contains none of your data.</string>
     <string name="pp_translation">This is a translation. If it differs from the English version, the English version applies.</string>
     <string name="pp_h1">Who we are</string>
     <string name="pp_b1">Quota Vault (\"the app\") is a sales tracking app published on Google Play by an independent developer. In this policy, \"we\" and \"us\" mean the app\'s developer.</string>
@@ -1195,7 +1195,7 @@
     <string name="pp_b6">• Screenshots, screen recording and the recent-apps preview are blocked unless you allow screenshots; receipt photos stay protected either way.\n• Nothing can be copied out of the app to the clipboard.\n• Your keyboard is asked not to learn what you type, and autofill and Android\'s on-device content capture are turned off for the app.\n• Reminder notifications never show a client\'s name, a title or notes, only that something is due.\n• Home-screen widgets never show a client\'s full name, phone or email, and show money amounts only if you allow it.\n• Tapping Call or Email on a client hands that one number or address to your phone or email app.</string>
     <string name="pp_h7">Permissions</string>
     <string name="pp_b7">• Notifications: shows the reminders you set.\n• Alarms &amp; reminders: makes reminders ring on time.\n• Run at startup: sets your reminders again after the phone restarts.\n• Biometrics: only if you turn on app lock. Android does the check; the app never receives your fingerprint, face or PIN.\n\nThe app never asks for internet, contacts, location, camera, microphone, photos, files, phone calls or text messages. Importing a spreadsheet uses Android\'s file picker: the app reads only the one file you choose, once.</string>
-    <string name="pp_h8">Crash reports</string>
+    <string name="pp_h8">Feedback and crash reports</string>
     <string name="pp_b8">Crash reports are optional, and the app never sends one on its own. If the app closes unexpectedly, it can save a short technical report on this phone: the app and Android versions, the phone model, the time, and where in the app\'s code the error happened. It never contains your sales, clients, notes or anything you typed. You choose whether to email it to us; if you do, we receive the report and your email address and use them only to fix the problem and reply. You can view, delete or switch off crash reports in Security &amp; privacy.</string>
     <string name="pp_h9">Google Play, ratings and reviews</string>
     <string name="pp_b9">Google handles your purchase under Google\'s privacy policy. We see only the totals Google Play gives every developer (such as install counts) and the order details Google gives sellers.\n\nNow and then, after you log a sale, the app may ask Google Play to show its rating window. The window belongs to the Play Store app, which handles any rating or review you leave; the app sends nothing and never learns whether or how you rated it. Google Play limits how often the window can appear. You can turn this off any time in Settings → Rate Quota Vault.</string>
@@ -1223,4 +1223,23 @@
     <string name="ag_buy">Purchases are made through Google Play, and payments and refunds are handled by Google under Google Play\'s policies. We never see your payment details.</string>
     <string name="ag_contact_t">Contact</string>
     <string name="ag_contact">Questions about these terms: email quotavaultsupport@gmail.com.</string>
+    <string name="fb_row">Send feedback</string>
+    <string name="fb_row_desc">Ideas, problems or questions: we read every message</string>
+    <string name="fb_title">We\'d love to hear from you</string>
+    <string name="fb_intro">You\'re the reason Quota Vault exists. Every idea, problem and question goes straight to the person who builds the app, and every message is read. Your ideas shape what gets built next.</string>
+    <string name="fb_kind_label">What\'s it about?</string>
+    <string name="fb_kind_idea">An idea or wish</string>
+    <string name="fb_kind_problem">Something isn\'t working</string>
+    <string name="fb_kind_question">A question</string>
+    <string name="fb_kind_love">Something I love</string>
+    <string name="fb_message">Your message (optional)</string>
+    <string name="fb_include">Include app version and phone model</string>
+    <string name="fb_include_desc">Helps us fix problems faster: %1$s</string>
+    <string name="fb_how">Your email app opens with this addressed to %1$s. Nothing is sent until you press Send there. Please don\'t include client names or details.</string>
+    <string name="fb_open">Open email</string>
+    <string name="fb_subject">Quota Vault feedback: %1$s</string>
+    <string name="fb_thanks_title">Thank you!</string>
+    <string name="fb_thanks">Thank you for helping make Quota Vault better. Once you press Send, your message comes straight to us, and we\'ll reply to the address you send it from.</string>
+    <string name="rate_feedback">Have an idea or a problem? Send feedback</string>
+    <string name="pp_fb">You can email us ideas, problems or questions any time from Settings → Send feedback. Your email app opens with the message addressed to us, and nothing is sent until you press Send. We receive what you write and your email address, plus the app version and phone model only if you leave that box ticked. We use them only to read your message, reply and improve the app, and we never share them. Please don\'t include client details.</string>
 </resources>

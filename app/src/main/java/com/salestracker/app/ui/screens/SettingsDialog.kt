@@ -27,6 +27,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.material.icons.filled.UploadFile
 import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.StarRate
+import androidx.compose.material.icons.filled.Feedback
 import androidx.compose.material.icons.filled.Policy
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Icon
@@ -48,7 +49,7 @@ import androidx.compose.ui.unit.dp
 import com.salestracker.app.R
 import com.salestracker.app.ui.AppViewModel
 
-private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY, TABS, IMPORT, FOLLOW_UPS, RATE }
+private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY, TABS, IMPORT, FOLLOW_UPS, RATE, FEEDBACK }
 
 /** Appearance and language, plus the way into the Security & privacy center. */
 @Composable
@@ -101,6 +102,9 @@ fun SettingsDialog(
                         step = Step.IMPORT
                     }
                     SettingRow(Icons.Filled.Explore, stringResource(R.string.tour_row), stringResource(R.string.tour_row_desc), onClick = onStartTour)
+                    SettingRow(Icons.Filled.Feedback, stringResource(R.string.fb_row), stringResource(R.string.fb_row_desc)) {
+                        step = Step.FEEDBACK
+                    }
                     SettingRow(Icons.Filled.StarRate, stringResource(R.string.rate_row), stringResource(R.string.rate_row_desc)) {
                         step = Step.RATE
                     }
@@ -153,7 +157,9 @@ fun SettingsDialog(
 
         Step.FOLLOW_UPS -> FollowUpSettingsDialog(vm, onDismiss = { step = Step.MENU })
 
-        Step.RATE -> RateDialog(vm, onDismiss = { step = Step.MENU })
+        Step.RATE -> RateDialog(vm, onFeedback = { step = Step.FEEDBACK }, onDismiss = { step = Step.MENU })
+
+        Step.FEEDBACK -> FeedbackDialog(onDismiss = { step = Step.MENU })
     }
 }
 
@@ -162,7 +168,7 @@ fun SettingsDialog(
  * choice of whether Google Play's rating window may appear on its own now and then.
  */
 @Composable
-private fun RateDialog(vm: AppViewModel, onDismiss: () -> Unit) {
+private fun RateDialog(vm: AppViewModel, onFeedback: () -> Unit, onDismiss: () -> Unit) {
     val context = androidx.compose.ui.platform.LocalContext.current
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -178,6 +184,10 @@ private fun RateDialog(vm: AppViewModel, onDismiss: () -> Unit) {
                     Icon(Icons.Filled.StarRate, contentDescription = null)
                     Spacer(Modifier.width(8.dp))
                     Text(stringResource(R.string.rate_open))
+                }
+                // Feedback is always offered alongside, never instead of, the rating: nobody is steered away from Play.
+                TextButton(onClick = onFeedback, modifier = Modifier.fillMaxWidth()) {
+                    Text(stringResource(R.string.rate_feedback))
                 }
                 Spacer(Modifier.height(8.dp))
                 Row(

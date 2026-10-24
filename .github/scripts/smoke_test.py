@@ -389,6 +389,20 @@ def main(apk):
     if find(r"(?i)do you (like|love|enjoy)|5 stars|five stars"):
         fail("the rate dialog asks a leading question")
     tap(r"^Done$", wait=1.2)
+    if not tap(r"^Send feedback$", "feedback-dialog", wait=1.5, scroll=4):
+        fail("no Send feedback in Settings")
+    for label in [r"^An idea or wish$", r"^Something isn't working$", r"^A question$", r"^Something I love$", r"^Open email$"]:
+        if not find(label):
+            fail(f"the feedback form is missing {label}")
+    tap(r"^Something isn't working$", wait=0.8)
+    tap(r"^Your message", wait=0.8)
+    type_text("Smoke test feedback")
+    hide_keyboard()
+    shot("feedback-filled")
+    tap(r"^Cancel$", wait=1.2)
+    if find(r"^Open email$"):
+        fail("Cancel didn't close the feedback form")
+    tap(r"^Settings$", wait=1.5)
     if not tap(r"^Privacy policy$", "privacy-policy", wait=2, scroll=4):
         fail("no Privacy policy in Settings")
     if not find(r"Who we are"):

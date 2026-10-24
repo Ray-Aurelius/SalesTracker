@@ -87,7 +87,7 @@ object CrashLog {
         return "${e.className}.${e.methodName}($where)"
     }
 
-    private fun phoneModel(): String {
+    internal fun phoneModel(): String {
         val maker = Build.MANUFACTURER.orEmpty().replaceFirstChar { it.uppercase() }
         val model = Build.MODEL.orEmpty()
         return if (model.startsWith(maker, ignoreCase = true)) model else "$maker $model".trim()

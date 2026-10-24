@@ -679,7 +679,7 @@
     <string name="crash_save">保存崩溃报告</string>
     <string name="crash_save_desc">如果应用意外关闭，在此手机上保留一份报告，由你决定是否发送。关闭此项会删除已保存的报告。</string>
     <string name="scam_title">我们绝不会索要你的数据</string>
-    <string name="scam_body">Quota Vault 绝不会索要你的个人信息、你客户的信息、你的备份文件或密码。无论是通过邮件、电话、短信还是社交媒体，即使是提供支持时也不会。你唯一可能发给我们的只有崩溃报告（由你决定是否发送），其中不包含你的任何数据。任何索要你的数据或你客户数据的人都是骗子。不要回复，不要分享任何内容，并将其拉黑。</string>
+    <string name="scam_body">Quota Vault 绝不会索要你的个人信息、客户信息、备份文件或密码。不会通过邮件、电话、短信或社交媒体索要，即使是客服也不会。你唯一可能发给我们的，是你自己的意见反馈或崩溃报告（由你决定），而这两者我们都不需要你的任何数据。任何索要你或你客户数据的人都是骗子。不要回复，不要分享任何内容，并将其屏蔽。</string>
     <string name="scam_backup">切勿将你的备份文件或其密码发送给任何人，即使对方自称是 Quota Vault。我们绝不会索要。任何索要的人都是骗子。</string>
     <string name="scam_crash">不要在邮件中添加姓名、电话号码或任何个人或客户信息。我们绝不会索要这些信息，任何索要的人都是骗子。</string>
     <string name="commission_owed_label">待付佣金</string>
@@ -1038,7 +1038,7 @@
     <string name="pp_row_desc">完整政策：应用如何处理你的数据，以及绝不会做什么</string>
     <string name="pp_title">隐私政策</string>
     <string name="pp_effective">生效日期：2026 年 10 月 24 日 · Quota Vault Android 版</string>
-    <string name="pp_summary">简而言之：Quota Vault 不会收集、发送、出售或分享你的任何数据。应用没有网络访问权限，没有账户、广告、分析或跟踪。你输入的一切都加密保存在这部手机上。我们唯一可能从你那里收到的，是你自己选择通过邮件发给我们的崩溃报告，其中不包含你的任何数据。</string>
+    <string name="pp_summary">简而言之：Quota Vault 不会收集、发送、出售或分享你的任何数据。应用没有网络访问权限，没有账户、广告、分析或跟踪。你输入的一切都加密保存在这部手机上。我们只会收到你自己选择通过邮件发来的内容：你的意见反馈，或不含你任何数据的崩溃报告。</string>
     <string name="pp_translation">这是译文。如与英文版本不一致，以英文版本为准。</string>
     <string name="pp_h1">我们是谁</string>
     <string name="pp_b1">Quota Vault（“本应用”）是由一位独立开发者在 Google Play 上发布的销售记录应用。本政策中的“我们”指本应用的开发者。</string>
@@ -1054,7 +1054,7 @@
     <string name="pp_b6">• 除非你允许截屏，否则截屏、录屏和最近任务预览都会被阻止；收据照片无论如何都受保护。\n• 无法从应用中复制任何内容到剪贴板。\n• 应用会要求键盘不要学习你的输入，并为应用关闭自动填充和 Android 内容捕获。\n• 提醒通知绝不显示客户姓名、标题或备注，只提示有事项到期。\n• 主屏幕小组件绝不显示客户的全名、电话或邮箱，且只有在你允许时才显示金额。\n• 在客户页面点“拨打电话”或“发送邮件”，只会把该号码或地址交给你的电话或邮件应用。</string>
     <string name="pp_h7">权限</string>
     <string name="pp_b7">• 通知：显示你设置的提醒。\n• 闹钟和提醒：让提醒准时响起。\n• 开机运行：手机重启后重新设置提醒。\n• 生物识别：仅在你开启应用锁时使用。由 Android 进行验证；应用永远不会获得你的指纹、面部或 PIN。\n\n应用绝不请求网络、通讯录、位置、相机、麦克风、照片、文件、电话或短信权限。导入电子表格使用 Android 文件选择器：应用只读取你选择的那一个文件，且只读一次。</string>
-    <string name="pp_h8">崩溃报告</string>
+    <string name="pp_h8">意见反馈和崩溃报告</string>
     <string name="pp_b8">崩溃报告是可选的，应用绝不会自行发送。如果应用意外关闭，可以在这部手机上保存一份简短的技术报告：应用和 Android 版本、手机型号、时间以及代码中出错的位置。报告绝不包含你的销售、客户、备注或你输入的任何内容。是否通过邮件发给我们由你决定；如果你发送了，我们会收到报告和你的邮箱地址，并且只用于修复问题和回复你。你可以在“安全与隐私”中查看、删除或关闭崩溃报告。</string>
     <string name="pp_h9">Google Play、评分和评价</string>
     <string name="pp_b9">你的购买由 Google 按照 Google 隐私政策处理。我们只能看到 Google Play 提供给所有开发者的汇总数据（如安装次数）以及 Google 提供给卖家的订单信息。\n\n偶尔在你记录一笔销售后，应用可能会请求 Google Play 显示其评分窗口。该窗口属于 Play 商店应用，由它处理你留下的任何评分或评价；本应用不发送任何内容，也永远不会知道你是否评分以及评了多少。Google Play 会限制窗口出现的频率。你可以随时在“设置 → 为 Quota Vault 评分”中关闭此功能。</string>
@@ -1082,6 +1082,25 @@
     <string name="ag_buy">购买通过 Google Play 完成，付款和退款由 Google 按照 Google Play 的政策处理。我们永远看不到你的付款信息。</string>
     <string name="ag_contact_t">联系我们</string>
     <string name="ag_contact">关于本条款的问题：请发邮件至 quotavaultsupport@gmail.com。</string>
+    <string name="fb_row">发送反馈</string>
+    <string name="fb_row_desc">想法、问题或疑问：每条消息我们都会阅读</string>
+    <string name="fb_title">很想听听你的意见</string>
+    <string name="fb_intro">Quota Vault 因你而存在。每个想法、问题和疑问都会直接送到开发这个应用的人手中，每条消息都会被阅读。你的想法决定了接下来要做什么。</string>
+    <string name="fb_kind_label">关于什么？</string>
+    <string name="fb_kind_idea">一个想法或愿望</string>
+    <string name="fb_kind_problem">有功能不正常</string>
+    <string name="fb_kind_question">一个问题</string>
+    <string name="fb_kind_love">我喜欢的地方</string>
+    <string name="fb_message">你的留言（可选）</string>
+    <string name="fb_include">附上应用版本和手机型号</string>
+    <string name="fb_include_desc">帮助我们更快修复问题：%1$s</string>
+    <string name="fb_how">你的邮件应用会打开，并将此内容发往 %1$s。在你点“发送”之前不会发送任何内容。请不要写入客户姓名或信息。</string>
+    <string name="fb_open">打开邮件</string>
+    <string name="fb_subject">Quota Vault 反馈：%1$s</string>
+    <string name="fb_thanks_title">谢谢你！</string>
+    <string name="fb_thanks">感谢你帮助 Quota Vault 变得更好。你点“发送”后，消息会直接送到我们这里，我们会回复到你发信的邮箱。</string>
+    <string name="rate_feedback">有想法或遇到问题？发送反馈</string>
+    <string name="pp_fb">你可以随时在“设置 → 发送反馈”中给我们发邮件，告诉我们你的想法、问题或疑问。你的邮件应用会打开并将消息发往我们，在你点“发送”之前不会发送任何内容。我们会收到你写的内容和你的邮箱地址；只有在你保留勾选时，才会附上应用版本和手机型号。我们只用它们来阅读、回复和改进应用，绝不分享。请不要写入客户信息。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>
