@@ -146,9 +146,9 @@ class LayoutAudit {
         // Settings: Rate Quota Vault, then the privacy policy page (top, and further down).
         rule.onAllNodes(hasContentDescription(app.getString(R.string.cd_settings))).onFirst().performClick()
         rule.waitForIdle()
-        shot("$config-9-settings")
+        rule.waitForIdle(); rule.mainClock.advanceTimeBy(800); rule.waitForIdle(); shotWithPopups("$config-9-settings")
         tap(app.getString(R.string.rate_row))
-        shot("$config-9-rate")
+        rule.waitForIdle(); rule.mainClock.advanceTimeBy(800); rule.waitForIdle(); shotWithPopups("$config-9-rate")
         tap(app.getString(R.string.done))
         tap(app.getString(R.string.pp_row))
         shot("$config-9-policy")

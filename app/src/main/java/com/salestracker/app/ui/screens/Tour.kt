@@ -37,11 +37,11 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.geometry.RoundRect
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.Layout
@@ -135,7 +135,6 @@ fun TourOverlay(
     ) {
         Canvas(
             Modifier.fillMaxSize()
-                .graphicsLayer { compositingStrategy = CompositingStrategy.Offscreen }
                 // Nothing underneath can be tapped or scrolled while the tour is up.
                 .pointerInput(Unit) {
                     awaitPointerEventScope {
@@ -144,11 +143,19 @@ fun TourOverlay(
                 }
                 .clearAndSetSemantics { },
         ) {
-            drawRect(scrim)
             if (hole.width > 2f && hole.height > 2f) {
+                // The dimmed screen with a rounded window cut out of it (even-odd fill: the inner shape is a hole).
                 val r = CornerRadius(14.dp.toPx())
-                drawRoundRect(Color.Black, hole.topLeft, hole.size, r, blendMode = BlendMode.Clear)
+                val full = size
+                val shape = Path().apply {
+                    fillType = PathFillType.EvenOdd
+                    addRect(Rect(Offset.Zero, full))
+                    addRoundRect(RoundRect(hole, r))
+                }
+                drawPath(shape, scrim)
                 drawRoundRect(ring, hole.topLeft, hole.size, r, style = Stroke(3.dp.toPx()))
+            } else {
+                drawRect(scrim)
             }
         }
         TourCardLayout(target) {
@@ -183,6 +190,8 @@ private fun TourCardLayout(hole: Rect?, content: @Composable () -> Unit) {
                 above >= margin -> cx to above
                 right + card.width <= w - margin -> right to cy
                 left >= margin -> left to cy
+                // No room beside it: cover the half of the screen the spotlight isn't in.
+                hole.center.y > h / 2f -> cx to margin
                 else -> cx to clampY(h - margin - card.height)
             }
         }
