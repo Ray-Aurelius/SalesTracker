@@ -148,7 +148,7 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
                 }
             }
             item {
-                androidx.compose.material3.FilledTonalButton(onClick = { adding = true }, modifier = Modifier.fillMaxWidth()) {
+                androidx.compose.material3.FilledTonalButton(onClick = { adding = true }, modifier = Modifier.fillMaxWidth().tourTarget(TourKeys.ADD_TASK)) {
                     Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.width(8.dp))
                     Text(stringResource(R.string.add_task))

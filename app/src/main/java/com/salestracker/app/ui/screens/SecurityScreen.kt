@@ -80,7 +80,7 @@ private fun formatDay(millis: Long) = localizedFormatter("yMMMd").format(Instant
  * protected: status at a glance, app lock, privacy mode, encrypted backups, their data, and transparency.
  */
 @Composable
-fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClose: () -> Unit) {
+fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClose: () -> Unit, onOpenPolicy: () -> Unit = {}) {
     val context = LocalContext.current
     var flow by remember { mutableStateOf(Flow.NONE) }
     val backups = rememberBackupController()
@@ -281,6 +281,7 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
                 SettingRow(Icons.Filled.Policy, stringResource(R.string.privacy_info), stringResource(R.string.privacy_info_desc)) {
                     flow = Flow.PRIVACY_INFO
                 }
+                SettingRow(Icons.Filled.Description, stringResource(R.string.pp_row), stringResource(R.string.pp_row_desc), onClick = onOpenPolicy)
                 SettingRow(
                     Icons.Filled.Description, stringResource(R.string.agreement_view),
                     if (vm.agreementAccepted) stringResource(R.string.agreement_accepted_on, formatDay(vm.agreementAcceptedAt)) else "",

@@ -289,6 +289,26 @@ def save_in_picker(name):
         fail(f"crash while saving {name}")
 
 
+def finish_tour(walk=False):
+    """Walks the guided tour step by step (or skips it). False if no tour is showing."""
+    if not find(r"^Skip tour$"):
+        return False
+    if walk:
+        for i in range(25):
+            if find(r"^Finish$"):
+                tap(r"^Finish$", "tour-finish", wait=1.5)
+                break
+            if not tap(r"^Next$", f"tour-{i:02d}", wait=1.2):
+                fail(f"the tour has no Next button on step {i + 1}")
+        else:
+            fail("the tour never reached its last step")
+    else:
+        tap(r"^Skip tour$", wait=1.5)
+    if find(r"^Skip tour$") or find(r"^Finish$"):
+        fail("the tour didn't close")
+    return True
+
+
 def fail(why):
     note(f"FAILED: {why}")
     shot("failure")
@@ -336,6 +356,40 @@ def main(apk):
         if not tap(r"^Next$", wait=1.2):
             break
     tap(r"Explore with sample data", "sample-data-loaded", wait=3)
+
+    section("The guided tour starts after setup; walk every step")
+    if not finish_tour(walk=True):
+        fail("the guided tour didn't start after setup")
+
+    section("Settings: replay the tour and skip it, Rate Quota Vault, the privacy policy page")
+    tap(r"^Settings$", wait=1.5)
+    if not tap(r"^Take the tour$", wait=1.5, scroll=4):
+        fail("no Take the tour in Settings")
+    if not find(r"^Skip tour$"):
+        fail("Take the tour didn't start the tour")
+    back(wait=1.2)  # the phone's Back on the first step closes the tour
+    if find(r"^Skip tour$"):
+        fail("Back on the tour's first step didn't close it")
+    tap(r"^Settings$", wait=1.5)
+    if not tap(r"^Rate Quota Vault$", "rate-dialog", wait=1.5, scroll=4):
+        fail("no Rate Quota Vault in Settings")
+    if not find(r"^Open Google Play$") or not find(r"^Let Google Play ask now and then"):
+        fail("the rate dialog is missing its button or its setting")
+    if find(r"(?i)do you (like|love|enjoy)|5 stars|five stars"):
+        fail("the rate dialog asks a leading question")
+    tap(r"^Done$", wait=1.2)
+    if not tap(r"^Privacy policy$", "privacy-policy", wait=2, scroll=4):
+        fail("no Privacy policy in Settings")
+    if not find(r"Who we are"):
+        fail("the privacy policy page didn't open")
+    if not find_scrolling(r"Google Play, ratings and reviews", tries=8):
+        fail("the privacy policy doesn't cover ratings")
+    if not find_scrolling(r"quotavaultsupport@gmail\.com", tries=10):
+        fail("the privacy policy has no contact address")
+    shot("privacy-policy-end")
+    back(wait=1.5)
+    if find(r"Who we are"):
+        fail("Back didn't close the privacy policy")
 
     section("Every tab")
     for label in ["Sales", "Expenses", "Goals", "Clients", "Schedule", "Tasks", "Calc", "Charts", "Stats"]:
@@ -840,6 +894,8 @@ def main(apk):
     shot("restored")
     if crashed():
         fail("crash while restoring")
+    # Restoring starts fresh settings, so the tour offers itself again: skip it this time.
+    finish_tour()
     tap(r"^Clients$", "clients-after-restore", wait=2)
     for name in ["Alex Morgan", "Jordan Ellis", "Riley Quinn"]:
         if not find_scrolling(name):

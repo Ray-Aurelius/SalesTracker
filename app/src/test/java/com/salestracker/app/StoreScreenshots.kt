@@ -104,7 +104,7 @@ class StoreScreenshots {
         val prefs = app.getSharedPreferences("settings", Context.MODE_PRIVATE)
 
         // Load the sample data once, then forget it was "sample" so the demo banner isn't in the shots.
-        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); setDefaultCommission(10.0); loadSampleData() }
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); setDefaultCommission(10.0); loadSampleData() }
         prefs.edit().remove("sampleIds").remove("sampleDays")
             .putLong("lastBackupAt", System.currentTimeMillis()).commit()
         val vm = AppViewModel(app)

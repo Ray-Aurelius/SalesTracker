@@ -33,6 +33,7 @@ def main(apk):
         if not t.tap(r"^Next$", wait=1.2):
             break
     t.tap(r"Explore with sample data", wait=3)
+    t.tap(r"^Skip tour$", wait=1.5)
     t.section("Add client: type notes at the bottom of the form")
     t.tap(r"^Clients$", wait=1.5)
     if not t.tap(r"^Add client$", wait=1.5):

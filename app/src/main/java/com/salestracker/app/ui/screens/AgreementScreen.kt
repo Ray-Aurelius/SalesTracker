@@ -47,6 +47,11 @@ import com.salestracker.app.R
 fun AgreementScreen(onAccept: () -> Unit, onDecline: () -> Unit) {
     var checked by remember { mutableStateOf(false) }
     var showGuide by remember { mutableStateOf(false) }
+    var showPolicy by remember { mutableStateOf(false) }
+    if (showPolicy) {
+        PrivacyPolicyScreen(onClose = { showPolicy = false })
+        return
+    }
 
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Column(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
@@ -65,6 +70,11 @@ fun AgreementScreen(onAccept: () -> Unit, onDecline: () -> Unit) {
                         Icon(Icons.Filled.Help, contentDescription = null)
                         Spacer(Modifier.width(8.dp))
                         Text(stringResource(R.string.guide_title))
+                    }
+                    TextButton(onClick = { showPolicy = true }, modifier = Modifier.padding(start = 4.dp, end = 4.dp, bottom = 4.dp)) {
+                        Icon(Icons.Filled.Shield, contentDescription = null)
+                        Spacer(Modifier.width(8.dp))
+                        Text(stringResource(R.string.pp_row))
                     }
                 }
             }

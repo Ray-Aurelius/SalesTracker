@@ -10,6 +10,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import com.salestracker.app.ui.screens.LocalContentWidth
+import com.salestracker.app.ui.screens.LocalTour
+import com.salestracker.app.ui.screens.TourKeys
+import com.salestracker.app.ui.screens.tourTarget
 import com.salestracker.app.ui.screens.FitText
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandHorizontally
@@ -289,6 +292,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     var tab by rememberSaveable { mutableStateOf(Tab.DASHBOARD) }
     var showSettings by rememberSaveable { mutableStateOf(false) }
     var showSecurity by rememberSaveable { mutableStateOf(false) }
+    var showPolicy by rememberSaveable { mutableStateOf(false) }
     val data by vm.data.collectAsState()
     val context = androidx.compose.ui.platform.LocalContext.current
     // The backup folder (Documents › Quota Vault Backups) is made once, when the app is first set up, so backups
@@ -310,11 +314,17 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
         com.salestracker.app.ui.screens.CrashReportsDialog(openNewest = true, onDismiss = { showCrashReports = false })
     }
 
+    // The full privacy policy, as its own page (from Settings, or from Security & privacy).
+    if (showPolicy) {
+        com.salestracker.app.ui.screens.PrivacyPolicyScreen(onClose = { showPolicy = false })
+        return
+    }
     // The full-screen Security & privacy center replaces the tabs while open.
     if (showSecurity || vm.backupRequested) {
         SecurityScreen(
             vm = vm, data = data, startBackup = vm.backupRequested,
             onClose = { showSecurity = false; vm.backupRequested = false },
+            onOpenPolicy = { showPolicy = true },
         )
         return
     }
@@ -364,6 +374,27 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     LaunchedEffect(vm.pendingOpenClients) {
         if (vm.pendingOpenClients) { tab = Tab.CLIENTS; opened = true; vm.pendingOpenClients = false }
     }
+
+    // ---- The guided tour: once after setup (Settings → Take the tour replays it) ----
+    val tourState = remember { com.salestracker.app.ui.screens.TourState() }
+    val stops = rememberTourStops(shown, terms.clients)
+    val tourCards = stops.map { com.salestracker.app.ui.screens.TourCard(it.target, stringResource(it.title), stringResource(it.body)) }
+    LaunchedEffect(Unit) {
+        if (!vm.tourDone && vm.tourStep == null && vm.pendingQuick == null) vm.startTour()
+    }
+    // Each step opens the page it talks about.
+    LaunchedEffect(vm.tourStep) {
+        vm.tourStep?.let { i -> stops.getOrNull(i)?.tab?.let { tab = it; opened = false } }
+    }
+
+    // Google Play's rating window, when the app decides it's a good moment (after logging a sale; never mid-tour).
+    LaunchedEffect(vm.reviewRequested, vm.tourStep) {
+        if (vm.reviewRequested && vm.tourStep == null) {
+            kotlinx.coroutines.delay(1500)
+            context.findActivity()?.let { com.salestracker.app.ui.PlayReview.requestInAppReview(it) }
+            vm.markReviewAsked()
+        }
+    }
     // The Quick add widget: open the form it asked for over whatever page is showing, or start the timer.
     when (val q = vm.pendingQuick) {
         null -> {}
@@ -376,20 +407,21 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
         else -> com.salestracker.app.ui.screens.WidgetQuickForm(vm, data, q, onDone = { vm.pendingQuick = null })
     }
 
+    CompositionLocalProvider(LocalTour provides tourState.takeIf { vm.tourStep != null }) { Box(Modifier.fillMaxSize()) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(tab.titleRes()), maxLines = 1, overflow = TextOverflow.Ellipsis) },
                 actions = {
                     // Privacy mode: one tap hides every dollar amount (e.g. before showing the screen to a customer).
-                    IconButton(onClick = vm::togglePrivacyMode) {
+                    IconButton(onClick = vm::togglePrivacyMode, modifier = Modifier.tourTarget(TourKeys.PRIVACY)) {
                         Icon(
                             if (PrivacyMode.hideAmounts) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,
                             contentDescription = stringResource(if (PrivacyMode.hideAmounts) R.string.cd_show_amounts else R.string.cd_hide_amounts),
                             tint = if (PrivacyMode.hideAmounts) MaterialTheme.colorScheme.primary else LocalContentColor.current,
                         )
                     }
-                    IconButton(onClick = { showSettings = true }) {
+                    IconButton(onClick = { showSettings = true }, modifier = Modifier.tourTarget(TourKeys.SETTINGS)) {
                         Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.cd_settings))
                     }
                 },
@@ -401,6 +433,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                     MenuToggle(hidden = vm.menuHidden, side = false) { vm.changeMenuHidden(!vm.menuHidden) }
                     AnimatedVisibility(visible = !vm.menuHidden, enter = expandVertically(), exit = shrinkVertically()) {
                         BottomMenu(
+                            modifier = Modifier.tourTarget(TourKeys.MENU),
                             tabs = shown, labels = labels, selected = shown.indexOf(tab),
                             labelSize = bottomLabelSize, showAllLabels = bottomAllLabels != null,
                             onSelect = { tab = shown[it]; opened = false },
@@ -420,6 +453,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
                     MenuToggle(hidden = true, side = true) { vm.changeMenuHidden(false) }
                 } else {
                     SideMenu(
+                        modifier = Modifier.tourTarget(TourKeys.MENU),
                         tabs = shown, labels = labels, selected = shown.indexOf(tab), labelSize = sideLabelSize,
                         onSelect = { tab = shown[it]; opened = false }, onHide = { vm.changeMenuHidden(true) },
                     )
@@ -443,10 +477,49 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
             }
         }
     }
+    vm.tourStep?.let { i ->
+        com.salestracker.app.ui.screens.TourOverlay(
+            state = tourState, cards = tourCards, index = i,
+            onBack = { vm.tourStep = (i - 1).coerceAtLeast(0) },
+            onNext = { if (i >= tourCards.lastIndex) vm.endTour() else vm.tourStep = i + 1 },
+            onSkip = vm::endTour,
+        )
+    }
+    } }
 
     if (showSettings) {
-        SettingsDialog(vm = vm, isDark = isDark, onOpenSecurity = { showSecurity = true }, onDismiss = { showSettings = false })
+        SettingsDialog(
+            vm = vm, isDark = isDark, onOpenSecurity = { showSecurity = true }, onDismiss = { showSettings = false },
+            onStartTour = { showSettings = false; tab = shown.first(); vm.startTour() },
+            onOpenPolicy = { showSettings = false; showPolicy = true },
+        )
     }
+}
+
+/** One stop on the guided tour: the page to show (null: stay), what to spotlight, and what to say. */
+private class TourStop(val tab: Tab?, val target: String?, @StringRes val title: Int, @StringRes val body: Int)
+
+/** The tour, skipping pages the user has hidden from the menu. */
+@Composable
+private fun rememberTourStops(shown: List<Tab>, @StringRes clientsTitle: Int): List<TourStop> = remember(shown, clientsTitle) {
+    val home = Tab.DASHBOARD.takeIf { it in shown }
+    listOf(
+        TourStop(home, null, R.string.tour_welcome_t, R.string.tour_welcome),
+        TourStop(home, TourKeys.MENU, R.string.tour_menu_t, R.string.tour_menu),
+        TourStop(Tab.DASHBOARD, TourKeys.ON_TRACK, R.string.tour_stats_t, R.string.tour_stats),
+        TourStop(Tab.DASHBOARD, TourKeys.COMMISSION_PLAN, R.string.tour_plan_t, R.string.tour_plan),
+        TourStop(null, TourKeys.QUICK_ADD, R.string.tour_add_t, R.string.tour_add),
+        TourStop(null, TourKeys.PRIVACY, R.string.tour_privacy_t, R.string.tour_privacy),
+        TourStop(Tab.SALES, TourKeys.LOG_SALE, R.string.title_sales, R.string.tour_sales),
+        TourStop(Tab.EXPENSES, TourKeys.ADD_EXPENSE, R.string.title_expenses, R.string.tour_expenses),
+        TourStop(Tab.GOALS, TourKeys.tab(Tab.GOALS.name), R.string.title_goals, R.string.tour_goals),
+        TourStop(Tab.CLIENTS, TourKeys.ADD_CLIENT, clientsTitle, R.string.tour_clients),
+        TourStop(Tab.CALENDAR, TourKeys.tab(Tab.CALENDAR.name), R.string.title_calendar, R.string.tour_schedule),
+        TourStop(Tab.TASKS, TourKeys.ADD_TASK, R.string.title_tasks, R.string.tour_tasks),
+        TourStop(Tab.CHARTS, TourKeys.tab(Tab.CHARTS.name), R.string.title_charts, R.string.tour_charts),
+        TourStop(home, TourKeys.SETTINGS, R.string.settings_title, R.string.tour_settings),
+        TourStop(home, null, R.string.tour_done_t, R.string.tour_done),
+    ).filter { it.tab == null || it.tab in shown }
 }
 
 /**
@@ -481,9 +554,9 @@ private fun MenuToggle(hidden: Boolean, side: Boolean, onToggle: () -> Unit) {
  * Shows labels when they fit ([labelSize] not null), otherwise icons only (each still named for screen readers).
  */
 @Composable
-private fun SideMenu(tabs: List<Tab>, labels: List<String>, selected: Int, labelSize: TextUnit?, onSelect: (Int) -> Unit, onHide: () -> Unit) {
+private fun SideMenu(tabs: List<Tab>, labels: List<String>, selected: Int, labelSize: TextUnit?, onSelect: (Int) -> Unit, onHide: () -> Unit, modifier: Modifier = Modifier) {
     Column(
-        Modifier.fillMaxHeight().width(if (labelSize != null) 76.dp else 60.dp)
+        modifier.fillMaxHeight().width(if (labelSize != null) 76.dp else 60.dp)
             .background(MaterialTheme.colorScheme.surfaceContainer),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -496,6 +569,7 @@ private fun SideMenu(tabs: List<Tab>, labels: List<String>, selected: Int, label
                 val isSelected = i == selected
                 Column(
                     Modifier.fillMaxWidth()
+                        .tourTarget(TourKeys.tab(t.name))
                         .selectable(selected = isSelected, role = Role.Tab, onClick = { onSelect(i) })
                         .padding(vertical = 6.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -537,15 +611,15 @@ private fun SideMenu(tabs: List<Tab>, labels: List<String>, selected: Int, label
  * with eight tabs on a phone, the standard bar's padding leaves no room for words like "Schedule".
  */
 @Composable
-private fun BottomMenu(tabs: List<Tab>, labels: List<String>, selected: Int, labelSize: TextUnit, showAllLabels: Boolean, onSelect: (Int) -> Unit) {
+private fun BottomMenu(tabs: List<Tab>, labels: List<String>, selected: Int, labelSize: TextUnit, showAllLabels: Boolean, onSelect: (Int) -> Unit, modifier: Modifier = Modifier) {
     Row(
-        Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surfaceContainer)
+        modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surfaceContainer)
             .navigationBarsPadding().padding(top = 8.dp, bottom = 10.dp),
     ) {
         tabs.forEachIndexed { i, t ->
             val isSelected = i == selected
             Column(
-                Modifier.weight(1f).selectable(selected = isSelected, role = Role.Tab, onClick = { onSelect(i) }),
+                Modifier.weight(1f).tourTarget(TourKeys.tab(t.name)).selectable(selected = isSelected, role = Role.Tab, onClick = { onSelect(i) }),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Box(

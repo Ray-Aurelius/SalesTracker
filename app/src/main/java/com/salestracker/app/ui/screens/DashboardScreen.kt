@@ -114,7 +114,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
                     { m ->
                         androidx.compose.material3.OutlinedButton(
                             onClick = { editingRate = true },
-                            modifier = m.height(48.dp).testTag(COMMISSION_PLAN_TAG),
+                            modifier = m.height(48.dp).testTag(COMMISSION_PLAN_TAG).tourTarget(TourKeys.COMMISSION_PLAN),
                             contentPadding = PaddingValues(horizontal = 12.dp),
                         ) {
                             Icon(Icons.Filled.Percent, contentDescription = null, modifier = Modifier.size(18.dp))

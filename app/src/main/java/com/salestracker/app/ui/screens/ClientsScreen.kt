@@ -188,7 +188,7 @@ private fun ClientList(vm: AppViewModel, data: AppData) {
                         // Typed a name, phone or email that isn't on the list yet? Start the form with it.
                         adding = (if (clients.isEmpty()) clientFromSearch(query) else null) ?: Client(id = 0, firstName = "", lastName = "", phone = "", email = "")
                     },
-                    modifier = Modifier.fillMaxWidth().height(48.dp).testTag(CLIENTS_ADD_TAG),
+                    modifier = Modifier.fillMaxWidth().height(48.dp).testTag(CLIENTS_ADD_TAG).tourTarget(TourKeys.ADD_CLIENT),
                 ) {
                     Icon(Icons.Filled.PersonAdd, contentDescription = null)
                     Spacer(Modifier.width(8.dp))

@@ -25,6 +25,10 @@ import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material.icons.filled.EventRepeat
 import androidx.compose.runtime.collectAsState
 import androidx.compose.material.icons.filled.UploadFile
+import androidx.compose.material.icons.filled.Explore
+import androidx.compose.material.icons.filled.StarRate
+import androidx.compose.material.icons.filled.Policy
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -44,11 +48,18 @@ import androidx.compose.ui.unit.dp
 import com.salestracker.app.R
 import com.salestracker.app.ui.AppViewModel
 
-private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY, TABS, IMPORT, FOLLOW_UPS }
+private enum class Step { MENU, TRADE, APPEARANCE, CUSTOM_COLORS, TEXT, ACCESSIBILITY, LANGUAGE, CURRENCY, TABS, IMPORT, FOLLOW_UPS, RATE }
 
 /** Appearance and language, plus the way into the Security & privacy center. */
 @Composable
-fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit, onDismiss: () -> Unit) {
+fun SettingsDialog(
+    vm: AppViewModel,
+    isDark: Boolean,
+    onOpenSecurity: () -> Unit,
+    onDismiss: () -> Unit,
+    onStartTour: () -> Unit = {},
+    onOpenPolicy: () -> Unit = {},
+) {
     var step by remember { mutableStateOf(Step.MENU) }
 
     when (step) {
@@ -89,6 +100,11 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
                     SettingRow(Icons.Filled.UploadFile, stringResource(R.string.import_title), stringResource(R.string.import_desc)) {
                         step = Step.IMPORT
                     }
+                    SettingRow(Icons.Filled.Explore, stringResource(R.string.tour_row), stringResource(R.string.tour_row_desc), onClick = onStartTour)
+                    SettingRow(Icons.Filled.StarRate, stringResource(R.string.rate_row), stringResource(R.string.rate_row_desc)) {
+                        step = Step.RATE
+                    }
+                    SettingRow(Icons.Filled.Policy, stringResource(R.string.pp_row), stringResource(R.string.pp_row_desc), onClick = onOpenPolicy)
                 }
             },
             confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.done)) } },
@@ -136,7 +152,51 @@ fun SettingsDialog(vm: AppViewModel, isDark: Boolean, onOpenSecurity: () -> Unit
         Step.IMPORT -> ImportDialog(vm, onDismiss = { step = Step.MENU })
 
         Step.FOLLOW_UPS -> FollowUpSettingsDialog(vm, onDismiss = { step = Step.MENU })
+
+        Step.RATE -> RateDialog(vm, onDismiss = { step = Step.MENU })
     }
+}
+
+/**
+ * Rate Quota Vault: a plain invitation with no leading question, a button to the Play Store page, and the
+ * choice of whether Google Play's rating window may appear on its own now and then.
+ */
+@Composable
+private fun RateDialog(vm: AppViewModel, onDismiss: () -> Unit) {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.rate_row)) },
+        text = {
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                Text(stringResource(R.string.rate_body), style = MaterialTheme.typography.bodyMedium)
+                Spacer(Modifier.height(12.dp))
+                androidx.compose.material3.FilledTonalButton(
+                    onClick = { com.salestracker.app.ui.PlayReview.openListing(context) },
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Icon(Icons.Filled.StarRate, contentDescription = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text(stringResource(R.string.rate_open))
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    Modifier.fillMaxWidth()
+                        .toggleable(value = vm.askForReview, role = Role.Switch, onValueChange = vm::changeAskForReview)
+                        .padding(vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(Modifier.weight(1f)) {
+                        Text(stringResource(R.string.rate_ask), style = MaterialTheme.typography.bodyLarge)
+                        Text(stringResource(R.string.rate_ask_desc), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    Spacer(Modifier.width(12.dp))
+                    Switch(checked = vm.askForReview, onCheckedChange = null)
+                }
+            }
+        },
+        confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.done)) } },
+    )
 }
 
 @Composable

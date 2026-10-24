@@ -65,7 +65,7 @@ fun OnTrackCard(vm: AppViewModel, data: AppData) {
     val pace = remember(data.sales, data.commissionPlan, vm.pacePeriod, today) {
         Pace.of(data.sales, data.commissionPlan, vm.pacePeriod, today)
     }
-    Card(Modifier.fillMaxWidth()) {
+    Card(Modifier.fillMaxWidth().tourTarget(TourKeys.ON_TRACK)) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             TitleValueRow(
                 title = {

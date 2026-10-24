@@ -1,5 +1,6 @@
 package com.salestracker.app.ui
 
+import com.salestracker.app.data.ReviewTiming
 import com.salestracker.app.data.TierSchedule
 import com.salestracker.app.data.DistanceUnit
 import com.salestracker.app.data.Expense
@@ -93,6 +94,43 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun finishOnboarding() {
         onboarded = true
         settings.edit().putBoolean("onboarded", true).apply()
+    }
+
+    // ---- Guided tour of the app (shown once after setup; replay from Settings) ----
+    /** The step showing, or null when the tour isn't running. */
+    var tourStep by mutableStateOf<Int?>(null)
+    var tourDone by mutableStateOf(settings.getBoolean("tourDone", false))
+        private set
+    fun startTour() { tourStep = 0 }
+    fun endTour() {
+        tourStep = null
+        tourDone = true
+        settings.edit().putBoolean("tourDone", true).apply()
+    }
+
+    // ---- Rating on Google Play ----
+    /** When the app was first opened (for not asking for a rating too soon). */
+    private var firstUseAt: Long = settings.getLong("firstUseAt", 0L).takeIf { it > 0L }
+        ?: System.currentTimeMillis().also { settings.edit().putLong("firstUseAt", it).apply() }
+    /** Whether Google Play's rating window may appear now and then (Settings → Rate Quota Vault). */
+    var askForReview by mutableStateOf(settings.getBoolean("askForReview", true))
+        private set
+    fun changeAskForReview(on: Boolean) {
+        askForReview = on
+        settings.edit().putBoolean("askForReview", on).apply()
+    }
+    /** Set when it's a good moment to show the rating window; the app shows it and calls [markReviewAsked]. */
+    var reviewRequested by mutableStateOf(false)
+        private set
+    private fun maybeRequestReview() {
+        val logged = repo.data.value.sales.count { it.id !in sampleIds }
+        if (ReviewTiming.isDue(askForReview, firstUseAt, logged, settings.getLong("reviewAskedAt", 0L), settings.getInt("reviewAsks", 0), System.currentTimeMillis())) {
+            reviewRequested = true
+        }
+    }
+    fun markReviewAsked(at: Long = System.currentTimeMillis()) {
+        reviewRequested = false
+        settings.edit().putLong("reviewAskedAt", at).putInt("reviewAsks", settings.getInt("reviewAsks", 0) + 1).apply()
     }
 
     init {
@@ -430,6 +468,11 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         lastAutoBackupAt = 0L
         autoBackupFailed = false
         allowScreenshots = false
+        tourStep = null
+        tourDone = false
+        askForReview = true
+        reviewRequested = false
+        firstUseAt = System.currentTimeMillis().also { settings.edit().putLong("firstUseAt", it).apply() }
     }
 
     // ---- Backups ----
@@ -780,6 +823,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         if (isNew && sale.clientId != null) {
             autoFollowUp(sale.clientId, if (sale.closed) FollowUpTrigger.SALE_CLOSED else FollowUpTrigger.SALE_NOT_CLOSED)
         }
+        // Just finished logging a sale: a natural moment for Google Play's rating window, if one is due.
+        if (isNew) maybeRequestReview()
     }
     fun deleteSale(id: Long) = repo.update { d -> d.copy(sales = d.sales.filterNot { it.id == id }) }
 

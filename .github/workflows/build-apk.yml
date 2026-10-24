@@ -91,6 +91,23 @@ jobs:
           # The bundle must be signed with the permanent key (it becomes the Play upload key).
           jarsigner -verify QuotaVault.aab | grep -q "jar verified" || { echo "::error::QuotaVault.aab is not signed."; exit 1; }
 
+      # The app's privacy promise: the fewest permissions possible, and never the internet. Any library update
+      # that slips in a new permission stops the build here instead of reaching users.
+      - name: Check the app asks for no new permissions
+        run: |
+          AAPT2=$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -1)aapt2
+          "$AAPT2" dump permissions QuotaVault.apk | tee permissions.txt
+          ALLOWED="^(uses-permission: name='(android\.permission\.(POST_NOTIFICATIONS|RECEIVE_BOOT_COMPLETED|SCHEDULE_EXACT_ALARM|USE_BIOMETRIC|USE_FINGERPRINT)|com\.quotavault\.myapp\.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION)'( .*)?|permission: com\.quotavault\.myapp\.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION|package: .*)$"
+          EXTRA=$(grep -Ev "$ALLOWED" permissions.txt || true)
+          if [ -n "$EXTRA" ]; then
+            echo "::error title=New permission::The app now asks for: $(echo $EXTRA)"
+            exit 1
+          fi
+          if grep -q "android.permission.INTERNET" permissions.txt; then
+            echo "::error::The app must never have internet access."
+            exit 1
+          fi
+
       - name: Privacy audit (fails the build if the app could reach the internet or be debugged)
         run: |
           AAPT2="$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -1)aapt2"

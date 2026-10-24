@@ -87,7 +87,7 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
                     { m ->
                         androidx.compose.material3.Button(
                             onClick = { adding = true },
-                            modifier = m.height(48.dp).testTag(SALES_LOG_ADD_TAG),
+                            modifier = m.height(48.dp).testTag(SALES_LOG_ADD_TAG).tourTarget(TourKeys.LOG_SALE),
                             contentPadding = PaddingValues(horizontal = 12.dp),
                         ) {
                             Icon(Icons.Filled.PointOfSale, contentDescription = null, modifier = Modifier.size(18.dp))

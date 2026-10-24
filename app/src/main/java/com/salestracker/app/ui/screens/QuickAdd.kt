@@ -118,7 +118,7 @@ fun BoxScope.QuickAdd(
     val fab: @Composable () -> Unit = {
         FloatingActionButton(
             onClick = { open = !open },
-            modifier = Modifier.semantics { contentDescription = name },
+            modifier = Modifier.tourTarget(TourKeys.QUICK_ADD).semantics { contentDescription = name },
         ) {
             // The + turns into an × while the menu is open.
             Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.rotate(turn))

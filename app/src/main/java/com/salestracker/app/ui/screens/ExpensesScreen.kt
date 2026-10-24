@@ -179,7 +179,7 @@ fun ExpensesScreen(vm: AppViewModel, data: AppData) {
                 }
             }
             item {
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                FlowRow(Modifier.tourTarget(TourKeys.ADD_EXPENSE), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     OutlinedButton(onClick = { adding = ExpenseKind.EXPENSE }) {
                         Icon(Icons.Filled.Receipt, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(Modifier.width(6.dp)); Text(stringResource(R.string.exp_add_expense))
