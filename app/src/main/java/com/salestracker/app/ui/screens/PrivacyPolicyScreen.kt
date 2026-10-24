@@ -60,6 +60,7 @@ private val SECTIONS = listOf(
 @Composable
 fun PrivacyPolicyScreen(onClose: () -> Unit) {
     BackHandler(onBack = onClose)
+    val translated = androidx.compose.ui.platform.LocalConfiguration.current.locales[0].language != "en"
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Scaffold(
             topBar = {
@@ -114,7 +115,7 @@ fun PrivacyPolicyScreen(onClose: () -> Unit) {
                     }
                 }
                 // Translations say which version counts if they ever differ.
-                if (androidx.compose.ui.platform.LocalConfiguration.current.locales[0].language != "en") {
+                if (translated) {
                     item {
                         Text(
                             stringResource(R.string.pp_translation),
