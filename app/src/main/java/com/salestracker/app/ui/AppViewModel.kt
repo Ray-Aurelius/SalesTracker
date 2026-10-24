@@ -108,6 +108,22 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         settings.edit().putBoolean("tourDone", true).apply()
     }
 
+    // ---- Tips and hints (Settings → Tips and hints): page hints and button labels on press-and-hold ----
+    var showHints by mutableStateOf(settings.getBoolean("showHints", true))
+        private set
+    private var dismissedHints by mutableStateOf(settings.getStringSet("dismissedHints", emptySet())!!.toSet())
+    fun hintShown(id: String) = showHints && id !in dismissedHints
+    fun dismissHint(id: String) {
+        dismissedHints = dismissedHints + id
+        settings.edit().putStringSet("dismissedHints", dismissedHints).apply()
+    }
+    /** Turning tips back on shows every page's hint again. */
+    fun changeShowHints(on: Boolean) {
+        showHints = on
+        if (on) dismissedHints = emptySet()
+        settings.edit().putBoolean("showHints", on).putStringSet("dismissedHints", dismissedHints).apply()
+    }
+
     // ---- A thank-you note from the founder (shown once after setup, before the tour) ----
     var founderNoteSeen by mutableStateOf(settings.getBoolean("founderNoteSeen", false))
         private set
@@ -479,6 +495,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         tourStep = null
         tourDone = false
         founderNoteSeen = false
+        showHints = true
+        dismissedHints = emptySet()
         askForReview = true
         reviewRequested = false
         firstUseAt = System.currentTimeMillis().also { settings.edit().putLong("firstUseAt", it).apply() }

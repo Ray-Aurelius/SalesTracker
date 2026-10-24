@@ -93,9 +93,9 @@ fun ClientPicker(
             leadingIcon = { Icon(if (selected != null && !searching) Icons.Filled.Person else Icons.Filled.Search, contentDescription = null) },
             trailingIcon = {
                 if (selected != null || query.isNotEmpty()) {
-                    IconButton(onClick = { onSelect(null); query = "" }) {
+                    IconTip(stringResource(R.string.cd_clear_client)) { IconButton(onClick = { onSelect(null); query = "" }) {
                         Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.cd_clear_client))
-                    }
+                    } }
                 } else {
                     androidx.compose.material3.ExposedDropdownMenuDefaults.TrailingIcon(expanded = open)
                 }
@@ -443,7 +443,7 @@ fun SaleCard(sale: Sale, clientName: String, onClick: () -> Unit, onDelete: () -
                     color = if (sale.closed) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
                 )
             }
-            IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.cd_delete_sale)) }
+            IconTip(stringResource(R.string.cd_delete_sale)) { IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.cd_delete_sale)) } }
         }
     }
 }

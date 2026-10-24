@@ -85,6 +85,7 @@ fun DashboardScreen(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
+            if (vm.hintShown(HintIds.STATS)) item(key = "hint") { HintCard(vm, HintIds.STATS, R.string.hint_stats) }
             if (vm.hasSampleData) {
                 item {
                     Card(

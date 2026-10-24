@@ -170,6 +170,7 @@ private fun ClientList(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
+            if (vm.hintShown(HintIds.CLIENTS)) item(key = "hint") { HintCard(vm, HintIds.CLIENTS, R.string.hint_clients) }
             // While choosing clients: how many, select all, delete, or cancel. Stays at the top while scrolling.
             if (choosing) {
                 stickyHeader(key = "selection") {
@@ -330,12 +331,12 @@ private fun SelectionBar(count: Int, onCancel: () -> Unit, onSelectAll: () -> Un
         modifier = Modifier.fillMaxWidth().padding(bottom = 4.dp).testTag(CLIENTS_SELECTION_TAG),
     ) {
         Row(Modifier.padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onCancel) { Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.cd_cancel_selection)) }
+            IconTip(stringResource(R.string.cd_cancel_selection)) { IconButton(onClick = onCancel) { Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.cd_cancel_selection)) } }
             Text(stringResource(R.string.clients_selected, count), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
             TextButton(onClick = onSelectAll) { Text(stringResource(R.string.select_all)) }
-            IconButton(onClick = onDelete) {
+            IconTip(stringResource(R.string.cd_delete_selected)) { IconButton(onClick = onDelete) {
                 Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.cd_delete_selected), tint = MaterialTheme.colorScheme.error)
-            }
+            } }
         }
     }
 }
@@ -381,10 +382,10 @@ private fun ClientCard(
     }
     val actions: @Composable () -> Unit = {
         if (client.phone.isNotBlank()) {
-            IconButton(onClick = onCall) { Icon(Icons.Filled.Phone, contentDescription = stringResource(R.string.cd_call, name)) }
+            IconTip(stringResource(R.string.cd_call, name)) { IconButton(onClick = onCall) { Icon(Icons.Filled.Phone, contentDescription = stringResource(R.string.cd_call, name)) } }
         }
         if (client.email.isNotBlank()) {
-            IconButton(onClick = onEmail) { Icon(Icons.Filled.Email, contentDescription = stringResource(R.string.cd_email, name)) }
+            IconTip(stringResource(R.string.cd_email, name)) { IconButton(onClick = onEmail) { Icon(Icons.Filled.Email, contentDescription = stringResource(R.string.cd_email, name)) } }
         }
     }
     val selectLabel = stringResource(R.string.select)
@@ -515,9 +516,9 @@ internal fun ClientDialog(
                         )
                     }
                     if (followUp != null) {
-                        IconButton(onClick = { followUp = null }) {
+                        IconTip(stringResource(R.string.remove_follow_up)) { IconButton(onClick = { followUp = null }) {
                             Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.remove_follow_up))
-                        }
+                        } }
                     }
                 }
                 OutlinedTextField(first, { first = it }, label = { Text(stringResource(R.string.first_name)) }, singleLine = true,

@@ -1112,6 +1112,18 @@
     <string name="note_continue">Tiếp tục</string>
     <string name="note_row">Đôi lời từ Ray</string>
     <string name="note_row_desc">Lời cảm ơn từ nhà sáng lập</string>
+    <string name="hint_got_it">Đã hiểu</string>
+    <string name="hints_row">Mẹo và gợi ý</string>
+    <string name="hints_row_desc">Một mẹo trên mỗi trang và nhãn khi bạn nhấn giữ một nút. Bật lại sẽ hiện lại tất cả các mẹo.</string>
+    <string name="hint_stats">Mẹo: chạm vào khoảng thời gian để đổi. Đặt cách bạn được trả trong Gói hoa hồng, và chạm vào con mắt ở trên để ẩn mọi số tiền.</string>
+    <string name="hint_sales">Mẹo: chạm vào một giao dịch để sửa. Khi nhận được hoa hồng, dùng Đánh dấu tất cả là đã nhận. Báo cáo bán hàng hiển thị số công việc, không bao giờ hiện tên khách hàng.</string>
+    <string name="hint_expenses">Mẹo: thêm ảnh hóa đơn khi ghi chi phí. Đặt mức giá theo quãng đường để biết mỗi chuyến đi đáng bao nhiêu, rồi tạo Báo cáo chi phí khi đến mùa thuế.</string>
+    <string name="hint_goals">Mẹo: chạm + cạnh Mục tiêu cá nhân hoặc Mục tiêu công ty để thêm. Mỗi mục tiêu cho biết bạn đang vượt hay chậm tiến độ và mỗi ngày cần bao nhiêu.</string>
+    <string name="hint_clients">Mẹo: chạm vào khách hàng để xem chi tiết và số liệu. Nhấn giữ để chọn nhiều người. Dùng bộ lọc để xem một giai đoạn, ví dụ Tiềm năng.</string>
+    <string name="hint_timer">Mẹo: chọn khách hàng nếu muốn, rồi nhấn Bắt đầu khi bắt đầu. Kết thúc và ghi giao dịch sẽ tự điền thời gian cho bạn.</string>
+    <string name="hint_schedule">Mẹo: chạm vào một ngày để xem lịch hẹn, thêm lịch hẹn hoặc tô màu ngày đó.</string>
+    <string name="hint_tasks">Mẹo: việc liên hệ lại được xếp trước. Một việc có thể lặp lại mỗi ngày hoặc vào ngày thường, và các mũi tên chuyển qua từng ngày.</string>
+    <string name="hint_charts">Mẹo: chạm vào biểu đồ để xem giá trị của tuần, tháng hoặc ngày đó. Chuyển xu hướng giữa theo tuần, tháng, quý và năm.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

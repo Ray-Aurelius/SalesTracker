@@ -93,9 +93,9 @@ fun SecurityScreen(vm: AppViewModel, data: AppData, startBackup: Boolean, onClos
             TopAppBar(
                 title = { Text(stringResource(R.string.security_title)) },
                 navigationIcon = {
-                    IconButton(onClick = onClose) {
+                    IconTip(stringResource(R.string.cd_back)) { IconButton(onClick = onClose) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.cd_back))
-                    }
+                    } }
                 },
             )
         },

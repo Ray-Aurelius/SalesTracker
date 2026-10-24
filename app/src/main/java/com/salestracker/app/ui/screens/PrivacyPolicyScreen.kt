@@ -67,9 +67,9 @@ fun PrivacyPolicyScreen(onClose: () -> Unit) {
                 TopAppBar(
                     title = { Text(stringResource(R.string.pp_title)) },
                     navigationIcon = {
-                        IconButton(onClick = onClose) {
+                        IconTip(stringResource(R.string.cd_back)) { IconButton(onClick = onClose) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.cd_back))
-                        }
+                        } }
                     },
                 )
             },

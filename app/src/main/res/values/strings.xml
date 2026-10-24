@@ -1253,4 +1253,16 @@
     <string name="note_continue">Continue</string>
     <string name="note_row">A note from Ray</string>
     <string name="note_row_desc">A thank-you from the founder</string>
+    <string name="hint_got_it">Got it</string>
+    <string name="hints_row">Tips and hints</string>
+    <string name="hints_row_desc">A tip on each page, and a label when you press and hold a button. Turning this on shows every tip again.</string>
+    <string name="hint_stats">Tip: Tap the time range to change it. Set how you\'re paid with Commission plan, and tap the eye at the top to hide every amount.</string>
+    <string name="hint_sales">Tip: Tap a sale to edit it. When your commission is paid, use Mark all as paid. Sales reports show job numbers, never client names.</string>
+    <string name="hint_expenses">Tip: Add a receipt photo when you log an expense. Set your mileage rate to see what each trip is worth, then make an Expense report at tax time.</string>
+    <string name="hint_goals">Tip: Tap + next to Personal goals or Company goals to add one. Each goal shows whether you\'re ahead or behind and what you need each day.</string>
+    <string name="hint_clients">Tip: Tap a client for their details and stats. Press and hold to select several. Use the filter to see one stage, like Leads.</string>
+    <string name="hint_timer">Tip: Choose a client if you like, then press Start when you begin. Finish &amp; log this sale fills in the time for you.</string>
+    <string name="hint_schedule">Tip: Tap a day to see its appointments, add one, or highlight the day.</string>
+    <string name="hint_tasks">Tip: Follow-ups come first. A task can repeat every day or on weekdays, and the arrows step through the days.</string>
+    <string name="hint_charts">Tip: Tap a chart to see the value for that week, month or day. Switch the trends between weekly, monthly, quarterly and yearly.</string>
 </resources>

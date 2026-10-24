@@ -1112,6 +1112,18 @@
     <string name="note_continue">계속</string>
     <string name="note_row">Ray가 드리는 편지</string>
     <string name="note_row_desc">창립자의 감사 인사</string>
+    <string name="hint_got_it">알겠어요</string>
+    <string name="hints_row">팁과 도움말</string>
+    <string name="hints_row_desc">페이지마다 팁을 보여 주고, 버튼을 길게 누르면 이름을 표시합니다. 다시 켜면 모든 팁이 다시 나타납니다.</string>
+    <string name="hint_stats">팁: 기간을 탭하면 바꿀 수 있습니다. 수수료 플랜에서 받는 방식을 설정하고, 위쪽 눈 아이콘을 탭하면 모든 금액이 숨겨집니다.</string>
+    <string name="hint_sales">팁: 판매를 탭하면 수정할 수 있습니다. 수수료를 받으면 모두 지급됨으로 표시를 사용하세요. 판매 보고서에는 고객 이름이 아닌 작업 번호만 표시됩니다.</string>
+    <string name="hint_expenses">팁: 지출을 기록할 때 영수증 사진을 추가하세요. 주행 단가를 설정하면 이동마다 금액을 알 수 있고, 세금 신고 때는 비용 보고서를 만드세요.</string>
+    <string name="hint_goals">팁: 개인 목표나 회사 목표 옆의 +를 탭해 추가하세요. 목표마다 앞서는지 뒤처지는지, 하루에 얼마가 필요한지 보여 줍니다.</string>
+    <string name="hint_clients">팁: 고객을 탭하면 상세 정보와 통계를 볼 수 있습니다. 길게 누르면 여러 명을 선택합니다. 필터로 리드 같은 한 단계만 볼 수 있습니다.</string>
+    <string name="hint_timer">팁: 원하면 고객을 고르고 시작할 때 시작을 누르세요. 종료하고 판매 기록이 시간을 자동으로 채워 줍니다.</string>
+    <string name="hint_schedule">팁: 날짜를 탭하면 약속을 보거나 추가하거나 그날을 강조할 수 있습니다.</string>
+    <string name="hint_tasks">팁: 후속 연락이 먼저 표시됩니다. 할 일은 매일 또는 평일마다 반복할 수 있고, 화살표로 날짜를 넘길 수 있습니다.</string>
+    <string name="hint_charts">팁: 차트를 탭하면 그 주, 그 달 또는 그날의 값을 볼 수 있습니다. 추이는 주별, 월별, 분기별, 연도별로 바꿀 수 있습니다.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>

@@ -1112,6 +1112,18 @@
     <string name="note_continue">继续</string>
     <string name="note_row">Ray 的一封信</string>
     <string name="note_row_desc">来自创始人的感谢</string>
+    <string name="hint_got_it">知道了</string>
+    <string name="hints_row">提示与帮助</string>
+    <string name="hints_row_desc">每个页面一条提示，长按按钮时显示名称。重新开启后，所有提示会再次显示。</string>
+    <string name="hint_stats">提示：点时间范围即可更改。在“佣金方案”中设置你的计酬方式，点顶部的眼睛图标可隐藏所有金额。</string>
+    <string name="hint_sales">提示：点一笔销售即可编辑。佣金到账后，使用“全部标记为已付”。销售报告只显示工单号，绝不显示客户姓名。</string>
+    <string name="hint_expenses">提示：记录开支时可添加收据照片。设置里程费率即可看到每次行程的价值，报税时再生成“费用报告”。</string>
+    <string name="hint_goals">提示：点“个人目标”或“公司目标”旁的 + 即可添加。每个目标都会显示你是领先还是落后，以及每天需要完成多少。</string>
+    <string name="hint_clients">提示：点一位客户查看详情和统计。长按可选择多位。用筛选只看一个阶段，比如“潜在客户”。</string>
+    <string name="hint_timer">提示：可以先选一位客户，开始时点“开始”。“结束并记录这笔销售”会自动填入时长。</string>
+    <string name="hint_schedule">提示：点某一天即可查看预约、添加预约或标记这一天。</string>
+    <string name="hint_tasks">提示：跟进事项排在最前。任务可以每天或在工作日重复，用箭头切换日期。</string>
+    <string name="hint_charts">提示：点图表即可查看那一周、那个月或那一天的数值。趋势可在按周、按月、按季度和按年之间切换。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

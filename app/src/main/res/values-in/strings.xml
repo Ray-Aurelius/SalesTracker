@@ -1112,6 +1112,18 @@
     <string name="note_continue">Lanjutkan</string>
     <string name="note_row">Pesan dari Ray</string>
     <string name="note_row_desc">Ucapan terima kasih dari pendiri</string>
+    <string name="hint_got_it">Mengerti</string>
+    <string name="hints_row">Tips dan petunjuk</string>
+    <string name="hints_row_desc">Satu tips di setiap halaman dan label saat Anda menekan lama sebuah tombol. Menyalakannya lagi akan menampilkan semua tips kembali.</string>
+    <string name="hint_stats">Tips: ketuk rentang waktu untuk mengubahnya. Atur cara Anda dibayar di Skema komisi, dan ketuk ikon mata di atas untuk menyembunyikan semua nominal.</string>
+    <string name="hint_sales">Tips: ketuk penjualan untuk mengeditnya. Saat komisi dibayar, gunakan Tandai semua sudah dibayar. Laporan penjualan menampilkan nomor pekerjaan, tidak pernah nama klien.</string>
+    <string name="hint_expenses">Tips: tambahkan foto struk saat mencatat pengeluaran. Atur tarif jarak tempuh untuk melihat nilai setiap perjalanan, lalu buat Laporan pengeluaran saat musim pajak.</string>
+    <string name="hint_goals">Tips: ketuk + di samping Target pribadi atau Target perusahaan untuk menambah. Setiap target menunjukkan apakah Anda lebih cepat atau tertinggal dan berapa yang perlu dicapai per hari.</string>
+    <string name="hint_clients">Tips: ketuk klien untuk melihat detail dan statistiknya. Tekan lama untuk memilih beberapa. Gunakan filter untuk melihat satu tahap, seperti Prospek.</string>
+    <string name="hint_timer">Tips: pilih klien jika mau, lalu tekan Mulai saat Anda memulai. Selesai dan catat penjualan mengisi waktunya untuk Anda.</string>
+    <string name="hint_schedule">Tips: ketuk satu hari untuk melihat janji temunya, menambah janji temu, atau menandai hari itu.</string>
+    <string name="hint_tasks">Tips: tindak lanjut ditampilkan lebih dulu. Tugas bisa berulang setiap hari atau pada hari kerja, dan tanda panah berpindah antarhari.</string>
+    <string name="hint_charts">Tips: ketuk grafik untuk melihat nilai minggu, bulan, atau hari itu. Ganti tren antara mingguan, bulanan, kuartalan, dan tahunan.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

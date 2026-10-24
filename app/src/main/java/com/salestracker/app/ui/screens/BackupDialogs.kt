@@ -63,12 +63,12 @@ internal fun PasswordField(value: String, onChange: (String) -> Unit, label: Str
         visualTransformation = if (visible) VisualTransformation.None else PasswordVisualTransformation(),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         trailingIcon = {
-            IconButton(onClick = { visible = !visible }) {
+            IconTip(stringResource(if (visible) R.string.hide_password else R.string.show_password)) { IconButton(onClick = { visible = !visible }) {
                 Icon(
                     if (visible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,
                     contentDescription = stringResource(if (visible) R.string.hide_password else R.string.show_password),
                 )
-            }
+            } }
         },
         modifier = Modifier.fillMaxWidth(),
     )

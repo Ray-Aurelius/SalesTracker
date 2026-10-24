@@ -170,6 +170,7 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
+            if (vm.hintShown(HintIds.SCHEDULE)) item(key = "hint") { HintCard(vm, HintIds.SCHEDULE, R.string.hint_schedule) }
             item {
                 MonthGrid(
                     month = month,
@@ -249,23 +250,23 @@ fun CalendarScreen(vm: AppViewModel, data: AppData) {
                         // A client's follow-up can be marked done right here (and the next one offered).
                         val followUpOf = data.clients.firstOrNull { it.followUpId == a.id }
                         if (followUpOf != null) {
-                            IconButton(onClick = { vm.completeFollowUp(followUpOf.id) }) {
+                            IconTip(stringResource(R.string.fu_cd_done, a.title)) { IconButton(onClick = { vm.completeFollowUp(followUpOf.id) }) {
                                 Icon(
                                     Icons.Filled.TaskAlt,
                                     contentDescription = stringResource(R.string.fu_cd_done, a.title),
                                     tint = MaterialTheme.colorScheme.primary,
                                     modifier = Modifier.size(20.dp),
                                 )
-                            }
+                            } }
                         }
-                        IconButton(onClick = { deleteAppt(a) }) {
+                        IconTip(stringResource(R.string.cd_delete_appointment, a.title)) { IconButton(onClick = { deleteAppt(a) }) {
                             Icon(
                                 Icons.Filled.Delete,
                                 contentDescription = stringResource(R.string.cd_delete_appointment, a.title),
                                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.size(20.dp),
                             )
-                        }
+                        } }
                     }
                 }
             }
@@ -353,14 +354,14 @@ private fun MonthGrid(
 ) {
     Column {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onPrev) { Icon(Icons.Filled.ChevronLeft, contentDescription = stringResource(R.string.cd_prev_month)) }
+            IconTip(stringResource(R.string.cd_prev_month)) { IconButton(onClick = onPrev) { Icon(Icons.Filled.ChevronLeft, contentDescription = stringResource(R.string.cd_prev_month)) } }
             FitText(
                 month.format(monthTitle()),
                 style = MaterialTheme.typography.titleLarge,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.weight(1f),
             )
-            IconButton(onClick = onNext) { Icon(Icons.Filled.ChevronRight, contentDescription = stringResource(R.string.cd_next_month)) }
+            IconTip(stringResource(R.string.cd_next_month)) { IconButton(onClick = onNext) { Icon(Icons.Filled.ChevronRight, contentDescription = stringResource(R.string.cd_next_month)) } }
         }
         TextButton(onClick = onToday, modifier = Modifier.align(Alignment.CenterHorizontally)) { Text(stringResource(R.string.period_today)) }
 
@@ -812,14 +813,14 @@ private fun DayOverview(
                                 Text(it, style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
                             }
                         }
-                        IconButton(onClick = { onDelete(a) }) {
+                        IconTip(stringResource(R.string.cd_delete_appointment, a.title)) { IconButton(onClick = { onDelete(a) }) {
                             Icon(
                                 Icons.Filled.Delete,
                                 contentDescription = stringResource(R.string.cd_delete_appointment, a.title),
                                 tint = colors.onSurfaceVariant,
                                 modifier = Modifier.size(20.dp),
                             )
-                        }
+                        } }
                     }
                 }
                 Spacer(Modifier.height(8.dp))

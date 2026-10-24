@@ -508,9 +508,9 @@ private fun BackupRow(e: BackupFolder.Entry, newest: Boolean, onClick: () -> Uni
                 }
             }
             if (onDelete != null) {
-                IconButton(onClick = onDelete) {
+                IconTip(stringResource(R.string.backup_cd_delete, formatBackupTime(e.modified))) { IconButton(onClick = onDelete) {
                     Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.backup_cd_delete, formatBackupTime(e.modified)))
-                }
+                } }
             }
         }
     }

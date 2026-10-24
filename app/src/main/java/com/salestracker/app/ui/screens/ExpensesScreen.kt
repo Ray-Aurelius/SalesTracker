@@ -122,6 +122,7 @@ fun ExpensesScreen(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
+            if (vm.hintShown(HintIds.EXPENSES)) item(key = "hint") { HintCard(vm, HintIds.EXPENSES, R.string.hint_expenses) }
             item {
                 // The period and the expense report side by side.
                 ControlPair(
@@ -292,7 +293,7 @@ private fun ExpenseCard(vm: AppViewModel, e: Expense, clientName: String?, onCli
                 Text(line, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             if (e.receipts.isNotEmpty()) ReceiptBadgeButton(vm, e.receipts)
-            IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.exp_cd_delete)) }
+            IconTip(stringResource(R.string.exp_cd_delete)) { IconButton(onClick = onDelete) { Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.exp_cd_delete)) } }
         }
     }
 }

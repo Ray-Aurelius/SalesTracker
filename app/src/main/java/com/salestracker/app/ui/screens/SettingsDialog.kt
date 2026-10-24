@@ -26,6 +26,7 @@ import androidx.compose.material.icons.filled.EventRepeat
 import androidx.compose.runtime.collectAsState
 import androidx.compose.material.icons.filled.UploadFile
 import androidx.compose.material.icons.filled.Explore
+import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material.icons.filled.StarRate
 import androidx.compose.material.icons.filled.Feedback
 import androidx.compose.material.icons.filled.Favorite
@@ -102,6 +103,22 @@ fun SettingsDialog(
                     }
                     SettingRow(Icons.Filled.UploadFile, stringResource(R.string.import_title), stringResource(R.string.import_desc)) {
                         step = Step.IMPORT
+                    }
+                    // Tips and hints: one switch for the page hints and the labels on press-and-hold.
+                    Row(
+                        Modifier.fillMaxWidth()
+                            .toggleable(value = vm.showHints, role = Role.Switch, onValueChange = vm::changeShowHints)
+                            .padding(vertical = 10.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(Icons.Filled.Lightbulb, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                        Spacer(Modifier.width(16.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text(stringResource(R.string.hints_row), style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Medium)
+                            Text(stringResource(R.string.hints_row_desc), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                        Spacer(Modifier.width(8.dp))
+                        Switch(checked = vm.showHints, onCheckedChange = null)
                     }
                     SettingRow(Icons.Filled.Explore, stringResource(R.string.tour_row), stringResource(R.string.tour_row_desc), onClick = onStartTour)
                     SettingRow(Icons.Filled.Favorite, stringResource(R.string.note_row), stringResource(R.string.note_row_desc), onClick = onOpenNote)

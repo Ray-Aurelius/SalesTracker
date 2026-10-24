@@ -421,6 +421,24 @@ def main(apk):
     if find(r"Who we are"):
         fail("Back didn't close the privacy policy")
 
+    section("Tips and hints: a tip on the page, Got it, then switched off in Settings")
+    tap(r"^Stats$", wait=1.5)
+    if not find(r"^Tip: Tap the time range"):
+        fail("no tip on the Stats page")
+    shot("hint-stats")
+    tap(r"^Got it$", wait=1.2)
+    if find(r"^Tip: Tap the time range"):
+        fail("Got it didn't dismiss the tip")
+    tap(r"^Sales$", wait=1.5)
+    if not find(r"^Tip: Tap a sale"):
+        fail("no tip on the Sales page")
+    tap(r"^Settings$", wait=1.5)
+    if not tap(r"^Tips and hints$", wait=1.0, scroll=4):
+        fail("no Tips and hints switch in Settings")
+    tap(r"^Done$", wait=1.2)
+    if find(r"^Tip: "):
+        fail("tips still show after switching them off")
+
     section("Every tab")
     for label in ["Sales", "Expenses", "Goals", "Clients", "Schedule", "Tasks", "Calc", "Charts", "Stats"]:
         tap(rf"^{label}$", f"tab-{label.lower()}", wait=2)

@@ -74,6 +74,10 @@ fun StopwatchScreen(vm: AppViewModel, data: AppData) {
         Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 88.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        if (vm.hintShown(HintIds.TIMER)) {
+            HintCard(vm, HintIds.TIMER, R.string.hint_timer)
+            Spacer(Modifier.height(12.dp))
+        }
         ClientPicker(data.clients, vm.stopwatchClientId, vm::setStopwatchClient, Modifier.fillMaxWidth())
         Spacer(Modifier.height(32.dp))
 

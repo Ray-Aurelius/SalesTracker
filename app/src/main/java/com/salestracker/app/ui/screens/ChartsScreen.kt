@@ -102,6 +102,7 @@ private fun ChartsContent(data: AppData) {
         Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(start = 16.dp, end = 16.dp, top = 12.dp, bottom = 88.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
+        HintCard(vm, HintIds.CHARTS, R.string.hint_charts)
         // ---- Commission earned this week / month / quarter / year ----
         SectionTitle(stringResource(R.string.commission_earned))
         val periods = listOf(GoalPeriod.WEEK, GoalPeriod.MONTH, GoalPeriod.QUARTER, GoalPeriod.YEAR)

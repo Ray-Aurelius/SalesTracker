@@ -211,12 +211,12 @@ internal fun ReceiptSection(vm: AppViewModel, receipts: SnapshotStateList<Long>,
                 Spacer(Modifier.width(8.dp))
                 Text(stringResource(R.string.receipt_n, i + 1), modifier = Modifier.weight(1f))
                 TextButton(onClick = { unlock { viewing = i } }) { Text(stringResource(R.string.receipt_view)) }
-                IconButton(onClick = {
+                IconTip(stringResource(R.string.receipt_cd_remove, i + 1)) { IconButton(onClick = {
                     // A photo that was already saved with the expense is a record: removing it needs the owner.
                     if (id in initial) ownerCheck { receipts.remove(id) } else { receipts.remove(id); added.remove(id); vm.discardReceipts(listOf(id)) }
                 }) {
                     Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.receipt_cd_remove, i + 1))
-                }
+                } }
             }
         }
         if (full) Text(stringResource(R.string.receipt_limit, ReceiptStore.MAX_PER_EXPENSE), style = MaterialTheme.typography.bodySmall)
@@ -310,15 +310,15 @@ internal fun ReceiptViewer(vm: AppViewModel, ids: List<Long>, start: Int, onDism
                 Modifier.fillMaxWidth().safeDrawingPadding().background(Color.Black.copy(alpha = 0.55f)).padding(4.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                IconButton(onClick = onDismiss) { Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.receipt_close), tint = Color.White) }
+                IconTip(stringResource(R.string.receipt_close)) { IconButton(onClick = onDismiss) { Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.receipt_close), tint = Color.White) } }
                 Text(
                     stringResource(R.string.receipt_of, index + 1, ids.size),
                     color = Color.White, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f),
                 )
                 if (jpeg != null) {
-                    IconButton(onClick = { saver.launch("Receipt-${LocalDate.now()}.jpg") }) {
+                    IconTip(stringResource(R.string.receipt_save_copy)) { IconButton(onClick = { saver.launch("Receipt-${LocalDate.now()}.jpg") }) {
                         Icon(Icons.Filled.Download, contentDescription = stringResource(R.string.receipt_save_copy), tint = Color.White)
-                    }
+                    } }
                 }
             }
             if (ids.size > 1) {
@@ -326,12 +326,12 @@ internal fun ReceiptViewer(vm: AppViewModel, ids: List<Long>, start: Int, onDism
                     Modifier.align(Alignment.BottomCenter).safeDrawingPadding().padding(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(24.dp),
                 ) {
-                    IconButton(enabled = index > 0, onClick = { index-- }, modifier = Modifier.background(Color.Black.copy(alpha = 0.55f), MaterialTheme.shapes.extraLarge)) {
+                    IconTip(stringResource(R.string.receipt_previous)) { IconButton(enabled = index > 0, onClick = { index-- }, modifier = Modifier.background(Color.Black.copy(alpha = 0.55f), MaterialTheme.shapes.extraLarge)) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.receipt_previous), tint = Color.White)
-                    }
-                    IconButton(enabled = index < ids.size - 1, onClick = { index++ }, modifier = Modifier.background(Color.Black.copy(alpha = 0.55f), MaterialTheme.shapes.extraLarge)) {
+                    } }
+                    IconTip(stringResource(R.string.receipt_next)) { IconButton(enabled = index < ids.size - 1, onClick = { index++ }, modifier = Modifier.background(Color.Black.copy(alpha = 0.55f), MaterialTheme.shapes.extraLarge)) {
                         Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = stringResource(R.string.receipt_next), tint = Color.White)
-                    }
+                    } }
                 }
             }
         }

@@ -115,7 +115,7 @@ fun BoxScope.QuickAdd(
 
     val turn by animateFloatAsState(if (open) 45f else 0f, label = "quickAddTurn")
     val name = stringResource(if (open) R.string.quick_add_close else R.string.quick_add)
-    val fab: @Composable () -> Unit = {
+    val fab: @Composable () -> Unit = { IconTip(name) {
         FloatingActionButton(
             onClick = { open = !open },
             modifier = Modifier.tourTarget(TourKeys.QUICK_ADD).semantics { contentDescription = name },
@@ -123,7 +123,7 @@ fun BoxScope.QuickAdd(
             // The + turns into an × while the menu is open.
             Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.rotate(turn))
         }
-    }
+    } }
     val buttons: @Composable () -> Unit = {
         actions.forEach { a -> QuickActionButton(a, iconFirst = atTopStart) { open = false; a.onClick() } }
     }

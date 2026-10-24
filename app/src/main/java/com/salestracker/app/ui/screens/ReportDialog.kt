@@ -159,10 +159,10 @@ fun ReportDialog(
                     }
                     // Which week / month / quarter / year: this one, or step back to an earlier one.
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        IconButton(
+                        IconTip(stringResource(R.string.report_prev_period)) { IconButton(
                             onClick = { back++ },
                             enabled = SalesReport.hasEarlier(data, period, back, today),
-                        ) { Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = stringResource(R.string.report_prev_period)) }
+                        ) { Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = stringResource(R.string.report_prev_period)) } }
                         Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(
                                 ReportPdf.periodName(context, period, start, end),
@@ -173,9 +173,9 @@ fun ReportDialog(
                                 style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center,
                             )
                         }
-                        IconButton(onClick = { back-- }, enabled = back > 0) {
+                        IconTip(stringResource(R.string.report_next_period)) { IconButton(onClick = { back-- }, enabled = back > 0) {
                             Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = stringResource(R.string.report_next_period))
-                        }
+                        } }
                     }
                     SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
                         SegmentedButton(selected = !csv, onClick = { csv = false }, shape = SegmentedButtonDefaults.itemShape(0, 2),

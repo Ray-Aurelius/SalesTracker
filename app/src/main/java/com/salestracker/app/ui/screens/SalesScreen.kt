@@ -79,6 +79,7 @@ private fun SalesLog(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
+            if (vm.hintShown(HintIds.SALES)) item(key = "hint") { HintCard(vm, HintIds.SALES, R.string.hint_sales) }
             item {
                 // The period and Log sale side by side (the + button below logs a sale too).
                 ControlPair(

@@ -79,6 +79,7 @@ fun GoalsScreen(vm: AppViewModel, data: AppData) {
         contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 96.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
+            if (vm.hintShown(HintIds.GOALS)) item(key = "hint") { HintCard(vm, HintIds.GOALS, R.string.hint_goals) }
         GoalScope.entries.forEach { scope ->
             val goals = data.goals.filter { it.scope == scope }
             item(key = "header-$scope") {
@@ -150,9 +151,9 @@ private fun SectionHeader(scope: GoalScope, onAdd: () -> Unit) {
         }
         // On a narrow page the "Add" word would squeeze the heading; the icon alone is enough there.
         if (isNarrow()) {
-            IconButton(onClick = onAdd) {
+            IconTip(stringResource(R.string.add)) { IconButton(onClick = onAdd) {
                 Icon(Icons.Filled.Add, contentDescription = stringResource(R.string.add), tint = MaterialTheme.colorScheme.primary)
-            }
+            } }
         } else {
             TextButton(onClick = onAdd) {
                 Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.size(18.dp))

@@ -137,6 +137,7 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 96.dp),
             verticalArrangement = Arrangement.spacedBy(6.dp),
         ) {
+            if (vm.hintShown(HintIds.TASKS)) item(key = "hint") { HintCard(vm, HintIds.TASKS, R.string.hint_tasks) }
             item {
                 SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
                     SegmentedButton(selected = !upcoming, onClick = { upcoming = false }, shape = SegmentedButtonDefaults.itemShape(0, 2)) {
@@ -160,22 +161,22 @@ fun TasksScreen(vm: AppViewModel, data: AppData) {
                 // Day switcher: arrows step a day; the calendar button jumps to any date; tapping the title goes back to today.
                 item {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        IconButton(onClick = { day-- }) {
+                        IconTip(stringResource(R.string.cd_prev_day)) { IconButton(onClick = { day-- }) {
                             Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = stringResource(R.string.cd_prev_day))
-                        }
+                        } }
                         FitText(
                             dayLabel(day, today),
                             style = MaterialTheme.typography.titleLarge,
                             modifier = Modifier.weight(1f).clickable { day = today }.semantics { heading() },
                             textAlign = androidx.compose.ui.text.style.TextAlign.Center,
                         )
-                        IconButton(onClick = {
+                        IconTip(stringResource(R.string.tasks_pick_date)) { IconButton(onClick = {
                             val d = LocalDate.ofEpochDay(day)
                             DatePickerDialog(context, { _, y, m, dd -> day = LocalDate.of(y, m + 1, dd).toEpochDay() }, d.year, d.monthValue - 1, d.dayOfMonth).show()
-                        }) { Icon(Icons.Filled.Event, contentDescription = stringResource(R.string.tasks_pick_date)) }
-                        IconButton(onClick = { day++ }) {
+                        }) { Icon(Icons.Filled.Event, contentDescription = stringResource(R.string.tasks_pick_date)) } }
+                        IconTip(stringResource(R.string.cd_next_day)) { IconButton(onClick = { day++ }) {
                             Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = stringResource(R.string.cd_next_day))
-                        }
+                        } }
                     }
                 }
                 if (list.total > 0) {
@@ -416,19 +417,19 @@ internal fun TaskRow(
         }
         val phone = client?.phone?.takeIf { it.isNotBlank() }
         if (phone != null && !done) {
-            IconButton(onClick = { onCall(phone) }) {
+            IconTip(stringResource(R.string.cd_call, client.displayName())) { IconButton(onClick = { onCall(phone) }) {
                 Icon(Icons.Filled.Call, contentDescription = stringResource(R.string.cd_call, client.displayName()))
-            }
+            } }
         }
         if (onDelete != null) {
-            IconButton(onClick = onDelete) {
+            IconTip(stringResource(R.string.cd_delete_task, task.title)) { IconButton(onClick = onDelete) {
                 Icon(
                     Icons.Filled.Delete,
                     contentDescription = stringResource(R.string.cd_delete_task, task.title),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(20.dp),
                 )
-            }
+            } }
         }
     }
 }

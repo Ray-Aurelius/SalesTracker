@@ -1112,6 +1112,18 @@
     <string name="note_continue">続ける</string>
     <string name="note_row">Ray からのメッセージ</string>
     <string name="note_row_desc">創設者からの感謝</string>
+    <string name="hint_got_it">OK</string>
+    <string name="hints_row">ヒント</string>
+    <string name="hints_row_desc">各ページにヒントを表示し、ボタンを長押しすると名前を表示します。オンに戻すと、すべてのヒントがもう一度表示されます。</string>
+    <string name="hint_stats">ヒント：期間をタップすると切り替えられます。「コミッションプラン」で報酬の受け取り方を設定し、上の目のアイコンで金額をすべて隠せます。</string>
+    <string name="hint_sales">ヒント：販売をタップすると編集できます。手数料が支払われたら「すべて支払い済みにする」を使います。販売レポートには顧客名ではなく案件番号が表示されます。</string>
+    <string name="hint_expenses">ヒント：経費を記録するときに領収書の写真を添付できます。走行距離の単価を設定すると移動ごとの金額がわかり、確定申告の時期には「経費レポート」を作成できます。</string>
+    <string name="hint_goals">ヒント：「個人の目標」または「会社の目標」の横の＋をタップして追加します。各目標で、ペースより進んでいるか遅れているか、1 日に必要な量がわかります。</string>
+    <string name="hint_clients">ヒント：顧客をタップすると詳細と統計が見られます。長押しで複数選択できます。フィルターで「見込み」などの段階だけを表示できます。</string>
+    <string name="hint_timer">ヒント：必要なら顧客を選び、始めるときに「スタート」を押します。「終了して販売を記録」で時間が自動入力されます。</string>
+    <string name="hint_schedule">ヒント：日付をタップすると、その日の予定の確認や追加、日付の色分けができます。</string>
+    <string name="hint_tasks">ヒント：フォローアップが先頭に表示されます。タスクは毎日または平日に繰り返せ、矢印で日付を移動できます。</string>
+    <string name="hint_charts">ヒント：グラフをタップすると、その週・月・日の値が表示されます。推移は週ごと・月ごと・四半期ごと・年ごとに切り替えられます。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

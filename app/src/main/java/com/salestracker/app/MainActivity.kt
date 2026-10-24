@@ -416,23 +416,26 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
         else -> com.salestracker.app.ui.screens.WidgetQuickForm(vm, data, q, onDone = { vm.pendingQuick = null })
     }
 
-    CompositionLocalProvider(LocalTour provides tourState.takeIf { vm.tourStep != null }) { Box(Modifier.fillMaxSize()) {
+    CompositionLocalProvider(
+        LocalTour provides tourState.takeIf { vm.tourStep != null },
+        com.salestracker.app.ui.screens.LocalShowTips provides vm.showHints,
+    ) { Box(Modifier.fillMaxSize()) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(tab.titleRes()), maxLines = 1, overflow = TextOverflow.Ellipsis) },
                 actions = {
                     // Privacy mode: one tap hides every dollar amount (e.g. before showing the screen to a customer).
-                    IconButton(onClick = vm::togglePrivacyMode, modifier = Modifier.tourTarget(TourKeys.PRIVACY)) {
+                    IconTip(stringResource(if (PrivacyMode.hideAmounts) R.string.cd_show_amounts else R.string.cd_hide_amounts)) { IconButton(onClick = vm::togglePrivacyMode, modifier = Modifier.tourTarget(TourKeys.PRIVACY)) {
                         Icon(
                             if (PrivacyMode.hideAmounts) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,
                             contentDescription = stringResource(if (PrivacyMode.hideAmounts) R.string.cd_show_amounts else R.string.cd_hide_amounts),
                             tint = if (PrivacyMode.hideAmounts) MaterialTheme.colorScheme.primary else LocalContentColor.current,
                         )
-                    }
-                    IconButton(onClick = { showSettings = true }, modifier = Modifier.tourTarget(TourKeys.SETTINGS)) {
+                    } }
+                    IconTip(stringResource(R.string.cd_settings)) { IconButton(onClick = { showSettings = true }, modifier = Modifier.tourTarget(TourKeys.SETTINGS)) {
                         Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.cd_settings))
-                    }
+                    } }
                 },
             )
         },
@@ -606,13 +609,13 @@ private fun SideMenu(tabs: List<Tab>, labels: List<String>, selected: Int, label
                 }
             }
         }
-        IconButton(onClick = onHide) {
+        IconTip(stringResource(R.string.cd_hide_menu)) { IconButton(onClick = onHide) {
             Icon(
                 Icons.AutoMirrored.Filled.KeyboardArrowLeft,
                 contentDescription = stringResource(R.string.cd_hide_menu),
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-        }
+        } }
     }
 }
 

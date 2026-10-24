@@ -159,9 +159,9 @@ fun CommissionPlanDialog(
                                 modifier = Modifier.weight(1f),
                             )
                             if (i > 0) {
-                                IconButton(onClick = { rows.removeAt(i) }) {
+                                IconTip(stringResource(R.string.tier_remove)) { IconButton(onClick = { rows.removeAt(i) }) {
                                     Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.tier_remove))
-                                }
+                                } }
                             } else {
                                 Spacer(Modifier.width(48.dp))
                             }
