@@ -32,4 +32,5 @@ object PrivacyMode {
 }
 
 /** Bump when the user agreement text changes in a meaningful way; users are asked to accept again. */
-const val AGREEMENT_VERSION = 1
+// 2: the User Agreement became the Terms of Service (privacy policy, lawful use, licence, purchases, contact).
+const val AGREEMENT_VERSION = 2

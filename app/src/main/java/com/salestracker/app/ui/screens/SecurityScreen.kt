@@ -385,15 +385,30 @@ internal fun InfoBlock(title: Int, body: Int) {
     }
 }
 
-/** The user agreement's sections, used on the first-launch screen and when viewing it again. */
+/**
+ * The Terms of Service, used on the first-launch screen and when viewing them again. Sections are numbered
+ * here (in the phone's own digits), so the order can change without retranslating every heading.
+ */
 @Composable
 internal fun AgreementText() {
     Text(stringResource(R.string.agreement_intro), style = MaterialTheme.typography.bodyMedium)
+    val number = remember { java.text.NumberFormat.getIntegerInstance() }
+    val leadingNumber = remember { Regex("^\\s*\\p{Nd}+\\s*[.．。、]\\s*") }
     listOf(
-        R.string.ag1_t to R.string.ag1, R.string.ag2_t to R.string.ag2, R.string.ag3_t to R.string.ag3,
-        R.string.ag4_t to R.string.ag4, R.string.ag5_t to R.string.ag5, R.string.ag6_t to R.string.ag6,
-        R.string.ag7_t to R.string.ag7,
-    ).forEach { (t, b) -> InfoBlock(t, b) }
+        R.string.ag1_t to R.string.ag1, R.string.ag_pp_t to R.string.ag_pp, R.string.ag2_t to R.string.ag2,
+        R.string.ag3_t to R.string.ag3, R.string.ag_use_t to R.string.ag_use, R.string.ag_lic_t to R.string.ag_lic,
+        R.string.ag_buy_t to R.string.ag_buy, R.string.ag4_t to R.string.ag4, R.string.ag5_t to R.string.ag5,
+        R.string.ag6_t to R.string.ag6, R.string.ag7_t to R.string.ag7, R.string.ag_contact_t to R.string.ag_contact,
+    ).forEachIndexed { i, (t, b) ->
+        Column {
+            Text(
+                number.format(i + 1) + ". " + stringResource(t).replace(leadingNumber, ""),
+                style = MaterialTheme.typography.titleSmall,
+                modifier = Modifier.semantics { heading() },
+            )
+            Text(stringResource(b), style = MaterialTheme.typography.bodyMedium)
+        }
+    }
     Text(stringResource(R.string.ag_translation), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
 }
 

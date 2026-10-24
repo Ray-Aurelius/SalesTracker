@@ -315,7 +315,7 @@
     <string name="pi_never_t">決して求めない権限</string>
     <string name="pi_never">インターネット、連絡先、位置情報、カメラ、マイク、写真とファイル、電話、SMS。</string>
     <string name="agreement_title">利用規約</string>
-    <string name="agreement_intro">Quota Vault を使う前にお読みください。短い内容で、データの責任が誰にあるかを説明しています。</string>
+    <string name="agreement_intro">Quota Vault を使う前に、この規約をお読みください。短い内容で、アプリがデータをどう扱い、誰が責任を負うのかを説明しています。</string>
     <string name="ag1_t">1. データはあなたの手元に</string>
     <string name="ag1">入力した内容はすべてこの端末にのみ保存されます。アプリにはインターネット接続、アカウント、サーバーがありません。アプリの開発者があなたのデータを受け取ったり、見たり、保存したり、処理したりすることはありません。</string>
     <string name="ag2_t">2. データの責任はあなただけにあります</string>
@@ -329,12 +329,12 @@
     <string name="ag6_t">6. セキュリティには限界があります</string>
     <string name="ag6">アプリのロック、暗号化、バックアップはリスクを大きく下げますが、完全に安全なシステムはありません。端末の画面ロックをオンにし、ソフトウェアを最新に保ってください。</string>
     <string name="ag7_t">7. 本規約の変更</string>
-    <string name="ag7">本規約が変更された場合、アプリは続行する前に新しい版を読んで同意するよう求めます。</string>
+    <string name="ag7">本規約が変更された場合、続行する前に新しい版を読んで同意するようアプリがお願いします。</string>
     <string name="ag_translation">本規約の翻訳が英語版と異なる場合は、英語版が優先されます。</string>
-    <string name="agreement_checkbox">この利用規約を読んで同意し、データのバックアップは自分だけの責任であることを理解しました。</string>
+    <string name="agreement_checkbox">利用規約とプライバシーポリシーを読み、同意します。自分のデータとそのバックアップについて、自分だけが責任を負うことを理解しています。</string>
     <string name="agree">同意する</string>
     <string name="decline">同意しない</string>
-    <string name="agreement_declined">アプリを使うには利用規約への同意が必要です。</string>
+    <string name="agreement_declined">アプリを使うには利用規約に同意する必要があります。</string>
     <string name="guide_title">データのバックアップ方法</string>
     <string name="guide_intro">データはこの端末にしかありません。バックアップは完全な暗号化コピーで、端末の紛失・故障・買い替え・初期化のときにすべてを復元できます。</string>
     <string name="guide_1">設定（右上の歯車）→ セキュリティとプライバシー → 今すぐバックアップ を開きます。</string>
@@ -1072,6 +1072,16 @@
     <string name="pp_b15">本ポリシーを変更する場合は、ここと当サイトで更新し、冒頭の日付を変更します。アプリによるデータの扱いに影響する変更の場合は、続行する前に確認するようアプリがお願いします。</string>
     <string name="pp_h16">お問い合わせ</string>
     <string name="pp_b16">本ポリシーに関するご質問：quotavaultsupport@gmail.com までメールでご連絡ください。本ポリシーは ray-aurelius.github.io/SalesTracker/privacy.html でも公開しています。</string>
+    <string name="ag_pp_t">プライバシーポリシー</string>
+    <string name="ag_pp">プライバシーポリシーでは、アプリが情報をどう扱うかを詳しく説明しています。要約すると、私たちは何も収集せず、アプリはどこにも何も送信できません。プライバシーポリシーは本規約の一部です。このページの「プライバシーポリシー」ボタン、「設定」、または ray-aurelius.github.io/SalesTracker/privacy.html でいつでもお読みいただけます。</string>
+    <string name="ag_use_t">適法な利用</string>
+    <string name="ag_use">アプリは適法な目的にのみ使用してください。保存する権利のある情報だけを入力し、法律や他者の権利に反する方法で情報を保存・処理するためにアプリを使わないでください。</string>
+    <string name="ag_lic_t">利用許諾</string>
+    <string name="ag_lic">Google Play でアプリを購入すると、Google Play の規約に基づき、ご自身の端末でアプリを使うための個人的かつ譲渡不可の利用許諾が与えられます。アプリ、そのデザインとコンテンツは開発者に帰属します。法律で認められる場合を除き、複製、改変、リバースエンジニアリング、転売、再配布はしないでください。</string>
+    <string name="ag_buy_t">購入と返金</string>
+    <string name="ag_buy">購入は Google Play を通じて行われ、支払いと返金は Google Play のポリシーに基づき Google が処理します。私たちが支払い情報を目にすることはありません。</string>
+    <string name="ag_contact_t">お問い合わせ</string>
+    <string name="ag_contact">本規約に関するご質問：quotavaultsupport@gmail.com までメールでご連絡ください。</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

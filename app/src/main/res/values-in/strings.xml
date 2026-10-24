@@ -288,7 +288,7 @@
     <string name="section_transparency">Transparansi</string>
     <string name="privacy_info">Cara data Anda ditangani</string>
     <string name="privacy_info_desc">Apa yang dilakukan aplikasi, apa yang tidak pernah dilakukan, dan setiap izin yang digunakan</string>
-    <string name="agreement_view">Perjanjian pengguna</string>
+    <string name="agreement_view">Ketentuan Layanan</string>
     <string name="agreement_accepted_on">Disetujui pada %1$s</string>
     <string name="delete_client_records">Hapus juga semua penjualan dan janji temu klien ini</string>
     <string name="backup_nudge_title">Lindungi data Anda</string>
@@ -314,8 +314,8 @@
     <string name="perm_biometric">Sidik jari atau wajah: hanya saat kunci aplikasi aktif. Android yang memeriksa; aplikasi tidak pernah melihat sidik jari atau PIN Anda.</string>
     <string name="pi_never_t">Tidak pernah diminta</string>
     <string name="pi_never">Internet, kontak, lokasi, kamera, mikrofon, foto dan file, panggilan telepon, SMS.</string>
-    <string name="agreement_title">Perjanjian Pengguna</string>
-    <string name="agreement_intro">Harap baca sebelum menggunakan Quota Vault. Perjanjian ini singkat dan menjelaskan siapa yang bertanggung jawab atas data Anda.</string>
+    <string name="agreement_title">Ketentuan Layanan</string>
+    <string name="agreement_intro">Baca ketentuan ini sebelum memakai Quota Vault. Isinya singkat dan menjelaskan cara aplikasi menangani data Anda serta siapa yang bertanggung jawab atasnya.</string>
     <string name="ag1_t">1. Data Anda tetap milik Anda</string>
     <string name="ag1">Semua yang Anda masukkan hanya disimpan di ponsel ini. Aplikasi tidak memiliki akses internet, akun, atau server. Pembuat aplikasi tidak pernah menerima, melihat, menyimpan, atau memproses data Anda.</string>
     <string name="ag2_t">2. Anda sepenuhnya bertanggung jawab atas data Anda</string>
@@ -328,13 +328,13 @@
     <string name="ag5">Aplikasi disediakan \"sebagaimana adanya\" dan \"sebagaimana tersedia\", tanpa jaminan apa pun, tersurat maupun tersirat. Angka seperti komisi, tingkat, dan progres target dihitung untuk kemudahan; periksa sendiri angka-angka penting.</string>
     <string name="ag6_t">6. Keamanan ada batasnya</string>
     <string name="ag6">Kunci aplikasi, enkripsi, dan cadangan sangat mengurangi risiko, tetapi tidak ada sistem yang sepenuhnya aman. Aktifkan kunci layar ponsel dan perbarui perangkat lunaknya.</string>
-    <string name="ag7_t">7. Perubahan perjanjian ini</string>
-    <string name="ag7">Jika perjanjian ini berubah, aplikasi akan meminta Anda membaca dan menyetujui versi baru sebelum melanjutkan.</string>
-    <string name="ag_translation">Jika terjemahan perjanjian ini berbeda dari versi bahasa Inggris, versi bahasa Inggris yang berlaku.</string>
-    <string name="agreement_checkbox">Saya telah membaca dan menyetujui Perjanjian Pengguna ini, dan memahami bahwa hanya saya yang bertanggung jawab mencadangkan data saya.</string>
+    <string name="ag7_t">7. Perubahan ketentuan ini</string>
+    <string name="ag7">Jika ketentuan ini berubah, aplikasi akan meminta Anda membaca dan menyetujui versi baru sebelum melanjutkan.</string>
+    <string name="ag_translation">Jika terjemahan ketentuan ini berbeda dengan versi bahasa Inggris, yang berlaku adalah versi bahasa Inggris.</string>
+    <string name="agreement_checkbox">Saya telah membaca dan menyetujui Ketentuan Layanan dan Kebijakan Privasi, dan saya memahami bahwa saya sepenuhnya bertanggung jawab atas data saya dan pencadangannya.</string>
     <string name="agree">Saya setuju</string>
     <string name="decline">Tolak</string>
-    <string name="agreement_declined">Anda perlu menyetujui Perjanjian Pengguna untuk menggunakan aplikasi.</string>
+    <string name="agreement_declined">Anda perlu menyetujui Ketentuan Layanan untuk memakai aplikasi.</string>
     <string name="guide_title">Cara mencadangkan data</string>
     <string name="guide_intro">Data Anda hanya ada di ponsel ini. Cadangan adalah salinan lengkap terenkripsi yang memungkinkan Anda memulihkan semuanya jika ponsel hilang, rusak, diganti, atau direset.</string>
     <string name="guide_1">Buka Pengaturan (roda gigi di kanan atas) → Keamanan dan privasi → Cadangkan sekarang.</string>
@@ -1072,6 +1072,16 @@
     <string name="pp_b15">Jika kebijakan ini berubah, kami akan memperbaruinya di sini dan di situs web kami serta mengubah tanggal di bagian atas. Jika perubahan memengaruhi cara aplikasi menangani data Anda, aplikasi akan meminta Anda meninjaunya sebelum melanjutkan.</string>
     <string name="pp_h16">Kontak</string>
     <string name="pp_b16">Pertanyaan tentang kebijakan ini: kirim email ke quotavaultsupport@gmail.com. Kebijakan ini juga dipublikasikan di ray-aurelius.github.io/SalesTracker/privacy.html.</string>
+    <string name="ag_pp_t">Kebijakan Privasi</string>
+    <string name="ag_pp">Kebijakan Privasi kami menjelaskan secara rinci cara aplikasi menangani informasi: singkatnya, kami tidak mengumpulkan apa pun dan aplikasi tidak bisa mengirim apa pun ke mana pun. Kebijakan ini bagian dari ketentuan ini. Baca kapan saja lewat tombol Kebijakan privasi di halaman ini, di Pengaturan, atau di ray-aurelius.github.io/SalesTracker/privacy.html.</string>
+    <string name="ag_use_t">Penggunaan yang sah</string>
+    <string name="ag_use">Gunakan aplikasi hanya untuk tujuan yang sah. Masukkan hanya informasi yang berhak Anda simpan, dan jangan gunakan aplikasi untuk menyimpan atau mengolah informasi dengan cara yang melanggar hukum atau hak orang lain.</string>
+    <string name="ag_lic_t">Lisensi penggunaan Anda</string>
+    <string name="ag_lic">Membeli aplikasi di Google Play memberi Anda lisensi pribadi yang tidak dapat dialihkan untuk memakainya di perangkat Anda sendiri, sesuai ketentuan Google Play. Aplikasi, desain, dan isinya milik pengembangnya. Jangan menyalin, mengubah, merekayasa balik, menjual kembali, atau mendistribusikannya, kecuali jika diizinkan hukum.</string>
+    <string name="ag_buy_t">Pembelian dan pengembalian dana</string>
+    <string name="ag_buy">Pembelian dilakukan melalui Google Play, dan pembayaran serta pengembalian dana ditangani Google sesuai kebijakan Google Play. Kami tidak pernah melihat detail pembayaran Anda.</string>
+    <string name="ag_contact_t">Kontak</string>
+    <string name="ag_contact">Pertanyaan tentang ketentuan ini: kirim email ke quotavaultsupport@gmail.com.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

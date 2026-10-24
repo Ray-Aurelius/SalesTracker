@@ -348,6 +348,17 @@ def main(apk):
         fail("crash on launch")
 
     note("Agreement and welcome")
+    if not find(r"^Terms of Service$"):
+        fail("the first screen isn't the Terms of Service")
+    if not find_scrolling(r"Lawful use", tries=6):
+        fail("the Terms of Service are missing the lawful use section")
+    if not tap(r"^Privacy policy$", "terms-privacy-policy", wait=2, scroll=6):
+        fail("no Privacy policy button on the Terms of Service")
+    if not find(r"Who we are"):
+        fail("the Privacy policy didn't open from the Terms of Service")
+    back(wait=1.5)
+    if not find(r"^Terms of Service$"):
+        fail("Back from the Privacy policy didn't return to the Terms of Service")
     tap(r"I have read and agree", scroll=6)
     tap(r"^I agree$", "agreed")
     for _ in range(4):

@@ -355,7 +355,7 @@
     <string name="section_transparency">Transparency</string>
     <string name="privacy_info">How your data is handled</string>
     <string name="privacy_info_desc">What the app does, what it never does, and every permission it uses</string>
-    <string name="agreement_view">User agreement</string>
+    <string name="agreement_view">Terms of Service</string>
     <string name="agreement_accepted_on">Accepted %1$s</string>
     <string name="delete_client_records">Also delete all of this client\'s sales and appointments</string>
 
@@ -389,8 +389,8 @@
     <string name="pi_never">Internet, contacts, location, camera, microphone, photos and files, phone calls, text messages.</string>
 
     <!-- User agreement -->
-    <string name="agreement_title">User Agreement</string>
-    <string name="agreement_intro">Please read this before using Quota Vault. It\'s short, and it explains who is responsible for your data.</string>
+    <string name="agreement_title">Terms of Service</string>
+    <string name="agreement_intro">Please read these terms before using Quota Vault. They\'re short, and they explain how the app handles your data and who is responsible for it.</string>
     <string name="ag1_t">1. Your data stays with you</string>
     <string name="ag1">Everything you enter is stored only on this phone. The app has no internet access, no accounts and no servers. The makers of the app never receive, see, store or process your data.</string>
     <string name="ag2_t">2. You are solely responsible for your data</string>
@@ -403,13 +403,13 @@
     <string name="ag5">The app is provided \"as is\" and \"as available\", without warranties of any kind, express or implied. Figures such as commission, rates and goal progress are calculated for your convenience; check important numbers yourself.</string>
     <string name="ag6_t">6. Security has limits</string>
     <string name="ag6">App lock, encryption and backups greatly reduce risk, but no system is perfectly secure. Keep your phone\'s screen lock turned on and its software up to date.</string>
-    <string name="ag7_t">7. Changes to this agreement</string>
-    <string name="ag7">If this agreement changes, the app will ask you to read and accept the new version before continuing.</string>
-    <string name="ag_translation">If a translation of this agreement differs from the English version, the English version applies.</string>
-    <string name="agreement_checkbox">I have read and agree to this User Agreement, and I understand that I am solely responsible for backing up my data.</string>
+    <string name="ag7_t">Changes to these terms</string>
+    <string name="ag7">If these terms change, the app will ask you to read and accept the new version before you continue.</string>
+    <string name="ag_translation">If a translation of these terms differs from the English version, the English version applies.</string>
+    <string name="agreement_checkbox">I have read and agree to the Terms of Service and the Privacy Policy, and I understand that I am solely responsible for my data and for backing it up.</string>
     <string name="agree">I agree</string>
     <string name="decline">Decline</string>
-    <string name="agreement_declined">You need to accept the User Agreement to use the app.</string>
+    <string name="agreement_declined">You need to accept the Terms of Service to use the app.</string>
 
     <!-- How to back up -->
     <string name="guide_title">How to back up your data</string>
@@ -1213,4 +1213,14 @@
     <string name="pp_b15">If this policy changes, we\'ll update it here and on our website and change the date at the top. If a change affects how the app handles your data, the app will ask you to review it before you continue.</string>
     <string name="pp_h16">Contact</string>
     <string name="pp_b16">Questions about this policy: email quotavaultsupport@gmail.com. This policy is also published at ray-aurelius.github.io/SalesTracker/privacy.html.</string>
+    <string name="ag_pp_t">Privacy Policy</string>
+    <string name="ag_pp">Our Privacy Policy explains exactly how the app handles information: in short, we collect none, and the app can\'t send anything anywhere. It is part of these terms. Read it any time with the Privacy policy button on this page, in Settings, or at ray-aurelius.github.io/SalesTracker/privacy.html.</string>
+    <string name="ag_use_t">Lawful use</string>
+    <string name="ag_use">Use the app only for lawful purposes. Only enter information you have the right to keep, and don\'t use the app to store or handle information in ways that break the law or the rights of others.</string>
+    <string name="ag_lic_t">Your licence to use the app</string>
+    <string name="ag_lic">Buying the app on Google Play gives you a personal, non-transferable licence to use it on your own devices, under Google Play\'s terms. The app, its design and its content belong to its developer. Don\'t copy, modify, reverse engineer, resell or redistribute it, except where the law allows.</string>
+    <string name="ag_buy_t">Purchases and refunds</string>
+    <string name="ag_buy">Purchases are made through Google Play, and payments and refunds are handled by Google under Google Play\'s policies. We never see your payment details.</string>
+    <string name="ag_contact_t">Contact</string>
+    <string name="ag_contact">Questions about these terms: email quotavaultsupport@gmail.com.</string>
 </resources>

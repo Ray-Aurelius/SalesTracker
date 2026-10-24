@@ -288,7 +288,7 @@
     <string name="section_transparency">透明度</string>
     <string name="privacy_info">你的数据如何处理</string>
     <string name="privacy_info_desc">应用做什么、绝不做什么，以及使用的每项权限</string>
-    <string name="agreement_view">用户协议</string>
+    <string name="agreement_view">服务条款</string>
     <string name="agreement_accepted_on">已于 %1$s 接受</string>
     <string name="delete_client_records">同时删除该客户的所有销售和预约</string>
     <string name="backup_nudge_title">保护你的数据</string>
@@ -314,8 +314,8 @@
     <string name="perm_biometric">指纹或面容：仅在开启应用锁时使用。由 Android 验证；应用永远看不到你的指纹或 PIN。</string>
     <string name="pi_never_t">从不请求</string>
     <string name="pi_never">网络、通讯录、位置、相机、麦克风、照片和文件、电话、短信。</string>
-    <string name="agreement_title">用户协议</string>
-    <string name="agreement_intro">使用 Quota Vault 前请阅读本协议。它很简短，说明了谁对你的数据负责。</string>
+    <string name="agreement_title">服务条款</string>
+    <string name="agreement_intro">使用 Quota Vault 前请阅读这些条款。条款很短，说明了应用如何处理你的数据以及由谁负责。</string>
     <string name="ag1_t">1. 你的数据由你掌握</string>
     <string name="ag1">你输入的所有内容只存储在这部手机上。应用没有网络访问、没有账户、也没有服务器。应用的开发者绝不会接收、查看、存储或处理你的数据。</string>
     <string name="ag2_t">2. 你对自己的数据承担全部责任</string>
@@ -328,13 +328,13 @@
     <string name="ag5">本应用按“现状”和“可用”状态提供，不附带任何明示或默示的保证。佣金、比率和目标进度等数字仅为方便你而计算；重要数字请自行核对。</string>
     <string name="ag6_t">6. 安全有其局限</string>
     <string name="ag6">应用锁、加密和备份能大大降低风险，但没有任何系统是绝对安全的。请保持手机屏幕锁开启并及时更新系统软件。</string>
-    <string name="ag7_t">7. 本协议的变更</string>
-    <string name="ag7">如果本协议发生变更，应用会在继续使用前请你阅读并接受新版本。</string>
-    <string name="ag_translation">如本协议的译文与英文版本不一致，以英文版本为准。</string>
-    <string name="agreement_checkbox">我已阅读并同意本用户协议，并理解我独自负责备份自己的数据。</string>
+    <string name="ag7_t">7. 条款的变更</string>
+    <string name="ag7">如果这些条款发生变化，应用会在你继续使用前请你阅读并接受新版本。</string>
+    <string name="ag_translation">如本条款的译文与英文版本不一致，以英文版本为准。</string>
+    <string name="agreement_checkbox">我已阅读并同意服务条款和隐私政策，并了解我本人对自己的数据及其备份负全部责任。</string>
     <string name="agree">我同意</string>
     <string name="decline">拒绝</string>
-    <string name="agreement_declined">你需要接受用户协议才能使用本应用。</string>
+    <string name="agreement_declined">你需要接受服务条款才能使用本应用。</string>
     <string name="guide_title">如何备份你的数据</string>
     <string name="guide_intro">你的数据只存在于这部手机上。备份是一份完整的加密副本，在手机丢失、损坏、更换或被重置时可用来恢复全部内容。</string>
     <string name="guide_1">打开设置（右上角的齿轮）→ 安全与隐私 → 立即备份。</string>
@@ -1072,6 +1072,16 @@
     <string name="pp_b15">如果本政策发生变化，我们会在此处和我们的网站上更新，并修改顶部的日期。如果变更影响应用处理你数据的方式，应用会在你继续使用前请你查看。</string>
     <string name="pp_h16">联系我们</string>
     <string name="pp_b16">关于本政策的问题：请发邮件至 quotavaultsupport@gmail.com。本政策也发布在 ray-aurelius.github.io/SalesTracker/privacy.html。</string>
+    <string name="ag_pp_t">隐私政策</string>
+    <string name="ag_pp">我们的隐私政策详细说明了应用如何处理信息：简而言之，我们不收集任何信息，应用也无法向任何地方发送任何内容。隐私政策是本条款的一部分。你可以随时通过本页的“隐私政策”按钮、在“设置”中或在 ray-aurelius.github.io/SalesTracker/privacy.html 查看。</string>
+    <string name="ag_use_t">合法使用</string>
+    <string name="ag_use">请仅将本应用用于合法用途。只输入你有权保存的信息，不要以违反法律或侵犯他人权利的方式使用本应用保存或处理信息。</string>
+    <string name="ag_lic_t">你的使用许可</string>
+    <string name="ag_lic">在 Google Play 购买本应用后，你将根据 Google Play 条款获得在自己的设备上使用本应用的个人、不可转让的许可。本应用及其设计和内容归开发者所有。除法律允许外，请勿复制、修改、反向工程、转售或再分发本应用。</string>
+    <string name="ag_buy_t">购买与退款</string>
+    <string name="ag_buy">购买通过 Google Play 完成，付款和退款由 Google 按照 Google Play 的政策处理。我们永远看不到你的付款信息。</string>
+    <string name="ag_contact_t">联系我们</string>
+    <string name="ag_contact">关于本条款的问题：请发邮件至 quotavaultsupport@gmail.com。</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

@@ -119,19 +119,19 @@ fun TourOverlay(
     BackHandler { if (index > 0) onBack() else onSkip() }
 
     var origin by remember { mutableStateOf(Offset.Zero) }
-    var size by remember { mutableStateOf(androidx.compose.ui.unit.IntSize.Zero) }
+    var boxSize by remember { mutableStateOf(androidx.compose.ui.unit.IntSize.Zero) }
     val pad = with(androidx.compose.ui.platform.LocalDensity.current) { 6.dp.toPx() }
     val target = step.target?.let { state.bounds[it] }
         ?.takeIf { it.width >= 1f && it.height >= 1f }
         ?.translate(-origin)
         ?.inflate(pad)
-    val center = Rect(Offset(size.width / 2f, size.height / 2f), 0f)
+    val center = Rect(Offset(boxSize.width / 2f, boxSize.height / 2f), 0f)
     val hole by animateValueAsState(target ?: center,Rect.VectorConverter, tween(280), label = "tourHole")
     val scrim = Color.Black.copy(alpha = 0.6f)
     val ring = MaterialTheme.colorScheme.primary
 
     Box(
-        Modifier.fillMaxSize().onGloballyPositioned { origin = it.positionInRoot(); size = it.size },
+        Modifier.fillMaxSize().onGloballyPositioned { origin = it.positionInRoot(); boxSize = it.size },
     ) {
         Canvas(
             Modifier.fillMaxSize()

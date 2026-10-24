@@ -288,7 +288,7 @@
     <string name="section_transparency">Minh bạch</string>
     <string name="privacy_info">Cách dữ liệu của bạn được xử lý</string>
     <string name="privacy_info_desc">Ứng dụng làm gì, không bao giờ làm gì và mọi quyền nó sử dụng</string>
-    <string name="agreement_view">Thỏa thuận người dùng</string>
+    <string name="agreement_view">Điều khoản dịch vụ</string>
     <string name="agreement_accepted_on">Đã chấp nhận ngày %1$s</string>
     <string name="delete_client_records">Đồng thời xóa mọi giao dịch và lịch hẹn của khách hàng này</string>
     <string name="backup_nudge_title">Bảo vệ dữ liệu của bạn</string>
@@ -314,8 +314,8 @@
     <string name="perm_biometric">Vân tay hoặc khuôn mặt: chỉ khi khóa ứng dụng bật. Android xác minh; ứng dụng không bao giờ thấy vân tay hay mã PIN của bạn.</string>
     <string name="pi_never_t">Không bao giờ yêu cầu</string>
     <string name="pi_never">Internet, danh bạ, vị trí, máy ảnh, micrô, ảnh và tệp, cuộc gọi, SMS.</string>
-    <string name="agreement_title">Thỏa thuận người dùng</string>
-    <string name="agreement_intro">Vui lòng đọc trước khi dùng Quota Vault. Thỏa thuận ngắn và giải thích ai chịu trách nhiệm về dữ liệu của bạn.</string>
+    <string name="agreement_title">Điều khoản dịch vụ</string>
+    <string name="agreement_intro">Vui lòng đọc các điều khoản này trước khi dùng Quota Vault. Chúng ngắn gọn và giải thích ứng dụng xử lý dữ liệu của bạn thế nào và ai chịu trách nhiệm về dữ liệu đó.</string>
     <string name="ag1_t">1. Dữ liệu thuộc về bạn</string>
     <string name="ag1">Mọi thứ bạn nhập chỉ được lưu trên điện thoại này. Ứng dụng không có truy cập internet, tài khoản hay máy chủ. Nhà phát triển không bao giờ nhận, xem, lưu trữ hay xử lý dữ liệu của bạn.</string>
     <string name="ag2_t">2. Bạn hoàn toàn chịu trách nhiệm về dữ liệu của mình</string>
@@ -328,13 +328,13 @@
     <string name="ag5">Ứng dụng được cung cấp \"nguyên trạng\" và \"sẵn có\", không có bất kỳ bảo đảm nào, dù rõ ràng hay ngụ ý. Các số liệu như hoa hồng, tỷ lệ và tiến độ mục tiêu được tính cho tiện; hãy tự kiểm tra các số liệu quan trọng.</string>
     <string name="ag6_t">6. Bảo mật có giới hạn</string>
     <string name="ag6">Khóa ứng dụng, mã hóa và sao lưu giảm rủi ro rất nhiều, nhưng không hệ thống nào an toàn tuyệt đối. Hãy bật khóa màn hình điện thoại và cập nhật phần mềm.</string>
-    <string name="ag7_t">7. Thay đổi thỏa thuận</string>
-    <string name="ag7">Nếu thỏa thuận này thay đổi, ứng dụng sẽ yêu cầu bạn đọc và chấp nhận phiên bản mới trước khi tiếp tục.</string>
-    <string name="ag_translation">Nếu bản dịch của thỏa thuận này khác với bản tiếng Anh, bản tiếng Anh được ưu tiên áp dụng.</string>
-    <string name="agreement_checkbox">Tôi đã đọc và đồng ý với Thỏa thuận người dùng này, và hiểu rằng chỉ mình tôi chịu trách nhiệm sao lưu dữ liệu của mình.</string>
+    <string name="ag7_t">7. Thay đổi điều khoản</string>
+    <string name="ag7">Nếu các điều khoản này thay đổi, ứng dụng sẽ yêu cầu bạn đọc và chấp nhận phiên bản mới trước khi tiếp tục.</string>
+    <string name="ag_translation">Nếu bản dịch của các điều khoản này khác với bản tiếng Anh, bản tiếng Anh được áp dụng.</string>
+    <string name="agreement_checkbox">Tôi đã đọc và đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư, và tôi hiểu rằng tôi hoàn toàn chịu trách nhiệm về dữ liệu của mình và việc sao lưu dữ liệu.</string>
     <string name="agree">Đồng ý</string>
     <string name="decline">Từ chối</string>
-    <string name="agreement_declined">Bạn cần chấp nhận Thỏa thuận người dùng để dùng ứng dụng.</string>
+    <string name="agreement_declined">Bạn cần chấp nhận Điều khoản dịch vụ để dùng ứng dụng.</string>
     <string name="guide_title">Cách sao lưu dữ liệu</string>
     <string name="guide_intro">Dữ liệu của bạn chỉ nằm trên điện thoại này. Bản sao lưu là bản sao đầy đủ, được mã hóa, giúp bạn khôi phục mọi thứ nếu điện thoại bị mất, hỏng, thay mới hoặc đặt lại.</string>
     <string name="guide_1">Mở Cài đặt (bánh răng ở góc trên bên phải) → Bảo mật và quyền riêng tư → Sao lưu ngay.</string>
@@ -1072,6 +1072,16 @@
     <string name="pp_b15">Nếu chính sách này thay đổi, chúng tôi sẽ cập nhật tại đây và trên trang web, đồng thời đổi ngày ở đầu trang. Nếu thay đổi ảnh hưởng đến cách ứng dụng xử lý dữ liệu của bạn, ứng dụng sẽ yêu cầu bạn xem lại trước khi tiếp tục.</string>
     <string name="pp_h16">Liên hệ</string>
     <string name="pp_b16">Câu hỏi về chính sách này: gửi email đến quotavaultsupport@gmail.com. Chính sách này cũng được đăng tại ray-aurelius.github.io/SalesTracker/privacy.html.</string>
+    <string name="ag_pp_t">Chính sách quyền riêng tư</string>
+    <string name="ag_pp">Chính sách quyền riêng tư của chúng tôi giải thích chính xác cách ứng dụng xử lý thông tin: tóm lại, chúng tôi không thu thập gì và ứng dụng không thể gửi gì đi đâu cả. Chính sách là một phần của các điều khoản này. Bạn có thể đọc bất cứ lúc nào bằng nút Chính sách quyền riêng tư trên trang này, trong Cài đặt hoặc tại ray-aurelius.github.io/SalesTracker/privacy.html.</string>
+    <string name="ag_use_t">Sử dụng hợp pháp</string>
+    <string name="ag_use">Chỉ dùng ứng dụng cho mục đích hợp pháp. Chỉ nhập thông tin bạn có quyền lưu giữ, và không dùng ứng dụng để lưu hoặc xử lý thông tin theo cách vi phạm pháp luật hay quyền của người khác.</string>
+    <string name="ag_lic_t">Giấy phép sử dụng của bạn</string>
+    <string name="ag_lic">Mua ứng dụng trên Google Play cho bạn giấy phép cá nhân, không thể chuyển nhượng để dùng ứng dụng trên các thiết bị của chính bạn, theo điều khoản của Google Play. Ứng dụng, thiết kế và nội dung của nó thuộc về nhà phát triển. Không sao chép, chỉnh sửa, dịch ngược, bán lại hay phân phối lại ứng dụng, trừ khi pháp luật cho phép.</string>
+    <string name="ag_buy_t">Mua hàng và hoàn tiền</string>
+    <string name="ag_buy">Giao dịch mua được thực hiện qua Google Play; thanh toán và hoàn tiền do Google xử lý theo chính sách của Google Play. Chúng tôi không bao giờ thấy thông tin thanh toán của bạn.</string>
+    <string name="ag_contact_t">Liên hệ</string>
+    <string name="ag_contact">Câu hỏi về các điều khoản này: gửi email đến quotavaultsupport@gmail.com.</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

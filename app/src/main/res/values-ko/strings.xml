@@ -288,7 +288,7 @@
     <string name="section_transparency">투명성</string>
     <string name="privacy_info">데이터 처리 방식</string>
     <string name="privacy_info_desc">앱이 하는 일, 절대 하지 않는 일, 사용하는 모든 권한</string>
-    <string name="agreement_view">사용자 계약</string>
+    <string name="agreement_view">서비스 약관</string>
     <string name="agreement_accepted_on">%1$s에 동의함</string>
     <string name="delete_client_records">이 고객의 모든 판매와 일정도 삭제</string>
     <string name="backup_nudge_title">데이터를 보호하세요</string>
@@ -314,8 +314,8 @@
     <string name="perm_biometric">지문 또는 얼굴: 앱 잠금이 켜져 있을 때만 사용. Android가 확인하며 앱은 지문이나 PIN을 절대 보지 않습니다.</string>
     <string name="pi_never_t">요청하지 않는 권한</string>
     <string name="pi_never">인터넷, 연락처, 위치, 카메라, 마이크, 사진 및 파일, 전화, 문자.</string>
-    <string name="agreement_title">사용자 계약</string>
-    <string name="agreement_intro">Quota Vault를 사용하기 전에 읽어 주세요. 짧은 내용이며 데이터에 대한 책임이 누구에게 있는지 설명합니다.</string>
+    <string name="agreement_title">서비스 약관</string>
+    <string name="agreement_intro">Quota Vault를 사용하기 전에 이 약관을 읽어 주세요. 짧으며, 앱이 데이터를 어떻게 다루고 누가 책임지는지 설명합니다.</string>
     <string name="ag1_t">1. 데이터는 당신에게 남습니다</string>
     <string name="ag1">입력한 모든 내용은 이 휴대폰에만 저장됩니다. 앱에는 인터넷 접근, 계정, 서버가 없습니다. 앱 제작자는 데이터를 받거나 보거나 저장하거나 처리하지 않습니다.</string>
     <string name="ag2_t">2. 데이터에 대한 책임은 전적으로 당신에게 있습니다</string>
@@ -328,13 +328,13 @@
     <string name="ag5">앱은 명시적이든 묵시적이든 어떠한 보증도 없이 \"있는 그대로\" 및 \"제공 가능한 상태로\" 제공됩니다. 수수료, 비율, 목표 진행률 같은 수치는 편의를 위해 계산된 것이므로 중요한 숫자는 직접 확인하세요.</string>
     <string name="ag6_t">6. 보안에는 한계가 있습니다</string>
     <string name="ag6">앱 잠금, 암호화, 백업은 위험을 크게 줄이지만 완벽하게 안전한 시스템은 없습니다. 휴대폰 화면 잠금을 켜 두고 소프트웨어를 최신 상태로 유지하세요.</string>
-    <string name="ag7_t">7. 본 계약의 변경</string>
-    <string name="ag7">본 계약이 변경되면 앱은 계속하기 전에 새 버전을 읽고 동의하도록 요청합니다.</string>
-    <string name="ag_translation">본 계약의 번역본이 영어 원문과 다를 경우 영어 원문이 우선합니다.</string>
-    <string name="agreement_checkbox">본 사용자 계약을 읽고 동의하며, 내 데이터 백업은 전적으로 나의 책임임을 이해합니다.</string>
+    <string name="ag7_t">7. 약관 변경</string>
+    <string name="ag7">이 약관이 바뀌면 계속하기 전에 새 버전을 읽고 동의해 달라고 앱이 요청합니다.</string>
+    <string name="ag_translation">이 약관의 번역본이 영어 원문과 다른 경우 영어 원문이 우선합니다.</string>
+    <string name="agreement_checkbox">서비스 약관과 개인정보처리방침을 읽었고 동의하며, 내 데이터와 그 백업에 대한 책임이 전적으로 나에게 있음을 이해합니다.</string>
     <string name="agree">동의함</string>
     <string name="decline">거부</string>
-    <string name="agreement_declined">앱을 사용하려면 사용자 계약에 동의해야 합니다.</string>
+    <string name="agreement_declined">앱을 사용하려면 서비스 약관에 동의해야 합니다.</string>
     <string name="guide_title">데이터 백업 방법</string>
     <string name="guide_intro">데이터는 이 휴대폰에만 있습니다. 백업은 휴대폰을 잃어버리거나 고장 나거나 교체하거나 초기화할 때 모든 것을 복원할 수 있는 완전한 암호화 사본입니다.</string>
     <string name="guide_1">설정(오른쪽 위 톱니바퀴) → 보안 및 개인정보 → 지금 백업을 엽니다.</string>
@@ -1072,6 +1072,16 @@
     <string name="pp_b15">이 방침이 바뀌면 여기와 웹사이트에서 업데이트하고 맨 위의 날짜를 바꿉니다. 변경 내용이 앱의 데이터 처리 방식에 영향을 주면, 계속하기 전에 확인해 달라고 앱이 요청합니다.</string>
     <string name="pp_h16">문의</string>
     <string name="pp_b16">이 방침에 관한 문의: quotavaultsupport@gmail.com으로 이메일을 보내 주세요. 이 방침은 ray-aurelius.github.io/SalesTracker/privacy.html에도 게시되어 있습니다.</string>
+    <string name="ag_pp_t">개인정보처리방침</string>
+    <string name="ag_pp">개인정보처리방침은 앱이 정보를 어떻게 다루는지 자세히 설명합니다. 요약하면, 저희는 아무것도 수집하지 않으며 앱은 어디로도 아무것도 보낼 수 없습니다. 개인정보처리방침은 이 약관의 일부입니다. 이 페이지의 개인정보처리방침 버튼, 설정, 또는 ray-aurelius.github.io/SalesTracker/privacy.html에서 언제든지 읽을 수 있습니다.</string>
+    <string name="ag_use_t">적법한 사용</string>
+    <string name="ag_use">앱은 적법한 목적으로만 사용하세요. 보관할 권리가 있는 정보만 입력하고, 법이나 타인의 권리를 침해하는 방식으로 정보를 저장하거나 처리하는 데 앱을 사용하지 마세요.</string>
+    <string name="ag_lic_t">사용 라이선스</string>
+    <string name="ag_lic">Google Play에서 앱을 구매하면 Google Play 약관에 따라 본인 기기에서 앱을 사용할 수 있는 개인적이고 양도할 수 없는 라이선스가 부여됩니다. 앱과 디자인, 콘텐츠는 개발자의 소유입니다. 법이 허용하는 경우를 제외하고 복제, 수정, 리버스 엔지니어링, 재판매, 재배포하지 마세요.</string>
+    <string name="ag_buy_t">구매 및 환불</string>
+    <string name="ag_buy">구매는 Google Play를 통해 이루어지며, 결제와 환불은 Google Play 정책에 따라 Google이 처리합니다. 저희는 결제 정보를 절대 보지 않습니다.</string>
+    <string name="ag_contact_t">문의</string>
+    <string name="ag_contact">이 약관에 관한 문의: quotavaultsupport@gmail.com으로 이메일을 보내 주세요.</string>
     <plurals name="client_summary">
         <item quantity="other">판매 %1$d건 · 성사율 %2$s · %3$s</item>
     </plurals>
