@@ -108,6 +108,14 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         settings.edit().putBoolean("tourDone", true).apply()
     }
 
+    // ---- A thank-you note from the founder (shown once after setup, before the tour) ----
+    var founderNoteSeen by mutableStateOf(settings.getBoolean("founderNoteSeen", false))
+        private set
+    fun markFounderNoteSeen() {
+        founderNoteSeen = true
+        settings.edit().putBoolean("founderNoteSeen", true).apply()
+    }
+
     // ---- Rating on Google Play ----
     /** When the app was first opened (for not asking for a rating too soon). */
     private var firstUseAt: Long = settings.getLong("firstUseAt", 0L).takeIf { it > 0L }
@@ -470,6 +478,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         allowScreenshots = false
         tourStep = null
         tourDone = false
+        founderNoteSeen = false
         askForReview = true
         reviewRequested = false
         firstUseAt = System.currentTimeMillis().also { settings.edit().putLong("firstUseAt", it).apply() }

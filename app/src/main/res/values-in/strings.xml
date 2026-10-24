@@ -1101,6 +1101,17 @@
     <string name="fb_thanks">Terima kasih telah membantu membuat Quota Vault lebih baik. Setelah Anda mengetuk Kirim, pesan Anda langsung sampai ke kami, dan kami akan membalas ke alamat yang Anda gunakan.</string>
     <string name="rate_feedback">Punya ide atau masalah? Kirim masukan</string>
     <string name="pp_fb">Anda bisa mengirim ide, masalah, atau pertanyaan kapan saja lewat Pengaturan → Kirim masukan. Aplikasi email Anda terbuka dengan pesan yang ditujukan kepada kami, dan tidak ada yang terkirim sampai Anda mengetuk Kirim. Kami menerima apa yang Anda tulis dan alamat email Anda, serta versi aplikasi dan model ponsel hanya jika kotak itu tetap dicentang. Kami memakainya hanya untuk membaca pesan, membalas, dan memperbaiki aplikasi, dan tidak pernah membagikannya. Jangan sertakan detail klien.</string>
+    <string name="note_title">Pesan dari Ray</string>
+    <string name="note_greeting">Halo,</string>
+    <string name="note_p1">Nama saya Ray, pendiri Quota Vault. Saya ingin mengucapkan terima kasih yang tulus karena Anda memilih aplikasi saya. Saya sungguh bersyukur Anda memilihnya di antara semua pilihan lain.</string>
+    <string name="note_p2">Saya berkomitmen untuk melayani Anda, memenuhi kebutuhan Anda, dan melindungi privasi Anda.</string>
+    <string name="note_p3">Jika Anda punya pertanyaan, komentar, saran, atau masukan, saya ingin sekali mendengarnya. Saya menghargai Anda dan waktu Anda, dan saya akan memperbaiki aplikasi ini dengan cara apa pun yang saya bisa untuk membantu Anda.</string>
+    <string name="note_p4">Terima kasih telah memilih Quota Vault.</string>
+    <string name="note_sign">Ray</string>
+    <string name="note_role">Pendiri, Quota Vault</string>
+    <string name="note_continue">Lanjutkan</string>
+    <string name="note_row">Pesan dari Ray</string>
+    <string name="note_row_desc">Ucapan terima kasih dari pendiri</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d penjualan · %2$s closing · %3$s</item>
     </plurals>

@@ -1101,6 +1101,17 @@
     <string name="fb_thanks">Merci de nous aider à améliorer Quota Vault. Dès que vous appuyez sur Envoyer, votre message nous parvient directement, et nous vous répondrons à l\'adresse depuis laquelle vous l\'envoyez.</string>
     <string name="rate_feedback">Une idée ou un problème ? Envoyez un commentaire</string>
     <string name="pp_fb">Vous pouvez nous écrire vos idées, problèmes ou questions à tout moment depuis Paramètres → Envoyer un commentaire. Votre app de messagerie s\'ouvre avec le message qui nous est adressé, et rien n\'est envoyé tant que vous n\'appuyez pas sur Envoyer. Nous recevons ce que vous écrivez et votre adresse e-mail, ainsi que la version de l\'app et le modèle du téléphone seulement si vous laissez cette case cochée. Nous les utilisons uniquement pour lire votre message, vous répondre et améliorer l\'app, et nous ne les partageons jamais. Merci de ne pas inclure de détails sur vos clients.</string>
+    <string name="note_title">Un mot de Ray</string>
+    <string name="note_greeting">Bonjour,</string>
+    <string name="note_p1">Je m\'appelle Ray, fondateur de Quota Vault. Je tiens à vous remercier sincèrement d\'avoir choisi mon app. Je suis profondément reconnaissant que vous l\'ayez choisie plutôt qu\'une autre.</string>
+    <string name="note_p2">Je me consacre à vous servir, à répondre à vos besoins et à protéger votre vie privée.</string>
+    <string name="note_p3">Si vous avez des questions, des remarques, des suggestions ou des commentaires, j\'aimerais beaucoup vous lire. Je tiens à vous et à votre temps, et j\'améliorerai l\'app de toutes les façons possibles pour vous aider.</string>
+    <string name="note_p4">Merci d\'avoir choisi Quota Vault.</string>
+    <string name="note_sign">Ray</string>
+    <string name="note_role">Fondateur, Quota Vault</string>
+    <string name="note_continue">Continuer</string>
+    <string name="note_row">Un mot de Ray</string>
+    <string name="note_row_desc">Un remerciement du fondateur</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d vente · %2$s conclues · %3$s</item>
         <item quantity="many">%1$d ventes · %2$s conclues · %3$s</item>

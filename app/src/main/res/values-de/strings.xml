@@ -1101,6 +1101,17 @@
     <string name="fb_thanks">Danke, dass Sie Quota Vault besser machen. Sobald Sie auf Senden tippen, kommt Ihre Nachricht direkt bei uns an, und wir antworten an die Adresse, von der Sie sie senden.</string>
     <string name="rate_feedback">Eine Idee oder ein Problem? Feedback senden</string>
     <string name="pp_fb">Sie können uns jederzeit über Einstellungen → Feedback senden Ideen, Probleme oder Fragen mailen. Ihre E-Mail-App öffnet sich mit der Nachricht an uns, und gesendet wird erst, wenn Sie auf Senden tippen. Wir erhalten, was Sie schreiben, und Ihre E-Mail-Adresse, dazu App-Version und Telefonmodell nur, wenn das Häkchen gesetzt bleibt. Wir nutzen sie nur, um Ihre Nachricht zu lesen, zu antworten und die App zu verbessern, und geben sie nie weiter. Bitte keine Kundendaten angeben.</string>
+    <string name="note_title">Ein paar Worte von Ray</string>
+    <string name="note_greeting">Hallo,</string>
+    <string name="note_p1">ich heiße Ray und bin der Gründer von Quota Vault. Ich möchte Ihnen von Herzen danken, dass Sie sich für meine App entschieden haben. Ich bin unglaublich dankbar, dass Sie meine App jeder anderen vorgezogen haben.</string>
+    <string name="note_p2">Ich setze mich dafür ein, für Sie da zu sein, Ihre Bedürfnisse zu erfüllen und Ihre Privatsphäre zu schützen.</string>
+    <string name="note_p3">Wenn Sie Fragen, Anmerkungen, Vorschläge oder Feedback haben, freue ich mich sehr, von Ihnen zu hören. Ich schätze Sie und Ihre Zeit, und ich werde die App verbessern, wo immer ich kann, um Ihnen zu helfen.</string>
+    <string name="note_p4">Danke, dass Sie sich für Quota Vault entschieden haben.</string>
+    <string name="note_sign">Ray</string>
+    <string name="note_role">Gründer, Quota Vault</string>
+    <string name="note_continue">Weiter</string>
+    <string name="note_row">Ein paar Worte von Ray</string>
+    <string name="note_row_desc">Ein Dankeschön vom Gründer</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d Verkauf · %2$s abgeschlossen · %3$s</item>
         <item quantity="other">%1$d Verkäufe · %2$s abgeschlossen · %3$s</item>

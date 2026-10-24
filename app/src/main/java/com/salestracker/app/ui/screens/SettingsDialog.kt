@@ -28,6 +28,7 @@ import androidx.compose.material.icons.filled.UploadFile
 import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.StarRate
 import androidx.compose.material.icons.filled.Feedback
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Policy
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Icon
@@ -60,6 +61,7 @@ fun SettingsDialog(
     onDismiss: () -> Unit,
     onStartTour: () -> Unit = {},
     onOpenPolicy: () -> Unit = {},
+    onOpenNote: () -> Unit = {},
 ) {
     var step by remember { mutableStateOf(Step.MENU) }
 
@@ -102,6 +104,7 @@ fun SettingsDialog(
                         step = Step.IMPORT
                     }
                     SettingRow(Icons.Filled.Explore, stringResource(R.string.tour_row), stringResource(R.string.tour_row_desc), onClick = onStartTour)
+                    SettingRow(Icons.Filled.Favorite, stringResource(R.string.note_row), stringResource(R.string.note_row_desc), onClick = onOpenNote)
                     SettingRow(Icons.Filled.Feedback, stringResource(R.string.fb_row), stringResource(R.string.fb_row_desc)) {
                         step = Step.FEEDBACK
                     }

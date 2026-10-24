@@ -1242,4 +1242,15 @@
     <string name="fb_thanks">Thank you for helping make Quota Vault better. Once you press Send, your message comes straight to us, and we\'ll reply to the address you send it from.</string>
     <string name="rate_feedback">Have an idea or a problem? Send feedback</string>
     <string name="pp_fb">You can email us ideas, problems or questions any time from Settings → Send feedback. Your email app opens with the message addressed to us, and nothing is sent until you press Send. We receive what you write and your email address, plus the app version and phone model only if you leave that box ticked. We use them only to read your message, reply and improve the app, and we never share them. Please don\'t include client details.</string>
+    <string name="note_title">A note from Ray</string>
+    <string name="note_greeting">Hello,</string>
+    <string name="note_p1">My name is Ray, founder of Quota Vault. I want to sincerely thank you for choosing my app. I am incredibly grateful you chose my app over anyone else.</string>
+    <string name="note_p2">I am dedicated to serving you, meeting your needs, and protecting your privacy.</string>
+    <string name="note_p3">If you have any questions, comments, suggestions or feedback, I\'d love to hear from you. I value you and your time, and I\'ll improve the app in any way I can to help you.</string>
+    <string name="note_p4">Thank you for choosing Quota Vault.</string>
+    <string name="note_sign">Ray</string>
+    <string name="note_role">Founder, Quota Vault</string>
+    <string name="note_continue">Continue</string>
+    <string name="note_row">A note from Ray</string>
+    <string name="note_row_desc">A thank-you from the founder</string>
 </resources>

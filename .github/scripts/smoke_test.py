@@ -368,7 +368,12 @@ def main(apk):
             break
     tap(r"Explore with sample data", "sample-data-loaded", wait=3)
 
-    section("The guided tour starts after setup; walk every step")
+    section("Ray's thank-you note, then the guided tour")
+    if not find(r"My name is Ray"):
+        fail("the thank-you note from Ray didn't show after setup")
+    shot("founder-note")
+    if not tap(r"^Continue$", wait=1.5):
+        fail("no Continue on the thank-you note")
     if not finish_tour(walk=True):
         fail("the guided tour didn't start after setup")
 
@@ -919,7 +924,9 @@ def main(apk):
     shot("restored")
     if crashed():
         fail("crash while restoring")
-    # Restoring starts fresh settings, so the tour offers itself again: skip it this time.
+    # Restoring starts fresh settings, so the note and the tour show again: move past them.
+    if find(r"My name is Ray"):
+        tap(r"^Continue$", wait=1.5)
     finish_tour()
     tap(r"^Clients$", "clients-after-restore", wait=2)
     for name in ["Alex Morgan", "Jordan Ellis", "Riley Quinn"]:

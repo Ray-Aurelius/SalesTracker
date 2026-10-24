@@ -95,8 +95,14 @@ class LayoutAudit {
                 }
             }
         }
-        // The guided tour: every step, then Finish.
+        // Ray's thank-you note comes first, then the guided tour.
         rule.waitForIdle()
+        shot("$config-0-note")
+        scrollDown()
+        shot("$config-0-note-b")
+        rule.onAllNodes(hasText(app.getString(R.string.note_continue))).onFirst().performClick()
+        rule.waitForIdle()
+        // The guided tour: every step, then Finish.
         var step = 0
         while (vm.tourStep != null && step < 30) {
             shot("$config-0-tour-${"%02d".format(step)}")
@@ -160,7 +166,7 @@ class LayoutAudit {
     fun j_clientSearch() {
         assumeTrue(System.getProperty("storeShots") == "true")
         val app = ApplicationProvider.getApplicationContext<Application>()
-        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); setDefaultCommission(10.0); loadSampleData() }
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); markFounderNoteSeen(); setDefaultCommission(10.0); loadSampleData() }
         val vm = AppViewModel(app)
         rule.setContent {
             CompositionLocalProvider(LocalTerms provides vm.trade.terms) {
@@ -216,7 +222,7 @@ class LayoutAudit {
     fun l_scamWarning() {
         assumeTrue(System.getProperty("storeShots") == "true")
         val app = ApplicationProvider.getApplicationContext<Application>()
-        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour() }
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); markFounderNoteSeen() }
         val vm = AppViewModel(app)
         var backup by mutableStateOf(false)
         rule.setContent {
@@ -236,7 +242,7 @@ class LayoutAudit {
     fun o1_backupPanel() {
         assumeTrue(System.getProperty("storeShots") == "true")
         val app = ApplicationProvider.getApplicationContext<Application>()
-        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); loadSampleData() }
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); markFounderNoteSeen(); loadSampleData() }
         val vm = AppViewModel(app)
         rule.setContent {
             SalesTrackerTheme(palette = vm.palette, dark = false) {
@@ -351,7 +357,7 @@ class LayoutAudit {
     /** Sample data in the app, ready for one of the new-feature renders below. */
     private fun startApp(): Pair<Application, AppViewModel> {
         val app = ApplicationProvider.getApplicationContext<Application>()
-        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); setDefaultCommission(10.0); loadSampleData() }
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); markFounderNoteSeen(); setDefaultCommission(10.0); loadSampleData() }
         val vm = AppViewModel(app)
         rule.setContent {
             CompositionLocalProvider(LocalTerms provides vm.trade.terms) {
@@ -490,7 +496,7 @@ class LayoutAudit {
     fun i_clientStats() {
         assumeTrue(System.getProperty("storeShots") == "true")
         val app = ApplicationProvider.getApplicationContext<Application>()
-        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); setDefaultCommission(10.0); loadSampleData() }
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); markFounderNoteSeen(); setDefaultCommission(10.0); loadSampleData() }
         val data = com.salestracker.app.data.Repository.readSnapshot(app)
         val client = data.clients.first { it.firstName == "Alex" }
         val metrics = com.salestracker.app.data.ClientMetrics.of(client, data)
@@ -533,7 +539,7 @@ class LayoutAudit {
         assumeTrue(System.getProperty("storeShots") == "true")
         val app = ApplicationProvider.getApplicationContext<Application>()
         val prefs = app.getSharedPreferences("settings", Context.MODE_PRIVATE)
-        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); setDefaultCommission(10.0); loadSampleData() }
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); markFounderNoteSeen(); setDefaultCommission(10.0); loadSampleData() }
         val data = com.salestracker.app.data.Repository.readSnapshot(app)
         val dp = app.resources.displayMetrics.density
         fun render(name: String, views: android.widget.RemoteViews, wDp: Int = 300, hDp: Int = 190) {
@@ -570,7 +576,7 @@ class LayoutAudit {
         assumeTrue(System.getProperty("storeShots") == "true")
         val app = ApplicationProvider.getApplicationContext<Application>()
         val prefs = app.getSharedPreferences("settings", Context.MODE_PRIVATE)
-        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); setDefaultCommission(10.0); loadSampleData() }
+        AppViewModel(app).apply { acceptAgreement(); finishOnboarding(); endTour(); markFounderNoteSeen(); setDefaultCommission(10.0); loadSampleData() }
         prefs.edit().remove("sampleIds").remove("sampleDays").putLong("lastBackupAt", System.currentTimeMillis()).commit()
         val vm = AppViewModel(app)
         var palette by mutableStateOf(AppPalette.SPRING)

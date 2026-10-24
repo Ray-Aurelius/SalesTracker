@@ -1101,6 +1101,17 @@
     <string name="fb_thanks">شكرًا لمساعدتك في تحسين Quota Vault. بمجرد أن تضغط إرسال، تصل رسالتك إلينا مباشرةً، وسنرد على العنوان الذي ترسل منه.</string>
     <string name="rate_feedback">لديك فكرة أو مشكلة؟ أرسل ملاحظاتك</string>
     <string name="pp_fb">يمكنك مراسلتنا بأفكارك أو مشكلاتك أو أسئلتك في أي وقت من الإعدادات ← إرسال ملاحظات. يفتح تطبيق البريد برسالة موجّهة إلينا، ولا يُرسل شيء حتى تضغط إرسال. نتلقّى ما تكتبه وعنوان بريدك، ومعهما إصدار التطبيق وطراز الهاتف فقط إن تركت ذلك المربع محددًا. نستخدمها فقط لقراءة رسالتك والرد عليك وتحسين التطبيق، ولا نشاركها أبدًا. يُرجى عدم إدراج تفاصيل العملاء.</string>
+    <string name="note_title">رسالة من راي</string>
+    <string name="note_greeting">مرحبًا،</string>
+    <string name="note_p1">اسمي راي، مؤسس Quota Vault. أريد أن أشكرك من القلب على اختيارك تطبيقي. أنا ممتن جدًا لأنك اخترته دون غيره.</string>
+    <string name="note_p2">أكرّس جهدي لخدمتك وتلبية احتياجاتك وحماية خصوصيتك.</string>
+    <string name="note_p3">إن كانت لديك أي أسئلة أو تعليقات أو اقتراحات أو ملاحظات، فسيسعدني كثيرًا أن أسمع منك. أنا أقدّرك وأقدّر وقتك، وسأحسّن التطبيق بكل طريقة ممكنة لمساعدتك.</string>
+    <string name="note_p4">شكرًا لاختيارك Quota Vault.</string>
+    <string name="note_sign">راي</string>
+    <string name="note_role">المؤسس، Quota Vault</string>
+    <string name="note_continue">متابعة</string>
+    <string name="note_row">رسالة من راي</string>
+    <string name="note_row_desc">شكر من المؤسس</string>
     <plurals name="client_summary">
         <item quantity="zero">%1$d مبيعات · %2$s مغلقة · %3$s</item>
         <item quantity="one">بيع واحد · %2$s مغلقة · %3$s</item>

@@ -1101,6 +1101,17 @@
     <string name="fb_thanks">Quota Vault\'u daha iyi hale getirmeye yardım ettiğiniz için teşekkürler. Gönder\'e bastığınızda mesajınız doğrudan bize ulaşır ve gönderdiğiniz adrese yanıt veririz.</string>
     <string name="rate_feedback">Bir fikriniz veya sorununuz mu var? Geri bildirim gönderin</string>
     <string name="pp_fb">Fikirlerinizi, sorunlarınızı veya sorularınızı istediğiniz zaman Ayarlar → Geri bildirim gönder bölümünden bize e-postayla iletebilirsiniz. E-posta uygulamanız mesaj bize yazılmış olarak açılır ve Gönder\'e basana kadar hiçbir şey gönderilmez. Yazdıklarınızı ve e-posta adresinizi, kutuyu işaretli bırakırsanız uygulama sürümünü ve telefon modelini de alırız. Bunları yalnızca mesajınızı okumak, yanıt vermek ve uygulamayı geliştirmek için kullanır, asla paylaşmayız. Lütfen müşteri bilgisi eklemeyin.</string>
+    <string name="note_title">Ray\'den bir not</string>
+    <string name="note_greeting">Merhaba,</string>
+    <string name="note_p1">Ben Ray, Quota Vault\'un kurucusuyum. Uygulamamı seçtiğiniz için içtenlikle teşekkür ederim. Onu diğer tüm seçeneklere tercih ettiğiniz için son derece minnettarım.</string>
+    <string name="note_p2">Size hizmet etmeye, ihtiyaçlarınızı karşılamaya ve gizliliğinizi korumaya kendimi adadım.</string>
+    <string name="note_p3">Sorularınız, yorumlarınız, önerileriniz veya geri bildirimleriniz varsa sizden duymayı çok isterim. Size ve zamanınıza değer veriyorum; size yardımcı olmak için uygulamayı elimden gelen her şekilde geliştireceğim.</string>
+    <string name="note_p4">Quota Vault\'u seçtiğiniz için teşekkürler.</string>
+    <string name="note_sign">Ray</string>
+    <string name="note_role">Kurucu, Quota Vault</string>
+    <string name="note_continue">Devam</string>
+    <string name="note_row">Ray\'den bir not</string>
+    <string name="note_row_desc">Kurucudan bir teşekkür</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d satış · %2$s kapanış · %3$s</item>
         <item quantity="other">%1$d satış · %2$s kapanış · %3$s</item>

@@ -1101,6 +1101,17 @@
     <string name="fb_thanks">Cảm ơn bạn đã giúp Quota Vault tốt hơn. Khi bạn nhấn Gửi, tin nhắn sẽ đến thẳng chỗ chúng tôi, và chúng tôi sẽ trả lời đến địa chỉ bạn dùng để gửi.</string>
     <string name="rate_feedback">Có ý tưởng hay gặp sự cố? Gửi góp ý</string>
     <string name="pp_fb">Bạn có thể gửi email cho chúng tôi về ý tưởng, sự cố hay câu hỏi bất cứ lúc nào từ Cài đặt → Gửi góp ý. Ứng dụng email sẽ mở với tin nhắn gửi đến chúng tôi, và không có gì được gửi cho đến khi bạn nhấn Gửi. Chúng tôi nhận nội dung bạn viết và địa chỉ email của bạn, cùng phiên bản ứng dụng và mẫu điện thoại chỉ khi bạn để ô đó được chọn. Chúng tôi chỉ dùng chúng để đọc, trả lời và cải thiện ứng dụng, và không bao giờ chia sẻ. Vui lòng không ghi thông tin khách hàng.</string>
+    <string name="note_title">Đôi lời từ Ray</string>
+    <string name="note_greeting">Xin chào,</string>
+    <string name="note_p1">Tôi là Ray, người sáng lập Quota Vault. Tôi chân thành cảm ơn bạn đã chọn ứng dụng của tôi. Tôi vô cùng biết ơn vì bạn đã chọn nó thay vì bất kỳ ứng dụng nào khác.</string>
+    <string name="note_p2">Tôi luôn tận tâm phục vụ bạn, đáp ứng nhu cầu của bạn và bảo vệ quyền riêng tư của bạn.</string>
+    <string name="note_p3">Nếu bạn có câu hỏi, nhận xét, gợi ý hay góp ý nào, tôi rất muốn được nghe. Tôi trân trọng bạn và thời gian của bạn, và tôi sẽ cải thiện ứng dụng bằng mọi cách có thể để giúp bạn.</string>
+    <string name="note_p4">Cảm ơn bạn đã chọn Quota Vault.</string>
+    <string name="note_sign">Ray</string>
+    <string name="note_role">Nhà sáng lập, Quota Vault</string>
+    <string name="note_continue">Tiếp tục</string>
+    <string name="note_row">Đôi lời từ Ray</string>
+    <string name="note_row_desc">Lời cảm ơn từ nhà sáng lập</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d giao dịch · chốt %2$s · %3$s</item>
     </plurals>

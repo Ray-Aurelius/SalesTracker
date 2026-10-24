@@ -1101,6 +1101,17 @@
     <string name="fb_thanks">感谢你帮助 Quota Vault 变得更好。你点“发送”后，消息会直接送到我们这里，我们会回复到你发信的邮箱。</string>
     <string name="rate_feedback">有想法或遇到问题？发送反馈</string>
     <string name="pp_fb">你可以随时在“设置 → 发送反馈”中给我们发邮件，告诉我们你的想法、问题或疑问。你的邮件应用会打开并将消息发往我们，在你点“发送”之前不会发送任何内容。我们会收到你写的内容和你的邮箱地址；只有在你保留勾选时，才会附上应用版本和手机型号。我们只用它们来阅读、回复和改进应用，绝不分享。请不要写入客户信息。</string>
+    <string name="note_title">Ray 的一封信</string>
+    <string name="note_greeting">你好：</string>
+    <string name="note_p1">我叫 Ray，是 Quota Vault 的创始人。衷心感谢你选择我的应用。在那么多选择中你选择了它，我无比感激。</string>
+    <string name="note_p2">我会全心全意为你服务，满足你的需求，保护你的隐私。</string>
+    <string name="note_p3">如果你有任何问题、意见、建议或反馈，我都很想听到。我珍视你和你的时间，并会尽我所能改进这个应用来帮助你。</string>
+    <string name="note_p4">感谢你选择 Quota Vault。</string>
+    <string name="note_sign">Ray</string>
+    <string name="note_role">Quota Vault 创始人</string>
+    <string name="note_continue">继续</string>
+    <string name="note_row">Ray 的一封信</string>
+    <string name="note_row_desc">来自创始人的感谢</string>
     <plurals name="client_summary">
         <item quantity="other">%1$d 笔销售 · 成交率 %2$s · %3$s</item>
     </plurals>

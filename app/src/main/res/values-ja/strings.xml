@@ -1101,6 +1101,17 @@
     <string name="fb_thanks">Quota Vault をより良くするためにご協力いただき、ありがとうございます。「送信」を押すとメッセージは私たちに直接届き、送信元のアドレスに返信します。</string>
     <string name="rate_feedback">アイデアや不具合がありますか？ご意見を送る</string>
     <string name="pp_fb">アイデア、不具合、質問は「設定 → ご意見を送る」からいつでもメールでお送りいただけます。メールアプリが私たち宛てのメッセージで開き、「送信」を押すまで何も送られません。私たちが受け取るのは、あなたが書いた内容とメールアドレス、そしてチェックを残した場合のみアプリのバージョンと端末の機種です。これらはメッセージを読み、返信し、アプリを改善するためだけに使い、共有することはありません。顧客の情報は書かないでください。</string>
+    <string name="note_title">Ray からのメッセージ</string>
+    <string name="note_greeting">こんにちは。</string>
+    <string name="note_p1">Quota Vault の創設者、Ray です。私のアプリを選んでいただき、心から感謝しています。数ある選択肢の中から選んでくださったことを、本当にありがたく思っています。</string>
+    <string name="note_p2">あなたのお役に立ち、ニーズに応え、プライバシーを守ることに全力を尽くします。</string>
+    <string name="note_p3">ご質問、ご意見、ご提案、フィードバックがあれば、ぜひお聞かせください。あなたとあなたの時間を大切に思っています。あなたのお役に立てるよう、できる限りアプリを改善していきます。</string>
+    <string name="note_p4">Quota Vault を選んでいただき、ありがとうございます。</string>
+    <string name="note_sign">Ray</string>
+    <string name="note_role">Quota Vault 創設者</string>
+    <string name="note_continue">続ける</string>
+    <string name="note_row">Ray からのメッセージ</string>
+    <string name="note_row_desc">創設者からの感謝</string>
     <plurals name="client_summary">
         <item quantity="other">販売 %1$d 件 · 成約率 %2$s · %3$s</item>
     </plurals>

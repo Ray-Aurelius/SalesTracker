@@ -293,6 +293,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
     var showSettings by rememberSaveable { mutableStateOf(false) }
     var showSecurity by rememberSaveable { mutableStateOf(false) }
     var showPolicy by rememberSaveable { mutableStateOf(false) }
+    var showNote by rememberSaveable { mutableStateOf(false) }
     val data by vm.data.collectAsState()
     val context = androidx.compose.ui.platform.LocalContext.current
     // The backup folder (Documents › Quota Vault Backups) is made once, when the app is first set up, so backups
@@ -314,6 +315,14 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
         com.salestracker.app.ui.screens.CrashReportsDialog(openNewest = true, onDismiss = { showCrashReports = false })
     }
 
+    // Ray's thank-you note: once after setup (the tour follows), and any time from Settings.
+    if (!vm.founderNoteSeen || showNote) {
+        com.salestracker.app.ui.screens.FounderNoteScreen(
+            firstTime = !vm.founderNoteSeen,
+            onContinue = { vm.markFounderNoteSeen(); showNote = false },
+        )
+        return
+    }
     // The full privacy policy, as its own page (from Settings, or from Security & privacy).
     if (showPolicy) {
         com.salestracker.app.ui.screens.PrivacyPolicyScreen(onClose = { showPolicy = false })
@@ -492,6 +501,7 @@ internal fun SalesApp(vm: AppViewModel, isDark: Boolean) {
             vm = vm, isDark = isDark, onOpenSecurity = { showSecurity = true }, onDismiss = { showSettings = false },
             onStartTour = { showSettings = false; tab = shown.first(); vm.startTour() },
             onOpenPolicy = { showSettings = false; showPolicy = true },
+            onOpenNote = { showSettings = false; showNote = true },
         )
     }
 }

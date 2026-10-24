@@ -1101,6 +1101,17 @@
     <string name="fb_thanks">Gracias por ayudar a mejorar Quota Vault. Cuando pulses Enviar, tu mensaje nos llegará directamente y te responderemos a la dirección desde la que lo envíes.</string>
     <string name="rate_feedback">¿Tienes una idea o un problema? Envía comentarios</string>
     <string name="pp_fb">Puedes escribirnos ideas, problemas o preguntas cuando quieras desde Ajustes → Enviar comentarios. Se abre tu app de correo con el mensaje dirigido a nosotros y no se envía nada hasta que pulses Enviar. Recibimos lo que escribes y tu dirección de correo, y la versión de la app y el modelo del teléfono solo si dejas marcada esa casilla. Los usamos solo para leer tu mensaje, responderte y mejorar la app, y nunca los compartimos. Por favor, no incluyas datos de clientes.</string>
+    <string name="note_title">Una nota de Ray</string>
+    <string name="note_greeting">Hola:</string>
+    <string name="note_p1">Me llamo Ray y soy el fundador de Quota Vault. Quiero darte las gracias de corazón por elegir mi app. Estoy enormemente agradecido de que la hayas elegido por encima de cualquier otra.</string>
+    <string name="note_p2">Me dedico a servirte, a cubrir tus necesidades y a proteger tu privacidad.</string>
+    <string name="note_p3">Si tienes preguntas, comentarios, sugerencias u opiniones, me encantaría saber de ti. Te valoro a ti y a tu tiempo, y mejoraré la app en todo lo que pueda para ayudarte.</string>
+    <string name="note_p4">Gracias por elegir Quota Vault.</string>
+    <string name="note_sign">Ray</string>
+    <string name="note_role">Fundador, Quota Vault</string>
+    <string name="note_continue">Continuar</string>
+    <string name="note_row">Una nota de Ray</string>
+    <string name="note_row_desc">Un agradecimiento del fundador</string>
     <plurals name="client_summary">
         <item quantity="one">%1$d venta · %2$s cerradas · %3$s</item>
         <item quantity="many">%1$d ventas · %2$s cerradas · %3$s</item>
