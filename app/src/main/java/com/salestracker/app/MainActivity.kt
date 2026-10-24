@@ -13,6 +13,7 @@ import com.salestracker.app.ui.screens.LocalContentWidth
 import com.salestracker.app.ui.screens.LocalTour
 import com.salestracker.app.ui.screens.TourKeys
 import com.salestracker.app.ui.screens.tourTarget
+import com.salestracker.app.ui.screens.IconTip
 import com.salestracker.app.ui.screens.FitText
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandHorizontally

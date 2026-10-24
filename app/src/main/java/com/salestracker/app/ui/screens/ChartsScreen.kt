@@ -76,13 +76,13 @@ private enum class AvgRange(val period: GoalPeriod?) { WEEK(GoalPeriod.WEEK), MO
 @Composable
 fun ChartsScreen(vm: AppViewModel, data: AppData) {
     Box(Modifier.fillMaxSize()) {
-        ChartsContent(data)
+        ChartsContent(vm, data)
         QuickAdd(vm, data)
     }
 }
 
 @Composable
-private fun ChartsContent(data: AppData) {
+private fun ChartsContent(vm: AppViewModel, data: AppData) {
     val pct = data.commissionPlan
     val sales = data.sales
     val today = LocalDate.now()
